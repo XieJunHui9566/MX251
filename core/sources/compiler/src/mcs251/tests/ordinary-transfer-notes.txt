@@ -1,0 +1,19 @@
+R82 ordinary ABI call transport
+Only explicit --mcs251-wide-ordinary enables the new path. First argument and
+return byte order remains DPL, DPH, B, A (logical least to most significant).
+Register values are used only when their full allocation excludes R10/R11.
+Low registers permit direct byte transfers. High registers use existing WR
+views through B:A, without a DR16 snapshot or invalid R16+ byte aliases.
+Pointer results have three physical bytes and an explicitly zeroed MIR pad.
+Literal values preserve frontend bit serialization, including float patterns.
+
+Spills, aliases and option-off emission retain the original snapshot path.
+No memory sampling, stack argument order, caller saves, restore order, runtime,
+calling convention, arithmetic precision or fallback eligibility is changed.
+Check with check-wide-ordinary-transfer.py. It also verifies the default-option
+object identity with R81 and the existing floating-memory-call fallback.
+
+The transport board corpus has signed byte/word, pointer literals (no access
+through the literal pointer), float constants, register pressure, void/zero-arg
+calls and mixed ABI calls. It is independent from the unchanged 22-function
+main workload and must not be merged into its C251 performance figures.

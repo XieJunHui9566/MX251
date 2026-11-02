@@ -1,0 +1,15 @@
+Native true-symbol RECEIVE qualification (R81)
+The explicit --mcs251-wide-ordinary experimental switch also permits ABI4
+register formals represented by stack symbols. Symbols must match declared
+register arguments. ABI4 receive registers remain DR4/DR12; stack arguments
+retain their original physical widths and ordering.
+
+The R80 immutable-home proof now accepts either register RECEIVE only with
+that switch. All ordinary and native boundary checks remain. Mutable/addressed
+homes stay in memory; volatile parameter objects retain fallback. A pointer
+to volatile is a nonvolatile pointer value; volatile target transactions stay.
+
+Check with check-wide-native-homes.py, both models and optimization choices.
+The 10-function supplemental board corpus is separate from 22-function
+ordinary-calls performance comparison. It does not establish general ABI or
+floating arithmetic coverage. Default option behavior is unchanged.

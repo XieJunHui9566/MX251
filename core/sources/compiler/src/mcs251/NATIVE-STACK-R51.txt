@@ -1,0 +1,31 @@
+R51 wide MIR addressable stack storage
+
+Opt-in ABI4/reentrant wide functions may materialize addresses of local stack
+objects (arrays, unions, address-only scalars). Each distinct symbol owns a
+non-overlapping lifetime-long byte region. Spill slots follow those regions;
+legacy symbol.stack offsets are not reused or mutated. Existing @DR scalar
+memory operations preserve aliasing and volatile byte order.
+
+SPX grows upward. For object slot S, frame size F and call-save depth D, the
+object address is SPX + S + constantOffset - F - D + 1, masked to 24 bits.
+DR16 is reserved scratch. Neither DPX nor allocated virtual registers are
+clobbered by materializing an address. No hidden static object storage.
+
+Tail calls are conservatively disabled for any function with a frame object:
+the callee may still read or modify the caller's live local object. Ordinary
+calls, recursive calls and all normal returns retain/release the frame.
+
+Limits: <=32 objects and <=512 total frame bytes including spills; constant
+ADDRESS_OF offsets must be within the object or one-past. Parameters, actual
+direct true-memory scalar operands, unsupported CODE pointer intermediates,
+atomic/aggregate memory operations and old unsupported ABIs still fall back
+as a whole function. No new implicit address-space conversions.
+
+Native acceptance tests cover small/large with --stack-auto. Without that
+flag, current true-symbol parameter operands cause whole-function fallback;
+tests require unchanged fallback machine code. Other tests cover
+distinct objects, spills, recursion, aliasing calls, 280-byte arrays, union
+binary32 payload transport, volatile byte operations and fallback identity.
+Compiler checks are separate from recorded AI8051U CPU32 hardware evidence.
+The full tan reducer is not migrated in R51; its array prerequisite is now
+available, but other importer restrictions still remain.

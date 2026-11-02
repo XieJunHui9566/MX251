@@ -1,0 +1,24 @@
+R53: direct SPX addressing for proven local objects
+
+The pass propagates object identity and constant byte offset through pointer
+copies/casts and bounded constant addition/subtraction in straight-line MIR.
+All labels and control transfers discard facts. Unknown pointers, integer
+round-trips and dynamic offsets retain indirect addressing. Calls invalidate
+their result definition but cannot modify non-addressable pointer temporaries.
+No memory values are cached. Full object lifetimes and tail-call restrictions
+from R51 remain unchanged. One-past formation is allowed; direct accesses must
+fit completely inside the object's size. Address arithmetic is not truncated.
+
+Direct addresses use slot + offset - frame - current stackDepth + 1, just like
+the existing spill emitter. Ordinary 2/4-byte objects use word accesses;
+volatile objects still use ascending byte accesses, one per original byte.
+Only unused pure pointer computations are removed. Actual reads, writes and
+calls remain in the same order. No precision/function/atomic restriction is
+relaxed. The R52 float-wrapper migration guard remains in force.
+
+Tests: check-wide-stack-direct.py, optionally --baseline R52 compiler; the
+existing stack/volatile checks understand both indirect and direct addresses.
+Board fixtures cover branches, loops, 280-byte frames, character aliasing,
+one-past calls, spills, nested calls, recursion and interrupts. Offline checks
+alone are not a hardware result. See round53 report for exact measurements,
+regressions, artifacts, source patch and hardware restoration evidence.

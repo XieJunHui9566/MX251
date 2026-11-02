@@ -1,0 +1,47 @@
+R52: qualified sampled values and GETWORD signedness
+
+1. A non-address-taken, non-global ITEMP is a sampled value, not another memory
+   access. Literals promoted to volatile-qualified types are constants as well.
+   Their integral/float/flat-pointer values may enter wide MIR. True symbols,
+   address-taken temporaries, unsupported widths and atomic are still rejected.
+   No original operand type or iCode is modified by the importer.
+
+2. Memory access qualifiers remain attached to WM_LOAD/WM_STORE. Volatile
+   1/2/4-byte accesses keep byte width and ascending address order; two reads
+   remain two reads. Call aliasing and stack-object lifetimes are preserved.
+
+3. Shared AST GETWORD now has unsigned-int type, matching the existing
+   geniCode GETWORD UINTTYPE. Previously an explicit signed-int cast around
+   an extraction could be removed as redundant, then later zero-extended.
+   This affects both MCS251 and MCS51 frontend. MCS51 verification this round
+   is offline only. The 251 board tests compare all 65536 word patterns for
+   offsets 0/8/16 and signed/unsigned conversions against independent sums.
+   Pre-fix compiler payload is retained to reproduce the defect.
+
+4. New sampled-qualified functions with actual stack objects, float memory
+   operations and calls are deferred as a whole to the old backend. The first
+   candidate made eight math wrappers 924 bytes larger. This guard defers that
+   migration without changing function behavior, precision or volatile access.
+   Existing accepted functions stay accepted. Remove only after direct stack
+   addressing has been validated and size/timing compared.
+
+5. Current test boundaries: 8/10 volatile fixture functions enter wide MIR.
+   v_branch uses a frontend-generated 64-bit constant for a 24-bit pointer
+   offset and still falls back. v_signed's corrected cast chain still falls
+   back; correctness is provided by the existing backend. Both have byte-for-
+   byte wide-on/off fallback checks and board correctness coverage.
+
+6. Full tan reducer still falls back at iCode 49, readonly __code table address
+   (node 29, values 20, one 4-byte object). The legacy CPOINTER path uses MOVC;
+   it must not be silently treated as ordinary XDATA access. Keep the full
+   224-bit constant, 31-byte product, and the R14 tan/cot accuracy criteria.
+   WV_MAX=128, WN_MAX=512, 32 objects and 512-byte frame limits are unchanged.
+
+7. Next: direct SPX access with proven stack-object provenance, accounting for
+   current pushes and preserving every volatile byte transaction; then assess
+   lifting the float-wrapper migration guard. Readonly CODE import needs its
+   own instruction/address-space validation before the full reducer migration.
+
+Experimental compiler; no replacement of the IDE default toolchain, no version
+change, no commits/pushes. Download ACK and UART capture do not imply Flash or
+configuration readback. See round52 report for exact hashes and measured scope.

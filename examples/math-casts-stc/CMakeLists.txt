@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(QuantizeRoute NONE)
+include("${MX251_PROJECT_MODULE}")
+add_library(app INTERFACE)
+target_sources(app INTERFACE quantize_main.c quantize_route.c)
+mx251_firmware(app)

@@ -1,0 +1,34 @@
+R50: ABI4 flat generic pointers and scalar floating memory operations
+
+Explicit __reentrant __sdcccall(4) functions may receive/return a 3-byte
+generic pointer in the same register positions as the existing xdata ABI.
+The MCS251 port already uses flat 24-bit addresses (__gptrget/put directly
+access @dpx); it does not use MCS51 space tags. Wide MIR carries pointers in
+4-byte register groups and canonicalizes the unused high byte to zero.
+The ABI3 pointer restriction and all indirect-function-pointer restrictions
+remain. __code/__idata/__pdata qualified parameters remain outside native
+ABI validation; legacy callers may perform their existing conversions to
+generic pointers. No native conversion of one-byte paged addresses is added.
+
+Wide memory import now accepts matching scalar float/float reads and writes.
+These are bit copies, not arithmetic: NaN payloads, signed zero, subnormals
+and infinities are preserved. Atomic, bitfield, aggregate, pointer-valued
+loads/stores and mixed float/integer operations are not silently accepted.
+Volatile operations retain ascending byte access and avoid word accesses.
+
+Whole-function fallback remains for unimportable true variables, local stack
+object ADDRESS_OF and __code ADDRESS_OF intermediates. This is not complete
+wide-MIR stack-object support. The generic-pointer callee can nevertheless
+access caller-owned stack/data/idata/code storage using its full flat address.
+An ordinary volatile formal can currently be materialized as a true stack
+variable by earlier passes; such a function falls back. A volatile access
+whose address is an imported temporary uses the wide byte-access path.
+
+The library migration only marks mcs251_product_bit as ABI4 under the native
+runtime macro. Its bounds and bit algorithm are unchanged. The range reducer
+and its 31-byte stack array remain in the legacy backend, preserving the
+224-bit 2/pi constant, full input range and rounding steps.
+
+See wide-generic.c, R50 build_generic_tests.py/run_generic_tests.py and the
+exact emitted product-bit extraction in build_bit_tests.py for validation.
+Hardware evidence is in the experiment report; compilation is not execution.

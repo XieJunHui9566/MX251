@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "contract": "mx251.ordinary-fixed-integer-format.v2",
+  "publicAbi": 2,
+  "genericPointerBytes": 3,
+  "integerBytes": 2,
+  "sourceEvidence": {
+    "sha256": "ce2e30748592b9c320ba5ca2d060d5686771fa0f2e2585fbeb717a2f4cd5d97a",
+    "origin": "reviewed compact_format integer kernel"
+  },
+  "kernelSha256": "184d4fd765f355015759b435f3dd4e78c52d5bfbc5498d86b124dffd120e5f4d",
+  "archives": {
+    "lib/mcs251-large-stack-auto/libfloat.lib": "ded18d51f487b8d2cbd7201f6d9a623a9952e1ff80af9b8a6c3804c0859a81a5",
+    "lib/mcs251-large-stack-auto/libint.lib": "d16816782c301344408acbc7610a31d16fcb0657d61a6633dc995ed0f6e3dd6b",
+    "lib/mcs251-large-stack-auto/liblong.lib": "089a84e9b31666f84c4310ea19b12dff10395ea2a6fc37fe1f2bfa8cb033c63d",
+    "lib/mcs251-large-stack-auto/liblonglong.lib": "07a7f8e68d17ae3b8b28ace1395a1fb9f786ef5978ca50238b10f00241dbfd39",
+    "lib/mcs251-large-stack-auto/libsdcc.lib": "e4236d6ea5e63220dee7ba47a19ff0dfc925184cf7aea9bbd71a329c3ead49ff",
+    "lib/mcs251-large-stack-auto/mcs251.lib": "6f46d3cbf9a10279a7ad8f4bf48ea957a9f1a227f6e6e9311db7086df5fd7ee3",
+    "lib/mcs251-small-stack-auto/libfloat.lib": "38eff60184b1dd1ae761f73712bc01ce95b6e3a139f9240eedc1274815f86c25",
+    "lib/mcs251-small-stack-auto/libint.lib": "416d38a0250b946c0391f3714d1a4b1579d074b31f471fa9c211b9ccaa425531",
+    "lib/mcs251-small-stack-auto/liblong.lib": "174a0ceb8045d8e8cda8c9eda8a06bfe3165103fcbe4225e37773f5fe1c343e6",
+    "lib/mcs251-small-stack-auto/liblonglong.lib": "b5fa1e30fc65d2d57ef56cf4e06790168c1b6f4a70cc5f10dfe26999800a83d8",
+    "lib/mcs251-small-stack-auto/libsdcc.lib": "70946fe7a06c07dfd29a636e89928cdaf961ec9c02348c447c81d79856eb5dd0",
+    "lib/mcs251-small-stack-auto/mcs251.lib": "6f46d3cbf9a10279a7ad8f4bf48ea957a9f1a227f6e6e9311db7086df5fd7ee3"
+  },
+  "extendedGeneratorSha256": "870ecc660e932042f9ae371c03b72b4bb8d4f27d75798aa74c7649301e08634d",
+  "byteConversionContract": "b narrows promoted int16 slot to low8; signed d/i sign extends after truncation; mismatched slots retain full runtime"
+}

@@ -1,0 +1,44 @@
+R27：双参数寄存器 ABI4 和独立原生浮点运行库
+================================================
+保留默认 ABI2 和 R26 ABI3。ABI4 必须显式启用：
+  -mmcs251 --mcs251-native-abi
+  unsigned long f(unsigned long a,unsigned long b) __reentrant __sdcccall(4);
+
+参数 1 的 8/16/32 位槽：R7 / WR6 / DR4。
+参数 2 的 8/16/32 位槽：R15 / WR14 / DR12。
+槽内逻辑低字节在最高编号寄存器；不足 32 位不与另一参数拼装共用。
+第 3 个及后续参数保持原有 reentrant 栈布局和调用者清理。
+返回值同 ABI3：R7 / WR6 / DR4。
+ABI4 符号带 __m251r4_；ABI3 带 __m251r3_，避免独立编译后静默混用。
+不支持全局 --sdcccall 4；函数指针调用、指针/聚合/64 位/bit/_Bool 接口、
+native ISR 入口、naked、banked、非零 bank、callee-saves、xstack、varargs 仍拒绝。
+常规 ISR 可以直接调用 ABI4 函数，但整条调用链（含隐式运行库）必须可重入。
+双参数 ISR 数学压力测试限定 stack-auto：普通 small/large 的 __mullong
+使用静态参数区，外层 __reentrant 不能自动保护它。主程序与 ISR 同时调用
+会改写参数，本轮确已捕获；该普通模型并发限制尚未由编译器自动解决。
+普通模型仅验收这些数学调用的顺序执行，不把此结果表述为中断重入认证。
+
+并行搬运先检查完整组依赖，再处理字节依赖图和重复源。两组完整 WR/DR
+互换可用 PUSH/MOV/POP；其它环保留快照回退。任何临时入栈均按字节更新
+编译器 SPX 偏移，不能把节省指令误用为改变参数值或 volatile 访问次数。
+
+原生运行库为单独 opt-in 配置：
+  --stack-auto --mcs251-native-runtime
+此开关同时启用 ABI4，并向预处理器传递 __SDCC_MCS251_NATIVE_RUNTIME。
+显式迁移 10 个入口：__fsadd/__fssub/__fsmul/__fsdiv、sinf/cosf/tanf/
+atanf/sqrtf/fabsf。编译器隐式算术调用和头文件声明同时切换，符号版本匹配。
+其它浮点库依赖保留 ABI2，编译为同一配置的独立 libnativefloat.lib。
+比较函数、转换函数、frexpf/ldexpf、整数/字符串库等未改为 ABI4。
+乘法手写正规数快路径和 C 特殊值回退均适配 ABI4；精确乘积、最近偶数
+舍入、NaN/Inf、次正规数及上下溢出逻辑没有删减。
+
+仅提供 small-stack-auto 和 large-stack-auto 的原生库。普通 small/large
+与新运行库组合在编译时明确拒绝：取地址的浮点参数触发旧后端的非法
+间接存储/重定位问题，不能把此未解决组合交给用户。普通模型仍可用
+旧运行库及已测试的显式 ABI4 标量函数。
+
+链接原生库时使用 --nostdlib，并显式指定 libnativefloat.lib、mcs251.lib、
+libsdcc.lib、libint.lib、liblong.lib、liblonglong.lib。不要同时搜索旧
+libfloat.lib，ASlink 会报告重复符号。研究目录 sdcc-native.py 封装此配置。
+没有修改 IDE 默认工具链、产品版本、系统 PATH 或默认 ABI2 的库归档。
+完整范围、数据哈希、实板证据与已知限制见 round27/report.html。

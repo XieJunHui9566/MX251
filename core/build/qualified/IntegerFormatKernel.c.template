@@ -1,0 +1,42 @@
+
+#include <stdint.h>
+#include <stdarg.h>
+#include <stdio.h>
+#ifndef __SDCC
+#define __code
+#endif
+/* Ordinary automatic storage; no MMIO, volatile widening, or static state.
+ * The closed format bounds total output to INT16_MAX before generation. */
+static unsigned char mx_number(uint16_t value, unsigned char radix,
+    unsigned char width, unsigned char flags)
+{
+    unsigned char digits[6];
+    unsigned char n=0, negative=0, rem, bit, c, total, pad;
+    if ((flags & 1u) && (value & 0x8000u)) {
+        negative=1;
+        value=(uint16_t)(0u-value);
+    }
+    do {
+        if (radix==16u) { rem=(unsigned char)(value & 15u); value >>= 4; }
+        else if (radix==8u) { rem=(unsigned char)(value & 7u); value >>= 3; }
+        else {
+            rem=0; bit=16;
+            do {
+                rem=(unsigned char)((rem<<1) | ((value>>15)&1u));
+                value=(uint16_t)(value<<1);
+                if (rem>=10u) { rem-=10u; value|=1u; }
+            } while (--bit);
+        }
+        c=(unsigned char)('0'+rem);
+        if (rem>9u) c=(unsigned char)(c+((flags&2u)?('a'-'0'-10):('A'-'0'-10)));
+        digits[n++]=c;
+    } while (value);
+    total=(unsigned char)(n+negative);
+    pad=width>total?(unsigned char)(width-total):0;
+    total=(unsigned char)(total+pad);
+    if (!(flags&4u)) while(pad) { putchar(' '); --pad; }
+    if (negative) putchar('-');
+    if (flags&4u) while(pad) { putchar('0'); --pad; }
+    do { putchar(digits[--n]); } while(n);
+    return total;
+}

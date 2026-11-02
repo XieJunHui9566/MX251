@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "version": "0.0170-test",
+  "date": "2026-11-03",
+  "status": "OFFLINE_INTEGRATION_AND_RELEASE_SMOKE_PASS",
+  "compilerSha256": "968d1483d83113b845e1665686e76f1491afeceee35aad5d1381cfd95b37fef1",
+  "nativeFloatSha256": "b49d69fb5a9d93619889667663af9ca4edc080c4b7b301c7f46ae48bb034f3ee",
+  "nativeFloatBuildCompilerSha256": "25d144e99e88d47303a9e6bea06561921143c6ef0f2a66120ca1575c77b2333a",
+  "nativeFloatMembers": 66,
+  "compilerAndMathBinariesRebuiltForPublication": false,
+  "publicationSourceChanges": [
+    "Added inherited documentation and component license texts",
+    "Removed a non-build research transcript",
+    "Made one host test compiler path an explicit --cc argument; production compiler inputs unchanged"
+  ],
+  "reusedIntegrationEvidence": [
+    {"project": "math123-stc", "target": "STC32G12K128", "runtime": "native-math", "codeBytes": 11971, "build": "PASS", "finalByteRelocationProof": "PASS"},
+    {"project": "math-casts-ai", "target": "AI8051U-34K64-32", "runtime": "native-math-wide", "codeBytes": 970, "build": "PASS", "finalByteRelocationProof": "PASS"},
+    {"project": "nonmath-lin", "target": "AI8051U-34K64-32", "codeBytes": 2001, "build": "PASS", "unchangedImageSha256": "73dc71f44a1ef24f044540738a28a6f55a5fc8dabcfdd197416fc0150d0a6902"}
+  ],
+  "publicationChecks": {
+    "contentLocks": "PASS",
+    "sourceFilesChecked": 2092,
+    "dependencyAndProfileFilesChecked": 624,
+    "singleCleanProjectBuild": "PASS",
+    "entry": "Build.cmd -> CMake -> Ninja -> MX251",
+    "project": "math-casts-ai",
+    "projectPathContainedSpaces": true,
+    "toolchainRelocatedFromIntegrationDirectory": true,
+    "codeBytes": 970,
+    "hardwareExecuted": false,
+    "fullMatrixRerun": false
+  },
+  "mergedImageHardwareCorrectness": "UNKNOWN",
+  "mergedImageRuntimeTiming": "UNKNOWN",
+  "allProjectsPerformanceQualified": false,
+  "lstQualified": false
+}

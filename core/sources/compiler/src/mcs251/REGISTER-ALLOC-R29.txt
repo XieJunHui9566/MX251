@@ -1,0 +1,37 @@
+R29 — SPX / ABI4 register allocation and volatile pointer correctness
+
+The allocator's old R0/R1 stack reservation does not describe AOP_MCS251_STK.
+For an explicitly selected ABI4 function, a non-paged onStack object follows
+the same direct SPX branch as aopForSym. It does not request an 8-bit pointer
+register, including when created as a spill location. Paged objects, static
+IDATA, near pointer loads/stores, and the old ABI retain their reservations.
+R8/R9 are preferred for available scalar bytes in ABI4; no live value is
+evicted to create an aligned DR group. No register is added to the ABI.
+
+The scalar arithmetic planner uses a lower-bound byte cost appropriate for
+native source-mode encoding: a byte-register operation needs at least two
+bytes, a zero-displacement SPX byte access three, and displacement access four.
+Cost changes apply only inside ABI4. Volatile, aggregate and atomic operands
+still cannot enter widening plans. Nothing is moved across calls/barriers.
+
+Extended byte-register IDATA transfers must go through A. AOP_REG stores
+from an indirect source preserve A because aopPutUsesAcc promises that.
+Near pointer stores and bit-field stores also avoid nonexistent R8-R15
+direct aliases. R0/R1 remain reserved when these operations occur.
+
+The common CSE pass now checks pointee volatility when forwarding a prior
+pointer store into a later load. The pointer variable need not itself be
+volatile. Ordinary nonvolatile forwarding remains enabled. This correctness
+fix is shared by MCS251 and MCS51; 8-bit validation is compile-only.
+
+Regression probes:
+  tests/volatile-pointer-read.c
+  tests/check-volatile-pointer-read.py --sdcc <compiler> --output-dir <new-dir>
+The test counts loads after the pointee store, not stack-parameter loads.
+The research delivery also includes independent integer reference results
+for CRC, a 272-byte stack frame crossing offset 255, taking stack addresses
+across legacy ABI calls, volatile IDATA, recursion, and foreground/ISR calls.
+
+No new claims for native function pointers, pointer/aggregate/64-bit ABI4
+arguments, variadic calls, full IEEE conformance, arbitrary interrupt nesting,
+or RTOS use. See the R29 report and original captures for measured scope.

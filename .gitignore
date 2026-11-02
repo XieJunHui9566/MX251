@@ -1,0 +1,9 @@
+.build/
+__pycache__/
+*.pyc
+/host/
+/core/toolchain/
+/core/profiles/*/compiler/
+/core/profiles/*/runtime/
+/dist/
+*.log
