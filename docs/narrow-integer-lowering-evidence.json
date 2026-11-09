@@ -1,0 +1,354 @@
+{
+  "date": "2026-11-09",
+  "branch": "codex/narrow-integer-lowering",
+  "parent": "f83c4f1",
+  "candidateCore": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\core-04",
+  "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+  "nativeRuntimeSha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50",
+  "keil": {
+    "version": "C251 5.60",
+    "options": [
+      "SMALL",
+      "ROM(HUGE)",
+      "OPTIMIZE(7,SPEED)"
+    ],
+    "source": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\keil\\triangle.SRC",
+    "sha256": "26923466b3fb898ba8eb734db394b5ae795f73a547385c5db2c2511386a31a8c"
+  },
+  "builds": [
+    {
+      "name": "p080",
+      "before": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\native-registers\\p080-final\\receipt.json",
+        "sha256": "3e1f75f5cfc7a9356fea955a2eb69735eb33959a4ce07f5281bf3c61795ae726",
+        "compilerSha256": "06e1cfd83fd97c2b809402f8338c9bae6f4ab493fac33c53aca57926b8a99b8b",
+        "firmwareSha256": "0fa8a069f7863f87c5b71aff759535169dda86ca9434147f421ce1dd08521180",
+        "codeBytes": 21537,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "after": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\p080-04\\receipt.json",
+        "sha256": "d502a3db0e3a7d19d39605e1feb5e05685c0f651fa906f6bf7d28a081bc926e1",
+        "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+        "firmwareSha256": "3e60b3966b9f605d0bb13c6bbb7db1a7368ce69f486b0061abac345d07460d36",
+        "codeBytes": 21473,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "unchangedInputs": {
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28",
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+      },
+      "deltaBytes": -64,
+      "keilCodeBytes": 18071,
+      "priorBestCodeBytes": 21500,
+      "deltaFromPriorBest": -27
+    },
+    {
+      "name": "p078",
+      "before": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\native-registers\\p078-final\\receipt.json",
+        "sha256": "d76bd7770f0cac8a964647bec4727260ff99cdc884404782c1e14add41a5c225",
+        "compilerSha256": "06e1cfd83fd97c2b809402f8338c9bae6f4ab493fac33c53aca57926b8a99b8b",
+        "firmwareSha256": "752e58522b5dbe741dcc533d0dc92eb9a96b72054d6d7b582f441bd51512392f",
+        "codeBytes": 21257,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "after": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\p078-final\\receipt.json",
+        "sha256": "c694172390560404b460e187d9f20655a0138c116a5154d289f59ffd334a24e6",
+        "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+        "firmwareSha256": "574f285ff11de021d13e71079e6559de9998cf4fa7c938a9d8db3e3a8d153096",
+        "codeBytes": 21193,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "unchangedInputs": {
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/lcd.h": "4c09bf3bdcfde7a1b1f1ca5a548f3b0fb3ee12f7326df5a541c1e63d53b756ca",
+        "src/lcd.c": "4805b1ca833875f0fafa423b49e76c6cb669e0e12f2e6858cf5fd697d6aa24cc",
+        "src/gui.c": "25da1cd793976de533d7e006ec9d64bd26f96d403616d2ef4a5b87f849391742",
+        "src/main.c": "fe4f33523306f507166c5723ef6a319935793b9304c4948271418c3951be32af",
+        "src/sys.c": "5a7be8af43dcdd1d3b1beb2c88c129affd9fbd00e840dbb94193bec94fbf923d",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/sys.h": "45d028662a9530d9ecc4a3cccd821cdc77123e02b185a6dca942b7f8b8a5cb6b",
+        "src/test.c": "226437254f79c30f0585bb20229fdb71ae88e464275bfeece1ca5295bb7bbeff",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/font.h": "f183e785739e3ecd459d180f4b98ec0a43ef410a8d0f49b1ce524f54e3593df7",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/touch.h": "da4e95f89e59f4de0a6ad8364a0bc7f956ae1e7208587bcbe84004eb6c0c9c70"
+      },
+      "deltaBytes": -64,
+      "keilCodeBytes": 17937,
+      "priorBestCodeBytes": 21220,
+      "deltaFromPriorBest": -27
+    },
+    {
+      "name": "p087",
+      "before": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\runtime-effects\\p087-02\\receipt.json",
+        "sha256": "70ee32f3a0a898e1a9b4945ff24fd333bf9cb4f398817cc188d2a797ed25d540",
+        "compilerSha256": "1bfaeef7255a05703744d3de1df41685c62467c8baad0543a357a7012421fac4",
+        "firmwareSha256": "5449e7c6045e9bfcfaa920a06e58e921884ab984e74a1933229ee32797c75d0e",
+        "codeBytes": 4745,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "after": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\p087-04\\receipt.json",
+        "sha256": "71e524322551806fc462efb4488efb3cf7abccae4d7dc7d6e66344132e771ef6",
+        "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+        "firmwareSha256": "5449e7c6045e9bfcfaa920a06e58e921884ab984e74a1933229ee32797c75d0e",
+        "codeBytes": 4745,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "unchangedInputs": {
+        "src/uart.c": "56f087dec578909760cfee0d2aaaeb7f99a64e5028b91b085818217380f4f7b4",
+        "src/util.c": "b4db48ee22753ba4e232120237076596719d51b37972277edf24cae7c15c58b1",
+        "src/usb_desc.c": "a135b67f3d6da12e2d76efa348b39dae058e5eaca0716bf0a791a2d6eb2d8cab",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb.h": "e4907af1fc1f16949c3b7f0be0a0247d1de6d6bc967569ee7813ec57247f8bc8",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb.c": "83cdccb0703fe217af14bc39bef6038000d8084a0f54e8326cf064b5b9369274",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb_req_class.h": "9521175f03daaa7be154be72c119bb2cb589daa1e6da6da833d4fa9ddb438214",
+        "src/uart.h": "d9dda34b3801835b3cf52d9671da7162f012e855f4cfb7c2617c7d02a993e63e",
+        "src/usb_desc.h": "6b9ec7f72eb481c1c85a188d877a635d77add5a5345c5b2ca8fd8952b4878f62",
+        "src/usb_req_class.c": "1b72070f87d6b5ee0ff561bb7c97e82d2501540edab85b9bccc57a78ad65c222",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_req_std.c": "9c9072cdb458d90c3b041dfb1032bac0406d50da660b054327b44982efe5aaa7",
+        "src/main.c": "4f322294bb076d461cb685baf4a281024ca07c9c1e7b4d9e06f57d311eedeb21",
+        "src/config.h": "c81b1067c03ce14c2f38f2a083fe5ac15356d8a5f1e5a83cab2a446730efb4ca"
+      },
+      "deltaBytes": 0,
+      "keilCodeBytes": null,
+      "priorBestCodeBytes": 4745,
+      "deltaFromPriorBest": 0
+    },
+    {
+      "name": "p091",
+      "before": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\native-registers\\p091-final\\receipt.json",
+        "sha256": "8daee615343b33d33b30174a88e968399f1504f32b8f28ca693672be616194eb",
+        "compilerSha256": "06e1cfd83fd97c2b809402f8338c9bae6f4ab493fac33c53aca57926b8a99b8b",
+        "firmwareSha256": "7d48ec2842021d40996bd6f6306a3914a8d5aac12e9631fdf21ad7216a20afda",
+        "codeBytes": 5954,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "after": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\p091-final\\receipt.json",
+        "sha256": "95ccd1da861a58bcc79d5da50701f7601c4aada6d8bc2fd4d7e5168b7b7dc60b",
+        "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+        "firmwareSha256": "50729d1655631f30113aa653474d21c98ce1987b41e6561a97f530b206dd2d88",
+        "codeBytes": 5928,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "unchangedInputs": {
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb"
+      },
+      "deltaBytes": -26,
+      "keilCodeBytes": 4401,
+      "priorBestCodeBytes": 5922,
+      "deltaFromPriorBest": 6
+    },
+    {
+      "name": "triangle",
+      "before": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\native-registers\\triangle-final\\receipt.json",
+        "sha256": "5b97b805f77275d9f2a2739984ad16c474cf1c9a7fd1ce612f0803216201f508",
+        "compilerSha256": "06e1cfd83fd97c2b809402f8338c9bae6f4ab493fac33c53aca57926b8a99b8b",
+        "firmwareSha256": "0d2d7e1371f6ed4410e86047eef1e40ae8f25e1af6a2123c3e49097a3891d462",
+        "codeBytes": 2366,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "after": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\triangle-final\\receipt.json",
+        "sha256": "68a540904e8372a4e491e7eba711196908f3df0a09606591cad5163c98dfe3d3",
+        "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+        "firmwareSha256": "8d175478f17e9d8d91e7d1e140f3fa4b1fda32cc84df43a56198ccd834ca5469",
+        "codeBytes": 2300,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "unchangedInputs": {
+        "machine-trace.c": "adb172fc49d6834e37385036b18247f034e25ffce6ee09ad4693f4c2da596559",
+        "machine-triangle.c": "0402c38c409eab89b56e8aab86626348f531b11c04730411332c69f28e269fd8",
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+        "machine-board.c": "40e5a4910213a2e28a582ac1376add2bf7494a2131e682060c5e7390d1b448ff"
+      },
+      "deltaBytes": -66,
+      "keilCodeBytes": null,
+      "priorBestCodeBytes": 2366,
+      "deltaFromPriorBest": -66
+    },
+    {
+      "name": "sign-extension",
+      "before": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\sign-baseline\\receipt.json",
+        "sha256": "35e08eae2d185057cf03554a238c1eb666ae0c097fba159cd033461c5faf457d",
+        "compilerSha256": "6b57a82e043533cabb769b36b190348b98926b664e2cb80b62d6765be7137aaa",
+        "firmwareSha256": "fc23e67929248f12757a1cf180bd415d1cbef455eb9c6aaaf58a6f8f135ae2d3",
+        "codeBytes": 959,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "after": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\sign-final\\receipt.json",
+        "sha256": "52346c51f3888c982792491019e634b8c3875b6a5b2847c459782109b0075194",
+        "compilerSha256": "e1ec5873be9ab29f087387c1deb9c1a3f6d1fd0fb2b7fe10c6e8d92216cfd41f",
+        "firmwareSha256": "8994c3f27af72138b7a73f666c480ecfd2466ad40c5e95c080f984a29027d1b9",
+        "codeBytes": 939,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "unchangedInputs": {
+        "runtime-arithmetic.c": "d47c05f6536f2bf20fe8220ef3368308d9739d929e248a3eb3b9036a721a015e",
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "runtime-board.c": "08ba0d7150a63c8d6ca341df1f8f11cdbc90ff199f265da5c8cf63a05fe83946"
+      },
+      "deltaBytes": -20,
+      "keilCodeBytes": null,
+      "priorBestCodeBytes": 959,
+      "deltaFromPriorBest": -20
+    }
+  ],
+  "hardware": {
+    "signBefore": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\sign-baseline-hardware\\result.json",
+      "sha256": "5e5140efcd8aa4528d5d7f9f00701722a6fa5e024f7714faa96b7f9f2bad7af4",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 558,
+      "aggregateTicks": {
+        "0": 486208.0,
+        "1": 42407.0
+      },
+      "firmwareSha256": "fc23e67929248f12757a1cf180bd415d1cbef455eb9c6aaaf58a6f8f135ae2d3"
+    },
+    "signAfter": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\sign-final-hardware\\result.json",
+      "sha256": "7b9392b2517a0c74feeb81684ae3a0169f48811e479e7b3393f2e3d1e6552dc4",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 564,
+      "aggregateTicks": {
+        "0": 486208.0,
+        "1": 38431.5
+      },
+      "firmwareSha256": "8994c3f27af72138b7a73f666c480ecfd2466ad40c5e95c080f984a29027d1b9"
+    },
+    "triangleAfter": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\triangle-03-hardware\\result.json",
+      "sha256": "212ea9ebbef638c8a4f23f213b0c45d368b58c077dbe8baacf3f8aae48564d10",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 630,
+      "aggregateTicks": {
+        "0": 10371,
+        "1": 10160.0
+      },
+      "firmwareSha256": "8d175478f17e9d8d91e7d1e140f3fa4b1fda32cc84df43a56198ccd834ca5469"
+    },
+    "promotionTrial": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\triangle-06-hardware\\result.json",
+      "sha256": "0ac582e40011874a4cffdb057e3d82417b8368a72b0a14852e4e9b5ec810398d",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 647,
+      "aggregateTicks": {
+        "0": 10420.0,
+        "1": 10306
+      },
+      "firmwareSha256": "d033fe353fffc1ce88d59758f9a07e6546bc7a9b763d9fd8cabe029207009aac"
+    },
+    "triangleBefore": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\native-registers\\triangle-final-hardware\\result.json",
+      "sha256": "4b51ad4eb1ba1a62303f39247b7e8af156af693fe87a3275a36cb94570156624",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 638,
+      "aggregateTicks": {
+        "0": 10624,
+        "1": 10163.0
+      },
+      "firmwareSha256": "0d2d7e1371f6ed4410e86047eef1e40ae8f25e1af6a2123c3e49097a3891d462"
+    }
+  },
+  "tests": {
+    "machineIr": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\model-oracle\\result.json",
+    "calls": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\check-calls\\results.json",
+    "spillAllocation": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\check-spill\\results.json",
+    "volatile": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\check-volatile\\results.json"
+  },
+  "archivedTrials": {
+    "earlyMultiply": {
+      "codeBytesBefore": 2366,
+      "codeBytesAfter": 2366,
+      "identicalHex": true,
+      "decision": "do not land without measured benefit"
+    },
+    "scalarPromotion": {
+      "patch": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\scalar-promotion-trial.patch",
+      "implementation": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\wide_scalar_objects-trial.c.inc",
+      "triangle": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\triangle-06\\receipt.json",
+        "sha256": "17e5c2457afc2abf318043d26ab4b0bba3fbda81fdba003812c18a7c0508a814",
+        "compilerSha256": "813fbcd08d239bc3c9fd65597d512099ea01a12780c3e335d22ff0b490901a6e",
+        "firmwareSha256": "d033fe353fffc1ce88d59758f9a07e6546bc7a9b763d9fd8cabe029207009aac",
+        "codeBytes": 2201,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "p080": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\p080-06\\receipt.json",
+        "sha256": "57986cd695c0ec2c9f21c66e0b1404bdd525babb52688c2039bcd8badc1a5f40",
+        "compilerSha256": "813fbcd08d239bc3c9fd65597d512099ea01a12780c3e335d22ff0b490901a6e",
+        "firmwareSha256": "4c4213ac7403d0fb913b9e7ca581de7e50292ec0c2ecaae42a7125c19aa2782b",
+        "codeBytes": 21431,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "p087": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-integer\\p087-06\\receipt.json",
+        "sha256": "af62fd16f1ea246bb6c6ffafb3b5bcd9ce44999c697c76eef1c80cc2df41228f",
+        "compilerSha256": "813fbcd08d239bc3c9fd65597d512099ea01a12780c3e335d22ff0b490901a6e",
+        "firmwareSha256": "5449e7c6045e9bfcfaa920a06e58e921884ab984e74a1933229ee32797c75d0e",
+        "codeBytes": 4745,
+        "callPreservation": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+      },
+      "decision": "Not adopted: smaller code, but both measured workloads slower than MOVS candidate."
+    }
+  },
+  "qualification": {
+    "sizeAtMost120Percent": 40,
+    "sizeAtMost110Percent": 18,
+    "newFullApplicationDualPasses": 0
+  },
+  "implementationCommit": "4fc3cf1"
+}
