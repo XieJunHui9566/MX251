@@ -23,6 +23,10 @@ for model in ['small','large']:
   checked=[]
   for name,trace in expected.items():
    body=asm.split('wide-mir accepted: '+name+';',1)[1].split('; mcs251 wide-mir',1)[0]
+   # Single-byte register transport uses a newer diagnostic, with the same
+   # observable transaction. Keep checking the actual MOV and access order.
+   body=re.sub(r'; wide single-byte (load|store) direct-reg=\d+ value=register exact-transactions=1',
+               r'; wide memory \1 width=1 volatile-bytes=1',body)
    tokens=re.findall(r'; wide memory (load|store) width=([124]) volatile-bytes=(\d)|\tecall\t(___m251r4_v_change)',body)
    actual=['CALL' if callee else ('L' if op=='load' else 'S')+width for op,width,vol,callee in tokens]
    assert actual==trace,(name,actual,trace)
@@ -47,7 +51,8 @@ for model in ['small','large']:
      continue
     for ins in instructions:
      if '@dr16' in ins:
-      assert ins==('mov\ta,@dr16' if op=='load' else 'mov\t@dr16,a'),(name,ins)
+      register=r'(?:a|r(?:[0-9]|1[0-5]))' if width==1 else 'a'
+      assert re.fullmatch('mov\t'+(register+',@dr16' if op=='load' else '@dr16,'+register),ins),(name,ins)
       accesses.append(ins)
       if len(accesses)==width:break
      if ins=='inc\tdr16':increments+=1
