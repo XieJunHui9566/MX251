@@ -2979,6 +2979,10 @@ resultTypePropagate (ast *tree, RESULT_TYPE resultType)
     case GETWORD:
       return resultType;
     case '*':
+      /* The loaded value's width does not constrain its address expression. */
+      if (!tree->right)
+        return RESULT_TYPE_NONE;
+      /* fall through */
     case '+':
     case '-':
       if ((IS_AST_VALUE (tree->left) && !IS_INTEGRAL (tree->left->opval.val->etype)) ||
