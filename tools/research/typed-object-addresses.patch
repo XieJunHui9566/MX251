@@ -1,0 +1,241 @@
+diff --git a/core/sources/compiler/src/mcs251/wide.c b/core/sources/compiler/src/mcs251/wide.c
+index 6220d3c..2e6930f 100644
+--- a/core/sources/compiler/src/mcs251/wide.c
++++ b/core/sources/compiler/src/mcs251/wide.c
+@@ -49,6 +49,8 @@ typedef struct {
+   wide_operand left, right, addressIndex;
+   symbol *callee;
+   symbol *addressSymbol;
++  symbol *storedAddress;
++  int storedAddressOffset;
+   int addressOffset, addressObject;
+   unsigned addressOp;
+   bool byteAccess, codeAccess, pointerAccess;
+@@ -465,6 +467,15 @@ wide_memory(wide_function *f,wide_node *n,iCode *ic,bool store)
+ static bool wide_near_type(sym_link *t)
+ {return IS_PTR(t) && DCL_TYPE(t)==POINTER && getSize(t)==1 && !IS_FUNC(t->next);}
+ 
++static bool
++wide_data_member_type(sym_link *type)
++{
++  if(!type || isVolatile(type) || isAtomic(type))return false;
++  if(wide_pointer(type))return true;
++  return IS_SPEC(type) && IS_INTEGRAL(type) && !IS_BITVAR(type) &&
++    (getSize(type)==1 || getSize(type)==2 || getSize(type)==4);
++}
++
+ /* 外部 DATA 对象须有完整的无重叠标量布局，真实 volatile/atomic、
+  * union、嵌套、数组、位域一律回退；不把声明名称当作硬件或 SDK 能力。
+  * 复用冻结来源证明，实际地址仍由普通 direct 符号重定位决定。 */
+@@ -472,18 +483,16 @@ static bool
+ wide_extern_data_layout(sym_link *type)
+ {
+   if(!type || isVolatile(type) || isAtomic(type))return false;
+-  if(!IS_STRUCT(type))return IS_SPEC(type) && IS_INTEGRAL(type) && !IS_BITVAR(type) &&
+-    (getSize(type)==1 || getSize(type)==2 || getSize(type)==4);
++  if(!IS_STRUCT(type))return wide_data_member_type(type);
+   structdef *layout=SPEC_STRUCT(type);
+   if(!layout || layout->type!=STRUCT || !layout->fields || !layout->size ||
+      layout->b_flexArrayMember || layout->size!=(unsigned)getSize(type))return false;
+   unsigned end=0;
+   for(symbol *field=layout->fields;field;field=field->next) {
+     sym_link *ft=field->type;
+-    if(!ft || !IS_SPEC(ft) || !IS_INTEGRAL(ft) || IS_STRUCT(ft) || IS_BITVAR(ft) ||
+-       field->bitVar || isVolatile(ft) || isAtomic(ft))return false;
++    if(!wide_data_member_type(ft) || field->bitVar)return false;
+     int bytes=getSize(ft);
+-    if((bytes!=1 && bytes!=2 && bytes!=4) || field->offset<end ||
++    if(field->offset<end ||
+        field->offset>layout->size || (unsigned)bytes>layout->size-field->offset)return false;
+     end=field->offset+bytes;
+   }
+@@ -576,6 +585,39 @@ wide_near_location(wide_function *f,operand *p,iCode *before,iCode *begin,symbol
+   return true;
+ }
+ 
++/* A relocatable object address is a symbol and an offset, not a memory read.
++ * Keep this fact through constant address arithmetic and pointer casts. */
++static bool
++wide_symbol_address(operand *p,iCode *before,iCode *begin,symbol **object,int *offset,unsigned depth)
++{
++  if(depth>16 || !p || !IS_ITEMP(p) ||
++     (!wide_pointer(operandType(p)) && !wide_near_type(operandType(p))))return false;
++  for(iCode *d=before;d;d=d==begin?NULL:d->prev) {
++    if(POINTER_SET(d) || !IC_RESULT(d) || !IS_SYMOP(IC_RESULT(d)) ||
++       OP_SYMBOL(IC_RESULT(d))!=OP_SYMBOL(p))continue;
++    if(d->op==ADDRESS_OF && IS_TRUE_SYMOP(IC_LEFT(d)) &&
++       IC_RIGHT(d) && IS_OP_LITERAL(IC_RIGHT(d))) {
++      symbol *s=OP_SYMBOL(IC_LEFT(d));memmap *space=SPEC_OCLS(s->etype);
++      double at=operandLitValue(IC_RIGHT(d));
++      if(s->onStack || s->_isparm || SPEC_ABSA(s->etype) || !space ||
++         (space!=data && !IN_CODESPACE(space) && (!IN_FARSPACE(space) || space->paged)) ||
++         IS_FUNC(s->type) || at<0 || at>getSize(s->type) || at!=(int)at)return false;
++      *object=s;*offset=(int)at;return true;
++    }
++    if((d->op==CAST || d->op=='=') && IC_RIGHT(d))
++      return wide_symbol_address(IC_RIGHT(d),d==begin?NULL:d->prev,begin,object,offset,depth+1);
++    if((d->op=='+' || d->op=='-') && IC_RIGHT(d) && IS_OP_LITERAL(IC_RIGHT(d)) &&
++       wide_symbol_address(IC_LEFT(d),d==begin?NULL:d->prev,begin,object,offset,depth+1)) {
++      double delta=operandLitValue(IC_RIGHT(d));
++      double at=*offset+(d->op=='+'?delta:-delta);
++      if(at<0 || at>getSize((*object)->type) || at!=(int)at)return false;
++      *offset=(int)at;return true;
++    }
++    return false;
++  }
++  return false;
++}
++
+ static bool
+ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
+ {
+@@ -586,16 +628,21 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
+     if(!address || !value || !wide_near_type(operandType(address)) ||
+        !wide_near_location(f,address,ic==begin?NULL:ic->prev,begin,&object,&offset,0))return false;
+     sym_link *pt=operandType(address),*t=operandType(value);
++    bool pointer=wide_pointer(t) && wide_pointer(pt->next) &&
++      wide_code_pointer(t)==wide_code_pointer(pt->next);
+     bool memberView=wide_data_zero_member(pt->next,t,store);
+-    if(!IS_SPEC(t) || !IS_INTEGRAL(t) || IS_BITVAR(t) || isAtomic(t) ||
++    if(isAtomic(t) || isAtomic(pt->next) || (!pointer &&
++      (!IS_SPEC(t) || !IS_INTEGRAL(t) || IS_BITVAR(t) ||
+        (!memberView && (!IS_SPEC(pt->next) || !IS_INTEGRAL(pt->next) ||
+         (getSize(pt->next)!=1 && getSize(pt->next)!=2 && getSize(pt->next)!=4) ||
+-        IS_BITVAR(pt->next) || isAtomic(pt->next) || getSize(t)!=getSize(pt->next))) ||
++        IS_BITVAR(pt->next) || getSize(t)!=getSize(pt->next))))) ||
+        offset+getSize(t)>getSize(object->type))return false;
+     if(load && IC_RIGHT(ic) && (!IS_OP_LITERAL(IC_RIGHT(ic)) || operandLitValue(IC_RIGHT(ic))!=0))return false;
+-    if(store) {if(!wide_use(f,n,value,&n->right))return false;}
++    bool symbolic=store && pointer &&
++      wide_symbol_address(value,ic==begin?NULL:ic->prev,begin,&n->storedAddress,&n->storedAddressOffset,0);
++    if(store) {if(!symbolic && !wide_use(f,n,value,&n->right))return false;}
+     else if(!wide_result(f,n,value))return false;
+-    n->op=store?WM_SYMBOL_STORE:WM_SYMBOL_LOAD;n->width=getSize(t);
++    n->op=store?WM_SYMBOL_STORE:WM_SYMBOL_LOAD;n->width=wide_width(t);n->pointerAccess=pointer;
+     n->addressSymbol=object;n->addressOffset=offset;
+     if(IS_EXTERN(object->etype))dbuf_printf(f->diagnostics,"; wide proven extern DATA field icode=%d offset=%d width=%d\n",ic->key,offset,n->width);
+     n->byteAccess=isVolatile(object->type) || isVolatile(pt->next) || isOperandVolatile(value,TRUE);
+@@ -603,6 +650,19 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
+     dbuf_printf(f->diagnostics,"; wide near DATA field icode=%d offset=%d width=%d transaction=bytes\n",ic->key,offset,n->width);
+     return true;
+   }
++  /* A single-use cast feeding a direct pointer field needs no register value.
++   * Its relocation is emitted by the store. General CODE/data casts retain
++   * their existing admission rule. */
++  if(ic->op==CAST && IC_RESULT(ic) && IS_ITEMP(IC_RESULT(ic)) &&
++     wide_pointer(operandType(IC_RESULT(ic))) &&
++     bitVectnBitsOn(OP_SYMBOL(IC_RESULT(ic))->uses)==1 && ic->next && POINTER_SET(ic->next) &&
++     IS_SYMOP(IC_RIGHT(ic->next)) && OP_SYMBOL(IC_RIGHT(ic->next))==OP_SYMBOL(IC_RESULT(ic)) &&
++     wide_near_type(operandType(IC_RESULT(ic->next))) &&
++     wide_pointer(operandType(IC_RESULT(ic->next))->next) &&
++     wide_near_location(f,IC_RESULT(ic->next),ic,begin,&object,&offset,0) &&
++     wide_symbol_address(IC_RESULT(ic),ic,begin,&object,&offset,0)) {
++    n->op=WM_NOP;return true;
++  }
+   /* 仅将同块已证明的 DATA 符号地址物化为线性 generic 指针。
+    * 不读取或转换运行期 near 指针；CODE、栈、absolute 和
+    * 超界偏移仍由来源证明拒绝。复用现有三字节符号重定位与普通 ABI。 */
+diff --git a/core/sources/compiler/src/mcs251/wide_emit.c.inc b/core/sources/compiler/src/mcs251/wide_emit.c.inc
+index d2dc425..ea59ad5 100644
+--- a/core/sources/compiler/src/mcs251/wide_emit.c.inc
++++ b/core/sources/compiler/src/mcs251/wide_emit.c.inc
+@@ -419,9 +419,65 @@ wmemory_stack(wide_function *f,wide_node *n)
+   }
+ }
+ 
++/* DATA pointer objects occupy three bytes; the leading MIR byte is padding.
++ * Direct objects retain byte transactions, including volatile field accesses. */
++static void
++wmemory_symbol_pointer(wide_function *f,wide_node *n)
++{
++  bool store=n->op==WM_SYMBOL_STORE;
++  int value=store?n->right.value:n->result;
++  int reg=value>=0?f->values[value].reg:-1;
++  we(f,"; wide DATA pointer %s physical=3 logical=4 offset=%d\n",store?"store":"load",n->addressOffset);
++  if(store && n->storedAddress) {
++    we(f,"; wide symbolic pointer store %s%+d\n",n->storedAddress->rname,n->storedAddressOffset);
++    for(int k=0;k<2;++k)
++      we(f,"\tmov\t(%s+%d),#((%s%+d)>>%d)\n",n->addressSymbol->rname,n->addressOffset+k,
++         n->storedAddress->rname,n->storedAddressOffset,8*(2-k));
++    we(f,"\tmov\t(%s+%d),#(%s%+d)\n",n->addressSymbol->rname,n->addressOffset+2,
++       n->storedAddress->rname,n->storedAddressOffset);
++    return;
++  }
++  if(store && n->right.value<0) {
++    for(int k=0;k<3;++k)
++      we(f,"\tmov\t(%s+%d),#0x%02lx\n",n->addressSymbol->rname,n->addressOffset+k,
++         (unsigned long)((n->right.literal>>(8*(2-k)))&255));
++    return;
++  }
++  if(reg>=0 && reg+4<=16) {
++    if(!store)we(f,"\tmov\tr%d,#0\n",reg);
++    for(int k=0;k<3;++k)
++      if(store)we(f,"\tmov\t(%s+%d),r%d\n",n->addressSymbol->rname,n->addressOffset+k,reg+1+k);
++      else we(f,"\tmov\tr%d,(%s+%d)\n",reg+1+k,n->addressSymbol->rname,n->addressOffset+k);
++    return;
++  }
++  if(store)wload(f,n->right,20,4);
++  for(int k=0;k<3;++k) {
++    if(store) {
++      if(k<2)we(f,"\tmov\twr10,wr%d\n",k?22:20);
++      we(f,"\tmov\t(%s+%d),%s\n",n->addressSymbol->rname,n->addressOffset+k,k==1?"b":"a");
++    } else {
++      we(f,"\tmov\ta,(%s+%d)\n",n->addressSymbol->rname,n->addressOffset+k);
++      if(!k)we(f,"\tmovz\twr20,a\n");
++      else if(k==1)we(f,"\tmov\tb,a\n");
++      else we(f,"\tmov\twr22,wr10\n");
++    }
++  }
++  if(!store)wstore_known(f,n->result,20,true);
++}
++
++static bool
++wmemory_symbol_wide(wide_node *n)
++{
++  return !n->argumentReadReverse && !n->pointerAccess && n->width>1 &&
++    (!n->byteAccess || n->volatileDataWideAccess) &&
++    ((!n->addressOffset && !IS_AGGREGATE(n->addressSymbol->type)) ||
++     SPEC_OCLS(n->addressSymbol->etype)==data);
++}
++
+ static void
+ wmemory_symbol(wide_function *f,wide_node *n)
+ {
++  if(n->pointerAccess){wmemory_symbol_pointer(f,n);return;}
+   bool store=n->op==WM_SYMBOL_STORE;
+   we(f,"; wide symbol %s %s width=%d volatile=%d\n",store?"store":"load",n->addressSymbol->rname,n->width,n->byteAccess);
+   int value=store?n->right.value:n->result;
+@@ -429,15 +485,18 @@ wmemory_symbol(wide_function *f,wide_node *n)
+   bool reverse=!store && n->argumentReadReverse;
+   /* 普通直接 RAM 可使用对应宽度的 MOV。volatile/SFR 仍逐字节，
+    * 严格保留原事务顺序；只移除 A/B 中转，不缓存对象、不合并访问。 */
+-  if(!reverse && (!n->byteAccess || n->volatileDataWideAccess) && n->width>1 && !n->addressOffset &&
+-     !IS_AGGREGATE(n->addressSymbol->type)) {
++  if(wmemory_symbol_wide(n) && !(store && n->right.value<0 &&
++     (n->addressOffset || IS_AGGREGATE(n->addressSymbol->type)))) {
++    char address[SDCC_NAME_MAX+40];
++    if(n->addressOffset)SNPRINTF(address,sizeof address,"(%s+%d)",n->addressSymbol->rname,n->addressOffset);
++    else SNPRINTF(address,sizeof address,"(%s)",n->addressSymbol->rname);
+     if(n->volatileDataWideAccess)we(f,"; wide volatile DATA object width=%d transactions=1 ordered=1 atomic=unqualified\n",n->width);
+     if(store) {
+       int source=wread(f,n->right,20,n->width);
+-      we(f,"\tmov\t(%s),%s%d\n",n->addressSymbol->rname,wp(n->width),source);
++      we(f,"\tmov\t%s,%s%d\n",address,wp(n->width),source);
+     } else {
+       int dest=reg>=0?reg:20;
+-      we(f,"\tmov\t%s%d,(%s)\n",wp(n->width),dest,n->addressSymbol->rname);
++      we(f,"\tmov\t%s%d,%s\n",wp(n->width),dest,address);
+       wstore(f,n->result,dest);
+     }
+     return;
+@@ -1562,9 +1621,7 @@ wide_emit(wide_function *f)
+        f->nodes[i+1].left.width==n->width && f->nodes[i+1].left.value==n->result &&
+        !wb_has(f->nodes[i+1].out,n->result)) {
+       bool load=false;char address[32];
+-      if(n->op==WM_SYMBOL_LOAD && (n->width==1 ||
+-         !((!n->byteAccess || n->volatileDataWideAccess) && !n->addressOffset &&
+-           !IS_AGGREGATE(n->addressSymbol->type)))) {
++      if(n->op==WM_SYMBOL_LOAD && !wmemory_symbol_wide(n)) {
+         /* 只替换原本逐字节读取的路径；宽单次事务仍由原发射器处理。
+          * OR 只合并已经按升序读取的字节，不短路读取，也不借用原结果。 */
+         we(f,"; wide byte load-truth source=direct volatile=%d width=%d\n",

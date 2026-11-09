@@ -1,0 +1,275 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "PROTOTYPE_REJECTED_INSUFFICIENT_GAIN",
+  "sourceParent": "c145a9d82f9be247237efb6be817cebac2167345",
+  "productionCompilerChanged": false,
+  "hardwareExecuted": false,
+  "runtimeMeasured": false,
+  "newSizePasses": 0,
+  "patch": {
+    "path": "tools/research/typed-object-addresses.patch",
+    "sha256": "2aa6ed29464d5ac5d4df2e5dfc998c24bf4372931304ae408123d2eaad10ac63"
+  },
+  "minimalProbe": {
+    "path": "tools/research/typed-object-addresses.c",
+    "sha256": "877535c0d8154381d47ea4be2160a8b71c38937f3b3b762ed63bc67ec3b3d17f",
+    "compiled": true,
+    "executed": false
+  },
+  "baselineCore": "E:/STVAPP/MX251-mainline-20261109/call-arguments/core",
+  "prototypeCore": "E:\\STVAPP\\MX251-mainline-20261109\\typed-address\\core-04",
+  "preliminaryProbe": {
+    "stage": "physical-pointer-fields-only",
+    "project": "p087",
+    "codeBytes": 4841,
+    "deltaBytes": 72
+  },
+  "projects": [
+    {
+      "project": "p087",
+      "baselineCodeBytes": 4769,
+      "prototypeCodeBytes": 4768,
+      "deltaBytes": -1,
+      "identicalInputHashes": {
+        "src/util.c": "b4db48ee22753ba4e232120237076596719d51b37972277edf24cae7c15c58b1",
+        "src/uart.h": "d9dda34b3801835b3cf52d9671da7162f012e855f4cfb7c2617c7d02a993e63e",
+        "src/main.c": "4f322294bb076d461cb685baf4a281024ca07c9c1e7b4d9e06f57d311eedeb21",
+        "src/usb_req_std.c": "9c9072cdb458d90c3b041dfb1032bac0406d50da660b054327b44982efe5aaa7",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb_desc.c": "a135b67f3d6da12e2d76efa348b39dae058e5eaca0716bf0a791a2d6eb2d8cab",
+        "src/usb.h": "e4907af1fc1f16949c3b7f0be0a0247d1de6d6bc967569ee7813ec57247f8bc8",
+        "src/uart.c": "56f087dec578909760cfee0d2aaaeb7f99a64e5028b91b085818217380f4f7b4",
+        "src/config.h": "c81b1067c03ce14c2f38f2a083fe5ac15356d8a5f1e5a83cab2a446730efb4ca",
+        "src/usb_req_class.c": "1b72070f87d6b5ee0ff561bb7c97e82d2501540edab85b9bccc57a78ad65c222",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_desc.h": "6b9ec7f72eb481c1c85a188d877a635d77add5a5345c5b2ca8fd8952b4878f62",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_req_class.h": "9521175f03daaa7be154be72c119bb2cb589daa1e6da6da833d4fa9ddb438214",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb.c": "83cdccb0703fe217af14bc39bef6038000d8084a0f54e8326cf064b5b9369274"
+      },
+      "baselineCompilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "prototypeCompilerSha256": "392fbb1ff7689628fff73fe50191643291f6f8910dffdc55ad310df298f78978",
+      "baselineFirmwareSha256": "4a4834ae596eb41a896727cac22ba23dcaeb7ce8492a15f5928a2d97ce9dd50f",
+      "prototypeFirmwareSha256": "13529cd46a1d25c6a8c8adaadb0bcf82100102555bea0593c4ef7d1bb85d4ff7",
+      "prototypeReceiptSha256": "6d9f102a475942a7b1419ecb07cef61575420c0165cf361246e732ff6c786eee",
+      "analysisSha256": "6af9772f79649791e4456d13fd3be445a8ff8c7694e3b3ba689e43a2d126ea17",
+      "changedFunctions": [
+        {
+          "symbol": "_usb_setup",
+          "before": 239,
+          "after": 233
+        },
+        {
+          "symbol": "_usb_get_status",
+          "before": 261,
+          "after": 233
+        },
+        {
+          "symbol": "_usb_set_configuration",
+          "before": 202,
+          "after": 205
+        },
+        {
+          "symbol": "_usb_clear_feature",
+          "before": 186,
+          "after": 189
+        },
+        {
+          "symbol": "_usb_set_feature",
+          "before": 180,
+          "after": 183
+        },
+        {
+          "symbol": "_usb_ctrl_in",
+          "before": 153,
+          "after": 163
+        },
+        {
+          "symbol": "_usb_get_descriptor",
+          "before": 167,
+          "after": 156
+        },
+        {
+          "symbol": "_usb_ctrl_out",
+          "before": 134,
+          "after": 151
+        },
+        {
+          "symbol": "_usb_get_configuration",
+          "before": 81,
+          "after": 85
+        },
+        {
+          "symbol": "_usb_uart_settings",
+          "before": 79,
+          "after": 69
+        },
+        {
+          "symbol": "_usb_set_address",
+          "before": 65,
+          "after": 68
+        },
+        {
+          "symbol": "_usb_get_interface",
+          "before": 56,
+          "after": 60
+        },
+        {
+          "symbol": "_usb_set_interface",
+          "before": 40,
+          "after": 43
+        },
+        {
+          "symbol": "_usb_get_line_coding",
+          "before": 39,
+          "after": 41
+        },
+        {
+          "symbol": "_usb_set_line_coding",
+          "before": 39,
+          "after": 41
+        }
+      ],
+      "newlyImported": [
+        "_usb_get_status",
+        "_usb_ctrl_in",
+        "_usb_get_descriptor",
+        "_usb_ctrl_out",
+        "_usb_get_configuration",
+        "_usb_get_interface",
+        "_usb_get_line_coding",
+        "_usb_set_line_coding"
+      ]
+    },
+    {
+      "project": "p091",
+      "baselineCodeBytes": 6312,
+      "prototypeCodeBytes": 6298,
+      "deltaBytes": -14,
+      "identicalInputHashes": {
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5",
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a"
+      },
+      "baselineCompilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "prototypeCompilerSha256": "392fbb1ff7689628fff73fe50191643291f6f8910dffdc55ad310df298f78978",
+      "baselineFirmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4",
+      "prototypeFirmwareSha256": "a79a91960e1041935dde83b064de602102ee6f4d82ff35aa153713e2b91e0b83",
+      "prototypeReceiptSha256": "c4bab8ddfe9cf29af35cfdf9d42371631e27a756a970f5370583a670226f3815",
+      "analysisSha256": "e42a3ed81ef5142555e1a6ca074e27569c224ce87778fa6b7b4ea5a044eefc86",
+      "changedFunctions": [
+        {
+          "symbol": "_usb_setup",
+          "before": 239,
+          "after": 233
+        },
+        {
+          "symbol": "_usb_get_status",
+          "before": 255,
+          "after": 224
+        },
+        {
+          "symbol": "_usb_get_descriptor",
+          "before": 232,
+          "after": 222
+        },
+        {
+          "symbol": "_usb_clear_feature",
+          "before": 185,
+          "after": 188
+        },
+        {
+          "symbol": "_usb_set_feature",
+          "before": 179,
+          "after": 182
+        },
+        {
+          "symbol": "_usb_set_configuration",
+          "before": 161,
+          "after": 164
+        },
+        {
+          "symbol": "_usb_ctrl_in",
+          "before": 153,
+          "after": 163
+        },
+        {
+          "symbol": "_usb_ctrl_out",
+          "before": 129,
+          "after": 146
+        },
+        {
+          "symbol": "_scsi_write10",
+          "before": 154,
+          "after": 145
+        },
+        {
+          "symbol": "_scsi_read10",
+          "before": 146,
+          "after": 137
+        },
+        {
+          "symbol": "_usb_get_configuration",
+          "before": 81,
+          "after": 85
+        },
+        {
+          "symbol": "_usb_set_address",
+          "before": 65,
+          "after": 68
+        },
+        {
+          "symbol": "_usb_get_interface",
+          "before": 56,
+          "after": 60
+        },
+        {
+          "symbol": "_usb_set_interface",
+          "before": 40,
+          "after": 43
+        },
+        {
+          "symbol": "_usb_get_maxlun",
+          "before": 19,
+          "after": 20
+        }
+      ],
+      "newlyImported": [
+        "_usb_get_status",
+        "_usb_get_descriptor",
+        "_usb_ctrl_in",
+        "_usb_ctrl_out",
+        "_usb_get_configuration",
+        "_usb_get_interface",
+        "_usb_get_maxlun"
+      ]
+    }
+  ],
+  "notes": [
+    "Core-02 was not measured; core-03 exposed an assembler relocation syntax error, corrected in core-04.",
+    "Core-04 emitted a symbol relocation for each of exactly three pointer bytes; general CODE/data casts were not enabled.",
+    "Only the two USB complete projects were built for the final prototype; no unchanged full SDK matrix or hardware run.",
+    "Prototype source changes were removed from the active compiler and preserved as this patch."
+  ]
+}
