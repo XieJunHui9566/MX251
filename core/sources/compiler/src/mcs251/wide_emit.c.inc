@@ -75,6 +75,15 @@ static void wi(wide_function *f,int reg,int width,uint32_t value) {
 static void wsign_word(wide_function *f,int high,int low) {
   int skip=wt(f);wi(f,high,2,0);we(f,"\tcmp\twr%d,#0x8000\n",low);wj(f,"jc",skip);wi(f,high,2,0xffff);wl(f,skip);
 }
+/* Source location may differ from a value's result/allocation location.
+ * Only call operands use this view; return values keep their allocated home. */
+typedef struct { int reg,slot; } wide_source_location;
+static wide_source_location
+wsource_location(wide_function *f,int value)
+{
+  if(wb_has(f->callOperands,value))return (wide_source_location){-1,f->callSlots[value]};
+  return (wide_source_location){f->values[value].reg,f->values[value].slot};
+}
 static void
 wload(wide_function *f,wide_operand o,int dest,int width)
 {
@@ -83,21 +92,21 @@ wload(wide_function *f,wide_operand o,int dest,int width)
     if(o.sign && o.width<width && (v&(UINT32_C(1)<<(8*o.width-1)))) v|=~((UINT32_C(1)<<(8*o.width))-1);
     wi(f,dest,width,v);return;
   }
-  wide_value *v=&f->values[o.value];
+  wide_source_location v=wsource_location(f,o.value);
   if(o.width>=width) {
     int offset=o.width-width;
-    if(v->reg>=0) {if(dest!=v->reg+offset) we(f,"\tmov\t%s%d,%s%d\n",wp(width),dest,wp(width),v->reg+offset);}
+    if(v.reg>=0) {if(dest!=v.reg+offset) we(f,"\tmov\t%s%d,%s%d\n",wp(width),dest,wp(width),v.reg+offset);}
     else {
-      for(int k=0;k<width;k+=2) {char address[32];wa(address,v->slot+offset+k-f->frame-f->stackDepth+1);we(f,"\tmov\twr%d,%s\n",dest+k,address);}
+      for(int k=0;k<width;k+=2) {char address[32];wa(address,v.slot+offset+k-f->frame-f->stackDepth+1);we(f,"\tmov\twr%d,%s\n",dest+k,address);}
     }
   } else {
     int low=dest+width-2;
     if(o.width==1) {
-      if(v->reg>=0) we(f,"\t%s\twr%d,r%d\n",o.sign?"movs":"movz",low,v->reg);
-      else {char address[32];wa(address,v->slot-f->frame-f->stackDepth+1);we(f,"\tmov\ta,%s\n\t%s\twr%d,a\n",address,o.sign?"movs":"movz",low);}
+      if(v.reg>=0) we(f,"\t%s\twr%d,r%d\n",o.sign?"movs":"movz",low,v.reg);
+      else {char address[32];wa(address,v.slot-f->frame-f->stackDepth+1);we(f,"\tmov\ta,%s\n\t%s\twr%d,a\n",address,o.sign?"movs":"movz",low);}
     } else {
-      if(v->reg>=0) {if(low!=v->reg) we(f,"\tmov\twr%d,wr%d\n",low,v->reg);}
-      else {char address[32];wa(address,v->slot-f->frame-f->stackDepth+1);we(f,"\tmov\twr%d,%s\n",low,address);}
+      if(v.reg>=0) {if(low!=v.reg) we(f,"\tmov\twr%d,wr%d\n",low,v.reg);}
+      else {char address[32];wa(address,v.slot-f->frame-f->stackDepth+1);we(f,"\tmov\twr%d,%s\n",low,address);}
     }
     if(width==4) {if(o.sign) wsign_word(f,dest,low);else wi(f,dest,2,0);}
   }
@@ -181,7 +190,7 @@ wcanonical_pointer(wide_function *f,wide_operand o)
   return !(v&UINT32_C(0xff000000));
 }
 static int wread(wide_function *f,wide_operand o,int scratch,int width) {
-  if(o.value>=0 && o.width>=width && f->values[o.value].reg>=0) return f->values[o.value].reg+o.width-width;
+  if(o.value>=0 && o.width>=width) {int reg=wsource_location(f,o.value).reg;if(reg>=0)return reg+o.width-width;}
   wload(f,o,scratch,width);return scratch;
 }
 /* 字节值只分配到 R0..R15，且排除保留的 B:R10/A:R11。
@@ -996,13 +1005,14 @@ wargument(wide_function *f,wide_operand o,int index)
   if(o.width!=1) {wload(f,o,dest,o.width);return;}
   if(o.value<0) we(f,"\tmov\tr%d,#0x%02lx\n",dest,(unsigned long)o.literal);
   else {
-    wide_value *v=&f->values[o.value];
-    if(v->reg>=0) {if(v->reg!=dest)we(f,"\tmov\tr%d,r%d\n",dest,v->reg);}
-    else {char address[32];wa(address,v->slot-f->frame-f->stackDepth+1);we(f,"\tmov\ta,%s\n\tmov\tr%d,a\n",address,dest);}
+    wide_source_location v=wsource_location(f,o.value);
+    if(v.reg>=0) {if(v.reg!=dest)we(f,"\tmov\tr%d,r%d\n",dest,v.reg);}
+    else {char address[32];wa(address,v.slot-f->frame-f->stackDepth+1);we(f,"\tmov\tr%d,%s\n",dest,address);}
   }
 }
 static uint32_t wsource_mask(wide_function *f,wide_operand o) {
-  return o.value>=0 && f->values[o.value].reg>=0?wide_mask(f->values[o.value].reg,o.width):0;
+  int reg=o.value>=0?wsource_location(f,o.value).reg:-1;
+  return reg>=0?wide_mask(reg,o.width):0;
 }
 static void
 warguments(wide_function *f,wide_node *n)
@@ -1045,7 +1055,7 @@ wstack_argument(wide_function *f,wide_operand o,unsigned bytes)
     int reg=wread(f,o,16,4);
     we(f,"\tmov\twr10,wr%d\n\tpush\tacc\n\tpush\twr%d\n",reg,reg+2);
   } else if(o.width==1) {
-    if(o.value>=0 && f->values[o.value].reg>=0)we(f,"\tpush\tr%d\n",f->values[o.value].reg);
+    if(o.value>=0 && wsource_location(f,o.value).reg>=0)we(f,"\tpush\tr%d\n",wsource_location(f,o.value).reg);
     else {
       /* 字节实参只运输低八位；不需要先符号/零扩展再截回 A。
        * A 为宽分配器保留暂存，调用活值已保存。spill 仍在原位置读取
@@ -1055,7 +1065,7 @@ wstack_argument(wide_function *f,wide_operand o,unsigned bytes)
            (unsigned long)(o.literal&255));
       } else {
         char address[32];
-        wa(address,f->values[o.value].slot-f->frame-f->stackDepth+1);
+        wa(address,wsource_location(f,o.value).slot-f->frame-f->stackDepth+1);
         we(f,"; wide stack byte direct spill\n\tmov\ta,%s\n",address);
       }
       we(f,"\tpush\tacc\n");
@@ -1067,8 +1077,8 @@ wstack_argument(wide_function *f,wide_operand o,unsigned bytes)
 /* ABI2 的逻辑低字节依次在 DPL/DPH/B/A。已分配低组且与 B:A
  * 不重叠的纯值可直接搬运；不改变任何内存取样或栈上实参的顺序。
  * 常量已由前端按声明宽度序列化，浮点按位运输，远指针只传三字节。
- * 高组按 WR 分片运输，不生成不存在的字节别名。试验开关关闭、
- * spill 或寄存器别名冲突时保留原快照路径。 */
+ * 高组按 WR 分片运输，不生成不存在的字节别名。
+ * 栈值直接装入 B:A，省去 DR16 中转；寄存器别名冲突仍使用快照。 */
 static bool
 wordinary_argument_direct(wide_function *f,wide_operand o,unsigned bytes)
 {
@@ -1083,8 +1093,22 @@ wordinary_argument_direct(wide_function *f,wide_operand o,unsigned bytes)
     if(bytes==4)we(f,"\tmov\ta,#0x%02lx\n",(unsigned long)(bits>>24));
     return true;
   }
-  int reg=f->values[o.value].reg;
-  if(reg<0 || (wide_mask(reg,o.width)&wide_mask(10,2)))return false;
+  wide_source_location location=wsource_location(f,o.value);
+  int reg=location.reg;
+  if(reg<0) {
+    char address[32];int base=location.slot-f->frame-f->stackDepth+1;
+    we(f,"; wide ordinary argument direct stack physical=%u\n",bytes);
+    wa(address,base+(bytes>2?2:0));
+    if(bytes==1)we(f,"\tmov\ta,%s\n\tmov\tdpl,a\n",address);
+    else we(f,"\tmov\twr10,%s\n\tmov\tdpl,a\n\tmov\tdph,b\n",address);
+    if(bytes>2) {
+      wa(address,base);we(f,"\tmov\twr10,%s\n",address);
+      if(bytes==3)we(f,"\tmov\tb,a\n");
+      else we(f,"\txch\ta,b\n");
+    }
+    return true;
+  }
+  if(wide_mask(reg,o.width)&wide_mask(10,2))return false;
   if(reg+o.width>16) {
     if(o.width==1)return false;
     we(f,"; wide ordinary argument direct words reg=%d physical=%u\n",reg,bytes);
@@ -1731,7 +1755,12 @@ wide_emit(wide_function *f)
         we(f,"\teret\n");
       }
       break;
-    case CALL:if(wcall(f,i))++i;break;
+    case CALL:
+      f->callOperands=n->callArguments;
+      for(int v=0;v<f->nv;++v)if(wb_has(f->callOperands,v))
+        we(f,"; wide call-frame argument value=%d slot=%d\n",v,f->callSlots[v]);
+      if(wcall(f,i))++i;
+      f->callOperands=(wide_bits){{0}};break;
     case '*':wconstant_multiply(f,n);break;
     case WM_UMULW:wunsigned_multiply(f,n);break;
     case WM_UDIVW:case WM_UMODW:

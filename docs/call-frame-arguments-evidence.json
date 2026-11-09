@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "IMPLEMENTED_AND_TESTED",
+  "branch": "codex/call-frame-arguments",
+  "parentCommit": "55c59b90d3f730a93cfff52ae72a720a99b9456f",
+  "baselineCompilerSha256": "90229fe5c3668caa1862f718c416a976bdbdb8f03cfda16b59d194aed5ab132d",
+  "candidateCompilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+  "sdkSourcesChanged": false,
+  "model": "small",
+  "optimization": "speed",
+  "projects": [
+    {
+      "project": "p080",
+      "parentBytes": 23161,
+      "candidateBytes": 23153,
+      "savedBytes": 8,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "2ecb65106bc08f3c97016006df44bf98406bd0c68418a4bdfa89b3d6428510a0",
+      "candidateReceiptSha256": "441dfbfba01a23b013cd116b18d660f0adb29988bd797714c8bb3872caee9880",
+      "firmwareSha256": "ab301e660ffae690ec199c60884eeec579b3deaa3afd706b2a0e7edddd6efe9a"
+    },
+    {
+      "project": "p087",
+      "parentBytes": 4769,
+      "candidateBytes": 4769,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "5190e1210ac22f9c12b8312f2aac64fe17d50980e890f7008a7eab0591a47a61",
+      "candidateReceiptSha256": "b06807aed5f5ae2f4af9e42c0ac45b93913e6a1cb72f7953ed63c432f3298c6c",
+      "firmwareSha256": "4a4834ae596eb41a896727cac22ba23dcaeb7ce8492a15f5928a2d97ce9dd50f"
+    },
+    {
+      "project": "p091",
+      "parentBytes": 6312,
+      "candidateBytes": 6312,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "cbf0f678dbbf26ea526c83d47a154efa813e86280b4514187cdcf4e62a72552e",
+      "candidateReceiptSha256": "e8ffd8b9f008a07a00de18cbb667f20deac67c622a5ad10f3458f0ade28c5e02",
+      "firmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4"
+    },
+    {
+      "project": "p095",
+      "parentBytes": 6615,
+      "candidateBytes": 6615,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "b6214caa699242449dce0253471d9ed91f4b41c70dfd9af23daa4927bcb02d3b",
+      "candidateReceiptSha256": "a9ca97ef94b9d1f5ff7a96a94fc46e5f8d3a4261683d912000a6e4d956c875ba",
+      "firmwareSha256": "3eea9f5385c7ac678a7ed0495977565dc413c59557d78474fb0f0489192f9093"
+    }
+  ],
+  "argumentTests": {
+    "status": "PASS",
+    "results": [
+      {
+        "model": "small",
+        "objective": "speed",
+        "parentBytes": 1198,
+        "candidateBytes": 1143,
+        "directArguments": 50
+      },
+      {
+        "model": "small",
+        "objective": "size",
+        "parentBytes": 1198,
+        "candidateBytes": 1143,
+        "directArguments": 50
+      },
+      {
+        "model": "large",
+        "objective": "speed",
+        "parentBytes": 1198,
+        "candidateBytes": 1143,
+        "directArguments": 50
+      },
+      {
+        "model": "large",
+        "objective": "size",
+        "parentBytes": 1198,
+        "candidateBytes": 1143,
+        "directArguments": 50
+      }
+    ]
+  },
+  "ordinaryCallTests": {
+    "status": "PASS",
+    "configurations": 18,
+    "resultsSha256": "04fac618602771801fcc3b4e2dd590fe540b5955fd04a09be570eda138812f9b"
+  },
+  "nativeCallTests": {
+    "status": "PASS",
+    "models": 2,
+    "acceptedPerModel": 33,
+    "resultsSha256": "8a3d2362a106b00294ea0c9d9ae8dc336f44d2e74e5d52102d825c499743528a"
+  },
+  "hardware": {
+    "status": "PASS",
+    "frames": 597,
+    "inputCases": 16,
+    "valuesPerCase": 10,
+    "bytes": 28661,
+    "uartSha256": "b8c3fbde7719c6bc7dff319bf3f510d951a04ef4c61703c59873ce438b37da69",
+    "firmwareSha256": "6525a7df9cc79b7965f119c5a50f8d77f6ef69aa61fbaaa408322c00e1daa788",
+    "port": "COM13",
+    "baud": 115200,
+    "restored": false,
+    "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96"
+  },
+  "runtimeVsKeil": null,
+  "artifactsRoot": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments",
+  "sourceFiles": {
+    "core/sources/compiler/src/mcs251/wide.c": "87560024e229f102a822ec7face233b2b7870bf80cc743a559b299140ff88b91",
+    "core/sources/compiler/src/mcs251/wide_call_plan.c.inc": "ba6ae5f80f61280abc7914f035d7575af8acb97a0c886f9bf703ded642039d0a",
+    "core/sources/compiler/src/mcs251/wide_emit.c.inc": "76b72d4bce8e5c668723f67658dee146d9daa0189556102ecb7d65f45efe95ed",
+    "core/sources/compiler/src/mcs251/tests/call-frame-arguments.c": "2a810b6617d9f7ce6156cd8eaa18ca762754101d8d8a0fe8ec0f284b821daa58",
+    "core/sources/compiler/src/mcs251/tests/call-frame-arguments.h": "916a9b59bad37b0b51e422d2f289a758f98c62e16d3c74273bb7acb0062aaa60",
+    "core/sources/compiler/src/mcs251/tests/call-frame-hardware.c": "dcaad6c705e92b835eed545c22fb97e4cd6bab5aa610374104af08107b7d74db",
+    "core/sources/compiler/src/mcs251/tests/call-frame-providers.c": "0da154091d907e05af80e57f61dea6e37d100657232fa7e3799ecd7059d952d0",
+    "core/sources/compiler/src/mcs251/tests/check-call-frame-arguments.py": "6b8fa45ef82213b531d288b4e45ba59baa6fa4f9e1737129f25652395564f2d0",
+    "core/sources/compiler/src/mcs251/tests/check-call-frame-hardware.py": "27a2c7ee1bcb97ed4fdffe8f736726cc23d2d49fccbec327775f179d76d64e5f",
+    "core/sources/compiler/src/mcs251/tests/check-wide-calls.py": "e631838cfcf0365510a3e4f0685b560b9ab44d3e1955cfe131288b03bb82d87c"
+  }
+}

@@ -77,9 +77,14 @@ wide_plan_call_frame(wide_function *f)
   wide_bits stored={{0}},pending={{0}};
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];bool boundary=wide_call_block_end(f,i);
-    n->callFrameValues=n->callStores=n->callLoads=(wide_bits){{0}};
+    n->callFrameValues=n->callStores=n->callLoads=n->callArguments=(wide_bits){{0}};
     for(int v=0;v<f->nv;++v)if(wb_has(selected,v)) {
-      if(wb_has(pending,v) && (wb_has(n->use,v) || (boundary && wb_has(n->in,v))))
+      if(!wb_has(pending,v))continue;
+      /* A call can consume the private copy without restoring its register.
+       * At an outgoing CFG edge, live values still use the canonical register. */
+      if(n->op==CALL && wb_has(n->use,v) && (!boundary || !wb_has(n->out,v)))
+        wb_set(&n->callArguments,v);
+      else if(wb_has(n->use,v) || (boundary && wb_has(n->in,v)))
         wb_set(&n->callLoads,v);
     }
     pending=wb_minus(pending,wb_or(n->callLoads,n->def));
@@ -111,6 +116,7 @@ wide_plan_call_frame(wide_function *f)
         wide_node *n=&f->nodes[i];
         n->callFrameValues=wb_minus(n->callFrameValues,remove);
         n->callLoads=wb_minus(n->callLoads,remove);n->callStores=wb_minus(n->callStores,remove);
+        n->callArguments=wb_minus(n->callArguments,remove);
       }
     } else {f->callSlots[v]=frame;frame+=width;}
   }

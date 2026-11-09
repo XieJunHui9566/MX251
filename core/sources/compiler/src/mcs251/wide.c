@@ -64,7 +64,7 @@ typedef struct {
   bool ordinaryCall, carryResult;
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
   wide_call_contract call;
-  wide_bits callFrameValues, callStores, callLoads;
+  wide_bits callFrameValues, callStores, callLoads, callArguments;
   signed char multiplyDigits[32];
   int multiplyTop;
   int result, label, target, succ[2], width;
@@ -102,6 +102,7 @@ typedef struct {
   unsigned domainCount,domainValues[4];
   bool callEffectsInvalid;
   bool callFrame;
+  wide_bits callOperands; /* Source locations while emitting one CALL. */
   int callSlots[WV_MAX];
   int valueLimit,nodeLimit,rejectionLine;
   const char *rejectionReason;

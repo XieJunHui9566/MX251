@@ -22,7 +22,7 @@ for model in ['small','large']:
   for line in text.splitlines():
    m=re.match(r'\s*(push|pop)\s+(dr|wr|r)\d+',line)
    if m:depth+=(1 if m[1]=='push' else -1)*{'dr':4,'wr':2,'r':1}[m[2]]
-   if re.match(r'\s*mov\s+(wr\d+|a),@spx',line) and depth:reads.append(line)
+   if re.match(r'\s*mov\s+(wr\d+|r(?:[0-9]|1[0-5])|a),@spx',line) and depth:reads.append(line)
    if '\tecall\t' in line:at_call+=reads;reads=[]
   assert depth==0 and at_call,(name,depth,at_call)
  assert '\teret' in body('voidtail')
