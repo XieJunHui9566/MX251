@@ -2,6 +2,7 @@
  * 有界纯标量前端展开：只复用上游参数临时值、类型装饰和多 RETURN 处理。
  * 节点/深度/展开次数只限制资源，不冒充最终指令成本或运行周期。 */
 extern int mcs251PureStaticScalarInlineEnabled;
+extern int mcs251MachineIrEnabled;
 #define M251_PSI_NODES 128
 #define M251_PSI_STMTS 64
 #define M251_PSI_VARS 24
@@ -21,9 +22,11 @@ typedef struct {
 typedef struct {
   ast *tree;
   unsigned nodes, args;
+  bool pointerLeaf;
 } m251_psi_function;
 static m251_psi_function m251PsiFunctions[M251_PSI_FUNCS];
 static unsigned m251PsiCount, m251PsiCallerNodes, m251PsiCallerExpansions;
+static ast *m251PsiCallerBody;
 
 static bool m251PsiReject(m251_psi_check *c,const char *why)
 { if(!c->why)c->why=why;return FALSE; }
@@ -36,6 +39,15 @@ static bool m251PsiScalar(sym_link *t)
   /* 显式寻址存储不是普通自动标量；literal 仅在常量节点接受。 */
   return SPEC_SCLS(t)==S_FIXED || SPEC_SCLS(t)==S_AUTO ||
          SPEC_SCLS(t)==S_REGISTER || SPEC_SCLS(t)==S_LITERAL;
+}
+
+/* A dereference-only pointer parameter can disappear when an actual argument
+ * is the address of an automatic scalar. Upstream AST inlining preserves the
+ * original access order, including calls where both parameters alias. */
+static bool m251PsiPointer(sym_link *t)
+{
+  return t && IS_PTR(t) && t->next && m251PsiScalar(t->next) &&
+    !IS_VOLATILE(t) && !isAtomic(t);
 }
 
 static symbol *m251PsiLookup(m251_psi_check *c,symbol *s)
@@ -55,12 +67,51 @@ static symbol *m251PsiLookup(m251_psi_check *c,symbol *s)
   return NULL;
 }
 
+static bool m251PsiDeref(m251_psi_check *c,ast *t)
+{
+  if(!c || !t || !IS_AST_OP(t) || t->opval.op!='*' || t->right ||
+     !t->left || !IS_AST_VALUE(t->left) || !t->left->opval.val->sym)return FALSE;
+  symbol *s=m251PsiLookup(c,t->left->opval.val->sym);
+  return s && s->_isparm && m251PsiPointer(s->type);
+}
+
+/* Locals are still in BLOCK declaration lists at this point; SymbolTab only
+ * contains parameters. Follow the actual call's lexical path before resolving
+ * an address argument, so an inner declaration shadows an outer one. */
+static bool m251PsiLocalPath(ast *node,ast *call,symbol *ref,symbol *visible,symbol **result)
+{
+  if(!node)return FALSE;
+  if(node==call) {*result=visible;return TRUE;}
+  if(!IS_AST_OP(node))return FALSE;
+  if(node->opval.op==BLOCK)
+    for(symbol *s=node->values.sym;s;s=s->next)
+      if(!strcmp(s->name,ref->name) && s->seqPoint<=ref->seqPoint)visible=s;
+  if(node->opval.op==FOR &&
+     (m251PsiLocalPath(AST_FOR(node,initExpr),call,ref,visible,result) ||
+      m251PsiLocalPath(AST_FOR(node,condExpr),call,ref,visible,result) ||
+      m251PsiLocalPath(AST_FOR(node,loopExpr),call,ref,visible,result)))return TRUE;
+  return m251PsiLocalPath(node->left,call,ref,visible,result) ||
+         m251PsiLocalPath(node->right,call,ref,visible,result);
+}
+static bool m251PsiLocalAddress(ast *actual,ast *call)
+{
+  if(!actual || !IS_AST_OP(actual) || actual->opval.op!='&' || actual->right ||
+     !actual->left || !IS_AST_VALUE(actual->left) || !actual->left->opval.val->sym)return FALSE;
+  symbol *ref=actual->left->opval.val->sym,*bound=NULL;
+  if(!m251PsiLocalPath(m251PsiCallerBody,call,ref,m251PsiLookup(NULL,ref),&bound))return FALSE;
+  return bound && bound->level && !IS_STATIC(bound->etype) && !IS_EXTERN(bound->etype) &&
+         m251PsiScalar(bound->type);
+}
+
 static bool m251PsiExpr(m251_psi_check *c,ast *t,unsigned depth,bool assignment)
 {
   if(!t || depth>32 || t->isError || t->isStmtExpr)return FALSE;
   if(c && ++c->nodes>M251_PSI_NODES)return m251PsiReject(c,"expression-budget");
   if(IS_AST_VALUE(t)) {
-    if(t->opval.val->sym)return m251PsiLookup(c,t->opval.val->sym)!=NULL;
+    if(t->opval.val->sym) {
+      symbol *s=m251PsiLookup(c,t->opval.val->sym);
+      return s && m251PsiScalar(s->type);
+    }
     return IS_LITERAL(t->opval.val->etype) && m251PsiScalar(t->opval.val->type);
   }
   if(!IS_AST_OP(t))return FALSE;
@@ -69,8 +120,11 @@ static bool m251PsiExpr(m251_psi_check *c,ast *t,unsigned depth,bool assignment)
     return t->left && IS_AST_LINK(t->left) && m251PsiScalar(t->left->opval.lnk) &&
            m251PsiExpr(c,t->right,depth+1,FALSE);
   case '=':
-    return assignment && t->left && IS_AST_VALUE(t->left) && t->left->opval.val->sym &&
-           m251PsiLookup(c,t->left->opval.val->sym) && m251PsiExpr(c,t->right,depth+1,FALSE);
+    return assignment && t->left &&
+           (m251PsiDeref(c,t->left) || (IS_AST_VALUE(t->left) && t->left->opval.val->sym &&
+            m251PsiLookup(c,t->left->opval.val->sym) && m251PsiScalar(m251PsiLookup(c,t->left->opval.val->sym)->type))) &&
+           m251PsiExpr(c,t->right,depth+1,FALSE);
+  case '*':return m251PsiDeref(c,t);
   case '!':case '~':
     return !t->right && m251PsiExpr(c,t->left,depth+1,FALSE);
   case '+':case '-':
@@ -196,17 +250,22 @@ static bool m251PsiAttrs(sym_link *t)
 static int m251PsiSelect(symbol *name,ast *body)
 {
   m251PsiCallerNodes=m251PsiCallerExpansions=0;
-  if(!TARGET_IS_MCS251 || !mcs251PureStaticScalarInlineEnabled)return -1;
+  m251PsiCallerBody=body;
+  if(!TARGET_IS_MCS251 || (!mcs251PureStaticScalarInlineEnabled && !mcs251MachineIrEnabled))return -1;
   int existing=m251PsiFind(name->funcTree);
   if(existing>=0)return existing;
   if(FUNC_ISINLINE(name->type) || !IS_STATIC(name->etype) || IS_EXTERN(name->etype))return -1;
   m251_psi_check check={0};unsigned argc=0;
+  bool pointerLeaf=FALSE;
+  for(value *v=FUNC_ARGS(name->type);v;v=v->next)pointerLeaf|=IS_PTR(v->type);
+  if(pointerLeaf?!mcs251MachineIrEnabled:!mcs251PureStaticScalarInlineEnabled)return -1;
   check.isVoid=IS_VOID(name->type->next);
   const char *reason=NULL;
   if(!m251PsiAttrs(name->type))reason="function-attributes-or-ABI";
   else if(!check.isVoid && !m251PsiScalar(name->type->next))reason="return-type";
   if(!reason)for(value *v=FUNC_ARGS(name->type);v;v=v->next) {
-    if(++argc>6 || !v->sym || !v->sym->_isparm || !m251PsiScalar(v->type)) {reason="parameter-type-or-count";break;}
+    if(++argc>6 || !v->sym || !v->sym->_isparm ||
+       !(m251PsiScalar(v->type) || (pointerLeaf && m251PsiPointer(v->type)))) {reason="parameter-type-or-count";break;}
     check.vars[check.varsCount++]=v->sym;
   }
   if(!reason && (!m251PsiStatement(&check,body,0) || !m251PsiFlow(&check)))reason=check.why?check.why:"pure-body-rejected";
@@ -216,7 +275,7 @@ static int m251PsiSelect(symbol *name,ast *body)
     return -1;
   }
   unsigned slot=m251PsiCount++;
-  m251PsiFunctions[slot]=(m251_psi_function){NULL,check.nodes,argc};
+  m251PsiFunctions[slot]=(m251_psi_function){NULL,check.nodes,argc,pointerLeaf};
   FUNC_ISINLINE(name->type)=1;
   fprintf(stderr,"MX251 pure-static-scalar-inline eligible function=%s line=%d nodes=%u args=%u ABI=%d\n",
           name->name,name->lineDef,check.nodes,argc,FUNC_SDCCCALL(name->type));
@@ -234,8 +293,13 @@ static bool m251PsiCall(symbol *callee,ast *call)
   const char *reason=NULL;
   if(!currFunc || FUNC_ISISR(currFunc->type) || FUNC_ISCRITICAL(currFunc->type) || FUNC_ISNAKED(currFunc->type))reason="caller-boundary";
   else if(m251PsiCallerExpansions>=8 || m251PsiCallerNodes+f->nodes>512)reason="caller-expansion-budget";
-  if(!reason)for(unsigned i=0;i<f->args;++i)
-    if(!m251PsiExpr(NULL,inlineFindParm(call->right,(int)i),0,FALSE)) {reason="actual-argument-effects-or-unknown-type";break;}
+  value *formal=FUNC_ARGS(callee->type);
+  if(!reason)for(unsigned i=0;i<f->args;++i,formal=formal->next) {
+    ast *actual=inlineFindParm(call->right,(int)i);
+    if(f->pointerLeaf && formal && IS_PTR(formal->type)) {
+      if(!m251PsiLocalAddress(actual,call)) {reason="pointer-actual-not-local-address";break;}
+    } else if(!m251PsiExpr(NULL,actual,0,FALSE)) {reason="actual-argument-effects-or-unknown-type";break;}
+  }
   if(!reason && inlineFindParm(call->right,(int)f->args))reason="argument-count";
   if(reason) {
     fprintf(stderr,"MX251 pure-static-scalar-inline retain-call caller=%s callee=%s line=%d reason=%s\n",
