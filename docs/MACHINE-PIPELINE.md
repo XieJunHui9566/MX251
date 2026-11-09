@@ -1,5 +1,7 @@
 # 共同机器指令层、局部地址展开与整数运行库接入
 
+后续扩展见 [通用算术与运行库调用分析](RUNTIME-CALL-EFFECTS.md)：加入原生乘除指令效果与 ABI4 运行库反馈，新增独立数值程序和三个完整工程对照，p078 也跨过 120% 体积线。下文保留本阶段原始数值。
+
 2026-11-09，基于 `ce02cc7`，实现分支 `codex/machine-instruction-pipeline`。实现提交为 `c49ae62`、`0156fca`、`41cab4c`；原始 SDK C 文件未修改。输入、固件、编译器、计时数据和构建凭据见 [machine-pipeline-evidence.json](machine-pipeline-evidence.json)。
 
 本轮 TFT 完整镜像首次低于 Keil 的 120% 体积线。110% 的完整工程体积与运行时间目标仍未达成。
