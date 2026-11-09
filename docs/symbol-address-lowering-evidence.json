@@ -1,0 +1,519 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "baselineCommit": "3ddd782",
+  "branch": "codex/symbol-address-lowering",
+  "developmentCore": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\core-02",
+  "compilerSha256": "ff72ba6baa9056a43ce5de1e20fcc3001638d4d4efd6934d6849585ad298257d",
+  "projects": [
+    {
+      "project": "p080",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-03-p080",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\core-02-p080",
+      "parentBytes": 21304,
+      "candidateBytes": 20902,
+      "deltaBytes": -402,
+      "inputs": {
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9",
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": true,
+        "calleePreservation": true,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "compilerSha256": "ff72ba6baa9056a43ce5de1e20fcc3001638d4d4efd6934d6849585ad298257d",
+      "parentFirmwareSha256": "4032ff4c8b8fbb2b57b3d9d8e5459807706cc698d8cf229831f6f4dde42c606d",
+      "firmwareSha256": "30930038d439bd2693c2b5925d1e9c0b1dbf14c600bdf9dbfe8277bd7054c9aa",
+      "receiptSha256": "21f2edbc20e249a2cd3d7a8bf8e3946f6a15fb70972658d9bcab5cce24e4c0b8",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "feb65797d93c93116ebb679ede72d3b8f9b86efdbd47977910f29336b6b7ee5a"
+      },
+      "functions": [
+        {
+          "symbol": "_Chinese_Font_test",
+          "parent": {
+            "bytes": 218,
+            "pushPop": 88
+          },
+          "candidate": {
+            "bytes": 173,
+            "pushPop": 88
+          },
+          "deltaBytes": -45
+        },
+        {
+          "symbol": "_DrawTestPage",
+          "parent": {
+            "bytes": 226,
+            "pushPop": 88
+          },
+          "candidate": {
+            "bytes": 180,
+            "pushPop": 62
+          },
+          "deltaBytes": -46
+        },
+        {
+          "symbol": "_English_Font_test",
+          "parent": {
+            "bytes": 234,
+            "pushPop": 84
+          },
+          "candidate": {
+            "bytes": 217,
+            "pushPop": 84
+          },
+          "deltaBytes": -17
+        },
+        {
+          "symbol": "_Fill_Triangel",
+          "parent": {
+            "bytes": 886,
+            "pushPop": 60
+          },
+          "candidate": {
+            "bytes": 877,
+            "pushPop": 56
+          },
+          "deltaBytes": -9
+        },
+        {
+          "symbol": "_LCD_Fill",
+          "parent": {
+            "bytes": 131,
+            "pushPop": 20
+          },
+          "candidate": {
+            "bytes": 135,
+            "pushPop": 24
+          },
+          "deltaBytes": 4
+        },
+        {
+          "symbol": "_Pic_test",
+          "parent": {
+            "bytes": 248,
+            "pushPop": 96
+          },
+          "candidate": {
+            "bytes": 203,
+            "pushPop": 96
+          },
+          "deltaBytes": -45
+        },
+        {
+          "symbol": "_Rotate_Test",
+          "parent": {
+            "bytes": 441,
+            "pushPop": 56
+          },
+          "candidate": {
+            "bytes": 268,
+            "pushPop": 54
+          },
+          "deltaBytes": -173
+        },
+        {
+          "symbol": "_Test_Color",
+          "parent": {
+            "bytes": 366,
+            "pushPop": 152
+          },
+          "candidate": {
+            "bytes": 324,
+            "pushPop": 128
+          },
+          "deltaBytes": -42
+        },
+        {
+          "symbol": "_main_test",
+          "parent": {
+            "bytes": 170,
+            "pushPop": 66
+          },
+          "candidate": {
+            "bytes": 141,
+            "pushPop": 66
+          },
+          "deltaBytes": -29
+        }
+      ]
+    },
+    {
+      "project": "p087",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-03-p087",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\core-02-p087",
+      "parentBytes": 4589,
+      "candidateBytes": 4581,
+      "deltaBytes": -8,
+      "inputs": {
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb.h": "e4907af1fc1f16949c3b7f0be0a0247d1de6d6bc967569ee7813ec57247f8bc8",
+        "src/usb_desc.h": "6b9ec7f72eb481c1c85a188d877a635d77add5a5345c5b2ca8fd8952b4878f62",
+        "src/usb.c": "83cdccb0703fe217af14bc39bef6038000d8084a0f54e8326cf064b5b9369274",
+        "src/uart.c": "56f087dec578909760cfee0d2aaaeb7f99a64e5028b91b085818217380f4f7b4",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_req_class.h": "9521175f03daaa7be154be72c119bb2cb589daa1e6da6da833d4fa9ddb438214",
+        "src/usb_req_class.c": "1b72070f87d6b5ee0ff561bb7c97e82d2501540edab85b9bccc57a78ad65c222",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/usb_req_std.c": "9c9072cdb458d90c3b041dfb1032bac0406d50da660b054327b44982efe5aaa7",
+        "src/usb_desc.c": "a135b67f3d6da12e2d76efa348b39dae058e5eaca0716bf0a791a2d6eb2d8cab",
+        "src/main.c": "4f322294bb076d461cb685baf4a281024ca07c9c1e7b4d9e06f57d311eedeb21",
+        "src/uart.h": "d9dda34b3801835b3cf52d9671da7162f012e855f4cfb7c2617c7d02a993e63e",
+        "src/util.c": "b4db48ee22753ba4e232120237076596719d51b37972277edf24cae7c15c58b1",
+        "src/config.h": "c81b1067c03ce14c2f38f2a083fe5ac15356d8a5f1e5a83cab2a446730efb4ca"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": false,
+        "calleePreservation": true,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "compilerSha256": "ff72ba6baa9056a43ce5de1e20fcc3001638d4d4efd6934d6849585ad298257d",
+      "parentFirmwareSha256": "9c36b7e440a7bf4b41e9d4a7b25fcd96c3e399c597fb03442d16ebb07f2d6f3d",
+      "firmwareSha256": "4b406fbced09611ab33740b676ed4bf01e381079b356c1c6d5c4e63fd3a40e94",
+      "receiptSha256": "220dcb47b3565d9cdd898ce31c5444aad72a07941db1046baea4f49fa704a32b",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "02de485e061816e236905ea0d4cb99135344a8375a2f521cfe0823016e995d61"
+      },
+      "functions": [
+        {
+          "symbol": "_usb_setup",
+          "parent": {
+            "bytes": 233,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 225,
+            "pushPop": 12
+          },
+          "deltaBytes": -8
+        }
+      ]
+    },
+    {
+      "project": "p091",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-04-p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\core-02-p091",
+      "parentBytes": 5765,
+      "candidateBytes": 5651,
+      "deltaBytes": -114,
+      "inputs": {
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": true,
+        "calleePreservation": true,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "compilerSha256": "ff72ba6baa9056a43ce5de1e20fcc3001638d4d4efd6934d6849585ad298257d",
+      "parentFirmwareSha256": "558ca417fa529bcb8368fb3c5c2d9ad67b6f18af115e2cac43053ca70d63303d",
+      "firmwareSha256": "95cf36bf16825b7213b82e7ddc38ea526df9900a6a494d5102f61200ab4475a7",
+      "receiptSha256": "44ded0665a18a7e22729debf1509cf0ac867e8839c723f7eaf182655f5481fe3",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "f0ee164bc20c3d8fb445d4f85cc51ba4e50062d42ed6e515d8affc6b9c509195"
+      },
+      "functions": [
+        {
+          "symbol": "_scsi_format_capacity",
+          "parent": {
+            "bytes": 127,
+            "pushPop": 18
+          },
+          "candidate": {
+            "bytes": 95,
+            "pushPop": 16
+          },
+          "deltaBytes": -32
+        },
+        {
+          "symbol": "_scsi_inquiry",
+          "parent": {
+            "bytes": 19,
+            "pushPop": 4
+          },
+          "candidate": {
+            "bytes": 17,
+            "pushPop": 4
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_scsi_mode_sense10",
+          "parent": {
+            "bytes": 19,
+            "pushPop": 4
+          },
+          "candidate": {
+            "bytes": 17,
+            "pushPop": 4
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_scsi_mode_sense6",
+          "parent": {
+            "bytes": 19,
+            "pushPop": 4
+          },
+          "candidate": {
+            "bytes": 17,
+            "pushPop": 4
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_scsi_read10",
+          "parent": {
+            "bytes": 116,
+            "pushPop": 18
+          },
+          "candidate": {
+            "bytes": 93,
+            "pushPop": 12
+          },
+          "deltaBytes": -23
+        },
+        {
+          "symbol": "_scsi_read_capacity10",
+          "parent": {
+            "bytes": 127,
+            "pushPop": 18
+          },
+          "candidate": {
+            "bytes": 91,
+            "pushPop": 12
+          },
+          "deltaBytes": -36
+        },
+        {
+          "symbol": "_scsi_request_sense",
+          "parent": {
+            "bytes": 75,
+            "pushPop": 18
+          },
+          "candidate": {
+            "bytes": 89,
+            "pushPop": 16
+          },
+          "deltaBytes": 14
+        },
+        {
+          "symbol": "_scsi_write10",
+          "parent": {
+            "bytes": 116,
+            "pushPop": 18
+          },
+          "candidate": {
+            "bytes": 93,
+            "pushPop": 12
+          },
+          "deltaBytes": -23
+        },
+        {
+          "symbol": "_usb_setup",
+          "parent": {
+            "bytes": 233,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 225,
+            "pushPop": 12
+          },
+          "deltaBytes": -8
+        }
+      ]
+    },
+    {
+      "project": "p095",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-03-p095",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\core-02-p095",
+      "parentBytes": 6424,
+      "candidateBytes": 6416,
+      "deltaBytes": -8,
+      "inputs": {
+        "src/util.c": "78665c47da1b6474902ea6036a4163d9776276c1377fefcbdcbecf95d961a05f",
+        "src/usb_desc.c": "a0e7042b75ec75bc44b542523a1101e64fbee96c585bec86a3042bc3f6844fd1",
+        "src/usb.c": "2b047c289d94b23268ec6c25b8f1359116be2338d6dcf815cba19fddac7ce644",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/main.c": "640d84ec352e61ffef87337709e74dc1c264fc1be24e9fc244bd3c675b850e01",
+        "src/util.h": "cc1193140aeadd400369bfca6efd01f4e889c03d021d8fe2483145da5fd4616e",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb_req_vendor.c": "416ecb1d0d2036a501a2047faf026a9b0ed2b254551e79b7fef2e65281a491e8",
+        "src/uart.c": "1cc280de8063b8e830e1a38ca7df36825a888b704736b5530f858cdf004d231a",
+        "src/config.h": "c3816e936cbdebc683034359655047de244d28c5a333d27d22f1d3516895a20f",
+        "src/port.h": "dbeeb9fa42be35fc2a7e056801d47c90e75c68495a9fc2ac3cb793db8196713e",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/stc.h": "457fdd2f65154fe522bca9ff8d88ff709edde54715554b71c121b50432362df0",
+        "src/uart.h": "a7c923baf2bde9ec300122ded9b504d2b9cbbc22061a0e0ff0d5099a2eb9b788",
+        "src/usb_req_class.h": "eff95374c9a442a9ed3f6bd9fbe9bc85964965977d78bcc30e4eef47d2606e92",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_req_class.c": "c805303adfe0cb6a1abf35751b06de52e9cc8dfe5a9e4980df91d91a7eb81f33",
+        "src/usb_desc.h": "d40a637ca86e7ab419cfba2193e0ee50405d0d650b930b4c6507b1ddd37603ff",
+        "src/usb_req_std.c": "09b105c99473eecdf0783bb8c42751cf5c7ffc638354ad09ec56b1a978d9d074",
+        "src/usb.h": "c5e64603557a0056bdb3810b36109449015f6b3aa8072d38ac73656a9dbb22b8"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": false,
+        "calleePreservation": true,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "compilerSha256": "ff72ba6baa9056a43ce5de1e20fcc3001638d4d4efd6934d6849585ad298257d",
+      "parentFirmwareSha256": "b8673d81ecedc4aabae86cb66b5d7a0cda40f4a8a872bdd1c5887c372d97060a",
+      "firmwareSha256": "80409be7a32c2ebb1f308fa805d6efc91735dfe0879deb551477ead721aa9671",
+      "receiptSha256": "c9e40d60e63c33ad195a09cdae11e65bd4cb14c4a783f74b76d8fcd1401abf28",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "4e28813cb19ca43f03d6e11ab7523f80b7cfa1ce6906348eb1b0874aa7c3aa39"
+      },
+      "functions": [
+        {
+          "symbol": "_usb_setup",
+          "parent": {
+            "bytes": 233,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 225,
+            "pushPop": 12
+          },
+          "deltaBytes": -8
+        }
+      ]
+    }
+  ],
+  "hardware": [
+    {
+      "workload": "parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 636,
+      "aggregateTicks": {
+        "0": 17600,
+        "1": 10163.0
+      },
+      "firmwareSha256": "c1552035a80c05e6b5c95e2361d12b392a4af9401776ef8ee442fd0d58993a6d",
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\capture-parent",
+      "rawSha256": "9f33583145779e905462da80c356d2de73b5ba08104a83d81a0323fb4924939b",
+      "artifact": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\hardware-parent-03\\.build\\mx251\\latest",
+      "codeBytes": 2934,
+      "receiptSha256": "b9b25f7bcab6d20250cad28f8f6e5c0dd544c01d2a393f9d6bd3cecd8664edbf"
+    },
+    {
+      "workload": "new",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 630,
+      "aggregateTicks": {
+        "0": 12864,
+        "1": 10163.0
+      },
+      "firmwareSha256": "db72e2407d8caf5456e47024f034d3a0e5d6a3f23f90bf659b9cd273d10ff374",
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\capture-new",
+      "rawSha256": "724adc20f1b504bd08001b31c9b85a58ee602a9fc31a278e16eedd36163338a9",
+      "artifact": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\hardware-new-03\\.build\\mx251\\latest",
+      "codeBytes": 1946,
+      "receiptSha256": "be7c595685c5bd531d18f5bec6480f226258a9ada529c5852b2bf907c45d8c98"
+    }
+  ],
+  "tests": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261109\\symbol-address\\check-02\\result.json",
+    "sha256": "b3818c76498f7689cd0b4add6387cedd68f75bb44480b4b86d77dba28bb651cf"
+  },
+  "notes": [
+    "Same complete-project source hashes and build options as the previous stage; no SDK edits.",
+    "CalleePreservation remains explicitly enabled for the comparison, not enabled by default.",
+    "Flat pointer casts and symbolic call operands are normal wide-backend capabilities; no new build option.",
+    "The first prototype omitted symbolic PUSHW effects/costs; core-01 MSC reverted feedback. core-02 contains the completed implementation.",
+    "hardware-new and hardware-new-02 fell back for unrelated arithmetic; neither was downloaded or used as evidence. Only fixture-03 exercises the new backend.",
+    "Hardware timing is a synthetic pointer-transport workload compared with the parent compiler, not a Keil or full-project runtime result.",
+    "No new whole-SDK run, release, push or complete-project dual 110 percent result."
+  ],
+  "implementationCommit": "11b8c92"
+}
