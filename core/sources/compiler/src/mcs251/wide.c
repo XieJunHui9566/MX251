@@ -43,7 +43,7 @@ typedef struct {
 /* 可取址对象有独占的完整存储期，不与虚拟寄存器的溢出槽合并。
  * 不复用旧后端尚未重新布局的 symbol.stack，也不缓存对象内容。 */
 typedef struct { symbol *sym; int slot, size; bool privateUnion; } wide_object;
-typedef struct { symbol *symbol; int offset; } wide_symbol_address;
+typedef struct { symbol *symbol; int offset,object; bool stack; } wide_symbol_address;
 typedef struct {
   unsigned op;
   iCode *origin;
@@ -101,6 +101,7 @@ typedef struct {
   int scratchNode,scratchNextNode;
   bool body, sampledQualified, formalAddress, ordinaryEntry, allocationInvalid;
   bool nativeReceiveFree;
+  bool promotedStackObjects; /* Keep object allocation choices after scalar promotion. */
   bool narrowNegate;
   bool nativeIndexedTrial;
   unsigned domainCount,domainValues[4];
@@ -2280,7 +2281,7 @@ wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
     Safe_free(trial);
   }
   int legacyBase=-1;
-  if(!f->no && !invalid) {
+  if(!f->no && !f->promotedStackObjects && !invalid) {
     bool legacyKnown=!c[0].size.unknown;
     unsigned legacyBest=0;
     for(int k=0;k<(callAware?2:1);++k) {
@@ -2298,12 +2299,12 @@ wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
   for(int i=0;!invalid && i<count;++i)if(c[i].text) {
     /* 先按原策略选出基线。新方案必须同时不增加确定编码字节、加权
      * 指令代价及栈帧；未知成本不准入。静态代价不能代替实板周期。 */
-    if(f->no && i>=baseCount && (selected<0 || c[i].size.unknown || c[selected].size.unknown ||
+    if((f->no || f->promotedStackObjects) && i>=baseCount && (selected<0 || c[i].size.unknown || c[selected].size.unknown ||
        c[i].size.bytes>c[selected].size.bytes || c[i].heuristic>c[selected].heuristic ||
        c[i].frame>c[selected].frame))continue;
     /* 资格总是对冻结的旧搜索赢家；中途最小栈帧不能成为新硬门槛。
      * 旧 call-aware 候选同样参与原基线选择，不用新候选覆盖旧更优解。 */
-    if(!f->no) {
+    if(!f->no && !f->promotedStackObjects) {
       if(i==0 || i==baseCount)continue;
       if(legacyBase<0)continue;
       int decision=-1;
@@ -2704,10 +2705,37 @@ wide_choose_range_multiply(wide_function *f,wide_selection_cost *cost)
 #include "wide_value_copy.c.inc"
 
 static mcs251_wide_result
-wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
+wide_choose_simple_copies(wide_function *f,wide_selection_cost *cost)
 {
   return wide_choose_transform(f,cost,wide_value_copies,wide_choose_range_multiply,
     "value-copy","changes",false,"copies-original","copies-trial",false,false);
+}
+
+#include "wide_definition_copies.c.inc"
+
+static mcs251_wide_result
+wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_definition_copies,wide_choose_simple_copies,
+    "definition-copy","changes",false,"definitions-original","definitions-trial",false,false);
+}
+
+#include "wide_stack_call_addresses.c.inc"
+
+static mcs251_wide_result
+wide_choose_stack_call_addresses(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_stack_call_addresses,wide_choose_value_copies,
+    "stack-call-address","arguments",false,"stack-call-original","stack-call-trial",false,false);
+}
+
+#include "wide_value_webs.c.inc"
+
+static mcs251_wide_result
+wide_choose_value_webs(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_value_webs,wide_choose_stack_call_addresses,
+    "value-webs","splits",false,"webs-original","webs-trial",false,false);
 }
 
 #include "wide_parameter_values.c.inc"
@@ -2715,7 +2743,7 @@ wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
 static mcs251_wide_result
 wide_choose_parameter_values(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform_frame(f,cost,wide_parameter_values,wide_choose_value_copies,
+  return wide_choose_transform_frame(f,cost,wide_parameter_values,wide_choose_value_webs,
     "parameter-values","parameters",false,"parameters-original","parameters-trial",false,false,false);
 }
 
@@ -2728,15 +2756,24 @@ wide_choose_parameter_addresses(wide_function *f,wide_selection_cost *cost)
     "parameter-address","accesses",false,"parameter-address-original","parameter-address-trial",false,false);
 }
 
+#include "wide_private_values.c.inc"
+
+static mcs251_wide_result
+wide_choose_private_values(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform_frame(f,cost,wide_private_stack_values,wide_choose_parameter_addresses,
+    "private-values","objects",false,"private-original","private-trial",false,false,false);
+}
+
 #include "wide_rotate_cost.c.inc"
 
 static mcs251_wide_result
 wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
 {
-  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_parameter_addresses(f,cost);
+  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_private_values(f,cost);
   struct dbuf_s baseline,candidate;dbuf_init(&baseline,1024);dbuf_init(&candidate,1024);
   struct dbuf_s *output=f->candidateOutput;f->candidateOutput=&baseline;
-  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_parameter_addresses(f,&original);
+  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_private_values(f,&original);
   f->candidateOutput=output;
   unsigned selected=0;if(result==MCS251_WIDE_ACCEPTED && !original.unknown)
     selected=wide_rotate_finalize(f,dbuf_get_buf(&baseline),dbuf_get_length(&baseline),&candidate);

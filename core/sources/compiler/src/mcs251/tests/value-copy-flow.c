@@ -23,10 +23,10 @@ typedef struct {
   bool byteAccess; symbol *addressSymbol;
   int result,width,addressObject,succ[2],jumpCount,jumpStart;
   wide_operand left,right,addressIndex,stackOperands[WA_MAX];
-  wide_bits use,def,out;
+  wide_bits use,def,in,out;
 } wide_node;
 typedef struct {
-  int nv,nn,jumpSuccessors[WN_MAX];
+  int nv,nn,valueLimit,jumpSuccessors[WN_MAX];
   wide_value values[WV_MAX]; wide_node nodes[WN_MAX]; void *diagnostics;
 } wide_function;
 #define IS_PTR(t) ((t)->pointer)
@@ -40,7 +40,24 @@ static void wb_set(wide_bits *b,int n) { if(n>=0)b->w[n/64]|=UINT64_C(1)<<(n%64)
 static bool wb_equal(wide_bits a,wide_bits b) { return !memcmp(&a,&b,sizeof a); }
 static wide_bits wb_or(wide_bits a,wide_bits b) { for(int i=0;i<WB_WORDS;++i)a.w[i]|=b.w[i];return a; }
 static wide_bits wb_minus(wide_bits a,wide_bits b) { for(int i=0;i<WB_WORDS;++i)a.w[i]&=~b.w[i];return a; }
-static void wide_reset_allocation(wide_function *f) { (void)f; }
+static void wide_reset_allocation(wide_function *f) {
+  for(int i=0;i<f->nn;++i)f->nodes[i].in=f->nodes[i].out=(wide_bits){{0}};
+}
+static void wide_liveness(wide_function *f) {
+  bool changed;
+  do {
+    changed=false;
+    for(int i=f->nn;i-->0;) {
+      wide_node *n=&f->nodes[i];wide_bits out={{0}};
+      for(int k=0;k<2+n->jumpCount;++k) {
+        int to=k<2?n->succ[k]:f->jumpSuccessors[n->jumpStart+k-2];
+        if(to>=0)out=wb_or(out,f->nodes[to].in);
+      }
+      wide_bits in=wb_or(n->use,wb_minus(out,n->def));
+      changed|=!wb_equal(in,n->in)||!wb_equal(out,n->out);n->in=in;n->out=out;
+    }
+  } while(changed);
+}
 static void wide_address_reachable(wide_function *f,int entry,int omitted,unsigned char *seen)
 {
   int queue[WN_MAX],head=0,tail=0;memset(seen,0,WN_MAX);
@@ -55,12 +72,14 @@ static void wide_address_reachable(wide_function *f,int entry,int omitted,unsign
   }
 }
 #include "../wide_value_copy.c.inc"
+#include "../wide_value_webs.c.inc"
+#include "../wide_definition_copies.c.inc"
 
 static wide_function original,optimized;
 static unsigned checks;
 static void init(int nodes)
 {
-  memset(&original,0,sizeof original);original.nv=8;original.nn=nodes;
+  memset(&original,0,sizeof original);original.nv=8;original.nn=nodes;original.valueLimit=WV_MAX;
   for(int i=0;i<8;++i)original.values[i]=(wide_value){.width=2,.pin=-1};
   for(int i=0;i<nodes;++i)original.nodes[i]=(wide_node){.op=WM_NOP,.result=-1,.width=2,
     .addressObject=-1,.succ={i+1<nodes?i+1:-1,-1},
@@ -105,6 +124,14 @@ static void check(const char *name,int use,int expected,int copy,int removed)
   if(copy>=0)assert((optimized.nodes[copy].op==WM_NOP)==removed);
   for(unsigned seed=0;seed<256;++seed)assert(execute(&original,seed)==execute(&optimized,seed));
   ++checks;printf("PASS %s\n",name);
+}
+static void check_versions(const char *name,unsigned minimumSplits)
+{
+  optimized=original;wide_reset_allocation(&optimized);wide_liveness(&optimized);
+  unsigned splits=wide_value_webs(&optimized);assert(splits>=minimumSplits);
+  wide_definition_copies(&optimized);
+  for(unsigned seed=0;seed<256;++seed)assert(execute(&original,seed)==execute(&optimized,seed));
+  ++checks;printf("PASS versions %s splits=%u\n",name,splits);
 }
 int main(void)
 {
@@ -167,6 +194,41 @@ int main(void)
   init(6);node(1,INPUT,0,-1,-1,0);node(2,'=',1,-1,0,0);
   node(3,'=',2,-1,1,0);node(4,'+',1,1,-1,1);node(5,RESULT,-1,2,1,0);
   check("copy destination with multiple definitions",5,2,2,0);
+  init(8);node(1,INPUT,0,-1,-1,0);node(2,'=',1,-1,0,0);
+  node(3,'+',2,1,-1,9);node(4,'=',1,-1,-1,7);node(5,'+',1,1,0,0);
+  node(6,'+',3,1,2,0);node(7,RESULT,-1,3,0,0);
+  check_versions("disconnected definitions and self update",2);
+  original.valueLimit=8;check_versions("capacity retains original identities",0);
+  original.valueLimit=WV_MAX;original.values[1].pin=4;
+  check_versions("fixed ABI identity",0);
+
+  init(8);node(1,INPUT,0,-1,-1,0);node(2,BRANCH,-1,0,-1,1);
+  original.nodes[2].succ[1]=5;
+  node(3,'=',1,-1,0,0);node(4,'+',1,1,-1,3);original.nodes[4].succ[0]=6;
+  node(5,'+',1,0,-1,17);node(6,'+',2,1,0,0);node(7,RESULT,-1,2,1,0);
+  check_versions("diamond definitions merge at common use",1);
+
+  init(11);node(1,INPUT,0,-1,-1,0);node(2,'=',1,-1,0,0);
+  node(3,'=',2,-1,-1,0);node(4,'+',1,1,2,0);node(5,'+',2,2,-1,1);
+  node(6,BRANCH,-1,2,-1,4);original.nodes[6].succ[0]=4;original.nodes[6].succ[1]=7;
+  node(7,'=',3,-1,1,0);node(8,'=',1,-1,-1,37);
+  node(9,'+',4,3,1,0);node(10,RESULT,-1,4,0,0);
+  check_versions("loop carried definitions then independent overwrite",1);
+
+  init(8);node(1,INPUT,0,-1,-1,0);node(2,TABLE,-1,0,-1,0);
+  original.nodes[2].succ[0]=-1;original.nodes[2].jumpCount=3;
+  original.jumpSuccessors[0]=3;original.jumpSuccessors[1]=4;original.jumpSuccessors[2]=4;
+  node(3,'+',1,0,-1,9);original.nodes[3].succ[0]=5;
+  node(4,'+',1,0,-1,13);node(5,'=',2,-1,1,0);
+  node(6,'+',1,2,-1,7);node(7,RESULT,-1,1,2,0);
+  check_versions("switch and duplicate edges",1);
+
+  /* Source mutation must not change an earlier sampled copy, even when
+   * copies into the destination occur at several definitions. */
+  init(8);node(1,INPUT,0,-1,-1,0);node(2,'=',1,-1,0,0);
+  node(3,'+',0,0,-1,1);node(4,'=',2,-1,1,0);node(5,'=',1,-1,0,0);
+  node(6,'+',3,1,2,0);node(7,RESULT,-1,3,0,0);
+  check_versions("multiple copies retain old sampled source",1);
   printf("PASS %u graphs, 256 inputs per executable graph\n",checks);
   return 0;
 }

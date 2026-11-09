@@ -657,6 +657,8 @@ wstore_chain_offset(wide_function *f,wide_node *n,int64_t *offset)
   return true;
 }
 
+#include "wide_stack_constants.c.inc"
+
 static int
 wmemory_store_chain(wide_function *f,int first)
 {
@@ -1216,6 +1218,16 @@ wcall_tail_return(wide_function *f,int index)
   return false;
 }
 
+static void
+wcall_stack_address(wide_function *f,wide_symbol_address address)
+{
+  int offset=f->objects[address.object].slot+address.offset-f->frame-f->stackDepth+1;
+  we(f,"; wide stack call address object=%d offset=%d depth=%d\n\tmov\tdr16,spx\n",
+     address.object,address.offset,f->stackDepth);
+  wstep(f,16,4,offset<0,(uint32_t)abs(offset));
+  we(f,"\tanl\twr16,#0x00ff\n");
+}
+
 static bool
 wcall_original(wide_function *f,int index)
 {
@@ -1275,7 +1287,11 @@ wcall_original(wide_function *f,int index)
   for(unsigned k=0;k<n->stackArgs;++k) {
     if(n->variadicCall)we(f,"; MX251 argument region begin\n");
     wide_symbol_address address=n->callAddresses[k+1];
-    if(address.symbol) {
+    if(address.stack) {
+      wcall_stack_address(f,address);
+      we(f,"\tmov\twr10,wr16\n\tpush\tacc\n\tpush\twr18\n");
+      f->stackDepth+=3;
+    } else if(address.symbol) {
       we(f,"; wide symbolic stack argument\n\tmov\ta,#((%s%+d)>>16)\n\tpush\tacc\n\tpushw\t#(%s%+d)\n",
          address.symbol->rname,address.offset,address.symbol->rname,address.offset);
       f->stackDepth+=3;
@@ -1288,7 +1304,11 @@ wcall_original(wide_function *f,int index)
       /* 先快照全部首参，再改 A/B；不能让字节拆分覆盖尚未读取的源。
        * DPL/DPH 是独立 SFR，B/A 对应 R10/R11；只借用保留 DR16。 */
       unsigned bytes=getSize(FUNC_ARGS(n->callee->type)->type);
-      if(n->callAddresses[0].symbol) {
+      if(n->callAddresses[0].stack) {
+        wcall_stack_address(f,n->callAddresses[0]);
+        we(f,"\tmov\twr10,wr18\n\tmov\tdpl,a\n\tmov\tdph,b\n"
+             "\tmov\twr10,wr16\n\tmov\tb,a\n");
+      } else if(n->callAddresses[0].symbol) {
         wide_symbol_address address=n->callAddresses[0];
         we(f,"; wide symbolic register argument\n\tmov\tdptr,#(%s%+d)\n\tmov\tb,#((%s%+d)>>16)\n",
            address.symbol->rname,address.offset,address.symbol->rname,address.offset);
@@ -1641,6 +1661,8 @@ wide_emit(wide_function *f)
     if(i!=f->scratchNextNode || (n->op!=WM_LOAD && n->op!=WM_STORE))f->scratchAddressValid=false;
     int repeated=f->callFrame?i:wide_repeat_mark(f,i);
     if(repeated>i) {i=repeated;continue;}
+    int constants=wstack_constant_run(f,i);
+    if(constants>i) {i=constants;continue;}
     if(n->rotateCandidate) {wrotate_proposal(f,i);i+=2;continue;}
     if(wide_call_plain(f,i+1,2) && wmemory_byte_rmw(f,i)) {i+=2;continue;}
     /* 已经规范化的常量选位，只在紧邻且单用的 cast/store 链中直接写 C。
