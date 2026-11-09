@@ -1626,9 +1626,10 @@ wide_emit(wide_function *f)
       /* 地址以入口 SPX 为基准，与直接读写用同一个物理槽；
        * 扣除本地帧和动态保存深度，不改变参数布局或传入副本。 */
       int displacement=n->addressOffset-f->frame-f->stackDepth;
-      we(f,"; wide parameter address entry-offset=%d\n\tmov\tdr16,spx\n",n->addressOffset);
-      if(displacement)we(f,"\t%s\tdr16,#%d\n",displacement<0?"sub":"add",abs(displacement));
-      we(f,"\tanl\twr16,#0x00ff\n");wstore_known(f,n->result,16,true);break;
+      int dest=f->values[n->result].reg>=0?f->values[n->result].reg:16;
+      we(f,"; wide parameter address entry-offset=%d\n\tmov\tdr%d,spx\n",n->addressOffset,dest);
+      if(displacement)we(f,"\t%s\tdr%d,#%d\n",displacement<0?"sub":"add",dest,abs(displacement));
+      we(f,"\tanl\twr%d,#0x00ff\n",dest);wstore_known(f,n->result,dest,true);break;
     }
     case WM_PARAM_LOAD: {
       if(wparameter_load_direct(f,n))break;
@@ -1691,7 +1692,7 @@ wide_emit(wide_function *f)
     case WM_ADDRESS:
       if(n->addressObject>=0) {
         int displacement=f->objects[n->addressObject].slot+n->addressOffset-f->frame-f->stackDepth+1;
-        int dest=n->addressOp && f->values[n->result].reg>=0?f->values[n->result].reg:16;
+        int dest=f->values[n->result].reg>=0?f->values[n->result].reg:16;
         if(n->addressOp) {
           we(f,"; wide stack indexed base object=%d offset=%d op=%c index-width=%d\n",n->addressObject,n->addressOffset,n->addressOp,n->addressIndex.width);
           wload(f,n->addressIndex,20,4);

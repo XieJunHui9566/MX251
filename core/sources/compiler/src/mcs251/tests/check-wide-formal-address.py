@@ -1,7 +1,8 @@
 """Register homes, original stack parameter addresses, alias lifetime and fallback."""
 from pathlib import Path
 import argparse,subprocess,json,re
-p=argparse.ArgumentParser();p.add_argument('--sdcc',type=Path,required=True);p.add_argument('--output-dir',type=Path,required=True);a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--sdcc',type=Path,required=True);p.add_argument('--output-dir',type=Path,required=True)
+p.add_argument('--baseline',type=Path);a=p.parse_args()
 a.output_dir.mkdir(exist_ok=False);T=Path(__file__).resolve().parent;rows=[]
 for model in ['small','large']:
  for opt in ['speed','size']:
@@ -20,7 +21,8 @@ for model in ['small','large']:
   mixed=bodies['formal_mixed'];assert re.findall(r'wide object (\w+) slot=\d+ size=(\d+)',mixed)==[('a','1'),('b','2')]
   assert set(map(int,re.findall(r'wide parameter address entry-offset=(-?\d+)',mixed)))=={-3,-5,-17}
   assert 'wide stack parameter width=3 result=4 entry-offset=-8' in mixed
-  assert 'reg=-1' in bodies['formal_pressure']
+  # Integer sinking can remove all pressure spills; keep checking the addressed slot.
+  assert 'wide parameter address entry-offset=-6' in bodies['formal_pressure']
   checked=[]
   for name,body in bodies.items():
    frame=int(re.search(r'frame=(\d+)',body)[1]);objects=[tuple(map(int,x)) for x in re.findall(r'wide object \w+ slot=(\d+) size=(\d+)',body)]
@@ -35,7 +37,24 @@ for model in ['small','large']:
     for j,w,h,t,edges in values:
      if j<i and h<0 and e&(1<<j):assert set(range(s,s+z)).isdisjoint(range(t,t+w))
    checked.append(dict(function=name,frame=frame,objects=objects,lifetimeAndSpills=True))
-  rows.append(dict(model=model,opt=opt,accepted=accepted,checks=checked,physicalPointerBytes=3,parameterOffsets=[-3,-5,-8,-12,-13,-17]))
+  removed=0
+  if a.baseline:
+   olddir=d/'parent';olddir.mkdir()
+   for n in ['wide-formal-address.h','wide-formal-address-callers.c']:(olddir/n).write_bytes((T/n).read_bytes())
+   q=subprocess.run([str(a.baseline.resolve()),*args[1:]],cwd=olddir,capture_output=True)
+   (olddir/'compile.log').write_bytes(q.stdout+q.stderr);assert not q.returncode,q.stderr
+   old=(olddir/'wide-formal-address-callers.asm').read_text()
+   def instructions(text):
+    return '\n'.join(line.split(';')[0].rstrip() for line in text.splitlines() if line.split(';')[0].strip())
+   # The complete instruction stream must equal the parent after folding only
+   # SPX -> scratch -> allocated pointer into SPX -> allocated pointer.
+   pattern=r'\tmov\tdr16,spx\n(\t(?:sub|add)\tdr16,#[^\n]+\n)?\tanl\twr16,#0x00ff\n\tmov\tdr(0|4|12|24|28),dr16'
+   def direct(m):
+    reg=m[2]
+    return f'\tmov\tdr{reg},spx\n'+(m[1] or '').replace('dr16',f'dr{reg}')+f'\tanl\twr{reg},#0x00ff'
+   expected,removed=re.subn(pattern,direct,instructions(old))
+   assert removed>0 and expected==instructions(asm),(model,opt,'unexpected instruction changes')
+  rows.append(dict(model=model,opt=opt,accepted=accepted,checks=checked,physicalPointerBytes=3,parameterOffsets=[-3,-5,-8,-12,-13,-17],removedAddressCopies=removed))
 negative={
  'register-pointer':'void g(u32 __xdata * __xdata *) ABI;u32 f(u32 __xdata *p,u32 b) ABI {g(&p);return (u32)p+b;}',
  'stack-pointer':'void g(u32 __xdata * __xdata *) ABI;u32 f(u32 a,u32 b,u32 __xdata *p) ABI {g(&p);return (u32)p+a+b;}',

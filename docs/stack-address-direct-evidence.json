@@ -1,0 +1,173 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "sourceParent": "2cfd20086d3c0b1b3485fc88cd5e077956b030d3",
+  "status": "IMPLEMENTED_DIRECT_STACK_ADDRESS",
+  "build": {
+    "method": "BuildSource.py clean host build followed by incremental rebuild after final emitter change",
+    "compilerSha256": "8a16db347a1d241aaf1a112ee529d3cb47615f075229197e15e8f80fae5384cf",
+    "productionSources": {
+      "core/sources/compiler/src/mcs251/wide_emit.c.inc": "389fd0c0d7630ac919d74e1824941fcecbf3ae39e44f22b6475e6afb7fc75cc4"
+    },
+    "restoredAllocatorSources": {
+      "core/sources/compiler/src/mcs251/wide.c": "1b779999c0dac83af8be71b902eee35e26c878346ee1ea94b07038ef13affaa9",
+      "core/sources/compiler/src/mcs251/wide_recolor.c.inc": "0e3fd29bc7f7372e5e61bf106045ffa80b4afdd65d0f19b3d6d5443448709f5d"
+    },
+    "incrementalLogSha256": "4eac0e8516985e1e09941ac8a1c2a606cdc4ef84f22811408c3ddbc904da26da"
+  },
+  "configuration": "AI8051U small/speed ordinary-wide, default call feedback, C251 bit complement, leaf feedback off",
+  "project": {
+    "name": "p080-baseline",
+    "parentBytes": 23195,
+    "candidateBytes": 23161,
+    "savedBytes": 34,
+    "sourceFilesUnchanged": true,
+    "keilBytes": 18071,
+    "sizeRatioPercent": 128.17,
+    "hexSha256": [
+      "6ead50706cec91945f44625d288cd66818730a0b970a094f5ae227501f012d12",
+      "5eb52c8bb7bb3de2b6f8656efe8d2a045ffc154f1995ffbad47b7679ae132ab0"
+    ]
+  },
+  "tests": {
+    "formalAddressConfigurations": 4,
+    "boundaries": 8,
+    "removedAddressCopies": [
+      {
+        "model": "small",
+        "optimization": "speed",
+        "count": 21
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "count": 21
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "count": 21
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "count": 21
+      }
+    ],
+    "resultSha256": "b077d97a99f8ace751060b117542c23e3811ff17bb206aefa5b70cb2704dd8d3",
+    "costModelRegression": "passed"
+  },
+  "rejectedPrototypes": [
+    {
+      "prototype": "copy-affinity-original",
+      "status": "NOT_ADOPTED",
+      "projects": [
+        {
+          "project": "p087-auto",
+          "parentBytes": 4777,
+          "trialBytes": 4789,
+          "deltaBytes": 12,
+          "sourceFilesUnchanged": true
+        },
+        {
+          "project": "p095-auto",
+          "parentBytes": 6635,
+          "trialBytes": 6649,
+          "deltaBytes": 14,
+          "sourceFilesUnchanged": true
+        },
+        {
+          "project": "p091-auto",
+          "parentBytes": 6421,
+          "trialBytes": 6431,
+          "deltaBytes": 10,
+          "sourceFilesUnchanged": true
+        },
+        {
+          "project": "p080-baseline",
+          "parentBytes": 23195,
+          "trialBytes": 23175,
+          "deltaBytes": -20,
+          "sourceFilesUnchanged": true
+        }
+      ]
+    },
+    {
+      "prototype": "copy-affinity-preserve-register-footprint",
+      "status": "NOT_ADOPTED",
+      "projects": [
+        {
+          "project": "p095-auto",
+          "parentBytes": 6635,
+          "trialBytes": 6633,
+          "deltaBytes": -2,
+          "sourceFilesUnchanged": true
+        },
+        {
+          "project": "p080-baseline",
+          "parentBytes": 23195,
+          "trialBytes": 23167,
+          "deltaBytes": -28,
+          "sourceFilesUnchanged": true
+        }
+      ]
+    },
+    {
+      "prototype": "wide-spill-priority",
+      "status": "NOT_ADOPTED",
+      "completeApplicationMeasured": false,
+      "unitCandidateCosts": [
+        {
+          "function": "Fill_Triangel",
+          "bytes": [
+            1384,
+            1516
+          ],
+          "weightedInstructions": [
+            1520,
+            1759
+          ],
+          "frame": [
+            22,
+            18
+          ]
+        },
+        {
+          "function": "LCD_ShowChar",
+          "bytes": [
+            754,
+            730
+          ],
+          "weightedInstructions": [
+            1350,
+            1407
+          ],
+          "frame": [
+            18,
+            6
+          ]
+        },
+        {
+          "function": "GUI_DrawFont16/24/32",
+          "bytes": [
+            794,
+            775
+          ],
+          "weightedInstructions": [
+            3082,
+            2928
+          ],
+          "frame": [
+            31,
+            31
+          ],
+          "loopDecision": "unknown"
+        }
+      ]
+    }
+  ],
+  "newSizePasses": 0,
+  "runtimeStatus": "NOT_MEASURED",
+  "hardwareExecuted": false,
+  "localEvidenceDirectory": "E:\\STVAPP\\MX251-mainline-20261109\\stack-address"
+}
