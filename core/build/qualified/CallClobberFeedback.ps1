@@ -1,5 +1,6 @@
 # 推导普通 bank-0 R0..R31 的 may-write 上界，不推导净效果或省略内存访问。
 # 未知目标、别名、指令和间接调用逐函数退回全破坏。
+. (Join-Path $PSScriptRoot 'CalleePreservation.ps1')
 function New-Mx251OrdinalMap { return ,([hashtable]::new([StringComparer]::Ordinal)) }
 function Get-Mx251Numeric([string]$Text) {
  $t=$Text.Trim()
@@ -313,6 +314,8 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
     $analysis.calls=@($isrCalls.calls)
    }
    $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases;objects=$objects}
+   $row.preserved=if($abi -in @(2,4)){Get-Mx251CalleePreservation $body $symbol}else{0L}
+   $row.writes=$row.localWrites -band (4294967295L -bxor $row.preserved)
    if(-not $symbols.ContainsKey($symbol)){$symbols[$symbol]=@()};$symbols[$symbol]+=@($row);$all+=@($row)
   }
  }
@@ -321,6 +324,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
  foreach($f in $LibraryFunctions) {
   $row=@{};foreach($key in $f.Keys){$row[$key]=$f[$key]}
   $row.writes=$row.localWrites
+  $row.preserved=0L
   if(-not $symbols.ContainsKey($row.symbol)){$symbols[$row.symbol]=@()}
   $symbols[$row.symbol]+=@($row);$all+=@($row)
  }
@@ -336,6 +340,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
     if($targets.Count -ne 1 -or $targets[0].abi -notin @(2,4)){$mask=4294967295L;break}
     $mask=$mask -bor $targets[0].writes
    }
+   if($row.preserved){$mask=$mask -band (4294967295L -bxor [long]$row.preserved)}
    if($mask -ne $row.writes){$row.writes=$mask;$changed=$true}
   }
  } while($changed)
@@ -349,7 +354,7 @@ function Get-Mx251BindingKey($Bindings,[string]$Unit,[string]$Symbol) {
  return $null
 }
 
-function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha,[switch]$ScopedLocals,$LibraryFunctions=@()) {
+function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha,[switch]$ScopedLocals,$LibraryFunctions=@(),[switch]$CalleePreservation) {
  $record=[ordered]@{schema=1;status='NO_ELIGIBLE_CLOSURE';compilerSha256=$CompilerSha;profileLockSha256=$ProfileSha;inputs=$Inputs;bindings=@();recompiledUnits=@();finalValidated=$false;fallback=$false}
  if(@($Config.archives).Count){$record.status='FALLBACK_PROJECT_ARCHIVE_BINDING_UNPROVEN';return $record}
  # 绑定实际对象定义，而非仅凭源函数名；同名或未定义目标不进入反馈。
@@ -365,6 +370,19 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
  $LibraryFunctions=@($LibraryFunctions|Where-Object{-not $owners.ContainsKey($_.symbol)})
  foreach($f in $LibraryFunctions){$owners[$f.symbol]=@($f.unit)}
  $scan=Get-Mx251BankFunctions $Root $Config $LibraryFunctions
+ $preservation=@{selected=@();files=(New-Mx251OrdinalMap)}
+ if($CalleePreservation) {
+  $preservation=Select-Mx251CalleePreservation $Root $scan $owners $Config
+  $record.calleePreservation=@{selected=$preservation.selected;files=@()}
+  foreach($u in $Config.units) {
+   if(-not $preservation.files.ContainsKey($u.name)){continue}
+   $preserveFile=$preservation.files[$u.name]
+   $record.calleePreservation.files+=@{unit=$u.name;path=$preserveFile;sha256=(Hash-File $preserveFile)}
+   $args=@(Flags $u.backend $u.stackAuto $u.defines)+@('--mcs251-callee-preserve',$preserveFile,'-c',$u.file,'-o',($u.name+'.rel'))
+   Run-Tool ('preserve-'+$u.name) $compilerExe $args;Check-Assembly (Join-Path $Root ($u.name+'.asm'))
+  }
+  if($preservation.files.Count){$scan=Get-Mx251BankFunctions $Root $Config $LibraryFunctions}
+ }
  $bindings=@()
  foreach($key in ($scan.symbols.Keys|Sort-Object -CaseSensitive)) {
   $defs=@($scan.symbols[$key]);$defs=@($defs|Where-Object{$_.exported})
@@ -422,6 +440,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   foreach($u in $nextUnits){
    $unitFacts=if($ScopedLocals){'call-clobbers-'+$u.name+'.txt'}else{'call-clobbers.txt'}
    $args=@(Flags $u.backend $u.stackAuto $u.defines)+@('--mcs251-leaf-effects',$unitFacts,'-c',$u.file,'-o',($u.name+'.rel'))
+   if($preservation.files.ContainsKey($u.name)){$args+=@('--mcs251-callee-preserve',$preservation.files[$u.name])}
    Run-Tool ('clobber-'+$u.name) $compilerExe $args;Check-Assembly (Join-Path $Root ($u.name+'.asm'))
    $record.recompiledUnits+=@($u.name)
   }

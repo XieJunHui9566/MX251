@@ -16,6 +16,7 @@ param(
  [switch]$ConstantRotateFusion,
  [switch]$FunctionSharing,
  [switch]$MachineIr,
+ [switch]$CalleePreservation,
  [switch]$NativeIntegerRuntime,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
@@ -83,6 +84,7 @@ try {
  if($ConstantRotateFusion){$start.ArgumentList.Add('-ConstantRotateFusion')}
  if($FunctionSharing){$start.ArgumentList.Add('-FunctionSharing')}
  if($MachineIr){$start.ArgumentList.Add('-MachineIr')}
+ if($CalleePreservation){$start.ArgumentList.Add('-CalleePreservation')}
  if($NativeIntegerRuntime){$start.ArgumentList.Add('-NativeIntegerRuntime')}
  if($FunctionGc){$start.ArgumentList.Add('-FunctionGc')}
  if($FunctionGcKeep){$start.ArgumentList.Add('-FunctionGcKeep');$start.ArgumentList.Add($FunctionGcKeep)}

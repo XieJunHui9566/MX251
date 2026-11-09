@@ -91,6 +91,8 @@ typedef struct {
   /* 独立的有界边池保留表项次序和重复目标；整体复制分配候选时没有悬空指针。 */
   int jumpLabels[WJ_MAX], jumpSuccessors[WJ_MAX], nj;
   int nv, nn, no, frame, serial, received, stackDepth, foldedCasts, reusedParameterLoads;
+  uint32_t preserved;
+  int preservedBytes;
   unsigned emitWeight, emitCost, emitInstructions;
   bool scratchAddressValid;
   uint32_t scratchAddress;

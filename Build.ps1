@@ -11,6 +11,7 @@ param(
  [switch]$ConstantRotateFusion,
  [switch]$FunctionSharing,
  [switch]$MachineIr,
+ [switch]$CalleePreservation,
  [switch]$NativeIntegerRuntime,
  [switch]$WordCompareImmediate
 )

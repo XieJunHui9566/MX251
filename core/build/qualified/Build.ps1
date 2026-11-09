@@ -15,6 +15,7 @@ param(
  [switch]$ConstantRotateFusion,
  [switch]$FunctionSharing,
  [switch]$MachineIr,
+ [switch]$CalleePreservation,
  [switch]$NativeIntegerRuntime,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
@@ -24,6 +25,7 @@ param(
  [switch]$ManagedOutput
 )
 $ErrorActionPreference='Stop'
+if($CalleePreservation -and $LeafCallFeedback){throw 'CalleePreservation requires the ordinary call-clobber feedback pipeline.'}
 Set-StrictMode -Version Latest
 $commands=[Collections.Generic.List[object]]::new()
 if([bool]$CalleeCostFile -ne [bool]$CalleeCostSha256){throw 'Callee cost file and SHA-256 must be supplied together'}
@@ -333,7 +335,7 @@ try {
    . (Join-Path $PSScriptRoot 'RuntimeCallEffects.ps1')
    $runtimeCallRecord=Get-Mx251RuntimeCallEffects $ProfileRoot @('runtime/libnativeint.lib')
   }
-  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr -LibraryFunctions $runtimeCallRecord.functions
+  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr -LibraryFunctions $runtimeCallRecord.functions -CalleePreservation:$CalleePreservation
   $callClobberRecord.runtimeLibraries=$runtimeCallRecord.libraries
   $callClobberRecord.runtimeContractSha256=$runtimeCallRecord.contractSha256
   Write-Json (Join-Path $outputRoot 'call-clobber-feedback.json') $callClobberRecord
@@ -451,6 +453,7 @@ try {
  $receipt.interruptClosure=[ordered]@{schema=1;finalVerified=$true;addedEntries=@($interruptPlan.added);manifestSha256=(Hash-File (Join-Path $outputRoot 'interrupt-vectors.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'InterruptVectors.ps1'))}
  $receipt.functionSharing=[bool]$FunctionSharing
  $receipt.machineIr=[bool]$MachineIr
+ $receipt.calleePreservation=[bool]$CalleePreservation
  $receipt.nativeIntegerRuntime=[bool]$NativeIntegerRuntime
  $receipt.c251BitComplement=[bool]$C251BitComplement
  $receipt.orderedAsm=$orderedAsmRecord
@@ -470,6 +473,7 @@ try {
   targetContractSha256=$receipt.targetContract.registrySha256
   functionSharing=[bool]$FunctionSharing
   machineIr=[bool]$MachineIr
+  calleePreservation=[bool]$CalleePreservation
   nativeIntegerRuntime=[bool]$NativeIntegerRuntime
   c251BitComplement=[bool]$C251BitComplement
   orderedAsm=$orderedAsmRecord

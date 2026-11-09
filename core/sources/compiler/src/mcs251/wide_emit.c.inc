@@ -41,6 +41,22 @@ static void wl(wide_function *f,int label) {
 }
 static void wj(wide_function *f,const char *op,int label) {we(f,"\t%s\t__wm_%s_%d\n",op,currFunc->rname,label);}
 static int wt(wide_function *f) {return 1000000+f->serial++;}
+static void
+wrestore_preserved(wide_function *f)
+{
+  const int groups[]={8,12,24,28};
+  for(int i=3;i>=0;--i) {
+    int reg=groups[i],width=reg==8?2:4;
+    if(f->preserved&wide_mask(reg,width))we(f,"\tpop\t%s%d\n",wp(width),reg);
+  }
+}
+static void
+wreturn(wide_function *f)
+{
+  wstep(f,60,4,true,f->frame);
+  wrestore_preserved(f);
+  we(f,"\teret\n");
+}
 static void wa(char *buf,int displacement) {
   if(!displacement) strcpy(buf,"@spx");
   else SNPRINTF(buf,32,"@spx%c0x%04x",displacement<0?'-':'+',abs(displacement));
@@ -164,7 +180,7 @@ wparameter_load_direct(wide_function *f,wide_node *n)
   if(mask&(MCS251_AB_BYTES|mcs251RegisterBytes(16,4)|mcs251RegisterBytes(20,4)))return false;
   for(int i=0;i<f->nv;++i)if(i!=n->result && wb_has(n->out,i) && f->values[i].reg>=0 &&
       (mask&mcs251RegisterBytes(f->values[i].reg,f->values[i].width)))return false;
-  int64_t offset=(int64_t)n->addressOffset-f->frame-f->stackDepth;
+  int64_t offset=(int64_t)n->addressOffset-f->frame-f->stackDepth-f->preservedBytes;
   if(offset<-32768 || offset+sourceWidth-1>32767 || (v->pointer && width!=4))return false;
   int base=(int)offset;
   we(f,"; wide stack parameter direct reg=%d physical=%d logical=%d entry-offset=%d\n",
@@ -1178,6 +1194,8 @@ wcall_tail_return(wide_function *f,int index)
    * Outgoing stack arguments still require the caller's cleanup on return. */
   if(f->no || f->formalAddress || call->stackBytes ||
      f->ordinaryEntry!=call->ordinaryCall)return false;
+  /* Restoring a preserved argument group would replace the tail arguments. */
+  if(f->preserved)return false;
   for(int v=0;v<f->nv;++v)
     if(v!=call->result && wb_has(call->out,v))return false;
 
@@ -1276,6 +1294,7 @@ wcall_original(wide_function *f,int index)
   if(tail) {
     we(f,"; wide tail call abi=%u frame=%d\n",(unsigned)FUNC_SDCCCALL(n->callee->type),f->frame);
     wstep(f,60,4,true,f->frame);
+    wrestore_preserved(f);
     we(f,"\tejmp\t%s\n",n->callee->rname);
     /* Omit the call's own exit edge, but retain labels and shared return
      * blocks. Jump-table functions do not run the final text CFG cleanup. */
@@ -1300,8 +1319,7 @@ wcall_original(wide_function *f,int index)
      * 同一 ABI 的物理返回字节保持原位，不构造再拆开未被使用的 MIR 值。 */
     wassert(!count && !f->stackDepth);
     we(f,"; wide ordinary result forwarded physical=%u frame=%d\n",getSize(currFunc->type->next),f->frame);
-    wstep(f,60,4,true,f->frame);
-    we(f,"\teret\n");return true;
+    wreturn(f);return true;
   }
   /* 普通 ABI 的未使用结果无需接回 MIR 寄存器。以当前 CALL 后的活跃
    * 集合判断，不按函数名或总读取计数猜测；后续存储/返回/分支读取仍
@@ -1384,7 +1402,7 @@ wcall(wide_function *f,int index)
   wload(trial,a,16,2);wload(trial,b,20,2);we(trial,"\tmul\twr16,wr20\n");
   if(forward) {
     we(trial,"\tmov\twr10,wr18\n\tmov\tdpl,a\n\tmov\tdph,b\n");
-    wstep(trial,60,4,true,trial->frame);we(trial,"\teret\n");
+    wreturn(trial);
   } else if(wb_has(n->out,n->result))wstore(trial,n->result,18);
   we(f,"; mx251-wordmul-begin\n");size_t begin=dbuf_get_length(&f->output);
   bool originalForward=wcall_original(f,index);size_t end=dbuf_get_length(&f->output);
@@ -1410,7 +1428,7 @@ wcall(wide_function *f,int index)
 static int
 wjump_tail_target(wide_function *f,int next)
 {
-  if(f->frame)return -1;
+  if(f->frame || f->preserved)return -1;
   for(int steps=0;next>=0 && steps<f->nn;++steps) {
     wide_node *n=&f->nodes[next];
     if(n->op==LABEL || n->op==GOTO) {next=n->succ[0];continue;}
@@ -1566,6 +1584,12 @@ wrotate_proposal(wide_function *f,int i)
 static void
 wide_emit(wide_function *f)
 {
+  f->preserved=wide_preserve_registers(currFunc);f->preservedBytes=0;
+  const int groups[]={8,12,24,28};
+  for(unsigned i=0;i<4;++i) {
+    int reg=groups[i],width=reg==8?2:4;
+    if(f->preserved&wide_mask(reg,width))f->preservedBytes+=width;
+  }
   bool reachable[WN_MAX];wide_emit_reachable(f,reachable);
   f->scratchAddressValid=false;f->scratchNode=f->scratchNextNode=-1;
   we(f,"\n; mcs251 wide-mir accepted: %s; values=%d nodes=%d frame=%d folded-casts=%d\n%s:\n",currFunc->name,f->nv,f->nn,f->frame,f->foldedCasts,currFunc->rname);
@@ -1583,6 +1607,13 @@ wide_emit(wide_function *f)
   if(wide_ordinary_passthrough(f)) {
     we(f,"; wide ordinary ABI2 passthrough: entry bytes already match return\n\teret\n");
     return;
+  }
+  if(f->preserved) {
+    we(f,"; mx251-callee-preserved schema=1 saved=%08lx\n",(unsigned long)f->preserved);
+    for(unsigned i=0;i<4;++i) {
+      int reg=groups[i],width=reg==8?2:4;
+      if(f->preserved&wide_mask(reg,width))we(f,"\tpush\t%s%d\n",wp(width),reg);
+    }
   }
   wstep(f,60,4,false,f->frame);
   if(f->nativeReceiveFree)wnative_receive_prefix(f);
@@ -1643,7 +1674,7 @@ wide_emit(wide_function *f)
           we(f,"\t%s\ta,(%s+%d)\n",k?"orl":"mov",n->addressSymbol->rname,n->addressOffset+k);
         load=true;
       } else if(n->width==1 && n->op==WM_PARAM_LOAD && n->left.width==1) {
-        int offset=n->addressOffset-f->frame-f->stackDepth;
+        int offset=n->addressOffset-f->frame-f->stackDepth-f->preservedBytes;
         if(offset>=-32768 && offset<=32767) {
           wa(address,offset);we(f,"; wide byte load-truth source=parameter\n\tmov\ta,%s\n",address);load=true;
         }
@@ -1737,7 +1768,7 @@ wide_emit(wide_function *f)
     case WM_PARAM_ADDRESS: {
       /* 地址以入口 SPX 为基准，与直接读写用同一个物理槽；
        * 扣除本地帧和动态保存深度，不改变参数布局或传入副本。 */
-      int displacement=n->addressOffset-f->frame-f->stackDepth;
+      int displacement=n->addressOffset-f->frame-f->stackDepth-f->preservedBytes;
       int dest=f->values[n->result].reg>=0?f->values[n->result].reg:16;
       we(f,"; wide parameter address entry-offset=%d\n\tmov\tdr%d,spx\n",n->addressOffset,dest);
       if(displacement)we(f,"\t%s\tdr%d,#%d\n",displacement<0?"sub":"add",dest,abs(displacement));
@@ -1745,7 +1776,7 @@ wide_emit(wide_function *f)
     }
     case WM_PARAM_LOAD: {
       if(wparameter_load_direct(f,n))break;
-      int base=n->addressOffset-f->frame-f->stackDepth;
+      int base=n->addressOffset-f->frame-f->stackDepth-f->preservedBytes;
       int sourceWidth=n->left.width;
       we(f,"; wide stack parameter width=%d result=%d entry-offset=%d\n",sourceWidth,n->width,n->addressOffset);
       /* 参数读取也可能已与整数 CAST 合并。保留物理源宽度、符号和字节序，
@@ -1767,7 +1798,7 @@ wide_emit(wide_function *f)
       wstore(f,n->result,16);break;
     }
     case WM_PARAM_STORE: {
-      int base=n->addressOffset-f->frame-f->stackDepth,physical=n->left.width;
+      int base=n->addressOffset-f->frame-f->stackDepth-f->preservedBytes,physical=n->left.width;
       wload(f,n->right,16,n->width==1?2:n->width);
       we(f,"; wide stack parameter store width=%d entry-offset=%d\n",physical,n->addressOffset);
       if(physical==1 || physical==3) {
@@ -1821,8 +1852,7 @@ wide_emit(wide_function *f)
     case ENDFUNCTION:
       /* void 函数的隐式返回没有 RETURN iCode，也必须释放局部帧。 */
       if(IS_VOID(currFunc->type->next)) {
-        wstep(f,60,4,true,f->frame);
-        we(f,"\teret\n");
+        wreturn(f);
       }
       break;
     case CALL:
@@ -1877,8 +1907,7 @@ wide_emit(wide_function *f)
         }
       } else if(n->width==1)wload_byte(f,n->left,7);
       else if(n->width)wload(f,n->left,8-n->width,n->width);
-      wstep(f,60,4,true,f->frame);
-      we(f,"\teret\n");break;
+      wreturn(f);break;
     case IFX: {
       wbranch(f,wtest_condition(f,n->left,n->trueBranch),n->target);break;
     }

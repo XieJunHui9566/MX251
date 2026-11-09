@@ -65,6 +65,9 @@ static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi) {
    * caller-clobbered; preserved-register entries were excluded above. */
   uint32_t exits=FUNC_SDCCCALL(currFunc->type)==2 && !mcs251InternalReturn(currFunc)?
     MCS251_AB_BYTES:mcs251RegisterBytes(4,4);
+  /* POPs at the function boundary are observable by callers using the
+   * verified preservation summary, independently of the return value. */
+  if(strstr(body,"; mx251-callee-preserved schema=1 "))exits|=UINT32_C(0xff00f300);
   unsigned counts[3];char *optimized=mi_optimize(body,length,exits,mcs251MachineMemory,mcs251MachineCall,ebbi,counts);
   if(optimized) {
     dbuf_set_length(codeOutBuf,start);dbuf_append_str(codeOutBuf,optimized);free(optimized);
