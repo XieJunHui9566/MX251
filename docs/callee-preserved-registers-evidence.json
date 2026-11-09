@@ -1,0 +1,785 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "baselineCommit": "4a5702f",
+  "implementationCommit": "3803d5626d452e7671f2e85659b4a03128c73fea",
+  "branch": "codex/callee-preserved-registers",
+  "developmentCore": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-04",
+  "compilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+  "projects": [
+    {
+      "project": "p080",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\call-boundary\\core-05-p080",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-03-p080",
+      "parentBytes": 21467,
+      "candidateBytes": 21304,
+      "deltaBytes": -163,
+      "inputs": {
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28",
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": true,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "e02a423efe33e83549f0864d20202b0800f42b1ea10e4bf0c148da524b392c91",
+      "compilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "parentFirmwareSha256": "87dea81ca365b60cde04d842ed8f2b68b2c66e96e85ecdd4174ca9182c08c39f",
+      "firmwareSha256": "4032ff4c8b8fbb2b57b3d9d8e5459807706cc698d8cf229831f6f4dde42c606d",
+      "receiptSha256": "cb64d2c11764e84374232a9ab3ad104b9d5eaffc23d57f38a15a0ac64530ab3d",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "8084b1af2b372cc7841a34f0153eff5e3e9dacf842b5acd12624ef2c8683ac1c",
+        "selected": [
+          {
+            "group": "0000f000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "__draw_circle_8",
+            "savedBytes": 8
+          },
+          {
+            "group": "0f000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "__draw_circle_8",
+            "savedBytes": 16
+          },
+          {
+            "group": "f0000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "__draw_circle_8",
+            "savedBytes": 16
+          },
+          {
+            "group": "0000f000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "_LCD_DrawLine",
+            "savedBytes": 16
+          },
+          {
+            "group": "0f000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "_LCD_DrawLine",
+            "savedBytes": 32
+          },
+          {
+            "group": "f0000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "_LCD_DrawLine",
+            "savedBytes": 8
+          },
+          {
+            "group": "0f000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "_LCD_Fill",
+            "savedBytes": 8
+          },
+          {
+            "group": "f0000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "_LCD_Fill",
+            "savedBytes": 8
+          },
+          {
+            "group": "f0000000",
+            "entryExitBytes": 4,
+            "unit": "u0",
+            "symbol": "_LCD_ShowChar",
+            "savedBytes": 8
+          },
+          {
+            "group": "00000300",
+            "entryExitBytes": 5,
+            "unit": "u4",
+            "symbol": "_LCD_DrawPoint",
+            "savedBytes": 8
+          },
+          {
+            "group": "0000f000",
+            "entryExitBytes": 5,
+            "unit": "u4",
+            "symbol": "_LCD_DrawPoint",
+            "savedBytes": 8
+          },
+          {
+            "group": "00000300",
+            "entryExitBytes": 4,
+            "unit": "u4",
+            "symbol": "_LCD_WR_DATA_16Bit",
+            "savedBytes": 8
+          }
+        ]
+      },
+      "functions": [
+        {
+          "symbol": "_Draw_Triangel",
+          "parent": {
+            "bytes": 121,
+            "pushPop": 50
+          },
+          "candidate": {
+            "bytes": 88,
+            "pushPop": 18
+          },
+          "deltaBytes": -33
+        },
+        {
+          "symbol": "_Fill_Triangel",
+          "parent": {
+            "bytes": 902,
+            "pushPop": 76
+          },
+          "candidate": {
+            "bytes": 886,
+            "pushPop": 60
+          },
+          "deltaBytes": -16
+        },
+        {
+          "symbol": "_GUI_DrawFont16",
+          "parent": {
+            "bytes": 772,
+            "pushPop": 118
+          },
+          "candidate": {
+            "bytes": 758,
+            "pushPop": 104
+          },
+          "deltaBytes": -14
+        },
+        {
+          "symbol": "_LCD_DrawLine",
+          "parent": {
+            "bytes": 180,
+            "pushPop": 14
+          },
+          "candidate": {
+            "bytes": 184,
+            "pushPop": 18
+          },
+          "deltaBytes": 4
+        },
+        {
+          "symbol": "_LCD_DrawPoint",
+          "parent": {
+            "bytes": 46,
+            "pushPop": 6
+          },
+          "candidate": {
+            "bytes": 55,
+            "pushPop": 14
+          },
+          "deltaBytes": 9
+        },
+        {
+          "symbol": "_LCD_DrawRectangle",
+          "parent": {
+            "bytes": 140,
+            "pushPop": 64
+          },
+          "candidate": {
+            "bytes": 100,
+            "pushPop": 24
+          },
+          "deltaBytes": -40
+        },
+        {
+          "symbol": "_LCD_Fill",
+          "parent": {
+            "bytes": 123,
+            "pushPop": 12
+          },
+          "candidate": {
+            "bytes": 131,
+            "pushPop": 20
+          },
+          "deltaBytes": 8
+        },
+        {
+          "symbol": "_LCD_ShowChar",
+          "parent": {
+            "bytes": 608,
+            "pushPop": 14
+          },
+          "candidate": {
+            "bytes": 592,
+            "pushPop": 22
+          },
+          "deltaBytes": -16
+        },
+        {
+          "symbol": "_LCD_ShowString",
+          "parent": {
+            "bytes": 170,
+            "pushPop": 28
+          },
+          "candidate": {
+            "bytes": 162,
+            "pushPop": 24
+          },
+          "deltaBytes": -8
+        },
+        {
+          "symbol": "_LCD_WR_DATA_16Bit",
+          "parent": {
+            "bytes": 35,
+            "pushPop": 4
+          },
+          "candidate": {
+            "bytes": 39,
+            "pushPop": 8
+          },
+          "deltaBytes": 4
+        },
+        {
+          "symbol": "_Show_Str",
+          "parent": {
+            "bytes": 741,
+            "pushPop": 164
+          },
+          "candidate": {
+            "bytes": 716,
+            "pushPop": 170
+          },
+          "deltaBytes": -25
+        },
+        {
+          "symbol": "__draw_circle_8",
+          "parent": {
+            "bytes": 186,
+            "pushPop": 32
+          },
+          "candidate": {
+            "bytes": 198,
+            "pushPop": 44
+          },
+          "deltaBytes": 12
+        },
+        {
+          "symbol": "_gui_circle",
+          "parent": {
+            "bytes": 257,
+            "pushPop": 68
+          },
+          "candidate": {
+            "bytes": 209,
+            "pushPop": 20
+          },
+          "deltaBytes": -48
+        }
+      ]
+    },
+    {
+      "project": "p087",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\call-boundary\\core-05-p087",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-03-p087",
+      "parentBytes": 4597,
+      "candidateBytes": 4589,
+      "deltaBytes": -8,
+      "inputs": {
+        "src/uart.h": "d9dda34b3801835b3cf52d9671da7162f012e855f4cfb7c2617c7d02a993e63e",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/usb_req_std.c": "9c9072cdb458d90c3b041dfb1032bac0406d50da660b054327b44982efe5aaa7",
+        "src/usb_desc.h": "6b9ec7f72eb481c1c85a188d877a635d77add5a5345c5b2ca8fd8952b4878f62",
+        "src/usb_req_class.h": "9521175f03daaa7be154be72c119bb2cb589daa1e6da6da833d4fa9ddb438214",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb.h": "e4907af1fc1f16949c3b7f0be0a0247d1de6d6bc967569ee7813ec57247f8bc8",
+        "src/usb.c": "83cdccb0703fe217af14bc39bef6038000d8084a0f54e8326cf064b5b9369274",
+        "src/main.c": "4f322294bb076d461cb685baf4a281024ca07c9c1e7b4d9e06f57d311eedeb21",
+        "src/usb_req_class.c": "1b72070f87d6b5ee0ff561bb7c97e82d2501540edab85b9bccc57a78ad65c222",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_desc.c": "a135b67f3d6da12e2d76efa348b39dae058e5eaca0716bf0a791a2d6eb2d8cab",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/util.c": "b4db48ee22753ba4e232120237076596719d51b37972277edf24cae7c15c58b1",
+        "src/config.h": "c81b1067c03ce14c2f38f2a083fe5ac15356d8a5f1e5a83cab2a446730efb4ca",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/uart.c": "56f087dec578909760cfee0d2aaaeb7f99a64e5028b91b085818217380f4f7b4"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": false,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "e02a423efe33e83549f0864d20202b0800f42b1ea10e4bf0c148da524b392c91",
+      "compilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "parentFirmwareSha256": "159faf5703478e8064a0accb4758cbc94a53f4e24d2d2112b200121a2a53ebb0",
+      "firmwareSha256": "9c36b7e440a7bf4b41e9d4a7b25fcd96c3e399c597fb03442d16ebb07f2d6f3d",
+      "receiptSha256": "fd77b7d704b40cd2ac35975a90ec93650069508cf03f99fbc771c3d0d86ffb3b",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "02e811fe2c01fb045e2e5885c097ea0334ad94ea7407ee466c5186fb9835b160",
+        "selected": [
+          {
+            "symbol": "_usb_write_reg",
+            "unit": "u1",
+            "savedBytes": 32,
+            "group": "00000300",
+            "entryExitBytes": 4
+          }
+        ]
+      },
+      "functions": [
+        {
+          "symbol": "_usb_in_ep1",
+          "parent": {
+            "bytes": 72,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 68,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_in_ep2",
+          "parent": {
+            "bytes": 70,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 66,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_out_ep1",
+          "parent": {
+            "bytes": 158,
+            "pushPop": 6
+          },
+          "candidate": {
+            "bytes": 156,
+            "pushPop": 6
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_usb_set_address",
+          "parent": {
+            "bytes": 63,
+            "pushPop": 2
+          },
+          "candidate": {
+            "bytes": 61,
+            "pushPop": 2
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_usb_write_reg",
+          "parent": {
+            "bytes": 29,
+            "pushPop": 0
+          },
+          "candidate": {
+            "bytes": 33,
+            "pushPop": 4
+          },
+          "deltaBytes": 4
+        }
+      ]
+    },
+    {
+      "project": "p091",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\call-boundary\\core-05-p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-04-p091",
+      "parentBytes": 5771,
+      "candidateBytes": 5765,
+      "deltaBytes": -6,
+      "inputs": {
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": true,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "e02a423efe33e83549f0864d20202b0800f42b1ea10e4bf0c148da524b392c91",
+      "compilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "parentFirmwareSha256": "b327e0690a8e962996cad2ea2071e2a773c05662a0e48655b03d5a9ccd821084",
+      "firmwareSha256": "558ca417fa529bcb8368fb3c5c2d9ad67b6f18af115e2cac43053ca70d63303d",
+      "receiptSha256": "cb6596c55a2d89a9f75bfc56ca9b482b2900741decb05aabad28ec765f87fbaa",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "606139d3d1d89bda92c487ef828ba81636f4bd30b6b7d9e716e699aa8b621419",
+        "selected": [
+          {
+            "group": "00000300",
+            "savedBytes": 28,
+            "entryExitBytes": 4,
+            "symbol": "_usb_write_reg",
+            "unit": "u1"
+          }
+        ]
+      },
+      "functions": [
+        {
+          "symbol": "_usb_in_ep1",
+          "parent": {
+            "bytes": 70,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 66,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_out_ep1",
+          "parent": {
+            "bytes": 61,
+            "pushPop": 8
+          },
+          "candidate": {
+            "bytes": 57,
+            "pushPop": 4
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_set_address",
+          "parent": {
+            "bytes": 63,
+            "pushPop": 2
+          },
+          "candidate": {
+            "bytes": 61,
+            "pushPop": 2
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_usb_write_reg",
+          "parent": {
+            "bytes": 29,
+            "pushPop": 0
+          },
+          "candidate": {
+            "bytes": 33,
+            "pushPop": 4
+          },
+          "deltaBytes": 4
+        }
+      ]
+    },
+    {
+      "project": "p095",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\call-boundary\\core-05-p095",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-03-p095",
+      "parentBytes": 6442,
+      "candidateBytes": 6424,
+      "deltaBytes": -18,
+      "inputs": {
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_req_std.c": "09b105c99473eecdf0783bb8c42751cf5c7ffc638354ad09ec56b1a978d9d074",
+        "src/usb.c": "2b047c289d94b23268ec6c25b8f1359116be2338d6dcf815cba19fddac7ce644",
+        "src/util.c": "78665c47da1b6474902ea6036a4163d9776276c1377fefcbdcbecf95d961a05f",
+        "src/port.h": "dbeeb9fa42be35fc2a7e056801d47c90e75c68495a9fc2ac3cb793db8196713e",
+        "src/usb.h": "c5e64603557a0056bdb3810b36109449015f6b3aa8072d38ac73656a9dbb22b8",
+        "src/usb_desc.h": "d40a637ca86e7ab419cfba2193e0ee50405d0d650b930b4c6507b1ddd37603ff",
+        "src/main.c": "640d84ec352e61ffef87337709e74dc1c264fc1be24e9fc244bd3c675b850e01",
+        "src/uart.h": "a7c923baf2bde9ec300122ded9b504d2b9cbbc22061a0e0ff0d5099a2eb9b788",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/uart.c": "1cc280de8063b8e830e1a38ca7df36825a888b704736b5530f858cdf004d231a",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/util.h": "cc1193140aeadd400369bfca6efd01f4e889c03d021d8fe2483145da5fd4616e",
+        "src/usb_req_class.c": "c805303adfe0cb6a1abf35751b06de52e9cc8dfe5a9e4980df91d91a7eb81f33",
+        "src/config.h": "c3816e936cbdebc683034359655047de244d28c5a333d27d22f1d3516895a20f",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_desc.c": "a0e7042b75ec75bc44b542523a1101e64fbee96c585bec86a3042bc3f6844fd1",
+        "src/usb_req_class.h": "eff95374c9a442a9ed3f6bd9fbe9bc85964965977d78bcc30e4eef47d2606e92",
+        "src/stc.h": "457fdd2f65154fe522bca9ff8d88ff709edde54715554b71c121b50432362df0",
+        "src/usb_req_vendor.c": "416ecb1d0d2036a501a2047faf026a9b0ed2b254551e79b7fef2e65281a491e8"
+      },
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "nativeIntegerRuntime": false,
+        "stackBase": 1024,
+        "stackBytes": 1024
+      },
+      "parentCompilerSha256": "e02a423efe33e83549f0864d20202b0800f42b1ea10e4bf0c148da524b392c91",
+      "compilerSha256": "972b0eaac4bdacc8e50c397782767a50de7fed611b5476bdf5545bb75f609423",
+      "parentFirmwareSha256": "f7894c1b42b391a1b12a516af6c960d26e3773235166f8af388432be1b841f4b",
+      "firmwareSha256": "b8673d81ecedc4aabae86cb66b5d7a0cda40f4a8a872bdd1c5887c372d97060a",
+      "receiptSha256": "2ea8b6f9491f8b362aecc8492120766591168c2bb1708e79f730047254e0fd5e",
+      "feedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "recordSha256": "b6119f25e0fcdc40d2859fd1d7259a3f4774b719692bd3961a591f66e9d43cc1",
+        "selected": [
+          {
+            "symbol": "_usb_write_reg",
+            "group": "00000300",
+            "entryExitBytes": 4,
+            "savedBytes": 44,
+            "unit": "u1"
+          }
+        ]
+      },
+      "functions": [
+        {
+          "symbol": "_usb_in_ep2",
+          "parent": {
+            "bytes": 70,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 66,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_in_ep3",
+          "parent": {
+            "bytes": 70,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 66,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_in_ep4",
+          "parent": {
+            "bytes": 72,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 68,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_in_ep5",
+          "parent": {
+            "bytes": 72,
+            "pushPop": 10
+          },
+          "candidate": {
+            "bytes": 68,
+            "pushPop": 6
+          },
+          "deltaBytes": -4
+        },
+        {
+          "symbol": "_usb_out_ep4",
+          "parent": {
+            "bytes": 151,
+            "pushPop": 6
+          },
+          "candidate": {
+            "bytes": 149,
+            "pushPop": 6
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_usb_out_ep5",
+          "parent": {
+            "bytes": 151,
+            "pushPop": 6
+          },
+          "candidate": {
+            "bytes": 149,
+            "pushPop": 6
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_usb_set_address",
+          "parent": {
+            "bytes": 63,
+            "pushPop": 2
+          },
+          "candidate": {
+            "bytes": 61,
+            "pushPop": 2
+          },
+          "deltaBytes": -2
+        },
+        {
+          "symbol": "_usb_write_reg",
+          "parent": {
+            "bytes": 29,
+            "pushPop": 0
+          },
+          "candidate": {
+            "bytes": 33,
+            "pushPop": 4
+          },
+          "deltaBytes": 4
+        }
+      ]
+    }
+  ],
+  "hardware": [
+    {
+      "workload": "boundary-preserved",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 255,
+      "firmwareSha256": "28c2d76312f2e0cdf5727b8cb8456f6b22418795a8d39e19120063306b071f08",
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\boundary-preserved-capture",
+      "rawSha256": "dbd4a632f2cf2d5f1d6e5c2b7203cc94a50d73c4724c449af82683b39b7f954e",
+      "timingQualified": false,
+      "replay": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\boundary-all-02\\.build\\mx251\\latest\\preservation-replay.json",
+      "replaySha256": "f7b3245ded8a2d254c0d688fd7623f88889f2d78a1b4c5c94616621cdc5d1e22"
+    },
+    {
+      "workload": "rectangle-parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 635,
+      "aggregateTicks": {
+        "0": 36329,
+        "1": 10188.5
+      },
+      "firmwareSha256": "9ab0b3dd5e65cb0b9d0f36ef6bb69670b9ba0667596fb7e719d7e49460f7014a",
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\rectangle-parent-capture",
+      "rawSha256": "f330df86e2bd8557bcc8b88b676a75366350f5293cd21c133aad4baffd50eb06"
+    },
+    {
+      "workload": "rectangle-new",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 604,
+      "aggregateTicks": {
+        "0": 35380,
+        "1": 10186.0
+      },
+      "firmwareSha256": "cc6b0b566d633cb4f92555a0b1a8d4e82d9f51148551610e6a5a445c5a7c043d",
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\rectangle-new-capture",
+      "rawSha256": "947f1d1fbd9b89ce50ab0d6af3b6c19004cc37033c4ef8b98639d9a8ee0dfaf5"
+    }
+  ],
+  "tests": {
+    "compile": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\check-preserved-02\\results.json",
+    "proof": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\check-proof-final\\result.json"
+  },
+  "disabledOptionFirmwareSha256": "dcc85aac006671103434226377a8e09b8bb40308ac5c4d6baba7c3dfe50db5ff",
+  "unchangedTriangle": {
+    "parentFirmwareSha256": "99eca125a15f7167daea2f5584ecfd2859ea7d3a2b1a6fc95eb12be5ebbcd7ad",
+    "candidateFirmwareSha256": "99eca125a15f7167daea2f5584ecfd2859ea7d3a2b1a6fc95eb12be5ebbcd7ad",
+    "downloaded": false
+  },
+  "rejectedHighOnly": {
+    "patch": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\high-only-trial.patch",
+    "patchSha256": "89749461aee9923433739e0b29cb97fafb7ca0639d8c0a985024c09e9cd94d9d",
+    "projects": [
+      {
+        "project": "p080",
+        "parentBytes": 21467,
+        "candidateBytes": 21417,
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-02-p080"
+      },
+      {
+        "project": "p091",
+        "parentBytes": 5771,
+        "candidateBytes": 5932,
+        "path": "E:\\STVAPP\\MX251-mainline-20261109\\callee-preserved\\core-02-p091"
+      }
+    ]
+  },
+  "notes": [
+    "Source inputs and all prior optimization settings match; CalleePreservation is the new explicit option.",
+    "No SDK source edits, static local overlay, new parameter ABI, release or push.",
+    "Four complete projects, not a new whole-SDK run. No new complete-project dual 110% or 120% result.",
+    "High-only prototype and earlier replay attempts are not accepted hardware/size results.",
+    "The compiler-level all-groups hardware replay is described by its replay manifest, not the earlier normal-build receipt."
+  ]
+}

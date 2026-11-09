@@ -64,6 +64,8 @@ $build = Join-Path $project '.build/cmake-direct'
 
 开发分支的共同机器指令层、局部地址展开和原生整数库组合见 [MACHINE-PIPELINE.md](MACHINE-PIPELINE.md)。`-MachineIr` 与 `-NativeIntegerRuntime` 均为显式开关，根构建入口和 CMake 可直接传递；不需要修改 SDK 的 C 文件。
 
+`-CalleePreservation`（CMake：`MX251_CALLEE_PRESERVATION=ON`）根据实际调用现场选择被调函数保留的寄存器组，减少调用者重复保存；默认关闭，与 `LeafCallFeedback` 不同时启用。参数和返回 ABI 保持原样，实际收益与限制见 [被调函数保存](CALLEE-PRESERVED-REGISTERS.md)。
+
 ## 从源码构建编译器
 
 `core/build/BuildSource.py` 是当前 Windows 编译器/汇编器/链接器源码构建入口，生成 CMake 工程并以 Ninja 编译，输出 `sdcc.exe`、`sdas251.exe`、`sdld.exe`。它不要求 StudioX。所需宿主依赖由开发者显式提供，不包含在日常固件编译的依赖内：
