@@ -8,7 +8,7 @@ wide_prepare_calls(wide_function *f)
     wide_call_contract *p=&n->call;memset(p,0,sizeof *p);
     p->calleeWrites=UINT32_MAX;p->known=wide_leaf_writes(n->callee,&p->calleeWrites);
     p->scratchWrites=MCS251_AB_BYTES|wide_mask(16,4)|wide_mask(20,4);
-    if(n->args) {
+    if(n->args && !n->variadicCall) {
       p->argumentBytes=getSize(FUNC_ARGS(n->callee->type)->type);
       if(n->ordinaryCall) {
         if(mcs251InternalArgument(n->callee))p->argumentWrites=wide_mask(4,4);

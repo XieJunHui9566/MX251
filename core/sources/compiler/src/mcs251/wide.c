@@ -60,10 +60,10 @@ typedef struct {
   unsigned indexedExtent,indexedOrdinal;
   bool privateUnionWordAccess; /* transaction width only; byteAccess still guards aliases */
   unsigned args, stackArgs, stackBytes;
-  wide_operand stackOperands[WA_MAX-1];
-  unsigned char stackWidths[WA_MAX-1];
-  wide_symbol_address callAddresses[WA_MAX]; /* first argument, then physical stack order */
-  bool ordinaryCall, carryResult;
+  wide_operand stackOperands[WA_MAX];
+  unsigned char stackWidths[WA_MAX];
+  wide_symbol_address callAddresses[WA_MAX+1]; /* register argument, then physical stack order */
+  bool ordinaryCall, variadicCall, carryResult;
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
   wide_call_contract call;
   wide_bits callFrameValues, callStores, callLoads, callArguments;
@@ -172,7 +172,7 @@ wide_carry_result(sym_link *type)
 
 /* ABI4 前两个参数在 DR4/DR12；其余标量按声明宽度、逆序压栈。
  * 平坦指针在 MIR 中为四字节，栈上仍严格占三字节，不改变公开 ABI。 */
-static unsigned wide_register_count(sym_link *type) {return FUNC_SDCCCALL(type)==2?1:2;}
+static unsigned wide_register_count(sym_link *type) {return IFFUNC_HASVARARGS(type)?0:FUNC_SDCCCALL(type)==2?1:2;}
 
 /* 编译器拥有的 16/32 位整数支持调用可复用普通 ABI2。
  * 身份来自前端 operation/type 表，绝不按函数拼写识别。仅承认完整
@@ -728,9 +728,9 @@ wide_import (wide_function *f, ebbIndex *ebbi)
   f->sourceBlocks=ebbi;
   operand *pending[2]={NULL,NULL};
   unsigned pendingMask=0,pushedCount=0;
-  operand *pushed[WA_MAX-1]={NULL};
-  wide_operand pendingSample[2],pushedSample[WA_MAX-1];
-  bool pendingSampled[2]={false,false},pushedSampled[WA_MAX-1]={false};
+  operand *pushed[WA_MAX]={NULL};
+  wide_operand pendingSample[2],pushedSample[WA_MAX];
+  bool pendingSampled[2]={false,false},pushedSampled[WA_MAX]={false};
   for (int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     if (!bb->sch) continue;
@@ -790,7 +790,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
       case IPUSH: {
         /* 连续实参仍由 CALL 统一压入物理栈。真实对象在此刻生成独立
          * 内存节点，后续只运输其快照；现有内存类型/字节访问门槛不变。 */
-        if(!ic->parmPush || pushedCount==WA_MAX-1)return wide_import_reject(f,ic,__LINE__);
+        if(!ic->parmPush || pushedCount==WA_MAX)return wide_import_reject(f,ic,__LINE__);
         unsigned slot=pushedCount++;operand *input=IC_LEFT(ic);pushed[slot]=input;
         pushedSampled[slot]=input && IS_TRUE_SYMOP(input);
         if(pushedSampled[slot]) {
@@ -827,11 +827,12 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(!IS_SYMOP(IC_LEFT(ic)) || !IS_FUNC(t) || (FUNC_SDCCCALL(t)!=4 && FUNC_SDCCCALL(t)!=2) ||
            !IFFUNC_ISREENT(t) || IFFUNC_ISISR(t) || IFFUNC_ISNAKED(t) ||
            IFFUNC_ISCRITICAL(t) || IFFUNC_CALLEESAVES(t) || IFFUNC_ISBANKEDCALL(t) ||
-           FUNC_REGBANK(t) || IFFUNC_HASVARARGS(t) || IFFUNC_ISNORETURN(t) ||
+           FUNC_REGBANK(t) || (IFFUNC_HASVARARGS(t) && FUNC_SDCCCALL(t)!=2) || IFFUNC_ISNORETURN(t) ||
            (!wide_abi_type(t->next,t) && !IS_VOID(t->next) && !wide_carry_result(t)) || !wide_stack_signature(t)) return wide_import_reject(f,ic,__LINE__);
         /* 普通可重入 ABI 仅第一个标量在 DPL/DPH/B/A，其余按原宽度压栈。
          * 非可重入静态形参、间接调用及其他调用约定仍整体回退。 */
         n->ordinaryCall=FUNC_SDCCCALL(t)==2;
+        n->variadicCall=IFFUNC_HASVARARGS(t);
         n->carryResult=wide_carry_result(t);
         /* 新快照的物理取样顺序以普通 ABI2 的 SEND/IPUSH 为合同。
          * ABI4 真实对象实参没有该顺序证明，保持此前整函数回退。 */
@@ -845,9 +846,12 @@ wide_import (wide_function *f, ebbIndex *ebbi)
           return wide_import_reject(f,ic,__LINE__);
         if(compilerIntegerRuntime)
           dbuf_printf(f->diagnostics,"; wide compiler-runtime-call icode=%d operation=%u bytes=%u signed=%u abi=2 preserve=full-live-registers\n",ic->key,runtimeOperation,runtimeWidth,runtimeSigned);
-        unsigned registers=n->ordinaryCall?1:2,count=0,bytes=0;
-        for(value *arg=FUNC_ARGS(t);arg;arg=arg->next) {
-          if(count==WA_MAX || !wide_abi_type(arg->type,t)) return wide_import_reject(f,ic,__LINE__);
+        unsigned registers=wide_register_count(t),count=0,bytes=0;
+        /* For ABI2 varargs, every argument is an IPUSH. The front end has
+         * already applied default promotions (or explicit SDCC casts).
+         * Preserve those operand types and the original physical push order. */
+        for(value *arg=FUNC_ARGS(t);arg || (n->variadicCall && count<pushedCount);arg=arg?arg->next:NULL) {
+          if(count==WA_MAX) return wide_import_reject(f,ic,__LINE__);
           wide_operand *o,*sample=NULL;
           operand *input;
           if(count<registers) {o=count?&n->right:&n->left;input=pending[count];if(pendingSampled[count])sample=&pendingSample[count];}
@@ -855,18 +859,24 @@ wide_import (wide_function *f, ebbIndex *ebbi)
             if(count-registers>=pushedCount)return wide_import_reject(f,ic,__LINE__);
             unsigned slot=pushedCount-1-(count-registers);
             o=&n->stackOperands[slot];input=pushed[slot];if(pushedSampled[slot])sample=&pushedSample[slot];
-            n->stackWidths[pushedCount-1-(count-registers)]=getSize(arg->type);
-            bytes+=getSize(arg->type);
           }
           if(!input)return wide_import_reject(f,ic,__LINE__);
+          sym_link *expected=arg?arg->type:operandType(input);
+          if(arg?!wide_abi_type(expected,t):
+             (!wide_value_type(expected,true) || IS_BIT(expected) || IS_BOOL(expected)))
+            return wide_import_reject(f,ic,__LINE__);
+          if(count>=registers) {
+            n->stackWidths[pushedCount-1-(count-registers)]=getSize(expected);
+            bytes+=getSize(expected);
+          }
           if(sample) {
             *o=*sample;
             if(o->value<0)return wide_import_reject(f,ic,__LINE__);
             wb_set(&n->use,o->value);++f->values[o->value].reads;
             f->values[o->value].weight+=1+4*n->origin->depth;
           } else if(!wide_use(f,n,input,o))return wide_import_reject(f,ic,__LINE__);
-          if(o->width!=wide_width(arg->type) || o->floating!=IS_FLOAT(arg->type) || o->codePointer!=wide_code_pointer(arg->type)) {
-            dbuf_printf(f->diagnostics,"; wide call argument deferred icode=%d arg=%u width=%d expected=%d float=%d/%d code=%d/%d literal=%lu value=%d\n",ic->key,count,o->width,wide_width(arg->type),o->floating,IS_FLOAT(arg->type),o->codePointer,wide_code_pointer(arg->type),(unsigned long)o->literal,o->value);
+          if(o->width!=wide_width(expected) || o->floating!=IS_FLOAT(expected) || o->codePointer!=wide_code_pointer(expected)) {
+            dbuf_printf(f->diagnostics,"; wide call argument deferred icode=%d arg=%u width=%d expected=%d float=%d/%d code=%d/%d literal=%lu value=%d\n",ic->key,count,o->width,wide_width(expected),o->floating,IS_FLOAT(expected),o->codePointer,wide_code_pointer(expected),(unsigned long)o->literal,o->value);
             return wide_import_reject(f,ic,__LINE__);
           }
           ++count;
@@ -875,6 +885,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
            pushedCount!=(count>registers?count-registers:0) || bytes!=ic->parmBytes)return wide_import_reject(f,ic,__LINE__);
         n->stackArgs=pushedCount;n->stackBytes=bytes;
         n->args=count;n->callee=OP_SYMBOL(IC_LEFT(ic));
+        if(n->variadicCall)dbuf_printf(f->diagnostics,"; wide variadic call icode=%d arguments=%u stack-bytes=%u registers=0\n",ic->key,count,bytes);
         if(IC_RESULT(ic) && !IS_VOID(t->next) &&
            (!wide_result(f,n,IC_RESULT(ic)) || n->width!=wide_width(t->next) || n->floating!=IS_FLOAT(t->next))) return wide_import_reject(f,ic,__LINE__);
         if(n->ordinaryCall && count==2 && pushedCount==1)
@@ -1589,7 +1600,7 @@ wide_fold_extensions (wide_function *f)
   for(int i=0;i<f->nv;++i)f->values[i].reads=f->values[i].weight=0;
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];
-    int values[WA_MAX+2]={n->left.value,n->right.value,n->addressIndex.value};
+    int values[WA_MAX+3]={n->left.value,n->right.value,n->addressIndex.value};
     for(unsigned k=0;k<n->stackArgs;++k)values[k+3]=n->stackOperands[k].value;
     for(unsigned k=0;k<3+n->stackArgs;++k)if(wb_has(n->use,values[k])) {
       ++f->values[values[k]].reads;f->values[values[k]].weight+=1+4*n->origin->depth;
@@ -1610,7 +1621,7 @@ wide_reset_allocation(wide_function *f)
   f->frame=0;for(int v=0;v<f->no;++v)f->frame+=f->objects[v].size;
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];n->in=n->out=(wide_bits){{0}};
-    int values[WA_MAX+2]={n->left.value,n->right.value,n->addressIndex.value};
+    int values[WA_MAX+3]={n->left.value,n->right.value,n->addressIndex.value};
     for(unsigned k=0;k<n->stackArgs;++k)values[k+3]=n->stackOperands[k].value;
     for(unsigned k=0;k<3+n->stackArgs;++k)if(wb_has(n->use,values[k])) {
       ++f->values[values[k]].reads;f->values[values[k]].weight+=1+4*n->origin->depth;

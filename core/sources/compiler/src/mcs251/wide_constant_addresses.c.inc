@@ -29,7 +29,8 @@ wide_constant_call_addresses(wide_function *f)
     wide_node *n=&f->nodes[i];
     if(n->op!=CALL || !n->ordinaryCall)continue;
     bool replaced=false;
-    for(unsigned k=0;k<n->args;++k) {
+    for(unsigned k=0;k<=n->stackArgs;++k) {
+      if(!k && (!n->args || n->variadicCall))continue;
       wide_operand *o=k?&n->stackOperands[k-1]:&n->left;
       unsigned physical=k?n->stackWidths[k-1]:getSize(FUNC_ARGS(n->callee->type)->type);
       if(physical!=3 || o->value<0 || !address[o->value].symbol)continue;

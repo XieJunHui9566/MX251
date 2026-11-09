@@ -45,7 +45,6 @@ negative={
  'boolean-return':'_Bool h(u32) __reentrant;u32 f(u32 a) __reentrant {return h(a)+a;}',
  'critical-callee':'u32 h(u32) __reentrant __critical;u32 f(u32 a) __reentrant {return h(a)+a;}',
  'banked-register-callee':'u32 h(u32) __reentrant __using(1);u32 f(u32 a) __reentrant {return h(a)+a;}',
- 'varargs-callee':'u32 h(u32 a,...) __reentrant;u32 f(u32 a) __reentrant {return h(a,1UL)+a;}',
  'noreturn-callee':'_Noreturn void h(void) __reentrant;void f(void) __reentrant {h();}',
  'seventeenth-argument':'u32 h('+','.join(['u32']*17)+') __reentrant;u32 f(u32 a) __reentrant {return h('+','.join(['a']*17)+');}',
 }

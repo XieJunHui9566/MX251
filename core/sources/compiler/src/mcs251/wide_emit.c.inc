@@ -1273,16 +1273,18 @@ wcall_original(wide_function *f,int index)
   size_t setupStart=dbuf_get_length(&f->output);
   if(n->stackArgs)we(f,"; wide stack call args=%u bytes=%u\n",n->stackArgs,n->stackBytes);
   for(unsigned k=0;k<n->stackArgs;++k) {
+    if(n->variadicCall)we(f,"; MX251 argument region begin\n");
     wide_symbol_address address=n->callAddresses[k+1];
     if(address.symbol) {
       we(f,"; wide symbolic stack argument\n\tmov\ta,#((%s%+d)>>16)\n\tpush\tacc\n\tpushw\t#(%s%+d)\n",
          address.symbol->rname,address.offset,address.symbol->rname,address.offset);
       f->stackDepth+=3;
     } else wstack_argument(f,n->stackOperands[k],n->stackWidths[k]);
+    if(n->variadicCall)we(f,"; MX251 argument region end\n");
   }
   if(n->ordinaryCall) {
     we(f,"; wide ordinary ABI call: args=%u stack=%u\n",n->args,n->stackBytes);
-    if(n->args) {
+    if(n->args && !n->variadicCall) {
       /* 先快照全部首参，再改 A/B；不能让字节拆分覆盖尚未读取的源。
        * DPL/DPH 是独立 SFR，B/A 对应 R10/R11；只借用保留 DR16。 */
       unsigned bytes=getSize(FUNC_ARGS(n->callee->type)->type);

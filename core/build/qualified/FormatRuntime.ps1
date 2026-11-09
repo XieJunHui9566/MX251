@@ -33,6 +33,7 @@ function Read-Mx251FormatArgument([string]$Text) {
  $joined=$lines -join "`n";$symbol=$null
  $m=[regex]::Match($joined,'^mov\s+a,#\((?<s>[A-Za-z_.$][A-Za-z_.$0-9]*) >> 16\)\npush\s+acc\npushw\s+#\k<s>\nmov\s+a,#\k<s>$')
  if(-not $m.Success){$m=[regex]::Match($joined,'^mov\s+a,#\((?<s>[A-Za-z_.$][A-Za-z_.$0-9]*) >> 16\)\npush\s+acc\nmov\s+a,#\(\k<s> >> 8\)\npush\s+acc\nmov\s+a,#\k<s>\npush\s+acc$')}
+ if(-not $m.Success){$m=[regex]::Match($joined,'^mov\s+a,#\(\((?<s>[A-Za-z_.$][A-Za-z_.$0-9]*)\+0\)>>16\)\npush\s+acc\npushw\s+#\(\k<s>\+0\)$')}
  if($m.Success){$symbol=$m.Groups['s'].Value}
  return @{bytes=$bytes;constantSymbol=$symbol}
 }
@@ -94,9 +95,14 @@ function Get-Mx251FormatDemand([string]$Root,$Config) {
   $metadata=[regex]::Matches($text,'(?m)^; mx251-function begin schema=1 symbol=(\S+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])\s*$')
   if(-not $metadata.Count -or @($metadata|Where-Object{$_.Groups[4].Value -ne '0'}).Count){throw 'format-opaque-unit'}
   $indirectEvidence+=@(Get-Mx251FormatIndirectEvidence $text | ForEach-Object{$_['unit']=$u.name;$_})
+  # Wide functions emit their bank contract after the body. Resolve the
+  # contract by owner before scanning calls; argument bytes still come from
+  # the actual instructions within each delimited stack argument.
+  $abi2=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+  foreach($m in [regex]::Matches($text,'(?m)^;\s*mx251-bank-contract schema=1 symbol=(\S+) abi=2 bank=0 naked=0\s*$')){$null=$abi2.Add($m.Groups[1].Value)}
   $inside=$false;$groupText='';$groups=@();$caller=$null;$callerAbi=$false
   foreach($raw in $lines){
-   if($raw -cmatch '^; mx251-function begin schema=1 symbol=(\S+)'){$caller=$Matches[1];$callerAbi=$false;$groups=@()}
+   if($raw -cmatch '^; mx251-function begin schema=1 symbol=(\S+)'){$caller=$Matches[1];$callerAbi=$abi2.Contains($caller);$groups=@()}
    if($raw -cmatch '^;\s*mx251-bank-contract schema=1 symbol=(\S+) abi=2 bank=0 naked=0\s*$'){$callerAbi=$Matches[1] -ceq $caller}
    if($raw -cmatch '^;\s*MX251 argument region begin\s*$'){
     if($inside){throw 'nested-argument-region'};$inside=$true;$groupText='';continue
