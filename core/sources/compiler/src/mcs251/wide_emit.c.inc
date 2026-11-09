@@ -1843,6 +1843,19 @@ wide_emit(wide_function *f)
       we(f,"; wide bit load %s\n\tclr\ta\n\tmov\tc,%s\n\trlc\ta\n",n->addressSymbol->rname,n->addressSymbol->rname);
       wstore_byte(f,n->result,11);break;
     case WM_BIT_STORE:wbit_store(f,n);break;
+    case WM_NEAR_ADDRESS: {
+      /* Low-byte addition matches the inherited near-pointer arithmetic.
+       * Both temporaries are reserved; no allocated address survives in A/B. */
+      if(!n->addressOp)we(f,"\tmov\ta,#(%s%+d)\n",n->addressSymbol->rname,n->addressOffset);
+      else {
+        if(n->addressIndex.width==1)wload_byte(f,n->addressIndex,11);
+        else {wload(f,n->addressIndex,16,2);we(f,"\tmov\twr10,wr16\n");}
+        we(f,"; wide indexed DATA address %s%+d op=%c\n",n->addressSymbol->rname,n->addressOffset,n->addressOp);
+        if(n->addressOp=='+')we(f,"\tadd\ta,#(%s%+d)\n",n->addressSymbol->rname,n->addressOffset);
+        else we(f,"\tmov\tb,a\n\tmov\ta,#(%s%+d)\n\tsub\tr11,r10\n",n->addressSymbol->rname,n->addressOffset);
+      }
+      wstore_byte(f,n->result,11);break;
+    }
     case WM_ADDRESS:
       if(n->addressObject>=0) {
         int displacement=f->objects[n->addressObject].slot+n->addressOffset-f->frame-f->stackDepth+1;

@@ -24,13 +24,13 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
 /* 存储上界与本轮导入限额分开：默认仍按 128/512 回退，独立比较容量收益。
  * 候选仍整体复制，数组内嵌避免分配试算之间共享可变位集或节点。
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
-enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW };
+enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS };
 typedef struct { unsigned char operation,address,bit; } wide_asm_instruction;
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
   int width, reg, slot, pin, preference, weight, reads;
-  bool sign, pointer, codePointer, floating, symbolSnapshot;
+  bool sign, pointer, codePointer, floating, symbolSnapshot, nearData;
   wide_bits edges;
 } wide_value;
 typedef struct { int value, width; uint32_t literal; bool sign, floating, codePointer; } wide_operand;
@@ -213,6 +213,12 @@ wide_operand_from (wide_function *f, operand *op, wide_operand *v)
 {
   sym_link *t;
   v->value = -1;
+  /* Internally formed DATA addresses retain the physical one-byte near
+   * representation. This does not admit near pointer parameters or objects. */
+  if(op && IS_ITEMP(op) && !IS_OP_GLOBAL(op) && !OP_SYMBOL(op)->addrtaken)
+    for(int i=0;i<f->nv;++i)if(f->values[i].nearData && f->values[i].sym==OP_SYMBOL(op)) {
+      *v=(wide_operand){.value=i,.width=1};return true;
+    }
   /* 前端联合体读操作会把 volatile 限定带到结果临时值。
    * 非取址 ITEMP 表示已经取样的值，其寄存器使用不再次访问内存；
    * 经类型提升带上该限定的字面量同样不表示一次内存访问。
@@ -469,13 +475,14 @@ wide_memory(wide_function *f,wide_node *n,iCode *ic,bool store)
 static bool wide_near_type(sym_link *t)
 {return IS_PTR(t) && DCL_TYPE(t)==POINTER && getSize(t)==1 && !IS_FUNC(t->next);}
 
-/* 外部 DATA 对象须有完整的无重叠标量布局，真实 volatile/atomic、
- * union、嵌套、数组、位域一律回退；不把声明名称当作硬件或 SDK 能力。
+/* 外部 DATA 对象须有完整的无重叠标量布局，支持标量数组。
+ * volatile/atomic、union、嵌套结构、位域沿用原路径。
  * 复用冻结来源证明，实际地址仍由普通 direct 符号重定位决定。 */
 static bool
 wide_extern_data_layout(sym_link *type)
 {
   if(!type || isVolatile(type) || isAtomic(type))return false;
+  if(IS_ARRAY(type))return getSize(type)>0 && getSize(type)<=128 && wide_extern_data_layout(type->next);
   if(!IS_STRUCT(type))return IS_SPEC(type) && IS_INTEGRAL(type) && !IS_BITVAR(type) &&
     (getSize(type)==1 || getSize(type)==2 || getSize(type)==4);
   structdef *layout=SPEC_STRUCT(type);
@@ -580,6 +587,8 @@ wide_near_location(wide_function *f,operand *p,iCode *before,iCode *begin,symbol
   return true;
 }
 
+#include "wide_near_index.c.inc"
+
 static bool
 wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
 {
@@ -588,7 +597,7 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
   if(store || load) {
     operand *address=store?IC_RESULT(ic):IC_LEFT(ic),*value=store?IC_RIGHT(ic):IC_RESULT(ic);
     if(!address || !value || !wide_near_type(operandType(address)) ||
-       !wide_near_location(f,address,ic==begin?NULL:ic->prev,begin,&object,&offset,0))return false;
+       !wide_near_location(f,address,ic==begin?NULL:ic->prev,begin,&object,&offset,0))return wide_near_indexed(f,n,ic,begin);
     sym_link *pt=operandType(address),*t=operandType(value);
     bool memberView=wide_data_zero_member(pt->next,t,store);
     if(!IS_SPEC(t) || !IS_INTEGRAL(t) || IS_BITVAR(t) || isAtomic(t) ||
@@ -622,10 +631,15 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
   }
   if((ic->op==ADDRESS_OF || ic->op=='+' || ic->op==CAST) && IC_RESULT(ic) &&
      wide_near_location(f,IC_RESULT(ic),ic,begin,&object,&offset,0)) {
-    /* 纯地址无独立副作用；任何未覆盖的使用仍由正常导入器拒绝整函数。 */
-    n->op=WM_NOP;return true;
+    /* Remember fixed definitions without allocating unused virtual values.
+     * If a branch or loop needs the actual byte address, near_index_result
+     * materializes every definition of that temporary, including this one. */
+    if(wide_near_index_value(f,IC_RESULT(ic))>=0 &&
+       !wide_near_index_result(f,n,IC_RESULT(ic)))return false;
+    n->op=WM_NEAR_ADDRESS;n->addressSymbol=object;n->addressOffset=offset;
+    return true;
   }
-  return false;
+  return wide_near_indexed(f,n,ic,begin);
 }
 
 static bool
@@ -1258,8 +1272,9 @@ wide_remove_dead_addresses(wide_function *f)
     for(int i=0;i<f->nn;++i)used=wb_or(used,f->nodes[i].use);
     for(int i=0;i<f->nn;++i) {
       wide_node *n=&f->nodes[i];
-      if(n->result>=0 && f->values[n->result].pointer && !wb_has(used,n->result) &&
-         (n->op==WM_ADDRESS || n->op==CAST || n->op=='=' || n->op=='+' || n->op=='-')) {
+      if(n->op==WM_NEAR_ADDRESS && n->result<0)n->op=WM_NOP;
+      if(n->result>=0 && (f->values[n->result].pointer || f->values[n->result].nearData) && !wb_has(used,n->result) &&
+         (n->op==WM_ADDRESS || n->op==WM_NEAR_ADDRESS || n->op==CAST || n->op=='=' || n->op=='+' || n->op=='-')) {
         n->op=WM_NOP;n->use=n->def=(wide_bits){{0}};
         n->result=n->left.value=n->right.value=n->addressIndex.value=-1;changed=true;
       }
