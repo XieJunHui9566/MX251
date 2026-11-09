@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "MEASURED_EXPLICIT_RESEARCH_TOOL",
+  "sourceParent": "f4b082f",
+  "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+  "defaultCompilerChanged": false,
+  "sdkChanged": false,
+  "projects": [
+    {
+      "project": "p087",
+      "baselineCodeBytes": 4769,
+      "candidateCodeBytes": 4617,
+      "savedBytes": 152,
+      "keilCodeBytes": 3531,
+      "selected": {
+        "symbol": "_usb_write_reg",
+        "unit": "u1",
+        "signature": "v(u8,u8)",
+        "transport": "void(u8,u8)",
+        "calls": 61,
+        "grossStackCodeBytes": 236
+      },
+      "binding": {
+        "symbol": "___m251r4_usb_write_reg",
+        "address": 16712221,
+        "calls": 61
+      },
+      "baselineReceiptSha256": "b06807aed5f5ae2f4af9e42c0ac45b93913e6a1cb72f7953ed63c432f3298c6c",
+      "candidateReceiptSha256": "87535f0d737d95e6edf5d606083b2e5756ebede30edd7649651074e32845f33e",
+      "firmwareSha256": "9b4e68b1458b8ef560a6bab14686babac2b32338627b5fba7830e90cf8626497",
+      "baselinePath": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p087\\.build\\mx251\\latest",
+      "candidatePath": "E:\\STVAPP\\MX251-mainline-20261109\\keil-gap\\auto03-p087\\candidate",
+      "identicalInputFiles": 18,
+      "runtimeRatio": null
+    },
+    {
+      "project": "p091",
+      "baselineCodeBytes": 6312,
+      "candidateCodeBytes": 6208,
+      "savedBytes": 104,
+      "keilCodeBytes": 4401,
+      "selected": {
+        "symbol": "_usb_write_reg",
+        "unit": "u1",
+        "signature": "v(u8,u8)",
+        "transport": "void(u8,u8)",
+        "calls": 50,
+        "grossStackCodeBytes": 192
+      },
+      "binding": {
+        "symbol": "___m251r4_usb_write_reg",
+        "address": 16712253,
+        "calls": 50
+      },
+      "baselineReceiptSha256": "e8ffd8b9f008a07a00de18cbb667f20deac67c622a5ad10f3458f0ade28c5e02",
+      "candidateReceiptSha256": "4cf36464ab1636b3d18ef943195a37dd996b7fe58571b4f6ffa9606a3ca51368",
+      "firmwareSha256": "f27317fb2f9b087adb9c933a5f6de1319f0a1ebb32eabf58ee575fbc91a5a44e",
+      "baselinePath": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p091\\.build\\mx251\\latest",
+      "candidatePath": "E:\\STVAPP\\MX251-mainline-20261109\\keil-gap\\abi-leaf-p091",
+      "identicalInputFiles": 20,
+      "runtimeRatio": null
+    },
+    {
+      "project": "p095",
+      "baselineCodeBytes": 6615,
+      "candidateCodeBytes": 6388,
+      "savedBytes": 227,
+      "keilCodeBytes": 4830,
+      "selected": {
+        "symbol": "_usb_write_reg",
+        "unit": "u1",
+        "signature": "v(u8,u8)",
+        "transport": "void(u8,u8)",
+        "calls": 90,
+        "grossStackCodeBytes": 352
+      },
+      "binding": {
+        "symbol": "___m251r4_usb_write_reg",
+        "address": 16712286,
+        "calls": 90
+      },
+      "baselineReceiptSha256": "a9ca97ef94b9d1f5ff7a96a94fc46e5f8d3a4261683d912000a6e4d956c875ba",
+      "candidateReceiptSha256": "9551930020949200f23d826e044710422648b811a057bd4ccc6c65f51f047003",
+      "firmwareSha256": "18f66785caecc169e90fbf959b2808504a480b93bc86003c53568a8deaf79735",
+      "baselinePath": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p095\\.build\\mx251\\latest",
+      "candidatePath": "E:\\STVAPP\\MX251-mainline-20261109\\keil-gap\\abi-leaf-p095",
+      "identicalInputFiles": 20,
+      "runtimeRatio": null
+    }
+  ],
+  "fixtureSelection": {
+    "schema": 1,
+    "status": "KEEP_BASELINE",
+    "candidates": [
+      {
+        "symbol": "_leaf_mix",
+        "unit": "u2",
+        "signature": "u8(u8,u8)",
+        "transport": "u8(u8,u8)",
+        "calls": 16,
+        "grossStackCodeBytes": 64
+      }
+    ],
+    "baseline": "E:\\STVAPP\\MX251-mainline-20261109\\keil-gap\\fixture-baseline",
+    "baselineCodeBytes": 1016,
+    "baselineReceiptSha256": "55075dc8dbbdbdeae4ca5fbf54e353891f679fa51bb34a65b9ad96e345b8046d",
+    "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+    "hardwareExecuted": false,
+    "runtimeRatio": null,
+    "selectedBuild": "E:\\STVAPP\\MX251-mainline-20261109\\keil-gap\\fixture-baseline",
+    "defaultAbiChanged": false,
+    "chosen": {
+      "symbol": "_leaf_mix",
+      "unit": "u2",
+      "signature": "u8(u8,u8)",
+      "transport": "u8(u8,u8)",
+      "calls": 16,
+      "grossStackCodeBytes": 64
+    },
+    "contractSha256": "df1210a0dbe0ae3580195f583a3e6af56d7cc39551c3748da85a4d49a523e4dd",
+    "command": [
+      "pwsh",
+      "-NoProfile",
+      "-File",
+      "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\core\\build\\qualified\\Build.ps1",
+      "-Project",
+      "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\leaf-abi-fixture\\mx251.json",
+      "-ToolchainRoot",
+      "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\core\\toolchain",
+      "-ProfileRoot",
+      "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\core\\profiles\\AI8051U-34K64-32",
+      "-OutputDirectory",
+      "E:\\STVAPP\\MX251-mainline-20261109\\keil-gap\\fixture-auto\\candidate",
+      "-WideValueLimit",
+      "512",
+      "-WideNodeLimit",
+      "2048",
+      "-OrderedAsm",
+      "AUTO",
+      "-C251BitComplement",
+      "-FunctionGc"
+    ],
+    "candidateCodeBytes": 1090,
+    "savedBytes": -74,
+    "finalBinding": {
+      "symbol": "___m251r4_leaf_mix",
+      "address": 16712732,
+      "calls": 16
+    },
+    "candidateReceiptSha256": "5146720cf8e35768116517bb35064a8f3814e8b69f25cace3b2efc9f7d4dddad",
+    "candidateFirmwareSha256": "2012119bd754a04336223307e732ffefe64059a27f0d3e3f58a8e034dd3bd7be"
+  },
+  "hardware": {
+    "status": "PASS",
+    "frames": 1867,
+    "inputCases": 256,
+    "callsPerCase": 16,
+    "uartSha256": "e9d60e3b8ece00add12be21dface53e36b148a1a702a8e20f0d4a9b94406334c",
+    "port": "COM13",
+    "baud": 115200,
+    "firmwareSha256": "2012119bd754a04336223307e732ffefe64059a27f0d3e3f58a8e034dd3bd7be",
+    "restored": false
+  },
+  "tft": {
+    "schema": 1,
+    "status": "NO_CANDIDATE",
+    "candidates": [],
+    "baseline": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p080\\.build\\mx251\\latest",
+    "baselineCodeBytes": 23153,
+    "baselineReceiptSha256": "441dfbfba01a23b013cd116b18d660f0adb29988bd797714c8bb3872caee9880",
+    "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+    "hardwareExecuted": false,
+    "runtimeRatio": null,
+    "selectedBuild": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p080\\.build\\mx251\\latest",
+    "defaultAbiChanged": false
+  },
+  "readAndWriteTrial": {
+    "project": "p087",
+    "codeBytes": 4642,
+    "writeOnlyCodeBytes": 4617,
+    "decision": "do not add the single-argument read leaf"
+  },
+  "checks": {
+    "selectionUnitTests": 4,
+    "fullAppExecution": false
+  }
+}

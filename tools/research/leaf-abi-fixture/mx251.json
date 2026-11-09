@@ -1,0 +1,19 @@
+{
+  "schema": 2,
+  "target": "AI8051U-34K64-32",
+  "model": "small",
+  "optimization": "speed",
+  "backend": "ordinary-wide",
+  "explicitAbi": false,
+  "standard": "sdcc11",
+  "runtime": "standard",
+  "defines": [],
+  "files": ["main.c", "caller.c", "leaf.c", "leaf.h"],
+  "units": [
+    {"name": "u0", "file": "main.c", "backend": "ordinary-wide", "stackAuto": true, "defines": []},
+    {"name": "u1", "file": "caller.c", "backend": "ordinary-wide", "stackAuto": true, "defines": []},
+    {"name": "u2", "file": "leaf.c", "backend": "ordinary-wide", "stackAuto": true, "defines": []}
+  ],
+  "archives": [],
+  "link": ["u0", "u1", "u2", "@startup"]
+}
