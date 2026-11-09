@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "parentCommit": "d4a38c39fffa3d8a0bd977f9f89f4bf2e665b6dc",
+  "baselineCompilerSha256": "8a16db347a1d241aaf1a112ee529d3cb47615f075229197e15e8f80fae5384cf",
+  "candidateCompilerSha256": "8954c2a77125153a1741ce3a9041e8701903d425a0025eaca91f73858c0e75b4",
+  "model": "small",
+  "optimization": "speed",
+  "defaultCallClobberFeedback": true,
+  "leafCallFeedback": false,
+  "sdkSourcesChanged": false,
+  "projects": [
+    {
+      "project": "p080",
+      "baselineBytes": 23161,
+      "candidateBytes": 23161,
+      "savedBytes": 0,
+      "reductionPercent": 0.0,
+      "sameSourceInputs": true,
+      "inputsSha256": "cb116565b91c3f62f42516558700c8512b7febcccfe7392c640989279bc0c67a",
+      "baselineReceiptSha256": "3881cfe5c474449bfc612f0798ec6ad5b48276d6e407e71390a18674e8c290cc",
+      "candidateReceiptSha256": "2c71e2cf7054f6ad3fbd4c39e0eb38d1e08a7774ca1e3c454f54fb3aef8c5e2a",
+      "baselineFirmwareSha256": "5eb52c8bb7bb3de2b6f8656efe8d2a045ffc154f1995ffbad47b7679ae132ab0",
+      "candidateFirmwareSha256": "1ba6a49c8442cca816e0bfcb01fb205117d1b03130794557847c305175d9873c",
+      "baselineFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 28,
+        "completeFunctions": 28,
+        "functions": 54,
+        "actualUses": 46,
+        "attempts": 2,
+        "recordSha256": "0f7424ec97ac998c552ffbe24d6a566ea619055aadae31e5e74ea9bdadb7e5ec"
+      },
+      "candidateFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 30,
+        "completeFunctions": 30,
+        "functions": 54,
+        "actualUses": 47,
+        "attempts": 2,
+        "recordSha256": "a4e219b1bf3b0227a031d2a10db413f436961605d3f0f0a78e3544c325ce60fc"
+      }
+    },
+    {
+      "project": "p087",
+      "baselineBytes": 4777,
+      "candidateBytes": 4769,
+      "savedBytes": 8,
+      "reductionPercent": 0.1675,
+      "sameSourceInputs": true,
+      "inputsSha256": "db14c1984200b2c72a389444d05eabc7672816c8f5f577221c476a4fbc083819",
+      "baselineReceiptSha256": "c5e937d7cb62fde86edd098daffc22ccbb41b0280843bb79c1cca85ced2cdcdc",
+      "candidateReceiptSha256": "72dc5f777342244279f130cb20546d98c9c3a99bf1987769463ba5e849692e30",
+      "baselineFirmwareSha256": "2cc24b14c2fafae6d38dbcde93270b0096edc00a0313ad57455dbc7740333d21",
+      "candidateFirmwareSha256": "4a4834ae596eb41a896727cac22ba23dcaeb7ce8492a15f5928a2d97ce9dd50f",
+      "baselineFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 8,
+        "completeFunctions": 8,
+        "functions": 45,
+        "actualUses": 8,
+        "attempts": 1,
+        "recordSha256": "8d2727935a2d7f744b755311177f5bb2c7c25ea20b6b6e3f46429722859933e0"
+      },
+      "candidateFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 33,
+        "completeFunctions": 33,
+        "functions": 45,
+        "actualUses": 9,
+        "attempts": 1,
+        "recordSha256": "697b49fc6d6f5cf9b31a8d40299937652b44b72176248bbf33316db2b934f195"
+      }
+    },
+    {
+      "project": "p091",
+      "baselineBytes": 6421,
+      "candidateBytes": 6312,
+      "savedBytes": 109,
+      "reductionPercent": 1.6976,
+      "sameSourceInputs": true,
+      "inputsSha256": "60cc5d15f92ea34b80986d74ad20b889bd0b5e4d71c19803b0fd67161464881a",
+      "baselineReceiptSha256": "236f21c58cef093edf3ec32e6d768df48a91d096b41699df6669f545c944c4fe",
+      "candidateReceiptSha256": "1c8d7ba7f0ae008f42a834275480b28bd4e7c3ca60b7f19cdb94025567090bf2",
+      "baselineFirmwareSha256": "d3bac429fcc3b3c17043fc0aa68ce208b3aa656b1bfb7c683caf2801a9f4c32d",
+      "candidateFirmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4",
+      "baselineFeedback": {
+        "status": "FALLBACK_ORIGINAL_OBJECTS",
+        "bindings": 17,
+        "completeFunctions": 18,
+        "functions": 63,
+        "actualUses": 16,
+        "attempts": 2,
+        "recordSha256": "8c77af0c496d1cffab0f3d3b9a21d26195b6a8c1c7823f8082d81968c66080f5"
+      },
+      "candidateFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 41,
+        "completeFunctions": 42,
+        "functions": 63,
+        "actualUses": 17,
+        "attempts": 2,
+        "recordSha256": "968fb80174c9a5aa8aeaa03e1e6847c79a2ddb9ed052a76fd4655fcd7c50f05d"
+      }
+    },
+    {
+      "project": "p095",
+      "baselineBytes": 6635,
+      "candidateBytes": 6615,
+      "savedBytes": 20,
+      "reductionPercent": 0.3014,
+      "sameSourceInputs": true,
+      "inputsSha256": "062f5aa60a3af757e6ac16d1888f823d5507fe3900653320799da3fabddcc63c",
+      "baselineReceiptSha256": "56d3ee5589848460a89f75843cb708307258f6f7414f5460cd9188739ea6556d",
+      "candidateReceiptSha256": "05f27ce933a190418ada56882fc3bb410775305619d725efbd7cf62dfc8d8b90",
+      "baselineFirmwareSha256": "5f8b02e890a7e0cf792f61cecc7c2656e35eb7ecb70be3bbadcb4a37c782bd60",
+      "candidateFirmwareSha256": "3eea9f5385c7ac678a7ed0495977565dc413c59557d78474fb0f0489192f9093",
+      "baselineFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 10,
+        "completeFunctions": 10,
+        "functions": 51,
+        "actualUses": 13,
+        "attempts": 1,
+        "recordSha256": "742b4bffa2ff87ea6a7af217069e9453367ffc154a3241a7bd50fac75b3bdf4a"
+      },
+      "candidateFeedback": {
+        "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+        "bindings": 36,
+        "completeFunctions": 36,
+        "functions": 51,
+        "actualUses": 17,
+        "attempts": 1,
+        "recordSha256": "910b471923c5d7c7d2c5c1d1f35957137e34627aa9586eb4187085e1cce663fc"
+      }
+    }
+  ],
+  "unitTests": {
+    "status": "PASS",
+    "compilerSha256": "8954c2a77125153a1741ce3a9041e8701903d425a0025eaca91f73858c0e75b4",
+    "checks": 33
+  },
+  "hardware": {
+    "status": "PASS",
+    "firmwareSha256": "81bbdb912d64f49268ad4e77072c5dd40ec63ae3a1adb875e0360ec456d31f16",
+    "frames": 1089,
+    "inputCases": 16,
+    "valuesPerCase": 3,
+    "bytes": 21785,
+    "uartSha256": "4936dd85e0016201e8af76e43802fbbc004591b47a53a6ff68e35dd5e8ceba60",
+    "port": "COM13",
+    "baud": 115200,
+    "restored": false
+  },
+  "runtimeVsKeil": null,
+  "sourceFiles": {
+    "core/sources/compiler/src/SDCCglue.c": "c167e786659c8bce8425607a4f26d0e9f8ee1852791a584675a07d0acf1504f5",
+    "core/build/qualified/CallClobberFeedback.ps1": "933edf87f905df906d8c0136933db28b3eaba60cbcaeaaf0041ada673e8deb1b"
+  }
+}

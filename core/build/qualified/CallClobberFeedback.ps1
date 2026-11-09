@@ -23,8 +23,8 @@ function Get-Mx251DirectAddress([string]$Text,$Aliases,[int]$Depth=0) {
  return $null
 }
 # GPR 按物理字节建模；经典 DATA 的 0..7 与 bank-0 R0..R7 对应。
-# DATA 8..31 的别名不猜测，保守污染全部高组；A/B 的 SFR 与位别名
-# 必须计入 R11/R10，不能继续沿用只分析低组时的零掩码。
+# DATA 8..31 是 bank 1..3 的低寄存器，不是 CPU 中的 R8..R31。
+# A/B 的 SFR 与位别名对应 R11/R10。
 function Get-Mx251BankRegister([string]$Text) {
  $t=$Text.ToLowerInvariant();$m=[regex]::Match($t,'^(ar|r|wr|dr)([0-9]{1,2})$')
  if($m.Success){
@@ -48,7 +48,6 @@ function Get-Mx251DirectGprMask([long]$Address,[int]$Width,$State) {
   if($i -in @(129,208,209)){throw 'stack-or-register-bank-write'}
   if($i -in @(130,131,132,133)){$State.low=$null;$State.high=$null}
   if($i -lt 8){$mask=$mask -bor ([long]1 -shl [int]$i)}
-  elseif($i -lt 32){$mask=$mask -bor 4294967040L}
   elseif($i -eq 224){$mask=$mask -bor 2048}
   elseif($i -eq 240){$mask=$mask -bor 1024}
  }
@@ -88,6 +87,11 @@ function Get-Mx251BankDestination([string]$Text,$Aliases,$State,[switch]$Bit,[in
 }
 function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit,[int]$Width=1) {
  $t=$Text.Trim();$lower=$t.ToLowerInvariant()
+ $object=Get-Mx251ObjectReference $t $State.objects
+ if($null -ne $object){
+  if($Bit -and $object.space -ceq 'bit' -and $object.offset -eq 0){return 0}
+  if(-not $Bit -and $object.space -ceq 'data' -and $object.offset -ge 0 -and $object.offset+$Width -le $object.size){return 0}
+ }
  if($Bit) {
   if($lower -in @('c','cy','ac','ov','p','f0','f1')){return 0}
   $m=[regex]::Match($t,'^(.+)\.([0-7])$')
@@ -125,10 +129,10 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
  if($null -eq $address){throw 'unresolved-direct-write'}
  return (Get-Mx251DirectGprMask $address $Width $State)
 }
-function Get-Mx251BankBody([string]$Body,$Aliases) {
+function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null) {
  $labels=New-Mx251OrdinalMap;$calls=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
  foreach($m in [regex]::Matches($Body,'(?m)^\s*([A-Za-z_.$0-9]+):{1,2}\s*$')){$labels[$m.Groups[1].Value]=$true}
- $mask=0;$count=0;$state=@{low=$null;high=$null;constants=@{}};$reason=$null
+ $mask=0;$count=0;$state=@{low=$null;high=$null;constants=@{};objects=$Objects};$reason=$null
  try {
   foreach($raw in $Body.Split("`n")) {
    $line=($raw -split ';',2)[0].Trim();if(-not $line){continue}
@@ -198,7 +202,73 @@ function Get-Mx251BankBody([string]$Body,$Aliases) {
  } catch {$reason=$_.Exception.Message;$mask=4294967295L}
  return @{writes=$mask;calls=@($calls);reason=$reason;instructions=$count;failureLine=$(if($reason){$line}else{$null})}
 }
+# Object references retain an extent instead of receiving a made-up numeric
+# address. This also distinguishes a bit object from an SFR bit alias.
+function Get-Mx251ObjectReference([string]$Text,$Objects,[int]$Depth=0) {
+ if($null -eq $Objects -or $Depth -gt 8){return $null}
+ $t=$Text.Trim()
+ while($t.StartsWith('(') -and $t.EndsWith(')')){
+  $nest=0;$outer=$true
+  for($i=0;$i -lt $t.Length-1;$i++){
+   if($t[$i] -eq '('){$nest++}elseif($t[$i] -eq ')'){$nest--}
+   if($nest -eq 0){$outer=$false;break}
+  }
+  if(-not $outer){break};$t=$t.Substring(1,$t.Length-2).Trim()
+ }
+ if($Objects.ContainsKey($t)){
+  $o=$Objects[$t];return @{space=$o.space;size=$o.size;offset=0}
+ }
+ $m=[regex]::Match($t,'^(.+?)\s*([+-])\s*(0x[0-9a-fA-F]+|[0-9]+)$')
+ if(-not $m.Success){return $null}
+ $o=Get-Mx251ObjectReference $m.Groups[1].Value $Objects ($Depth+1)
+ if($null -eq $o){return $null}
+ $delta=Get-Mx251Numeric $m.Groups[3].Value
+ if($m.Groups[2].Value -ceq '-'){$delta=-$delta}
+ $o.offset+=$delta;return $o
+}
+function Get-Mx251BankObjects([string]$Root,$Config) {
+ $units=New-Mx251OrdinalMap;$owners=New-Mx251OrdinalMap;$exports=New-Mx251OrdinalMap;$bank0=$false
+ foreach($u in $Config.units){
+  $rel=[IO.File]::ReadAllText((Join-Path $Root ($u.name+'.rel')))
+  foreach($m in [regex]::Matches($rel,'(?m)^S ([^\s]+) Def[0-9A-Fa-f]+\s*$')){
+   $s=$m.Groups[1].Value;if(-not $owners.ContainsKey($s)){$owners[$s]=@()};$owners[$s]+=@($u.name)
+  }
+  if([regex]::IsMatch($rel,'(?m)^A REG_BANK_0 size 8 flags 4 addr 0\s*$')){$bank0=$true}
+  $units[$u.name]=New-Mx251OrdinalMap
+  if([IO.Path]::GetExtension($u.file) -cne '.c'){continue}
+  $asm=[IO.File]::ReadAllText((Join-Path $Root ($u.name+'.asm')))
+  # The metadata is emitted beside the actual allocation, after dead locals
+  # and extern declarations have been removed. Check the allocation and area
+  # together; do not promote a declaration, __at alias or hand-written label.
+  $area=''
+  foreach($line in $asm.Split("`n")){
+   if($line -cmatch '^\s*\.area\s+([^\s]+)'){$area=$Matches[1]}
+   if($line -cnotmatch '^; mx251-object schema=1 symbol=([^\s]+) space=(data|bit) size=([0-9]+)\s*$'){continue}
+   $s=$Matches[1];$space=$Matches[2];$size=[int]$Matches[3]
+   if(($space -ceq 'data' -and $area -cne 'DSEG') -or ($space -ceq 'bit' -and $area -cne 'BSEG')){continue}
+   if(-not [regex]::IsMatch($asm,'(?m)^'+[regex]::Escape($s)+':{1,2}\s*\r?\n\s*\.ds\s+'+$size+'\s*\r?\n; mx251-object schema=1 symbol='+[regex]::Escape($s)+' ')){continue}
+   $exported=[regex]::IsMatch($asm,'(?m)^\s*\.globl\s+'+[regex]::Escape($s)+'\s*$')
+   $o=@{space=$space;size=$size;unit=$u.name;exported=$exported}
+   $units[$u.name][$s]=$o
+   if($exported){if(-not $exports.ContainsKey($s)){$exports[$s]=@()};$exports[$s]+=@($o)}
+  }
+ }
+ foreach($u in $Config.units){
+  $objects=$units[$u.name]
+  foreach($s in $exports.Keys){
+   if($exports[$s].Count -ne 1 -or -not $owners.ContainsKey($s) -or $owners[$s].Count -ne 1 -or $owners[$s][0] -cne $exports[$s][0].unit){
+    if($objects.ContainsKey($s) -and $objects[$s].exported){$objects.Remove($s)};continue
+   }
+   if(-not $objects.ContainsKey($s)){$objects[$s]=$exports[$s][0]}
+  }
+  # The linker allocates DSEG around REG_BANK_0 and below 0x80. Without its
+  # reservation a DATA object could overlap R0..R7, so use numeric effects.
+  if(-not $bank0){foreach($s in @($objects.Keys)){if($objects[$s].space -ceq 'data'){$objects.Remove($s)}}}
+ }
+ return ,$units
+}
 function Get-Mx251BankFunctions([string]$Root,$Config) {
+ $unitObjects=Get-Mx251BankObjects $Root $Config
  $symbols=New-Mx251OrdinalMap;$all=@()
  foreach($unit in $Config.units) {
   if([IO.Path]::GetExtension($unit.file) -cne '.c'){continue}
@@ -207,6 +277,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config) {
    $key=$m.Groups[1].Value;$value=Get-Mx251Numeric $m.Groups[2].Value
    if($aliases.ContainsKey($key) -and $aliases[$key] -ne $value){$aliases[$key]=$null}else{$aliases[$key]=$value}
   }
+  foreach($key in $aliases.Keys){$unitObjects[$unit.name].Remove($key)}
   foreach($m in [regex]::Matches($text,'(?ms)^; mx251-function begin schema=1 symbol=([^\s]+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])\s*\r?\n(.*?)^; mx251-function end schema=1 symbol=\1\s*\r?$')) {
    $symbol=$m.Groups[1].Value;$body=$m.Groups[6].Value
    $contract=[regex]::Matches($body,'(?m)^;\s*mx251-bank-contract schema=1 symbol='+[regex]::Escape($symbol)+' abi=([24]) bank=([0-9]+) naked=([01])\s*$')
@@ -216,8 +287,9 @@ function Get-Mx251BankFunctions([string]$Root,$Config) {
    elseif($contract.Count -ne 1){$reason='missing-function-contract'}
    elseif($contract[0].Groups[2].Value -ne '0' -or $contract[0].Groups[3].Value -ne '0'){$reason='special-function-abi'}
    else{$abi=[int]$contract[0].Groups[1].Value}
-   $analysis=if($reason){@{writes=4294967295L;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases}
-   $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases}
+   $objects=$unitObjects[$unit.name]
+   $analysis=if($reason){@{writes=4294967295L;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects}
+   $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases;objects=$objects}
    if(-not $symbols.ContainsKey($symbol)){$symbols[$symbol]=@()};$symbols[$symbol]+=@($row);$all+=@($row)
   }
  }
@@ -319,7 +391,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
     }
     if($null -eq $pending -or $pending.Groups[2].Value -cne $m.Groups[2].Value -or $pending.Groups[3].Value -cne $m.Groups[3].Value){throw 'clobber-unpaired-ordinary-save'}
     $start=$pending.Index+$pending.Length
-    $boundary=Get-Mx251BankBody $f.body.Substring($start,$m.Index-$start) $f.aliases
+    $boundary=Get-Mx251BankBody $f.body.Substring($start,$m.Index-$start) $f.aliases $f.objects
     if($boundary.calls.Count -ne 1 -or $boundary.calls[0] -cne $m.Groups[2].Value){$boundary.writes=4294967295L;$boundary.reason='unexpected-call-boundary'}
     $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[2].Value;removed=[Convert]::ToInt32($m.Groups[3].Value,16);kind='ordinary';boundaryWrites=$boundary.writes;boundaryReason=$boundary.reason}
     $pending=$null
