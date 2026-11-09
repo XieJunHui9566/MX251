@@ -120,6 +120,11 @@ def execute(text, name, seed):
                 pc = labels[args[0]]
             continue
         a = args[0]
+        if op == 'djnz':
+            value = (read(a) - 1) & ((1 << (register(a)[1] * 8)) - 1)
+            write(a, value)
+            if value: pc = labels[args[1]]
+            continue
         if op in ('push', 'pushw'):
             width = 2 if op == 'pushw' else register(a)[1]
             memory[sp + 1:sp + 1 + width] = (read(a) & ((1 << (width * 8)) - 1)).to_bytes(width, 'big')
@@ -130,7 +135,7 @@ def execute(text, name, seed):
             write(a, int.from_bytes(memory[sp - width + 1:sp + 1], 'big'))
             sp -= width
             continue
-        b = args[1]
+        b = '#1' if op == 'inc' and len(args) == 1 else args[1]
         width = register(b)[1] if a.startswith('@') else 4 if a == 'spx' else register(a)[1]
         value = read(b, width)
         if op in ('mov', 'movz'):

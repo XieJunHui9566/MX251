@@ -44,5 +44,9 @@ $scan=Get-Mx251BankFunctions $OutputDirectory $config $functions
 Check (($scan.symbols['___m251r4__divslong'][0].writes -band 4026531840L) -eq 4026531840L) 'library-to-application dependency uses actual override effects'
 $scan2=Get-Mx251BankFunctions $OutputDirectory @{units=@()} $record.functions
 Check ($scan2.symbols['___m251r4__divslong'][0].writes -eq 1047807L) 'signed division includes unsigned implementation writes'
+Check ($scan2.symbols['___m251r4__modslong'][0].writes -eq 1047807L) 'signed remainder includes its complete runtime dependency chain'
+if('___m251r4__divulong' -cin $scan2.symbols['___m251r4__modulong'][0].calls){
+ Check (($scan.symbols['___m251r4__modslong'][0].writes -band 4026531840L) -eq 4026531840L) 'shared remainder chain reaches an application override'
+}
 @{status='PASS';checks=$checks;contractSha256=$record.contractSha256}|ConvertTo-Json|Set-Content (Join-Path $OutputDirectory 'result.json') -Encoding utf8
 Write-Output "PASS: $checks register, archive and call-closure checks"

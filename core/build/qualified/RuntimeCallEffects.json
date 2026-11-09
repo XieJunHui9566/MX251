@@ -64,6 +64,73 @@
           "abi": 4
         }
       ]
+    },
+    {
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50",
+      "path": "runtime/libnativeint.lib",
+      "functions": [
+        {
+          "member": "_divslong.rel",
+          "instructions": 20,
+          "calls": [
+            "___m251r4__divulong"
+          ],
+          "sourceSha256": "fe8ab76751ef94f574d75754d7b4293811d69d9eecaf8d1545ed8a1a9278337a",
+          "localWrites": "0000f8ff",
+          "symbol": "___m251r4__divslong",
+          "abi": 4,
+          "module": "native_divslong",
+          "objectSha256": "f9160e68f4de0ce63aacb67207aafa3407a9c2d76ae2da14b97532cddaaf583b"
+        },
+        {
+          "member": "_divulong.rel",
+          "instructions": 89,
+          "calls": [],
+          "sourceSha256": "0ae56487d48125ae6137d0ec8575a7f1f2b73c6f250ac4a694624fe9f3b15169",
+          "localWrites": "000ff4ff",
+          "symbol": "___m251r4__divulong",
+          "abi": 4,
+          "module": "native_divulong",
+          "objectSha256": "fcb88d9c8454f8fc62b9d5f200e3bb0da6f3be9f813d36f41da5acf8569b3fde"
+        },
+        {
+          "member": "_modslong.rel",
+          "instructions": 19,
+          "calls": [
+            "___m251r4__modulong"
+          ],
+          "sourceSha256": "00559dc72b8897fc9a756fb0561a405e25318aa2ab6dc5fbc2dbd488327fc8df",
+          "localWrites": "0000f8ff",
+          "symbol": "___m251r4__modslong",
+          "abi": 4,
+          "module": "native_modslong",
+          "objectSha256": "77659944c94cfcb13c0f0073a2e9b5825d92dc6ba7ebb9a7e3a72823a0e8f329"
+        },
+        {
+          "member": "_modulong.rel",
+          "instructions": 3,
+          "calls": [
+            "___m251r4__divulong"
+          ],
+          "sourceSha256": "91413b4c391d11185ddaafb1ce06fc9ad9274b5686d7cb7924179ada514f6143",
+          "localWrites": "000000f0",
+          "symbol": "___m251r4__modulong",
+          "abi": 4,
+          "module": "native_modulong",
+          "objectSha256": "ef18b2caccc958d8fafc7500abfb12d3dd0a79787a6a8818a3ba026728389af9"
+        },
+        {
+          "member": "_mullong.rel",
+          "instructions": 10,
+          "calls": [],
+          "sourceSha256": "c1635bf827521a6c4c0db27de1fe24ae663f9488b7333a89ba19ac702840ea79",
+          "localWrites": "000030ff",
+          "symbol": "___m251r4__mullong",
+          "abi": 4,
+          "module": "native_mullong",
+          "objectSha256": "c4f649a4f436979c24dea71cf462f093576b871537db5bca8cb13a3a6cf2ac5c"
+        }
+      ]
     }
   ],
   "schema": 1

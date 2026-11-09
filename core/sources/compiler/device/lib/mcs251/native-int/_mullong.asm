@@ -28,21 +28,18 @@
 ; -------------------------------------------------------------------------*/
 ; 
 ; 三个 16x16 部分积，只有交叉积低 16 位影响模 2^32 的结果。
-; DR16/20/24/28 是生成器既有调用者暂存区；输入和结果遵循 ABI4。
+; 输入和结果遵循 ABI4；只占用 DR0、DR4、WR12，保留高位寄存器。
 .module native_mullong
 .globl ___m251r4__mullong
 .area CSEG (CODE)
 ___m251r4__mullong:
-    mov wr16,wr6
-    mov wr20,wr14
-    mul wr16,wr20
-    mov wr20,wr4
-    mov wr24,wr14
-    mul wr20,wr24
-    mov wr24,wr6
-    mov wr28,wr12
-    mul wr24,wr28
-    add wr22,wr26
-    add wr16,wr22
-    mov dr4,dr16
+    mov wr0,wr4
+    mul wr0,wr14
+    mov wr0,wr6
+    mul wr6,wr12
+    add wr6,wr2
+    mov wr12,wr6
+    mul wr0,wr14
+    add wr0,wr12
+    mov dr4,dr0
     eret
