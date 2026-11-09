@@ -1709,6 +1709,8 @@ wide_sink_fallthrough(wide_node *n,int index)
   return n->op!=RETURN && n->op!=ENDFUNCTION && n->op!=GOTO && n->op!=JUMPTABLE && n->succ[0]==index+1;
 }
 
+#include "wide_divmod.c.inc"
+
 /* 移动的是节点身份；顺序边必须按新位置重新连接，显式跳转则按身份
  * 映射。只映射旧直落边会跳过被移动的计算，甚至构造错误的循环。 */
 static void
@@ -2734,6 +2736,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
     bool importedStackObjects=f->no!=0;
     wide_private_union_prepare(f);
     wide_immutable_parameter_homes(f);
+    wide_reuse_integer_quotients(f);
     wide_strength_reduce(f);
     wide_stack_addresses(f);
     wide_private_union_finish(f);
