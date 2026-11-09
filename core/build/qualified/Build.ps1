@@ -13,6 +13,7 @@ param(
  [string]$CalleeCostSha256,
  [switch]$VolatileDataWide,
  [switch]$ConstantRotateFusion,
+ [switch]$FunctionSharing,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
@@ -112,6 +113,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  if($Backend -in @('ordinary-wide','explicit-wide')){$f+=@($orderedAsmRecord.compilerArguments)}
  if($C251BitComplement){$f+='--mcs251-c251-bit-complement'}
  $f+='--mcs251-function-metadata'
+ if($FunctionSharing){$f+='--mcs251-share-functions'}
  if($WordCompareImmediate){$f+='--mcs251-word-compare-immediate'}
  if($RangeNarrowMultiply){$f+='--mcs251-range-narrow-multiply'}
  if($CalleeCostFile){$f+=@('--mcs251-callee-cost',$CalleeCostFile,'--mcs251-callee-cost-sha256',$CalleeCostSha256)}
@@ -431,6 +433,7 @@ try {
  $receipt.targetContract=[ordered]@{id=$targetContract.id;revision=$targetContract.revision;registrySha256=(Hash-File (Join-Path $PSScriptRoot 'TargetContracts.json'));startupSha256=$targetContract.startup.sha256;interruptVectors=$targetContract.interruptVectors;qualifiedMemory=$layout}
  $receipt.binary=[ordered]@{file='firmware.bin';sha256=(Hash-File (Join-Path $outputRoot 'firmware.bin'));baseAddress=$layout.codeBase;length=$binary.Length;gapFill=255}
  $receipt.interruptClosure=[ordered]@{schema=1;finalVerified=$true;addedEntries=@($interruptPlan.added);manifestSha256=(Hash-File (Join-Path $outputRoot 'interrupt-vectors.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'InterruptVectors.ps1'))}
+ $receipt.functionSharing=[bool]$FunctionSharing
  $receipt.c251BitComplement=[bool]$C251BitComplement
  $receipt.orderedAsm=$orderedAsmRecord
  $receipt.wideCapacity=[ordered]@{schema=1;valueLimit=[int]$WideValueLimit;nodeLimit=[int]$WideNodeLimit;overflow='whole-function-fallback-with-reason';selection='explicit-build-option'}
@@ -447,6 +450,7 @@ try {
   buildScriptSha256=(Hash-File $PSCommandPath)
   targetProfileScriptSha256=(Hash-File (Join-Path $PSScriptRoot 'TargetProfile.ps1'))
   targetContractSha256=$receipt.targetContract.registrySha256
+  functionSharing=[bool]$FunctionSharing
   c251BitComplement=[bool]$C251BitComplement
   orderedAsm=$orderedAsmRecord
   wideCapacity=$receipt.wideCapacity

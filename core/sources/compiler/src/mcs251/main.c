@@ -35,6 +35,7 @@
 #include "wide_ordered_contract.h"
 #include "dbuf_string.h"
 #include "../SDCCutil.h"
+#include "function_share.h"
 
 static char _defaultRules[] =
 {
@@ -138,6 +139,7 @@ int mcs251OrderedAsmEnabled;
 unsigned char mcs251OrderedAsmBits[256];
 static char *orderedAsmBitsSpec;
 int mcs251FunctionMetadataEnabled;
+static int functionSharingEnabled;
 char *mcs251LeafEffectsFile;
 extern void mcs251LoadLeafEffects(void);
 
@@ -201,6 +203,7 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-word-compare-immediate", &mcs251WordCompareImmediateEnabled, "Use exact 16-bit immediate comparisons in the wide backend; default off" },
     { 0, "--mcs251-ordered-asm", &mcs251OrderedAsmEnabled, "Admit ordered NOP and target-declared numeric SFR bit writes in the wide backend" },
     { 0, "--mcs251-ordered-asm-bits", &orderedAsmBitsSpec, "<NN:MM,...> verified SFR byte:bit-mask capabilities; requires --mcs251-ordered-asm", CLAT_STRING },
+    { 0, "--mcs251-share-functions", &functionSharingEnabled, "Share ABI2 machine function templates with per-call constants; requires function metadata; experimental default off" },
     { 0, "--mcs251-function-metadata", &mcs251FunctionMetadataEnabled, "Emit complete function ownership for conservative qualified-link reachability" },
     { 0, "--mcs251-leaf-effects", &mcs251LeafEffectsFile, "<file> experimental trusted leaf-write contract; use qualified two-pass builder", CLAT_STRING },
     { 0, NULL }
@@ -464,10 +467,31 @@ _mcs251_finaliseOptions (void)
     }
 }
 
+/* A shared entry adds stack storage. Direct SP/SPH aliases, including SFR
+ * symbols with arbitrary C names, must retain their original frame. */
+static int
+mcs251SharingStackOperand (const char *operand)
+{
+  if (!*operand || *operand == '#' || *operand == '@') return 0;
+  char *end;
+  unsigned long address = strtoul (operand, &end, 0);
+  if (end != operand && !*end && (address == 0x81 || address == 0xbe)) return 1;
+  if (sfr) for (const set *node = sfr->syms; node; node = node->next)
+    {
+      const symbol *sym = node->item;
+      if (!sym || !sym->rname[0] || !SPEC_ABSA (sym->etype)) continue;
+      int offset = wide_cost_symbol_offset (operand, sym->rname, (unsigned) getSize (sym->type));
+      if (offset >= 0 && (SPEC_ADDR (sym->etype) + offset == 0x81 || SPEC_ADDR (sym->etype) + offset == 0xbe)) return 1;
+    }
+  return 0;
+}
+
 static void
 mcs251ReturnAuditGlue (void)
 {
   mcs251ReturnAuditScanSymbolsBeforeGlue ();
+  if (functionSharingEnabled && mcs251FunctionMetadataEnabled && !options.debug)
+    mcs251ShareFunctions (&code->oBuf, mcs251SharingStackOperand);
   glue ();
   /* glue 仍可能产生静态初始化 IR，故完结记录必须在其后。 */
   mcs251ReturnAuditFinishAfterGlue (!fatalError);
