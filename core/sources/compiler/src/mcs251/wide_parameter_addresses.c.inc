@@ -86,4 +86,3 @@ wide_parameter_addresses(wide_function *f)
   if(folded) {wide_remove_dead_addresses(f);wide_reset_allocation(f);}
   return folded;
 }
-
