@@ -1,0 +1,345 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "baselineCommit": "fe5b795",
+  "branch": "codex/address-offset-lowering",
+  "root": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset",
+  "developmentCore": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\core-02",
+  "compilerSha256": "c0fd5a2bf9ed31c9113695e1db567ca3f9bf7e93bcf4dc3f94d5375490c80c81",
+  "implementation": "Cast-only 24-bit integer temporaries used exclusively as offsets of flat pointer add/subtract, represented by matching source width/sign or by 32 bits for mixed definitions. Shared C IR and ABI unchanged.",
+  "projects": [
+    {
+      "project": "p080",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\stcide-deep-review\\core-01-p080",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\core-02-p080",
+      "parentBytes": 20485,
+      "candidateBytes": 20377,
+      "deltaBytes": -108,
+      "inputs": {
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9",
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28"
+      },
+      "parentFirmwareSha256": "7e81773a9b16923a39c502c8eb59c990b980f9785f9175dd9e6f795d2057935a",
+      "firmwareSha256": "38a318716a1afb73e33f974760a1892de30467775ed16d88bee9b8a15ea7163b",
+      "compilerSha256": "c0fd5a2bf9ed31c9113695e1db567ca3f9bf7e93bcf4dc3f94d5375490c80c81",
+      "receiptSha256": "3e9e1a3b71c9aff9239e70c9aa02021cfc1253287706c1c9b1ced83bd1b4ea11",
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "calleePreservation": true,
+        "nativeIntegerRuntime": true
+      },
+      "functions": [
+        {
+          "symbol": "_Rotate_Test",
+          "parent": {
+            "bytes": 278,
+            "pushPop": 54
+          },
+          "candidate": {
+            "bytes": 270,
+            "pushPop": 46
+          },
+          "delta": -8
+        },
+        {
+          "symbol": "_Gui_Drawbmp16",
+          "parent": {
+            "bytes": 261,
+            "pushPop": 24
+          },
+          "candidate": {
+            "bytes": 161,
+            "pushPop": 12
+          },
+          "delta": -100
+        }
+      ],
+      "callFeedbackStatus": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+    },
+    {
+      "project": "p091",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\stcide-deep-review\\core-01-p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\core-02-p091",
+      "parentBytes": 5651,
+      "candidateBytes": 5651,
+      "deltaBytes": 0,
+      "inputs": {
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da"
+      },
+      "parentFirmwareSha256": "95cf36bf16825b7213b82e7ddc38ea526df9900a6a494d5102f61200ab4475a7",
+      "firmwareSha256": "95cf36bf16825b7213b82e7ddc38ea526df9900a6a494d5102f61200ab4475a7",
+      "compilerSha256": "c0fd5a2bf9ed31c9113695e1db567ca3f9bf7e93bcf4dc3f94d5375490c80c81",
+      "receiptSha256": "68a77893db655d1394ce462e6b3881be74a1aaa76621e7c16a7ec0a6c05758ad",
+      "options": {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "runtime": "standard",
+        "functionSharing": true,
+        "machineIr": true,
+        "calleePreservation": true,
+        "nativeIntegerRuntime": true
+      },
+      "functions": [],
+      "callFeedbackStatus": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+    }
+  ],
+  "hardware": {
+    "target": "AI8051U-34K64",
+    "clockMHz": 40,
+    "timer": "Timer0 /12T",
+    "uartBaud": 115200,
+    "measurements": [
+      {
+        "phase": "parent",
+        "build": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\stride-parent-02\\.build\\mx251\\latest",
+        "capture": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\capture-parent",
+        "codeBytes": 3658,
+        "compilerSha256": "6261435ad3bc443374bfdddb40d6722b5f2deaacfb6d426d64a87a790a54730d",
+        "firmwareSha256": "3bf2f0568f0a06a29ba547867d29eef10edc061a7354429d10bda11762395cc4",
+        "inputs": {
+          "pointer-stride.h": "db1c67a6bd7dce5addcb48560a983c3412fd76e63f8f79102addd81476005d31",
+          "pointer-stride-access.c": "49ff4748c0ba1e987f45846b1d5a71fa6787f378c06cff5d9e755b5680a326fe",
+          "machine-board.c": "b039d0cc5e7c37b78bd73ad9d574885ebd8a116e1f69d50d192fd74083a25f1f",
+          "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+          "pointer-stride-cases.c": "788d4517ceaef541abd3f89a206b4bb5326ff6b841a04fa598ef7d4c950750dc",
+          "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7"
+        },
+        "result": {
+          "status": "PASS",
+          "cases": 128,
+          "frames": 513,
+          "aggregateTicks": {
+            "0": 10064.0,
+            "1": 10172.5
+          }
+        },
+        "uartSha256": "66a35fab877967c764b7e006c3d7c35c63ed9083947e5ed68bd456708ec05071",
+        "functions": {
+          "_stride_signed": {
+            "bytes": 58,
+            "pushPop": 0
+          },
+          "_stride_unsigned": {
+            "bytes": 37,
+            "pushPop": 0
+          },
+          "_stride_nested": {
+            "bytes": 85,
+            "pushPop": 12
+          },
+          "_stride_subscript": {
+            "bytes": 58,
+            "pushPop": 0
+          },
+          "_stride_volatile": {
+            "bytes": 58,
+            "pushPop": 0
+          },
+          "_stride_word": {
+            "bytes": 66,
+            "pushPop": 0
+          },
+          "_stride_wrapped": {
+            "bytes": 49,
+            "pushPop": 0
+          },
+          "_stride_cast_signed": {
+            "bytes": 51,
+            "pushPop": 0
+          },
+          "_stride_cast_unsigned": {
+            "bytes": 51,
+            "pushPop": 0
+          },
+          "_stride_cast_subtract": {
+            "bytes": 56,
+            "pushPop": 0
+          },
+          "_stride_cast_pair": {
+            "bytes": 131,
+            "pushPop": 0
+          },
+          "_stride_code": {
+            "bytes": 54,
+            "pushPop": 0
+          },
+          "_stride_merge": {
+            "bytes": 86,
+            "pushPop": 0
+          },
+          "_stride_byte": {
+            "bytes": 62,
+            "pushPop": 0
+          },
+          "_stride_store": {
+            "bytes": 63,
+            "pushPop": 0
+          },
+          "_stride_init": {
+            "bytes": 124,
+            "pushPop": 0
+          },
+          "_stride_case": {
+            "bytes": 1221,
+            "pushPop": 128
+          }
+        }
+      },
+      {
+        "phase": "new",
+        "build": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\stride-new-02\\.build\\mx251\\latest",
+        "capture": "E:\\STVAPP\\MX251-mainline-20261109\\address-offset\\capture-new",
+        "codeBytes": 3053,
+        "compilerSha256": "c0fd5a2bf9ed31c9113695e1db567ca3f9bf7e93bcf4dc3f94d5375490c80c81",
+        "firmwareSha256": "138b0f922914350d0d64228da959dc07019b8f8348f0da735b6ab297d521dbd5",
+        "inputs": {
+          "machine-board.c": "b039d0cc5e7c37b78bd73ad9d574885ebd8a116e1f69d50d192fd74083a25f1f",
+          "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+          "pointer-stride.h": "db1c67a6bd7dce5addcb48560a983c3412fd76e63f8f79102addd81476005d31",
+          "pointer-stride-access.c": "49ff4748c0ba1e987f45846b1d5a71fa6787f378c06cff5d9e755b5680a326fe",
+          "pointer-stride-cases.c": "788d4517ceaef541abd3f89a206b4bb5326ff6b841a04fa598ef7d4c950750dc",
+          "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc"
+        },
+        "result": {
+          "status": "PASS",
+          "cases": 128,
+          "frames": 636,
+          "aggregateTicks": {
+            "0": 6736,
+            "1": 10174.5
+          }
+        },
+        "uartSha256": "3a09e512a56d5d5f58b400611e6e4638b0fb28414fa6896a46463f0809f5a56a",
+        "functions": {
+          "_stride_signed": {
+            "bytes": 41,
+            "pushPop": 0
+          },
+          "_stride_unsigned": {
+            "bytes": 37,
+            "pushPop": 0
+          },
+          "_stride_nested": {
+            "bytes": 51,
+            "pushPop": 0
+          },
+          "_stride_subscript": {
+            "bytes": 41,
+            "pushPop": 0
+          },
+          "_stride_volatile": {
+            "bytes": 41,
+            "pushPop": 0
+          },
+          "_stride_word": {
+            "bytes": 43,
+            "pushPop": 0
+          },
+          "_stride_wrapped": {
+            "bytes": 49,
+            "pushPop": 0
+          },
+          "_stride_cast_signed": {
+            "bytes": 35,
+            "pushPop": 0
+          },
+          "_stride_cast_unsigned": {
+            "bytes": 35,
+            "pushPop": 0
+          },
+          "_stride_cast_subtract": {
+            "bytes": 35,
+            "pushPop": 0
+          },
+          "_stride_cast_pair": {
+            "bytes": 50,
+            "pushPop": 0
+          },
+          "_stride_code": {
+            "bytes": 42,
+            "pushPop": 0
+          },
+          "_stride_merge": {
+            "bytes": 55,
+            "pushPop": 0
+          },
+          "_stride_byte": {
+            "bytes": 39,
+            "pushPop": 0
+          },
+          "_stride_store": {
+            "bytes": 42,
+            "pushPop": 0
+          },
+          "_stride_init": {
+            "bytes": 124,
+            "pushPop": 0
+          },
+          "_stride_case": {
+            "bytes": 1083,
+            "pushPop": 72
+          }
+        }
+      }
+    ]
+  },
+  "checks": {
+    "check-01": {
+      "status": "PASS",
+      "sha256": "515eae9abffbda975dfc3222760a3c60119f531baa0c538d0466395d51aadab5"
+    },
+    "check-frontend": {
+      "status": "PASS",
+      "sha256": "2bfffc69a2b9b1d28f82bbb36964617212939d52b6ee3da4cf33aa87ada24244"
+    }
+  },
+  "earlierCandidate": {
+    "core": "core-01",
+    "compilerSha256": "79696ba9cc1b672a46cdf24991033bf27040506d503a117eb815c12e9362789a",
+    "p080Bytes": 20371,
+    "p091Bytes": 5651,
+    "representation": "Always 32 bits; final implementation preserves matching narrow source representations."
+  },
+  "scope": [
+    "SDK sources/configuration unchanged.",
+    "Two complete projects built; no full SDK rerun.",
+    "Hardware timing is the independent addressing fixture against parent MX251, not whole-project or Keil timing.",
+    "No new joint 110/120 percent qualification."
+  ]
+}

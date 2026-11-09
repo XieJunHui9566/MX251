@@ -30,7 +30,7 @@ typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
   int width, reg, slot, pin, preference, weight, reads;
-  bool sign, pointer, codePointer, floating, symbolSnapshot, nearData;
+  bool sign, pointer, codePointer, floating, symbolSnapshot, nearData, addressOnlyOffset;
   wide_bits edges;
 } wide_value;
 typedef struct { int value, width; uint32_t literal; bool sign, floating, codePointer; } wide_operand;
@@ -208,11 +208,14 @@ wide_stack_signature(sym_link *type)
   return true;
 }
 
+#include "wide_address_offset.c.inc"
+
 static bool
 wide_operand_from (wide_function *f, operand *op, wide_operand *v)
 {
   sym_link *t;
   v->value = -1;
+  if(wide_address_offset_operand(f,op,v))return true;
   /* Internally formed DATA addresses retain the physical one-byte near
    * representation. This does not admit near pointer parameters or objects. */
   if(op && IS_ITEMP(op) && !IS_OP_GLOBAL(op) && !OP_SYMBOL(op)->addrtaken)

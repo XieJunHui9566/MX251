@@ -14,7 +14,12 @@ def expected(kind, seed):
               octet(2 * (256 + seed)), octet(3 * (257 + seed)),
               octet(2 * (256 + seed)), octet(2 * (256 + seed)),
               (0x3456 ^ (2 * (256 + seed) * 29)) & 255,
-              octet((2 * (128 + seed)) & 255), seed ^ 0xa5]
+              octet((2 * (128 + seed)) & 255),
+              octet(256 + seed), octet(1792 - seed), octet(512 + seed),
+              octet(2304 + seed), octet(2304 + seed) ^ octet(1792 - seed),
+              ((2 * (64 + seed) * 17) ^ ((2 * (64 + seed)) >> 4) ^ 0x69) & 255,
+              octet(1792 - seed if seed & 1 else 2304 + seed), octet(1984 - seed),
+              seed ^ 0xa5]
     result = 0x13579bdf
     for value in values:
         result = ((result << 5) ^ result ^ value) & 0xffffffff
