@@ -1,5 +1,7 @@
 # 通用算术与运行库调用分析
 
+后续实现见 [整数除余复用与原生运行库](NATIVE-INTEGER-OPTIMIZATION.md)：不依赖 SDK 的两项数值负载实板时间下降 40.75% / 68.97%，完整工程体积尚未获益。
+
 2026-11-09，父提交 `2d163a0`，分支 `codex/runtime-call-effects`。实现提交 `8ebb85d`、`e51d330`，独立测试程序 `d8de004`。完整数据见 [runtime-call-effects-evidence.json](runtime-call-effects-evidence.json)。
 
 改动属于 MX251 编译器和配套构建流程。优化条件只有机器指令、函数 ABI、调用关系与实际运行库内容；没有 SDK 工程名、应用函数名或目录匹配。七个完整工程的输入前后哈希一致，SDK 源码没有修改。
