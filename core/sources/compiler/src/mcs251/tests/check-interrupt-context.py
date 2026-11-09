@@ -45,6 +45,19 @@ def main():
                         assert re.search(r'^\s*reti\s*$', body, re.M), (name, function)
                         if function == 'irq_naked':
                             assert not re.search(r'^\s*(push|pop)\s', body, re.M)
+                        elif 'mx251-isr-save-layout' in body:
+                            assert function == 'irq_calls'
+                            prologue, rest = body.split('mx251-isr-body-begin', 1)
+                            epilogue = rest.split('mx251-isr-body-end', 1)[1]
+                            pushes = re.findall(r'^\s*push\s+(\S+)\s*$', prologue, re.M)
+                            pops = re.findall(r'^\s*pop\s+(\S+)\s*$', epilogue, re.M)
+                            # The optional BP save belongs to the C frame, not
+                            # the asynchronous context; inspect the exact suffix.
+                            expected = ['0xd1','bits','psw'] + ['dr'+str(i) for i in range(0,32,4)] + ['dpl','dph','dpxl']
+                            assert pushes[:len(expected)] == expected, (name, pushes)
+                            assert pops[-len(expected):] == list(reversed(expected)), (name, pops)
+                            assert prologue.index('push\tpsw') < prologue.index('mov\tpsw,') < prologue.index('push\tdr0')
+                            assert epilogue.index('pop\tdr0') < epilogue.index('pop\tpsw') < epilogue.index('pop\t0xd1')
                         else:
                             # Body spills/stack arguments may also push DPXL;
                             # inspect only the asynchronous entry/exit frame.

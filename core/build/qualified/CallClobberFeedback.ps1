@@ -304,6 +304,14 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
    else{$abi=[int]$contract[0].Groups[1].Value}
    $objects=$unitObjects[$unit.name]
    $analysis=if($reason){@{writes=4294967295L;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects}
+   # An ISR is never a normal callable definition. Its direct C calls can
+   # still consume callee summaries, including when the unit only has ISRs.
+   if($m.Groups[2].Value -eq '1' -and $m.Groups[4].Value -eq '0' -and $m.Groups[5].Value -eq '0' -and
+      $contract.Count -eq 1 -and $contract[0].Groups[1].Value -eq '2' -and
+      $contract[0].Groups[2].Value -eq '0' -and $contract[0].Groups[3].Value -eq '0') {
+    $isrCalls=Get-Mx251BankBody $body $aliases $objects
+    $analysis.calls=@($isrCalls.calls)
+   }
    $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases;objects=$objects}
    if(-not $symbols.ContainsKey($symbol)){$symbols[$symbol]=@()};$symbols[$symbol]+=@($row);$all+=@($row)
   }

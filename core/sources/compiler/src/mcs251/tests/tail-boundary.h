@@ -1,0 +1,40 @@
+/* Shared by compile checks and the AI8051U execution fixture. */
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned long u32;
+#define OLD __reentrant
+#define NATIVE __reentrant __sdcccall(4)
+u8 leaf8(u8) OLD;
+u16 leaf16(u16) OLD;
+u32 leaf32(u32) OLD;
+float leaff(float) OLD;
+u8 __xdata *leafp(u8 __xdata *) OLD;
+u32 pair32(u32,u32) OLD;
+u32 read_local(u32 __xdata *) OLD;
+u32 native_pair(u32,u32) NATIVE;
+void sink0(void) OLD;
+void sink1(void) OLD;
+void sink2(void) OLD;
+void sink3(void) OLD;
+void sink4(void) OLD;
+void sink5(void) OLD;
+void sink6(void) OLD;
+void sink7(void) OLD;
+u8 context_echo(u8) OLD;
+extern volatile u32 tail_trace;
+u8 tail8(u8) OLD;
+u16 tail16(u16) OLD;
+u32 tail32(u32) OLD;
+float tailf(float) OLD;
+u8 __xdata *tailp(u8 __xdata *) OLD;
+u32 incoming_stack(u32,u32) OLD;
+u32 outgoing_stack(u32) OLD;
+u32 local_address(u32) OLD;
+u32 parameter_address(u32) OLD;
+u32 after_call(u32) OLD;
+u32 converted_result(u8) OLD;
+u32 native_tail(u32,u32) NATIVE;
+u32 mixed_abi(u32,u32) OLD;
+void implicit_void(void) OLD;
+void dispatch(u8) OLD;
+void discarded_result(u32) OLD;

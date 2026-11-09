@@ -79,6 +79,7 @@ static struct
     short BInUse;
   } bu;
   short accInUse;
+  bool packedIsr;
   struct
   {
     int pushed;

@@ -1171,18 +1171,38 @@ wordinary_forward_return(wide_function *f,int index)
 }
 
 static bool
+wcall_tail_return(wide_function *f,int index)
+{
+  wide_node *call=&f->nodes[index];
+  /* The caller frame must no longer own storage visible to the callee.
+   * Outgoing stack arguments still require the caller's cleanup on return. */
+  if(f->no || f->formalAddress || call->stackBytes ||
+     f->ordinaryEntry!=call->ordinaryCall)return false;
+  for(int v=0;v<f->nv;++v)
+    if(v!=call->result && wb_has(call->out,v))return false;
+
+  /* Follow the CFG, including a shared switch exit and implicit void return.
+   * Only labels and unconditional edges may separate the call and return. */
+  int next=call->succ[0];
+  for(int steps=0;next>=0 && steps<f->nn;++steps) {
+    wide_node *ret=&f->nodes[next];
+    if(ret->op==LABEL || ret->op==GOTO) {next=ret->succ[0];continue;}
+    if(IS_VOID(currFunc->type->next))
+      return ret->op==ENDFUNCTION || (ret->op==RETURN && !ret->width);
+    if(ret->op!=RETURN || call->carryResult || call->result<0 ||
+       ret->left.value!=call->result || ret->width!=call->width ||
+       f->values[call->result].reads!=1)return false;
+    return getSize(currFunc->type->next)==getSize(call->callee->type->next) &&
+      mcs251InternalReturn(currFunc)==mcs251InternalReturn(call->callee);
+  }
+  return false;
+}
+
+static bool
 wcall_original(wide_function *f,int index)
 {
   wide_node *n=&f->nodes[index];
-  bool tail=false;
-  /* 局部对象地址可能经别名交给被调函数；在证明其不逃逸前，
-   * 不能提前释放当前帧后尾跳转，否则被调函数会覆盖仍活跃的对象。 */
-  if(!f->ordinaryEntry && !n->ordinaryCall && !f->no && !f->formalAddress && !n->stackBytes && index+1<f->nn && f->nodes[index+1].op==RETURN) {
-    wide_node *ret=&f->nodes[index+1];
-    tail=(n->result>=0 && ret->left.value==n->result && f->values[n->result].reads==1 &&
-          ret->width==wide_width(currFunc->type->next)) ||
-         (n->result<0 && !ret->width && IS_VOID(currFunc->type->next));
-  }
+  bool tail=wcall_tail_return(f,index);
   int saved[WV_MAX],count=0;
   mcs251_wide_save_plan savePlan;bool packed=false;
   uint32_t liveBytes=0,omitted=0,calleeWrites=UINT32_MAX;
@@ -1254,8 +1274,13 @@ wcall_original(wide_function *f,int index)
     }
   } else warguments(f,n);
   if(tail) {
+    we(f,"; wide tail call abi=%u frame=%d\n",(unsigned)FUNC_SDCCCALL(n->callee->type),f->frame);
     wstep(f,60,4,true,f->frame);
-    we(f,"\tejmp\t%s\n",n->callee->rname);return true;
+    we(f,"\tejmp\t%s\n",n->callee->rname);
+    /* Omit the call's own exit edge, but retain labels and shared return
+     * blocks. Jump-table functions do not run the final text CFG cleanup. */
+    return index+1<f->nn && (f->nodes[index+1].op==RETURN ||
+      f->nodes[index+1].op==GOTO || f->nodes[index+1].op==ENDFUNCTION);
   }
   size_t setupEnd=dbuf_get_length(&f->output);
   we(f,"\tecall\t%s\n",n->callee->rname);
@@ -1380,6 +1405,20 @@ wcall(wide_function *f,int index)
   dbuf_destroy(&trial->output);Safe_free(trial);return originalForward;
 }
 
+/* A zero-argument tail block can be the destination of a jump-table entry
+ * itself. There is no argument setup or frame cleanup to execute first. */
+static int
+wjump_tail_target(wide_function *f,int next)
+{
+  if(f->frame)return -1;
+  for(int steps=0;next>=0 && steps<f->nn;++steps) {
+    wide_node *n=&f->nodes[next];
+    if(n->op==LABEL || n->op==GOTO) {next=n->succ[0];continue;}
+    return n->op==CALL && !n->args && wcall_tail_return(f,next)?next:-1;
+  }
+  return -1;
+}
+
 static void
 wjump_table(wide_function *f,wide_node *n)
 {
@@ -1394,7 +1433,30 @@ wjump_table(wide_function *f,wide_node *n)
   we(f,"\tadd\tdr16,dr20\n\tejmp\t@dr16\n");
   if(f->domainCount>1)we(f,"; mx251-domain-table\n");
   wl(f,table);
-  for(int k=0;k<n->jumpCount;++k)wj(f,"ejmp",f->jumpLabels[n->jumpStart+k]);
+  for(int k=0;k<n->jumpCount;++k) {
+    int tail=wjump_tail_target(f,f->jumpSuccessors[n->jumpStart+k]);
+    if(tail>=0)we(f,"\tejmp\t%s\n",f->nodes[tail].callee->rname);
+    else wj(f,"ejmp",f->jumpLabels[n->jumpStart+k]);
+  }
+}
+
+static void
+wide_emit_reachable(wide_function *f,bool *reachable)
+{
+  int queue[WN_MAX],head=0,count=1;
+  memset(reachable,0,(size_t)f->nn*sizeof *reachable);
+  reachable[0]=true;queue[0]=0;
+  while(head<count) {
+    int index=queue[head++];wide_node *n=&f->nodes[index];
+    if(n->op==CALL && wcall_tail_return(f,index))continue;
+    int edges=n->op==JUMPTABLE?n->jumpCount:2;
+    for(int edge=0;edge<edges;++edge) {
+      int next=n->op==JUMPTABLE?f->jumpSuccessors[n->jumpStart+edge]:n->succ[edge];
+      if(next<0 || reachable[next])continue;
+      if(n->op==JUMPTABLE && wjump_tail_target(f,next)>=0)continue;
+      reachable[next]=true;queue[count++]=next;
+    }
+  }
 }
 
 static void
@@ -1504,6 +1566,7 @@ wrotate_proposal(wide_function *f,int i)
 static void
 wide_emit(wide_function *f)
 {
+  bool reachable[WN_MAX];wide_emit_reachable(f,reachable);
   f->scratchAddressValid=false;f->scratchNode=f->scratchNextNode=-1;
   we(f,"\n; mcs251 wide-mir accepted: %s; values=%d nodes=%d frame=%d folded-casts=%d\n%s:\n",currFunc->name,f->nv,f->nn,f->frame,f->foldedCasts,currFunc->rname);
   if(f->reusedParameterLoads)we(f,"; wide repeated parameter loads reused=%d\n",f->reusedParameterLoads);
@@ -1525,6 +1588,7 @@ wide_emit(wide_function *f)
   if(f->nativeReceiveFree)wnative_receive_prefix(f);
   if(mcs251ConstantRotateFusionEnabled)wide_constant_rotate(f);
   for(int i=0;i<f->nn;++i) {
+    if(!reachable[i])continue;
     wide_node *n=&f->nodes[i];
     if(f->domainCount>1)we(f,"; mx251-domain-node=%d\n",i);
     f->emitWeight=1+4*n->origin->depth;

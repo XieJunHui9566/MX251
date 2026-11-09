@@ -25,7 +25,7 @@ for model in ['small','large']:
    if re.match(r'\s*mov\s+(wr\d+|r(?:[0-9]|1[0-5])|a),@spx',line) and depth:reads.append(line)
    if '\tecall\t' in line:at_call+=reads;reads=[]
   assert depth==0 and at_call,(name,depth,at_call)
- assert '\teret' in body('voidtail')
+ assert '\tejmp\t___m251r4_hvoid' in body('voidtail') and '\tecall\t' not in body('voidtail')
  rows.append(dict(model=model,command=cmd,accepted=accepted,fallback=fallback,hardwareExecuted=False))
 (a.output_dir/'results.json').write_text(json.dumps(rows,indent=2))
 print('PASS: 33 accepted functions and one BitInt24 fallback in both stack-auto models')

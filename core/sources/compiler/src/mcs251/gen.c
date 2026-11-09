@@ -2069,6 +2069,57 @@ mcs251SaveIsrPsw1 (void)
 }
 
 static void
+savePackedIsrContext (void)
+{
+  emitcode (";", "mx251-isr-save-layout schema=1 gpr=ffffffff bank=0 packed=1");
+  emitpush ("0xd1");
+  if (!inExcludeList ("bits"))
+    {
+      emitpush ("bits");
+      BitBankUsed = 1;
+    }
+  /* DR0/DR4 must address bank0 even when the interrupted code used another
+     bank. Save the old PSW before switching, restore it after the GPRs. */
+  emitpush ("psw");
+  emitcode ("mov", "psw,#0x00");
+  for (int reg = 0; reg < 32; reg += 4)
+    emitcode ("push", "dr%d", reg);
+  _G.stack.pushed += 32;
+  if (!inExcludeList ("dpl")) emitpush ("dpl");
+  if (!inExcludeList ("dph")) emitpush ("dph");
+  emitpush ("dpxl");
+}
+
+static void
+restorePackedIsrContext (void)
+{
+  emitpop ("dpxl");
+  if (!inExcludeList ("dph")) emitpop ("dph");
+  if (!inExcludeList ("dpl")) emitpop ("dpl");
+  for (int reg = 28; reg >= 0; reg -= 4)
+    emitcode ("pop", "dr%d", reg);
+  _G.stack.pushed -= 32;
+  emitpop ("psw");
+  if (!inExcludeList ("bits")) emitpop ("bits");
+  emitpop ("0xd1");
+}
+
+static bool
+usePackedIsrContext (iCode *ic, sym_link *ftype)
+{
+  if (!IFFUNC_ISISR (ftype) || !IFFUNC_HASFCALL (ftype) ||
+      IFFUNC_ISNAKED (ftype) || IFFUNC_ISCRITICAL (ftype) ||
+      FUNC_REGBANK (ftype) || options.useXstack || options.debug ||
+      inExcludeList ("acc") || inExcludeList ("b"))
+    return false;
+  /* C stack objects are above the complete context frame. Inline assembly
+     may inspect its old private layout, so keep that entry on the old path. */
+  for (; ic && ic->op != ENDFUNCTION; ic = ic->next)
+    if (ic->op == INLINEASM) return false;
+  return true;
+}
+
+static void
 genFunction (iCode * ic)
 {
   symbol *sym = OP_SYMBOL (IC_LEFT (ic));
@@ -2082,6 +2133,7 @@ genFunction (iCode * ic)
   mcs251ValidateNativeAbi (ftype);
 
   _G.dptrCache.valid = false;  /* new function: dptr is undefined */
+  _G.packedIsr = usePackedIsrContext (ic, ftype);
 
   /* create the function header */
   emitcode (";", "-----------------------------------------");
@@ -2126,7 +2178,9 @@ genFunction (iCode * ic)
   wassertl (_G.stack.xpushed == 0, "xstack over/underflow");
 
   /* if this is an interrupt service routine then save acc, b, dpl, dph */
-  if (IFFUNC_ISISR (ftype))
+  if (_G.packedIsr)
+    savePackedIsrContext ();
+  else if (IFFUNC_ISISR (ftype))
     {
       bitVect *rsavebits;
 
@@ -2685,7 +2739,7 @@ genEndFunction (iCode * ic)
     }
 
   /* restore the register bank */
-  if (IFFUNC_ISISR (ftype))
+  if (IFFUNC_ISISR (ftype) && !_G.packedIsr)
     {
       if (!FUNC_REGBANK (ftype) || !options.useXstack)
         {
@@ -2696,7 +2750,12 @@ genEndFunction (iCode * ic)
         }
     }
 
-  if (IFFUNC_ISISR (ftype))
+  if (_G.packedIsr)
+    {
+      restorePackedIsrContext ();
+      emitcode ("reti", "");
+    }
+  else if (IFFUNC_ISISR (ftype))
     {
       bitVect *rsavebits;
 

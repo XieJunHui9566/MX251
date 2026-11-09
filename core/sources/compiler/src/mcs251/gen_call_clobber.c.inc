@@ -12,10 +12,12 @@ mcs251TrimKnownCallRegisters (iCode *ic, bitVect *rsave, bool restore)
   sym_link *type;
   if (!_G.currentFunc || options.useXstack || !options.omitFramePtr ||
       FUNC_SDCCCALL (_G.currentFunc->type) != 2 || FUNC_REGBANK (_G.currentFunc->type) ||
-      IFFUNC_ISISR (_G.currentFunc->type) || IFFUNC_ISNAKED (_G.currentFunc->type) ||
+      IFFUNC_ISNAKED (_G.currentFunc->type) ||
       IFFUNC_CALLEESAVES (_G.currentFunc->type) || IFFUNC_ISBANKEDCALL (_G.currentFunc->type) ||
       !ic || ic->op != CALL || !IS_SYMOP (IC_LEFT (ic))) return;
   callee = OP_SYMBOL (IC_LEFT (ic)); type = callee->type;
+  /* A bank0 ISR has the same call-site register lifetimes as an ordinary
+     caller. Its asynchronous entry/exit context is saved independently. */
   if (!IS_FUNC (type) || FUNC_SDCCCALL (type) != 2 || FUNC_REGBANK (type) ||
       IFFUNC_ISISR (type) || IFFUNC_ISNAKED (type) || IFFUNC_CALLEESAVES (type) ||
       IFFUNC_ISBANKEDCALL (type) || !mcs251CallClobberWrites (callee, &writes)) return;
