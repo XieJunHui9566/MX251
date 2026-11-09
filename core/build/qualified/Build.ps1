@@ -326,9 +326,16 @@ try {
  $scalarRecord=Invoke-Mx251ScalarParameters $outputRoot $config $toolRoot
  Write-Json (Join-Path $outputRoot 'scalar-parameters.json') $scalarRecord
  $callClobberRecord=$null
+ $runtimeCallRecord=@{functions=@();libraries=@();contractSha256=$null}
  if(-not $LeafCallFeedback) {
   . (Join-Path $PSScriptRoot 'CallClobberFeedback.ps1')
-  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr
+  if($MachineIr -and ($NativeIntegerRuntime -or $runtime -eq 'native-int')){
+   . (Join-Path $PSScriptRoot 'RuntimeCallEffects.ps1')
+   $runtimeCallRecord=Get-Mx251RuntimeCallEffects $ProfileRoot @('runtime/libnativeint.lib')
+  }
+  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr -LibraryFunctions $runtimeCallRecord.functions
+  $callClobberRecord.runtimeLibraries=$runtimeCallRecord.libraries
+  $callClobberRecord.runtimeContractSha256=$runtimeCallRecord.contractSha256
   Write-Json (Join-Path $outputRoot 'call-clobber-feedback.json') $callClobberRecord
  }
  $leafFeedbackRecord=$null
@@ -400,6 +407,7 @@ try {
  }
  Write-Json (Join-Path $outputRoot 'interrupt-vectors.plan.json') $interruptPlan
  Run-Tool 'link' $compilerExe $args
+ if($runtimeCallRecord.libraries.Count){Assert-Mx251RuntimeCallEffects $runtimeCallRecord}
  . (Join-Path $PSScriptRoot 'FormatRuntime.ps1')
  $formatArchives=@{}
  if($NativeIntegerRuntime){$formatArchives[(Join-Path $ProfileRoot 'runtime/libnativeint.lib')]=@($lock.profile|Where-Object{$_.path -ceq 'runtime/libnativeint.lib'})[0].sha256}
