@@ -1812,16 +1812,26 @@ wide_emit(wide_function *f)
     }
     case WM_PARAM_STORE: {
       int base=n->addressOffset-f->frame-f->stackDepth-f->preservedBytes,physical=n->left.width;
-      wload(f,n->right,16,n->width==1?2:n->width);
       we(f,"; wide stack parameter store width=%d entry-offset=%d\n",physical,n->addressOffset);
-      if(physical==1 || physical==3) {
+      if(physical==1) {
+        char a[32];wa(a,base);
+        int reg=n->right.value>=0?f->values[n->right.value].reg:-1;
+        if(reg>=0)we(f,"\tmov\t%s,r%d\n",a,reg);
+        else {wload_byte(f,n->right,11);we(f,"\tmov\t%s,a\n",a);}
+        break;
+      }
+      /* SPX-relative stores do not consume an address GPR. Use the allocated
+       * source directly, as for local stack objects; only spills/literals
+       * need a temporary. Physical three-byte pointers retain their layout. */
+      int data=wread(f,n->right,16,n->width);
+      if(physical==3) {
         char a[32];wa(a,base);
         /* WR16 以上没有可编码的字节寄存器别名，经保留 WR10 取低字节。 */
-        we(f,"\tmov\twr10,wr16\n\tmov\t%s,a\n",a);
+        we(f,"\tmov\twr10,wr%d\n\tmov\t%s,a\n",data,a);
       }
       for(int k=physical==3?1:0;physical!=1 && k<physical;k+=2) {
         char a[32];wa(a,base+k);
-        we(f,"\tmov\t%s,wr%d\n",a,16+k+(physical==3));
+        we(f,"\tmov\t%s,wr%d\n",a,data+k+(physical==3));
       }
       break;
     }

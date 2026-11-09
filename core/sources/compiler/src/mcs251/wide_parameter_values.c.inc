@@ -21,7 +21,7 @@ wide_parameter_values(wide_function *f)
     if(index<wide_register_count(currFunc->type))continue;
     sym_link *type=arg->type;symbol *s=arg->sym;int physical=getSize(type);
     offset-=physical;
-    if(!s || s->addrtaken || !s->onStack || !s->_isparm ||
+    if(!s || !s->onStack || !s->_isparm ||
        isVolatile(type) || isAtomic(type) || !wide_abi_type(type,currFunc->type))continue;
     int width=wide_width(type);bool floating=IS_FLOAT(type),pointer=wide_pointer(type);
     bool sign=!floating && !pointer && !SPEC_USIGN(getSpec(type));

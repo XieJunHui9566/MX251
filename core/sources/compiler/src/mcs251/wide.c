@@ -1288,7 +1288,7 @@ wide_remove_dead_addresses(wide_function *f)
       wide_node *n=&f->nodes[i];
       if(n->op==WM_NEAR_ADDRESS && n->result<0)n->op=WM_NOP;
       if(n->result>=0 && (f->values[n->result].pointer || f->values[n->result].nearData) && !wb_has(used,n->result) &&
-         (n->op==WM_ADDRESS || n->op==WM_NEAR_ADDRESS || n->op==CAST || n->op=='=' || n->op=='+' || n->op=='-')) {
+         (n->op==WM_ADDRESS || n->op==WM_PARAM_ADDRESS || n->op==WM_NEAR_ADDRESS || n->op==CAST || n->op=='=' || n->op=='+' || n->op=='-')) {
         n->op=WM_NOP;n->use=n->def=(wide_bits){{0}};
         n->result=n->left.value=n->right.value=n->addressIndex.value=-1;changed=true;
       }
@@ -2719,15 +2719,24 @@ wide_choose_parameter_values(wide_function *f,wide_selection_cost *cost)
     "parameter-values","parameters",false,"parameters-original","parameters-trial",false,false,false);
 }
 
+#include "wide_parameter_addresses.c.inc"
+
+static mcs251_wide_result
+wide_choose_parameter_addresses(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_parameter_addresses,wide_choose_parameter_values,
+    "parameter-address","accesses",false,"parameter-address-original","parameter-address-trial",false,false);
+}
+
 #include "wide_rotate_cost.c.inc"
 
 static mcs251_wide_result
 wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
 {
-  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_parameter_values(f,cost);
+  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_parameter_addresses(f,cost);
   struct dbuf_s baseline,candidate;dbuf_init(&baseline,1024);dbuf_init(&candidate,1024);
   struct dbuf_s *output=f->candidateOutput;f->candidateOutput=&baseline;
-  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_parameter_values(f,&original);
+  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_parameter_addresses(f,&original);
   f->candidateOutput=output;
   unsigned selected=0;if(result==MCS251_WIDE_ACCEPTED && !original.unknown)
     selected=wide_rotate_finalize(f,dbuf_get_buf(&baseline),dbuf_get_length(&baseline),&candidate);

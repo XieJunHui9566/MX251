@@ -1,0 +1,365 @@
+{
+  "schema": 1,
+  "date": "2026-11-10",
+  "baselineCommit": "b5df04c",
+  "branch": "codex/parameter-addresses",
+  "root": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses",
+  "developmentCore": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\core-02",
+  "compilerSha256": "5b016fbcf1b987e663527093576c135a07b5eb0623344d48fd5cf99fe7237994",
+  "projects": [
+    {
+      "project": "p080",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\parameter-values\\core-02-p080",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\core-02-p080",
+      "parentBytes": 20085,
+      "candidateBytes": 19968,
+      "deltaBytes": -117,
+      "keilBytes": 18071,
+      "ratioToKeil": 1.1049748215372697,
+      "bytesTo110": 90,
+      "inputs": {
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45",
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28",
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718",
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9"
+      },
+      "projectConfigurationEqual": true,
+      "configurationCanonicalSha256": "e3ae02c26faf7153b53023cf9d62d3237c6d35561a74910351a1b570db98fb3a",
+      "parentFirmwareSha256": "f7e9f15c1f45e5b73013a75fc2b3573f8f846c237ff3a9fe114e5f9c098b36d4",
+      "firmwareSha256": "4d32ad2cff4ce331efb2233cf683b1d0192cc0b7fb38daa9628a1ec09871391a",
+      "receiptSha256": "15777414972fd56425e56d02557f4e513b48b967c72d820dda26a13674b2d074",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "symbol": "_Fill_Triangel",
+          "parent": {
+            "bytes": 877,
+            "pushPop": 56
+          },
+          "candidate": {
+            "bytes": 754,
+            "pushPop": 52
+          },
+          "delta": -123
+        },
+        {
+          "symbol": "_LCD_ShowChar",
+          "parent": {
+            "bytes": 587,
+            "pushPop": 30
+          },
+          "candidate": {
+            "bytes": 593,
+            "pushPop": 30
+          },
+          "delta": 6
+        }
+      ]
+    },
+    {
+      "project": "p091",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261109\\parameter-values\\core-02-p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\core-02-p091",
+      "parentBytes": 5625,
+      "candidateBytes": 5621,
+      "deltaBytes": -4,
+      "keilBytes": 4401,
+      "ratioToKeil": 1.2772097250624859,
+      "bytesTo110": 780,
+      "inputs": {
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f"
+      },
+      "projectConfigurationEqual": true,
+      "configurationCanonicalSha256": "2b61fa2fc43f3b63db13d297920f09cf28f58148ae15a2b1bb12eff3fd04a7cd",
+      "parentFirmwareSha256": "d02ebf5c67c782128cf8b8651eff905f882d7cc12fd4e266bff41609538dfcc5",
+      "firmwareSha256": "8794712ffc87a5193447b6216a82d7739abe3d61b7bb7d94d5b902e2adafe1f8",
+      "receiptSha256": "582560cd5980f3ce10dc6e17c7561aee2c4a0140ace84c9cb81e33b86c0d0a2d",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "symbol": "_flash_writesector",
+          "parent": {
+            "bytes": 184,
+            "pushPop": 8
+          },
+          "candidate": {
+            "bytes": 182,
+            "pushPop": 8
+          },
+          "delta": -2
+        },
+        {
+          "symbol": "_scsi_out",
+          "parent": {
+            "bytes": 135,
+            "pushPop": 6
+          },
+          "candidate": {
+            "bytes": 133,
+            "pushPop": 6
+          },
+          "delta": -2
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "triangle": {
+      "parent": {
+        "directory": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\triangle-parent\\.build\\mx251\\latest",
+        "codeBytes": 2388,
+        "compilerSha256": "0f35c7266c78d5a36b5dac29c2c1e70be82a546283568a3961fe21bdf4fc5ecb",
+        "firmwareSha256": "99eca125a15f7167daea2f5584ecfd2859ea7d3a2b1a6fc95eb12be5ebbcd7ad",
+        "capture": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\triangle-capture-parent",
+        "captureSha256": "9c492b580d461557ba93a27162951e21fd380d872d5833b0e8b63038d68cc2da",
+        "status": "PASS",
+        "cases": 128,
+        "frames": 632,
+        "aggregateTicks": {
+          "0": 10371,
+          "1": 10160.0
+        }
+      },
+      "candidate": {
+        "directory": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\triangle-new\\.build\\mx251\\latest",
+        "codeBytes": 2274,
+        "compilerSha256": "5b016fbcf1b987e663527093576c135a07b5eb0623344d48fd5cf99fe7237994",
+        "firmwareSha256": "aa58e74f55a66135d8bdf72b1bf5c2b68c6856a43887d9a5d35fd04be117aa9d",
+        "capture": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\triangle-capture-new",
+        "captureSha256": "8624c03b7d80d7dd236ee5c41ec46a2a3729c6973cd16555f197ff4a548217bb",
+        "status": "PASS",
+        "cases": 128,
+        "frames": 631,
+        "aggregateTicks": {
+          "0": 10235,
+          "1": 10160.0
+        }
+      },
+      "inputs": {
+        "machine-trace.c": "adb172fc49d6834e37385036b18247f034e25ffce6ee09ad4693f4c2da596559",
+        "machine-board.c": "40e5a4910213a2e28a582ac1376add2bf7494a2131e682060c5e7390d1b448ff",
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "machine-triangle.c": "0402c38c409eab89b56e8aab86626348f531b11c04730411332c69f28e269fd8",
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc"
+      },
+      "projectConfigurationEqual": true,
+      "configurationCanonicalSha256": "c674b26125fbec5962725c625cac4db627cb185ea8058763223b7b6a44ced1e1",
+      "functions": [
+        {
+          "symbol": "_Fill_Triangel",
+          "parent": {
+            "bytes": 894,
+            "pushPop": 68
+          },
+          "candidate": {
+            "bytes": 780,
+            "pushPop": 60
+          },
+          "delta": -114
+        }
+      ]
+    },
+    "params": {
+      "parent": {
+        "directory": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\params-parent\\.build\\mx251\\latest",
+        "codeBytes": 5626,
+        "compilerSha256": "0f35c7266c78d5a36b5dac29c2c1e70be82a546283568a3961fe21bdf4fc5ecb",
+        "firmwareSha256": "ba6288a661f9b2c0cab10eb58546a6cdf0e7fab7cc10067bf06f6a7847e255e6",
+        "capture": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\params-capture-parent",
+        "captureSha256": "01b7cb054a57934ceea73e011371aefa2a6ec350628209c5492d470aabee2513",
+        "status": "PASS",
+        "cases": 128,
+        "frames": 642,
+        "aggregateTicks": {
+          "0": 15511.5,
+          "1": 10192
+        }
+      },
+      "candidate": {
+        "directory": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\params-new\\.build\\mx251\\latest",
+        "codeBytes": 5537,
+        "compilerSha256": "5b016fbcf1b987e663527093576c135a07b5eb0623344d48fd5cf99fe7237994",
+        "firmwareSha256": "ab7c1dfb3bdd7c6f44c3e5f21509eb8f3c8f848bd651bfccbb4be379fcbe2c69",
+        "capture": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\params-capture-new",
+        "captureSha256": "86146eda3414706d443d7e1bc07292acf7d3c05534050121fbe78a6253d1c8c7",
+        "status": "PASS",
+        "cases": 128,
+        "frames": 640,
+        "aggregateTicks": {
+          "0": 15175,
+          "1": 10192
+        }
+      },
+      "inputs": {
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+        "parameter-addresses.h": "45813b4e4f803a7e793f7ec759edce0cefc123045e789cfeee72bd69ce33aa21",
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "parameter-addresses-access.c": "99e14c7e85f516c6ff4c5e88b730332b25ac18701717b3e8a465d2d385a3a36b",
+        "parameter-values.h": "d682ce18f70791d999acf21729e3e27da102e9305033ad7eb69ff46721f6be1b",
+        "wide-parameter-write-callees.c": "d81cb291fa60ed96be69a95e72f69c88037b75ef49b84bb95f9da089fe233bdc",
+        "parameter-values-access.c": "4df9f7df5facf9e1594f8efe59f5704cbba83cb527354fbb0e2c60c3f721c100",
+        "wide-parameter-write.h": "06f51444467e67a0934935440ae575228c209b56d2cc4bda0d1abfcac92960e5",
+        "machine-board.c": "96bbe6ba9e02ccfd15e0c8a8d2127a0878618d8a523d733fb6dafa7fcf0f581f",
+        "parameter-addresses-cases.c": "3a5379ec5fc32e5d94df57fc3bd27e4901faf1f047e7bf7ae71c8669bbf3b3ef",
+        "parameter-values-cases.c": "2330fba76a25d49b99f2ef43f9d9128d7947eb29909db2cc4c6e2e36e5fdab35",
+        "wide-parameter-write-callers.c": "011e2a925e4bceed2cd682cd72ac0b72463093f8590bc8e2da309b1b29ed89f0"
+      },
+      "projectConfigurationEqual": true,
+      "configurationCanonicalSha256": "826faf4b3e6bd3e520441cd900c6e22c5ea37089025d50aa30161ea961cfa755",
+      "functions": [
+        {
+          "symbol": "_pa_ordinary",
+          "parent": {
+            "bytes": 145,
+            "pushPop": 0
+          },
+          "candidate": {
+            "bytes": 89,
+            "pushPop": 0
+          },
+          "delta": -56
+        },
+        {
+          "symbol": "___m251r4_pa_native",
+          "parent": {
+            "bytes": 280,
+            "pushPop": 12
+          },
+          "candidate": {
+            "bytes": 259,
+            "pushPop": 12
+          },
+          "delta": -21
+        },
+        {
+          "symbol": "_pa_case",
+          "parent": {
+            "bytes": 405,
+            "pushPop": 120
+          },
+          "candidate": {
+            "bytes": 393,
+            "pushPop": 108
+          },
+          "delta": -12
+        }
+      ]
+    }
+  },
+  "timing": "Sum of per-input median Timer0 ticks: 64 test and 64 control inputs per fixture. AI8051U-34K64, 40 MHz, Timer0 /12T, no overflow.",
+  "regression": {
+    "directory": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\check-01",
+    "resultSha256": "c55fda31a2232544dc401a1d1b00ef59245e4eb99a32cb11f659e46e172524dc",
+    "status": "PASS",
+    "configurations": [
+      {
+        "model": "small",
+        "optimization": "speed",
+        "foldedWidths": [
+          1,
+          2,
+          4
+        ],
+        "physicalPointerStore": true,
+        "escapingPartialVolatileRetained": true,
+        "mergedPointerRetained": true
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "foldedWidths": [
+          1,
+          2,
+          4
+        ],
+        "physicalPointerStore": true,
+        "escapingPartialVolatileRetained": true,
+        "mergedPointerRetained": true
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "foldedWidths": [
+          1,
+          2,
+          4
+        ],
+        "physicalPointerStore": true,
+        "escapingPartialVolatileRetained": true,
+        "mergedPointerRetained": true
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "foldedWidths": [
+          1,
+          2,
+          4
+        ],
+        "physicalPointerStore": true,
+        "escapingPartialVolatileRetained": true,
+        "mergedPointerRetained": true
+      }
+    ]
+  },
+  "finalTriangleFrame": {
+    "parent": 18,
+    "candidate": 16
+  },
+  "rejectedLocalPromotion": {
+    "scope": "Single GUI compile before call feedback, not a complete project or hardware result.",
+    "source": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\private-local-values-rejected.c.inc",
+    "sourceSha256": "abfcd6d023112b172e06e16bbe309bd73d327138caf3d3fb275f0e0c7be46356",
+    "assembly": "E:\\STVAPP\\MX251-mainline-20261110\\parameter-addresses\\mir-audit\\u0.asm",
+    "assemblySha256": "7b2ccdb4bd2d3200e66d7723e3531e3763be91676f8420c55e302327baa1eb4e",
+    "oldBytes": 990,
+    "newBytes": 1128,
+    "oldWeighted": 1003,
+    "newWeighted": 1394,
+    "oldFrame": 18,
+    "newFrame": 12,
+    "oldSpills": 5,
+    "newSpills": 21,
+    "selected": false
+  },
+  "sources": {
+    "core/sources/compiler/src/mcs251/wide.c": "72482ae608b86d3bbfee19fec5c2ca4a3bcc34cb0cbc225debec2b2eb3a97a4f",
+    "core/sources/compiler/src/mcs251/wide_emit.c.inc": "b92f8d50ecaeb10a41b85a96cb554ea84218b45064fe09dbfde323660d65c5ce",
+    "core/sources/compiler/src/mcs251/wide_parameter_values.c.inc": "54c363ecbfebb729493a63461a97e580e3f615fb947b1a8fafabfd11d37a372d",
+    "core/sources/compiler/src/mcs251/wide_parameter_addresses.c.inc": "a8402680bbc44db8c70f7e296d89a5c4f480ffa193f79da633ce491358d1fa22",
+    "core/sources/compiler/src/mcs251/tests/check-parameter-addresses.py": "f51269c50a6976b2ca6f1bd21db6db61652639faebd3e80c9d228f854dbc0def",
+    "core/sources/compiler/src/mcs251/tests/parameter-addresses.h": "45813b4e4f803a7e793f7ec759edce0cefc123045e789cfeee72bd69ce33aa21",
+    "core/sources/compiler/src/mcs251/tests/parameter-addresses-access.c": "99e14c7e85f516c6ff4c5e88b730332b25ac18701717b3e8a465d2d385a3a36b",
+    "core/sources/compiler/src/mcs251/tests/parameter-addresses-cases.c": "3a5379ec5fc32e5d94df57fc3bd27e4901faf1f047e7bf7ae71c8669bbf3b3ef",
+    "tools/research/parameter_addresses_fixture.py": "e65ce111530a4443c23eeb14d5ca6ddf68c65c580838af1c1b55b447876fc189"
+  },
+  "qualification": "Full-project size only; board timing compares fixtures against parent MX251, not Keil or whole application runtime."
+}
