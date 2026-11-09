@@ -1,0 +1,177 @@
+diff --git a/core/build/qualified/Build.ps1 b/core/build/qualified/Build.ps1
+index df2356a..ff12044 100644
+--- a/core/build/qualified/Build.ps1
++++ b/core/build/qualified/Build.ps1
+@@ -14,6 +14,7 @@ param(
+  [switch]$VolatileDataWide,
+  [switch]$ConstantRotateFusion,
+  [switch]$FunctionSharing,
++ [string]$RegisterCostsFile,
+  [switch]$FunctionGc,
+  [string]$FunctionGcKeep='',
+  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
+@@ -114,6 +115,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
+  if($C251BitComplement){$f+='--mcs251-c251-bit-complement'}
+  $f+='--mcs251-function-metadata'
+  if($FunctionSharing){$f+='--mcs251-share-functions'}
++ if($RegisterCostsFile){$f+=@('--mcs251-register-costs',$RegisterCostsFile)}
+  if($WordCompareImmediate){$f+='--mcs251-word-compare-immediate'}
+  if($RangeNarrowMultiply){$f+='--mcs251-range-narrow-multiply'}
+  if($CalleeCostFile){$f+=@('--mcs251-callee-cost',$CalleeCostFile,'--mcs251-callee-cost-sha256',$CalleeCostSha256)}
+@@ -467,6 +469,7 @@ try {
+  Write-Json (Join-Path $outputRoot 'call-effects.json') $effects
+  $receipt.formatRuntime=[ordered]@{status=$formatRuntimeRecord.status;applied=$formatRuntimeRecord.applied;recordSha256=(Hash-File (Join-Path $outputRoot 'format-runtime.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'FormatRuntime.ps1'));contractSha256=(Hash-File (Join-Path $PSScriptRoot 'FormatRuntimeContract.json'))}
+  $receipt.startupRuntime=[ordered]@{status=$startupRuntimeRecord.status;applied=$startupRuntimeRecord.applied;recordSha256=(Hash-File (Join-Path $outputRoot 'startup-runtime.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'StartupRuntime.ps1'));contractSha256=(Hash-File (Join-Path $PSScriptRoot 'StartupRuntimeContract.json'))}
++ if($RegisterCostsFile){$receipt.registerCosts=[ordered]@{path=$RegisterCostsFile;sha256=(Hash-File $RegisterCostsFile);experimental=$true}}
+  $receipt.callEffects=[ordered]@{schema=1;mode='audit-only';sha256=(Hash-File (Join-Path $outputRoot 'call-effects.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'CallEffects.ps1'))}
+  $receipt.scalarParameters=@{status=$scalarRecord.status;applied=$scalarRecord.applied;recordSha256=(Hash-File (Join-Path $outputRoot 'scalar-parameters.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'ScalarParameters.ps1'))}
+  $receipt.callClobberFeedback=[ordered]@{enabled=($null -ne $callClobberRecord);status=$(if($null -ne $callClobberRecord){$callClobberRecord.status}else{'EXPLICIT_LEAF_FEEDBACK_SELECTED'});recordSha256=$(if($null -ne $callClobberRecord){Hash-File (Join-Path $outputRoot 'call-clobber-feedback.json')}else{$null});scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'CallClobberFeedback.ps1'))}
+diff --git a/core/sources/compiler/src/mcs251/main.c b/core/sources/compiler/src/mcs251/main.c
+index 213cbf7..257737a 100644
+--- a/core/sources/compiler/src/mcs251/main.c
++++ b/core/sources/compiler/src/mcs251/main.c
+@@ -141,7 +141,9 @@ static char *orderedAsmBitsSpec;
+ int mcs251FunctionMetadataEnabled;
+ static int functionSharingEnabled;
+ char *mcs251LeafEffectsFile;
++char *mcs251RegisterCostsFile;
+ extern void mcs251LoadLeafEffects(void);
++extern void mcs251LoadRegisterCosts(void);
+ 
+ bool mcs251NativeFloatSemantics (void) { return nativeRuntimeEnabled != 0; }
+ 
+@@ -205,6 +207,7 @@ static OPTION _mcs251_options[] =
+     { 0, "--mcs251-ordered-asm-bits", &orderedAsmBitsSpec, "<NN:MM,...> verified SFR byte:bit-mask capabilities; requires --mcs251-ordered-asm", CLAT_STRING },
+     { 0, "--mcs251-share-functions", &functionSharingEnabled, "Share ABI2 machine function templates with per-call constants; requires function metadata; experimental default off" },
+     { 0, "--mcs251-function-metadata", &mcs251FunctionMetadataEnabled, "Emit complete function ownership for conservative qualified-link reachability" },
++    { 0, "--mcs251-register-costs", &mcs251RegisterCostsFile, "<file> experimental caller register-demand placement costs", CLAT_STRING },
+     { 0, "--mcs251-leaf-effects", &mcs251LeafEffectsFile, "<file> experimental trusted leaf-write contract; use qualified two-pass builder", CLAT_STRING },
+     { 0, NULL }
+   };
+@@ -399,6 +402,7 @@ _mcs251_finaliseOptions (void)
+   if (mcs251CallSavePackMode < 0 || mcs251CallSavePackMode > 2)
+     { werror (E_BAD_INT_ARGUMENT, "--mcs251-call-save-pack: expected 0, 1 or 2"); exit (EXIT_FAILURE); }
+   mcs251LoadLeafEffects ();
++  mcs251LoadRegisterCosts ();
+   if (mcs251WideOrdinaryEnabled) mcs251WideEnabled = 1;
+   if (mcs251WideEnabled) nativeAbiEnabled = 1;
+   if (options.sdcccall >= 3)
+diff --git a/core/sources/compiler/src/mcs251/wide.c b/core/sources/compiler/src/mcs251/wide.c
+index 4350070..6925140 100644
+--- a/core/sources/compiler/src/mcs251/wide.c
++++ b/core/sources/compiler/src/mcs251/wide.c
+@@ -16,6 +16,7 @@
+ extern struct dbuf_s *codeOutBuf;
+ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIndex *ebbi);
+ #include "wide_leaf_effects.c.inc"
++#include "wide_register_costs.c.inc"
+ #ifdef MX251_WIDE_AUDIT
+ #include "wide_audit.h"
+ #else
+@@ -2083,6 +2084,7 @@ wide_validate_allocation(wide_function *f)
+ static bool
+ wide_allocate (wide_function *f, int strategy, bool callAware)
+ {
++  const unsigned *incoming=wide_register_costs_for(currFunc);
+   for(int i=0;i<f->nv;++i) if(f->values[i].pin>=0) {
+     if(!wide_available(f,i,f->values[i].pin)) return false;
+     f->values[i].reg=f->values[i].pin;
+@@ -2102,15 +2104,18 @@ wide_allocate (wide_function *f, int strategy, bool callAware)
+     }
+     if(best<0) break;
+     wide_value *v=&f->values[best];int count;const int *choices=wide_register_choices(v->width,&count);
+-    if(callAware) {
+-      unsigned bestCost=0;
++    if(callAware || incoming) {
++      unsigned bestCost=0,bestIncoming=0;
+       /* 原返回偏好作为同成本时的首选。只在已绑定的叶调用上比较完整
+        * 物理切片，不拆宽值、不改冲突图和 ABI 固定参数寄存器。 */
+       for(int j=-1;j<count;++j) {
+         int reg=j<0?v->preference:choices[j];
+         if(reg<0 || !wide_available(f,best,reg))continue;
+-        unsigned cost=wide_call_register_cost(f,best,reg);
+-        if(v->reg<0 || cost<bestCost) {v->reg=reg;bestCost=cost;}
++        unsigned cost=callAware?wide_call_register_cost(f,best,reg):0;
++        unsigned pressure=incoming?wide_incoming_register_cost(incoming,reg,v->width):0;
++        if(v->reg<0 || pressure<bestIncoming || (pressure==bestIncoming && cost<bestCost)) {
++          v->reg=reg;bestCost=cost;bestIncoming=pressure;
++        }
+       }
+     } else {
+       if(v->preference>=0 && wide_available(f,best,v->preference)) v->reg=v->preference;
+@@ -2221,6 +2226,8 @@ static mcs251_wide_result
+ wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
+ {
+   wide_prepare_calls(f);
++  if(wide_register_costs_for(currFunc))
++    dbuf_printf(f->diagnostics,"; wide incoming-register-costs function=%s enabled=1\n",currFunc->name);
+   wide_allocation_candidate c[8]={{0}};
+   int selected=-1;bool allKnown=true,invalid=false;unsigned bestCost=0;
+   /* 不扩大候选准入范围。size在所有成功候选均可定长时比较最终编码字节；
+diff --git a/core/sources/compiler/src/mcs251/wide_register_costs.c.inc b/core/sources/compiler/src/mcs251/wide_register_costs.c.inc
+new file mode 100644
+index 0000000..b915141
+--- /dev/null
++++ b/core/sources/compiler/src/mcs251/wide_register_costs.c.inc
+@@ -0,0 +1,61 @@
++/* GPL-2.0-or-later. Explicit research input: caller demand is a placement
++ * preference, never a claim that a callee preserves a register. Actual writes
++ * still flow through the qualified builder's existing clobber feedback. */
++extern char *mcs251RegisterCostsFile;
++typedef struct wide_register_costs {
++  char name[SDCC_NAME_MAX+1];
++  unsigned costs[32];
++  struct wide_register_costs *next;
++} wide_register_costs;
++static wide_register_costs *wideRegisterCosts;
++
++void mcs251LoadRegisterCosts(void)
++{
++  if(!mcs251RegisterCostsFile)return;
++  FILE *file=fopen(mcs251RegisterCostsFile,"rb");
++  char line[SDCC_NAME_MAX+512];unsigned count=0;int status;
++  if(!file)goto invalid;
++  if(wide_effect_line(file,line,sizeof line)!=1 ||
++     strcmp(line,"MX251-REGISTER-COSTS-1"))goto invalid;
++  while((status=wide_effect_line(file,line,sizeof line))==1) {
++    char *name=strtok(line," \t");
++    if(!name || strlen(name)>SDCC_NAME_MAX || ++count>4096)goto invalid;
++    for(char *p=name;*p;++p)
++      if(!isalnum((unsigned char)*p) && *p!='_' && *p!='$' && *p!='.')goto invalid;
++    for(wide_register_costs *p=wideRegisterCosts;p;p=p->next)
++      if(!strcmp(p->name,name))goto invalid;
++    wide_register_costs *entry=Safe_alloc(sizeof *entry);strcpy(entry->name,name);
++    for(unsigned i=0;i<32;++i) {
++      char *value=strtok(NULL," \t"),*end;
++      if(!value || !isdigit((unsigned char)*value))goto invalid;
++      unsigned long n=strtoul(value,&end,10);
++      if(*end || n>1000000)goto invalid;
++      entry->costs[i]=(unsigned)n;
++    }
++    if(strtok(NULL," \t"))goto invalid;
++    entry->next=wideRegisterCosts;wideRegisterCosts=entry;
++  }
++  if(status<0)goto invalid;
++  fclose(file);return;
++invalid:
++  if(file)fclose(file);
++  werror(E_BAD_INT_ARGUMENT,"--mcs251-register-costs: invalid research input");
++  exit(EXIT_FAILURE);
++}
++
++static const unsigned *wide_register_costs_for(symbol *function)
++{
++  /* The prototype accepts unique exported ABI2 definitions. Per-unit static
++   * names need a separate binding format and do not borrow export costs. */
++  if(!function || IS_STATIC(function->etype) || FUNC_SDCCCALL(function->type)!=2)return NULL;
++  for(wide_register_costs *p=wideRegisterCosts;p;p=p->next)
++    if(!strcmp(p->name,function->rname))return p->costs;
++  return NULL;
++}
++
++static unsigned wide_incoming_register_cost(const unsigned *costs,int reg,int width)
++{
++  unsigned cost=0;
++  for(int i=reg;i<reg+width;++i)cost+=costs[i];
++  return cost;
++}
