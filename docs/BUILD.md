@@ -62,6 +62,8 @@ $build = Join-Path $project '.build/cmake-direct'
 
 默认包入口开启函数可达性裁剪。外部汇编入口可用 `-FunctionGcKeep` 显式保留；其他可选优化开关见 `Build.ps1` 参数。未知中断、地址空间或 SDK 适配不能仅靠改变芯片名称解决。
 
+开发分支的共同机器指令层、局部地址展开和原生整数库组合见 [MACHINE-PIPELINE.md](MACHINE-PIPELINE.md)。`-MachineIr` 与 `-NativeIntegerRuntime` 均为显式开关，根构建入口和 CMake 可直接传递；不需要修改 SDK 的 C 文件。
+
 ## 从源码构建编译器
 
 `core/build/BuildSource.py` 是当前 Windows 编译器/汇编器/链接器源码构建入口，生成 CMake 工程并以 Ninja 编译，输出 `sdcc.exe`、`sdas251.exe`、`sdld.exe`。它不要求 StudioX。所需宿主依赖由开发者显式提供，不包含在日常固件编译的依赖内：
