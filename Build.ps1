@@ -9,6 +9,9 @@ param(
  [switch]$LeafCallFeedback,
  [switch]$VolatileDataWide,
  [switch]$ConstantRotateFusion,
+ [switch]$FunctionSharing,
+ [switch]$MachineIr,
+ [switch]$NativeIntegerRuntime,
  [switch]$WordCompareImmediate
 )
 $ErrorActionPreference='Stop'

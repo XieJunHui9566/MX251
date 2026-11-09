@@ -271,13 +271,21 @@ function Get-Mx251FormatHex([string]$Path) {
  return ,$seen
 }
 
-function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[string[]]$LinkArguments) {
+function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[string[]]$LinkArguments,$AdditionalArchives=@{}) {
  $record=[ordered]@{schema=1;status='FALLBACK_FULL_RUNTIME';applied=$false;hardwareExecuted=$false}
  $saved=@();$baselineCommand=$null;$trialCommand=$null;$accepted=$false
  try {
   . (Join-Path $PSScriptRoot 'FunctionGc.ps1')
   $contractPath=Join-Path $PSScriptRoot 'FormatRuntimeContract.json'
   $contract=Get-Content -LiteralPath $contractPath -Raw|ConvertFrom-Json -AsHashtable
+  # Profile-owned arithmetic archives can coexist with the fixed formatter.
+  # Their hashes come from the already loaded profile lock, and each selected
+  # member still goes through the formatter reference/definition analysis.
+  foreach($entry in $AdditionalArchives.GetEnumerator()){
+   $relative=[IO.Path]::GetRelativePath($ToolRoot,$entry.Key).Replace('\','/')
+   $contract.archives[$relative]=$entry.Value
+  }
+  $record.additionalArchives=$AdditionalArchives
   $kernelPath=Join-Path $PSScriptRoot 'IntegerFormatKernel.c.template'
   if($contract.schema -ne 1 -or $contract.contract -cne 'mx251.ordinary-fixed-integer-format.v2' -or (Hash-File $kernelPath) -cne $contract.kernelSha256){throw 'format-runtime-contract-mismatch'}
   if((Hash-File (Join-Path $PSScriptRoot 'ExtendedFormat.ps1')) -cne $contract.extendedGeneratorSha256){throw 'format-generator-contract-mismatch'}

@@ -14,6 +14,9 @@ param(
  [string]$CalleeCostSha256,
  [switch]$VolatileDataWide,
  [switch]$ConstantRotateFusion,
+ [switch]$FunctionSharing,
+ [switch]$MachineIr,
+ [switch]$NativeIntegerRuntime,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
@@ -78,6 +81,9 @@ try {
  if($CalleeCostFile){$start.ArgumentList.Add('-CalleeCostFile');$start.ArgumentList.Add($CalleeCostFile);$start.ArgumentList.Add('-CalleeCostSha256');$start.ArgumentList.Add($CalleeCostSha256)}
  if($VolatileDataWide){$start.ArgumentList.Add('-VolatileDataWide')}
  if($ConstantRotateFusion){$start.ArgumentList.Add('-ConstantRotateFusion')}
+ if($FunctionSharing){$start.ArgumentList.Add('-FunctionSharing')}
+ if($MachineIr){$start.ArgumentList.Add('-MachineIr')}
+ if($NativeIntegerRuntime){$start.ArgumentList.Add('-NativeIntegerRuntime')}
  if($FunctionGc){$start.ArgumentList.Add('-FunctionGc')}
  if($FunctionGcKeep){$start.ArgumentList.Add('-FunctionGcKeep');$start.ArgumentList.Add($FunctionGcKeep)}
  $start.ArgumentList.Add('-OrderedAsm');$start.ArgumentList.Add($OrderedAsm)

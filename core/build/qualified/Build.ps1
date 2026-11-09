@@ -15,6 +15,7 @@ param(
  [switch]$ConstantRotateFusion,
  [switch]$FunctionSharing,
  [switch]$MachineIr,
+ [switch]$NativeIntegerRuntime,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
@@ -121,7 +122,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  if($CalleeCostFile){$f+=@('--mcs251-callee-cost',$CalleeCostFile,'--mcs251-callee-cost-sha256',$CalleeCostSha256)}
  if($ConstantRotateFusion -and $Backend -in @('ordinary-wide','explicit-wide')){$f+='--mcs251-constant-rotate-fusion'}
  if($VolatileDataWide -and $Backend -in @('ordinary-wide','explicit-wide')){$f+='--mcs251-volatile-data-wide'}
- if($runtime -in @('native-int','native-int-mdu32')){$f+='--mcs251-native-int-runtime'}
+ if($NativeIntegerRuntime -or $runtime -in @('native-int','native-int-mdu32')){$f+='--mcs251-native-int-runtime'}
  if($runtime -in @('native-math','native-math-wide','native-math-mdu32','native-math-wide-mdu32')){$f+=@('--mcs251-native-runtime','--mcs251-native-int-runtime','--nostdlib')}
  foreach($d in @($config.defines)+@($ExtraDefines)){$f+=('-D'+$d)}
  foreach($directory in $includeDirectories){$f+=('-I'+$directory)}
@@ -239,6 +240,7 @@ try {
  Choice $config.backend @('legacy','ordinary-wide','explicit-wide') 'backend'
  Choice $config.standard @('default','sdcc11') 'standard'
  if($config.explicitAbi -isnot [bool]){throw 'explicitAbi must be boolean'}
+ if($NativeIntegerRuntime -and ($runtime -ne 'standard' -or $config.model -ne 'small')){throw 'NativeIntegerRuntime selects the native integer overlay for standard small-model projects'}
  if($runtime -notin @('standard','native-int-mdu32') -and $config.model -ne 'small'){throw 'Native runtime is qualified only for small stack-auto'}
  if($runtime -in @('native-math','native-math-mdu32') -and ($config.explicitAbi -or $config.backend -notin @('legacy','ordinary-wide'))){throw 'Native math entry currently qualifies the fixed ordinary ABI full-math project only'}
  if($runtime -in @('native-math-wide','native-math-wide-mdu32') -and (-not $config.explicitAbi -or $config.backend -ne 'explicit-wide')){throw 'native-math-wide requires explicit ABI and explicit-wide backend'}
@@ -263,6 +265,7 @@ try {
   if($u.stackAuto -isnot [bool]){throw 'stackAuto must be boolean'}
   if(-not $u.stackAuto -and -not $config.explicitAbi){throw 'Non-auto units require the explicit reentrant ABI qualification profile'}
   if($runtime -ne 'standard' -and -not $u.stackAuto){throw 'Native runtime requires stack-auto in every unit'}
+  if($NativeIntegerRuntime -and -not $u.stackAuto){throw 'NativeIntegerRuntime requires stack-auto in every unit'}
   if($runtime -notin @('standard','native-int-mdu32') -and $u.backend -ne $config.backend){throw 'Native runtime unit backend is outside this qualification profile'}
   Defines $u.defines;$units[$u.name]=$u;$coverage[$u.name]=0
  }
@@ -289,6 +292,7 @@ try {
  foreach($entry in $lock.toolchain){$path=Relative-File $toolRoot $entry.path;if((Hash-File $path) -ne $entry.sha256){throw "Toolchain lock mismatch: $($entry.path)"}}
  foreach($entry in $lock.profile){$path=Relative-File $ProfileRoot $entry.path;if((Hash-File $path) -ne $entry.sha256){throw "Profile lock mismatch: $($entry.path)"}}
  Assert-Mx251TargetProfile $lock $targetContract $ProfileRoot $runtime
+ if($NativeIntegerRuntime){Assert-Mx251TargetProfile $lock $targetContract $ProfileRoot 'native-int'}
  $compilerExe=Join-Path $toolRoot 'bin/sdcc.exe'
  if($lock.ContainsKey('compilerOverlay')){
   Keys-Only $lock.compilerOverlay @('path','sha256') 'compiler overlay'
@@ -367,7 +371,7 @@ try {
  Run-Tool 'startup' (Join-Path $toolRoot 'bin/sdas251.exe') @('-plosgff','startup.rel','startup.asm')
  $flags=@(Flags $config.backend $true @())
  $libs=@()
- if($runtime -eq 'native-int'){$libs+=(Join-Path $ProfileRoot 'runtime/libnativeint.lib')}
+ if($NativeIntegerRuntime -or $runtime -eq 'native-int'){$libs+=(Join-Path $ProfileRoot 'runtime/libnativeint.lib')}
  if($runtime -eq 'native-int-mdu32'){$libs+=(Join-Path $ProfileRoot 'runtime/libai8051umdu32.lib')}
  if($runtime -in @('native-math','native-math-wide','native-math-mdu32','native-math-wide-mdu32')){
   $libs+=(Join-Path $ProfileRoot 'runtime/libnativefloat.lib')
@@ -397,7 +401,9 @@ try {
  Write-Json (Join-Path $outputRoot 'interrupt-vectors.plan.json') $interruptPlan
  Run-Tool 'link' $compilerExe $args
  . (Join-Path $PSScriptRoot 'FormatRuntime.ps1')
- $formatRuntimeRecord=Invoke-Mx251FormatRuntime $outputRoot $config $toolRoot $args
+ $formatArchives=@{}
+ if($NativeIntegerRuntime){$formatArchives[(Join-Path $ProfileRoot 'runtime/libnativeint.lib')]=@($lock.profile|Where-Object{$_.path -ceq 'runtime/libnativeint.lib'})[0].sha256}
+ $formatRuntimeRecord=Invoke-Mx251FormatRuntime $outputRoot $config $toolRoot $args $formatArchives
  Write-Json (Join-Path $outputRoot 'format-runtime.json') $formatRuntimeRecord
  . (Join-Path $PSScriptRoot 'StartupRuntime.ps1')
  $startupRuntimeRecord=Invoke-Mx251StartupRuntime $outputRoot $config $toolRoot
@@ -437,6 +443,7 @@ try {
  $receipt.interruptClosure=[ordered]@{schema=1;finalVerified=$true;addedEntries=@($interruptPlan.added);manifestSha256=(Hash-File (Join-Path $outputRoot 'interrupt-vectors.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'InterruptVectors.ps1'))}
  $receipt.functionSharing=[bool]$FunctionSharing
  $receipt.machineIr=[bool]$MachineIr
+ $receipt.nativeIntegerRuntime=[bool]$NativeIntegerRuntime
  $receipt.c251BitComplement=[bool]$C251BitComplement
  $receipt.orderedAsm=$orderedAsmRecord
  $receipt.wideCapacity=[ordered]@{schema=1;valueLimit=[int]$WideValueLimit;nodeLimit=[int]$WideNodeLimit;overflow='whole-function-fallback-with-reason';selection='explicit-build-option'}
@@ -455,6 +462,7 @@ try {
   targetContractSha256=$receipt.targetContract.registrySha256
   functionSharing=[bool]$FunctionSharing
   machineIr=[bool]$MachineIr
+  nativeIntegerRuntime=[bool]$NativeIntegerRuntime
   c251BitComplement=[bool]$C251BitComplement
   orderedAsm=$orderedAsmRecord
   wideCapacity=$receipt.wideCapacity
