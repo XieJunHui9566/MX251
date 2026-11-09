@@ -90,6 +90,7 @@ typedef struct {
   int scratchNode,scratchNextNode;
   bool body, sampledQualified, formalAddress, ordinaryEntry, allocationInvalid;
   bool nativeReceiveFree;
+  bool narrowNegate;
   bool nativeIndexedTrial;
   unsigned domainCount,domainValues[4];
   bool applyCallEffects,callEffectsInvalid;
@@ -937,7 +938,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
             n->width!=n->right.width ||
             (n->width!=1 && n->width!=2 && n->width!=4) ||
             wide_pointer(operandType(IC_RESULT(ic))) || wide_pointer(operandType(IC_LEFT(ic))) ||
-            (!n->sign && n->width!=4 &&
+            (!n->sign && n->width!=4 && !f->narrowNegate &&
              (!getenv("MX251_NARROW_UNSIGNED_NEGATE") || strcmp(getenv("MX251_NARROW_UNSIGNED_NEGATE"),"1"))))
           return wide_import_reject(f,ic,__LINE__);
         if(n->sign)dbuf_printf(f->diagnostics,"; wide signed integer negate icode=%d width=%d domain=defined-signed-integer\n",ic->key,n->width);
@@ -2689,7 +2690,7 @@ wide_is_function_body (ebbIndex *ebbi)
 }
 
 static mcs251_wide_result
-wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnostics)
+wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnostics, bool narrowNegate)
 {
   mcs251_wide_result result=MCS251_WIDE_FALLBACK;wide_function *f;
   const char *rejectionStage="import";
@@ -2712,6 +2713,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
     if((wide_code_pointer(arg->type) && !ordinary) || (ordinary && !wide_abi_type(arg->type,currFunc->type))) {dbuf_printf(diagnostics,"; wide admission function=%s skip=parameter-type\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
   if(!wide_stack_signature(currFunc->type)) {dbuf_printf(diagnostics,"; wide admission function=%s skip=stack-signature\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
   f=Safe_alloc(sizeof *f);memset(f,0,sizeof *f);f->ordinaryEntry=ordinary;f->diagnostics=diagnostics;f->candidateOutput=output;
+  f->narrowNegate=narrowNegate;
   f->domainCount=mcs251ParameterDomainValues(currFunc,FUNC_ARGS(currFunc->type),1,f->domainValues);
   if(fatalError){Safe_free(f);return MCS251_WIDE_ERROR;}
   if(!wide_capacity_profile(f))goto fallback;
@@ -2787,7 +2789,7 @@ fallback:
 void mcs251CleanupWideCfg (struct dbuf_s *, ebbIndex *);
 
 mcs251_wide_result
-mcs251TryWideFunction (ebbIndex *ebbi)
+mcs251TryWideFunction (ebbIndex *ebbi, bool narrowNegate)
 {
   struct dbuf_s output, diagnostics;
   mcs251_wide_result result;
@@ -2795,7 +2797,7 @@ mcs251TryWideFunction (ebbIndex *ebbi)
 #ifdef MX251_WIDE_AUDIT
   wa_snapshot *before=wa_begin(ebbi);
 #endif
-  result=wide_try_function(ebbi,&output,&diagnostics);
+  result=wide_try_function(ebbi,&output,&diagnostics,narrowNegate);
   if(mcs251InternalReturn(currFunc) && result!=MCS251_WIDE_ACCEPTED) {
     /* 同一封闭构建的调用点已使用 DR4，旧 ABI 回退会造成静默错码。 */
     dbuf_printf(&diagnostics,"; internal return contract refused backend fallback: %s\n",currFunc->name);

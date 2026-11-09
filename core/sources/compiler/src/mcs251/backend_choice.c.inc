@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
- * 同一IR的完整普通/宽后端候选。只比较无分支的普通ABI函数，所有CALL
- * 次序必须一致；未知编码、额外辅助体或不平衡栈保留原宽后端候选。
+ * 同一 IR 的完整普通/宽后端候选。现有选择比较线性体或共同 CFG 区域；
+ * 新增窄无符号取负按无循环函数的完整体积与静态指令数选择。
  * 不交换ASM片段，不改变声明/调用约定，也不以函数或器件名称选择。 */
 #include "internal_return.h"
 #include "wide_cost.h"
@@ -14,7 +14,7 @@ typedef struct {
 } mcs251_backend_cost;
 
 static bool
-mcs251BackendChoiceEligible(ebbIndex *ebbi)
+mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
 {
   const char *enabled=getenv("MX251_LINEAR_BACKEND_CHOICE");
   if(enabled && !strcmp(enabled,"0"))return false;
@@ -32,12 +32,34 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi)
       if(ic->op==CALL) {
         operand *op=IC_LEFT(ic);
         if(!op || !IS_SYMOP(op) || !IS_FUNC(operandType(op)) ||
-           FUNC_SDCCCALL(operandType(op))!=2 || OP_SYMBOL(op)->cdef ||
+           FUNC_SDCCCALL(operandType(op))!=2 || (!narrowTrial && OP_SYMBOL(op)->cdef) ||
            mcs251InternalReturn(OP_SYMBOL(op)) || mcs251InternalArgument(OP_SYMBOL(op)))return false;
       }
     }
   }
   return entries==1 && ends==1;
+}
+
+/* Narrow unsigned negation can admit an entire function. Compare both bodies
+ * before choosing it. Start with loop-free IR; the existing loop policy stays
+ * in charge of functions containing loops. */
+static bool
+mcs251BackendNarrowTrial(ebbIndex *ebbi)
+{
+  const char *mode=getenv("MX251_NARROW_UNSIGNED_NEGATE");
+  if(mode || !mcs251BackendChoiceEligible(ebbi,true))return false;
+  bool found=false;
+  for(int b=0;b<ebbi->count;++b) {
+    eBBlock *bb=ebbi->bbOrder[b];
+    for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next) {
+      if(ic->depth)return false;
+      if(ic->op==UNARYMINUS) {
+        sym_link *t=operandType(IC_RESULT(ic));int width=getSize(t);
+        if(IS_INTEGRAL(t) && SPEC_USIGN(getSpec(t)) && (width==1 || width==2))found=true;
+      }
+    }
+  }
+  return found;
 }
 
 static wide_cost_operand
@@ -82,7 +104,7 @@ mcs251BackendNumber(const char *text,unsigned *out)
 }
 
 static mcs251_backend_cost
-mcs251BackendCost(const char *text,size_t length)
+mcs251BackendCost(const char *text,size_t length,bool bodyEstimate)
 {
   mcs251_backend_cost c={0};int depth=0;unsigned returns=0;bool ended=false;
   for(size_t at=0;at<length;) {
@@ -97,15 +119,16 @@ mcs251BackendCost(const char *text,size_t length)
     unsigned ar=0,value=0;int consumed=0;char temp[512];size_t n=(size_t)(last-p);
     if(n>=sizeof temp){++c.unknown;continue;}memcpy(temp,p,n);temp[n]=0;
     if(sscanf(temp,"ar%u = 0x%x%n",&ar,&value,&consumed)==2 && consumed==(int)n && ar<8 && value==ar)continue;
-    unsigned bytes=bc_instruction_bytes(p,n,mcs251BackendSymbol,NULL);
-    if(!bytes || ended){++c.unknown;continue;}
+    unsigned bytes=bc_instruction_bytes_mode(p,n,mcs251BackendSymbol,NULL,bodyEstimate);
+    if(!bytes || (!bodyEstimate && ended)){++c.unknown;continue;}
     char op[24],args[512];size_t k=0,j=0;
     while(k<n && !isspace((unsigned char)temp[k]) && k+1<sizeof op){op[k]=(char)tolower((unsigned char)temp[k]);++k;}
     op[k]=0;
     for(;k<n;++k)if(!isspace((unsigned char)temp[k]))args[j++]=temp[k];args[j]=0;
     char *second=strchr(args,',');if(second)*second++=0;
-    if((op[0]=='j') || !strcmp(op,"sjmp") || !strcmp(op,"ljmp") || !strcmp(op,"ejmp") || !strcmp(op,"djnz") || !strcmp(op,"cjne")){++c.unknown;continue;}
+    if(!bodyEstimate && ((op[0]=='j') || !strcmp(op,"sjmp") || !strcmp(op,"ljmp") || !strcmp(op,"ejmp") || !strcmp(op,"djnz") || !strcmp(op,"cjne"))){++c.unknown;continue;}
     c.bytes+=bytes;++c.instructions;
+    if(bodyEstimate)continue;
     wide_cost_operand a=wide_cost_arg(args),b=second?wide_cost_arg(second):(wide_cost_operand){0};
     if(a.kind==WC_UNKNOWN)a=mcs251BackendSymbol(args,NULL);
     if(second && b.kind==WC_UNKNOWN)b=mcs251BackendSymbol(second,NULL);
@@ -136,7 +159,7 @@ mcs251BackendCost(const char *text,size_t length)
     if(depth<0 || depth>65535)++c.unknown;
     else if((unsigned)depth>c.peak)c.peak=(unsigned)depth;
   }
-  if(returns!=1 || depth)++c.unknown;
+  if(!bodyEstimate && (returns!=1 || depth))++c.unknown;
   return c;
 }
 

@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "sourceParent": "98d03d4",
+  "status": "IMPLEMENTED_DEFAULT_SELECTION",
+  "build": {
+    "method": "BuildSource.py clean build, then incremental rebuild of updated header dependencies",
+    "compilerSha256": "ec5e9633e6f59fb80be8802440e19608a2e5e140749abbf0e81445c169822805",
+    "productionSources": {
+      "core/sources/compiler/src/mcs251/backend_choice.c.inc": "0969e412c73722ca6c4a28d647708bf4ca63d14d7625a77d2cc84b2a24f8483b",
+      "core/sources/compiler/src/mcs251/backend_encoding.h": "0452d75cd5849caba5112ea2ff3192df0e75911cdbac529a953f6a9f3fae6142",
+      "core/sources/compiler/src/mcs251/ralloc.c": "f01bdd0cb386a505f17dd97ef7b6f2bce06700f8730dd0136dfca84949d8386f",
+      "core/sources/compiler/src/mcs251/wide.c": "1b779999c0dac83af8be71b902eee35e26c878346ee1ea94b07038ef13affaa9",
+      "core/sources/compiler/src/mcs251/wide.h": "709c50a7bacece541b052b2e2b135cd2c09f9634c0f91261fc8e9be97d9136cd"
+    },
+    "incrementalLogSha256": "9ae5b3b64fd229674616007cbb40408fb629ca2cea821f91038a7a6ed8bd367a",
+    "lineEndingRebuildLogSha256": "9ae5b3b64fd229674616007cbb40408fb629ca2cea821f91038a7a6ed8bd367a"
+  },
+  "configuration": "AI8051U small/speed ordinary-wide, default feedback, C251 bit complement",
+  "projects": [
+    {
+      "project": "p087-auto",
+      "parentBytes": 4923,
+      "candidateBytes": 4777,
+      "savedBytes": 146,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "64943aebf124494d5fd4d2635bd56613a3720e0529d70b7f48b6ea809b21c27e",
+        "bbc7d68daa20fc3b06ccb6d7430b669013bbcbbe2f19e123f3c322d49e047fe0"
+      ],
+      "hexSha256": [
+        "b801287b2298bdf5a5dc327161cd660c0034cd26e3161eae2e99dac6cd69fb12",
+        "2cc24b14c2fafae6d38dbcde93270b0096edc00a0313ad57455dbc7740333d21"
+      ],
+      "keilBytes": 3531,
+      "sizeRatioPercent": 135.29,
+      "uartChoice": "mx251-backend-choice function=_uart_set_baud selected=wide wide-bytes=349 legacy-bytes=495 wide-ins=131 legacy-ins=174 wide-peak=0 legacy-peak=0 unknown=0/0"
+    },
+    {
+      "project": "p095-auto",
+      "parentBytes": 6782,
+      "candidateBytes": 6635,
+      "savedBytes": 147,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "bc17a6ce2051159134fb2a8baee06987235c3798fa7c61aa95be9640284104e7",
+        "086dfcb05fbf8089ff587b3b65590b4dbeed13fee731cce3a5f6655c1fc17ca0"
+      ],
+      "hexSha256": [
+        "eba93d7925d23695103248cc71b749a190ef2fb08e3b9b6c7619563f9eab1469",
+        "5f8b02e890a7e0cf792f61cecc7c2656e35eb7ecb70be3bbadcb4a37c782bd60"
+      ],
+      "keilBytes": 4830,
+      "sizeRatioPercent": 137.37,
+      "uartChoice": "mx251-backend-choice function=_uart_set_baud selected=wide wide-bytes=475 legacy-bytes=622 wide-ins=186 legacy-ins=251 wide-peak=0 legacy-peak=0 unknown=0/0"
+    },
+    {
+      "project": "p091-auto",
+      "parentBytes": 6421,
+      "candidateBytes": 6421,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "c92f38db518012c4d416d74a19bf1938081133cf51cfd4c1670c42049fe4c20f",
+        "7c863d6404b6f01c504f1198e11f3225537d3cd6540d3a31b3d380566807aa65"
+      ],
+      "hexSha256": [
+        "d3bac429fcc3b3c17043fc0aa68ce208b3aa656b1bfb7c683caf2801a9f4c32d",
+        "d3bac429fcc3b3c17043fc0aa68ce208b3aa656b1bfb7c683caf2801a9f4c32d"
+      ],
+      "keilBytes": 4401,
+      "sizeRatioPercent": 145.9
+    },
+    {
+      "project": "p080-baseline",
+      "parentBytes": 23195,
+      "candidateBytes": 23195,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "5a8adddd0f8a706c29a229fb2a80dca1b2cfae7b51bc309032b67b75ce678078",
+        "9f6a7e992ee50873ac62a326eb848427c999d580b5fa0e24c057f4db15ccc10a"
+      ],
+      "hexSha256": [
+        "6ead50706cec91945f44625d288cd66818730a0b970a094f5ae227501f012d12",
+        "6ead50706cec91945f44625d288cd66818730a0b970a094f5ae227501f012d12"
+      ]
+    }
+  ],
+  "newSizePasses": 0,
+  "sdkRuntimeStatus": "NOT_MEASURED",
+  "hardwareExecuted": false,
+  "tests": {
+    "selection": {
+      "compilerSha256": "ec5e9633e6f59fb80be8802440e19608a2e5e140749abbf0e81445c169822805",
+      "configurations": [
+        {
+          "model": "small",
+          "optimization": "speed",
+          "parent": 420,
+          "candidate": 377,
+          "selectedWideMatchesExistingEmitter": true,
+          "cheaperByteNegationAndLoopMatchParent": true
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "parent": 433,
+          "candidate": 390,
+          "selectedWideMatchesExistingEmitter": true,
+          "cheaperByteNegationAndLoopMatchParent": true
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "parent": 426,
+          "candidate": 377,
+          "selectedWideMatchesExistingEmitter": true,
+          "cheaperByteNegationAndLoopMatchParent": true
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "parent": 439,
+          "candidate": 390,
+          "selectedWideMatchesExistingEmitter": true,
+          "cheaperByteNegationAndLoopMatchParent": true
+        }
+      ],
+      "hardwareExecuted": false
+    },
+    "instructionCostsMatchedAssembler": 16,
+    "permanentLoopCostRegression": "passed"
+  },
+  "localEvidenceRoot": "E:\\STVAPP\\MX251-mainline-20261109\\narrow-negate"
+}

@@ -3845,19 +3845,20 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   memcpy(auditGlobal,&_G,sizeof _G);memcpy(auditRegisters,mcs251_regs,sizeof mcs251_regs);
 #endif
   mcs251GcBegin (ebbi);
-  bool compareBackend=mcs251BackendChoiceEligible(ebbi);
+  bool narrowTrial=mcs251BackendNarrowTrial(ebbi);
+  bool compareBackend=narrowTrial || mcs251BackendChoiceEligible(ebbi,false);
   int backendKeys[BC_LABELS];unsigned backendKeyCount=0;
   if(compareBackend)for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)if(ic->op==LABEL) {
-      if(backendKeyCount==BC_LABELS){compareBackend=false;break;}
+      if(backendKeyCount==BC_LABELS){compareBackend=false;narrowTrial=false;break;}
       backendKeys[backendKeyCount++]=IC_LABEL(ic)->key;
     }
   }
   size_t backendStart=dbuf_get_length(codeOutBuf),wideLength=0;
   char *wideText=NULL;
   short savedBank=mcs251GetEmittedRegisterBank();
-  mcs251_wide_result wideResult=mcs251TryWideFunction(ebbi);
+  mcs251_wide_result wideResult=mcs251TryWideFunction(ebbi,narrowTrial);
 #ifdef MX251_WIDE_AUDIT
   if(memcmp(auditGlobal,&_G,sizeof _G) || memcmp(auditRegisters,mcs251_regs,sizeof mcs251_regs)) {
     werror(E_INTERNAL_ERROR,__FILE__,__LINE__,"wide changed legacy allocator state");return;
@@ -3970,11 +3971,13 @@ mcs251_assignRegisters (ebbIndex * ebbi)
 
   mcs251_genCode (ic);
   if(wideText) {
-    mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength);
-    mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart);
-    bool legacy=mcs251BackendChooseLegacy(&wideCost,&legacyCost);
+    mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength,narrowTrial);
+    mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart,narrowTrial);
+    bool legacy=narrowTrial ?
+      wideCost.unknown || legacyCost.unknown || wideCost.bytes>=legacyCost.bytes ||
+      wideCost.instructions>legacyCost.instructions : mcs251BackendChooseLegacy(&wideCost,&legacyCost);
     int cfg=0;
-    if(!legacy && (wideCost.unknown || legacyCost.unknown)) {
+    if(!narrowTrial && !legacy && (wideCost.unknown || legacyCost.unknown)) {
       cfg=bc_choose(wideText,wideLength,dbuf_get_buf(codeOutBuf)+backendStart,
         dbuf_get_length(codeOutBuf)-backendStart,currFunc->rname,backendKeys,backendKeyCount,
         mcs251BackendSymbol,NULL);
@@ -3982,6 +3985,7 @@ mcs251_assignRegisters (ebbIndex * ebbi)
     }
 
     if(!legacy){mcs251SetEmittedRegisterBank(savedBank);dbuf_set_length(codeOutBuf,backendStart);dbuf_append(codeOutBuf,wideText,wideLength);}
+    if(narrowTrial)dbuf_printf(codeOutBuf,"; mx251-narrow-negate function=%s selected=%s\n",currFunc->rname,legacy?"legacy":"wide");
     dbuf_printf(codeOutBuf,"; mx251-backend-choice function=%s selected=%s wide-bytes=%u legacy-bytes=%u wide-ins=%u legacy-ins=%u wide-peak=%u legacy-peak=%u unknown=%u/%u\n",
       currFunc->rname,legacy?"legacy":"wide",wideCost.bytes,legacyCost.bytes,wideCost.instructions,legacyCost.instructions,wideCost.peak,legacyCost.peak,wideCost.unknown,legacyCost.unknown);
     dbuf_printf(codeOutBuf,"; mx251-cfg-choice function=%s result=%d\n",currFunc->rname,cfg);
