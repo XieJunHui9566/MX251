@@ -2684,18 +2684,27 @@ wide_choose_range_multiply(wide_function *f,wide_selection_cost *cost)
     "range-multiply","calls",false,"multiply-original","multiply-trial",true,true);
 }
 
-/* 先以真实 callee 摘要完成 range 的整函数成本选择，再处理最终 rotate
- * 发射。rotate 不回流至 range 候选比较，避免把局部替换后的字节数与
- * 替换前的热路径向量混合用于重新选择。两开关关闭时走原 range 路径。 */
+/* 先比较值副本合并及既有 MIR 变换的完整函数候选，再处理最终 rotate
+ * 发射。rotate 不回流至前面的候选比较，避免把局部替换后的字节数与
+ * 替换前的热路径向量混合用于重新选择。副本合并不依赖 rotate 开关。 */
+#include "wide_value_copy.c.inc"
+
+static mcs251_wide_result
+wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_value_copies,wide_choose_range_multiply,
+    "value-copy","changes",false,"copies-original","copies-trial",false,false);
+}
+
 #include "wide_rotate_cost.c.inc"
 
 static mcs251_wide_result
 wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
 {
-  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_range_multiply(f,cost);
+  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_value_copies(f,cost);
   struct dbuf_s baseline,candidate;dbuf_init(&baseline,1024);dbuf_init(&candidate,1024);
   struct dbuf_s *output=f->candidateOutput;f->candidateOutput=&baseline;
-  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_range_multiply(f,&original);
+  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_value_copies(f,&original);
   f->candidateOutput=output;
   unsigned selected=0;if(result==MCS251_WIDE_ACCEPTED && !original.unknown)
     selected=wide_rotate_finalize(f,dbuf_get_buf(&baseline),dbuf_get_length(&baseline),&candidate);
