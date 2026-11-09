@@ -14,6 +14,7 @@ param(
  [switch]$VolatileDataWide,
  [switch]$ConstantRotateFusion,
  [switch]$FunctionSharing,
+ [switch]$MachineIr,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
@@ -114,6 +115,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  if($C251BitComplement){$f+='--mcs251-c251-bit-complement'}
  $f+='--mcs251-function-metadata'
  if($FunctionSharing){$f+='--mcs251-share-functions'}
+ if($MachineIr){$f+='--mcs251-machine-ir'}
  if($WordCompareImmediate){$f+='--mcs251-word-compare-immediate'}
  if($RangeNarrowMultiply){$f+='--mcs251-range-narrow-multiply'}
  if($CalleeCostFile){$f+=@('--mcs251-callee-cost',$CalleeCostFile,'--mcs251-callee-cost-sha256',$CalleeCostSha256)}
@@ -322,7 +324,7 @@ try {
  $callClobberRecord=$null
  if(-not $LeafCallFeedback) {
   . (Join-Path $PSScriptRoot 'CallClobberFeedback.ps1')
-  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath)
+  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr
   Write-Json (Join-Path $outputRoot 'call-clobber-feedback.json') $callClobberRecord
  }
  $leafFeedbackRecord=$null
@@ -434,6 +436,7 @@ try {
  $receipt.binary=[ordered]@{file='firmware.bin';sha256=(Hash-File (Join-Path $outputRoot 'firmware.bin'));baseAddress=$layout.codeBase;length=$binary.Length;gapFill=255}
  $receipt.interruptClosure=[ordered]@{schema=1;finalVerified=$true;addedEntries=@($interruptPlan.added);manifestSha256=(Hash-File (Join-Path $outputRoot 'interrupt-vectors.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'InterruptVectors.ps1'))}
  $receipt.functionSharing=[bool]$FunctionSharing
+ $receipt.machineIr=[bool]$MachineIr
  $receipt.c251BitComplement=[bool]$C251BitComplement
  $receipt.orderedAsm=$orderedAsmRecord
  $receipt.wideCapacity=[ordered]@{schema=1;valueLimit=[int]$WideValueLimit;nodeLimit=[int]$WideNodeLimit;overflow='whole-function-fallback-with-reason';selection='explicit-build-option'}
@@ -451,6 +454,7 @@ try {
   targetProfileScriptSha256=(Hash-File (Join-Path $PSScriptRoot 'TargetProfile.ps1'))
   targetContractSha256=$receipt.targetContract.registrySha256
   functionSharing=[bool]$FunctionSharing
+  machineIr=[bool]$MachineIr
   c251BitComplement=[bool]$C251BitComplement
   orderedAsm=$orderedAsmRecord
   wideCapacity=$receipt.wideCapacity

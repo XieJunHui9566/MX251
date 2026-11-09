@@ -3,7 +3,7 @@
  * 裸命令行参数是显式编译契约，不能把用户给的掩码当成已验证事实。 */
 extern char *mcs251LeafEffectsFile;
 typedef struct wide_leaf_effect {
-  char name[SDCC_NAME_MAX+1];unsigned abi;uint32_t writes;
+  char name[SDCC_NAME_MAX+1];unsigned abi;uint32_t writes;bool local;
   struct wide_leaf_effect *next;
 } wide_leaf_effect;
 static wide_leaf_effect *wideLeafEffects;
@@ -23,18 +23,22 @@ void mcs251LoadLeafEffects(void) {
   FILE *file=fopen(mcs251LeafEffectsFile,"rb");char line[SDCC_NAME_MAX+64];unsigned count=0;
   if(!file)goto invalid;
   if(wide_effect_line(file,line,sizeof line)!=1 ||
-     (strcmp(line,"MX251-LEAF-EFFECTS-1") && strcmp(line,"MX251-CALL-CLOBBERS-1")))goto invalid;
+     (strcmp(line,"MX251-LEAF-EFFECTS-1") && strcmp(line,"MX251-CALL-CLOBBERS-1") && strcmp(line,"MX251-CALL-CLOBBERS-2")))goto invalid;
+  bool scoped=!strcmp(line,"MX251-CALL-CLOBBERS-2");
   int status;
   while((status=wide_effect_line(file,line,sizeof line))==1) {
-    char *name=strtok(line," \t"),*abi=strtok(NULL," \t"),*mask=strtok(NULL," \t"),*extra=strtok(NULL," \t");
+    char *scope=scoped?strtok(line," \t"):NULL;
+    char *name=strtok(scoped?NULL:line," \t"),*abi=strtok(NULL," \t"),*mask=strtok(NULL," \t"),*extra=strtok(NULL," \t");
+    if(scoped && (!scope || (strcmp(scope,"local") && strcmp(scope,"global"))))goto invalid;
+    bool local=scoped && !strcmp(scope,"local");
     if(!name || !abi || !mask || extra || strlen(name)>SDCC_NAME_MAX || strlen(mask)!=8 ||
        (strcmp(abi,"2") && strcmp(abi,"4")) || ++count>4096)goto invalid;
     if(!isalpha((unsigned char)*name) && *name!='_' && *name!='$' && *name!='.')goto invalid;
     for(char *p=name;*p;++p)if(!isalnum((unsigned char)*p) && *p!='_' && *p!='$' && *p!='.')goto invalid;
     for(char *p=mask;*p;++p)if(!isxdigit((unsigned char)*p))goto invalid;
-    for(wide_leaf_effect *p=wideLeafEffects;p;p=p->next)if(!strcmp(p->name,name))goto invalid;
+    for(wide_leaf_effect *p=wideLeafEffects;p;p=p->next)if(p->local==local && !strcmp(p->name,name))goto invalid;
     wide_leaf_effect *entry=Safe_alloc(sizeof *entry);strcpy(entry->name,name);
-    entry->abi=(unsigned)(*abi-'0');entry->writes=(uint32_t)strtoul(mask,NULL,16);
+    entry->abi=(unsigned)(*abi-'0');entry->writes=(uint32_t)strtoul(mask,NULL,16);entry->local=local;
     entry->next=wideLeafEffects;wideLeafEffects=entry;
   }
   if(status<0)goto invalid;
@@ -44,10 +48,10 @@ invalid:
   werror(E_BAD_INT_ARGUMENT,"--mcs251-leaf-effects: invalid feedback contract");exit(EXIT_FAILURE);
 }
 static bool wide_leaf_writes(symbol *callee,uint32_t *writes) {
-  /* 同名 static 函数不能借用其它翻译单元的导出定义。 */
-  if(!callee || IS_STATIC(callee->etype))return false;
+  /* v2 local facts are supplied in a translation-unit-specific feedback file. */
+  if(!callee)return false;
   for(wide_leaf_effect *p=wideLeafEffects;p;p=p->next)
-    if(p->abi==FUNC_SDCCCALL(callee->type) && !strcmp(p->name,callee->rname)) {*writes=p->writes;return true;}
+    if(p->local==!!IS_STATIC(callee->etype) && p->abi==FUNC_SDCCCALL(callee->type) && !strcmp(p->name,callee->rname)) {*writes=p->writes;return true;}
   return false;
 }
 

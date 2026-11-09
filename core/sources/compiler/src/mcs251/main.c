@@ -140,6 +140,7 @@ unsigned char mcs251OrderedAsmBits[256];
 static char *orderedAsmBitsSpec;
 int mcs251FunctionMetadataEnabled;
 static int functionSharingEnabled;
+int mcs251MachineIrEnabled;
 char *mcs251LeafEffectsFile;
 extern void mcs251LoadLeafEffects(void);
 
@@ -203,6 +204,7 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-word-compare-immediate", &mcs251WordCompareImmediateEnabled, "Use exact 16-bit immediate comparisons in the wide backend; default off" },
     { 0, "--mcs251-ordered-asm", &mcs251OrderedAsmEnabled, "Admit ordered NOP and target-declared numeric SFR bit writes in the wide backend" },
     { 0, "--mcs251-ordered-asm-bits", &orderedAsmBitsSpec, "<NN:MM,...> verified SFR byte:bit-mask capabilities; requires --mcs251-ordered-asm", CLAT_STRING },
+    { 0, "--mcs251-machine-ir", &mcs251MachineIrEnabled, "Optimize physical machine IR after either code generator" },
     { 0, "--mcs251-share-functions", &functionSharingEnabled, "Share ABI2 machine function templates with per-call constants; requires function metadata; experimental default off" },
     { 0, "--mcs251-function-metadata", &mcs251FunctionMetadataEnabled, "Emit complete function ownership for conservative qualified-link reachability" },
     { 0, "--mcs251-leaf-effects", &mcs251LeafEffectsFile, "<file> experimental trusted leaf-write contract; use qualified two-pass builder", CLAT_STRING },

@@ -3820,6 +3820,7 @@ mcs251GcEnd (void)
 /* assignRegisters - assigns registers to each live range as need  */
 /*-----------------------------------------------------------------*/
 #include "backend_choice.c.inc"
+#include "machine_pipeline.c.inc"
 
 void
 mcs251_assignRegisters (ebbIndex * ebbi)
@@ -3859,6 +3860,7 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   char *wideText=NULL;
   short savedBank=mcs251GetEmittedRegisterBank();
   mcs251_wide_result wideResult=mcs251TryWideFunction(ebbi,narrowTrial);
+  if(wideResult==MCS251_WIDE_ACCEPTED)mcs251MachinePipeline(backendStart,ebbi);
 #ifdef MX251_WIDE_AUDIT
   if(memcmp(auditGlobal,&_G,sizeof _G) || memcmp(auditRegisters,mcs251_regs,sizeof mcs251_regs)) {
     werror(E_INTERNAL_ERROR,__FILE__,__LINE__,"wide changed legacy allocator state");return;
@@ -3970,6 +3972,7 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   recomputeValinfos (ic, ebbi, "_3");
 
   mcs251_genCode (ic);
+  mcs251MachinePipeline(backendStart,ebbi);
   if(wideText) {
     mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength,narrowTrial);
     mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart,narrowTrial);

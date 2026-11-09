@@ -311,7 +311,14 @@ function Get-Mx251BankFunctions([string]$Root,$Config) {
  return @{symbols=$symbols;functions=$all}
 }
 
-function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha) {
+function Get-Mx251BindingKey($Bindings,[string]$Unit,[string]$Symbol) {
+ $local=$Unit+':'+$Symbol
+ if($Bindings.ContainsKey($local)){return $local}
+ if($Bindings.ContainsKey($Symbol)){return $Symbol}
+ return $null
+}
+
+function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha,[switch]$ScopedLocals) {
  $record=[ordered]@{schema=1;status='NO_ELIGIBLE_CLOSURE';compilerSha256=$CompilerSha;profileLockSha256=$ProfileSha;inputs=$Inputs;bindings=@();recompiledUnits=@();finalValidated=$false;fallback=$false}
  if(@($Config.archives).Count){$record.status='FALLBACK_PROJECT_ARCHIVE_BINDING_UNPROVEN';return $record}
  $scan=Get-Mx251BankFunctions $Root $Config
@@ -328,19 +335,26 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   $defs=@($scan.symbols[$key]);$defs=@($defs|Where-Object{$_.exported})
   if($defs.Count -eq 1 -and $defs[0].abi -eq 2 -and $defs[0].writes -ne 4294967295L -and
      $owners.ContainsKey($key) -and $owners[$key].Count -eq 1 -and $owners[$key][0] -ceq $defs[0].unit){
-   $bindings+=@{symbol=$key;unit=$defs[0].unit;abi=2;writes=$defs[0].writes}
+   $bindings+=@{symbol=$key;key=$key;local=$false;unit=$defs[0].unit;abi=2;writes=$defs[0].writes}
+  }
+ }
+ if($ScopedLocals) {
+  foreach($f in $scan.functions) {
+   if($f.exported -or $f.abi -ne 2 -or $f.writes -eq 4294967295L){continue}
+   $same=@($scan.symbols[$f.symbol]|Where-Object{$_.unit -ceq $f.unit})
+   if($same.Count -eq 1){$bindings+=@{symbol=$f.symbol;key=($f.unit+':'+$f.symbol);local=$true;unit=$f.unit;abi=2;writes=$f.writes}}
   }
  }
  $record.bindings=$bindings
  $record.analysis=@($scan.functions|ForEach-Object{@{symbol=$_.symbol;unit=$_.unit;abi=$_.abi;localWrites=$_.localWrites;writes=$_.writes;calls=$_.calls;reason=$_.reason;instructions=$_.instructions}})
  if(-not $bindings.Count){return $record}
- $byName=New-Mx251OrdinalMap;foreach($b in $bindings){$byName[$b.symbol]=$b}
+ $byName=New-Mx251OrdinalMap;foreach($b in $bindings){$byName[$b.key]=$b}
  $units=@()
  foreach($u in $Config.units){
   if([IO.Path]::GetExtension($u.file) -cne '.c' -or $u.backend -ceq 'legacy'){continue}
   $needed=$false
   foreach($f in @($scan.functions|Where-Object{$_.unit -ceq $u.name})) {
-   foreach($callee in $f.calls){if($byName.ContainsKey($callee)){$needed=$true;break}}
+   foreach($callee in $f.calls){if(Get-Mx251BindingKey $byName $f.unit $callee){$needed=$true;break}}
    if($needed){break}
   }
   if($needed){$units+=@($u)}
@@ -361,22 +375,31 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   # 最多四次编译，只重编引用变化事实的单元；最终仍逐项核对真实省略位。
   # 不收敛、无新增事实或任何身份/边界失败都恢复原对象，不放宽安全判断。
   for($attempt=0;$attempt -lt $record.maxAttempts;$attempt++) {
-  $lines=@('MX251-CALL-CLOBBERS-1')+@($bindings|Where-Object{-not $disabled.Contains($_.symbol)}|ForEach-Object{($_.symbol+' 2 {0:x8}' -f [long]$_.writes)})
+  $lines=@('MX251-CALL-CLOBBERS-1')+@($bindings|Where-Object{-not $_.local -and -not $disabled.Contains($_.key)}|ForEach-Object{($_.symbol+' 2 {0:x8}' -f [long]$_.writes)})
   [IO.File]::WriteAllText($path,($lines -join "`n")+"`n",[Text.UTF8Encoding]::new($false));$record.feedbackSha256=Hash-File $path
+  $record.feedbackFiles=@()
+  foreach($u in $(if($ScopedLocals){$units}else{@()})){
+   $unitPath=Join-Path $Root ('call-clobbers-'+$u.name+'.txt')
+   $unitLines=@('MX251-CALL-CLOBBERS-2')+@($bindings|Where-Object{(-not $_.local -or $_.unit -ceq $u.name) -and -not $disabled.Contains($_.key)}|ForEach-Object{($(if($_.local){'local'}else{'global'})+' '+$_.symbol+' 2 {0:x8}' -f [long]$_.writes)})
+   [IO.File]::WriteAllText($unitPath,($unitLines -join "`n")+"`n",[Text.UTF8Encoding]::new($false))
+   $record.feedbackFiles+=@{path=$unitPath;sha256=(Hash-File $unitPath)}
+  }
   foreach($u in $nextUnits){
-   $args=@(Flags $u.backend $u.stackAuto $u.defines)+@('--mcs251-leaf-effects','call-clobbers.txt','-c',$u.file,'-o',($u.name+'.rel'))
+   $unitFacts=if($ScopedLocals){'call-clobbers-'+$u.name+'.txt'}else{'call-clobbers.txt'}
+   $args=@(Flags $u.backend $u.stackAuto $u.defines)+@('--mcs251-leaf-effects',$unitFacts,'-c',$u.file,'-o',($u.name+'.rel'))
    Run-Tool ('clobber-'+$u.name) $compilerExe $args;Check-Assembly (Join-Path $Root ($u.name+'.asm'))
    $record.recompiledUnits+=@($u.name)
   }
   if((Hash-File $compilerExe) -cne $CompilerSha -or (Hash-File $lockPath) -cne $ProfileSha -or (Hash-File $path) -cne $record.feedbackSha256){throw 'clobber-feedback-identity-changed'}
+  foreach($f in $record.feedbackFiles){if((Hash-File $f.path) -cne $f.sha256){throw 'clobber-unit-feedback-changed'}}
   foreach($entry in $Inputs.GetEnumerator()){if((Hash-File (Join-Path $Root $entry.Key)) -cne $entry.Value.sha256){throw 'clobber-feedback-source-changed'}}
   $final=Get-Mx251BankFunctions $Root $Config
   $expanded=@()
   foreach($b in $bindings){
    if(-not $final.symbols.ContainsKey($b.symbol)){throw 'clobber-final-definition-missing'}
-   $defs=@($final.symbols[$b.symbol]|Where-Object{$_.exported})
+   $defs=@($final.symbols[$b.symbol]|Where-Object{if($b.local){-not $_.exported -and $_.unit -ceq $b.unit}else{$_.exported}})
    if($defs.Count -ne 1 -or $defs[0].unit -cne $b.unit -or $defs[0].abi -ne $b.abi){throw ('clobber-final-definition-changed:'+ $b.symbol)}
-   if($defs[0].writes -band (4294967295L -bxor $b.writes)){$expanded+=@{symbol=$b.symbol;before=$b.writes;after=$defs[0].writes}}
+   if($defs[0].writes -band (4294967295L -bxor $b.writes)){$expanded+=@{symbol=$b.key;before=$b.writes;after=$defs[0].writes}}
   }
   $record.expandedBounds=$expanded
   # 分配器可改变未被省略的寄存器；正确性条件是每一个实际省略位都与
@@ -397,6 +420,10 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
     $pending=$null
    }
    if($null -ne $pending){throw 'clobber-unclosed-ordinary-save'}
+   foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-machine-call callee=([^\s]+) writes=([0-9a-f]{8})\s*$')){
+    $mask=[Convert]::ToUInt32($m.Groups[2].Value,16)
+    $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=(4294967295L -bxor $mask);kind='machine'}
+   }
    foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-call-save caller=([^\s]+) site=([0-9]+) callee=([^\s]+) omitted=([0-9a-f]{8}) groups=([0-9]+) bytes=([0-9]+) verified=([01])\s*$')){
     if($m.Groups[1].Value -cne $f.symbol -or $m.Groups[7].Value -cne '1'){throw 'clobber-call-setup-proof-missing'}
     $mask=[Convert]::ToUInt32($m.Groups[4].Value,16)
@@ -406,10 +433,12 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   $record.actualUses=$uses
   $violations=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
   foreach($use in $uses){
-   if(-not $byName.ContainsKey($use.callee) -or -not $final.symbols.ContainsKey($use.callee)){throw 'clobber-unbound-actual-call'}
-   $defs=@($final.symbols[$use.callee]|Where-Object{$_.exported})
+   $key=Get-Mx251BindingKey $byName $use.unit $use.callee
+   if(-not $key -or -not $final.symbols.ContainsKey($use.callee)){throw 'clobber-unbound-actual-call'}
+   $binding=$byName[$key];$use.bindingKey=$key
+   $defs=@($final.symbols[$use.callee]|Where-Object{if($binding.local){-not $_.exported -and $_.unit -ceq $use.unit}else{$_.exported}})
    if($defs.Count -ne 1 -or $defs[0].abi -ne 2){throw ('clobber-actual-binding-violated:'+ $use.callee)}
-   if(($defs[0].writes -band $use.removed) -or ($use.kind -ceq 'ordinary' -and ($use.boundaryWrites -band $use.removed))){$null=$violations.Add($use.callee)}
+   if(($defs[0].writes -band $use.removed) -or ($use.kind -ceq 'ordinary' -and ($use.boundaryWrites -band $use.removed))){$null=$violations.Add($key)}
    $use.finalCalleeWrites=$defs[0].writes
   }
   $record.attempts+=@{attempt=$attempt;units=@($nextUnits|ForEach-Object{$_.name});feedbackSha256=$record.feedbackSha256;disabled=@($disabled);violations=@($violations);uses=$uses}
@@ -430,7 +459,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    foreach($name in $violations){
     # 普通调用参数准备/结果搬运的破坏并不属于 callee。不能靠扩大 callee
     # 写集合伪造其来源；此类冲突和未解释冲突继续撤销该目标的反馈。
-    $boundaryConflict=@($uses|Where-Object{$_.callee -ceq $name -and $_.kind -ceq 'ordinary' -and ($_.boundaryWrites -band $_.removed)}).Count
+    $boundaryConflict=@($uses|Where-Object{$_.bindingKey -ceq $name -and $_.kind -ceq 'ordinary' -and ($_.boundaryWrites -band $_.removed)}).Count
     if($boundaryConflict -or -not $repairTargets.Contains($name)){if($disabled.Add($name)){$repairProgress=$true;$newDisabled+=@($name)}}
     $null=$repairTargets.Add($name)
    }
@@ -440,7 +469,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    $nextUnits=@($units|Where-Object{
     $name=$_.name;$needed=$false
     foreach($f in @($scan.functions|Where-Object{$_.unit -ceq $name})){
-     foreach($callee in $f.calls){if($repairTargets.Contains($callee)){$needed=$true;break}}
+     foreach($callee in $f.calls){if($repairTargets.Contains((Get-Mx251BindingKey $byName $f.unit $callee))){$needed=$true;break}}
     }
     $needed
    })
