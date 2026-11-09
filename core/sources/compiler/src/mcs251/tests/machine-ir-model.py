@@ -138,7 +138,9 @@ def execute(text, name, seed):
         b = '#1' if op == 'inc' and len(args) == 1 else args[1]
         width = register(b)[1] if a.startswith('@') else 4 if a == 'spx' else register(a)[1]
         value = read(b, width)
-        if op in ('mov', 'movz'):
+        if op in ('mov', 'movz', 'movs'):
+            if op == 'movs' and value & 128:
+                value -= 256
             write(a, value, width)
             continue
         old = read(a, width)

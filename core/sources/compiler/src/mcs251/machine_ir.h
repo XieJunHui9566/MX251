@@ -278,6 +278,12 @@ static void mi_set_register(mi_operand *o,int reg) {
   snprintf(o->text,sizeof o->text,"%s%sr%d",o->indirect?"@":"",o->width==4?"d":o->width==2?"w":"",reg);
   o->reg=reg;
 }
+/* Allocated homes precede the emitter's DR16/DR20 scratch registers. This
+ * lets a store read its original high GPR instead of retaining a scratch
+ * copy solely because that copy has a smaller register number. */
+static int mi_register_rank(int reg) {
+  return reg<16?reg:reg>=24?reg-8:reg+8;
+}
 static int mi_forward(mi_program *p,const char *body,size_t length) {
   int changes=0;mi_equivalences(p);
   for(size_t i=0;i<p->count;++i) {
@@ -293,10 +299,14 @@ static int mi_forward(mi_program *p,const char *body,size_t length) {
        mi_is(n,"cmp") || mi_is(n,"add") || mi_is(n,"sub") || mi_is(n,"anl") || mi_is(n,"orl") || mi_is(n,"xrl")))continue;
     mi_operand *o=&n->operand[1];
     if(o->reg<0 || o->indirect || (mi_mask(o->reg,o->width)&MCS251_AB_BYTES))continue;
-    for(int r=0;r<o->reg;r+=o->width) {
+    int best=o->reg;
+    for(int r=0;r<MI_REGS;r+=o->width) {
       if(!mcs251RegisterEncodable(r,o->width) || (mi_mask(r,o->width)&MCS251_AB_BYTES) ||
-         !mi_same(eq,r,o->reg,o->width))continue;
-      mi_set_register(o,r);n->changed=1;mi_effects(n,body,length);++p->forwarded;++changes;break;
+         mi_register_rank(r)>=mi_register_rank(best) || !mi_same(eq,r,o->reg,o->width))continue;
+      best=r;
+    }
+    if(best!=o->reg) {
+      mi_set_register(o,best);n->changed=1;mi_effects(n,body,length);++p->forwarded;++changes;
     }
   }
   return changes;

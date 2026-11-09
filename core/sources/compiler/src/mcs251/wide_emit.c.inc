@@ -73,7 +73,13 @@ static void wi(wide_function *f,int reg,int width,uint32_t value) {
   else {we(f,"\tmov\twr%d,#0x%04lx\n",reg,(unsigned long)(value>>16));we(f,"\tmov\twr%d,#0x%04lx\n",reg+2,(unsigned long)(value&0xffff));}
 }
 static void wsign_word(wide_function *f,int high,int low) {
-  int skip=wt(f);wi(f,high,2,0);we(f,"\tcmp\twr%d,#0x8000\n",low);wj(f,"jc",skip);wi(f,high,2,0xffff);wl(f,skip);
+  /* Two byte-to-word sign extensions form the full sign word. High GPRs
+   * have no byte aliases, so use the emitter's reserved B:A scratch pair. */
+  if(high<16 && low<16)
+    we(f,"\tmovs\twr%d,r%d\n\tmovs\twr%d,r%d\n",high,low,high,high);
+  else {
+    we(f,"\tmov\twr10,wr%d\n\tmovs\twr10,r10\n\tmovs\twr%d,r10\n",low,high);
+  }
 }
 /* Source location may differ from a value's result/allocation location.
  * Only call operands use this view; return values keep their allocated home. */

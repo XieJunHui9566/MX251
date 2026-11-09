@@ -31,6 +31,15 @@ def main():
         'same-join': '_test:\n cmp wr0,#12345\n jc __wm_left\n mov wr4,wr2\n sjmp __wm_join\n__wm_left:\n mov wr4,wr2\n__wm_join:\n mov wr6,wr4\n eret\n',
         'stack': '_test:\n push wr4\n mov wr16,wr0\n add wr16,wr2\n mov wr4,wr16\n mov wr16,#0\n pop wr0\n mov @spx-7,wr4\n eret\n',
     }
+    for width, reg in ((2, 26), (4, 28)):
+        prefix = 'wr' if width == 2 else 'dr'
+        programs[f'high-register-store-{width}'] = f'_test:\n mov {prefix}16,{prefix}{reg}\n mov @spx-7,{prefix}16\n mov {prefix}16,#0\n eret\n'
+    for reg in (0, 4, 12, 16, 20, 24, 28):
+        if reg < 16:
+            body = f' movs wr{reg},r{reg+2}\n movs wr{reg},r{reg}\n'
+        else:
+            body = f' mov wr10,wr{reg+2}\n movs wr10,r10\n movs wr{reg},r10\n'
+        programs[f'sign-word-{reg}'] = '_test:\n' + body + ' eret\n'
     rng = random.Random(251)
     for op in ('mul', 'div'):
         for first in range(32):
@@ -71,10 +80,20 @@ def main():
             before = machine.execute(original,entry,seed)
             after = machine.execute(candidate,entry,seed)
             assert before == after,(name,seed)
+            if name.startswith('sign-word-'):
+                reg = int(name.removeprefix('sign-word-'))
+                initial_rng = random.Random(seed)
+                initial = bytes(initial_rng.randrange(256) for _ in range(32))
+                high = b'\xff\xff' if initial[reg+2] & 128 else b'\0\0'
+                assert before[0][reg:reg+4] == high + initial[reg+2:reg+4], (name, seed)
+                assert before[4:] == (False, False), (name, seed)
             executions += 1
     assert 'cjne' not in (args.output/'cjne-fold-optimized.asm').read_text()
     assert 'cjne' in (args.output/'cjne-flags-live-optimized.asm').read_text()
     assert 'mx251-machine-call' in (args.output/'typed-call-optimized.asm').read_text()
+    for width in (2, 4):
+        prefix = 'wr' if width == 2 else 'dr'
+        assert f'mov {prefix}16,{prefix}' not in (args.output/f'high-register-store-{width}-optimized.asm').read_text()
     # A caller-visible value and a fixed PC displacement must remain observable.
     for name, text in {
         'opaque-call':'_test:\n mov wr4,wr16\n ecall _opaque\n eret\n',
