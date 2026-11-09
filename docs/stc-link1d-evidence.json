@@ -24,10 +24,32 @@
   "officialLogResult": 0,
   "configurationAcknowledgement": "0454",
   "offlineReplayAllReportsMatch": true,
-  "scriptHardwareTested": false,
+  "scriptHardwareTested": true,
+  "scriptHardwareResult": {
+    "implementationCommit": "101fe6d537b6070dc559275b61daa3ed2287242e",
+    "status": "complete",
+    "startedUtc": "2026-11-09T00:47:34.139086+00:00",
+    "endedUtc": "2026-11-09T00:47:40.543468+00:00",
+    "traceSha256": "dc9b703a610569bf9c754b505a2b4f541a1bce107de8e6d66286e74eaccae460",
+    "resultSha256": "b351787f5e03d4fff656180c8e89b73f4c070ba6c47e43b53e02228731f04e18",
+    "txReports": 197,
+    "rxReports": 67,
+    "programBlocks": 59,
+    "programAcknowledged": true,
+    "configurationAcknowledged": true,
+    "runCommandSent": true,
+    "postSessionControlSent": true,
+    "measuredIrcHz": 40029600,
+    "automaticRetries": 0
+  },
   "flashReadback": false,
   "configurationReadback": false,
-  "applicationExecutionVerified": false,
+  "applicationObservation": {
+    "source": "user report in this task after script download",
+    "oledDisplay": "normal; same as official download",
+    "automated": false
+  },
+  "fullApplicationCorrectnessVerified": false,
   "compilerPerformanceQualified": false,
   "rawCaptureAndUserFirmwareInRepository": false
 }
