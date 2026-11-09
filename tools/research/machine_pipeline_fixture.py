@@ -108,7 +108,7 @@ def expected(kind, seed):
     return result
 
 
-def check(data):
+def check(data, reference=expected):
     samples = {}
     pos = 0
     while True:
@@ -125,7 +125,7 @@ def check(data):
         kind, seed = frame[4:6]
         assert kind < 2 and seed < 64
         value = int.from_bytes(frame[6:10], 'big')
-        assert value == expected(kind, seed), (kind, seed, hex(value), hex(expected(kind, seed)))
+        assert value == reference(kind, seed), (kind, seed, hex(value), hex(reference(kind, seed)))
         assert frame[12] == 0, ('timer-overflow', kind, seed)
         ticks = int.from_bytes(frame[10:12], 'big')
         samples.setdefault(f'{kind}:{seed}', []).append(ticks)
@@ -143,7 +143,7 @@ def write(path, value):
     path.write_bytes((json.dumps(value, indent=2)+'\n').encode())
 
 
-def capture(image, output):
+def capture(image, output, checker=check):
     import serial
     from serial.tools import list_ports
     output.mkdir(parents=True, exist_ok=False)
@@ -168,7 +168,7 @@ def capture(image, output):
     finally:
         uart.close()
     (output/'uart.bin').write_bytes(data)
-    result = check(data)
+    result = checker(data)
     result.update(firmwareSha256=sha(image), device=device, port=ports[0].device)
     write(output/'result.json', result)
     print(json.dumps({k: v for k, v in result.items() if k not in ('ticks', 'device')}))
