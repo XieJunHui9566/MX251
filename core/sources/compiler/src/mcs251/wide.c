@@ -2415,11 +2415,11 @@ static int wide_resolve_callee_cost(const char *name,const void *context,unsigne
 #include "indexed_field_flags.h"
 
 static mcs251_wide_result
-wide_choose_transform(wide_function *f,wide_selection_cost *cost,
+wide_choose_transform_frame(wide_function *f,wide_selection_cost *cost,
   unsigned (*transform)(wide_function *),
   mcs251_wide_result (*choose)(wide_function *,wide_selection_cost *),
   const char *kind,const char *countName,bool requireSpill,
-  const char *originalKind,const char *trialKind,bool requireKnownPaths,bool useOperandContext)
+  const char *originalKind,const char *trialKind,bool requireKnownPaths,bool useOperandContext,bool compareFrame)
 {
   wide_function *trial=Safe_alloc(sizeof *trial);memcpy(trial,f,sizeof *trial);
   struct dbuf_s originalCode,originalDiagnostics,trialCode,trialDiagnostics;
@@ -2440,7 +2440,7 @@ wide_choose_transform(wide_function *f,wide_selection_cost *cost,
       wide_liveness(trial);trialResult=choose(trial,&newCost);
       if(trialResult==MCS251_WIDE_ERROR)result=MCS251_WIDE_ERROR;
       else selected=trialResult==MCS251_WIDE_ACCEPTED && !oldCost.unknown && !newCost.unknown &&
-        newCost.bytes<=oldCost.bytes && newCost.heuristic<=oldCost.heuristic && newCost.frame<=oldCost.frame &&
+        newCost.bytes<=oldCost.bytes && newCost.heuristic<=oldCost.heuristic && (!compareFrame || newCost.frame<=oldCost.frame) &&
         (newCost.bytes<oldCost.bytes || newCost.heuristic<oldCost.heuristic || newCost.frame<oldCost.frame);
       /* 完整静态成本通过后，再逐个检查最终循环的一次迭代；冷路径不能补偿热循环。 */
       if(selected) {
@@ -2489,6 +2489,20 @@ wide_choose_transform(wide_function *f,wide_selection_cost *cost,
   dbuf_destroy(&originalCode);dbuf_destroy(&originalDiagnostics);
   dbuf_destroy(&trialCode);dbuf_destroy(&trialDiagnostics);Safe_free(trial);
   return result;
+}
+
+/* Existing transforms retain their local-frame policy. Parameter promotion
+ * may exchange stack space for smaller/faster code within the allocator's
+ * existing frame limit; it compares the same complete emitted candidates. */
+static mcs251_wide_result
+wide_choose_transform(wide_function *f,wide_selection_cost *cost,
+  unsigned (*transform)(wide_function *),
+  mcs251_wide_result (*choose)(wide_function *,wide_selection_cost *),
+  const char *kind,const char *countName,bool requireSpill,
+  const char *originalKind,const char *trialKind,bool requireKnownPaths,bool useOperandContext)
+{
+  return wide_choose_transform_frame(f,cost,transform,choose,kind,countName,requireSpill,
+    originalKind,trialKind,requireKnownPaths,useOperandContext,true);
 }
 
 static mcs251_wide_result
@@ -2696,15 +2710,24 @@ wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
     "value-copy","changes",false,"copies-original","copies-trial",false,false);
 }
 
+#include "wide_parameter_values.c.inc"
+
+static mcs251_wide_result
+wide_choose_parameter_values(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform_frame(f,cost,wide_parameter_values,wide_choose_value_copies,
+    "parameter-values","parameters",false,"parameters-original","parameters-trial",false,false,false);
+}
+
 #include "wide_rotate_cost.c.inc"
 
 static mcs251_wide_result
 wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
 {
-  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_value_copies(f,cost);
+  if(!mcs251ConstantRotateFusionEnabled)return wide_choose_parameter_values(f,cost);
   struct dbuf_s baseline,candidate;dbuf_init(&baseline,1024);dbuf_init(&candidate,1024);
   struct dbuf_s *output=f->candidateOutput;f->candidateOutput=&baseline;
-  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_value_copies(f,&original);
+  wide_selection_cost original={0};mcs251_wide_result result=wide_choose_parameter_values(f,&original);
   f->candidateOutput=output;
   unsigned selected=0;if(result==MCS251_WIDE_ACCEPTED && !original.unknown)
     selected=wide_rotate_finalize(f,dbuf_get_buf(&baseline),dbuf_get_length(&baseline),&candidate);
