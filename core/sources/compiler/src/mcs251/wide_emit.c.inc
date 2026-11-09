@@ -1272,14 +1272,25 @@ wcall_original(wide_function *f,int index)
   }
   size_t setupStart=dbuf_get_length(&f->output);
   if(n->stackArgs)we(f,"; wide stack call args=%u bytes=%u\n",n->stackArgs,n->stackBytes);
-  for(unsigned k=0;k<n->stackArgs;++k)wstack_argument(f,n->stackOperands[k],n->stackWidths[k]);
+  for(unsigned k=0;k<n->stackArgs;++k) {
+    wide_symbol_address address=n->callAddresses[k+1];
+    if(address.symbol) {
+      we(f,"; wide symbolic stack argument\n\tmov\ta,#((%s%+d)>>16)\n\tpush\tacc\n\tpushw\t#(%s%+d)\n",
+         address.symbol->rname,address.offset,address.symbol->rname,address.offset);
+      f->stackDepth+=3;
+    } else wstack_argument(f,n->stackOperands[k],n->stackWidths[k]);
+  }
   if(n->ordinaryCall) {
     we(f,"; wide ordinary ABI call: args=%u stack=%u\n",n->args,n->stackBytes);
     if(n->args) {
       /* 先快照全部首参，再改 A/B；不能让字节拆分覆盖尚未读取的源。
        * DPL/DPH 是独立 SFR，B/A 对应 R10/R11；只借用保留 DR16。 */
       unsigned bytes=getSize(FUNC_ARGS(n->callee->type)->type);
-      if(mcs251InternalArgument(n->callee)) {
+      if(n->callAddresses[0].symbol) {
+        wide_symbol_address address=n->callAddresses[0];
+        we(f,"; wide symbolic register argument\n\tmov\tdptr,#(%s%+d)\n\tmov\tb,#((%s%+d)>>16)\n",
+           address.symbol->rname,address.offset,address.symbol->rname,address.offset);
+      } else if(mcs251InternalArgument(n->callee)) {
         wassert(bytes==4 && n->left.width==4);
         we(f,"; internal first argument DR4\n");wload(f,n->left,4,4);
       } else if(!wordinary_argument_direct(f,n->left,bytes)) {

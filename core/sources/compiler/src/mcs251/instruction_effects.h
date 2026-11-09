@@ -2,6 +2,7 @@
 #ifndef MX251_INSTRUCTION_EFFECTS_H
 #define MX251_INSTRUCTION_EFFECTS_H
 #include "register_facts.h"
+#include "symbol_immediate.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
@@ -119,6 +120,9 @@ static inline mx251_effects mx251InstructionEffects(const char *line,size_t leng
    * 拼成另一个数字。PUSHW只读取/更新SPX并写栈，不破坏GPR或flags。 */
   if(!strcmp(op,"pushw")) {
     const char *q=line+operandBegin,*limit=line+length;
+    if(!b && mx251SymbolImmediate(q,limit)) {
+      e.specialReads=e.specialWrites=MX251_SPECIAL_SPX;e.memory=MX251_MEMORY_WRITE;return e;
+    }
     while(q<limit && isspace((unsigned char)*q))++q;
     if(b || limit-q<7 || q[0]!='#' || q[1]!='0' || tolower((unsigned char)q[2])!='x')goto unknown;
     for(unsigned j=3;j<7;++j)if(!isxdigit((unsigned char)q[j]))goto unknown;

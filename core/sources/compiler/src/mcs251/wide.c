@@ -43,6 +43,7 @@ typedef struct {
 /* 可取址对象有独占的完整存储期，不与虚拟寄存器的溢出槽合并。
  * 不复用旧后端尚未重新布局的 symbol.stack，也不缓存对象内容。 */
 typedef struct { symbol *sym; int slot, size; bool privateUnion; } wide_object;
+typedef struct { symbol *symbol; int offset; } wide_symbol_address;
 typedef struct {
   unsigned op;
   iCode *origin;
@@ -61,6 +62,7 @@ typedef struct {
   unsigned args, stackArgs, stackBytes;
   wide_operand stackOperands[WA_MAX-1];
   unsigned char stackWidths[WA_MAX-1];
+  wide_symbol_address callAddresses[WA_MAX]; /* first argument, then physical stack order */
   bool ordinaryCall, carryResult;
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
   wide_call_contract call;
@@ -906,10 +908,9 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if (ic->op==CAST && IS_BOOL(operandType(IC_RESULT(ic)))) return wide_import_reject(f,ic,__LINE__);
         if (POINTER_SET(ic) || !wide_result(f,n,IC_RESULT(ic)) || !wide_use(f,n,IC_RIGHT(ic),&n->right)) return wide_import_reject(f,ic,__LINE__);
         if(n->floating!=n->right.floating)return wide_import_reject(f,ic,__LINE__);
-        /* CODE 与数据指针的直接转换保留旧路径；整数到明确类型指针的
-         * 转换按原有 24 位截断规则规范化，不能丢失指针的读取空间。 */
-        if(wide_pointer(operandType(IC_RESULT(ic))) && wide_pointer(operandType(IC_RIGHT(ic))) &&
-           f->values[n->result].codePointer!=n->right.codePointer)return wide_import_reject(f,ic,__LINE__);
+        /* Flat CODE, XDATA and generic pointers share the same 24 address
+         * bits. Keep the destination's access space; only the value is copied.
+         * Near/paged/function pointers are excluded by wide_pointer. */
         if (ic->op=='=' && n->width!=n->right.width) return wide_import_reject(f,ic,__LINE__);
         f->body=true;break;
       case GET_VALUE_AT_ADDRESS:
@@ -1603,6 +1604,7 @@ wide_reset_allocation(wide_function *f)
 }
 
 
+#include "wide_constant_addresses.c.inc"
 #include "wide_affine.c.inc"
 
 /* 只消除直线尾部中仅供 IFX 使用的逻辑非临时值。
@@ -2768,6 +2770,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
     wide_fold_indexed_addresses(f);
     wide_reuse_parameter_loads(f);
     wide_fold_extensions(f);
+    wide_constant_call_addresses(f);
     wide_liveness(f);
     if(WA_FAIL("after-transform"))goto fallback;
     rejectionStage="allocation-or-emission";
