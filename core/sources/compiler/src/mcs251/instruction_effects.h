@@ -142,11 +142,24 @@ static inline mx251_effects mx251InstructionEffects(const char *line,size_t leng
     else if(strcmp(op,"sjmp") && strcmp(op,"ljmp") && strcmp(op,"ejmp"))e.flagsReads=UINT32_MAX;
     return e;
   }
+  if((!strcmp(op,"mul") || !strcmp(op,"div")) && !b && !strcmp(a,"ab")) {
+    e.reads=e.writes=MCS251_AB_BYTES;e.flagsWrites=UINT32_MAX;return e;
+  }
   mx251_effect_operand x,y;
   if(!mx251EffectOperand(a,&x))goto unknown;
   if(b && !mx251EffectOperand(b,&y))goto unknown;
   /* 未限定的间接访问可能落入外设空间，不能用此摘要证明调用无副作用。 */
   if((x.indirect && !x.stack) || (b && y.indirect && !y.stack))goto unknown;
+  if(!strcmp(op,"mul") || !strcmp(op,"div")) {
+    if(!b || !x.gpr || !y.gpr || x.indirect || y.indirect ||
+       x.width!=y.width || x.width>2)goto unknown;
+    unsigned first=0;while(!(x.gpr&(UINT32_C(1)<<first)))++first;
+    /* Both operations write the enclosing word/dword, including the
+     * implicit high half. Operands are read before either half changes. */
+    unsigned width=2*x.width;first-=first%width;
+    e.reads=x.gpr|y.gpr;e.writes=mcs251RegisterBytes(first,width);
+    e.flagsWrites=UINT32_MAX;return e;
+  }
   if(!strcmp(op,"mov") || !strcmp(op,"movz") || !strcmp(op,"movs")) {
     if(!b || !mx251EffectWrite(&e,&x))goto unknown;
     mx251EffectRead(&e,&y);return e;

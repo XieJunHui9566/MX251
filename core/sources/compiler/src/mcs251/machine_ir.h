@@ -314,6 +314,9 @@ static int mi_coalesce(mi_program *p,const char *body,size_t length) {
       mi_instruction *n=&p->instructions[--start];
       if(n->removed)continue;
       if(n->unknown || n->call || n->branch || n->terminal || *n->label || ((n->reads|n->writes)&dm))break;
+      /* MUL/DIV also write an implicit half of the enclosing register.
+       * Renaming one explicit operand cannot rename a partial result. */
+      if((mi_is(n,"mul") || mi_is(n,"div")) && ((n->reads|n->writes)&sm))break;
       int valid=1;
       for(unsigned k=0;k<n->operands;++k) {
         mi_operand *o=&n->operand[k];uint32_t mask=mi_mask(o->reg,o->width);

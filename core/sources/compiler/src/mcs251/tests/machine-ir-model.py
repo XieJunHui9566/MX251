@@ -96,6 +96,23 @@ def execute(text, name, seed):
             continue
         if op == 'nop':
             continue
+        if op in ('mul', 'div'):
+            if args == ['ab']:
+                left, right = read('a'), read('b')
+                assert op != 'div' or right
+                high, low = ((left * right) >> 8, (left * right) & 255) if op == 'mul' else divmod(left, right)[::-1]
+                write('b', high); write('a', low)
+                zero = (left * right == 0) if op == 'mul' else low == 0
+            else:
+                first, width = register(args[0])
+                left, right = read(args[0]), read(args[1])
+                assert op != 'div' or right
+                value = left * right if op == 'mul' else ((left % right) << (8 * width)) | (left // right)
+                at = first // (2 * width) * (2 * width)
+                regs[at:at+2*width] = value.to_bytes(2*width, 'big')
+                zero = value == 0 if op == 'mul' else left // right == 0
+            carry = False
+            continue
         if op in ('ejmp', 'sjmp', 'jc', 'jnc', 'je', 'jne'):
             take = {'ejmp': True, 'sjmp': True, 'jc': carry, 'jnc': not carry,
                     'je': zero, 'jne': not zero}[op]

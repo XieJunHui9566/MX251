@@ -32,6 +32,14 @@ def main():
         'stack': '_test:\n push wr4\n mov wr16,wr0\n add wr16,wr2\n mov wr4,wr16\n mov wr16,#0\n pop wr0\n mov @spx-7,wr4\n eret\n',
     }
     rng = random.Random(251)
+    for op in ('mul', 'div'):
+        for first in range(32):
+            if first < 16:
+                programs[f'{op}-byte-{first}'] = f'_test:\n mov wr20,wr6\n mov r14,#17\n {op} r{first},r14\n mov wr24,wr20\n eret\n'
+            if first % 2 == 0:
+                programs[f'{op}-word-{first}'] = f'_test:\n mov wr20,wr6\n mov wr12,#37\n {op} wr{first},wr12\n mov wr24,wr20\n eret\n'
+        programs[f'{op}-ab'] = f'_test:\n mov wr6,wr0\n mov b,#3\n {op} ab\n mov wr4,wr6\n eret\n'
+        programs[f'{op}-implicit-half'] = f'_test:\n mov wr6,wr0\n mov wr12,#37\n {op} wr4,wr12\n mov wr16,wr6\n mov wr6,#0\n eret\n'
     registers = {1: ['r'+str(r) for r in [0,1,2,3,4,5,6,7,12,13]],
                  2: ['wr'+str(r) for r in [0,2,4,6,12,16,18,20,22,24,26,28,30]],
                  4: ['dr'+str(r) for r in [0,4,16,20,24,28]]}
