@@ -56,6 +56,8 @@ $build = Join-Path $project '.build/cmake-direct'
 
 ## 运行库与限制
 
+源码开发分支新增的显式 `__edata` 用法、当前 768 字节分配窗口和指针 ABI 说明见 [EDATA.md](EDATA.md)，完整工程示例位于 `examples/edata`。需要对应开发版编译器及链接器，原 0.0170 发布包尚不含此功能。
+
 两个配置均提供 `standard`、`native-int` 和显式宽 ABI 的 `native-math-wide` 等组合；STC32G 还提供普通 ABI 的 `native-math`。完整白名单位于 `TargetContracts.json`，未列出的组合会拒绝。原生数学库当前要求 **small + stack-auto**；不要直接用于 medium/large 或混合不兼容 ABI 的对象。
 
 默认包入口开启函数可达性裁剪。外部汇编入口可用 `-FunctionGcKeep` 显式保留；其他可选优化开关见 `Build.ps1` 参数。未知中断、地址空间或 SDK 适配不能仅靠改变芯片名称解决。

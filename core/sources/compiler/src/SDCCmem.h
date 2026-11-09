@@ -75,6 +75,8 @@ extern memmap *initialized;            /* initialized data, such as initialized,
 extern memmap *initializer;            /* a copy of the values for the initialized data from initialized in code space */
 extern memmap *pdata;                  /* paged external data upto 256 */
 extern memmap *xdata;                  /* external data                */
+extern memmap *edata;                  /* MCS251 region-00 objects     */
+extern memmap *e_abs;                  /* absolute MCS251 EDATA        */
 extern memmap *xconst;                 // constant data in __far/__xdata space */
 extern memmap *xidata;                 /* the initialized xdata        */
 extern memmap *xinit;                  /* the initializers for xidata  */

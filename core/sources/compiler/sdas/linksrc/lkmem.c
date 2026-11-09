@@ -560,6 +560,12 @@ int summary2(struct area * areap)
                 Paged.End = xp->a_addr + xp->a_size;
         }
 
+        else if (!strcmp(xp->a_id, "ESEG") || !strncmp(xp->a_id, "EABS", 4))
+        {
+            if (xp->a_size)
+                fprintf(of, "MCS251 EDATA %s: %lu bytes (see MAP for addresses).\n",
+                    xp->a_id, (unsigned long)xp->a_size);
+        }
         else if (xp->a_flag & A_XDATA)
         {
             if(xp->a_size)

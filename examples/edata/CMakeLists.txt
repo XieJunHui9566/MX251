@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.25)
+project(EdDataExample NONE)
+include("${MX251_PROJECT_MODULE}")
+add_library(app INTERFACE)
+target_sources(app INTERFACE main.c shared.c)
+mx251_firmware(app)

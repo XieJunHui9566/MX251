@@ -3233,7 +3233,7 @@ ptrTypeFromType (sym_link *type)
       DCL_TYPE_IMPLICITINTRINSIC (p) = SPEC_SCLS_IMPLICITINTRINSIC (getSpec (type));
       if (SPEC_SCLS (getSpec (type)) == S_CODE)
         DCL_TYPE (p) = CPOINTER;
-      else if (SPEC_SCLS (getSpec (type)) == S_XDATA)
+      else if (SPEC_SCLS (getSpec (type)) == S_XDATA || SPEC_SCLS (getSpec (type)) == S_EDATA)
         DCL_TYPE (p) = FPOINTER;
       else if (SPEC_SCLS (getSpec (type)) == S_XSTACK)
         DCL_TYPE (p) = PPOINTER;
@@ -4817,7 +4817,7 @@ decorateType (ast *tree, RESULT_TYPE resultType, bool reduceTypeAllowed)
           DCL_TYPE_IMPLICITINTRINSIC (p) = SPEC_SCLS_IMPLICITINTRINSIC (LETYPE (tree));
           if (SPEC_SCLS (LETYPE (tree)) == S_CODE)
             DCL_TYPE (p) = CPOINTER;
-          else if (SPEC_SCLS (LETYPE (tree)) == S_XDATA)
+          else if (SPEC_SCLS (LETYPE (tree)) == S_XDATA || SPEC_SCLS (LETYPE (tree)) == S_EDATA)
             DCL_TYPE (p) = FPOINTER;
           else if (SPEC_SCLS (LETYPE (tree)) == S_XSTACK)
             DCL_TYPE (p) = PPOINTER;
@@ -5863,6 +5863,7 @@ decorateType (ast *tree, RESULT_TYPE resultType, bool reduceTypeAllowed)
                 case S_CODE:
                   gptype = GPTYPE_CODE;
                   break;
+                case S_EDATA:
                 case S_XDATA:
                   gptype = GPTYPE_FAR;
                   break;

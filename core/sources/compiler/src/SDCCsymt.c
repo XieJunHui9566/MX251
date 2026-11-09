@@ -456,6 +456,7 @@ pointerTypes (sym_link * ptr, sym_link * type)
     {
       switch (SPEC_SCLS (etype))
         {
+        case S_EDATA:
         case S_XDATA:
           DCL_TYPE (ptr) = FPOINTER;
           break;
@@ -3865,6 +3866,7 @@ aggregateToPointer (value *val)
         case S_CODE:
           DCL_TYPE (val->type) = CPOINTER;
           break;
+        case S_EDATA:
         case S_XDATA:
           DCL_TYPE (val->type) = FPOINTER;
           break;
@@ -4646,6 +4648,9 @@ dbuf_printTypeChain (sym_link * start, struct dbuf_s *dbuf)
             case S_DATA:
               dbuf_append_str (dbuf, " data");
               break;
+            case S_EDATA:
+              dbuf_append_str (dbuf, " __edata");
+              break;
             case S_XDATA:
               dbuf_append_str (dbuf, " __xdata");
               break;
@@ -4811,6 +4816,9 @@ printTypeChainRaw (sym_link * start, FILE * of)
             {
             case S_DATA:
               fprintf (of, "data-");
+              break;
+            case S_EDATA:
+              fprintf (of, "edata-");
               break;
             case S_XDATA:
               fprintf (of, "xdata-");

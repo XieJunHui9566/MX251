@@ -103,7 +103,7 @@ bool uselessDecl = true;
 %token TYPEDEF EXTERN STATIC AUTO REGISTER CONSTEXPR CODE EEPROM INTERRUPT SFR SFR16 SFR32 ADDRESSMOD
 %token AUTO_TYPE
 %token SD_EXTENSION
-%token AT SBIT REENTRANT USING  XDATA DATA IDATA PDATA ELLIPSIS CRITICAL
+%token AT SBIT REENTRANT USING  XDATA EDATA DATA IDATA PDATA ELLIPSIS CRITICAL
 %token NONBANKED BANKED SHADOWREGS SD_WPARAM
 %token SD_BOOL SD_CHAR SD_SHORT SD_INT SD_LONG SIGNED UNSIGNED SD_FLOAT DOUBLE FIXED16X16 SD_CONST VOLATILE SD_VOID BIT OPTIONAL
 %token COMPLEX IMAGINARY
@@ -1342,6 +1342,10 @@ type_qualifier
                   $$ = newLink (SPECIFIER);
                   SPEC_SCLS($$) = S_XDATA;
                }
+   | EDATA     {
+                  $$ = newLink (SPECIFIER);
+                  SPEC_SCLS($$) = S_EDATA;
+               }
    | CODE      {
                   $$ = newLink (SPECIFIER);
                   SPEC_SCLS($$) = S_CODE;
@@ -1765,6 +1769,7 @@ pointer
                  DCL_PTR_ADDRSPACE($1) = SPEC_ADDRSPACE($2);
                  switch (SPEC_SCLS($2)) {
                  case S_XDATA:
+                 case S_EDATA:
                      DCL_TYPE($3) = FPOINTER;
                      break;
                  case S_IDATA:

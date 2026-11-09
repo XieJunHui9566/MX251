@@ -255,6 +255,7 @@ static void checkCurrFile (const char *s);
  /* SDCC-specific intrinsic named address spaces (as per Embedded C TS) */
 "__code"                { count (); TKEYWORD (CODE); }
 "__data"                { count (); TKEYWORD (DATA); }
+"__edata"               { count (); TKEYWORD (EDATA); }
 "__eeprom"              { count (); TKEYWORD (EEPROM); }
 "__far"                 { count (); TKEYWORD (XDATA); }
 "__flash"               { count (); TKEYWORD (CODE); }

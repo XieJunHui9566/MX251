@@ -3465,7 +3465,7 @@ valForArray (ast * arrExpr)
                 AST_SYMBOL (arrExpr->left)->rname, AST_ULONG_VALUE (arrExpr->right) * size);
       if (SPEC_SCLS (arrExpr->left->etype) == S_CODE)
         DCL_TYPE (val->type) = CPOINTER;
-      else if (SPEC_SCLS (arrExpr->left->etype) == S_XDATA)
+      else if (SPEC_SCLS (arrExpr->left->etype) == S_XDATA || SPEC_SCLS (arrExpr->left->etype) == S_EDATA)
         DCL_TYPE (val->type) = FPOINTER;
       else if (SPEC_SCLS (arrExpr->left->etype) == S_XSTACK)
         DCL_TYPE (val->type) = PPOINTER;
@@ -3568,7 +3568,7 @@ valForStructElem (ast * structT, ast * elemT)
 
       if (SPEC_SCLS (structT->etype) == S_CODE)
         DCL_TYPE (val->type) = CPOINTER;
-      else if (SPEC_SCLS (structT->etype) == S_XDATA)
+      else if (SPEC_SCLS (structT->etype) == S_XDATA || SPEC_SCLS (structT->etype) == S_EDATA)
         DCL_TYPE (val->type) = FPOINTER;
       else if (SPEC_SCLS (structT->etype) == S_XSTACK)
         DCL_TYPE (val->type) = PPOINTER;

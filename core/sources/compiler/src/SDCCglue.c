@@ -214,6 +214,33 @@ emitRegularMap (memmap *map, bool addPublics, bool arFlag)
       if (IS_FUNC (sym->type) && !(sym->isitmp))
         continue;
 
+      if ((map == edata && (sym->level == 0 || IS_STATIC (sym->etype))) ||
+          (map == e_abs && sym->edataInitialized))
+        {
+          /* Global aggregate initialization omits implicit zero elements:
+             they normally rely on RAMCLEAR.  Clear the complete EDATA object
+             in GSINIT3, before ALL GSINIT assignments (including local statics).
+             Reuse the MCS251 crtxclear instruction sequence; no library rebuild.
+             Uninitialized absolute objects retain the __at no-clear contract. */
+          static unsigned edataClearLabel;
+          unsigned size = getSize (sym->type) + sym->flexArrayLength;
+          if (size > 0xffff)
+            werrorfl (sym->fileDef, sym->lineDef, E_BAD_INT_ARGUMENT, "EDATA object exceeds region-00 capacity");
+          else if (size)
+            {
+              dbuf_printf (&statsg->oBuf,
+                "\t.area GSINIT3 (CODE)\n"
+                "; EDATA clear %s: %u bytes before explicit initializers\n"
+                "\tmov\tdptr,#%s\n\tmov\tdpxl,#0\n"
+                "\tmov\tdr12,#%u\n\tclr\ta\n"
+                "__mcs251_edata_clear_%u:\n"
+                "\tmov\t@dpx,a\n\tinc\tdpx\n\tdec\tdr12\n"
+                "\tjne\t__mcs251_edata_clear_%u\n\t.area GSINIT (CODE)\n",
+                sym->rname, size, sym->rname, size, edataClearLabel, edataClearLabel);
+              ++edataClearLabel;
+            }
+        }
+
       /* if it has an initial value then do it only if
          it is a global variable */
       if (sym->ival && sym->level == 0)
@@ -343,7 +370,7 @@ emitRegularMap (memmap *map, bool addPublics, bool arFlag)
 
       /* if it has an absolute address then generate
          an equate for this no need to allocate space */
-      if (SPEC_ABSA (sym->etype) && !sym->ival)
+      if (SPEC_ABSA (sym->etype) && !sym->ival && map != e_abs)
         {
           const char *equ = "=";
 
@@ -413,7 +440,7 @@ initValPointer (ast *expr)
             }
           else if (oclass)
             DCL_TYPE (val->type) = oclass->ptrType;
-          else if (sclass == S_XDATA)
+          else if (sclass == S_XDATA || sclass == S_EDATA)
             DCL_TYPE (val->type) = FPOINTER;
           else if (sclass == S_DATA)
             DCL_TYPE (val->type) = POINTER;
@@ -480,7 +507,7 @@ initValPointer (ast *expr)
         }
       else if (oclass)
         DCL_TYPE (val->type) = oclass->ptrType;
-      else if (sclass == S_XDATA)
+      else if (sclass == S_XDATA || sclass == S_EDATA)
         DCL_TYPE (val->type) = FPOINTER;
       else if (sclass == S_DATA)
         DCL_TYPE (val->type) = POINTER;
@@ -2045,6 +2072,8 @@ emitMaps (void)
   emitRegularMap (bit, TRUE, TRUE);
   emitRegularMap (pdata, TRUE, TRUE);
   emitRegularMap (xdata, TRUE, TRUE);
+  emitRegularMap (edata, TRUE, TRUE);
+  emitRegularMap (e_abs, TRUE, TRUE);
   emitRegularMap (x_abs, TRUE, TRUE);
   if (port->genXINIT)
     {
@@ -2414,6 +2443,11 @@ glue (void)
   else fprintf (asmFile, "; ZP ram data\n");
   fprintf (asmFile, "%s", iComments2);
   dbuf_write_and_destroy (&data->oBuf, asmFile);
+  if (edata)
+    {
+      dbuf_write_and_destroy (&edata->oBuf, asmFile);
+      dbuf_write_and_destroy (&e_abs->oBuf, asmFile);
+    }
 
   /* copy the initialized segment */
   if (initialized)

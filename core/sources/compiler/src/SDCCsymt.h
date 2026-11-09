@@ -113,6 +113,7 @@ typedef enum
   S_SBIT,
   S_CODE,
   S_XDATA,
+  S_EDATA,
   S_DATA,
   S_IDATA,
   S_PDATA,
@@ -355,6 +356,7 @@ typedef struct symbol
   unsigned uptr:1;                  /* used as a pointer */
   unsigned isFree:1;                /* used by register allocator */
   unsigned islocal:1;               /* is a local variable        */
+  unsigned edataInitialized:1;      /* preserve __at initializer after static lifting */
   unsigned blockSpil:1;             /* spilt at block level       */
   unsigned remainSpil:1;            /* spilt because not used in remainder */
   unsigned stackSpil:1;             /* has been spilt on temp stack location */

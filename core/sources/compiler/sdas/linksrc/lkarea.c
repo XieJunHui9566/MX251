@@ -785,6 +785,16 @@ a_uint iram_start = 0;
 static void
 check_mcs251_stack_overlap(struct area *area, a_uint base, a_uint size, int space)
 {
+        /* Explicit EDATA objects use the reserved window below the extended
+           stack.  This keeps the minimal feature independent of device-specific
+           RAM above the stack and of the 8051's 256-byte DATA allocator. */
+        if (size && (!strcmp(area->a_id, "ESEG") || !strncmp(area->a_id, "EABS", 4)) &&
+            (!mcs251_stack_enabled || space != 2 || base < 0x100 ||
+             base >= mcs251_stack_base || size > mcs251_stack_base - base))
+        {
+                fprintf(stderr, "?ASlink-Error-MCS251 EDATA area %s must fit [0x100, stack-base); use --mcs251-stack and reduce EDATA or move the stack\n", area->a_id);
+                lkerr++;
+        }
         if (mcs251_stack_enabled && size && (space == 0 || space == 2) &&
             base < mcs251_stack_base + mcs251_stack_size &&
             (base >= mcs251_stack_base || size > mcs251_stack_base - base))
@@ -825,6 +835,16 @@ void lnkarea2 (void)
                         lkerr++;
                 }
                 sp->s_addr = mcs251_stack_base - 1;
+                sp->s_axp = NULL;
+                sp->s_type |= S_DEF;
+                /* EDATA objects must not silently link with an older linker. */
+                sp = lkpsym("__mcs251_edata_v1", 1);
+                if (sp->s_type & S_DEF)
+                {
+                        fprintf(stderr, "?ASlink-Error-Reserved symbol __mcs251_edata_v1 already defined\n");
+                        lkerr++;
+                }
+                sp->s_addr = 1;
                 sp->s_axp = NULL;
                 sp->s_type |= S_DEF;
         }
@@ -929,11 +949,14 @@ void lnkarea2 (void)
                 {
 			if (ap->a_bset == 0)
                         {
-                                ap->a_addr = rloc[locIndex];
+                                ap->a_addr = !strcmp(ap->a_id, "ESEG") ? 0x100 : rloc[locIndex];
 				ap->a_bset = 1;
 			}
 
-                        rloc[locIndex] = lnksect2(ap, locIndex);
+                        if (!strcmp(ap->a_id, "ESEG"))
+                                lnksect2(ap, locIndex); /* Do not move the XDATA cursor. */
+                        else
+                                rloc[locIndex] = lnksect2(ap, locIndex);
 		}
 
                 if (!strcmp(ap->a_id, "BSEG_BYTES") && (ap->a_axp->a_addr >= 0x20))

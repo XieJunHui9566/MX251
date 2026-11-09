@@ -35,6 +35,8 @@ memmap *initialized = NULL;     // initialized data, such as initialized, nonzer
 memmap *initializer = NULL;     // a copy of the values for the initialized data from initialized in code space
 memmap *pdata = NULL;           /* paged external data         */
 memmap *xdata = NULL;           /* external data               */
+memmap *edata = NULL;           /* MCS251 region-00 objects    */
+memmap *e_abs = NULL;           /* absolute MCS251 EDATA       */
 memmap *xconst = NULL;          // constant data in __far/__xdata space
 memmap *xidata = NULL;          /* the initialized xdata       */
 memmap *xinit = NULL;           /* the initializers for xidata */
@@ -253,6 +255,13 @@ initMem (void)
      POINTER-TYPE   -   FPOINTER
    */
   xdata = allocMap (0, 1, 0, 0, 0, 0, options.xdata_loc, XDATA_NAME, 'F', FPOINTER);
+  if (TARGET_IS_MCS251)
+    {
+      /* Separate placement, existing flat 24-bit access/ABI.  XDATA here is
+         the assembler's linear RAM flag, not the final address region. */
+      edata = allocMap (0, 1, 0, 0, 0, 0, 0x100, "ESEG (XDATA)", 'F', FPOINTER);
+      e_abs = allocMap (0, 1, 0, 0, 0, 0, 0, "EABS (ABS,XDATA)", 'F', FPOINTER);
+    }
   xidata = allocMap (0, 1, 0, 0, 0, 0, 0, XIDATA_NAME, 'F', FPOINTER);
   xinit = allocMap (0, 1, 0, 0, 0, 1, 0, XINIT_NAME, 'C', CPOINTER);
   if (TARGET_RABBIT_LIKE || TARGET_IS_EZ80 || TARGET_IS_TLCS90)
@@ -448,6 +457,10 @@ defaultOClass (symbol *sym)
             }
           SPEC_OCLS (sym->etype) = statsg;
         }
+      break;
+    case S_EDATA:
+      SPEC_OCLS (sym->etype) = SPEC_ABSA (sym->etype) ? e_abs : edata;
+      sym->edataInitialized |= sym->ival != NULL;
       break;
     case S_XDATA:
       if ((TARGET_RABBIT_LIKE || TARGET_IS_EZ80 || TARGET_IS_TLCS90) && (sym->level == 0 || SPEC_STAT(sym->etype)) && !SPEC_ABSA (sym->etype))

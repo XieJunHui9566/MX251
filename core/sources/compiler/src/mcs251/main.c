@@ -215,6 +215,7 @@ static char *_mcs251_keywords[] =
   "code",
   "critical",
   "data",
+  "edata",
   "far",
   "generic",
   "idata",
@@ -660,6 +661,8 @@ _mcs251_interruptContracts (FILE *of, bool hasMain)
 static void
 _mcs251_genExtraAreas(FILE *of, bool hasMain)
 {
+  if (edata->syms || e_abs->syms)
+    tfprintf (of, "\t!global\n", "__mcs251_edata_v1");
   _mcs251_interruptContracts (of, hasMain);
   tfprintf (of, "\t!area\n", HOME_NAME);
   tfprintf (of, "\t!area\n", "GSINIT0 (CODE)");
