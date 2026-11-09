@@ -1,0 +1,408 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "FEASIBILITY_ONLY_NO_OPTIMIZED_FIRMWARE",
+  "sourceParent": "00d4cffd7df64593e5b3a52d2a41dff716885def",
+  "compilerChanged": false,
+  "productionAbiAdded": false,
+  "hardwareExecuted": false,
+  "newSizePasses": 0,
+  "runtimeStatus": "UNKNOWN",
+  "checks": {
+    "unitTests": 11,
+    "exhaustiveLayoutSignatures": 87381,
+    "passed": true
+  },
+  "analysisInputs": {
+    "tools/research/call_layout.py": "976e22b7b85cee0f101f2febd47be49f6ee041eb05051d504724166af97bda7c",
+    "tools/research/test_call_layout.py": "04690147b9f7de8aa1f4469638c7d779b72c70120b2cd57bb2e0f0be8824bf80"
+  },
+  "historicalEvidence": [
+    {
+      "path": "mx251-printf-runtime-20261101/generic-rollout/closed-scalar-abi-v1/continuation.json",
+      "sha256": "030d3a70b35aea83e7a3a6460ea191d0ec6ac4741ab0e01d5de1db53bc2c7db2"
+    },
+    {
+      "path": "mx251-printf-runtime-20261101/generic-rollout/wide-save-pack-v1/result.json",
+      "sha256": "e134bc9b802cee9f3b0481f5d4250f282b3f14d52f23dac4339f1a4c5ed9e651"
+    },
+    {
+      "path": "mx251-printf-runtime-20261101/generic-rollout/flat-pointer-cast-v1/result.json",
+      "sha256": "7acb7ee54ff4f7ecce208dc0b916ca58f0c1d0a24a38220761b474ca6d8009a4"
+    }
+  ],
+  "projects": [
+    {
+      "project": "p078",
+      "baselineCodeBytes": 22967,
+      "keilCodeBytes": 17937,
+      "gapToSize120": 1443,
+      "gapToSize110": 3237,
+      "pairedStaticCalls": 228,
+      "setupRecognized": 214,
+      "omittedCalls": {
+        "unpaired-source-call-or-definition": 10
+      },
+      "layoutSummary": {
+        "abi4": {
+          "removedStackPayload": 344,
+          "wholePushPayload": 316,
+          "grossPushCodeBytes": 476,
+          "grossCleanupCodeBytes": 162
+        },
+        "packed8": {
+          "removedStackPayload": 671,
+          "wholePushPayload": 603,
+          "grossPushCodeBytes": 910,
+          "grossCleanupCodeBytes": 290
+        }
+      },
+      "extraGrossCodeBytes": 562,
+      "firmwareSha256": "cb639a78eb2d8d78315598152121aba834759883909babcf3bb2e88ae9e4d782",
+      "receiptSha256": "ce0bcddd97752534bb589adba024a450e804b02613e92ded47e3d5b0624f3696",
+      "detailSha256": "1c83087d32e5dc3ad11713930573c6749d79b9bf5a6a61df70e8495f4ad2404e",
+      "largestFunctions": [
+        {
+          "unit": "u0",
+          "symbol": "_Fill_Triangel",
+          "codeBytes": 1324,
+          "pushPopCodeBytes": 176,
+          "stackMoveCodeBytes": 288,
+          "refusal": null,
+          "calls": {
+            "__swap": 8,
+            "_LCD_Fill": 3,
+            "__divslong": 4
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_Show_Str",
+          "codeBytes": 741,
+          "pushPopCodeBytes": 164,
+          "stackMoveCodeBytes": 224,
+          "refusal": null,
+          "calls": {
+            "_LCD_ShowChar": 2,
+            "_GUI_DrawFont32": 1,
+            "_GUI_DrawFont24": 1,
+            "_GUI_DrawFont16": 1
+          }
+        },
+        {
+          "unit": "u4",
+          "symbol": "_LCD_Init",
+          "codeBytes": 681,
+          "pushPopCodeBytes": 158,
+          "stackMoveCodeBytes": 0,
+          "refusal": null,
+          "calls": {
+            "_LCD_Set_GPIO": 1,
+            "_LCDReset": 1,
+            "_delay_ms": 4,
+            "_LCD_WR_REG16": 49,
+            "_LCD_direction": 1
+          }
+        }
+      ]
+    },
+    {
+      "project": "p080",
+      "baselineCodeBytes": 23195,
+      "keilCodeBytes": 18071,
+      "gapToSize120": 1510,
+      "gapToSize110": 3317,
+      "pairedStaticCalls": 254,
+      "setupRecognized": 242,
+      "omittedCalls": {
+        "unpaired-source-call-or-definition": 10
+      },
+      "layoutSummary": {
+        "abi4": {
+          "removedStackPayload": 234,
+          "wholePushPayload": 210,
+          "grossPushCodeBytes": 310,
+          "grossCleanupCodeBytes": 54
+        },
+        "packed8": {
+          "removedStackPayload": 565,
+          "wholePushPayload": 501,
+          "grossPushCodeBytes": 752,
+          "grossCleanupCodeBytes": 188
+        }
+      },
+      "extraGrossCodeBytes": 576,
+      "firmwareSha256": "6ead50706cec91945f44625d288cd66818730a0b970a094f5ae227501f012d12",
+      "receiptSha256": "d2446cc87dd3b74605a98ff3a0f9585c7036c7149b983549709c7bf6b0f44221",
+      "detailSha256": "b5e7a644cafabfdf2de4336b9e20d6edbcb6ef7d1989b5de4642598a5d5c6cdf",
+      "largestFunctions": [
+        {
+          "unit": "u0",
+          "symbol": "_Fill_Triangel",
+          "codeBytes": 1316,
+          "pushPopCodeBytes": 168,
+          "stackMoveCodeBytes": 288,
+          "refusal": null,
+          "calls": {
+            "__swap": 8,
+            "_LCD_Fill": 3,
+            "__divslong": 4
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_Show_Str",
+          "codeBytes": 741,
+          "pushPopCodeBytes": 164,
+          "stackMoveCodeBytes": 224,
+          "refusal": null,
+          "calls": {
+            "_LCD_ShowChar": 2,
+            "_GUI_DrawFont32": 1,
+            "_GUI_DrawFont24": 1,
+            "_GUI_DrawFont16": 1
+          }
+        },
+        {
+          "unit": "u2",
+          "symbol": "_Test_Read",
+          "codeBytes": 666,
+          "pushPopCodeBytes": 180,
+          "stackMoveCodeBytes": 155,
+          "refusal": "assignment-cast-or-memory-contract",
+          "calls": {
+            "_DrawTestPage": 1,
+            "_LCD_Fill": 1,
+            "_LCD_Read_ID": 1,
+            "_sprintf": 2,
+            "_Show_Str": 2,
+            "_LCD_DrawFillRectangle": 1,
+            "_LCD_ReadPoint": 1,
+            "_delay_ms": 1
+          }
+        }
+      ]
+    },
+    {
+      "project": "p087",
+      "baselineCodeBytes": 4923,
+      "keilCodeBytes": 3531,
+      "gapToSize120": 686,
+      "gapToSize110": 1039,
+      "pairedStaticCalls": 81,
+      "setupRecognized": 77,
+      "omittedCalls": {
+        "unpaired-source-call-or-definition": 59
+      },
+      "layoutSummary": {
+        "abi4": {
+          "removedStackPayload": 70,
+          "wholePushPayload": 62,
+          "grossPushCodeBytes": 122,
+          "grossCleanupCodeBytes": 122
+        },
+        "packed8": {
+          "removedStackPayload": 70,
+          "wholePushPayload": 62,
+          "grossPushCodeBytes": 122,
+          "grossCleanupCodeBytes": 122
+        }
+      },
+      "extraGrossCodeBytes": 0,
+      "firmwareSha256": "b801287b2298bdf5a5dc327161cd660c0034cd26e3161eae2e99dac6cd69fb12",
+      "receiptSha256": "075aba2eea508ae7f5cf77228752fed28c5f46210541f42891b9ef6e8910f833",
+      "detailSha256": "d0f9e3bdf30b50b26654a8d27d6896cd5948ec79b7473a84406be26dc064eeb3",
+      "largestFunctions": [
+        {
+          "unit": "u7",
+          "symbol": "_uart_set_baud",
+          "codeBytes": 495,
+          "pushPopCodeBytes": 8,
+          "stackMoveCodeBytes": 0,
+          "refusal": "semantic-import-contract",
+          "calls": {
+            "__divulong": 1
+          }
+        },
+        {
+          "unit": "u7",
+          "symbol": "_uart_polling",
+          "codeBytes": 315,
+          "pushPopCodeBytes": 14,
+          "stackMoveCodeBytes": 0,
+          "refusal": "ordered-asm-bit-not-capable",
+          "calls": {
+            "_usb_write_reg": 5
+          }
+        },
+        {
+          "unit": "u4",
+          "symbol": "_usb_get_status",
+          "codeBytes": 261,
+          "pushPopCodeBytes": 0,
+          "stackMoveCodeBytes": 0,
+          "refusal": "address-space-or-object-contract",
+          "calls": {
+            "_usb_setup_stall": 1,
+            "_usb_setup_in": 1
+          }
+        }
+      ]
+    },
+    {
+      "project": "p091",
+      "baselineCodeBytes": 6577,
+      "keilCodeBytes": 4401,
+      "gapToSize120": 1296,
+      "gapToSize110": 1736,
+      "pairedStaticCalls": 105,
+      "setupRecognized": 99,
+      "omittedCalls": {
+        "unpaired-source-call-or-definition": 80
+      },
+      "layoutSummary": {
+        "abi4": {
+          "removedStackPayload": 92,
+          "wholePushPayload": 82,
+          "grossPushCodeBytes": 152,
+          "grossCleanupCodeBytes": 130
+        },
+        "packed8": {
+          "removedStackPayload": 93,
+          "wholePushPayload": 83,
+          "grossPushCodeBytes": 154,
+          "grossCleanupCodeBytes": 132
+        }
+      },
+      "extraGrossCodeBytes": 4,
+      "firmwareSha256": "64708e46f4ca3f12d8deb0efd9e3c356f5a14f430f78987c666aea63249ff0e7",
+      "receiptSha256": "0c3361cd35babb90228f70a1a00452ded291e8e29a174ef703511ac33c480330",
+      "detailSha256": "d2d52e3e8cc67f36ceb47f01e0f3b8d7fecc7dddbe1c125f81e80065b8f0d120",
+      "largestFunctions": [
+        {
+          "unit": "u8",
+          "symbol": "_flash_writesector",
+          "codeBytes": 430,
+          "pushPopCodeBytes": 100,
+          "stackMoveCodeBytes": 133,
+          "refusal": "call-abi-or-argument-contract",
+          "calls": {
+            "_flash_check": 1,
+            "_flash_write_enable": 2,
+            "_shift": 9,
+            "__gptrget": 1
+          }
+        },
+        {
+          "unit": "u7",
+          "symbol": "_scsi_process",
+          "codeBytes": 426,
+          "pushPopCodeBytes": 46,
+          "stackMoveCodeBytes": 0,
+          "refusal": "assignment-cast-or-memory-contract",
+          "calls": {
+            "_usb_bulk_intr_out": 1,
+            "_reverse4": 2,
+            "_scsi_test_unit_ready": 1,
+            "_scsi_start_stop_unit": 1,
+            "_scsi_media_removal": 1,
+            "_scsi_inquiry": 1,
+            "_scsi_read_capacity10": 1,
+            "_scsi_format_capacity": 1,
+            "_scsi_request_sense": 1,
+            "_scsi_mode_sense6": 1,
+            "_scsi_mode_sense10": 1,
+            "_scsi_read10": 1,
+            "_scsi_write10": 1,
+            "_scsi_verify10": 1,
+            "_scsi_in": 1,
+            "_usb_write_reg": 2
+          }
+        },
+        {
+          "unit": "u7",
+          "symbol": "_scsi_in",
+          "codeBytes": 265,
+          "pushPopCodeBytes": 12,
+          "stackMoveCodeBytes": 52,
+          "refusal": "call-abi-or-argument-contract",
+          "calls": {
+            "_usb_bulk_intr_in_busy": 1,
+            "_usb_bulk_intr_in": 1
+          }
+        }
+      ]
+    },
+    {
+      "project": "p095",
+      "baselineCodeBytes": 6782,
+      "keilCodeBytes": 4830,
+      "gapToSize120": 986,
+      "gapToSize110": 1469,
+      "pairedStaticCalls": 116,
+      "setupRecognized": 112,
+      "omittedCalls": {
+        "unpaired-source-call-or-definition": 67
+      },
+      "layoutSummary": {
+        "abi4": {
+          "removedStackPayload": 99,
+          "wholePushPayload": 91,
+          "grossPushCodeBytes": 180,
+          "grossCleanupCodeBytes": 180
+        },
+        "packed8": {
+          "removedStackPayload": 99,
+          "wholePushPayload": 91,
+          "grossPushCodeBytes": 180,
+          "grossCleanupCodeBytes": 180
+        }
+      },
+      "extraGrossCodeBytes": 0,
+      "firmwareSha256": "eba93d7925d23695103248cc71b749a190ef2fb08e3b9b6c7619563f9eab1469",
+      "receiptSha256": "19f1e2b8f71c97ed748af9ee6e11d86f81b5df41a7decb5671035c67fe25bac0",
+      "detailSha256": "9a7baee2c0e16e1ab652dd6fc41f40c980780ecf39aaabe2efa6516f2d884866",
+      "largestFunctions": [
+        {
+          "unit": "u7",
+          "symbol": "_uart_set_baud",
+          "codeBytes": 622,
+          "pushPopCodeBytes": 48,
+          "stackMoveCodeBytes": 0,
+          "refusal": "semantic-import-contract",
+          "calls": {
+            "_reverse4": 2,
+            "_SetMCLK": 2,
+            "__divulong": 2
+          }
+        },
+        {
+          "unit": "u7",
+          "symbol": "_uart_polling",
+          "codeBytes": 546,
+          "pushPopCodeBytes": 20,
+          "stackMoveCodeBytes": 0,
+          "refusal": "ordered-asm-bit-not-capable",
+          "calls": {
+            "_usb_write_reg": 10
+          }
+        },
+        {
+          "unit": "u7",
+          "symbol": "_SetMCLK",
+          "codeBytes": 369,
+          "pushPopCodeBytes": 0,
+          "stackMoveCodeBytes": 0,
+          "refusal": null,
+          "calls": {}
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Gross removable PUSH/cleanup code only; no new register-move/spill/callee/library cost.",
+    "Unrecognized regions omitted; not a total-benefit upper bound or measured net saving.",
+    "Historical frozen images, not a rebuilt EDATA/compiler candidate.",
+    "No whole-program migration closure, runtime measurements or new acceptance."
+  ]
+}
