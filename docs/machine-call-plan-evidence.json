@@ -1,0 +1,580 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "IMPLEMENTED_AND_TESTED",
+  "branch": "codex/machine-call-plan",
+  "parentCommit": "7174e608a711a99b654db526e9a97c3d87ee6d0c",
+  "baselineCompilerSha256": "8954c2a77125153a1741ce3a9041e8701903d425a0025eaca91f73858c0e75b4",
+  "candidateCompilerSha256": "90229fe5c3668caa1862f718c416a976bdbdb8f03cfda16b59d194aed5ab132d",
+  "sourceFiles": {
+    "core/sources/compiler/src/mcs251/wide.c": "6db5c65914761882ff160d6f9b8dbf6425657cdd90fddd6242648e677e574d64",
+    "core/sources/compiler/src/mcs251/wide_emit.c.inc": "7c72c530d5ad37544ddc7a5d6a5405764685651acbf73bb1d010e5ade6808efa",
+    "core/sources/compiler/src/mcs251/wide_call_plan.c.inc": "8d719f120268ff909cf2f10e1ae7fad4fecce4263472078e7bc47821acb959ff",
+    "core/sources/compiler/src/mcs251/tests/check-machine-call-hardware.py": "c38248e7932a9debbfc1cf8d0df556d2b5d44d906b1f4ce00a57d00480b7f385",
+    "core/sources/compiler/src/mcs251/tests/check-machine-call-plan.py": "47dd4f8832b645fe2361dc09e6a4e438537ba2c9635d5d4c76e176ce80c37edb",
+    "core/sources/compiler/src/mcs251/tests/machine-call-clobber.asm": "377e00fca38822d53aeacf1cce2a61241ef34ef1a4bff414bad8d9ba50bec5d1",
+    "core/sources/compiler/src/mcs251/tests/machine-call-hardware.c": "6cc5acc69181563c062981ee2bf1f8d6cb40c157328ab92a42adea348e3daa90",
+    "core/sources/compiler/src/mcs251/tests/machine-call-ordinary.c": "28824556620e328124e077e4178b1e8a61e1066fe6a57db73cfac8c6c64cef26",
+    "core/sources/compiler/src/mcs251/tests/machine-call-plan.c": "f257756363211439356773ae84dc493b09ff3ba17f30e8086bc873cba6394c63",
+    "core/sources/compiler/src/mcs251/tests/machine-call-plan.h": "9eadc39c6459cedcfc273482f57f28abf80215b32e23da1c87b0d95333474158"
+  },
+  "planTests": {
+    "status": "PASS",
+    "configurations": 8,
+    "compilerSha256": "90229fe5c3668caa1862f718c416a976bdbdb8f03cfda16b59d194aed5ab132d",
+    "results": [
+      {
+        "model": "small",
+        "objective": "speed",
+        "abi": "native",
+        "parentBytes": 698,
+        "candidateBytes": 566,
+        "plans": [
+          {
+            "function": "repeated_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "repeated_dword",
+            "frame": 4,
+            "values": 1
+          },
+          {
+            "function": "branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "small",
+        "objective": "speed",
+        "abi": "ordinary",
+        "parentBytes": 748,
+        "candidateBytes": 640,
+        "plans": [
+          {
+            "function": "ordinary_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "ordinary_branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "ordinary_redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "small",
+        "objective": "size",
+        "abi": "native",
+        "parentBytes": 698,
+        "candidateBytes": 566,
+        "plans": [
+          {
+            "function": "repeated_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "repeated_dword",
+            "frame": 4,
+            "values": 1
+          },
+          {
+            "function": "branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "small",
+        "objective": "size",
+        "abi": "ordinary",
+        "parentBytes": 748,
+        "candidateBytes": 640,
+        "plans": [
+          {
+            "function": "ordinary_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "ordinary_branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "ordinary_redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "large",
+        "objective": "speed",
+        "abi": "native",
+        "parentBytes": 698,
+        "candidateBytes": 566,
+        "plans": [
+          {
+            "function": "repeated_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "repeated_dword",
+            "frame": 4,
+            "values": 1
+          },
+          {
+            "function": "branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "large",
+        "objective": "speed",
+        "abi": "ordinary",
+        "parentBytes": 748,
+        "candidateBytes": 640,
+        "plans": [
+          {
+            "function": "ordinary_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "ordinary_branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "ordinary_redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "large",
+        "objective": "size",
+        "abi": "native",
+        "parentBytes": 698,
+        "candidateBytes": 566,
+        "plans": [
+          {
+            "function": "repeated_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "repeated_dword",
+            "frame": 4,
+            "values": 1
+          },
+          {
+            "function": "branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      },
+      {
+        "model": "large",
+        "objective": "size",
+        "abi": "ordinary",
+        "parentBytes": 748,
+        "candidateBytes": 640,
+        "plans": [
+          {
+            "function": "ordinary_word",
+            "frame": 2,
+            "values": 1
+          },
+          {
+            "function": "ordinary_branches",
+            "frame": 12,
+            "values": 3
+          },
+          {
+            "function": "ordinary_redefine",
+            "frame": 8,
+            "values": 4
+          }
+        ]
+      }
+    ]
+  },
+  "runtimeVsKeil": null,
+  "earlierOrdinaryCallTests": {
+    "status": "PASS",
+    "configurations": 18,
+    "compilerSha256": "0562ff73889862602384fe01acac39a28965b822984dd9d7c0fe2e16b9659ee8",
+    "results": [
+      {
+        "model": "small",
+        "opt": "speed",
+        "accepted": [
+          "c_pair",
+          "c_native",
+          "recursive_value",
+          "c_recur",
+          "c_alias",
+          "c_many",
+          "c_pointer",
+          "forward_float",
+          "c_pressure",
+          "c_frame",
+          "callback_value",
+          "c_callback"
+        ],
+        "deterministic": true,
+        "optInIsolation": true
+      },
+      {
+        "model": "small",
+        "opt": "size",
+        "accepted": [
+          "c_pair",
+          "c_native",
+          "recursive_value",
+          "c_recur",
+          "c_alias",
+          "c_many",
+          "c_pointer",
+          "forward_float",
+          "c_pressure",
+          "c_frame",
+          "callback_value",
+          "c_callback"
+        ],
+        "deterministic": true,
+        "optInIsolation": true
+      },
+      {
+        "model": "large",
+        "opt": "speed",
+        "accepted": [
+          "c_pair",
+          "c_native",
+          "recursive_value",
+          "c_recur",
+          "c_alias",
+          "c_many",
+          "c_pointer",
+          "forward_float",
+          "c_pressure",
+          "c_frame",
+          "callback_value",
+          "c_callback"
+        ],
+        "deterministic": true,
+        "optInIsolation": true
+      },
+      {
+        "model": "large",
+        "opt": "size",
+        "accepted": [
+          "c_pair",
+          "c_native",
+          "recursive_value",
+          "c_recur",
+          "c_alias",
+          "c_many",
+          "c_pointer",
+          "forward_float",
+          "c_pressure",
+          "c_frame",
+          "callback_value",
+          "c_callback"
+        ],
+        "deterministic": true,
+        "optInIsolation": true
+      },
+      {
+        "model": "small",
+        "boundary": "runtime-float",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "small",
+        "boundary": "boolean-return",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "small",
+        "boundary": "critical-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "small",
+        "boundary": "banked-register-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "small",
+        "boundary": "varargs-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "small",
+        "boundary": "noreturn-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "small",
+        "boundary": "ninth-argument",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "runtime-float",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "boolean-return",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "critical-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "banked-register-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "varargs-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "noreturn-callee",
+        "fallbackIdentical": true
+      },
+      {
+        "model": "large",
+        "boundary": "ninth-argument",
+        "fallbackIdentical": true
+      }
+    ]
+  },
+  "rejectedExperiment": {
+    "description": "Include callee-write union in whole-function backend choice",
+    "status": "REVERTED",
+    "compilerSha256": "0562ff73889862602384fe01acac39a28965b822984dd9d7c0fe2e16b9659ee8",
+    "projects": [
+      {
+        "project": "p080",
+        "parentBytes": 23161,
+        "experimentalBytes": 23219,
+        "receiptSha256": "beeb90806d1cfcc8dd1c378099eea5be0be4644168862a8a40c78c42bcbdf661",
+        "compilerSha256": "0562ff73889862602384fe01acac39a28965b822984dd9d7c0fe2e16b9659ee8"
+      },
+      {
+        "project": "p087",
+        "parentBytes": 4769,
+        "experimentalBytes": 4769,
+        "receiptSha256": "88eca2992dbe5bba3f236c0e63ad099c9f5876d2353478837ded81c5cd1e2dd4",
+        "compilerSha256": "0562ff73889862602384fe01acac39a28965b822984dd9d7c0fe2e16b9659ee8"
+      },
+      {
+        "project": "p091",
+        "parentBytes": 6312,
+        "experimentalBytes": 6312,
+        "receiptSha256": "7ee8d970ce82a04a48483a590381e5f72e0e471f797d46e2fae726717f0d67f5",
+        "compilerSha256": "0562ff73889862602384fe01acac39a28965b822984dd9d7c0fe2e16b9659ee8"
+      },
+      {
+        "project": "p095",
+        "parentBytes": 6615,
+        "experimentalBytes": 6615,
+        "receiptSha256": "451d035767786e3b46135fcebe942249cdfab113b7cc0097bf33f42e87fcd52a",
+        "compilerSha256": "0562ff73889862602384fe01acac39a28965b822984dd9d7c0fe2e16b9659ee8"
+      }
+    ]
+  },
+  "artifactsRoot": "E:\\STVAPP\\MX251-mainline-20261109\\machine-call",
+  "candidateCore": "E:\\STVAPP\\MX251-mainline-20261109\\machine-call\\core-final",
+  "sdkSourcesChanged": false,
+  "projects": [
+    {
+      "project": "p080",
+      "parentBytes": 23161,
+      "candidateBytes": 23161,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "2c71e2cf7054f6ad3fbd4c39e0eb38d1e08a7774ca1e3c454f54fb3aef8c5e2a",
+      "candidateReceiptSha256": "2ecb65106bc08f3c97016006df44bf98406bd0c68418a4bdfa89b3d6428510a0",
+      "firmwareSha256": "1ba6a49c8442cca816e0bfcb01fb205117d1b03130794557847c305175d9873c"
+    },
+    {
+      "project": "p087",
+      "parentBytes": 4769,
+      "candidateBytes": 4769,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "72dc5f777342244279f130cb20546d98c9c3a99bf1987769463ba5e849692e30",
+      "candidateReceiptSha256": "5190e1210ac22f9c12b8312f2aac64fe17d50980e890f7008a7eab0591a47a61",
+      "firmwareSha256": "4a4834ae596eb41a896727cac22ba23dcaeb7ce8492a15f5928a2d97ce9dd50f"
+    },
+    {
+      "project": "p091",
+      "parentBytes": 6312,
+      "candidateBytes": 6312,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "1c8d7ba7f0ae008f42a834275480b28bd4e7c3ca60b7f19cdb94025567090bf2",
+      "candidateReceiptSha256": "cbf0f678dbbf26ea526c83d47a154efa813e86280b4514187cdcf4e62a72552e",
+      "firmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4"
+    },
+    {
+      "project": "p095",
+      "parentBytes": 6615,
+      "candidateBytes": 6615,
+      "savedBytes": 0,
+      "sameSourceInputs": true,
+      "parentReceiptSha256": "05f27ce933a190418ada56882fc3bb410775305619d725efbd7cf62dfc8d8b90",
+      "candidateReceiptSha256": "b6214caa699242449dce0253471d9ed91f4b41c70dfd9af23daa4927bcb02d3b",
+      "firmwareSha256": "3eea9f5385c7ac678a7ed0495977565dc413c59557d78474fb0f0489192f9093"
+    }
+  ],
+  "nativeCallTests": {
+    "status": "PASS",
+    "models": 2,
+    "acceptedPerModel": 33,
+    "resultsSha256": "75c0a7ec4532edae6358b71e6bf07c546b7e2eab07cb3a1505aef4614e63f682"
+  },
+  "bitCallTests": {
+    "compilerSha256": "90229fe5c3668caa1862f718c416a976bdbdb8f03cfda16b59d194aed5ab132d",
+    "configurations": [
+      {
+        "model": "small",
+        "optimization": "speed",
+        "feedback": false,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "small",
+        "optimization": "speed",
+        "feedback": true,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "feedback": false,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "feedback": true,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "feedback": false,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "feedback": true,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "feedback": false,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "feedback": true,
+        "accepted": 6,
+        "captures": 20,
+        "resultSpills": 4,
+        "disabledObjectIdentical": true
+      }
+    ],
+    "hardwareExecuted": false
+  },
+  "costModelTests": {
+    "status": "passed",
+    "modelQualified": true,
+    "path": "E:\\STVAPP\\MX251-mainline-20261109\\machine-call\\cost-model-tests"
+  },
+  "hardware": {
+    "status": "PASS",
+    "frames": 575,
+    "inputCases": 16,
+    "valuesPerCase": 10,
+    "bytes": 27630,
+    "uartSha256": "eb352a499d0265783c6994291ad6c0965ff4414328a0295a40f5d1e73982f049",
+    "firmwareSha256": "5f05b1b1d38d4994b896ac0c825202a635886640fdc072a5ab9b3ff8a48acf69",
+    "port": "COM13",
+    "baud": 115200,
+    "restored": false,
+    "compilerSha256": "90229fe5c3668caa1862f718c416a976bdbdb8f03cfda16b59d194aed5ab132d"
+  }
+}

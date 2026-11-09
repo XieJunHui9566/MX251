@@ -45,6 +45,27 @@ static void wa(char *buf,int displacement) {
   if(!displacement) strcpy(buf,"@spx");
   else SNPRINTF(buf,32,"@spx%c0x%04x",displacement<0?'-':'+',abs(displacement));
 }
+static void
+wcall_frame_actions(wide_function *f,wide_node *n)
+{
+  if(!f->callFrame)return;
+  wassert(!f->stackDepth);
+  for(int load=1;load>=0;--load)for(int v=0;v<f->nv;++v) {
+    if(!wb_has(load?n->callLoads:n->callStores,v))continue;
+    wide_value *value=&f->values[v];int slot=f->callSlots[v];
+    wassert(slot>=0 && value->reg>=0);
+    we(f,"; wide call-frame %s value=%d reg=%d width=%d slot=%d\n",
+       load?"load":"store",v,value->reg,value->width,slot);
+    for(int k=0;k<value->width;k+=2) {
+      char address[32];wa(address,slot+k-f->frame+1);
+      if(value->width==1) {
+        if(load)we(f,"\tmov\tr%d,%s\n",value->reg,address);
+        else we(f,"\tmov\ta,r%d\n\tmov\t%s,a\n",value->reg,address);
+      } else if(load)we(f,"\tmov\twr%d,%s\n",value->reg+k,address);
+      else we(f,"\tmov\t%s,wr%d\n",address,value->reg+k);
+    }
+  }
+}
 static void wi(wide_function *f,int reg,int width,uint32_t value) {
   if(width==2)value&=0xffff;
   if(!value) we(f,"\tsub\t%s%d,%s%d\n",wp(width),reg,wp(width),reg);
@@ -616,6 +637,7 @@ wmemory_store_chain(wide_function *f,int first)
    * 原 offset=0 时没有 ADD；不能用一个更长的 ADD 替掉短 MOV。 */
   for(int j=first+1;j<f->nn;++j) {
     wide_node *n=&f->nodes[j];int64_t offset;
+    if(!wide_call_plain(f,j,1))break;
     if(n->op==WM_NOP)continue;
     if(!wstore_chain_offset(f,n,&offset) || n->left.value!=head->left.value ||
        n->addressIndex.width!=head->addressIndex.width ||
@@ -1135,13 +1157,15 @@ wcall_original(wide_function *f,int index)
   mcs251_wide_save_plan savePlan;bool packed=false;
   uint32_t liveBytes=0,omitted=0,calleeWrites=UINT32_MAX;
   unsigned omittedGroups=0,omittedBytes=0;
-  bool knownLeaf=wide_leaf_writes(n->callee,&calleeWrites);
+  bool knownLeaf=n->call.known;calleeWrites=n->call.calleeWrites;
+  uint32_t callWrites=wide_call_writes(f,n);
   wassert(!f->stackDepth);
   if(!tail)for(int i=0;i<f->nv;++i) {
     wide_value *v=&f->values[i];
     if(i!=n->result && wb_has(n->out,i) && v->reg>=0) {
       uint32_t group=mcs251RegisterBytes(v->reg,v->width);liveBytes|=group;
-      if(f->applyCallEffects && knownLeaf && (n->callSaveOmit&group)==group) {
+      if(f->callFrame && wb_has(n->callFrameValues,i))continue;
+      if(knownLeaf && !(callWrites&group)) {
         omitted|=group;++omittedGroups;omittedBytes+=v->width;continue;
       }
       saved[count++]=i;
@@ -1252,13 +1276,6 @@ wcall_original(wide_function *f,int index)
   const char *body=dbuf_get_buf(&f->output);
   mx251_effects setup=mx251TextEffects(body+setupStart,setupEnd-setupStart);
   mx251_effects finish=mx251TextEffects(body+finishStart,finishEnd-finishStart);
-  if(!f->applyCallEffects && knownLeaf && !setup.unknown && !finish.unknown) {
-    uint32_t writes=calleeWrites|setup.writes|finish.writes;
-    for(int j=0;j<count;++j) {
-      wide_value *v=&f->values[saved[j]];uint32_t group=mcs251RegisterBytes(v->reg,v->width);
-      if(!(writes&group))n->callSaveOmit|=group;
-    }
-  }
   if(omitted) {
     bool valid=knownLeaf && !setup.unknown && !finish.unknown && !(omitted&(calleeWrites|setup.writes|finish.writes));
     if(!valid)f->callEffectsInvalid=true;
@@ -1481,16 +1498,17 @@ wide_emit(wide_function *f)
     wide_node *n=&f->nodes[i];
     if(f->domainCount>1)we(f,"; mx251-domain-node=%d\n",i);
     f->emitWeight=1+4*n->origin->depth;
+    wcall_frame_actions(f,n);
     f->scratchNode=i;
     if(i!=f->scratchNextNode || (n->op!=WM_LOAD && n->op!=WM_STORE))f->scratchAddressValid=false;
-    int repeated=wide_repeat_mark(f,i);
+    int repeated=f->callFrame?i:wide_repeat_mark(f,i);
     if(repeated>i) {i=repeated;continue;}
     if(n->rotateCandidate) {wrotate_proposal(f,i);i+=2;continue;}
-    if(wmemory_byte_rmw(f,i)) {i+=2;continue;}
+    if(wide_call_plain(f,i+1,2) && wmemory_byte_rmw(f,i)) {i+=2;continue;}
     /* 已经规范化的常量选位，只在紧邻且单用的 cast/store 链中直接写 C。
      * 不跨真实读取、标签或调用；目标 bit/SFR 仍发生一次独立写入。
      * 非单用结果仍生成字节 0/1，供其他消费者使用。 */
-    if(n->op==GETABIT && f->values[n->result].reads==1 && i+2<f->nn &&
+    if(n->op==GETABIT && f->values[n->result].reads==1 && i+2<f->nn && wide_call_plain(f,i+1,2) &&
        f->nodes[i+1].op==WM_BIT_CAST && f->nodes[i+1].right.value==n->result &&
        f->values[f->nodes[i+1].result].reads==1 && f->nodes[i+2].op==WM_BIT_STORE &&
        f->nodes[i+2].right.value==f->nodes[i+1].result) {
@@ -1498,14 +1516,14 @@ wide_emit(wide_function *f)
     }
     /* 仅消去紧邻位写入的单用纯转换；仍按转换前的完整宽度判零。
      * 不跨标签/调用/内存节点，不减少实际位写入次数。 */
-    if(n->op==WM_BIT_CAST && i+1<f->nn && f->nodes[i+1].op==WM_BIT_STORE &&
+    if(n->op==WM_BIT_CAST && i+1<f->nn && wide_call_plain(f,i+1,1) && f->nodes[i+1].op==WM_BIT_STORE &&
        f->nodes[i+1].right.value==n->result && f->values[n->result].reads==1) {
       wide_node memory=f->nodes[++i];memory.right=n->right;
       we(f,"; wide bit cast-store fused\n");wbit_store(f,&memory);continue;
     }
     /* 同一原始赋值的唯一使用就是紧随其后的真实写回；用立即数写入，
      * 保留每个 volatile 字节事务，不将常量值搬进再搬出临时寄存器。 */
-    if(n->op=='=' && n->right.value<0 && i+1<f->nn &&
+    if(n->op=='=' && n->right.value<0 && i+1<f->nn && wide_call_plain(f,i+1,1) &&
        f->nodes[i+1].op==WM_SYMBOL_STORE && f->nodes[i+1].origin==n->origin &&
        f->nodes[i+1].right.value==n->result && f->values[n->result].reads==1 &&
        n->right.width==n->width) {
@@ -1516,7 +1534,7 @@ wide_emit(wide_function *f)
     if((n->width==1 || n->width==2 || n->width==4) && n->result>=0 &&
        f->values[n->result].width==n->width &&
        !f->values[n->result].pointer && !f->values[n->result].floating &&
-       f->values[n->result].reads==1 && i+1<f->nn && f->nodes[i+1].op==IFX &&
+       f->values[n->result].reads==1 && i+1<f->nn && wide_call_plain(f,i+1,1) && f->nodes[i+1].op==IFX &&
        f->nodes[i+1].left.width==n->width && f->nodes[i+1].left.value==n->result &&
        !wb_has(f->nodes[i+1].out,n->result)) {
       bool load=false;char address[32];
@@ -1546,7 +1564,7 @@ wide_emit(wide_function *f)
         wbranch(f,branch->trueBranch?"jnz":"jz",branch->target);continue;
       }
     }
-    if(n->op==WM_BIT_LOAD && i+1<f->nn && f->nodes[i+1].op==IFX &&
+    if(n->op==WM_BIT_LOAD && i+1<f->nn && wide_call_plain(f,i+1,1) && f->nodes[i+1].op==IFX &&
        f->nodes[i+1].left.value==n->result && f->values[n->result].reads==1) {
       wide_node *branch=&f->nodes[++i];
       we(f,"; wide bit branch %s\n\tmov\tc,%s\n",n->addressSymbol->rname,n->addressSymbol->rname);
@@ -1568,7 +1586,7 @@ wide_emit(wide_function *f)
           we(f,"\tcmp\t%s%d,%s%d\n",wp(width),lhs,wp(width),rhs);
         }
       }
-      if(i+1<f->nn && f->nodes[i+1].op==IFX && f->nodes[i+1].left.value==n->result && f->values[n->result].reads==1) {
+      if(i+1<f->nn && wide_call_plain(f,i+1,1) && f->nodes[i+1].op==IFX && f->nodes[i+1].left.value==n->result && f->values[n->result].reads==1) {
         wide_node *branch=&f->nodes[++i];wbranch(f,wcondition(n->op,n->left.sign,branch->trueBranch),branch->target);
       } else {
         wboolean_result(f,n,wcondition(n->op,n->left.sign,true));

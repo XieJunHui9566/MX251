@@ -34,6 +34,12 @@ typedef struct {
   wide_bits edges;
 } wide_value;
 typedef struct { int value, width; uint32_t literal; bool sign, floating, codePointer; } wide_operand;
+/* Physical call constraints are available before register allocation. */
+typedef struct {
+  uint32_t calleeWrites, argumentWrites, scratchWrites, resultReads;
+  unsigned argumentBytes, resultBytes;
+  bool known;
+} wide_call_contract;
 /* 可取址对象有独占的完整存储期，不与虚拟寄存器的溢出槽合并。
  * 不复用旧后端尚未重新布局的 symbol.stack，也不缓存对象内容。 */
 typedef struct { symbol *sym; int slot, size; bool privateUnion; } wide_object;
@@ -57,7 +63,8 @@ typedef struct {
   unsigned char stackWidths[WA_MAX-1];
   bool ordinaryCall, carryResult;
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
-  uint32_t callSaveOmit;
+  wide_call_contract call;
+  wide_bits callFrameValues, callStores, callLoads;
   signed char multiplyDigits[32];
   int multiplyTop;
   int result, label, target, succ[2], width;
@@ -93,7 +100,9 @@ typedef struct {
   bool narrowNegate;
   bool nativeIndexedTrial;
   unsigned domainCount,domainValues[4];
-  bool applyCallEffects,callEffectsInvalid;
+  bool callEffectsInvalid;
+  bool callFrame;
+  int callSlots[WV_MAX];
   int valueLimit,nodeLimit,rejectionLine;
   const char *rejectionReason;
   iCode *rejectionOrigin;
@@ -1581,7 +1590,7 @@ wide_reset_allocation(wide_function *f)
   }
   f->frame=0;for(int v=0;v<f->no;++v)f->frame+=f->objects[v].size;
   for(int i=0;i<f->nn;++i) {
-    wide_node *n=&f->nodes[i];n->in=n->out=(wide_bits){{0}};n->callSaveOmit=0;
+    wide_node *n=&f->nodes[i];n->in=n->out=(wide_bits){{0}};
     int values[WA_MAX+2]={n->left.value,n->right.value,n->addressIndex.value};
     for(unsigned k=0;k<n->stackArgs;++k)values[k+3]=n->stackOperands[k].value;
     for(unsigned k=0;k<3+n->stackArgs;++k)if(wb_has(n->use,values[k])) {
@@ -1980,6 +1989,7 @@ wide_liveness (wide_function *f)
 }
 
 static uint32_t wide_mask (int reg,int width) {return mcs251RegisterBytes((unsigned)reg,(unsigned)width);}
+#include "wide_call_plan.c.inc"
 static bool
 wide_available (wide_function *f,int value,int reg)
 {
@@ -1992,8 +2002,7 @@ static bool
 wide_has_leaf_call (wide_function *f)
 {
   for(int i=0;i<f->nn;++i) {
-    uint32_t writes;
-    if(f->nodes[i].op==CALL && wide_leaf_writes(f->nodes[i].callee,&writes))return true;
+    if(f->nodes[i].op==CALL && f->nodes[i].call.known)return true;
   }
   return false;
 }
@@ -2003,17 +2012,12 @@ wide_call_register_cost (wide_function *f,int value,int reg)
 {
   unsigned cost=0;uint32_t mask=wide_mask(reg,f->values[value].width);
   for(int i=0;i<f->nn;++i) {
-    wide_node *n=&f->nodes[i];uint32_t writes;
+    wide_node *n=&f->nodes[i];
     if(n->op!=CALL || n->result==value || !wb_has(n->out,value) ||
-       !wide_leaf_writes(n->callee,&writes))continue;
+       !n->call.known)continue;
     /* 这里只引导寄存器选择，不据此删除保存。参数和结果的真实写集合仍由
      * 发射器重新核验；包括 A/R11、B/R10 及并行实参复制的保留暂存区。 */
-    writes|=MCS251_AB_BYTES|wide_mask(16,4)|wide_mask(20,4);
-    if(!n->ordinaryCall) {
-      if(n->args)writes|=wide_mask(8-n->left.width,n->left.width);
-      if(n->args>1)writes|=wide_mask(16-n->right.width,n->right.width);
-      if(n->result>=0)writes|=wide_mask(n->width==1?6:8-n->width,n->width);
-    }
+    uint32_t writes=n->call.calleeWrites|n->call.argumentWrites|n->call.scratchWrites|n->call.resultReads;
     if(mask&writes)cost+=1+4*n->origin->depth;
   }
   return cost;
@@ -2179,28 +2183,27 @@ typedef struct {
 static void
 wide_emit_candidate(wide_function *f,wide_function *trial,wide_allocation_candidate *c)
 {
-      wide_function *reemit=NULL;
-      if(wideLeafEffects) {reemit=Safe_alloc(sizeof *reemit);memcpy(reemit,trial,sizeof *reemit);}
+      wide_function *split=Safe_alloc(sizeof *split);memcpy(split,trial,sizeof *split);
+      bool planned=wide_plan_call_frame(split);
       trial->emitWeight=1;dbuf_init(&trial->output,1024);wide_emit(trial);
-      if(reemit) {
-        bool useful=false;
-        for(int i=0;i<trial->nn;++i) {reemit->nodes[i].callSaveOmit=trial->nodes[i].callSaveOmit;useful|=trial->nodes[i].callSaveOmit!=0;}
-        if(useful) {
-          /* 从相同分配结果重新发射，所有 SPX 位移依据新的 stackDepth 计算。
-           * 第二遍只要实际参数/结果影响触及省略值，就丢弃整个候选。 */
-          reemit->applyCallEffects=true;reemit->emitWeight=1;dbuf_init(&reemit->output,1024);wide_emit(reemit);
-          wide_byte_cost oldCost=wide_emitted_bytes(trial,dbuf_get_buf(&trial->output),dbuf_get_length(&trial->output));
-          wide_byte_cost newCost=wide_emitted_bytes(reemit,dbuf_get_buf(&reemit->output),dbuf_get_length(&reemit->output));
-          bool cheaper=!oldCost.unknown && !newCost.unknown && newCost.bytes<=oldCost.bytes && reemit->emitCost<=trial->emitCost;
-          if(!reemit->callEffectsInvalid && cheaper) {
-            dbuf_destroy(&trial->output);Safe_free(trial);trial=reemit;reemit=NULL;
-          } else {
-            dbuf_printf(f->diagnostics,"; wide call-save candidate rejected: function=%s effect-conflict=%u cost=%u\n",currFunc->name,reemit->callEffectsInvalid,!cheaper);
-            dbuf_destroy(&reemit->output);
-          }
-        }
-        Safe_free(reemit);
+      if(trial->callEffectsInvalid) {
+        f->allocationInvalid=true;
+        werror(E_INTERNAL_ERROR,__FILE__,__LINE__,"machine call effects mismatch");
       }
+      if(planned) {
+        split->emitWeight=1;dbuf_init(&split->output,1024);wide_emit(split);
+        wide_byte_cost before=wide_emitted_bytes(trial,dbuf_get_buf(&trial->output),dbuf_get_length(&trial->output));
+        wide_byte_cost after=wide_emitted_bytes(split,dbuf_get_buf(&split->output),dbuf_get_length(&split->output));
+        bool better=!split->callEffectsInvalid && !before.unknown && !after.unknown &&
+          after.bytes<before.bytes && split->emitCost<=trial->emitCost;
+        int paths=better?wide_loop_cost_compare_context(dbuf_get_buf(&trial->output),dbuf_get_length(&trial->output),
+          dbuf_get_buf(&split->output),dbuf_get_length(&split->output),wide_resolve_cost_operand,trial):0;
+        dbuf_printf(f->diagnostics,"; wide call-frame candidate function=%s bytes=%u->%u weighted=%u->%u frame=%d->%d paths=%d selected=%u\n",
+          currFunc->name,before.bytes,after.bytes,trial->emitCost,split->emitCost,trial->frame,split->frame,paths,better && paths==1);
+        if(better && paths==1) {dbuf_destroy(&trial->output);Safe_free(trial);trial=split;split=NULL;}
+        else dbuf_destroy(&split->output);
+      }
+      Safe_free(split);
       c->length=dbuf_get_length(&trial->output);
       c->text=Safe_alloc(c->length);
       memcpy(c->text,dbuf_get_buf(&trial->output),c->length);
@@ -2216,6 +2219,7 @@ wide_emit_candidate(wide_function *f,wide_function *trial,wide_allocation_candid
 static mcs251_wide_result
 wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
 {
+  wide_prepare_calls(f);
   wide_allocation_candidate c[8]={{0}};
   int selected=-1;bool allKnown=true,invalid=false;unsigned bestCost=0;
   /* 不扩大候选准入范围。size在所有成功候选均可定长时比较最终编码字节；
@@ -2626,7 +2630,7 @@ wide_range_multiply(wide_function *f)
     n->left=(n->rangeMultiplyMask&2)?a:b;
     n->right=(n->rangeMultiplyMask&2)?b:a;
     n->op=WM_UMUL32N;n->args=n->stackArgs=n->stackBytes=0;
-    n->ordinaryCall=false;n->callee=NULL;n->callSaveOmit=0;
+    n->ordinaryCall=false;n->callee=NULL;
     memset(n->stackOperands,0,sizeof n->stackOperands);
     memset(n->stackWidths,0,sizeof n->stackWidths);
     n->use=(wide_bits){{0}};wb_set(&n->use,n->left.value);wb_set(&n->use,n->right.value);
