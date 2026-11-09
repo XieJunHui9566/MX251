@@ -1,0 +1,467 @@
+{
+  "schema": 1,
+  "status": "COMPILER_CAPACITY_IMPLEMENTED_SHARING_FEASIBILITY_ONLY",
+  "researchRoot": "E:\\STVAPP\\MX251-mainline-20261109\\local-helper",
+  "baselineCommit": "7b3841d",
+  "compilerChange": "wide.c WA_MAX 8 -> 16; ABI2/4 register windows and stack widths unchanged",
+  "sdkSourceChangedInProduction": false,
+  "automaticFunctionSharingImplemented": false,
+  "wholeAppRuntimeRatio": null,
+  "newDual110Passes": 0,
+  "builds": [
+    {
+      "name": "frozen-original",
+      "build": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p080\\.build\\mx251\\latest",
+      "codeBytes": 23153,
+      "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "hexSha256": "ab301e660ffae690ec199c60884eeec579b3deaa3afd706b2a0e7edddd6efe9a",
+      "receiptSha256": "441dfbfba01a23b013cd116b18d660f0adb29988bd797714c8bb3872caee9880",
+      "functions": [
+        {
+          "unit": "u0",
+          "symbol": "_Fill_Triangel",
+          "codeBytes": 1276,
+          "pushPopCodeBytes": 168,
+          "stackMoveCodeBytes": 288,
+          "refusal": null,
+          "calls": {
+            "__swap": 8,
+            "_LCD_Fill": 3,
+            "__divslong": 4
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont16",
+          "codeBytes": 648,
+          "pushPopCodeBytes": 42,
+          "stackMoveCodeBytes": 212,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont24",
+          "codeBytes": 648,
+          "pushPopCodeBytes": 42,
+          "stackMoveCodeBytes": 212,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont32",
+          "codeBytes": 648,
+          "pushPopCodeBytes": 42,
+          "stackMoveCodeBytes": 212,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "__swap",
+          "codeBytes": 41,
+          "pushPopCodeBytes": 0,
+          "stackMoveCodeBytes": 8,
+          "refusal": null,
+          "calls": {}
+        }
+      ]
+    },
+    {
+      "name": "pointer-helper-inline-copy",
+      "build": "E:\\STVAPP\\MX251-mainline-20261109\\local-helper\\p080-inline\\.build\\mx251\\latest",
+      "codeBytes": 22938,
+      "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "hexSha256": "fc46c630c0e0e376b8d45e810371d29ce6baac236fe35d2411930a845d1a4b10",
+      "receiptSha256": "3ad44474c482b8c28584b137776225b0792751f678e6965e7b2bc758809c40a5",
+      "functions": [
+        {
+          "unit": "u0",
+          "symbol": "_Fill_Triangel",
+          "codeBytes": 1102,
+          "pushPopCodeBytes": 108,
+          "stackMoveCodeBytes": 336,
+          "refusal": null,
+          "calls": {
+            "_LCD_Fill": 3,
+            "__divslong": 4
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont16",
+          "codeBytes": 648,
+          "pushPopCodeBytes": 42,
+          "stackMoveCodeBytes": 212,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont24",
+          "codeBytes": 648,
+          "pushPopCodeBytes": 42,
+          "stackMoveCodeBytes": 212,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont32",
+          "codeBytes": 648,
+          "pushPopCodeBytes": 42,
+          "stackMoveCodeBytes": 212,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "shared-font-copy-parent",
+      "build": "E:\\STVAPP\\MX251-mainline-20261109\\local-helper\\p080-shared-font\\.build\\mx251\\latest",
+      "codeBytes": 22797,
+      "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "hexSha256": "4d5b261ca563cb92a7a3a82fa171d86e41e2b120911b35512f5e78fb111da8d5",
+      "receiptSha256": "acb77137b24365224b964f02732611b1db16504fd42250da0b0a7c5bb38de1d5",
+      "functions": [
+        {
+          "unit": "u0",
+          "symbol": "_Fill_Triangel",
+          "codeBytes": 1276,
+          "pushPopCodeBytes": 168,
+          "stackMoveCodeBytes": 288,
+          "refusal": null,
+          "calls": {
+            "__swap": 8,
+            "_LCD_Fill": 3,
+            "__divslong": 4
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont_shared",
+          "codeBytes": 1017,
+          "pushPopCodeBytes": 104,
+          "stackMoveCodeBytes": 389,
+          "refusal": null,
+          "calls": {
+            "__mulint": 1,
+            "__gptrget": 2,
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont16",
+          "codeBytes": 110,
+          "pushPopCodeBytes": 36,
+          "stackMoveCodeBytes": 37,
+          "refusal": "call-parameter-sequence-contract",
+          "calls": {
+            "_GUI_DrawFont_shared": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont24",
+          "codeBytes": 110,
+          "pushPopCodeBytes": 36,
+          "stackMoveCodeBytes": 37,
+          "refusal": "call-parameter-sequence-contract",
+          "calls": {
+            "_GUI_DrawFont_shared": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont32",
+          "codeBytes": 110,
+          "pushPopCodeBytes": 36,
+          "stackMoveCodeBytes": 37,
+          "refusal": "call-parameter-sequence-contract",
+          "calls": {
+            "_GUI_DrawFont_shared": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "__swap",
+          "codeBytes": 41,
+          "pushPopCodeBytes": 0,
+          "stackMoveCodeBytes": 8,
+          "refusal": null,
+          "calls": {}
+        }
+      ]
+    },
+    {
+      "name": "shared-font-copy-16-parameters",
+      "build": "E:\\STVAPP\\MX251-mainline-20261109\\local-helper\\shared-font-args16",
+      "codeBytes": 22156,
+      "compilerSha256": "9caa2b11f99cd0908628c7caa98d081b7fcc7c3e24d05d12ce2668a502075462",
+      "hexSha256": "07f74c52cbb8876c6cb227bf1e34715b79104ea3fd75ccca365288b6820fc23d",
+      "receiptSha256": "6abd96f8965311de95cf7b8dc9b7a71e3fe8ebfb0de3dc9100aec1517a1c1c28",
+      "functions": [
+        {
+          "unit": "u0",
+          "symbol": "_Fill_Triangel",
+          "codeBytes": 1276,
+          "pushPopCodeBytes": 168,
+          "stackMoveCodeBytes": 288,
+          "refusal": null,
+          "calls": {
+            "__swap": 8,
+            "_LCD_Fill": 3,
+            "__divslong": 4
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont_shared",
+          "codeBytes": 650,
+          "pushPopCodeBytes": 50,
+          "stackMoveCodeBytes": 220,
+          "refusal": null,
+          "calls": {
+            "_LCD_SetWindows": 2,
+            "_LCD_WR_DATA_16Bit": 1,
+            "_LCD_DrawPoint": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont16",
+          "codeBytes": 99,
+          "pushPopCodeBytes": 32,
+          "stackMoveCodeBytes": 24,
+          "refusal": null,
+          "calls": {
+            "_GUI_DrawFont_shared": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont24",
+          "codeBytes": 99,
+          "pushPopCodeBytes": 32,
+          "stackMoveCodeBytes": 24,
+          "refusal": null,
+          "calls": {
+            "_GUI_DrawFont_shared": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont32",
+          "codeBytes": 99,
+          "pushPopCodeBytes": 32,
+          "stackMoveCodeBytes": 24,
+          "refusal": null,
+          "calls": {
+            "_GUI_DrawFont_shared": 1
+          }
+        },
+        {
+          "unit": "u0",
+          "symbol": "__swap",
+          "codeBytes": 41,
+          "pushPopCodeBytes": 0,
+          "stackMoveCodeBytes": 8,
+          "refusal": null,
+          "calls": {}
+        }
+      ]
+    }
+  ],
+  "sourceProbes": [
+    {
+      "originalSha256": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+      "candidateSha256": "31419a7ec4884d95006eafa6d5d8a8ca2128f263030d206cc7b66c9f27faa82f",
+      "change": "static -> static inline for the unchanged pointer helper body",
+      "source": "E:\\STVAPP\\MX251-mainline-20261109\\call-arguments\\apps\\p080\\src\\gui.c"
+    },
+    {
+      "change": "Research-only constant/table parameterization of three equivalent font bodies; original wrappers retained",
+      "originalSha256": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+      "candidateSha256": "9fb2eef33927064c07de0b0a7df99b10e0e3c1c6a26f12a1bfbd0438d558eb05"
+    }
+  ],
+  "constantShapeGroups": {
+    "p080": [
+      [
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont16",
+          "bytes": 648
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont24",
+          "bytes": 648
+        },
+        {
+          "unit": "u0",
+          "symbol": "_GUI_DrawFont32",
+          "bytes": 648
+        }
+      ]
+    ],
+    "p087": [],
+    "p091": [],
+    "p095": [
+      [
+        {
+          "unit": "u1",
+          "symbol": "_usb_in_ep2",
+          "bytes": 70
+        },
+        {
+          "unit": "u1",
+          "symbol": "_usb_in_ep3",
+          "bytes": 70
+        }
+      ]
+    ]
+  },
+  "compileChecks": [
+    {
+      "model": "small",
+      "abi": 2,
+      "parameters": 16,
+      "stackBytes": 36,
+      "entryOffsets": [
+        -38,
+        -34,
+        -32,
+        -31,
+        -28,
+        -24,
+        -22,
+        -21,
+        -18,
+        -14,
+        -12,
+        -11,
+        -7,
+        -5,
+        -4
+      ],
+      "callerAccepted": true,
+      "calleeAccepted": true
+    },
+    {
+      "model": "small",
+      "abi": 4,
+      "parameters": 16,
+      "stackBytes": 34,
+      "entryOffsets": [
+        -36,
+        -32,
+        -30,
+        -29,
+        -26,
+        -22,
+        -20,
+        -19,
+        -16,
+        -12,
+        -10,
+        -9,
+        -5,
+        -3
+      ],
+      "callerAccepted": true,
+      "calleeAccepted": true
+    },
+    {
+      "model": "large",
+      "abi": 2,
+      "parameters": 16,
+      "stackBytes": 36,
+      "entryOffsets": [
+        -38,
+        -34,
+        -32,
+        -31,
+        -28,
+        -24,
+        -22,
+        -21,
+        -18,
+        -14,
+        -12,
+        -11,
+        -7,
+        -5,
+        -4
+      ],
+      "callerAccepted": true,
+      "calleeAccepted": true
+    },
+    {
+      "model": "large",
+      "abi": 4,
+      "parameters": 16,
+      "stackBytes": 34,
+      "entryOffsets": [
+        -36,
+        -32,
+        -30,
+        -29,
+        -26,
+        -22,
+        -20,
+        -19,
+        -16,
+        -12,
+        -10,
+        -9,
+        -5,
+        -3
+      ],
+      "callerAccepted": true,
+      "calleeAccepted": true
+    }
+  ],
+  "existingStackCheckConfigurations": 14,
+  "parentEightArgumentRelSha256": "2fa99e052fdb0c70ffb75a6ebaf058cee6f69cd4babc1b023caa06dcae59ee97",
+  "hardware": {
+    "status": "PASS",
+    "frames": 2769,
+    "inputCases": 256,
+    "callsPerCase": 3,
+    "parametersPerCall": 16,
+    "uartSha256": "a90f76bd7e3a27bef16f5b0130dd8e6c7505710eb8f779a48c8e2e029e17dc9f",
+    "hexSha256": "109755cd51e5a356fae53763ed3f81881061ea4c41477b89569b1f4ce00b72b4",
+    "port": "COM13",
+    "baud": 115200,
+    "hardwareExecuted": true
+  }
+}

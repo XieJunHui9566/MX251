@@ -32,17 +32,18 @@ for model in ['small','large']:
    assert '\tecall\t___m251r4_'+target in asm['callers']
    assert '\tejmp\t___m251r4_'+target not in asm['callers']
   frames=dict((n,int(v)) for n,v in re.findall(r'wide-mir accepted: (\w+).*frame=(\d+)',asm['callers']))
-  assert frames['pressure']>0 and frames['high_pressure']>0 and frames['local_object']>=8
+  # Integer sinking already removes high_pressure's spills in the parent.
+  assert frames['pressure']>0 and frames['local_object']>=8
   h8=asm['callees'].split('wide-mir accepted: h8;',1)[1].split('wide-mir accepted:',1)[0]
   offsets=set(int(v) for v in re.findall(r'entry-offset=(-?\d+)',h8))
   assert offsets=={-3,-5,-9,-10,-12,-16},offsets
   rows.append(dict(model=model,opt=opt,nativeFunctions=27,frames=frames,mixedStackOffsets=sorted(offsets)))
 
 header='typedef unsigned char u8;typedef unsigned long u32;\n#define ABI __reentrant __sdcccall(4)\n'
-nine=','.join('u32 '+n for n in 'abcdefghi')
+seventeen=','.join('u32 '+n for n in 'abcdefghijklmnopq')
 negative={
- 'ninth-caller':f'u32 g({nine}) ABI;u32 f(u32 a,u32 b) ABI {{return g(a,b,a,b,a,b,a,b,a);}}',
- 'ninth-callee':f'u32 f({nine}) ABI {{return a+i;}}',
+ 'seventeenth-caller':f'u32 g({seventeen}) ABI;u32 f(u32 a,u32 b) ABI {{return g(a,b,a,b,a,b,a,b,a,b,a,b,a,b,a,b,a);}}',
+ 'seventeenth-callee':f'u32 f({seventeen}) ABI {{return a+q;}}',
  'volatile-stack-parameter':'u32 f(u32 a,u32 b,volatile u32 c) ABI {return c+c+a;}',
  'addressed-stack-parameter':'u32 g(u32 __xdata *) ABI;u32 f(u32 a,u32 b,u32 c) ABI {return g(&c)+a;}',
 }

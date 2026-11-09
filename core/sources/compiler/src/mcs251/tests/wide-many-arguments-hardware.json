@@ -1,0 +1,56 @@
+{
+  "schema": 2,
+  "target": "AI8051U-34K64-32",
+  "model": "small",
+  "optimization": "speed",
+  "backend": "ordinary-wide",
+  "explicitAbi": false,
+  "standard": "sdcc11",
+  "runtime": "standard",
+  "defines": [],
+  "files": [
+    "wide-many-arguments.h",
+    "wide-many-arguments-callee.c",
+    "wide-many-arguments-caller.c",
+    "wide-many-arguments-legacy.c",
+    "wide-many-arguments-hardware.c"
+  ],
+  "units": [
+    {
+      "name": "u0",
+      "file": "wide-many-arguments-hardware.c",
+      "backend": "legacy",
+      "stackAuto": true,
+      "defines": []
+    },
+    {
+      "name": "u1",
+      "file": "wide-many-arguments-caller.c",
+      "backend": "ordinary-wide",
+      "stackAuto": true,
+      "defines": []
+    },
+    {
+      "name": "u2",
+      "file": "wide-many-arguments-callee.c",
+      "backend": "ordinary-wide",
+      "stackAuto": true,
+      "defines": []
+    },
+    {
+      "name": "u3",
+      "file": "wide-many-arguments-legacy.c",
+      "backend": "legacy",
+      "stackAuto": true,
+      "defines": []
+    }
+  ],
+  "archives": [],
+  "link": [
+    "u0",
+    "u1",
+    "u2",
+    "u3",
+    "@startup"
+  ]
+}
