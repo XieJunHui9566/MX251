@@ -1,0 +1,346 @@
+diff --git a/core/build/qualified/Build.ps1 b/core/build/qualified/Build.ps1
+index df2356a..6424f35 100644
+--- a/core/build/qualified/Build.ps1
++++ b/core/build/qualified/Build.ps1
+@@ -14,6 +14,7 @@ param(
+  [switch]$VolatileDataWide,
+  [switch]$ConstantRotateFusion,
+  [switch]$FunctionSharing,
++ [switch]$LoopSplit,
+  [switch]$FunctionGc,
+  [string]$FunctionGcKeep='',
+  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
+@@ -114,6 +115,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
+  if($C251BitComplement){$f+='--mcs251-c251-bit-complement'}
+  $f+='--mcs251-function-metadata'
+  if($FunctionSharing){$f+='--mcs251-share-functions'}
++ if($LoopSplit){$f+='--mcs251-loop-split'}
+  if($WordCompareImmediate){$f+='--mcs251-word-compare-immediate'}
+  if($RangeNarrowMultiply){$f+='--mcs251-range-narrow-multiply'}
+  if($CalleeCostFile){$f+=@('--mcs251-callee-cost',$CalleeCostFile,'--mcs251-callee-cost-sha256',$CalleeCostSha256)}
+@@ -439,6 +441,7 @@ try {
+  $receipt.wideCapacity=[ordered]@{schema=1;valueLimit=[int]$WideValueLimit;nodeLimit=[int]$WideNodeLimit;overflow='whole-function-fallback-with-reason';selection='explicit-build-option'}
+  $receipt.wordCompareImmediate=[bool]$WordCompareImmediate
+  $receipt.rangeNarrowMultiply=[bool]$RangeNarrowMultiply
++ $receipt.loopSplit=[bool]$LoopSplit
+  $receipt.calleeCostEvidence=if($CalleeCostFile){[ordered]@{path=$CalleeCostFile;sha256=$CalleeCostSha256}}else{$null}
+  $receipt.volatileDataWide=[ordered]@{enabled=[bool]$VolatileDataWide;contract='experimental-explicit-allocated-DATA-full-object';atomicQualified=$false;hardwareQualified=$false}
+  $receipt.objectAddressNative=$objectAddressRecord
+@@ -451,6 +454,7 @@ try {
+   targetProfileScriptSha256=(Hash-File (Join-Path $PSScriptRoot 'TargetProfile.ps1'))
+   targetContractSha256=$receipt.targetContract.registrySha256
+   functionSharing=[bool]$FunctionSharing
++  loopSplit=[bool]$LoopSplit
+   c251BitComplement=[bool]$C251BitComplement
+   orderedAsm=$orderedAsmRecord
+   wideCapacity=$receipt.wideCapacity
+diff --git a/core/sources/compiler/src/mcs251/main.c b/core/sources/compiler/src/mcs251/main.c
+index 213cbf7..ab33ec4 100644
+--- a/core/sources/compiler/src/mcs251/main.c
++++ b/core/sources/compiler/src/mcs251/main.c
+@@ -139,6 +139,7 @@ int mcs251OrderedAsmEnabled;
+ unsigned char mcs251OrderedAsmBits[256];
+ static char *orderedAsmBitsSpec;
+ int mcs251FunctionMetadataEnabled;
++int mcs251LoopSplitEnabled;
+ static int functionSharingEnabled;
+ char *mcs251LeafEffectsFile;
+ extern void mcs251LoadLeafEffects(void);
+@@ -205,6 +206,7 @@ static OPTION _mcs251_options[] =
+     { 0, "--mcs251-ordered-asm-bits", &orderedAsmBitsSpec, "<NN:MM,...> verified SFR byte:bit-mask capabilities; requires --mcs251-ordered-asm", CLAT_STRING },
+     { 0, "--mcs251-share-functions", &functionSharingEnabled, "Share ABI2 machine function templates with per-call constants; requires function metadata; experimental default off" },
+     { 0, "--mcs251-function-metadata", &mcs251FunctionMetadataEnabled, "Emit complete function ownership for conservative qualified-link reachability" },
++    { 0, "--mcs251-loop-split", &mcs251LoopSplitEnabled, "Experimental loop live-range splitting", CLAT_BOOLEAN },
+     { 0, "--mcs251-leaf-effects", &mcs251LeafEffectsFile, "<file> experimental trusted leaf-write contract; use qualified two-pass builder", CLAT_STRING },
+     { 0, NULL }
+   };
+diff --git a/core/sources/compiler/src/mcs251/wide.c b/core/sources/compiler/src/mcs251/wide.c
+index 4350070..de9dadf 100644
+--- a/core/sources/compiler/src/mcs251/wide.c
++++ b/core/sources/compiler/src/mcs251/wide.c
+@@ -31,6 +31,7 @@ typedef struct {
+   symbol *sym;
+   int width, reg, slot, pin, preference, weight, reads;
+   bool sign, pointer, codePointer, floating, symbolSnapshot;
++  bool loopParked;
+   wide_bits edges;
+ } wide_value;
+ typedef struct { int value, width; uint32_t literal; bool sign, floating, codePointer; } wide_operand;
+@@ -104,6 +105,7 @@ typedef struct {
+   bool callFrame;
+   wide_bits callOperands; /* Source locations while emitting one CALL. */
+   int callSlots[WV_MAX];
++  int splitRegs[WV_MAX];
+   int valueLimit,nodeLimit,rejectionLine;
+   const char *rejectionReason;
+   iCode *rejectionOrigin;
+@@ -2083,6 +2085,9 @@ wide_validate_allocation(wide_function *f)
+ static bool
+ wide_allocate (wide_function *f, int strategy, bool callAware)
+ {
++  for(int i=0;i<f->nv;++i)if(f->values[i].loopParked) {
++    f->values[i].reg=-1;f->values[i].slot=f->frame;f->frame+=f->values[i].width;
++  }
+   for(int i=0;i<f->nv;++i) if(f->values[i].pin>=0) {
+     if(!wide_available(f,i,f->values[i].pin)) return false;
+     f->values[i].reg=f->values[i].pin;
+@@ -2178,6 +2183,7 @@ typedef struct { unsigned bytes,unknown,heuristic,instructions,spills;int frame;
+ 
+ typedef struct {
+   char *text;size_t length;unsigned heuristic,instructions,spills;int frame;wide_byte_cost size;
++  int regs[WV_MAX];
+ } wide_allocation_candidate;
+ 
+ /* 接收私有分配副本，所有方案使用同一发射器、调用保存和完整编码成本。 */
+@@ -2211,6 +2217,7 @@ wide_emit_candidate(wide_function *f,wide_function *trial,wide_allocation_candid
+       c->heuristic=trial->emitCost;c->instructions=trial->emitInstructions;c->frame=trial->frame;
+       for(int v=0;v<trial->nv;++v)if(trial->values[v].reg<0)++c->spills;
+       c->size=wide_emitted_bytes(trial,c->text,c->length);
++      for(int v=0;v<trial->nv;++v)c->regs[v]=trial->values[v].reg;
+       dbuf_destroy(&trial->output);
+       Safe_free(trial);
+ }
+@@ -2218,7 +2225,7 @@ wide_emit_candidate(wide_function *f,wide_function *trial,wide_allocation_candid
+ #include "wide_recolor.c.inc"
+ 
+ static mcs251_wide_result
+-wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
++wide_choose_allocation_base(wide_function *f,wide_selection_cost *cost)
+ {
+   wide_prepare_calls(f);
+   wide_allocation_candidate c[8]={{0}};
+@@ -2312,12 +2319,14 @@ wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
+     dbuf_printf(f->diagnostics,"; wide allocation selected=%d candidates=%d heuristic=%u instructions=%u frame=%d\n",selected,count,c[selected].heuristic,c[selected].instructions,c[selected].frame);
+     dbuf_printf(f->diagnostics,"; wide cost objective=%s known-bytes=%u unknown=%u group-known=%d\n",optimize.codeSize?(allKnown?"encoded-bytes":"instruction-fallback"):"weighted-instructions",c[selected].size.bytes,c[selected].size.unknown,allKnown);
+     if(cost)*cost=(wide_selection_cost){c[selected].size.bytes,c[selected].size.unknown,c[selected].heuristic,c[selected].instructions,c[selected].spills,c[selected].frame};
++    for(int v=0;v<f->nv;++v)f->splitRegs[v]=c[selected].regs[v];
+     dbuf_append(f->candidateOutput,c[selected].text,c[selected].length);
+   }
+   for(int i=0;i<count;++i)Safe_free(c[i].text);
+   return invalid?MCS251_WIDE_ERROR:selected>=0?MCS251_WIDE_ACCEPTED:MCS251_WIDE_FALLBACK;
+ }
+ 
++#include "wide_loop_split.c.inc"
+ #include "wide_domain.c.inc"
+ 
+ /* 未选择方案的诊断保留为带前缀注释，避免伪装成最终分配记录。 */
+@@ -2645,7 +2654,7 @@ wide_range_multiply(wide_function *f)
+ static mcs251_wide_result
+ wide_choose_range_multiply(wide_function *f,wide_selection_cost *cost)
+ {
+-  return wide_choose_transform(f,cost,wide_range_multiply,wide_choose_loop_initializers,
++  return wide_choose_transform(f,cost,wide_range_multiply,wide_choose_loop_initializers,
+     "range-multiply","calls",false,"multiply-original","multiply-trial",true,true);
+ }
+ 
+diff --git a/core/sources/compiler/src/mcs251/wide_loop_split.c.inc b/core/sources/compiler/src/mcs251/wide_loop_split.c.inc
+new file mode 100644
+index 0000000..b690b0a
+--- /dev/null
++++ b/core/sources/compiler/src/mcs251/wide_loop_split.c.inc
+@@ -0,0 +1,183 @@
++/* GPL-2.0-or-later. Split boundary values at a loop's entry and exit.
++ * Values used in the loop receive a fresh allocation; unused live-through
++ * values use a private spill. No C object or memory access moves. */
++extern int mcs251LoopSplitEnabled;
++
++typedef struct {
++  int first,last,entry;
++  wide_bits split,in,out,parked;
++  unsigned count,inputs,outputs,bytes,score;
++} wide_split_region;
++
++static bool
++wide_split_region_find(wide_function *f,int first,int last,wide_split_region *r)
++{
++  if(first<=0 || last+1>=f->nn || f->nj)return false;
++  int entry=-1;bool exits=false;wide_bits used={{0}};
++  for(int i=0;i<f->nn;++i) {
++    wide_node *n=&f->nodes[i];bool inside=i>=first && i<=last;
++    if(inside) {
++      if(n->op==RETURN || n->op==ENDFUNCTION || n->op==RECEIVE || n->op==FUNCTION)return false;
++      used=wb_or(used,wb_or(n->use,n->def));
++    }
++    for(int k=0;k<2;++k) {
++      int s=n->succ[k];if(s<0)continue;
++      bool target=s>=first && s<=last;
++      if(!inside && target) {
++        if(entry>=0 && entry!=s)return false;
++        entry=s;
++      } else if(inside && !target) {
++        if(s!=last+1)return false;
++        exits=true;
++      }
++    }
++  }
++  if(entry<0 || !exits || f->nodes[entry].op!=LABEL)return false;
++  *r=(wide_split_region){.first=first,.last=last,.entry=entry};
++  for(int v=0;v<f->nv;++v) {
++    wide_value *value=&f->values[v];
++    bool in=wb_has(f->nodes[entry].in,v),out=wb_has(f->nodes[last+1].in,v);
++    if(value->loopParked || value->pin>=0 || value->floating || (!in && !out))continue;
++    bool active=wb_has(used,v);
++    if(active ? f->splitRegs[v]>=0 : f->splitRegs[v]<0)continue;
++    wb_set(&r->split,v);++r->count;r->bytes+=value->width;
++    if(in) {wb_set(&r->in,v);++r->inputs;}
++    if(out) {wb_set(&r->out,v);++r->outputs;}
++    if(!wb_has(used,v))wb_set(&r->parked,v);
++  }
++  r->score=r->bytes*(unsigned)(last-first+1);
++  return r->count!=0;
++}
++
++static wide_node
++wide_split_node(unsigned op,iCode *origin)
++{
++  return (wide_node){.op=op,.origin=origin,.left={.value=-1},
++    .right={.value=-1},.addressIndex={.value=-1},.result=-1,
++    .label=-1,.target=-1,.succ={-1,-1},.addressObject=-1};
++}
++
++static wide_node
++wide_split_copy(wide_function *f,int destination,int source,iCode *origin)
++{
++  wide_value *v=&f->values[source];wide_node n=wide_split_node('=',origin);
++  n.result=destination;n.width=v->width;n.sign=v->sign;n.floating=v->floating;
++  n.right=(wide_operand){.value=source,.width=v->width,.sign=v->sign,
++    .floating=v->floating,.codePointer=v->codePointer};
++  wb_set(&n.use,source);wb_set(&n.def,destination);return n;
++}
++
++static unsigned
++wide_split_loop_lifetime(wide_function *f)
++{
++  if(!mcs251LoopSplitEnabled)return 0;
++  wide_split_region best={0};unsigned regions=0;
++  for(int last=1;last+1<f->nn;++last)for(int k=0;k<2;++k) {
++    int first=f->nodes[last].succ[k];wide_split_region r;
++    if(first<0 || first>=last || !wide_split_region_find(f,first,last,&r))continue;
++    ++regions;
++    if(r.score>best.score)best=r;
++  }
++  if(!best.count)return 0;
++  unsigned prefix=best.inputs+1+(best.entry!=best.first),suffix=best.outputs+1;
++  if(f->nv+(int)best.count>f->valueLimit || f->nn+(int)(prefix+suffix)>f->nodeLimit)return 0;
++  int oldCount=f->nn,oldValues=f->nv,map[WN_MAX],clone[WV_MAX];
++  int entryLabel=wt(f),exitLabel=wt(f);
++  for(int i=0;i<oldCount;++i)
++    map[i]=i+(i>=best.first?(int)prefix:0)+(i>best.last?(int)suffix:0);
++  for(int v=0;v<oldValues;++v)if(wb_has(best.split,v)) {
++    int copy=f->nv++;clone[v]=copy;f->values[copy]=f->values[v];
++    f->values[copy].pin=f->values[copy].preference=-1;
++    f->values[copy].loopParked=wb_has(best.parked,v);
++  }
++  wide_node *nodes=Safe_alloc((oldCount+prefix+suffix)*sizeof *nodes);
++  int entry=best.first,exit=map[best.last]+1;
++  iCode *before=f->nodes[best.first-1].origin,*after=f->nodes[best.last+1].origin;
++  int at=entry;
++  nodes[at]=wide_split_node(LABEL,before);nodes[at++].label=entryLabel;
++  for(int v=0;v<oldValues;++v)if(wb_has(best.in,v))
++    nodes[at++]=wide_split_copy(f,clone[v],v,before);
++  if(best.entry!=best.first) {
++    nodes[at]=wide_split_node(GOTO,before);
++    nodes[at].target=f->nodes[best.entry].label;
++    nodes[at++].succ[0]=map[best.entry];
++  }
++  for(int i=entry;i<at;++i)if(nodes[i].op!=GOTO)nodes[i].succ[0]=i+1;
++  at=exit;nodes[at]=wide_split_node(LABEL,after);nodes[at++].label=exitLabel;
++  for(int v=0;v<oldValues;++v)if(wb_has(best.out,v))
++    nodes[at++]=wide_split_copy(f,v,clone[v],after);
++  for(int i=exit;i<at;++i)nodes[i].succ[0]=i+1;
++  for(int i=0;i<oldCount;++i) {
++    nodes[map[i]]=f->nodes[i];wide_node *n=&nodes[map[i]];
++    bool inside=i>=best.first && i<=best.last;
++    if(inside) {
++      wide_bits use={{0}},def={{0}};
++      for(int v=0;v<oldValues;++v) {
++        int mapped=wb_has(best.split,v)?clone[v]:v;
++        if(wb_has(n->use,v))wb_set(&use,mapped);
++        if(wb_has(n->def,v))wb_set(&def,mapped);
++      }
++      n->use=use;n->def=def;
++      int *operands[WA_MAX+3]={&n->left.value,&n->right.value,&n->addressIndex.value,&n->result};
++      for(unsigned k=0;k<n->stackArgs;++k)operands[k+4]=&n->stackOperands[k].value;
++      for(unsigned k=0;k<4+n->stackArgs;++k)
++        if(wb_has(best.split,*operands[k]))*operands[k]=clone[*operands[k]];
++    }
++    for(int k=0;k<2;++k) {
++      int s=n->succ[k];if(s<0)continue;
++      bool explicitEdge=n->op==GOTO || k==1;
++      if(!inside && s==best.entry) {
++        n->succ[k]=entry;if(explicitEdge)n->target=entryLabel;
++      } else if(inside && s==best.last+1) {
++        n->succ[k]=exit;if(explicitEdge)n->target=exitLabel;
++      } else n->succ[k]=map[s];
++    }
++  }
++  f->nn=oldCount+prefix+suffix;
++  memcpy(f->nodes,nodes,f->nn*sizeof *nodes);Safe_free(nodes);
++  wide_reset_allocation(f);
++  dbuf_printf(f->diagnostics,"; wide loop-split region function=%s first=%d last=%d entry=%d candidates=%u values=%u inputs=%u outputs=%u bytes=%u\n",
++    currFunc->name,best.first,best.last,best.entry,regions,best.count,best.inputs,best.outputs,best.bytes);
++  return best.count;
++}
++
++static mcs251_wide_result
++wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
++{
++  if(!mcs251LoopSplitEnabled)return wide_choose_allocation_base(f,cost);
++  struct dbuf_s original,trialCode;
++  dbuf_init(&original,1024);dbuf_init(&trialCode,1024);
++  struct dbuf_s *output=f->candidateOutput;
++  wide_selection_cost old={0},next={0};
++  f->candidateOutput=&original;
++  mcs251_wide_result result=wide_choose_allocation_base(f,&old);
++  f->candidateOutput=output;
++  wide_function *trial=NULL;unsigned changes=0;bool selected=false;int paths=-1;
++  if(result==MCS251_WIDE_ACCEPTED && old.spills && !old.unknown) {
++    trial=Safe_alloc(sizeof *trial);memcpy(trial,f,sizeof *trial);
++    trial->candidateOutput=&trialCode;
++    changes=wide_split_loop_lifetime(trial);
++    if(changes) {
++      wide_liveness(trial);
++      mcs251_wide_result candidate=wide_choose_allocation_base(trial,&next);
++      if(candidate==MCS251_WIDE_ERROR)result=candidate;
++      selected=candidate==MCS251_WIDE_ACCEPTED && !next.unknown &&
++        next.bytes<=old.bytes && next.heuristic<=old.heuristic && next.frame<=old.frame &&
++        (next.bytes<old.bytes || next.heuristic<old.heuristic || next.frame<old.frame);
++      if(selected) {
++        paths=wide_loop_cost_compare_canonical(dbuf_get_buf(&original),dbuf_get_length(&original),
++          dbuf_get_buf(&trialCode),dbuf_get_length(&trialCode),wide_resolve_cost_operand,NULL,f,trial);
++        selected=paths==1;
++      }
++      dbuf_printf(f->diagnostics,"; wide loop-split choice function=%s values=%u selected=%u old-bytes=%u new-bytes=%u old-unknown=%u new-unknown=%u old-weighted=%u new-weighted=%u old-frame=%d new-frame=%d old-spills=%u new-spills=%u paths=%d\n",
++        currFunc->name,changes,selected,old.bytes,next.bytes,old.unknown,next.unknown,
++        old.heuristic,next.heuristic,old.frame,next.frame,old.spills,next.spills,paths);
++    }
++  }
++  if(result==MCS251_WIDE_ACCEPTED) {
++    struct dbuf_s *chosen=selected?&trialCode:&original;
++    dbuf_append(output,dbuf_get_buf(chosen),dbuf_get_length(chosen));
++    if(cost)*cost=selected?next:old;
++  }
++  Safe_free(trial);dbuf_destroy(&original);dbuf_destroy(&trialCode);return result;
++}
+diff --git a/core/sources/compiler/src/mcs251/wide_recolor.c.inc b/core/sources/compiler/src/mcs251/wide_recolor.c.inc
+index 1381d8d..82ef2f6 100644
+--- a/core/sources/compiler/src/mcs251/wide_recolor.c.inc
++++ b/core/sources/compiler/src/mcs251/wide_recolor.c.inc
+@@ -9,7 +9,7 @@ wide_recolor_place(wide_function *f,int value,int reg,unsigned depth,
+   if(!*budget)return false;
+   --*budget;
+   wide_value *v=&f->values[value];
+-  if(v->pin>=0 && v->pin!=reg)return false;
++  if(v->loopParked || (v->pin>=0 && v->pin!=reg))return false;
+   int saved[WV_MAX];for(int i=0;i<f->nv;++i)saved[i]=f->values[i].reg;
+   v->reg=reg;wb_set(&active,value);
+   for(int b=0;b<f->nv;++b) {
+@@ -46,7 +46,7 @@ wide_choose_recolor(wide_function *f,wide_function *original,wide_allocation_can
+   /* 每个原溢出值只尝试现有物理切片；全函数最多 64 个候选。
+    * 不累计被拒更改，所有候选从同一旧分配开始。 */
+   for(int v=0;v<original->nv && attempts<64;++v) {
+-    if(original->values[v].reg>=0 || original->values[v].pin>=0)continue;
++    if(original->values[v].reg>=0 || original->values[v].pin>=0 || original->values[v].loopParked)continue;
+     int count;const int *choices=wide_register_choices(original->values[v].width,&count);
+     for(int k=0;k<count && attempts<64;++k) {
+       ++attempts;

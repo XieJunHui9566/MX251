@@ -1,0 +1,251 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "NO_IMAGE_GAIN_PROTOTYPE_ARCHIVED",
+  "parentCommit": "68be204319b13f9b9f1b91d3170e6fbb054aab1d",
+  "branch": "codex/loop-live-range-splitting",
+  "workDirectory": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range",
+  "prototypePatchSha256": "56f2ed284626641527b602ffbbfc687b9f5b01c5ba5e08048af407494d1fbcad",
+  "compilerSha256": "5f0bbd60852fd4881a6f1ec79b2136cb3f5f236948698ee93b35462582978f22",
+  "restoredCompilerSha256": "53bf7f18c04402920c7efc5f35d5486ec0c1bfebd97e4b575945f1c6d50d7274",
+  "productionCompilerChanged": false,
+  "hardwareExecuted": false,
+  "runtimeMeasured": false,
+  "projects": [
+    {
+      "project": "p080",
+      "baseline": "E:\\STVAPP\\MX251-mainline-20261109\\automatic-sharing\\p080-02",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p080-03",
+      "baselineCodeBytes": 22093,
+      "candidateCodeBytes": 22093,
+      "delta": 0,
+      "sameSourceHashes": true,
+      "sameProjectSnapshotContent": true,
+      "identicalFirmware": true,
+      "baselineReceiptSha256": "4821a96cb7c33dadd4d6c81bc0339d1b9dc684267840c2e92a3ddfa0b066832c",
+      "candidateReceiptSha256": "43eca738a058486ca2fe8a1b0f0c1c5689f5a994ab59c2be582da9073351d112",
+      "baselineFirmwareSha256": "e5ec9fc160cc02babd94125d701a66f2372d0b8066e21fb1f246fd718fb4d41f",
+      "candidateFirmwareSha256": "e5ec9fc160cc02babd94125d701a66f2372d0b8066e21fb1f246fd718fb4d41f",
+      "analysisSha256": "a659d7ba3cb626b8a02549aa3dbf5715ab235467e3d58abc3e598f2616062af4",
+      "diagnostics": [
+        {
+          "unit": "u0",
+          "line": "; wide loop-split region function=Fill_Triangel first=140 last=191 entry=140 candidates=2 values=4 inputs=4 outputs=2 bytes=12"
+        },
+        {
+          "unit": "u0",
+          "line": "; wide loop-split choice function=Fill_Triangel values=4 selected=0 old-bytes=1328 new-bytes=1346 old-unknown=0 new-unknown=0 old-weighted=1433 new-weighted=1379 old-frame=22 new-frame=24 old-spills=6 new-spills=10 paths=-1"
+        },
+        {
+          "unit": "u0",
+          "line": "; wide loop-split region function=LCD_ShowChar first=84 last=119 entry=84 candidates=3 values=2 inputs=2 outputs=0 bytes=8"
+        },
+        {
+          "unit": "u0",
+          "line": "; wide loop-split choice function=LCD_ShowChar values=2 selected=0 old-bytes=616 new-bytes=632 old-unknown=0 new-unknown=0 old-weighted=867 new-weighted=871 old-frame=14 new-frame=18 old-spills=4 new-spills=5 paths=-1"
+        }
+      ],
+      "callClobberStatus": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functionGcStatus": "CLOSED_GRAPH_CANDIDATE",
+      "functionGcFallback": false
+    },
+    {
+      "project": "p091",
+      "baseline": "E:\\STVAPP\\MX251-mainline-20261109\\automatic-sharing\\p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p091-03",
+      "baselineCodeBytes": 6312,
+      "candidateCodeBytes": 6312,
+      "delta": 0,
+      "sameSourceHashes": true,
+      "sameProjectSnapshotContent": true,
+      "identicalFirmware": true,
+      "baselineReceiptSha256": "ef16962fdafb09db49aabc0f5d4d2e9b08e3a8f3190c641aa6c3170a93fe5103",
+      "candidateReceiptSha256": "38e60348cdf51d577aadadebe6896585715178d00c6c4bf20185d451c2cbdc6c",
+      "baselineFirmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4",
+      "candidateFirmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4",
+      "analysisSha256": "c366f2ea5653e9e577b616b5afa56c5e812177247fc08baf62e059a469742578",
+      "diagnostics": [],
+      "callClobberStatus": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functionGcStatus": "CLOSED_GRAPH_CANDIDATE",
+      "functionGcFallback": false
+    }
+  ],
+  "versions": [
+    {
+      "version": "01",
+      "description": "Park only unused live-through values; wrapper before outer transforms.",
+      "builds": [
+        {
+          "project": "p080",
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p080-01",
+          "codeBytes": 22093,
+          "compilerSha256": "4aafcaa418ed432a64ec409838bf757be03e0a4b25b728f72a7c0bb557ef58ac",
+          "receiptSha256": "0552c2c5063289f7056f726fb0864a13e3e4c2ed089b3c724bffb6b3a08133b6",
+          "diagnostics": [
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=LCD_Fill values=2 selected=0 original-result=1 trial-result=0 old-bytes=123 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=132 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=gui_circle values=1 selected=0 original-result=1 trial-result=0 old-bytes=270 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=758 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=Fill_Triangel values=2 selected=0 original-result=1 trial-result=1 old-bytes=1328 new-bytes=1346 old-unknown=0 new-unknown=0 old-weighted=1433 new-weighted=1390 old-frame=22 new-frame=22 old-spills=6 new-spills=9"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=LCD_ShowChar values=5 selected=0 original-result=1 trial-result=1 old-bytes=616 new-bytes=702 old-unknown=0 new-unknown=0 old-weighted=867 new-weighted=1060 old-frame=14 new-frame=12 old-spills=4 new-spills=7"
+            },
+            {
+              "unit": "u3",
+              "line": "; wide loop-split choice function=delay_ms values=1 selected=0 original-result=1 trial-result=0 old-bytes=27 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=50 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u4",
+              "line": "; wide loop-split choice function=LCD_Clear values=1 selected=0 original-result=1 trial-result=0 old-bytes=75 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=122 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            }
+          ]
+        },
+        {
+          "project": "p091",
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p091-01",
+          "codeBytes": 6312,
+          "compilerSha256": "4aafcaa418ed432a64ec409838bf757be03e0a4b25b728f72a7c0bb557ef58ac",
+          "receiptSha256": "1115ba4fb8cfec5f8c8afea869649b366f9d1e4a2037430779953abaebd43661",
+          "diagnostics": [
+            {
+              "unit": "u1",
+              "line": "; wide loop-split choice function=usb_write_reg values=1 selected=0 original-result=1 trial-result=0 old-bytes=29 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=27 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u1",
+              "line": "; wide loop-split choice function=usb_read_fifo values=1 selected=0 original-result=1 trial-result=0 old-bytes=68 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=69 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u7",
+              "line": "; wide loop-split choice function=scsi_in values=2 selected=0 original-result=1 trial-result=0 old-bytes=200 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=247 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u7",
+              "line": "; wide loop-split choice function=scsi_out values=1 selected=0 original-result=1 trial-result=0 old-bytes=161 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=211 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u8",
+              "line": "; wide loop-split choice function=flash_readsector values=1 selected=0 original-result=1 trial-result=0 old-bytes=153 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=145 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u8",
+              "line": "; wide loop-split choice function=flash_writesector values=3 selected=0 original-result=1 trial-result=0 old-bytes=340 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=613 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "version": "02",
+      "description": "Clone all loop-boundary values, park unused live-through values.",
+      "builds": [
+        {
+          "project": "p080",
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p080-02",
+          "codeBytes": 22093,
+          "compilerSha256": "7a6fd8c6006572bd028852d91a873821c28bfbb349c3d18c358fc1ffa0cbdf3b",
+          "receiptSha256": "a22effce3424687e19981981ec18f3cd667ff09c95bb43406be911755ff57c83",
+          "diagnostics": [
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=LCD_Fill values=4 selected=0 original-result=1 trial-result=0 old-bytes=123 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=132 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=LCD_DrawLine values=11 selected=0 original-result=1 trial-result=1 old-bytes=184 new-bytes=221 old-unknown=0 new-unknown=0 old-weighted=192 new-weighted=185 old-frame=5 new-frame=6 old-spills=4 new-spills=4"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=gui_circle values=6 selected=0 original-result=1 trial-result=0 old-bytes=270 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=758 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=Fill_Triangel values=10 selected=0 original-result=1 trial-result=1 old-bytes=1328 new-bytes=1382 old-unknown=0 new-unknown=0 old-weighted=1433 new-weighted=1390 old-frame=22 new-frame=20 old-spills=6 new-spills=12"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=LCD_ShowChar values=10 selected=0 original-result=1 trial-result=1 old-bytes=616 new-bytes=630 old-unknown=0 new-unknown=0 old-weighted=867 new-weighted=874 old-frame=14 new-frame=14 old-spills=4 new-spills=4"
+            },
+            {
+              "unit": "u3",
+              "line": "; wide loop-split choice function=delay_ms values=1 selected=0 original-result=1 trial-result=0 old-bytes=27 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=50 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u3",
+              "line": "; wide loop-split choice function=delay_us values=1 selected=0 original-result=1 trial-result=0 old-bytes=14 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=22 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u4",
+              "line": "; wide loop-split choice function=LCD_ReadReg values=2 selected=0 original-result=1 trial-result=0 old-bytes=94 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=80 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            },
+            {
+              "unit": "u4",
+              "line": "; wide loop-split choice function=LCD_Clear values=1 selected=0 original-result=1 trial-result=0 old-bytes=75 new-bytes=0 old-unknown=0 new-unknown=0 old-weighted=122 new-weighted=0 old-frame=0 new-frame=0 old-spills=0 new-spills=0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "version": "03",
+      "description": "Use actual allocation to split hot spilled values and park cold register holders.",
+      "builds": [
+        {
+          "project": "p080",
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p080-03",
+          "codeBytes": 22093,
+          "compilerSha256": "5f0bbd60852fd4881a6f1ec79b2136cb3f5f236948698ee93b35462582978f22",
+          "receiptSha256": "43eca738a058486ca2fe8a1b0f0c1c5689f5a994ab59c2be582da9073351d112",
+          "diagnostics": [
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=Fill_Triangel values=4 selected=0 old-bytes=1328 new-bytes=1346 old-unknown=0 new-unknown=0 old-weighted=1433 new-weighted=1379 old-frame=22 new-frame=24 old-spills=6 new-spills=10 paths=-1"
+            },
+            {
+              "unit": "u0",
+              "line": "; wide loop-split choice function=LCD_ShowChar values=2 selected=0 old-bytes=616 new-bytes=632 old-unknown=0 new-unknown=0 old-weighted=867 new-weighted=871 old-frame=14 new-frame=18 old-spills=4 new-spills=5 paths=-1"
+            }
+          ]
+        },
+        {
+          "project": "p091",
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\p091-03",
+          "codeBytes": 6312,
+          "compilerSha256": "5f0bbd60852fd4881a6f1ec79b2136cb3f5f236948698ee93b35462582978f22",
+          "receiptSha256": "38e60348cdf51d577aadadebe6896585715178d00c6c4bf20185d451c2cbdc6c",
+          "diagnostics": []
+        }
+      ]
+    }
+  ],
+  "costModelRegressions": [
+    {
+      "name": "loop-cost",
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\loop-cost\\results.json",
+      "sha256": "39805a6fc72e245c9fed9c2d8833f177bf31b79ed72038057815a949acabfd0b",
+      "passed": true,
+      "cases": 115
+    },
+    {
+      "name": "loop-paths",
+      "path": "E:\\STVAPP\\MX251-mainline-20261109\\loop-live-range\\loop-paths\\results.json",
+      "sha256": "bbc2dd65fb5cdce8a748f7d2dd4bc4201502e03e09f42a0f754c9339f4736a45",
+      "passed": true,
+      "cases": 108
+    }
+  ],
+  "limitations": [
+    "One ranked contiguous single-entry/single-exit loop region per function; not general CFG live-range splitting or global region allocation.",
+    "Weighted instruction cost is a compiler heuristic, not measured runtime.",
+    "No candidate was selected in the two final builds; their HEX files are byte-identical to baseline. This does not execute or qualify transformed code.",
+    "Cost-model regressions test existing path comparisons, not semantic correctness of the new splitting transform."
+  ]
+}
