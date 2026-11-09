@@ -1,0 +1,794 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "baselineCommit": "c169c5b",
+  "fixCommit": "f2b2e88",
+  "branch": "codex/stcide-codegen-study",
+  "root": "E:\\STVAPP\\MX251-mainline-20261109\\stcide-deep-review",
+  "source": "https://stcide.stcaimcu.com/",
+  "vendor": [
+    {
+      "url": "https://stcide.stcaimcu.com/ide.worker.js",
+      "path": "vendor\\ide.worker.js",
+      "bytes": 10381,
+      "sha256": "168d66e01a43c505cefb9b72ff3e839cbbb1f8808a5524a3dcd9a16e8a93d6d7"
+    },
+    {
+      "url": "https://stcide.stcaimcu.com/chunks/chunk-VF3TAQQT.js",
+      "path": "vendor\\chunks\\chunk-VF3TAQQT.js",
+      "bytes": 2209088,
+      "sha256": "490290bee0a60e1db579154c9e7d662ae4c7a18c17e249b99a36600cb46a67fc"
+    },
+    {
+      "url": "https://stcide.stcaimcu.com/chunks/chunk-OEKRUSUJ.js",
+      "path": "vendor\\chunks\\chunk-OEKRUSUJ.js",
+      "bytes": 19756,
+      "sha256": "a569723b4a86b00c03d44e2b38b1285b19a70e9bba9a53698ecca03fb90a7323"
+    },
+    {
+      "url": "https://stcide.stcaimcu.com/chunks/chunk-XFNMII4Z.js",
+      "path": "vendor\\chunks\\chunk-XFNMII4Z.js",
+      "bytes": 85915,
+      "sha256": "4450546e3b3ec105b0de7ce11ccc519069d7c98eefd4c038f6a988fca6d51844"
+    },
+    {
+      "url": "https://stcide.stcaimcu.com/chunks/chunk-CM2DCH7G.js",
+      "path": "vendor\\chunks\\chunk-CM2DCH7G.js",
+      "bytes": 69055,
+      "sha256": "d0736f24bc74fe3449b2d94952e97333c362165a8de8dd12fb22c9e736211505"
+    },
+    {
+      "url": "https://stcide.stcaimcu.com/chunks/chunk-VGV3K7ZW.js",
+      "path": "vendor\\chunks\\chunk-VGV3K7ZW.js",
+      "bytes": 745,
+      "sha256": "fd6677ee0345f04a9e5925771fa183082fadc655ca5799236c8fe8bbe9a7853a"
+    }
+  ],
+  "researchArtifacts": {
+    "compiler-readable.js": "be431158a347ca765b4c57a443bd3dcf1377df79f793cdd4bc62e101322bd009",
+    "function-names.txt": "ff947e0df29d4c2153769c7be16bd8dbae887249a8abe4d761712a144b6f5ad4",
+    "current-keil-comparison.json": "202d57611d1afabdd79a2f048cecc77d156a43c85ecc24cef700736f123d9d3a",
+    "current-opportunities.json": "0a096998ec508554bf535c639e0a09d7e19cb16d015e7bc90d0f099995fa2710",
+    "pointer-probes/results.json": "4a074e4e9588f5b7278d3a40b52d5707742cafffe3efc1444cc859ed0fbae7e3"
+  },
+  "projects": [
+    {
+      "project": "p080",
+      "buildVersion": "stc-ide-ff7d2e83",
+      "romBytes": 30543,
+      "memory": {
+        "edata": 662,
+        "xdata": 50,
+        "data": 62,
+        "code": 20922,
+        "flashConst": 9621,
+        "flashMax": 9621,
+        "rom": 30543,
+        "targetName": "AI8051U",
+        "capacity": null,
+        "stack": {
+          "need": 72,
+          "avail": 1193,
+          "stackTop": 854,
+          "lowerBound": false,
+          "unbounded": [],
+          "unknownEdges": 0,
+          "unknownEdgeBytes": 0,
+          "verdict": {
+            "kind": "proved",
+            "reasons": []
+          },
+          "asmPeak": {
+            "main": 20,
+            "isr": 0,
+            "total": 20,
+            "irNeed": 72,
+            "uncertain": [],
+            "unknownEdges": [],
+            "unknownEdgeBytes": 0,
+            "caveats": []
+          }
+        }
+      },
+      "sources": [
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\COMM\\AI8051U.H",
+          "name": "AI8051U.H",
+          "sha256": "58e7d5ec8a570538dc846a11b31984014227b2e020b14b2faf8466c4ac2b79e0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\COMM\\usb.h",
+          "name": "usb.h",
+          "sha256": "56da92ba1535f742cb5ccb5af27c33fd616749a8810127efa7a25f5d1d5d9ecc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\font\\font.h",
+          "name": "font.h",
+          "sha256": "ac3dcfbc296d9530e566bf678efd55a9936b5de73a4c747c0196c40968e4481e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\font\\pic.h",
+          "name": "pic.h",
+          "sha256": "b02208e10e1c6ccd45239d43809bd261ed144427d197e373c85e2d5d0fba6585"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\GUI\\gui.h",
+          "name": "gui.h",
+          "sha256": "28b0add3de2ec7add73b2d56132eaa1b7119506abe0e3441876b090fa8b35e1f"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\LCD\\lcd.h",
+          "name": "lcd.h",
+          "sha256": "a648ec39123d14d0de8a445730cab1efe9c10ffc8693fd4d6a3cf624905d302e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\sys\\sys.h",
+          "name": "sys.h",
+          "sha256": "2172f194d822c498b798a92db5cbbc488891104a038a0d967d576cc90cce01aa"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\USER\\test.h",
+          "name": "test.h",
+          "sha256": "abd9ad21b80521e9ae945b46db31b98f331f29a508f992bd463ba362ef74f81d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\GUI\\gui.c",
+          "name": "gui.c",
+          "sha256": "4b57a2d8f1519cc46fbba1de52e96dfe4a74ff36fe0d9f63be98a8ee0a64f98c"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\USER\\main.c",
+          "name": "main.c",
+          "sha256": "9b11a5b32156bad59ebe962d3945b452999c06cd3f1d3088ef00f535fd2876bc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\USER\\test.c",
+          "name": "test.c",
+          "sha256": "504b0d1d7f44c6e0d53546842ef48ecaa62f9d000d6d48f39c77baba5c32de65"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\sys\\sys.c",
+          "name": "sys.c",
+          "sha256": "cd274df6d6225cb078081916c06375dc79aca47d51cba2af74575d6c014cb10b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p080\\LCD\\LCD.c",
+          "name": "LCD.c",
+          "sha256": "7f8c68c99c8afd8295e8226861e7d35b128d449b7f5b767cd7876a097c20cd65"
+        }
+      ],
+      "files": {
+        "request.json": "24f9bab9e2d04b57fa960ee518cd9aaada11e6eb484fd9648903dc4bf426551d",
+        "response.json": "4c5f7e34b46a64e26a54a89ecb7581fd7a9c64899af0adbc0290816df07e1474",
+        "firmware.hex": "33bfceb7909493415f2c42a0664e105bc478841403de08d686eb5d716d2de81c",
+        "firmware.asm": "c7796ccfcc3afc90bff520689857237e0f7f4f45af1ba281b71585c0711ffd45"
+      },
+      "warningCount": 5,
+      "runtimeTested": false,
+      "qualification": "Compilation reference only; not hardware-qualified"
+    },
+    {
+      "project": "p087",
+      "buildVersion": "stc-ide-ff7d2e83",
+      "romBytes": 4758,
+      "memory": {
+        "edata": 63,
+        "xdata": 512,
+        "data": 33,
+        "code": 4601,
+        "flashConst": 157,
+        "flashMax": 159,
+        "rom": 4758,
+        "targetName": "AI8051U",
+        "capacity": null,
+        "stack": {
+          "need": 60,
+          "avail": 1728,
+          "stackTop": 319,
+          "lowerBound": false,
+          "unbounded": [],
+          "unknownEdges": 0,
+          "unknownEdgeBytes": 0,
+          "verdict": {
+            "kind": "proved",
+            "reasons": []
+          },
+          "asmPeak": {
+            "main": 4,
+            "isr": 56,
+            "total": 60,
+            "irNeed": 42,
+            "uncertain": [],
+            "unknownEdges": [],
+            "unknownEdgeBytes": 0,
+            "caveats": [
+              "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+            ]
+          }
+        }
+      },
+      "sources": [
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\COMM\\AI8051U.H",
+          "name": "AI8051U.H",
+          "sha256": "58e7d5ec8a570538dc846a11b31984014227b2e020b14b2faf8466c4ac2b79e0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb.h",
+          "name": "usb.h",
+          "sha256": "12ccb561837f8db53ce64a5cd674af9ef1cd44234c16b69205f44c1da14ea257"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\config.h",
+          "name": "config.h",
+          "sha256": "02e396d35475b44745c9f8b6069512b3149cf39c30c6bac6619626ef6a4a8a4a"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\uart.h",
+          "name": "uart.h",
+          "sha256": "5e6b4096efbfdab6306833fb3c3e19fdd66d8718c468d1346b0eb66fc2cf86d3"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_desc.h",
+          "name": "usb_desc.h",
+          "sha256": "3e4cf77e91f63708d80c2cd997072abba8d7c2c00167512bc2f84fcac3fe22b1"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_req_class.h",
+          "name": "usb_req_class.h",
+          "sha256": "f5a1c3ad795eedc3bb8ddd926573769fd1083f34263711b524b5d147ede26435"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_req_std.h",
+          "name": "usb_req_std.h",
+          "sha256": "ab94dc2b2527eee664b2f87bd053f8dd0f7de82b96a95ffa14a697b693b96f5f"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_req_vendor.h",
+          "name": "usb_req_vendor.h",
+          "sha256": "6f2eeb8b9f51640193632fe0bd83f884ae7c3a99cd6ee4797afb9831e1a95b54"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\util.h",
+          "name": "util.h",
+          "sha256": "31e4634718f4b4c21c256ce200e9c97d6905f65100a460bc266e8d06495fc1cd"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\main.c",
+          "name": "main.c",
+          "sha256": "8c0560d78f5e8047627c4c84914b5d69818e208a33cbeb207634b57d429975fb"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb.c",
+          "name": "usb.c",
+          "sha256": "3bb3d9067ba94d233691256dfa39912093c023e8cb0f276d8550fa61230bb827"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_desc.c",
+          "name": "usb_desc.c",
+          "sha256": "30013c641891f5e7545d76f1fcfef5aef7efa55f34959e9c25966abe79fa5622"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_req_class.c",
+          "name": "usb_req_class.c",
+          "sha256": "41df12b3c7b4279a21febd4efde6e14d35518f4d7dccb99feeaf8748747a8e5e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_req_std.c",
+          "name": "usb_req_std.c",
+          "sha256": "279295158df40fafb86c37536783ec690502bffccace82506fcad8d98f49939d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\usb_req_vendor.c",
+          "name": "usb_req_vendor.c",
+          "sha256": "b51b383f723c0b3a34ba7c7148a9592e659fe7fb81218ac7a846ec0be2421fcf"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\util.c",
+          "name": "util.c",
+          "sha256": "fba02ceed49585b9d62aa26c7f05fe902ac237cf2e57d43551057ca6a3ef4a2d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p087\\src\\uart.c",
+          "name": "uart.c",
+          "sha256": "5bae0beeebf73e2faef432df50cc4c31f2fa1b2eb2226f215c43afaa1d54800b"
+        }
+      ],
+      "files": {
+        "request.json": "06326aded218f359202dc62a2350cd8f6f8acf35b610a94d4f5ce0a85f5fa08d",
+        "response.json": "c34b3d0c0ccc9c433af0b1e3f8157f294e93a1823b11928fad18463f7037e18d",
+        "firmware.hex": "5881acbc0cb2bdece6f99f11547e6fc4120d8c13168c292b2c39ca2e234fe810",
+        "firmware.asm": "292d42736bdaef471586d0664e21993f263fa4953f565ef034465980280051e0"
+      },
+      "warningCount": 4,
+      "runtimeTested": false,
+      "qualification": "Compilation reference only; not hardware-qualified"
+    },
+    {
+      "project": "p091",
+      "buildVersion": "stc-ide-ff7d2e83",
+      "romBytes": 7343,
+      "memory": {
+        "edata": 139,
+        "xdata": 4352,
+        "data": 80,
+        "code": 7141,
+        "flashConst": 202,
+        "flashMax": 212,
+        "rom": 7343,
+        "targetName": "AI8051U",
+        "capacity": null,
+        "stack": {
+          "need": 73,
+          "avail": 1652,
+          "stackTop": 395,
+          "lowerBound": false,
+          "unbounded": [],
+          "unknownEdges": 0,
+          "unknownEdgeBytes": 0,
+          "verdict": {
+            "kind": "proved",
+            "reasons": []
+          },
+          "asmPeak": {
+            "main": 12,
+            "isr": 61,
+            "total": 73,
+            "irNeed": 32,
+            "uncertain": [],
+            "unknownEdges": [],
+            "unknownEdgeBytes": 0,
+            "caveats": [
+              "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+            ]
+          }
+        }
+      },
+      "sources": [
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\COMM\\AI8051U.H",
+          "name": "AI8051U.H",
+          "sha256": "58e7d5ec8a570538dc846a11b31984014227b2e020b14b2faf8466c4ac2b79e0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb.h",
+          "name": "usb.h",
+          "sha256": "f6881fa63a232195a4c1d1055b0e28f959edbb07fe208411540957ea27e42392"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\config.h",
+          "name": "config.h",
+          "sha256": "1520f6a0636b51274fe6e227d1f4769027190374f09400e3fd02a0f43154a9aa"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\memory.h",
+          "name": "memory.h",
+          "sha256": "9bb1539fd2230f813f4c8549a57297852af0dabd8f5c6dba3cbf3a46bab06fe8"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\scsi.h",
+          "name": "scsi.h",
+          "sha256": "5ca56a81f6fd5fa6ac827f21d23c2b93c680277f94ec7f4ee4bf2afae62bb20e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_desc.h",
+          "name": "usb_desc.h",
+          "sha256": "8a44a4f05f28cdbe4b4683be5252fa910f022c3028b4d6eac2f5d0ed34575598"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_req_class.h",
+          "name": "usb_req_class.h",
+          "sha256": "d6c9e8dcc955cc61ad6fb8a4cd42b6cf257236397913722c11d7a442aa1f1bd9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_req_std.h",
+          "name": "usb_req_std.h",
+          "sha256": "ab94dc2b2527eee664b2f87bd053f8dd0f7de82b96a95ffa14a697b693b96f5f"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_req_vendor.h",
+          "name": "usb_req_vendor.h",
+          "sha256": "6f2eeb8b9f51640193632fe0bd83f884ae7c3a99cd6ee4797afb9831e1a95b54"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\util.h",
+          "name": "util.h",
+          "sha256": "31e4634718f4b4c21c256ce200e9c97d6905f65100a460bc266e8d06495fc1cd"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\main.c",
+          "name": "main.c",
+          "sha256": "fa03e921beb736af010e16de01fc87ffc8d9f30e96faf5da53408250111dd6b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb.c",
+          "name": "usb.c",
+          "sha256": "289e4c94439d9895639fa05f91ac5fbb75f858bb10f99bcf81c22ee71905a740"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_desc.c",
+          "name": "usb_desc.c",
+          "sha256": "feae942b28f31de448a3ec082f8a8371935a7315731f96994f05e7be068f2acf"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_req_class.c",
+          "name": "usb_req_class.c",
+          "sha256": "cb289549d6d8cdee54159d1371961df2b5efbb2c52f4ca9e0cb80a932458ccca"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_req_std.c",
+          "name": "usb_req_std.c",
+          "sha256": "2e64671b7ba3742cd8e841124fe286139da184f10ee3bf9ca940ab060a5256e7"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\usb_req_vendor.c",
+          "name": "usb_req_vendor.c",
+          "sha256": "b51b383f723c0b3a34ba7c7148a9592e659fe7fb81218ac7a846ec0be2421fcf"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\util.c",
+          "name": "util.c",
+          "sha256": "82d85e7cf639b411b46cbcf7b30d39cf17aa10f0e4fcc3d64cff815a1942ac97"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\scsi.c",
+          "name": "scsi.c",
+          "sha256": "d7c536e7103a9108aaf0536718ad44f99547c02cecc645abc256bb74e3a8b088"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p091\\src\\memory.c",
+          "name": "memory.c",
+          "sha256": "03ac1530b6f809702f578320e069d548509c1c279b11a29242f3bea0b8910ac2"
+        }
+      ],
+      "files": {
+        "request.json": "25f3f1e8fa82d0ec71bbc76ec54467a2439ea5efaf9e123ad919023f981d9408",
+        "response.json": "c71bb1ae0d89a043a50dce7d7058ada4906a56424ca1b5d310fe9012a4c4b1de",
+        "firmware.hex": "0a80dd1956c69d03ff07b23d929c6bc3aeab4189947570934e22087075453c70",
+        "firmware.asm": "719468b1836abbda50b47473089c46fe822e406e77dd8685c7c844001558c4d4"
+      },
+      "warningCount": 6,
+      "runtimeTested": false,
+      "qualification": "Compilation reference only; excluded from semantic size rankings"
+    },
+    {
+      "project": "p068",
+      "buildVersion": "stc-ide-ff7d2e83",
+      "romBytes": 9563,
+      "memory": {
+        "edata": 28,
+        "xdata": 111,
+        "data": 0,
+        "code": 8908,
+        "flashConst": 655,
+        "flashMax": 655,
+        "rom": 9563,
+        "targetName": "AI8051U",
+        "capacity": null,
+        "stack": {
+          "need": 36,
+          "avail": 1763,
+          "stackTop": 284,
+          "lowerBound": false,
+          "unbounded": [],
+          "unknownEdges": 0,
+          "unknownEdgeBytes": 0,
+          "verdict": {
+            "kind": "proved",
+            "reasons": []
+          },
+          "asmPeak": {
+            "main": 10,
+            "isr": 18,
+            "total": 28,
+            "irNeed": 36,
+            "uncertain": [],
+            "unknownEdges": [],
+            "unknownEdgeBytes": 0,
+            "caveats": [
+              "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+            ]
+          }
+        }
+      },
+      "sources": [
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\COMM\\AI8051U.H",
+          "name": "AI8051U.H",
+          "sha256": "58e7d5ec8a570538dc846a11b31984014227b2e020b14b2faf8466c4ac2b79e0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\COMM\\usb.h",
+          "name": "usb.h",
+          "sha256": "56da92ba1535f742cb5ccb5af27c33fd616749a8810127efa7a25f5d1d5d9ecc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261109\\keil-comprehensive-review\\p068\\main.c",
+          "name": "main.c",
+          "sha256": "297ff89a74c5bf7d292353ba9bc6821e291e365fefe6dbfc40a630bdb2ce3dff"
+        }
+      ],
+      "files": {
+        "request.json": "a07fdf4985d4b89c29f8c81b4151e4a776d3e0c4098ae5c2afe5491c5083a632",
+        "response.json": "437a7ac756e62d14d19372191482a8c7a26da894adad15c45bf0a211d9b674d4",
+        "firmware.hex": "c1403402af3e27323742f3606f12d6aadaccdcc250375c6153e07be4177b4527",
+        "firmware.asm": "b89ebc5785dffe6435cf35d4f0f6e853848ac2ceb750e5e79f6811c04fd9f464"
+      },
+      "warningCount": 4,
+      "runtimeTested": false,
+      "qualification": "Compilation reference only; not hardware-qualified"
+    }
+  ],
+  "pointerProbes": [
+    {
+      "pattern": "array_sum",
+      "mode": "generic",
+      "compiler": "mx251",
+      "exit": 0,
+      "probeBytes": 55
+    },
+    {
+      "pattern": "array_sum",
+      "mode": "generic",
+      "compiler": "keil",
+      "exit": 0,
+      "assembleExit": 0,
+      "probeBytes": 28
+    },
+    {
+      "pattern": "array_sum",
+      "mode": "generic",
+      "compiler": "stcide",
+      "exit": 0,
+      "success": true,
+      "buildVer": "stc-ide-ff7d2e83",
+      "imageBytes": 194
+    },
+    {
+      "pattern": "array_sum",
+      "mode": "bound",
+      "compiler": "mx251",
+      "exit": 0,
+      "probeBytes": 40
+    },
+    {
+      "pattern": "array_sum",
+      "mode": "bound",
+      "compiler": "keil",
+      "exit": 0,
+      "assembleExit": 0,
+      "probeBytes": 28
+    },
+    {
+      "pattern": "array_sum",
+      "mode": "bound",
+      "compiler": "stcide",
+      "exit": 0,
+      "success": true,
+      "buildVer": "stc-ide-ff7d2e83",
+      "imageBytes": 126
+    },
+    {
+      "pattern": "array_mix",
+      "mode": "generic",
+      "compiler": "mx251",
+      "exit": 0,
+      "probeBytes": 57
+    },
+    {
+      "pattern": "array_mix",
+      "mode": "generic",
+      "compiler": "keil",
+      "exit": 0,
+      "assembleExit": 0,
+      "probeBytes": 32
+    },
+    {
+      "pattern": "array_mix",
+      "mode": "generic",
+      "compiler": "stcide",
+      "exit": 0,
+      "success": true,
+      "buildVer": "stc-ide-ff7d2e83",
+      "imageBytes": 196
+    },
+    {
+      "pattern": "array_mix",
+      "mode": "bound",
+      "compiler": "mx251",
+      "exit": 0,
+      "probeBytes": 42
+    },
+    {
+      "pattern": "array_mix",
+      "mode": "bound",
+      "compiler": "keil",
+      "exit": 0,
+      "assembleExit": 0,
+      "probeBytes": 32
+    },
+    {
+      "pattern": "array_mix",
+      "mode": "bound",
+      "compiler": "stcide",
+      "exit": 0,
+      "success": true,
+      "buildVer": "stc-ide-ff7d2e83",
+      "imageBytes": 128
+    },
+    {
+      "pattern": "field_config",
+      "mode": "generic",
+      "compiler": "mx251",
+      "exit": 0,
+      "probeBytes": 98
+    },
+    {
+      "pattern": "field_config",
+      "mode": "generic",
+      "compiler": "keil",
+      "exit": 0,
+      "assembleExit": 0,
+      "probeBytes": 43
+    },
+    {
+      "pattern": "field_config",
+      "mode": "generic",
+      "compiler": "stcide",
+      "exit": 0,
+      "success": true,
+      "buildVer": "stc-ide-ff7d2e83",
+      "imageBytes": 225
+    },
+    {
+      "pattern": "field_config",
+      "mode": "bound",
+      "compiler": "mx251",
+      "exit": 0,
+      "probeBytes": 49
+    },
+    {
+      "pattern": "field_config",
+      "mode": "bound",
+      "compiler": "keil",
+      "exit": 0,
+      "assembleExit": 0,
+      "probeBytes": 35
+    },
+    {
+      "pattern": "field_config",
+      "mode": "bound",
+      "compiler": "stcide",
+      "exit": 0,
+      "success": true,
+      "buildVer": "stc-ide-ff7d2e83",
+      "imageBytes": 175
+    }
+  ],
+  "pointerProbeQualification": "MX/Keil bytes cover probe function; STC bytes cover entire image. Bound variant is a manually rewritten research source, not automatic optimization.",
+  "categories": {
+    "p080": {
+      "mxCategories": {
+        "moves": 3454,
+        "stackAccessAndAdjust": 1751,
+        "pushPop": 1570,
+        "calls": 964,
+        "branches": 460,
+        "other": 1293,
+        "returns": 43
+      },
+      "keilCategories": {
+        "pushPop": 120,
+        "moves": 4559,
+        "calls": 771,
+        "returns": 40,
+        "other": 1375,
+        "branches": 475
+      }
+    },
+    "p087": {
+      "mxCategories": {
+        "moves": 1707,
+        "other": 517,
+        "calls": 416,
+        "branches": 824,
+        "returns": 59,
+        "pushPop": 300,
+        "stackAccessAndAdjust": 230
+      },
+      "keilCategories": {
+        "moves": 1676,
+        "other": 476,
+        "calls": 291,
+        "branches": 701,
+        "returns": 34,
+        "pushPop": 108
+      }
+    },
+    "p091": {
+      "mxCategories": {
+        "calls": 600,
+        "other": 520,
+        "branches": 865,
+        "moves": 2049,
+        "returns": 58,
+        "pushPop": 368,
+        "stackAccessAndAdjust": 344
+      },
+      "keilCategories": {
+        "calls": 420,
+        "other": 421,
+        "branches": 966,
+        "moves": 2061,
+        "returns": 36,
+        "pushPop": 122,
+        "stackAccessAndAdjust": 6
+      }
+    }
+  },
+  "opportunities": {
+    "p080": {
+      "imageBytes": 20481,
+      "symbolicArguments": 36,
+      "symbolicTargets": {
+        "_Gui_StrCenter": 4,
+        "_DrawTestPage": 9,
+        "_Show_Str": 11,
+        "_LCD_ShowString": 6,
+        "_Gui_Drawbmp16": 4,
+        "_sprintf": 2
+      },
+      "addressMasks": 48,
+      "addressMaskBytes": 192,
+      "fixedOffsetGroups": 0,
+      "fixedOffsetBytes": 0
+    },
+    "p087": {
+      "imageBytes": 4581,
+      "symbolicArguments": 1,
+      "symbolicTargets": {
+        "_usb_read_fifo": 1
+      },
+      "addressMasks": 5,
+      "addressMaskBytes": 20,
+      "fixedOffsetGroups": 0,
+      "fixedOffsetBytes": 0
+    },
+    "p091": {
+      "imageBytes": 5651,
+      "symbolicArguments": 17,
+      "symbolicTargets": {
+        "_usb_read_fifo": 1,
+        "_scsi_in": 7,
+        "___memcpy": 6,
+        "_flash_readsector": 1,
+        "_scsi_out": 1,
+        "_flash_writesector": 1
+      },
+      "addressMasks": 15,
+      "addressMaskBytes": 60,
+      "fixedOffsetGroups": 0,
+      "fixedOffsetBytes": 0
+    },
+    "p095": {
+      "imageBytes": 6416,
+      "symbolicArguments": 1,
+      "symbolicTargets": {
+        "_usb_read_fifo": 1
+      },
+      "addressMasks": 6,
+      "addressMaskBytes": 24,
+      "fixedOffsetGroups": 0,
+      "fixedOffsetBytes": 0
+    }
+  },
+  "scope": [
+    "Vendor JavaScript was not modified by the host adapter.",
+    "Whole-project requests use Keil source lists, encoding/newline normalization, and __C251__ compatibility definition.",
+    "Initial p068/p080/p087/p091 directories have incomplete exploratory requests; only -complete directories count.",
+    "STC p091 warns about unresolved UsbBuffer and 13-byte aggregate-to-pointer conversion; no semantic comparison claimed.",
+    "STC normalizes data/idata/pdata declarations to edata. Source inspection does not establish performance gains.",
+    "Categories/opportunities/probes use the parent compiler. The index correctness fix changes TFT by +4 B; others unchanged.",
+    "No new whole-project runtime or joint 110/120 percent qualification."
+  ]
+}
