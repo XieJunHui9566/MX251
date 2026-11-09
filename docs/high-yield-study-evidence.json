@@ -1,0 +1,479 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "status": "RESEARCH_NO_PRODUCTION_OPTIMIZATION",
+  "sourceParent": "964d31b460bcbefbe0f634ccbd31f0bb7ecae9ee",
+  "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+  "compilerChanged": false,
+  "hardwareExecuted": false,
+  "newSizePasses": 0,
+  "runtimeRatio": null,
+  "studyRoot": "E:\\STVAPP\\MX251-mainline-20261109\\inline-study",
+  "analysisTool": {
+    "path": "tools/research/call_layout.py",
+    "sha256": "976e22b7b85cee0f101f2febd47be49f6ee041eb05051d504724166af97bda7c"
+  },
+  "experimentScriptSha256": "2c6c9b4a65eec69accb4ad1fd6bc3d434deb196fc1b2ad028c84a3a7ef60e3ae",
+  "projects": [
+    {
+      "project": "p080",
+      "codeBytes": 23153,
+      "keilCodeBytes": 18071,
+      "gapTo110": 3275,
+      "sourceFunctionInstructionBytes": 12040,
+      "sourceFunctions": 54,
+      "importRefusalBytes": 4478,
+      "importRefusalReasons": {
+        "assignment-cast-or-memory-contract": 4285,
+        "unsupported-volatile-dummy-read-operand": 137,
+        "ordered-asm-core-state-write": 56
+      },
+      "selectedWideFunctionsWithSpills": [
+        {
+          "symbol": "_LCD_DrawLine",
+          "spilledValues": 4
+        },
+        {
+          "symbol": "_Fill_Triangel",
+          "spilledValues": 6
+        },
+        {
+          "symbol": "_LCD_ShowChar",
+          "spilledValues": 4
+        },
+        {
+          "symbol": "_GUI_DrawFont16",
+          "spilledValues": 10
+        },
+        {
+          "symbol": "_GUI_DrawFont24",
+          "spilledValues": 10
+        },
+        {
+          "symbol": "_GUI_DrawFont32",
+          "spilledValues": 10
+        },
+        {
+          "symbol": "_Show_Str",
+          "spilledValues": 18
+        }
+      ],
+      "largestRefusedFunctions": [
+        {
+          "symbol": "_Test_Read",
+          "codeBytes": 666,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Test_Triangle",
+          "codeBytes": 577,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Test_FillRec",
+          "codeBytes": 454,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Rotate_Test",
+          "codeBytes": 441,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Test_Circle",
+          "codeBytes": 425,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Test_Color",
+          "codeBytes": 366,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Gui_Drawbmp16",
+          "codeBytes": 260,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Pic_test",
+          "codeBytes": 248,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_English_Font_test",
+          "codeBytes": 234,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_DrawTestPage",
+          "codeBytes": 226,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Chinese_Font_test",
+          "codeBytes": 218,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_main_test",
+          "codeBytes": 170,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_Lcd_RD_DATA_16Bit",
+          "codeBytes": 137,
+          "refusal": "unsupported-volatile-dummy-read-operand"
+        },
+        {
+          "symbol": "_main",
+          "codeBytes": 56,
+          "refusal": "ordered-asm-core-state-write"
+        }
+      ],
+      "firmwareSha256": "ab301e660ffae690ec199c60884eeec579b3deaa3afd706b2a0e7edddd6efe9a",
+      "receiptSha256": "441dfbfba01a23b013cd116b18d660f0adb29988bd797714c8bb3872caee9880",
+      "detailSha256": "7c6cdeab869545e9b818d25b4991b8fc60b816aa1d7862328787bfa1b02032ef",
+      "inlineProbe": {
+        "codeBytes": 24124,
+        "deltaBytes": 971,
+        "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+        "firmwareSha256": "f31a6eef85fd6b441c2abeca84434ed7e0d7e217580357bf81aad35db5bb5193",
+        "transformedSdkCopy": true,
+        "productionCompilerChanged": false,
+        "inlineFunctions": [
+          "LCD_write",
+          "LCD_WR_REG",
+          "LCD_WR_DATA",
+          "LCD_WR_DATA_16Bit"
+        ],
+        "transformRecordSha256": "2f27f26b5f462aeed22227cd56e14bfe20a8a657d33cb0dc5d5e888663bc609d",
+        "detailSha256": "e762f2ab7a5742a5855e67f481078356f2bcdb0d390b811f7690623b1909dad3"
+      }
+    },
+    {
+      "project": "p087",
+      "codeBytes": 4769,
+      "keilCodeBytes": 3531,
+      "gapTo110": 885,
+      "sourceFunctionInstructionBytes": 4241,
+      "sourceFunctions": 45,
+      "importRefusalBytes": 1460,
+      "importRefusalReasons": {
+        "ordered-asm-bit-not-capable": 504,
+        "address-space-or-object-contract": 643,
+        "memory-access-contract": 287,
+        "ordered-asm-core-state-write": 26
+      },
+      "selectedWideFunctionsWithSpills": [],
+      "largestRefusedFunctions": [
+        {
+          "symbol": "_uart_polling",
+          "codeBytes": 307,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_get_status",
+          "codeBytes": 261,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_get_descriptor",
+          "codeBytes": 167,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_ctrl_in",
+          "codeBytes": 153,
+          "refusal": "memory-access-contract"
+        },
+        {
+          "symbol": "_usb_init",
+          "codeBytes": 145,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_ctrl_out",
+          "codeBytes": 134,
+          "refusal": "memory-access-contract"
+        },
+        {
+          "symbol": "_usb_get_configuration",
+          "codeBytes": 81,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_get_interface",
+          "codeBytes": 56,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_uart_init",
+          "codeBytes": 52,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_get_line_coding",
+          "codeBytes": 39,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_set_line_coding",
+          "codeBytes": 39,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_main",
+          "codeBytes": 26,
+          "refusal": "ordered-asm-core-state-write"
+        }
+      ],
+      "firmwareSha256": "4a4834ae596eb41a896727cac22ba23dcaeb7ce8492a15f5928a2d97ce9dd50f",
+      "receiptSha256": "b06807aed5f5ae2f4af9e42c0ac45b93913e6a1cb72f7953ed63c432f3298c6c",
+      "detailSha256": "82df08eddd68afae3a5cfcd4fb11fd93401fe0d58f8ec33f28a0b057a2cb54d6",
+      "inlineProbe": {
+        "codeBytes": 4914,
+        "deltaBytes": 145,
+        "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+        "firmwareSha256": "37cb4fc9736f96386e988ee67d5c0e32d644d676176631a7362aaf05d46db99a",
+        "transformedSdkCopy": true,
+        "productionCompilerChanged": false,
+        "inlineFunctions": [
+          "usb_read_reg",
+          "usb_write_reg"
+        ],
+        "transformRecordSha256": "715d45640f7ec9ca93f5d061c332c85dd6dd8b4ef924171e02c48cd47f689b30",
+        "detailSha256": "1aabdf40f611018bd9a57f26f5421a5dcc8f30e82c1699b497128691e5c692eb"
+      }
+    },
+    {
+      "project": "p091",
+      "codeBytes": 6312,
+      "keilCodeBytes": 4401,
+      "gapTo110": 1471,
+      "sourceFunctionInstructionBytes": 5362,
+      "sourceFunctions": 63,
+      "importRefusalBytes": 1965,
+      "importRefusalReasons": {
+        "assignment-cast-or-memory-contract": 812,
+        "address-space-or-object-contract": 643,
+        "memory-access-contract": 282,
+        "ordered-asm-bit-not-capable": 150,
+        "ordered-asm-core-state-write": 78
+      },
+      "selectedWideFunctionsWithSpills": [],
+      "largestRefusedFunctions": [
+        {
+          "symbol": "_scsi_process",
+          "codeBytes": 426,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_usb_get_status",
+          "codeBytes": 255,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_get_descriptor",
+          "codeBytes": 232,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_ctrl_in",
+          "codeBytes": 153,
+          "refusal": "memory-access-contract"
+        },
+        {
+          "symbol": "_usb_init",
+          "codeBytes": 130,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_ctrl_out",
+          "codeBytes": 129,
+          "refusal": "memory-access-contract"
+        },
+        {
+          "symbol": "_scsi_format_capacity",
+          "codeBytes": 127,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_scsi_read_capacity10",
+          "codeBytes": 127,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_usb_get_configuration",
+          "codeBytes": 81,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_scsi_request_sense",
+          "codeBytes": 75,
+          "refusal": "assignment-cast-or-memory-contract"
+        },
+        {
+          "symbol": "_sys_init",
+          "codeBytes": 58,
+          "refusal": "ordered-asm-core-state-write"
+        },
+        {
+          "symbol": "_usb_get_interface",
+          "codeBytes": 56,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_flash_init",
+          "codeBytes": 20,
+          "refusal": "ordered-asm-core-state-write"
+        },
+        {
+          "symbol": "_shift",
+          "codeBytes": 20,
+          "refusal": "ordered-asm-bit-not-capable"
+        }
+      ],
+      "firmwareSha256": "a5e8deda9924d1ea991a81b7e3c31c99748d7f760d34ec351b1db022f2dd55d4",
+      "receiptSha256": "e8ffd8b9f008a07a00de18cbb667f20deac67c622a5ad10f3458f0ade28c5e02",
+      "detailSha256": "3851fd1ad9235a76aeea4314e4db510ce66859075da6dbec7cb6dd817e04a6a8",
+      "inlineProbe": {
+        "codeBytes": 6459,
+        "deltaBytes": 147,
+        "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+        "firmwareSha256": "3297f14a620acec680c3362d77e913f25aed5e01c222b8ff9b848430bba3b2b3",
+        "transformedSdkCopy": true,
+        "productionCompilerChanged": false,
+        "inlineFunctions": [
+          "usb_read_reg",
+          "usb_write_reg"
+        ],
+        "transformRecordSha256": "763f6b1170ab36a7debd73d5b594c2c5eb72b80918e30866819662fc9b3d39f8",
+        "detailSha256": "ca7e87f0fa839d8d31f40c34f799ce09622adf2e7671ed606624f1a1a92baaad"
+      }
+    },
+    {
+      "project": "p095",
+      "codeBytes": 6615,
+      "keilCodeBytes": 4830,
+      "gapTo110": 1302,
+      "sourceFunctionInstructionBytes": 5998,
+      "sourceFunctions": 51,
+      "importRefusalBytes": 2012,
+      "importRefusalReasons": {
+        "ordered-asm-bit-not-capable": 948,
+        "address-space-or-object-contract": 705,
+        "memory-access-contract": 292,
+        "ordered-asm-core-state-write": 67
+      },
+      "selectedWideFunctionsWithSpills": [],
+      "largestRefusedFunctions": [
+        {
+          "symbol": "_uart_polling",
+          "codeBytes": 546,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_get_status",
+          "codeBytes": 279,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_uart_init",
+          "codeBytes": 264,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_get_descriptor",
+          "codeBytes": 167,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_ctrl_in",
+          "codeBytes": 153,
+          "refusal": "memory-access-contract"
+        },
+        {
+          "symbol": "_usb_ctrl_out",
+          "codeBytes": 139,
+          "refusal": "memory-access-contract"
+        },
+        {
+          "symbol": "_usb_init",
+          "codeBytes": 138,
+          "refusal": "ordered-asm-bit-not-capable"
+        },
+        {
+          "symbol": "_usb_get_configuration",
+          "codeBytes": 81,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_sys_init",
+          "codeBytes": 67,
+          "refusal": "ordered-asm-core-state-write"
+        },
+        {
+          "symbol": "_usb_get_line_coding",
+          "codeBytes": 61,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_set_line_coding",
+          "codeBytes": 61,
+          "refusal": "address-space-or-object-contract"
+        },
+        {
+          "symbol": "_usb_get_interface",
+          "codeBytes": 56,
+          "refusal": "address-space-or-object-contract"
+        }
+      ],
+      "firmwareSha256": "3eea9f5385c7ac678a7ed0495977565dc413c59557d78474fb0f0489192f9093",
+      "receiptSha256": "a9ca97ef94b9d1f5ff7a96a94fc46e5f8d3a4261683d912000a6e4d956c875ba",
+      "detailSha256": "9f822d7e2c869c2962c9d3c927f706c298b6a01a5c50ab8208ecd75535d88e55",
+      "inlineProbe": {
+        "codeBytes": 6823,
+        "deltaBytes": 208,
+        "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+        "firmwareSha256": "e89ce29e7304edb7d904e4c8ddf9af1732cab39c37d8c4c40ede362f90ee5696",
+        "transformedSdkCopy": true,
+        "productionCompilerChanged": false,
+        "inlineFunctions": [
+          "usb_read_reg",
+          "usb_write_reg"
+        ],
+        "transformRecordSha256": "a7f321286f7465fb75684155701193b2ea68bd6f74f8c90715f75f29b80d717f",
+        "detailSha256": "0f798cbc77e6c8f8364d9336414c3ed1aa44c173862a17b44273830f13a4a6ed"
+      }
+    }
+  ],
+  "backendControlProbes": [
+    {
+      "project": "p087",
+      "mode": "legacy-original",
+      "codeBytes": 4802,
+      "deltaBytes": 33,
+      "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "firmwareSha256": "8a6cf1b5e882dc50135bbcbffac85cc3d939c2b5b9aa534b33f277f193709b23",
+      "detailSha256": "75403c3799f1b790a5f7f1a8d34b8988f726ce4da8e6279cc85fb888ba4b705f"
+    },
+    {
+      "project": "p087",
+      "mode": "legacy-inline",
+      "codeBytes": 4743,
+      "deltaBytes": -26,
+      "compilerSha256": "4194ceb3563be30f5b4ca101542066c17dee042eb189d78fd479fee6751f8b96",
+      "firmwareSha256": "9722ce037607f7d8f4357404ed05e55d6cc81257601952f5220f7e11d6e76717",
+      "detailSha256": "e476524d5ba6b45f7271d4862e4d2372ddb2cfb5410c8eb6dc53a919aae3e64c"
+    }
+  ],
+  "nextCandidate": "Typed object/address lowering before register allocation; net gain unproven.",
+  "limitations": [
+    "Refused-function bytes are coverage, not removable bytes.",
+    "Function instruction totals exclude constants, startup and library bodies without source metadata.",
+    "Zero wide spills does not mean zero stack traffic or zero legacy spills.",
+    "Inlining probes changed only experiment source copies; they are not compiler delivery or frozen-input acceptance.",
+    "All sizes are complete linked image bytes; no cycle or hardware measurements were taken.",
+    "Independent legacy-body reductions cannot be summed as an achievable image gain because caller costs change."
+  ]
+}
