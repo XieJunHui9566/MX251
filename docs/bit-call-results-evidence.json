@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "sourceParent": "ccb4797",
+  "status": "IMPLEMENTED_FUNCTIONAL_PROBE_PASSED",
+  "newSizePasses": 0,
+  "sdkRuntimeStatus": "NOT_MEASURED",
+  "productionSources": {
+    "core/sources/compiler/src/mcs251/wide.c": "0c9422b96c665c9487f5d43b62ab80fd6f0eb7795e3a963d9cb488932aef96d9",
+    "core/sources/compiler/src/mcs251/wide_emit.c.inc": "a7b08351c450745e0ade672cd2d442db33820a284abdcf472bdea919dac537ba"
+  },
+  "productionMatchesCleanBuild": true,
+  "parentCompilerSha256": "e6da8ce15b7ad80914b5cb661b96c7e7bc336a18ee341b9e7f4e55146b8bef37",
+  "candidateCompilerSha256": "0681b9b28c9ea594fd3c0919be8dd6a116708b7a25ea9e3a0486bfda3cd28538",
+  "projects": [
+    {
+      "project": "p091-auto",
+      "configuration": "default",
+      "parentBytes": 6577,
+      "candidateBytes": 6421,
+      "savedBytes": 156,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "4b615c8485629ec57d653ccf76edbc93e941b2bd4de2998b339be1cd553f1ef5",
+        "c92f38db518012c4d416d74a19bf1938081133cf51cfd4c1670c42049fe4c20f"
+      ],
+      "hexSha256": [
+        "64708e46f4ca3f12d8deb0efd9e3c356f5a14f430f78987c666aea63249ff0e7",
+        "d3bac429fcc3b3c17043fc0aa68ce208b3aa656b1bfb7c683caf2801a9f4c32d"
+      ]
+    },
+    {
+      "project": "p087-auto",
+      "configuration": "default",
+      "parentBytes": 4923,
+      "candidateBytes": 4923,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "f6dde033be21993444f91644f50d17b9098e7a12c3612f7a99fa5cf7e8b2a575",
+        "64943aebf124494d5fd4d2635bd56613a3720e0529d70b7f48b6ea809b21c27e"
+      ],
+      "hexSha256": [
+        "b801287b2298bdf5a5dc327161cd660c0034cd26e3161eae2e99dac6cd69fb12",
+        "b801287b2298bdf5a5dc327161cd660c0034cd26e3161eae2e99dac6cd69fb12"
+      ]
+    },
+    {
+      "project": "p095-auto",
+      "configuration": "default",
+      "parentBytes": 6782,
+      "candidateBytes": 6782,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "88c76d366ec209b673cd8343afb815fafadb63f8bdc67654642cfd0298763afd",
+        "bc17a6ce2051159134fb2a8baee06987235c3798fa7c61aa95be9640284104e7"
+      ],
+      "hexSha256": [
+        "eba93d7925d23695103248cc71b749a190ef2fb08e3b9b6c7619563f9eab1469",
+        "eba93d7925d23695103248cc71b749a190ef2fb08e3b9b6c7619563f9eab1469"
+      ]
+    },
+    {
+      "project": "p080-baseline",
+      "configuration": "default",
+      "parentBytes": 23195,
+      "candidateBytes": 23195,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "9a74aec822a61fd25ad2b878e566b72e2e8e825ffd255d3dd01964070fcc6f19",
+        "5a8adddd0f8a706c29a229fb2a80dca1b2cfae7b51bc309032b67b75ce678078"
+      ],
+      "hexSha256": [
+        "6ead50706cec91945f44625d288cd66818730a0b970a094f5ae227501f012d12",
+        "6ead50706cec91945f44625d288cd66818730a0b970a094f5ae227501f012d12"
+      ]
+    },
+    {
+      "project": "p091-auto",
+      "configuration": "leaf-feedback",
+      "parentBytes": 6621,
+      "candidateBytes": 6405,
+      "savedBytes": 216,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "73d1ae1321776dbf318b19bfaf3c14d840eb31518c7a4b0b922cd99af6295d6e",
+        "e89862daadab75bda52746956c2f7e0231cee402f129eb082d90e503da7a70cf"
+      ],
+      "hexSha256": [
+        "58f13a2cffcfc2eb81a84c54426539c573c0d52625de4f80ba1125176dc97c96",
+        "957fe8871a4ff438e9528961d080fc5f60e34d156cfb951fc95e2516e344e30c"
+      ]
+    },
+    {
+      "project": "p087-auto",
+      "configuration": "leaf-feedback",
+      "parentBytes": 4963,
+      "candidateBytes": 4963,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "57c4f1e753d96e2c26f9c3aab0f556883c7575d2f4ed54698624f0cd0c6cdbef",
+        "af6c5007f2e636dfea88999f236eba6fa5ca8ae940052060373a3edd583c9bed"
+      ],
+      "hexSha256": [
+        "ffd257f76c56532fa497cd35bd9b5523457c94496fb30a743eb9454ae444d6af",
+        "ffd257f76c56532fa497cd35bd9b5523457c94496fb30a743eb9454ae444d6af"
+      ]
+    },
+    {
+      "project": "p095-auto",
+      "configuration": "leaf-feedback",
+      "parentBytes": 6856,
+      "candidateBytes": 6856,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "335b91b17de492709aba86b10c648d0947032bf00bc44459123172487ab53299",
+        "662974346e7418d8c50a55a7de9cd2827cc1b7c161b618522d3280893a3f0f8b"
+      ],
+      "hexSha256": [
+        "7e2f47bafb1d7d82334723780f0094150fa2c044d0996b8d9a5fe722d28f73ba",
+        "7e2f47bafb1d7d82334723780f0094150fa2c044d0996b8d9a5fe722d28f73ba"
+      ]
+    },
+    {
+      "project": "p080-baseline",
+      "configuration": "leaf-feedback",
+      "parentBytes": 23947,
+      "candidateBytes": 23947,
+      "savedBytes": 0,
+      "sourceFilesUnchanged": true,
+      "receiptSha256": [
+        "46be21f9d55a06701973988ae9ba91101e14e84223c83ba60107c31ff451c268",
+        "891357603c6bf0f12f8e7e03e9b35e265d889317e9becf0aaab8a0efdd9bf474"
+      ],
+      "hexSha256": [
+        "dec4a8001586cb3ee41b3dd05996e6f7f6e844a81cd8b47a6408cab7e938c313",
+        "dec4a8001586cb3ee41b3dd05996e6f7f6e844a81cd8b47a6408cab7e938c313"
+      ]
+    }
+  ],
+  "checks": {
+    "carryResults": {
+      "resultSha256": "c5908c69ad7952ea1dbcc317312f4301aac8ec8cc589e473dd1280e8d1429617"
+    },
+    "bitAbi": {
+      "resultSha256": "c0af926b08341dade34bdd09ea96b0d78ab27b759412098e1343239e1eb45b35"
+    },
+    "ordinaryCalls": {
+      "resultSha256": "04fac618602771801fcc3b4e2dd590fe540b5955fd04a09be570eda138812f9b"
+    },
+    "forwardResults": {
+      "resultSha256": "ae98ab74e4ad8896b3bee54530bbe1b5aeff115432f3086759f79882e3dc14d8"
+    },
+    "costModelRegression": {
+      "passed": true,
+      "productionLoopGuardEvaluated": true,
+      "recordHashes": {
+        "model-inputs.json": "9c3f4bda9a4287cdef987e7a9586521be65fcbebe92505c5108d92cbae8ea8e4",
+        "result.json": "36d15ba2eec0308ba171f30d65ebcf9fdb6e4542e20417525b8c242510ef51b3"
+      }
+    }
+  },
+  "hardware": {
+    "target": "AI8051U-34K64",
+    "probe": "STC-Link1D",
+    "hexSha256": "cbff6616bdf30355e6bfd31d5308a9fdafb156d5db9f3781df56d3614ea4f56d",
+    "captureSha256": "29a45c7cbab9874c33ce15b588fc61a58ad251cf505c750759ea5df8dd34e06c",
+    "verificationSha256": "bfef156ca485f1af8f978b0a6d64e5b2ef596f4e90dcf1498da857f905021749",
+    "cases": 16,
+    "values": 128,
+    "validFrames": 421,
+    "invalidFrames": 0,
+    "firstCaptureDecoded": false,
+    "serialReopenedAfterDownload": true,
+    "originalOledDownloadAcknowledged": true,
+    "oledHexSha256": "d03c01d886b88b29cefe3309fb0513f54b2544c41c9126e349c37a2766038136",
+    "flashReadback": false,
+    "sdkTimingMeasured": false
+  }
+}

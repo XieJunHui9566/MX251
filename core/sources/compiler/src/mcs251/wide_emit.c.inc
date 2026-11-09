@@ -1106,7 +1106,7 @@ wordinary_forward_return(wide_function *f,int index)
   if(mcs251InternalReturn(currFunc)!=mcs251InternalReturn(f->nodes[index].callee))return false;
   wide_node *call=&f->nodes[index];
   if(!mcs251WideOrdinaryEnabled || !f->ordinaryEntry || !call->ordinaryCall ||
-     call->result<0 || index+1>=f->nn)return false;
+     call->carryResult || call->result<0 || index+1>=f->nn)return false;
   wide_node *ret=&f->nodes[index+1];
   if(ret->op!=RETURN || ret->left.value!=call->result ||
      f->values[call->result].reads!=1 || ret->width!=call->width ||
@@ -1206,6 +1206,14 @@ wcall_original(wide_function *f,int index)
   size_t setupEnd=dbuf_get_length(&f->output);
   we(f,"\tecall\t%s\n",n->callee->rname);
   size_t finishStart=dbuf_get_length(&f->output);
+  bool discardOrdinaryResult=n->ordinaryCall && n->result>=0 && !wb_has(n->out,n->result);
+  if(n->carryResult && n->result>=0 && !discardOrdinaryResult) {
+    /* CLR A preserves CY; RLC yields exactly 0/1. Capture before SPX
+     * cleanup (SUB can change CY) and before restoring caller registers.
+     * A spill address still includes the outgoing arguments at this point. */
+    we(f,"; wide ordinary bit result: CY to byte before cleanup\n\tclr\ta\n\trlc\ta\n");
+    wstore_byte(f,n->result,11);
+  }
   if(n->stackBytes) {wstep(f,60,4,true,n->stackBytes);f->stackDepth-=n->stackBytes;}
   if(wordinary_forward_return(f,index)) {
     /* 保留真正的 CALL、完整实参及调用期间的本地帧。被调函数仍可访问
@@ -1220,11 +1228,10 @@ wcall_original(wide_function *f,int index)
    * 集合判断，不按函数名或总读取计数猜测；后续存储/返回/分支读取仍
    * 会使结果活跃。保留真实 CALL、清栈、恢复及其副作用，不改原生 ABI。
    * finish 写集合由下面的实际发射文本重算，不能沿用已删复制的破坏集。 */
-  bool discardOrdinaryResult=n->ordinaryCall && n->result>=0 && !wb_has(n->out,n->result);
   if(discardOrdinaryResult)
     we(f,"; wide ordinary result unused: no extraction physical=%u\n",getSize(n->callee->type->next));
   /* 使用中的返回值先移出 ABI 寄存器，再恢复调用者；干涉图保证不覆盖活值。 */
-  if(n->result>=0 && !discardOrdinaryResult) {
+  if(n->result>=0 && !discardOrdinaryResult && !n->carryResult) {
     if(n->ordinaryCall && !mcs251InternalReturn(n->callee)) {
       unsigned bytes=getSize(n->callee->type->next);
       if(!wordinary_result_direct(f,n->result,bytes)) {

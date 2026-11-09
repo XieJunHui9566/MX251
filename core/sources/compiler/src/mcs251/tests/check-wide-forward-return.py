@@ -27,12 +27,13 @@ for model in ['small','large']:
    assert not re.search(r'\br(?:1[6-9]|2[0-9]|3[01])\b',asm)
    frames={}
    for fn,width in positives.items():
-    b=body(asm,fn);m=re.search(r'wide ordinary result forwarded physical=(\d) frame=(\d+)\n((?:\tsub\tspx,#\d+\n)?)\teret',b);assert m,(key,fn)
+    b=body(asm,fn);m=re.search(r'wide ordinary result forwarded physical=(\d) frame=(\d+)\n((?:\t(?:sub|dec)\tspx,#\d+\n)?)\teret',b);assert m,(key,fn)
     assert int(m[1])==width and '\tecall\t' in b
-    frame=int(m[2]);assert m[3]==('\tsub\tspx,#%d\n'%frame if frame else '')
+    frame=int(m[2]);assert m[3]==('\t%s\tspx,#%d\n'%('dec' if frame in (1,2,4) else 'sub',frame) if frame else '')
+    assert instructions(asm,fn)==instructions(old,fn),(key,fn)
     frames[fn]=frame
     if fn in ['f_local','f_formal','f_volatile','f_many']:
-     assert frame>0 and ('\tadd\tspx,#%d'%frame) in b
+     assert frame>0 and ('\t%s\tspx,#%d'%('inc' if frame in (1,2,4) else 'add',frame)) in b
      assert b.index('\tecall\t')<b.index(m[0]) and not re.search(r'\tejmp\t_(?!_wm)',b)
    for fn in negative:
     assert 'wide ordinary result forwarded' not in body(asm,fn)

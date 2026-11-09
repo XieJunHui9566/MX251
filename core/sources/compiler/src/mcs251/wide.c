@@ -55,7 +55,7 @@ typedef struct {
   unsigned args, stackArgs, stackBytes;
   wide_operand stackOperands[WA_MAX-1];
   unsigned char stackWidths[WA_MAX-1];
-  bool ordinaryCall;
+  bool ordinaryCall, carryResult;
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
   uint32_t callSaveOmit;
   signed char multiplyDigits[32];
@@ -142,6 +142,16 @@ wide_abi_type(sym_link *t,sym_link *functionType)
 {
   return wide_type(t) || (FUNC_SDCCCALL(functionType)==2 &&
     wide_code_pointer(t) && wide_value_type(t,false));
+}
+
+/* ABI2 __bit returns in CY, independently of byte returns in DPL.
+ * This only admits direct calls; bit parameters and wide bit entries retain
+ * their existing contracts. Materialize CY before any stack arithmetic. */
+static bool
+wide_carry_result(sym_link *type)
+{
+  return FUNC_SDCCCALL(type)==2 && IS_BIT(type->next) &&
+    !IS_BOOL(type->next) && wide_value_type(type->next,false);
 }
 
 
@@ -789,10 +799,11 @@ wide_import (wide_function *f, ebbIndex *ebbi)
            !IFFUNC_ISREENT(t) || IFFUNC_ISISR(t) || IFFUNC_ISNAKED(t) ||
            IFFUNC_ISCRITICAL(t) || IFFUNC_CALLEESAVES(t) || IFFUNC_ISBANKEDCALL(t) ||
            FUNC_REGBANK(t) || IFFUNC_HASVARARGS(t) || IFFUNC_ISNORETURN(t) ||
-           (!wide_abi_type(t->next,t) && !IS_VOID(t->next)) || !wide_stack_signature(t)) return wide_import_reject(f,ic,__LINE__);
+           (!wide_abi_type(t->next,t) && !IS_VOID(t->next) && !wide_carry_result(t)) || !wide_stack_signature(t)) return wide_import_reject(f,ic,__LINE__);
         /* 普通可重入 ABI 仅第一个标量在 DPL/DPH/B/A，其余按原宽度压栈。
          * 非可重入静态形参、间接调用及其他调用约定仍整体回退。 */
         n->ordinaryCall=FUNC_SDCCCALL(t)==2;
+        n->carryResult=wide_carry_result(t);
         /* 新快照的物理取样顺序以普通 ABI2 的 SEND/IPUSH 为合同。
          * ABI4 真实对象实参没有该顺序证明，保持此前整函数回退。 */
         if(!n->ordinaryCall) {
