@@ -1,0 +1,593 @@
+{
+  "schema": 1,
+  "baseCommit": "479ba6e",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "a31d90d5d262e1a625108e5b4551f4c30f0b559d",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\core-03\\core.json",
+    "sha256": "cac5c35a9c55965330983d23ef05889e7d904eac613abccd170539b6724ff6f0"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "816fd3d2e879f4bc0fd8d3dac1425c2ed5d0f99b66a39ef728cd22136eba5c2e"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\comparison.json",
+    "sha256": "087a80e5bd7a9ec864b24b20cd55b5edfa1b3d961898684a07ad59f419eddf8a"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 37,
+    "unchanged": 38,
+    "larger": 0,
+    "savedBytes": 241,
+    "mxTotalBytes": 203338,
+    "keilTotalBytes": 192051,
+    "within110": 56,
+    "within120": 70,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.058770847327012
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\compiler-checks-03-final\\result.json",
+      "sha256": "4bb65cb8657329f10f61050a936ef96b2e1ea119f51cb1953076045ca53450be"
+    },
+    "hardwareFixture": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\sfr_bit_tests_fixture.py",
+      "sha256": "05c04e1530fe978d5863b7b7f1b9c28ab3970cdea9a4c1575f44f40bf99136cb"
+    },
+    "cost": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\cost-checks.json",
+      "sha256": "9481d5338a4d26b171949dcdd428f4c7e9e9e3f73c13ff971c89f094af777e32"
+    }
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\backend_cfg.h",
+      "sha256": "ae6051bba08d8553b4dff0d4431b9dd22108523d1fc460f48fdc0c9acc649e34"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "46377c2262ff708675b179a7b3b8df770d3d47730d6b32247c015ef5ed827f5b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "de8029401b7790b23b86f39fe3cefa43a8451c97feb50739da9dda4f87b30b9b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_sfr_bit_test.c.inc",
+      "sha256": "f81a3dd9c6bf95f634cf69ce7d62eef7ac86ffa316b51d360b24f5f8f6714e01"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-sfr-bit-tests.py",
+      "sha256": "2323e3182d218a55cb4e9b6bb95cced8de88e2a52710592a252ed84437e77454"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-typed-cost.py",
+      "sha256": "9a9c0baf0ba98a37b25dd1852be4c30695c61f422a1f4f93804157ebbfe5473c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_cost.h",
+      "sha256": "7cefb8be1322dfffbff990d139cc405dad599ef90760f72842876de02167d89e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\sfr_bit_tests_fixture.py",
+      "sha256": "05c04e1530fe978d5863b7b7f1b9c28ab3970cdea9a4c1575f44f40bf99136cb"
+    }
+  ],
+  "runtimeArchives": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\core-03\\profiles\\AI8051U-34K64-32\\runtime\\libnativeint.lib",
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\core-03\\profiles\\STC32G12K128\\runtime\\libnativeint.lib",
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
+    }
+  ],
+  "hardwareResults": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\hardware-parent\\result.json",
+      "sha256": "d713ff9092f60c4e76fccaecd48529ab3c334fd67eb50549448d3014b6a62c8a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\hardware-candidate\\result.json",
+      "sha256": "502496080be0963f96c251ee5436db62c182342320f486cdefcba39fcbf18e35"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "fixtureRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\qualification.json",
+    "sha256": "4fffca4c97e8e1b574f748faac209d3ece1582ffee84943fd8a84774592e77c4"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\attribution.json",
+    "sha256": "3d0bc674edf5b14f1e034573f0de15cb3ab763b4540b385c965ecbe4bac180d6"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\hardware-parent\\result.json",
+        "sha256": "d713ff9092f60c4e76fccaecd48529ab3c334fd67eb50549448d3014b6a62c8a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\board-parent\\receipt.json",
+        "sha256": "00ea0c8cb08b1c847d6331a9a01a206a9d7bd6218b643ecc4a06b20476cb479f"
+      },
+      "bytes": 1637,
+      "cases": 128,
+      "frames": 225,
+      "port": "COM13",
+      "firmwareSha256": "8c6cf84ff2baab0ee6f366b09fc9163901dd09056f8041a694e16fb8987967eb",
+      "aggregateTicks": {
+        "0": 2007040.0,
+        "1": 2007040.0
+      }
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\hardware-candidate\\result.json",
+        "sha256": "502496080be0963f96c251ee5436db62c182342320f486cdefcba39fcbf18e35"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\sfr-bit-tests\\board-final-03\\receipt.json",
+        "sha256": "1dc2d375ef7182cf3ed04fa64f5d2dcf6ca6e6ec93ed5dc3d187ff6d50ebd4bb"
+      },
+      "bytes": 1540,
+      "cases": 128,
+      "frames": 223,
+      "port": "COM13",
+      "firmwareSha256": "290f476b94bd2cd1e9e66622db3b1c6119754388cd425dd32b975c797b28e680",
+      "aggregateTicks": {
+        "0": 2007040.0,
+        "1": 2007040.0
+      }
+    }
+  ],
+  "changedFunctions": [
+    {
+      "id": "p007",
+      "unit": "u0",
+      "function": "_Send_595",
+      "parentBytes": 17,
+      "bytes": 14,
+      "savedBytes": 3
+    },
+    {
+      "id": "p011",
+      "unit": "u0",
+      "function": "_timer1_int",
+      "parentBytes": 50,
+      "bytes": 47,
+      "savedBytes": 3
+    },
+    {
+      "id": "p026",
+      "unit": "u0",
+      "function": "_UART3_int",
+      "parentBytes": 106,
+      "bytes": 95,
+      "savedBytes": 11
+    },
+    {
+      "id": "p028",
+      "unit": "u0",
+      "function": "_UART4_int",
+      "parentBytes": 106,
+      "bytes": 95,
+      "savedBytes": 11
+    },
+    {
+      "id": "p032",
+      "unit": "u0",
+      "function": "_UART2_int",
+      "parentBytes": 116,
+      "bytes": 105,
+      "savedBytes": 11
+    },
+    {
+      "id": "p033",
+      "unit": "u0",
+      "function": "_INT0_int",
+      "parentBytes": 16,
+      "bytes": 13,
+      "savedBytes": 3
+    },
+    {
+      "id": "p033",
+      "unit": "u0",
+      "function": "_INT1_int",
+      "parentBytes": 16,
+      "bytes": 13,
+      "savedBytes": 3
+    },
+    {
+      "id": "p033",
+      "unit": "u0",
+      "function": "_INT2_int",
+      "parentBytes": 16,
+      "bytes": 13,
+      "savedBytes": 3
+    },
+    {
+      "id": "p033",
+      "unit": "u0",
+      "function": "_INT3_int",
+      "parentBytes": 16,
+      "bytes": 13,
+      "savedBytes": 3
+    },
+    {
+      "id": "p033",
+      "unit": "u0",
+      "function": "_INT4_int",
+      "parentBytes": 16,
+      "bytes": 13,
+      "savedBytes": 3
+    },
+    {
+      "id": "p037",
+      "unit": "u0",
+      "function": "_Get_ADC12bitResult",
+      "parentBytes": 54,
+      "bytes": 51,
+      "savedBytes": 3
+    },
+    {
+      "id": "p039",
+      "unit": "u0",
+      "function": "_Get_ADC12bitResult",
+      "parentBytes": 57,
+      "bytes": 55,
+      "savedBytes": 2
+    },
+    {
+      "id": "p045",
+      "unit": "u0",
+      "function": "_LVD_Routine",
+      "parentBytes": 192,
+      "bytes": 185,
+      "savedBytes": 7
+    },
+    {
+      "id": "p047",
+      "unit": "u0",
+      "function": "_CMP_Isr",
+      "parentBytes": 27,
+      "bytes": 17,
+      "savedBytes": 10
+    },
+    {
+      "id": "p049",
+      "unit": "u0",
+      "function": "_CMP_Isr",
+      "parentBytes": 284,
+      "bytes": 279,
+      "savedBytes": 5
+    },
+    {
+      "id": "p064",
+      "unit": "u0",
+      "function": "_PWMA_ISR",
+      "parentBytes": 105,
+      "bytes": 102,
+      "savedBytes": 3
+    },
+    {
+      "id": "p066",
+      "unit": "u0",
+      "function": "_PWMA_ISR",
+      "parentBytes": 105,
+      "bytes": 102,
+      "savedBytes": 3
+    },
+    {
+      "id": "p075",
+      "unit": "u0",
+      "function": "_ReadStatusLCD",
+      "parentBytes": 32,
+      "bytes": 30,
+      "savedBytes": 2
+    },
+    {
+      "id": "p084",
+      "unit": "u0",
+      "function": "_RTC_Isr",
+      "parentBytes": 72,
+      "bytes": 69,
+      "savedBytes": 3
+    },
+    {
+      "id": "p087",
+      "unit": "u7",
+      "function": "_uart2_isr",
+      "parentBytes": 102,
+      "bytes": 91,
+      "savedBytes": 11
+    },
+    {
+      "id": "p091",
+      "unit": "u8",
+      "function": "_shift",
+      "parentBytes": 20,
+      "bytes": 17,
+      "savedBytes": 3
+    },
+    {
+      "id": "p091",
+      "unit": "u8",
+      "function": "_flash_readsector",
+      "parentBytes": 130,
+      "bytes": 128,
+      "savedBytes": 2
+    },
+    {
+      "id": "p095",
+      "unit": "u7",
+      "function": "_uart2_isr",
+      "parentBytes": 102,
+      "bytes": 91,
+      "savedBytes": 11
+    },
+    {
+      "id": "p097",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 14,
+      "bytes": 10,
+      "savedBytes": 4
+    },
+    {
+      "id": "p098",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 14,
+      "bytes": 10,
+      "savedBytes": 4
+    },
+    {
+      "id": "p099",
+      "unit": "u0",
+      "function": "_UART2_int",
+      "parentBytes": 151,
+      "bytes": 140,
+      "savedBytes": 11
+    },
+    {
+      "id": "p100",
+      "unit": "u0",
+      "function": "_UART2_int",
+      "parentBytes": 109,
+      "bytes": 98,
+      "savedBytes": 11
+    },
+    {
+      "id": "p101",
+      "unit": "u0",
+      "function": "_Get_ADC12bitResult",
+      "parentBytes": 63,
+      "bytes": 60,
+      "savedBytes": 3
+    },
+    {
+      "id": "p102",
+      "unit": "u0",
+      "function": "_ADC_DMA_Interrupt",
+      "parentBytes": 40,
+      "bytes": 37,
+      "savedBytes": 3
+    },
+    {
+      "id": "p103",
+      "unit": "u0",
+      "function": "_ADC_DMA_Interrupt",
+      "parentBytes": 40,
+      "bytes": 37,
+      "savedBytes": 3
+    },
+    {
+      "id": "p104",
+      "unit": "u0",
+      "function": "_M2M_DMA_Interrupt",
+      "parentBytes": 50,
+      "bytes": 47,
+      "savedBytes": 3
+    },
+    {
+      "id": "p107",
+      "unit": "u0",
+      "function": "_UART1_DMA_Interrupt",
+      "parentBytes": 112,
+      "bytes": 109,
+      "savedBytes": 3
+    },
+    {
+      "id": "p109",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 14,
+      "bytes": 10,
+      "savedBytes": 4
+    },
+    {
+      "id": "p109",
+      "unit": "u0",
+      "function": "_UART2_DMA_Interrupt",
+      "parentBytes": 112,
+      "bytes": 109,
+      "savedBytes": 3
+    },
+    {
+      "id": "p110",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 16,
+      "bytes": 10,
+      "savedBytes": 6
+    },
+    {
+      "id": "p110",
+      "unit": "u0",
+      "function": "_putchar",
+      "parentBytes": 22,
+      "bytes": 20,
+      "savedBytes": 2
+    },
+    {
+      "id": "p110",
+      "unit": "u0",
+      "function": "_UART3_DMA_Interrupt",
+      "parentBytes": 112,
+      "bytes": 109,
+      "savedBytes": 3
+    },
+    {
+      "id": "p111",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 16,
+      "bytes": 10,
+      "savedBytes": 6
+    },
+    {
+      "id": "p111",
+      "unit": "u0",
+      "function": "_putchar",
+      "parentBytes": 22,
+      "bytes": 20,
+      "savedBytes": 2
+    },
+    {
+      "id": "p111",
+      "unit": "u0",
+      "function": "_UART4_DMA_Interrupt",
+      "parentBytes": 112,
+      "bytes": 109,
+      "savedBytes": 3
+    },
+    {
+      "id": "p112",
+      "unit": "u0",
+      "function": "_LCMIF_DMA_Interrupt",
+      "parentBytes": 125,
+      "bytes": 122,
+      "savedBytes": 3
+    },
+    {
+      "id": "p113",
+      "unit": "u0",
+      "function": "_LCM_Interrupt",
+      "parentBytes": 40,
+      "bytes": 37,
+      "savedBytes": 3
+    },
+    {
+      "id": "p119",
+      "unit": "u0",
+      "function": "_uart2_isr",
+      "parentBytes": 100,
+      "bytes": 89,
+      "savedBytes": 11
+    },
+    {
+      "id": "p122",
+      "unit": "u1",
+      "function": "_SPI_WriteByte",
+      "parentBytes": 17,
+      "bytes": 14,
+      "savedBytes": 3
+    },
+    {
+      "id": "p122",
+      "unit": "u1",
+      "function": "_SPI_ReadByte",
+      "parentBytes": 20,
+      "bytes": 17,
+      "savedBytes": 3
+    },
+    {
+      "id": "p122",
+      "unit": "u1",
+      "function": "_SPI_DMA_Interrupt",
+      "parentBytes": 42,
+      "bytes": 39,
+      "savedBytes": 3
+    },
+    {
+      "id": "p122",
+      "unit": "u2",
+      "function": "_UART1T_DMA_Interrupt",
+      "parentBytes": 70,
+      "bytes": 67,
+      "savedBytes": 3
+    },
+    {
+      "id": "p122",
+      "unit": "u2",
+      "function": "_UART1R_DMA_Interrupt",
+      "parentBytes": 72,
+      "bytes": 69,
+      "savedBytes": 3
+    },
+    {
+      "id": "p122",
+      "unit": "u3",
+      "function": "_LCMIF_DMA_Interrupt",
+      "parentBytes": 46,
+      "bytes": 43,
+      "savedBytes": 3
+    },
+    {
+      "id": "p133",
+      "unit": "u0",
+      "function": "_LCMIF_DMA_ISR",
+      "parentBytes": 49,
+      "bytes": 46,
+      "savedBytes": 3
+    },
+    {
+      "id": "p134",
+      "unit": "u0",
+      "function": "_SPI_DMA_ISR",
+      "parentBytes": 40,
+      "bytes": 37,
+      "savedBytes": 3
+    },
+    {
+      "id": "p136",
+      "unit": "u2",
+      "function": "_SPI_WriteByte",
+      "parentBytes": 15,
+      "bytes": 11,
+      "savedBytes": 4
+    },
+    {
+      "id": "p136",
+      "unit": "u2",
+      "function": "_SPI_DMA_ISR",
+      "parentBytes": 66,
+      "bytes": 63,
+      "savedBytes": 3
+    }
+  ],
+  "newWithin": {
+    "110": [
+      "p103",
+      "p119"
+    ],
+    "120": []
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  }
+}
