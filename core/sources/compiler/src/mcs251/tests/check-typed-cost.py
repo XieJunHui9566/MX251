@@ -50,7 +50,8 @@ cases += [('mov a,_Sfr',2),('mov _Sfr,r7',3),('mov _Sfr,#3',3),('clr _case',2),(
 for address,move,branch in [('0x88',2,3),('0x89',3,4),('0xe6',3,4)]:
     for bit in (0,7):
         cases += [(f'mov c,{address}.{bit}',move),(f'mov {address}.{bit},c',move),
-                  (f'jb {address}.{bit},00100$',branch),(f'jnb {address}.{bit},00100$',branch)]
+                  (f'jb {address}.{bit},00100$',branch),(f'jnb {address}.{bit},00100$',branch),
+                  (f'jbc {address}.{bit},00100$',branch)]
 unknown=['clr _Case','mov r7,_case','mov a,_CASE','mov a,(_Case+4)', 'mov a,(_Case-1)', 'mov a,(_Case+2147483648)', 'mov a,(_Case+4294967296)', 'mov a,(_Case+1+1)', 'mov a,((_Case))', 'mov a,(_Case+0x1)', 'mov a,_CaseSuffix','mov a,(_Sfr+1)', 'mov a,_external_xdata', 'setb _missing', 'mov c,_missing', 'mov dr4,@dr0', 'mov a,(0x1234)']
 unknown += ['mov c,0x89.8','jb 0x89.8,00100$','mov c,0x20.3']
 cases += [(ins,None) for ins in unknown]
