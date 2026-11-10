@@ -1,0 +1,327 @@
+{
+  "schema": 1,
+  "implementationCommit": "6a479e0a7c50a85cbc53fd627b306156815f3603",
+  "baseCommit": "1c79975",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\core-02\\core.json",
+    "sha256": "73e985554637bfc49def0ec6a4888663aef635d05b3fa87320757ddf6484e175"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "cb64fe16e1c9d384ae57ddb2bb03611b9aaf432f1fa2c3ecf6ff910eb4c78c44"
+  },
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\qualification.json",
+    "sha256": "ee08e3fbfbecec38e38b27e3a7f5e99a308d07b662ffac40ec984e987caa4c9e"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\comparison.json",
+    "sha256": "93a1f6545ad95ee064f24891afd8ed07117c18fe3a6b00628303fa8bd3de9996"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 2,
+    "unchanged": 73,
+    "larger": 0,
+    "savedBytes": 168,
+    "mxTotalBytes": 205401,
+    "keilTotalBytes": 192051,
+    "within110": 49,
+    "within120": 64,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0695127856663074
+  },
+  "newWithin": {
+    "110": [],
+    "120": [
+      "p039"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\attribution.json",
+    "sha256": "ad2043233e1a90c3a4f0de01c1d40f2c7ca8cb58b96ed4f65066dda2562462d6"
+  },
+  "parentMovc": 125,
+  "movc": 93,
+  "changedFunctions": [
+    {
+      "id": "p039",
+      "name": "_get_temperature",
+      "unit": "u0",
+      "parentBytes": 418,
+      "codeBytes": 334,
+      "savedBytes": 84,
+      "parentMovc": 16,
+      "movc": 0,
+      "notes": [
+        "wide native code load width=2 volatile-bytes=0",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide native code load width=2 volatile-bytes=0"
+      ]
+    },
+    {
+      "id": "p059",
+      "name": "_get_temperature",
+      "unit": "u9",
+      "parentBytes": 418,
+      "codeBytes": 334,
+      "savedBytes": 84,
+      "parentMovc": 16,
+      "movc": 0,
+      "notes": [
+        "wide native code load width=2 volatile-bytes=0",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide unsigned scale shift=1 width=2",
+        "wide native code load width=2 volatile-bytes=0",
+        "wide native code load width=2 volatile-bytes=0"
+      ]
+    }
+  ],
+  "nativeFunctionCount": 2,
+  "nativeProjectCount": 2,
+  "hardware": [
+    {
+      "variant": "parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 612,
+      "codeBytes": 3643,
+      "aggregateTicks": {
+        "0": 41600,
+        "1": 10115.0
+      },
+      "port": "COM13",
+      "serial": "82941086",
+      "functions": [
+        {
+          "name": "_code_byte",
+          "bytes": 21,
+          "movc": 1,
+          "notes": []
+        },
+        {
+          "name": "_code_word",
+          "bytes": 52,
+          "movc": 2,
+          "notes": []
+        },
+        {
+          "name": "_code_long",
+          "bytes": 71,
+          "movc": 4,
+          "notes": []
+        },
+        {
+          "name": "_code_odd",
+          "bytes": 50,
+          "movc": 4,
+          "notes": []
+        },
+        {
+          "name": "_code_volatile",
+          "bytes": 55,
+          "movc": 4,
+          "notes": []
+        },
+        {
+          "name": "_code_pointer",
+          "bytes": 30,
+          "movc": 1,
+          "notes": []
+        },
+        {
+          "name": "_code_scale",
+          "bytes": 9,
+          "movc": 0,
+          "notes": []
+        },
+        {
+          "name": "_code_case",
+          "bytes": 1111,
+          "movc": 0,
+          "notes": []
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\capture-parent\\result.json",
+        "sha256": "897461dc70a5022142bceb533a78425832397ce34ea8a275cad73b48506fe68b"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\capture-parent\\uart.bin",
+        "sha256": "b542be28b35149978eda31fe252d596dac10be34d76f5f69a2f406f1910f87aa"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\board-parent\\receipt.json",
+        "sha256": "c81e8f755e4ad27689610991c2497fb3c9dfc66856f433046e35153a242afea2"
+      }
+    },
+    {
+      "variant": "new",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 638,
+      "codeBytes": 3604,
+      "aggregateTicks": {
+        "0": 39184,
+        "1": 10115.5
+      },
+      "port": "COM13",
+      "serial": "82941086",
+      "functions": [
+        {
+          "name": "_code_byte",
+          "bytes": 21,
+          "movc": 1,
+          "notes": []
+        },
+        {
+          "name": "_code_word",
+          "bytes": 37,
+          "movc": 0,
+          "notes": [
+            "wide unsigned scale shift=1 width=2",
+            "wide native code load width=2 volatile-bytes=0"
+          ]
+        },
+        {
+          "name": "_code_long",
+          "bytes": 52,
+          "movc": 0,
+          "notes": [
+            "wide native code load width=4 volatile-bytes=0"
+          ]
+        },
+        {
+          "name": "_code_odd",
+          "bytes": 45,
+          "movc": 0,
+          "notes": [
+            "wide native code load width=4 volatile-bytes=0"
+          ]
+        },
+        {
+          "name": "_code_volatile",
+          "bytes": 55,
+          "movc": 4,
+          "notes": []
+        },
+        {
+          "name": "_code_pointer",
+          "bytes": 30,
+          "movc": 1,
+          "notes": []
+        },
+        {
+          "name": "_code_scale",
+          "bytes": 9,
+          "movc": 0,
+          "notes": []
+        },
+        {
+          "name": "_code_case",
+          "bytes": 1111,
+          "movc": 0,
+          "notes": []
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\capture-final\\result.json",
+        "sha256": "8885be725b71132da358676e3a9cb83dd44508cc29344335bd5839715505c8a3"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\capture-final\\uart.bin",
+        "sha256": "d3a6e790dd3e8008f325f555f4e891f253984d075e4b0d40a32617fc3d4e3693"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\board-final\\receipt.json",
+        "sha256": "3b61e3a242bd6ac8df30c27d994e0054b800744a6d3ae1ce63eba872ce266756"
+      }
+    }
+  ],
+  "hardwareFixture": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\native_code_fixture.py",
+    "sha256": "d013d892c907ee42da72c2142880ff3957a57d34a6158886174f529971cd6cac"
+  },
+  "fixtureSourceInputsIdentical": true,
+  "compilerChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\code-checks-final\\results.json",
+    "sha256": "a06d23881843087813abcce3c61c049be83f6c1547c80ffed8a47cbd8ba462d2"
+  },
+  "byteMultiplyChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\byte-multiply-checks\\results.json",
+    "sha256": "460b608f2dc167f9f09253c29d886003fcc0650cfd4caab18d159a6dbd83bf98"
+  },
+  "staleWordCheck": {
+    "reason": "Existing check expects 13 accepted functions and byteword fallback. Both the parent and candidate already accept 14 including byteword. The compiled small-model object is identical.",
+    "candidate": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\word-multiply-checks\\small\\core.rel",
+      "sha256": "c431cebc6c14e315b39288976e6c0b7a41a5c17955a17797fb24c6ceb7448b85"
+    },
+    "parent": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\word-multiply-checks\\small\\parent.rel",
+      "sha256": "c431cebc6c14e315b39288976e6c0b7a41a5c17955a17797fb24c6ceb7448b85"
+    }
+  },
+  "sourceAlgorithmsChanged": false,
+  "fullProjectRuntimeMeasured": false,
+  "reportRecipe": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\finish.py",
+    "sha256": "7b535ab0d18a81281e2ef248ab605210209867e520d2a65bcf83d82b91be18b2"
+  },
+  "rejectedByteTrial": {
+    "core": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\core-01\\core.json",
+      "sha256": "cee3c2ddc9ff988c53f3d28cbdc51e58446290e72dbac591c3d047852b03b6a6"
+    },
+    "comparison": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-code\\trial-comparison.json",
+      "sha256": "aba57fed2e1594d2bf229bb75064079715994b9b7c04fb1343da755f73e10803"
+    },
+    "summary": {
+      "projects": 75,
+      "improved": 10,
+      "unchanged": 50,
+      "larger": 15,
+      "savedBytes": -148,
+      "mxTotalBytes": 205717,
+      "keilTotalBytes": 192051,
+      "within110": 49,
+      "within120": 64,
+      "stcStatuses": {
+        "BUILT": 59,
+        "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+        "FAILED": 3
+      },
+      "smallerThanStcRaw": 52,
+      "weightedKeilRatio": 1.0711581819412552
+    },
+    "reason": "Native byte reads made the wide backend win by one instruction in several byte-table functions while increasing whole-function size."
+  }
+}
