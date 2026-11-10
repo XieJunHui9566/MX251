@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "baseCommit": "c936c72",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "560e7b93fcf79dde6b37812a13be114ca5c97fa3",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\core-03\\core.json",
+    "sha256": "efe93a0626646dd98997dc3aecb4b7b410c88872236f87352ff0dd06515e3e46"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "050aa0acf3debbdc54d22d10c911f3ae4ae86c980e7fa782cbd9681c1b114973"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\comparison.json",
+    "sha256": "3180f4a7e55a573835b8edd8322899d70264931aaff07d86226a9d4de9370d6a"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 4,
+    "unchanged": 71,
+    "larger": 0,
+    "savedBytes": 81,
+    "mxTotalBytes": 203777,
+    "keilTotalBytes": 192051,
+    "within110": 53,
+    "within120": 69,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.0610566984811327
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\compiler-checks-final\\result.json",
+      "sha256": "a01fbe6c787bba7d0ba876835c8727add649d50a7ebe777df929f2db590549bf"
+    },
+    "cost": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\cost-checks.json",
+      "sha256": "9298a75d39d63f72cb50fdb38b5bdb09ef059c84ba853fbe6d974f8ab06b647c"
+    },
+    "hardwareFixture": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\loop_cursors_fixture.py",
+      "sha256": "547a91ac2c279be034f733fddc70dab1e799c088dd7e332353233d2b0c66b38d"
+    }
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-cursor-cost.c",
+      "sha256": "bd0709b9c2ad768fd5113364b41462520056bc45e1ca89ab3ecf6f8b75ff2e66"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-loop-cursors.py",
+      "sha256": "4a1e60f5c77c19f9e41a6fc82021a9a6fd2c614d228c96cc36e9bb06ac7a86c6"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\loop-cursors-cases.c",
+      "sha256": "633dbe7a43d961522c7f645b6d78a9eb8da5f564c21e19f09831f3cfc8c44e3a"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\loop-cursors.c",
+      "sha256": "3ea6a8030ffc27e2f86a0b9426f2c34bf32ea3396597ba72382dfbf82a608d40"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\loop-cursors.h",
+      "sha256": "b3e0d0c0ee3364d0ec73437165c8cf4a46de1475099c0cb17b9afbbc20e3fc8f"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide.c",
+      "sha256": "18acebd2c4b7379ec7e3218142a3b01891870c29e181e55160c0da88581dd533"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_cursor_cost.c.inc",
+      "sha256": "adcdf0f43a375a212caeaa44b1a0c1894e33994e8f524226c59cd0dbd47571e9"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_emit.c.inc",
+      "sha256": "f4a89b1c0d154748454c41047d2aaed5dbff09d56baa6da7a2f745f0427ab07e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_loop_cursor.c.inc",
+      "sha256": "a1af340bea1047130804d900464a94507d7cad5ec0bfadb64dbf1c61a52b968e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\loop_cursors_fixture.py",
+      "sha256": "547a91ac2c279be034f733fddc70dab1e799c088dd7e332353233d2b0c66b38d"
+    }
+  ],
+  "runtimeArchives": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\core-03\\profiles\\AI8051U-34K64-32\\runtime\\libnativeint.lib",
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\core-03\\profiles\\STC32G12K128\\runtime\\libnativeint.lib",
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
+    }
+  ],
+  "hardwareResults": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\hardware-parent\\result.json",
+      "sha256": "61567d5ada78dd409bdfa500aa7dece766960077a4d6eb5711a7351682667bf2"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\hardware-candidate\\result.json",
+      "sha256": "80500cd09538215511cd0d74f76670136eb2a50515bc76e691ae7c5e9a9cb4a1"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "fixtureRuntimeMeasured": true,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\qualification.json",
+    "sha256": "e8337bb4bc519db5bfabe6c998ad76c50904d0328550e8b0e1f4263e4021e74d"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\attribution.json",
+    "sha256": "106ceb8875ec53e99c0a3ad35ca14baf2b617a8053220da78135ef5fdf81d990"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\hardware-parent\\result.json",
+        "sha256": "61567d5ada78dd409bdfa500aa7dece766960077a4d6eb5711a7351682667bf2"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\board-parent\\receipt.json",
+        "sha256": "31abe2e27f62b73e0b95b84af8a5eb39f8885e525a087acaa511c198d0386f65"
+      },
+      "bytes": 851,
+      "cases": 128,
+      "frames": 521,
+      "port": "COM13",
+      "firmwareSha256": "c0f4e61791265bcfd902a90d7e07ca7f60461b7af48ab893e69789bf2520962b",
+      "aggregateTicks": {
+        "0": 22730.0,
+        "1": 154304.0
+      }
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\hardware-candidate\\result.json",
+        "sha256": "80500cd09538215511cd0d74f76670136eb2a50515bc76e691ae7c5e9a9cb4a1"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-cursors\\board-final\\receipt.json",
+        "sha256": "11f20c411e37249b10502fee1a6c861f6441f53c53d9d2f8c74c66b2e474fc56"
+      },
+      "bytes": 809,
+      "cases": 128,
+      "frames": 529,
+      "port": "COM13",
+      "firmwareSha256": "cb4253d8fca950e72558526fefa8d1ba1f58a96fa191deb09a9d2d258012002c",
+      "aggregateTicks": {
+        "0": 19329.0,
+        "1": 145984.0
+      }
+    }
+  ],
+  "changedFunctions": [
+    {
+      "id": "p074",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 323,
+      "bytes": 261,
+      "savedBytes": 62
+    },
+    {
+      "id": "p108",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 253,
+      "bytes": 252,
+      "savedBytes": 1
+    },
+    {
+      "id": "p119",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 82,
+      "bytes": 70,
+      "savedBytes": 12
+    },
+    {
+      "id": "p136",
+      "unit": "u1",
+      "function": "_PlayProcess",
+      "parentBytes": 672,
+      "bytes": 666,
+      "savedBytes": 6
+    }
+  ],
+  "newWithin": {
+    "110": [],
+    "120": [
+      "p074"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  }
+}
