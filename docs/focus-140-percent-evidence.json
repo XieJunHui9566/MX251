@@ -1,0 +1,1713 @@
+{
+  "status": "RESEARCH_WITH_OFFLINE_DIVISION_PROBE",
+  "baselineCommit": "1dfb3ac",
+  "compilerSha256": "c62fc14e9a6eed7eb62227f4cea78b533bf9aeeab50051377c1c96b75dfe013b",
+  "fullAttribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\full-attribution.json",
+    "sha256": "996d930c3253c34109396a7fa6f811da8052fab94fad83d21113222c9a65be66"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\comparison.json",
+    "sha256": "7f9f872e5ebf07b0b0ec4a6ac71effb05f0418854a4eb86d532b060b47a0058c"
+  },
+  "scanner": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\focus_size_band.py",
+    "sha256": "742bc38aa3dcc9e5f2740206230ddc7290a63b11734f0d32ad8898eb1fb76cf0"
+  },
+  "fullSummary": {
+    "projects": 75,
+    "mxBytes": 216192,
+    "keilBytes": 192051,
+    "isrProjects": 63,
+    "isrFunctions": 109,
+    "isrEntryExitPushPopBytes": 4768,
+    "isrsWithCalls": 30,
+    "leafIsrOptimizationFunctions": 22,
+    "matchedIsrNetGapBytes": 3912,
+    "divisionDeferredProjects": 12,
+    "coreStateFallbackProjects": 75,
+    "coreStateFallbackFunctions": 90,
+    "coreStateFallbackBodyBytes": 17425,
+    "refusalReasons": [
+      {
+        "reason": "ordered-asm-core-state-write",
+        "functions": 90,
+        "projects": [
+          "p001",
+          "p003",
+          "p005",
+          "p007",
+          "p009",
+          "p011",
+          "p013",
+          "p015",
+          "p017",
+          "p019",
+          "p026",
+          "p028",
+          "p032",
+          "p033",
+          "p035",
+          "p037",
+          "p039",
+          "p045",
+          "p047",
+          "p049",
+          "p051",
+          "p053",
+          "p055",
+          "p057",
+          "p059",
+          "p060",
+          "p062",
+          "p064",
+          "p066",
+          "p071",
+          "p074",
+          "p075",
+          "p078",
+          "p080",
+          "p084",
+          "p086",
+          "p087",
+          "p088",
+          "p089",
+          "p090",
+          "p091",
+          "p095",
+          "p096",
+          "p097",
+          "p098",
+          "p099",
+          "p100",
+          "p101",
+          "p102",
+          "p103",
+          "p104",
+          "p107",
+          "p108",
+          "p109",
+          "p110",
+          "p111",
+          "p112",
+          "p113",
+          "p114",
+          "p117",
+          "p119",
+          "p122",
+          "p128",
+          "p129",
+          "p131",
+          "p132",
+          "p133",
+          "p134",
+          "p136",
+          "p137",
+          "p138",
+          "p139",
+          "p142",
+          "p146",
+          "p149"
+        ],
+        "bodyBytes": 17425
+      },
+      {
+        "reason": "address-space-or-object-contract",
+        "functions": 58,
+        "projects": [
+          "p086",
+          "p087",
+          "p088",
+          "p089",
+          "p090",
+          "p091",
+          "p095",
+          "p096",
+          "p128"
+        ],
+        "bodyBytes": 5501
+      },
+      {
+        "reason": "ordered-asm-bit-not-capable",
+        "functions": 54,
+        "projects": [
+          "p003",
+          "p007",
+          "p026",
+          "p028",
+          "p032",
+          "p049",
+          "p071",
+          "p086",
+          "p087",
+          "p088",
+          "p089",
+          "p090",
+          "p091",
+          "p095",
+          "p096",
+          "p097",
+          "p098",
+          "p099",
+          "p100",
+          "p107",
+          "p108",
+          "p109",
+          "p110",
+          "p111",
+          "p119",
+          "p122",
+          "p128",
+          "p131",
+          "p132",
+          "p134",
+          "p136"
+        ],
+        "bodyBytes": 5143
+      },
+      {
+        "reason": "memory-access-contract",
+        "functions": 19,
+        "projects": [
+          "p059",
+          "p086",
+          "p087",
+          "p088",
+          "p089",
+          "p090",
+          "p091",
+          "p095",
+          "p096",
+          "p128"
+        ],
+        "bodyBytes": 2518
+      },
+      {
+        "reason": "semantic-import-contract",
+        "functions": 16,
+        "projects": [
+          "p005",
+          "p007",
+          "p011",
+          "p035",
+          "p037",
+          "p039",
+          "p045",
+          "p049",
+          "p059",
+          "p071",
+          "p084",
+          "p087",
+          "p096",
+          "p128"
+        ],
+        "bodyBytes": 3441
+      },
+      {
+        "reason": "unsupported-volatile-dummy-read-operand",
+        "functions": 3,
+        "projects": [
+          "p074",
+          "p078",
+          "p080"
+        ],
+        "bodyBytes": 280
+      },
+      {
+        "reason": "argument-snapshot-abi4-contract",
+        "functions": 2,
+        "projects": [
+          "p095"
+        ],
+        "bodyBytes": 873
+      },
+      {
+        "reason": "assignment-cast-or-memory-contract",
+        "functions": 1,
+        "projects": [
+          "p091"
+        ],
+        "bodyBytes": 406
+      }
+    ],
+    "divisionDeferred": [
+      {
+        "project": "p005",
+        "name": "_DisplayRTC",
+        "bytes": 78,
+        "diagnostic": "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1"
+      },
+      {
+        "project": "p007",
+        "name": "_DisplayRTC",
+        "bytes": 78,
+        "diagnostic": "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1"
+      },
+      {
+        "project": "p011",
+        "name": "_Display",
+        "bytes": 220,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=10000 value=-1"
+      },
+      {
+        "project": "p035",
+        "name": "_DisplayRTC",
+        "bytes": 69,
+        "diagnostic": "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1"
+      },
+      {
+        "project": "p037",
+        "name": "_DisplayRTC",
+        "bytes": 69,
+        "diagnostic": "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1"
+      },
+      {
+        "project": "p039",
+        "name": "_get_temperature",
+        "bytes": 544,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=0 value=61"
+      },
+      {
+        "project": "p045",
+        "name": "_Display",
+        "bytes": 220,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=10000 value=-1"
+      },
+      {
+        "project": "p049",
+        "name": "_Display",
+        "bytes": 220,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=10000 value=-1"
+      },
+      {
+        "project": "p059",
+        "name": "_Sample_NTC",
+        "bytes": 213,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=1000 value=-1"
+      },
+      {
+        "project": "p059",
+        "name": "_get_temperature",
+        "bytes": 544,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=0 value=61"
+      },
+      {
+        "project": "p059",
+        "name": "_DisplayRTC",
+        "bytes": 63,
+        "diagnostic": "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1"
+      },
+      {
+        "project": "p071",
+        "name": "_TxErrorAddress",
+        "bytes": 164,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=10000 value=-1"
+      },
+      {
+        "project": "p084",
+        "name": "_DisplayRTC",
+        "bytes": 132,
+        "diagnostic": "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1"
+      },
+      {
+        "project": "p128",
+        "name": "_main",
+        "bytes": 333,
+        "diagnostic": "wide division deferred result=2/0 left=2/0 right=2/0 literal=10 value=-1"
+      }
+    ]
+  },
+  "focusSummary": {
+    "projects": 13,
+    "mxBytes": 17036,
+    "keilBytes": 12443,
+    "isrProjects": 12,
+    "isrFunctions": 27,
+    "isrEntryExitPushPopBytes": 996,
+    "isrsWithCalls": 5,
+    "leafIsrOptimizationFunctions": 10,
+    "matchedIsrNetGapBytes": 844,
+    "divisionDeferredProjects": 2,
+    "coreStateFallbackProjects": 13,
+    "coreStateFallbackFunctions": 16,
+    "coreStateFallbackBodyBytes": 3540
+  },
+  "focus": [
+    {
+      "id": "p001",
+      "name": "01-用P0口做跑马灯/C语言",
+      "mxBytes": 256,
+      "keilBytes": 180,
+      "ratio": 1.4222222222222223,
+      "gap": 76,
+      "pairs": [
+        {
+          "name": "MAIN",
+          "mx": 150,
+          "keil": 133,
+          "delta": 17,
+          "isr": false
+        },
+        {
+          "name": "DELAY_MS",
+          "mx": 22,
+          "keil": 22,
+          "delta": 0,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 172,
+      "keilFunctionSegmentBytes": 155,
+      "mxStartupVectorBytes": 80
+    },
+    {
+      "id": "p003",
+      "name": "02-Timer0-Timer1-Timer2-Timer3-Timer4测试程序/C语言",
+      "mxBytes": 388,
+      "keilBytes": 286,
+      "ratio": 1.3566433566433567,
+      "gap": 102,
+      "pairs": [
+        {
+          "name": "TIMER0_INIT",
+          "mx": 37,
+          "keil": 29,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "TIMER1_INIT",
+          "mx": 37,
+          "keil": 29,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "MAIN",
+          "mx": 84,
+          "keil": 78,
+          "delta": 6,
+          "isr": false
+        },
+        {
+          "name": "TIMER0_INT",
+          "mx": 7,
+          "keil": 7,
+          "delta": 0,
+          "isr": true
+        },
+        {
+          "name": "TIMER1_INT",
+          "mx": 7,
+          "keil": 7,
+          "delta": 0,
+          "isr": true
+        },
+        {
+          "name": "TIMER2_INIT",
+          "mx": 25,
+          "keil": 25,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "TIMER2_INT",
+          "mx": 7,
+          "keil": 7,
+          "delta": 0,
+          "isr": true
+        },
+        {
+          "name": "TIMER3_INIT",
+          "mx": 25,
+          "keil": 25,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "TIMER3_INT",
+          "mx": 7,
+          "keil": 7,
+          "delta": 0,
+          "isr": true
+        },
+        {
+          "name": "TIMER4_INIT",
+          "mx": 25,
+          "keil": 25,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "TIMER4_INT",
+          "mx": 7,
+          "keil": 7,
+          "delta": 0,
+          "isr": true
+        }
+      ],
+      "mxApplicationInstructionBytes": 268,
+      "keilFunctionSegmentBytes": 261,
+      "mxStartupVectorBytes": 116
+    },
+    {
+      "id": "p011",
+      "name": "05-利用定时器1测量INT1引脚低电平脉冲宽度/C语言",
+      "mxBytes": 806,
+      "keilBytes": 542,
+      "ratio": 1.4870848708487086,
+      "gap": 264,
+      "pairs": [
+        {
+          "name": "DISPLAY",
+          "mx": 220,
+          "keil": 94,
+          "delta": 126,
+          "isr": false
+        },
+        {
+          "name": "DISPLAYSCAN",
+          "mx": 106,
+          "keil": 72,
+          "delta": 34,
+          "isr": false
+        },
+        {
+          "name": "TIMER0_INT",
+          "mx": 66,
+          "keil": 50,
+          "delta": 16,
+          "isr": true
+        },
+        {
+          "name": "TIMER1_INT",
+          "mx": 50,
+          "keil": 40,
+          "delta": 10,
+          "isr": true
+        },
+        {
+          "name": "SEND_595",
+          "mx": 31,
+          "keil": 22,
+          "delta": 9,
+          "isr": false
+        },
+        {
+          "name": "TIMER0_INIT",
+          "mx": 37,
+          "keil": 29,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "TIMER1_INIT",
+          "mx": 37,
+          "keil": 29,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "MAIN",
+          "mx": 114,
+          "keil": 124,
+          "delta": -10,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 661,
+      "keilFunctionSegmentBytes": 466,
+      "mxStartupVectorBytes": 90
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mxBytes": 949,
+      "keilBytes": 704,
+      "ratio": 1.3480113636363635,
+      "gap": 245,
+      "pairs": [
+        {
+          "name": "UART2_INT",
+          "mx": 136,
+          "keil": 83,
+          "delta": 53,
+          "isr": true
+        },
+        {
+          "name": "UART1_INT",
+          "mx": 123,
+          "keil": 71,
+          "delta": 52,
+          "isr": true
+        },
+        {
+          "name": "PRINTSTRING1",
+          "mx": 35,
+          "keil": 22,
+          "delta": 13,
+          "isr": false
+        },
+        {
+          "name": "PRINTSTRING2",
+          "mx": 35,
+          "keil": 22,
+          "delta": 13,
+          "isr": false
+        },
+        {
+          "name": "TIMER0",
+          "mx": 7,
+          "keil": 3,
+          "delta": 4,
+          "isr": true
+        },
+        {
+          "name": "MAIN",
+          "mx": 196,
+          "keil": 195,
+          "delta": 1,
+          "isr": false
+        },
+        {
+          "name": "UART1_CONFIG",
+          "mx": 73,
+          "keil": 72,
+          "delta": 1,
+          "isr": false
+        },
+        {
+          "name": "SETTIMER2BAUDRAYE",
+          "mx": 22,
+          "keil": 24,
+          "delta": -2,
+          "isr": false
+        },
+        {
+          "name": "UART1_TXBYTE",
+          "mx": 7,
+          "keil": 9,
+          "delta": -2,
+          "isr": false
+        },
+        {
+          "name": "UART2_TXBYTE",
+          "mx": 7,
+          "keil": 9,
+          "delta": -2,
+          "isr": false
+        },
+        {
+          "name": "UART2_CONFIG",
+          "mx": 52,
+          "keil": 58,
+          "delta": -6,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 693,
+      "keilFunctionSegmentBytes": 577,
+      "mxStartupVectorBytes": 150
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mxBytes": 1484,
+      "keilBytes": 1002,
+      "ratio": 1.4810379241516967,
+      "gap": 482,
+      "pairs": [
+        {
+          "name": "DISPLAY",
+          "mx": 220,
+          "keil": 94,
+          "delta": 126,
+          "isr": false
+        },
+        {
+          "name": "CMP_ISR",
+          "mx": 332,
+          "keil": 212,
+          "delta": 120,
+          "isr": true
+        },
+        {
+          "name": "TIMER0",
+          "mx": 69,
+          "keil": 32,
+          "delta": 37,
+          "isr": true
+        },
+        {
+          "name": "DISPLAYSCAN",
+          "mx": 106,
+          "keil": 72,
+          "delta": 34,
+          "isr": false
+        },
+        {
+          "name": "MAIN",
+          "mx": 266,
+          "keil": 235,
+          "delta": 31,
+          "isr": false
+        },
+        {
+          "name": "EEPROM_READ_N",
+          "mx": 91,
+          "keil": 68,
+          "delta": 23,
+          "isr": false
+        },
+        {
+          "name": "EEPROM_WRITE_N",
+          "mx": 91,
+          "keil": 68,
+          "delta": 23,
+          "isr": false
+        },
+        {
+          "name": "SEND_595",
+          "mx": 31,
+          "keil": 22,
+          "delta": 9,
+          "isr": false
+        },
+        {
+          "name": "CMP_CONFIG",
+          "mx": 59,
+          "keil": 59,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "DISABLEEEPROM",
+          "mx": 19,
+          "keil": 19,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "EEPROM_SECTORERASE",
+          "mx": 37,
+          "keil": 39,
+          "delta": -2,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 1321,
+      "keilFunctionSegmentBytes": 926,
+      "mxStartupVectorBytes": 108
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mxBytes": 1283,
+      "keilBytes": 909,
+      "ratio": 1.4114411441144115,
+      "gap": 374,
+      "pairs": [
+        {
+          "name": "MAIN",
+          "mx": 360,
+          "keil": 229,
+          "delta": 131,
+          "isr": false
+        },
+        {
+          "name": "LCMIF_DMA_ISR",
+          "mx": 360,
+          "keil": 259,
+          "delta": 101,
+          "isr": true
+        },
+        {
+          "name": "INISENDCMD",
+          "mx": 29,
+          "keil": 23,
+          "delta": 6,
+          "isr": false
+        },
+        {
+          "name": "CHECKBUSY",
+          "mx": 31,
+          "keil": 26,
+          "delta": 5,
+          "isr": false
+        },
+        {
+          "name": "LCM_DMA_TRIG",
+          "mx": 63,
+          "keil": 58,
+          "delta": 5,
+          "isr": false
+        },
+        {
+          "name": "WRITE_CMD",
+          "mx": 33,
+          "keil": 31,
+          "delta": 2,
+          "isr": false
+        },
+        {
+          "name": "LCD_DELAYNOP",
+          "mx": 28,
+          "keil": 28,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "LCM_CONFIG",
+          "mx": 43,
+          "keil": 49,
+          "delta": -6,
+          "isr": false
+        },
+        {
+          "name": "INITIALIZE_LCD",
+          "mx": 70,
+          "keil": 87,
+          "delta": -17,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 1017,
+      "keilFunctionSegmentBytes": 813,
+      "mxStartupVectorBytes": 194
+    },
+    {
+      "id": "p097",
+      "name": "56-LIN总线从机收发测试-USART1",
+      "mxBytes": 2207,
+      "keilBytes": 1648,
+      "ratio": 1.3391990291262137,
+      "gap": 559,
+      "pairs": [
+        {
+          "name": "USART1_INT",
+          "mx": 138,
+          "keil": 98,
+          "delta": 40,
+          "isr": true
+        },
+        {
+          "name": "LININIT",
+          "mx": 92,
+          "keil": 69,
+          "delta": 23,
+          "isr": false
+        },
+        {
+          "name": "LINSENDCHECKSUM",
+          "mx": 66,
+          "keil": 46,
+          "delta": 20,
+          "isr": false
+        },
+        {
+          "name": "MAIN",
+          "mx": 344,
+          "keil": 325,
+          "delta": 19,
+          "isr": false
+        },
+        {
+          "name": "PUTCHAR",
+          "mx": 22,
+          "keil": 12,
+          "delta": 10,
+          "isr": false
+        },
+        {
+          "name": "LINSETBAUDRATE",
+          "mx": 45,
+          "keil": 36,
+          "delta": 9,
+          "isr": false
+        },
+        {
+          "name": "TIMER0",
+          "mx": 7,
+          "keil": 3,
+          "delta": 4,
+          "isr": true
+        },
+        {
+          "name": "UARTPUTC",
+          "mx": 16,
+          "keil": 14,
+          "delta": 2,
+          "isr": false
+        },
+        {
+          "name": "LINSENDDATA",
+          "mx": 45,
+          "keil": 46,
+          "delta": -1,
+          "isr": false
+        },
+        {
+          "name": "LINSENDBYTE",
+          "mx": 7,
+          "keil": 9,
+          "delta": -2,
+          "isr": false
+        },
+        {
+          "name": "UARTINIT",
+          "mx": 35,
+          "keil": 37,
+          "delta": -2,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 817,
+      "keilFunctionSegmentBytes": 701,
+      "mxStartupVectorBytes": 91
+    },
+    {
+      "id": "p103",
+      "name": "60-DMA-ADC采样数据自动存储/16路ADC转换使用DMA-串口返回结果-结构体存储结果",
+      "mxBytes": 1844,
+      "keilBytes": 1286,
+      "ratio": 1.4339035769828927,
+      "gap": 558,
+      "pairs": [
+        {
+          "name": "MAIN",
+          "mx": 401,
+          "keil": 242,
+          "delta": 159,
+          "isr": false
+        },
+        {
+          "name": "ADC_DMA_INTERRUPT",
+          "mx": 60,
+          "keil": 27,
+          "delta": 33,
+          "isr": true
+        },
+        {
+          "name": "DMA_CONFIG",
+          "mx": 82,
+          "keil": 74,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "PUTCHAR",
+          "mx": 20,
+          "keil": 12,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "DELAY_MS",
+          "mx": 22,
+          "keil": 22,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "UARTINIT",
+          "mx": 29,
+          "keil": 29,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "UARTPUTC",
+          "mx": 12,
+          "keil": 12,
+          "delta": 0,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 626,
+      "keilFunctionSegmentBytes": 421,
+      "mxStartupVectorBytes": 152
+    },
+    {
+      "id": "p119",
+      "name": "70-USART1作为SPI与USART2作为SPI相互通信例程",
+      "mxBytes": 678,
+      "keilBytes": 499,
+      "ratio": 1.3587174348697395,
+      "gap": 179,
+      "pairs": [
+        {
+          "name": "UART2_ISR",
+          "mx": 120,
+          "keil": 64,
+          "delta": 56,
+          "isr": true
+        },
+        {
+          "name": "UART1_ISR",
+          "mx": 110,
+          "keil": 70,
+          "delta": 40,
+          "isr": true
+        },
+        {
+          "name": "MAIN",
+          "mx": 82,
+          "keil": 55,
+          "delta": 27,
+          "isr": false
+        },
+        {
+          "name": "SYS_INIT",
+          "mx": 61,
+          "keil": 61,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "USART2_SPI_INIT",
+          "mx": 67,
+          "keil": 69,
+          "delta": -2,
+          "isr": false
+        },
+        {
+          "name": "USART1_SPI_INIT",
+          "mx": 64,
+          "keil": 68,
+          "delta": -4,
+          "isr": false
+        },
+        {
+          "name": "TEST",
+          "mx": 23,
+          "keil": 81,
+          "delta": -58,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 527,
+      "keilFunctionSegmentBytes": 474,
+      "mxStartupVectorBytes": 147
+    },
+    {
+      "id": "p122",
+      "name": "72.1-UART-SPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "mxBytes": 5568,
+      "keilBytes": 4283,
+      "ratio": 1.3000233481204764,
+      "gap": 1285,
+      "pairs": [
+        {
+          "name": "MAIN",
+          "mx": 742,
+          "keil": 422,
+          "delta": 320,
+          "isr": false
+        },
+        {
+          "name": "LCD_INIT",
+          "mx": 669,
+          "keil": 430,
+          "delta": 239,
+          "isr": false
+        },
+        {
+          "name": "KEYSCAN",
+          "mx": 548,
+          "keil": 402,
+          "delta": 146,
+          "isr": false
+        },
+        {
+          "name": "SPI_INIT",
+          "mx": 284,
+          "keil": 218,
+          "delta": 66,
+          "isr": false
+        },
+        {
+          "name": "UART1R_DMA_INTERRUPT",
+          "mx": 96,
+          "keil": 53,
+          "delta": 43,
+          "isr": true
+        },
+        {
+          "name": "UART1T_DMA_INTERRUPT",
+          "mx": 94,
+          "keil": 51,
+          "delta": 43,
+          "isr": true
+        },
+        {
+          "name": "LCMIF_DMA_INTERRUPT",
+          "mx": 70,
+          "keil": 33,
+          "delta": 37,
+          "isr": true
+        },
+        {
+          "name": "SPI_DMA_INTERRUPT",
+          "mx": 62,
+          "keil": 29,
+          "delta": 33,
+          "isr": true
+        },
+        {
+          "name": "EEPROM_READ_N",
+          "mx": 100,
+          "keil": 68,
+          "delta": 32,
+          "isr": false
+        },
+        {
+          "name": "EEPROM_WRITE_N",
+          "mx": 100,
+          "keil": 68,
+          "delta": 32,
+          "isr": false
+        },
+        {
+          "name": "UART1_CONFIG",
+          "mx": 86,
+          "keil": 60,
+          "delta": 26,
+          "isr": false
+        },
+        {
+          "name": "LCD_SETWINDOWS",
+          "mx": 91,
+          "keil": 66,
+          "delta": 25,
+          "isr": false
+        },
+        {
+          "name": "SPI_READ_P2P",
+          "mx": 145,
+          "keil": 126,
+          "delta": 19,
+          "isr": false
+        },
+        {
+          "name": "LCD_WR_DATA",
+          "mx": 60,
+          "keil": 42,
+          "delta": 18,
+          "isr": false
+        },
+        {
+          "name": "LCD_WR_REG",
+          "mx": 60,
+          "keil": 42,
+          "delta": 18,
+          "isr": false
+        },
+        {
+          "name": "EEPROM_SECTORERASE",
+          "mx": 54,
+          "keil": 39,
+          "delta": 15,
+          "isr": false
+        },
+        {
+          "name": "SETTIMER2BAUDRAYE",
+          "mx": 37,
+          "keil": 24,
+          "delta": 13,
+          "isr": false
+        },
+        {
+          "name": "LCD_DISPLAY",
+          "mx": 28,
+          "keil": 18,
+          "delta": 10,
+          "isr": false
+        },
+        {
+          "name": "CHECKFLASHBUSY",
+          "mx": 22,
+          "keil": 13,
+          "delta": 9,
+          "isr": false
+        },
+        {
+          "name": "UR1R_DMA_START",
+          "mx": 31,
+          "keil": 22,
+          "delta": 9,
+          "isr": false
+        },
+        {
+          "name": "PUTCHAR",
+          "mx": 20,
+          "keil": 12,
+          "delta": 8,
+          "isr": false
+        },
+        {
+          "name": "LCD_WR_REG16",
+          "mx": 25,
+          "keil": 20,
+          "delta": 5,
+          "isr": false
+        },
+        {
+          "name": "DELAY_MS",
+          "mx": 27,
+          "keil": 23,
+          "delta": 4,
+          "isr": false
+        },
+        {
+          "name": "TIMER0_INTERRUPT",
+          "mx": 7,
+          "keil": 3,
+          "delta": 4,
+          "isr": true
+        },
+        {
+          "name": "UART1_INT",
+          "mx": 5,
+          "keil": 1,
+          "delta": 4,
+          "isr": true
+        },
+        {
+          "name": "FLASHWRITEENABLE",
+          "mx": 37,
+          "keil": 34,
+          "delta": 3,
+          "isr": false
+        },
+        {
+          "name": "SPI_READBYTE",
+          "mx": 22,
+          "keil": 19,
+          "delta": 3,
+          "isr": false
+        },
+        {
+          "name": "SPI_WRITEBYTE",
+          "mx": 19,
+          "keil": 17,
+          "delta": 2,
+          "isr": false
+        },
+        {
+          "name": "FLASHCHECKID",
+          "mx": 98,
+          "keil": 97,
+          "delta": 1,
+          "isr": false
+        },
+        {
+          "name": "FLASHCHIPERASE",
+          "mx": 28,
+          "keil": 27,
+          "delta": 1,
+          "isr": false
+        },
+        {
+          "name": "DISABLEEEPROM",
+          "mx": 19,
+          "keil": 19,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "LCDRESET",
+          "mx": 27,
+          "keil": 27,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "TIMER0_INIT",
+          "mx": 14,
+          "keil": 14,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "UARTPUTC",
+          "mx": 12,
+          "keil": 12,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "LCD_DIRECTION",
+          "mx": 98,
+          "keil": 99,
+          "delta": -1,
+          "isr": false
+        },
+        {
+          "name": "SPI_DMA_RESET",
+          "mx": 25,
+          "keil": 27,
+          "delta": -2,
+          "isr": false
+        },
+        {
+          "name": "GPIO_INIT",
+          "mx": 104,
+          "keil": 107,
+          "delta": -3,
+          "isr": false
+        },
+        {
+          "name": "LCM_CONFIG",
+          "mx": 34,
+          "keil": 39,
+          "delta": -5,
+          "isr": false
+        },
+        {
+          "name": "LCM_DMA_CONFIG",
+          "mx": 50,
+          "keil": 57,
+          "delta": -7,
+          "isr": false
+        },
+        {
+          "name": "SPI_DMA_CONFIG",
+          "mx": 58,
+          "keil": 65,
+          "delta": -7,
+          "isr": false
+        },
+        {
+          "name": "UART1_DMA_CONFIG",
+          "mx": 63,
+          "keil": 70,
+          "delta": -7,
+          "isr": false
+        },
+        {
+          "name": "SPI_P2P_WRITE",
+          "mx": 82,
+          "keil": 91,
+          "delta": -9,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 4253,
+      "keilFunctionSegmentBytes": 3106,
+      "mxStartupVectorBytes": 156
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mxBytes": 582,
+      "keilBytes": 404,
+      "ratio": 1.4405940594059405,
+      "gap": 178,
+      "pairs": [
+        {
+          "name": "LCMIF_DMA_ISR",
+          "mx": 69,
+          "keil": 34,
+          "delta": 35,
+          "isr": true
+        },
+        {
+          "name": "MAIN",
+          "mx": 135,
+          "keil": 125,
+          "delta": 10,
+          "isr": false
+        },
+        {
+          "name": "DMA_CONFIG",
+          "mx": 83,
+          "keil": 82,
+          "delta": 1,
+          "isr": false
+        },
+        {
+          "name": "LCM_CONFIG",
+          "mx": 42,
+          "keil": 47,
+          "delta": -5,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 329,
+      "keilFunctionSegmentBytes": 288,
+      "mxStartupVectorBytes": 217
+    },
+    {
+      "id": "p146",
+      "name": "A01-如发现P32按键接地用户程序就软复位到系统区不停电下载",
+      "mxBytes": 405,
+      "keilBytes": 277,
+      "ratio": 1.4620938628158844,
+      "gap": 128,
+      "pairs": [
+        {
+          "name": "TIMER0_INT",
+          "mx": 64,
+          "keil": 16,
+          "delta": 48,
+          "isr": true
+        },
+        {
+          "name": "MAIN",
+          "mx": 172,
+          "keil": 154,
+          "delta": 18,
+          "isr": false
+        },
+        {
+          "name": "KEYRESETSCAN",
+          "mx": 44,
+          "keil": 43,
+          "delta": 1,
+          "isr": false
+        },
+        {
+          "name": "DELAY_MS",
+          "mx": 22,
+          "keil": 22,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "TIMER0_INIT",
+          "mx": 14,
+          "keil": 14,
+          "delta": 0,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 316,
+      "keilFunctionSegmentBytes": 252,
+      "mxStartupVectorBytes": 85
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mxBytes": 586,
+      "keilBytes": 423,
+      "ratio": 1.3853427895981087,
+      "gap": 163,
+      "pairs": [
+        {
+          "name": "UART_ISR",
+          "mx": 218,
+          "keil": 187,
+          "delta": 31,
+          "isr": true
+        },
+        {
+          "name": "MAIN",
+          "mx": 172,
+          "keil": 154,
+          "delta": 18,
+          "isr": false
+        },
+        {
+          "name": "DELAY_MS",
+          "mx": 22,
+          "keil": 22,
+          "delta": 0,
+          "isr": false
+        },
+        {
+          "name": "UART_INIT",
+          "mx": 30,
+          "keil": 32,
+          "delta": -2,
+          "isr": false
+        }
+      ],
+      "mxApplicationInstructionBytes": 442,
+      "keilFunctionSegmentBytes": 398,
+      "mxStartupVectorBytes": 140
+    }
+  ],
+  "divisionProbe": {
+    "results": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\division-enabled-results.json",
+      "sha256": "756297024729478452e045596115b2a7d3da78edbb508432c990b13e59037e74"
+    },
+    "script": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division_enabled.py",
+      "sha256": "fa0a35d3e72639daa83024b110021564c82ffa0d31b1915f5ba7d6f22b15b307"
+    },
+    "environment": {
+      "MX251_WIDE_UNSIGNED_DIVISION": "1"
+    },
+    "hardwareExecuted": false,
+    "unifiedPackageChanged": false,
+    "savedBytes": 554,
+    "rows": [
+      {
+        "id": "p011",
+        "parentBytes": 806,
+        "payloadBytes": 806,
+        "keilBytes": 542,
+        "savedBytes": 0,
+        "ratio": 1.4870848708487086,
+        "wideDivisionAdmitted": false,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p011\\division-enabled\\firmware.hex",
+          "sha256": "1407499501f7d8eba083717c04ce58349d2095301b77462c897e7199b0babbea"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 114,
+            "wideRefusal": "ordered-asm-core-state-write",
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir fallback: main",
+              "wide refusal function=main stage=import reason=ordered-asm-core-state-write source-line=46 icode=10 opcode=361 values=1 nodes=5 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_Display",
+            "bytes": 220,
+            "wideRefusal": "semantic-import-contract",
+            "divisionDeferred": true,
+            "diagnostics": [
+              "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1",
+              "mcs251 wide-mir fallback: Display",
+              "wide refusal function=Display stage=import reason=semantic-import-contract source-line=1048 icode=22 opcode=47 values=15 nodes=25 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "p039",
+        "parentBytes": 1763,
+        "payloadBytes": 1507,
+        "keilBytes": 1105,
+        "savedBytes": 256,
+        "ratio": 1.3638009049773756,
+        "wideDivisionAdmitted": true,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p039\\division-enabled\\firmware.hex",
+          "sha256": "59fbdab1ee25fec9a3a425c76a241e078c715bb0d7c1160f0b5c226a2d106c90"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 367,
+            "wideRefusal": "ordered-asm-core-state-write",
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir fallback: main",
+              "wide refusal function=main stage=import reason=ordered-asm-core-state-write source-line=46 icode=10 opcode=361 values=1 nodes=5 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_get_temperature",
+            "bytes": 418,
+            "wideRefusal": null,
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir accepted: get_temperature; values=69 nodes=111 frame=0 folded-casts=2"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "p045",
+        "parentBytes": 1277,
+        "payloadBytes": 1277,
+        "keilBytes": 832,
+        "savedBytes": 0,
+        "ratio": 1.5348557692307692,
+        "wideDivisionAdmitted": false,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p045\\division-enabled\\firmware.hex",
+          "sha256": "e470d7f4101313f271ea1edbf9a8a85fc98ecbf988cc43e715b5c8f3799ebd7c"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 276,
+            "wideRefusal": "ordered-asm-core-state-write",
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir fallback: main",
+              "wide refusal function=main stage=import reason=ordered-asm-core-state-write source-line=46 icode=10 opcode=361 values=1 nodes=5 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_Display",
+            "bytes": 220,
+            "wideRefusal": "semantic-import-contract",
+            "divisionDeferred": true,
+            "diagnostics": [
+              "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1",
+              "mcs251 wide-mir fallback: Display",
+              "wide refusal function=Display stage=import reason=semantic-import-contract source-line=1048 icode=22 opcode=47 values=15 nodes=25 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "p049",
+        "parentBytes": 1484,
+        "payloadBytes": 1484,
+        "keilBytes": 1002,
+        "savedBytes": 0,
+        "ratio": 1.4810379241516967,
+        "wideDivisionAdmitted": false,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p049\\division-enabled\\firmware.hex",
+          "sha256": "e6b6540604e95a61223664113f89e79835119bfb408364ed06b1380659e2db48"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 266,
+            "wideRefusal": "ordered-asm-core-state-write",
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir fallback: main",
+              "wide refusal function=main stage=import reason=ordered-asm-core-state-write source-line=46 icode=10 opcode=361 values=1 nodes=5 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_Display",
+            "bytes": 220,
+            "wideRefusal": "semantic-import-contract",
+            "divisionDeferred": true,
+            "diagnostics": [
+              "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1",
+              "mcs251 wide-mir fallback: Display",
+              "wide refusal function=Display stage=import reason=semantic-import-contract source-line=1048 icode=22 opcode=47 values=15 nodes=25 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "p059",
+        "parentBytes": 3891,
+        "payloadBytes": 3635,
+        "keilBytes": 3210,
+        "savedBytes": 256,
+        "ratio": 1.132398753894081,
+        "wideDivisionAdmitted": true,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p059\\division-enabled\\firmware.hex",
+          "sha256": "14988ef3561bde4048bcd147c34ec49317e3f96249c89ff051eaf995855e5d8e"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 20,
+            "wideRefusal": "ordered-asm-core-state-write",
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir fallback: main",
+              "wide refusal function=main stage=import reason=ordered-asm-core-state-write source-line=46 icode=10 opcode=361 values=1 nodes=5 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_Sample_NTC",
+            "bytes": 213,
+            "wideRefusal": "semantic-import-contract",
+            "divisionDeferred": true,
+            "diagnostics": [
+              "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1",
+              "mcs251 wide-mir fallback: Sample_NTC",
+              "wide refusal function=Sample_NTC stage=import reason=semantic-import-contract source-line=1048 icode=47 opcode=47 values=13 nodes=31 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_get_temperature",
+            "bytes": 418,
+            "wideRefusal": null,
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir accepted: get_temperature; values=69 nodes=111 frame=0 folded-casts=2"
+            ]
+          },
+          {
+            "name": "_DisplayRTC",
+            "bytes": 63,
+            "wideRefusal": "semantic-import-contract",
+            "divisionDeferred": true,
+            "diagnostics": [
+              "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1",
+              "mcs251 wide-mir fallback: DisplayRTC",
+              "wide refusal function=DisplayRTC stage=import reason=semantic-import-contract source-line=1048 icode=8 opcode=47 values=6 nodes=10 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "p071",
+        "parentBytes": 34374,
+        "payloadBytes": 34374,
+        "keilBytes": 33926,
+        "savedBytes": 0,
+        "ratio": 1.0132052113423333,
+        "wideDivisionAdmitted": false,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p071\\division-enabled\\firmware.hex",
+          "sha256": "5d79ba26e488d3e52a0d5682631024a6dd4eec87ec20c9ec58d4a50a054dcafa"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 149,
+            "wideRefusal": "ordered-asm-core-state-write",
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir fallback: main",
+              "wide refusal function=main stage=import reason=ordered-asm-core-state-write source-line=46 icode=10 opcode=361 values=1 nodes=5 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          },
+          {
+            "name": "_TxErrorAddress",
+            "bytes": 164,
+            "wideRefusal": "semantic-import-contract",
+            "divisionDeferred": true,
+            "diagnostics": [
+              "wide division deferred result=1/0 left=1/0 right=1/0 literal=10 value=-1",
+              "mcs251 wide-mir fallback: TxErrorAddress",
+              "wide refusal function=TxErrorAddress stage=import reason=semantic-import-contract source-line=1048 icode=47 opcode=47 values=23 nodes=36 value-limit=512 node-limit=2048 objects=0 frame=0"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "p128",
+        "parentBytes": 4349,
+        "payloadBytes": 4307,
+        "keilBytes": 3938,
+        "savedBytes": 42,
+        "ratio": 1.0937023869984763,
+        "wideDivisionAdmitted": true,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\focus140\\division-probe\\p128\\division-enabled\\firmware.hex",
+          "sha256": "6009a0a9fe10d835ab5b049a4eed611b2476be5a2ec604987a10625873f7a194"
+        },
+        "arithmeticFunctions": [
+          {
+            "name": "_main",
+            "bytes": 291,
+            "wideRefusal": null,
+            "divisionDeferred": false,
+            "diagnostics": [
+              "mcs251 wide-mir accepted: main; values=50 nodes=110 frame=0 folded-casts=0"
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceCopiesByteIdenticalToBaseline": true
+  },
+  "notes": [
+    "Keil function-segment bytes may contain tables; MX application counts are bound instructions.",
+    "Save instruction bytes and affected body bytes are not removable-byte estimates.",
+    "The first CMake-level environment probe was filtered by Build-CMake.ps1 and produced identical HEX; effective results invoke Build.ps1 directly with the recorded environment.",
+    "Baseline acceptance counts remain 45 within120 and 30 within110; experimental outputs do not replace the unified package."
+  ]
+}
