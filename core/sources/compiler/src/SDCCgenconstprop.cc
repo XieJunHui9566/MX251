@@ -789,8 +789,10 @@ static void update_out_edges (cfg_t &G, unsigned int i, int key_false, int key_t
       G[*out].map[opkey] = v_false;
 }
 
+#include "mcs251/branch_facts.cc.inc"
+
 static void
-recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<unsigned int>, std::set<unsigned int> > &todo, const valinfos &global_operands, const std::map <int, sym_link *>& global_types, bool externchange, int end_it_quickly)
+recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<unsigned int>, std::set<unsigned int> > &todo, const valinfos &global_operands, const std::map <int, sym_link *>& global_types, bool externchange, int end_it_quickly, const mcs251_branch_facts &branch_facts)
 {
   iCode *const ic = G[i].ic;
   bool change = externchange;
@@ -906,6 +908,7 @@ recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<u
                 }
             }
         }
+      branch_facts.refine (G, i);
       break;
     default:
       G[*out] = *ic->valinfos;
@@ -1149,6 +1152,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
   cfg_t G;
 
   create_cfg_genconstprop(G, sic, ebbi);
+  mcs251_branch_facts branch_facts (G, ebbi);
 
   std::pair <std::queue<unsigned int>, std::set<unsigned int> > todo; // Nodes where valinfos need to be updated. We need a pair of a queue and a set to implement a queue with uniqe entries. A plain set wouldn't work, as we'd be working on some nodes all the time while never getting to others before we reach the round limit.
   valinfos global_operands;                // Set of operands that are global or had their address taken, and thus need to be invalidated at every potential pointer write (or function call).
@@ -1191,7 +1195,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
         }
     }
   for (unsigned int i = 0; i < boost::num_vertices (G); i++)
-    recompute_node (G, i, ebbi, todo, global_operands, global_types, true, 0);
+    recompute_node (G, i, ebbi, todo, global_operands, global_types, true, 0, branch_facts);
 
   // Forward pass to get first approximation.
   for (unsigned long round = 0; !todo.first.empty (); round++)
@@ -1205,7 +1209,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
       std::cout << "Round " << round << " node " << i << " ic " << G[i].ic->key << "\n"; std::cout.flush();
 #endif
 
-      recompute_node (G, i, ebbi, todo, global_operands, global_types, false, (round >= max_rounds) + (round >= max_rounds * 2));
+      recompute_node (G, i, ebbi, todo, global_operands, global_types, false, (round >= max_rounds) + (round >= max_rounds * 2), branch_facts);
     }
 
   // Refinement backward pass.
