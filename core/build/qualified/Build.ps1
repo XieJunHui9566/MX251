@@ -418,7 +418,7 @@ try {
  $formatRuntimeRecord=Invoke-Mx251FormatRuntime $outputRoot $config $toolRoot $args $formatArchives
  Write-Json (Join-Path $outputRoot 'format-runtime.json') $formatRuntimeRecord
  . (Join-Path $PSScriptRoot 'StartupRuntime.ps1')
- $startupRuntimeRecord=Invoke-Mx251StartupRuntime $outputRoot $config $toolRoot
+ $startupRuntimeRecord=Invoke-Mx251StartupRuntime $outputRoot $config $toolRoot $formatArchives
  Write-Json (Join-Path $outputRoot 'startup-runtime.json') $startupRuntimeRecord
  # 成功退出仍需核对完整HEX和真实SSEG后，才发布最终固件名称。
  $hex=Join-Path $outputRoot 'linked.partial.hex';$memory=@{};$base=0L;$eof=$false

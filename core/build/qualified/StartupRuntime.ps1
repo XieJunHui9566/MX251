@@ -168,14 +168,24 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
  return @{replacements=$replace;archive=$archive[0];map=$map;inputs=$inputs;rawVectors=$rawVectors;sectionBytes=$sizes;selectedObjectCount=$objects.Count}
 }
 
-function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot) {
+function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$AdditionalArchives=@{}) {
  $record=[ordered]@{schema=1;status='FALLBACK_FULL_STARTUP';applied=$false;hardwareExecuted=$false};$saved=@();$accepted=$false
  try {
   . (Join-Path $PSScriptRoot 'StartupArchive.ps1')
   $contractPath=Join-Path $PSScriptRoot 'StartupRuntimeContract.json';$contract=Get-Content -LiteralPath $contractPath -Raw|ConvertFrom-Json -AsHashtable
   if($contract.schema -ne 1 -or $contract.contract -cne 'mx251.empty-crt-state-preservation.v1'){throw 'startup-contract-mismatch'}
   $record.contractSha256=Hash-File $contractPath
-  if((Hash-File (Join-Path $ToolRoot 'bin/sdas251.exe')) -cne $contract.assemblerSha256){throw 'startup-unqualified-assembler'}
+  $assemblers=@($contract.assemblerSha256)
+  if($contract.ContainsKey('compatibleAssemblerSha256')){$assemblers+=@($contract.compatibleAssemblerSha256)}
+  if((Hash-File (Join-Path $ToolRoot 'bin/sdas251.exe')) -cnotin $assemblers){throw 'startup-unqualified-assembler'}
+  # Profile-owned arithmetic archives use the same member/state analysis as CRT libraries.
+  foreach($entry in $AdditionalArchives.GetEnumerator()){
+   if((Hash-File $entry.Key) -cne $entry.Value){throw 'startup-additional-library-drift'}
+   $relative=[IO.Path]::GetRelativePath($ToolRoot,$entry.Key).Replace('\','/')
+   $members=@{};foreach($member in @(Read-Mx251StartupArchive $entry.Key)){$members[$member.name]=$member.sha256}
+   $contract.archives[$relative]=@{sha256=$entry.Value;members=$members}
+  }
+  $record.additionalArchives=$AdditionalArchives
   $prior=@($commands|Where-Object{$_.label -ceq 'link'});if($prior.Count -ne 1){throw 'startup-ambiguous-link-command'};$prior=$prior[0]
   $linkArgs=@($prior.arguments);if($linkArgs[-2] -cne '-o' -or $linkArgs[-1] -cne 'linked.partial.hex'){throw 'startup-unexpected-link-output'}
   $selection=Get-Mx251StartupSelection (Join-Path $Root 'linked.partial.map') $ToolRoot $contract

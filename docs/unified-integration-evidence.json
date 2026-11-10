@@ -1,0 +1,113 @@
+{
+  "compilerSourceCommit": "961e551",
+  "compilerSha256": "c62fc14e9a6eed7eb62227f4cea78b533bf9aeeab50051377c1c96b75dfe013b",
+  "startupAssembler": {
+    "status": "PASS",
+    "mxAssembler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-unified-20261110-r2\\core\\toolchain\\bin\\sdas251.exe",
+      "sha256": "e5fa3df365111579807fd4d993ec6fcb408a1f0bff33be58e2a7d12078bdebc5"
+    },
+    "keilAssembler": {
+      "path": "E:\\MCU\\Keil5\\C251\\BIN\\A251.EXE",
+      "sha256": "139f4c2f6f6ae14b95465c8d0a8d2959e6666dc7f6afb4a7591304cdab4513b6"
+    },
+    "templates": [
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-unified-20261110-r2\\core\\build\\qualified\\startup-templates\\crtxinit.asm",
+        "sha256": "66c32498ef0c775ea14fbc29582dad48e76c8ab0b5f8a579800350361187eb96"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-unified-20261110-r2\\core\\build\\qualified\\startup-templates\\crtxclear.asm",
+        "sha256": "71d869e8f05565b5e2f04e1e3fed252e6c5a212acd58735f2eea021e07ed5795"
+      }
+    ],
+    "rows": [
+      {
+        "address": 0,
+        "instructionCount": 11,
+        "bytes": "9000007584007f1e9000007584007e380000be3800009000007584007e380000be380000",
+        "equal": true
+      },
+      {
+        "address": 65535,
+        "instructionCount": 11,
+        "bytes": "90ffff7584007f1e90ffff7584007e380000be38000090ffff7584007e380000be380000",
+        "equal": true
+      },
+      {
+        "address": 65536,
+        "instructionCount": 11,
+        "bytes": "9000007584017f1e9000007584017e380000be3800009000007584017e380000be380000",
+        "equal": true
+      },
+      {
+        "address": 16716340,
+        "instructionCount": 11,
+        "bytes": "9012347584ff7f1e9012347584ff7e380000be3800009012347584ff7e380000be380000",
+        "equal": true
+      },
+      {
+        "address": 16777215,
+        "instructionCount": 11,
+        "bytes": "90ffff7584ff7f1e90ffff7584ff7e380000be38000090ffff7584ff7e380000be380000",
+        "equal": true
+      }
+    ],
+    "instructions": 55
+  },
+  "vectorParser": {
+    "status": "PASS",
+    "resolvedJumps": 24,
+    "baseline": "E:/STVAPP/MX251-mainline-20261110/unified75/projects/p104/mx251/.build/mx251/latest",
+    "checks": [
+      {
+        "case": "shared-trampoline",
+        "reason": "",
+        "status": "PASS"
+      },
+      {
+        "case": "direct-vector",
+        "reason": "",
+        "status": "PASS"
+      },
+      {
+        "case": "cycle",
+        "reason": "format-raw-vector-cycle",
+        "status": "PASS"
+      },
+      {
+        "case": "unregistered-terminal",
+        "reason": "format-raw-jump-outside-registered-vector",
+        "status": "PASS"
+      },
+      {
+        "case": "unknown-code",
+        "reason": "format-unknown-raw-instruction",
+        "status": "PASS"
+      },
+      {
+        "case": "duplicate-source",
+        "reason": "format-raw-overlapping-jump",
+        "status": "PASS"
+      }
+    ]
+  },
+  "projects": {
+    "p104": {
+      "beforeBytes": 7631,
+      "afterBytes": 1239,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p104\\mx251\\result.json",
+        "sha256": "cbe96737eb6326f3c05f9a6891064390d029c13a5e89aeb0f960931d327e7dc9"
+      }
+    },
+    "p107": {
+      "beforeBytes": 7869,
+      "afterBytes": 1110,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p107\\mx251\\result.json",
+        "sha256": "c6aacffa93ad68f7a10df8209b5d7145dc53c0b47a444c33ca3755883ab77bb2"
+      }
+    }
+  }
+}

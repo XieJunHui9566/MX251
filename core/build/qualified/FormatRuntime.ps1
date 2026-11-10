@@ -51,17 +51,31 @@ function Get-Mx251FormatRawVectors([string]$Root,$Unit,$formatHome,$Slots) {
  foreach($raw in [IO.File]::ReadAllLines($path)){
   $code=($raw -split ';',2)[0].Trim();if(-not $code){continue}
   if($code -cmatch '^\.module\s+[A-Za-z_.$][A-Za-z_.$0-9]*$'){continue}
+  if($area -ceq 'absolute' -and $code -cmatch '^[A-Za-z_.$][A-Za-z_.$0-9]*:$'){continue}
   if($code -cmatch '^\.area\s+([A-Za-z_.$][A-Za-z_.$0-9]*)\s+\(ABS,CODE\)$'){$area='absolute';$at=$null;continue}
   if($code -cmatch '^\.area\s+HOME\s+\(CODE\)$'){$area='home';$at=$null;continue}
   if($area -ceq 'absolute' -and $code -cmatch '^\.org\s+(0x[0-9a-fA-F]+|[0-9]+)$'){$at=if($Matches[1].StartsWith('0x')){[Convert]::ToInt64($Matches[1].Substring(2),16)}else{[long]$Matches[1]};continue}
   if($area -ceq 'home' -and $code -cmatch '^\.ds\s+(0x[0-9a-fA-F]+|[0-9]+)$'){$reserved+=if($Matches[1].StartsWith('0x')){[Convert]::ToInt64($Matches[1].Substring(2),16)}else{[long]$Matches[1]};continue}
   if($area -ceq 'absolute' -and $null -ne $at -and $code -cmatch '^ljmp\s+(0x[0-9a-fA-F]+|[0-9]+)$'){
    $target=if($Matches[1].StartsWith('0x')){[Convert]::ToInt64($Matches[1].Substring(2),16)}else{[long]$Matches[1]}
-   $offset=$target-$formatHome.base-3
-   if($at -lt $formatHome.base -or $at+3 -gt $formatHome.base+$formatHome.size -or $offset -lt 0 -or $offset%8 -or -not $Slots.Contains([int]($offset/8)) -or ($at -shr 16) -ne ($target -shr 16)){throw 'format-raw-jump-outside-registered-vector'}
-   $jumps+=@{source=$at;target=$target;slot=[int]($offset/8)};$at+=3;continue
+   if($at -lt $formatHome.base -or $at+3 -gt $formatHome.base+$formatHome.size -or ($at -shr 16) -ne ($target -shr 16)){throw 'format-raw-jump-outside-registered-vector'}
+   $jumps+=@{source=$at;encodedTarget=$target;target=$target};$at+=3;continue
   }
   throw 'format-unknown-raw-instruction'
+ }
+ # Numeric vector stubs may share a trampoline before reaching a registered C ISR.
+ # Retain every original jump byte; the terminal target is used for post-link checks.
+ $edges=@{}
+ foreach($jump in $jumps){if($edges.ContainsKey($jump.source)){throw 'format-raw-overlapping-jump'};$edges[$jump.source]=$jump.encodedTarget}
+ foreach($jump in $jumps){
+  $target=$jump.encodedTarget;$seen=[Collections.Generic.HashSet[long]]::new()
+  while($edges.ContainsKey($target)){
+   if(-not $seen.Add($target)){throw 'format-raw-vector-cycle'}
+   $target=$edges[$target]
+  }
+  $offset=$target-$formatHome.base-3
+  if($offset -lt 0 -or $offset%8 -or -not $Slots.Contains([int]($offset/8))){throw 'format-raw-jump-outside-registered-vector'}
+  $jump.target=$target;$jump.slot=[int]($offset/8)
  }
  if(-not $jumps.Count -or $reserved -gt $formatHome.size){throw 'format-raw-reservation-unproved'}
  return @{unit=$Unit.name;assembly=$Unit.file;sha256=(Hash-File $path);jumps=$jumps;reserved=$reserved}
@@ -325,7 +339,7 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
    $formatHome=Get-Mx251FormatHome (Join-Path $Root 'linked.partial.map')
    if($formatHome.base -ne $demand.home.base -or $formatHome.size -ne $demand.home.size){throw 'format-raw-home-layout-changed'}
    foreach($raw in $demand.rawVectors){foreach($jump in $raw.jumps){
-    $expected=@(2,(($jump.target -shr 8) -band 255),($jump.target -band 255))
+    $expected=@(2,(($jump.encodedTarget -shr 8) -band 255),($jump.encodedTarget -band 255))
     for($i=0;$i -lt 3;$i++){
      $at=$jump.source+$i
      if(-not $parentImage.ContainsKey($at) -or -not $candidateImage.ContainsKey($at) -or $parentImage[$at] -ne $expected[$i] -or $candidateImage[$at] -ne $expected[$i]){throw 'format-raw-jump-bytes-changed'}
