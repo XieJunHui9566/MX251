@@ -55,6 +55,17 @@ unsigned long work(unsigned long x) {
    assert 'wide-mir fallback: work' in text,(root,name)
    _,old=compile(source,a.baseline,cap,name+'-old')
    assert obj==old,(root,name)
-  rows.append(dict(model=model,optimization=opt,accessOrder=True,optOutMatches=True,excludedMatches=True))
+  source='''void output(unsigned char a,unsigned char b) __sdcccall(4);
+volatile __data unsigned char index;
+void poll(void) {
+ unsigned char n=0;
+ __asm clr 0xaf.7 __endasm;
+ while(index && n<32) { output(3,n); ++n; }
+ __asm setb 0xaf.7 __endasm;
+}
+'''
+  text,_=compile(source,a.sdcc,cap,'native-call')
+  assert 'mx251-body-choice function=_poll selected=' in text,(root,'native-call comparison missing')
+  rows.append(dict(model=model,optimization=opt,accessOrder=True,optOutMatches=True,excludedMatches=True,nativeCallCompared=True))
 (a.output/'results.json').write_text(json.dumps(rows,indent=2)+'\n',newline='\n')
 print('PASS: 4 configurations; exact bit identity/access order, opt-out and core/unknown exclusions')

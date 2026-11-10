@@ -21,6 +21,12 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
   if(!currFunc || FUNC_SDCCCALL(currFunc->type)!=2 ||
      mcs251InternalReturn(currFunc) || mcs251InternalArgument(currFunc) ||
      IFFUNC_ISISR(currFunc->type) || options.debug)return false;
+  bool ordered=false;
+  if(mcs251OrderedAsmEnabled)for(int b=0;b<ebbi->count;++b) {
+    eBBlock *bb=ebbi->bbOrder[b];
+    for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
+      if(ic->op==INLINEASM)ordered=true;
+  }
   unsigned entries=0,ends=0,returns=0;
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
@@ -35,7 +41,9 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
       if(ic->op==CALL) {
         operand *op=IC_LEFT(ic);
         if(!op || !IS_SYMOP(op) || !IS_FUNC(operandType(op)) ||
-           FUNC_SDCCCALL(operandType(op))!=2 || (!narrowTrial && OP_SYMBOL(op)->cdef) ||
+           (FUNC_SDCCCALL(operandType(op))!=2 &&
+            !(ordered && FUNC_SDCCCALL(operandType(op))==4)) ||
+           (!narrowTrial && OP_SYMBOL(op)->cdef) ||
            mcs251InternalReturn(OP_SYMBOL(op)) || mcs251InternalArgument(OP_SYMBOL(op)))return false;
       }
     }
