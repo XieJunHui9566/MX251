@@ -1,6 +1,7 @@
 # 推导普通 bank-0 R0..R31 的 may-write 上界，不推导净效果或省略内存访问。
 # 未知目标、别名、指令和间接调用逐函数退回全破坏。
 . (Join-Path $PSScriptRoot 'CalleePreservation.ps1')
+. (Join-Path $PSScriptRoot 'CallAddressFacts.ps1')
 function New-Mx251OrdinalMap { return ,([hashtable]::new([StringComparer]::Ordinal)) }
 function Get-Mx251Numeric([string]$Text) {
  $t=$Text.Trim()
@@ -115,6 +116,7 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
   return $reg.mask
  }
  if($lower -cmatch '^@spx(?:[+-](?:0x[0-9a-f]+|[0-9]+))?$'){return 0}
+ if(Test-Mx251FactStore $lower $Width $State.addressFacts){return 0}
  if($lower -eq '@dpx'){
   if($null -eq $State.low -or $null -eq $State.high){throw 'unknown-indirect-write'}
   $address=([long]$State.high -shl 16) -bor [long]$State.low
@@ -130,7 +132,7 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
  if($null -eq $address){throw 'unresolved-direct-write'}
  return (Get-Mx251DirectGprMask $address $Width $State)
 }
-function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null) {
+function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAddressFacts) {
  $labels=New-Mx251OrdinalMap;$calls=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
  foreach($m in [regex]::Matches($Body,'(?m)^\s*([A-Za-z_.$0-9]+):{1,2}\s*$')){$labels[$m.Groups[1].Value]=$true}
  # Call discovery is independent of the caller's own write summary. An
@@ -141,9 +143,12 @@ function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null) {
   $m=[regex]::Match($line,'^(ecall|lcall|acall|ljmp|ejmp)\s+([A-Za-z_.$][A-Za-z_.$0-9]*)$')
   if($m.Success -and ($m.Groups[1].Value -in @('ecall','lcall','acall') -or -not $labels.ContainsKey($m.Groups[2].Value))){$null=$calls.Add($m.Groups[2].Value)}
  }
+ $facts=if($WithAddressFacts){Get-Mx251CfgAddressFacts $Body $Aliases $Objects}else{@{}}
+ $lineIndex=-1
  $mask=0;$count=0;$state=@{low=$null;high=$null;constants=@{};objects=$Objects};$reason=$null
  try {
   foreach($raw in $Body.Split("`n")) {
+   ++$lineIndex;$state.addressFacts=$facts[$lineIndex]
    $line=($raw -split ';',2)[0].Trim();if(-not $line){continue}
    if($line -cmatch '^[A-Za-z_.$0-9]+:{1,2}$'){$state.low=$null;$state.high=$null;$state.constants.Clear();continue}
    if($line -cmatch '^[A-Za-z_.$][A-Za-z_.$0-9]*\s*=\s*(0x[0-9a-fA-F]+|[0-9]+)$'){continue}
@@ -216,6 +221,7 @@ function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null) {
    throw ('unknown-instruction:'+ $op)
   }
  } catch {$reason=$_.Exception.Message;$mask=4294967295L}
+ if($reason -eq 'unknown-indirect-write' -and -not $WithAddressFacts -and $env:MX251_CFG_ADDRESS_EFFECTS -ne '0'){return (Get-Mx251BankBody $Body $Aliases $Objects -WithAddressFacts)}
  return @{writes=$mask;calls=@($calls);reason=$reason;instructions=$count;failureLine=$(if($reason){$line}else{$null})}
 }
 # Object references retain an extent instead of receiving a made-up numeric
