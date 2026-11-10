@@ -1,0 +1,256 @@
+{
+  "schema": 1,
+  "implementationCommit": "c608289cdd7aa8057761e286713ab08d49935036",
+  "baseCommit": "155d2bf",
+  "fixtureFixCommit": "68eeaa2",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\core-01\\core.json",
+    "sha256": "5d812198ef877fa2cad5408d94b230d9060bee64956097f8d5bfa4f42728e98d"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "169ee3e85b0cce220bb1f4a44a4306a27a05503687c638293352ec62d85da44d"
+  },
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\qualification.json",
+    "sha256": "6a43d4a9713fd74d393c8370d4d99461bed0eaf545fb48a0104c4fb118ff0aff"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\comparison.json",
+    "sha256": "b2f37cfde5b2c28fc1b19b36c98b4ac9a60f728f57e31f56106526160d002846"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 6,
+    "unchanged": 69,
+    "larger": 0,
+    "savedBytes": 245,
+    "mxTotalBytes": 205569,
+    "keilTotalBytes": 192051,
+    "within110": 49,
+    "within120": 63,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.070387553306153
+  },
+  "newWithin": {
+    "110": [],
+    "120": [
+      "p015"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  },
+  "isrCount": 109,
+  "smallerIsrs": 8,
+  "changedIsrs": [
+    {
+      "id": "p015",
+      "name": "_INT2_int",
+      "parentBytes": 51,
+      "codeBytes": 8,
+      "savedBytes": 43,
+      "parentSaveBytes": 44,
+      "saveBytes": 4,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_INT2_int removed-bytes=43 stack-saved=22 core-reads=00000000 core-writes=00000000 special-reads=0 special-writes=0 flags=0 calls=0 psw1=retained frame=private inline-bits=1 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p015",
+      "name": "_INT3_int",
+      "parentBytes": 51,
+      "codeBytes": 8,
+      "savedBytes": 43,
+      "parentSaveBytes": 44,
+      "saveBytes": 4,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_INT3_int removed-bytes=43 stack-saved=22 core-reads=00000000 core-writes=00000000 special-reads=0 special-writes=0 flags=0 calls=0 psw1=retained frame=private inline-bits=1 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p015",
+      "name": "_INT4_int",
+      "parentBytes": 51,
+      "codeBytes": 8,
+      "savedBytes": 43,
+      "parentSaveBytes": 44,
+      "saveBytes": 4,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_INT4_int removed-bytes=43 stack-saved=22 core-reads=00000000 core-writes=00000000 special-reads=0 special-writes=0 flags=0 calls=0 psw1=retained frame=private inline-bits=1 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p032",
+      "name": "_UART2_int",
+      "parentBytes": 136,
+      "codeBytes": 116,
+      "savedBytes": 20,
+      "parentSaveBytes": 60,
+      "saveBytes": 40,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p047",
+      "name": "_CMP_Isr",
+      "parentBytes": 63,
+      "codeBytes": 27,
+      "savedBytes": 36,
+      "parentSaveBytes": 48,
+      "saveBytes": 12,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_CMP_Isr removed-bytes=36 stack-saved=21 core-reads=00000800 core-writes=00000800 special-reads=0 special-writes=0 flags=1 calls=0 psw1=retained frame=private inline-bits=1 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p087",
+      "name": "_uart2_isr",
+      "parentBytes": 122,
+      "codeBytes": 102,
+      "savedBytes": 20,
+      "parentSaveBytes": 60,
+      "saveBytes": 40,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_uart2_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p095",
+      "name": "_uart2_isr",
+      "parentBytes": 122,
+      "codeBytes": 102,
+      "savedBytes": 20,
+      "parentSaveBytes": 60,
+      "saveBytes": 40,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_uart2_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "p119",
+      "name": "_uart2_isr",
+      "parentBytes": 120,
+      "codeBytes": 100,
+      "savedBytes": 20,
+      "parentSaveBytes": 60,
+      "saveBytes": 40,
+      "proof": [
+        "mx251-leaf-isr-saves schema=2 symbol=_uart2_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    }
+  ],
+  "isrAttribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\isr-attribution.json",
+    "sha256": "6a21f156c6ee3e51d2860f9882b58b3b3fe00bcc7c821000c50f8897f58f5fb8"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 224,
+      "codeBytes": 4158,
+      "port": "COM13",
+      "serial": "82941086",
+      "snapshotAddress": 36,
+      "isrs": [
+        {
+          "name": "_context_irq",
+          "bytes": 57,
+          "proof": []
+        },
+        {
+          "name": "_context_leaf_irq",
+          "bytes": 128,
+          "proof": []
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\capture-reserved-parent\\result.json",
+        "sha256": "2c2f15f309676590854cb4a60605596ee086aa5d51bc9093bf91bfea7d051469"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\capture-reserved-parent\\uart.bin",
+        "sha256": "af2e94e906600f4b4eac831ebee859901c967f67138fed83767c6d020cb5a8ab"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\board-reserved-parent\\receipt.json",
+        "sha256": "aadfa5747e758010a792514e2b9246b1d3cb26fac313e17e89d977037aa5e081"
+      }
+    },
+    {
+      "variant": "new",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 255,
+      "codeBytes": 4095,
+      "port": "COM13",
+      "serial": "82941086",
+      "snapshotAddress": 36,
+      "isrs": [
+        {
+          "name": "_context_irq",
+          "bytes": 14,
+          "proof": [
+            "mx251-leaf-isr-saves schema=2 symbol=_context_irq removed-bytes=43 stack-saved=22 core-reads=00000000 core-writes=00000000 special-reads=0 special-writes=0 flags=0 calls=0 psw1=retained frame=private inline-bits=3 compiler-proof=body-effects"
+          ]
+        },
+        {
+          "name": "_context_leaf_irq",
+          "bytes": 108,
+          "proof": [
+            "mx251-leaf-isr-saves schema=2 symbol=_context_leaf_irq removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=3 compiler-proof=body-effects"
+          ]
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\capture-reserved-new\\result.json",
+        "sha256": "20b478b4ad724586a6a5ba87867a58a6ed8780232a1c47f5c5dacbedd9cae260"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\capture-reserved-new\\uart.bin",
+        "sha256": "0753d6419bf78c9baefb0a9779cc45a1a6382b04d32d9689f976389ddce0cbc9"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\board-reserved-new\\receipt.json",
+        "sha256": "f31d376167e7da1eedaed83b5f36fe78db1783b634cfff9fbb1ef1a76711476f"
+      }
+    }
+  ],
+  "fixtureSourceInputsIdentical": true,
+  "compilerChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\isr-checks-02\\results.json",
+    "sha256": "e27a8363ba5e0a6bb42b30cc1f087f7db39e2567dcf326e58ca27699a0258a8c"
+  },
+  "compilerCheckCount": 112,
+  "hardwareFixture": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\isr_bit_saves_fixture.py",
+    "sha256": "e7d540f8c92a32963dc1f93708fd84d6bdd82df9494736576d093a3be7d53c41"
+  },
+  "fixtureIssue": {
+    "reason": "Snapshot buffer at 0x0c overlapped classic bank 1; the old compiler produced the same failing digest. Reserving 24 DATA bytes moves it to 0x24.",
+    "oldCapture": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\capture-parent\\uart.bin",
+      "sha256": "b5f00c5b5cd4d172a2f5bb8e9783800eba5161810c29ae095a64b4f63e511fe8"
+    },
+    "newCapture": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\capture-final\\uart.bin",
+      "sha256": "e460376edc3ab57b1f731d72b61c76c57915df8d9caf8d04d3c3907e61035247"
+    }
+  },
+  "sourceAlgorithmsChanged": false,
+  "fullProjectRuntimeMeasured": false,
+  "interruptTicksUsedForPerformance": false,
+  "reportRecipe": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-peripheral-bits\\finish.py",
+    "sha256": "12fa634e83dbe4551ee0d28ba80c4058a2a7df6a0e79df248a9e38788a254977"
+  }
+}
