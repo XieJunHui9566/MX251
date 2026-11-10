@@ -13,10 +13,10 @@ function Get-Mx251TargetContract([string]$Target) {
 # 未知目标能力保持关闭；不能从芯片名称或 SDK 名称推断准入。
 function Get-Mx251OrderedAsm($Contract,[string]$Requested) {
  Choice $Requested @('AUTO','OFF') 'ordered assembly mode'
- $record=[ordered]@{schema=1;requested=$Requested;effective=$false;bitMasks='';compilerArguments=@();reason='target-capability-absent';targetRegistrySha256=(Hash-File (Join-Path $PSScriptRoot 'TargetContracts.json'))}
+ $record=[ordered]@{schema=1;requested=$Requested;effective=$false;bitMasks='';memoryStateBits='';compilerArguments=@();reason='target-capability-absent';targetRegistrySha256=(Hash-File (Join-Path $PSScriptRoot 'TargetContracts.json'))}
  if($Contract.ContainsKey('compilerCapabilities') -and $Contract.compilerCapabilities.ContainsKey('orderedAsm')){
   $cap=$Contract.compilerCapabilities.orderedAsm
-  Keys-Only $cap @('schema','nop','sfrBitMasks','preservesAllocatorContext','memoryBarrier','motionBarrier') 'ordered assembly capability'
+  Keys-Only $cap @('schema','nop','sfrBitMasks','preservesAllocatorContext','memoryBarrier','motionBarrier','memoryStateBits','preservesCompilerStorage') 'ordered assembly capability'
   if($cap.schema -ne 1 -or $cap.nop -isnot [bool] -or $cap.preservesAllocatorContext -isnot [bool] -or -not $cap.preservesAllocatorContext -or $cap.memoryBarrier -cne 'full' -or $cap.motionBarrier -cne 'full'){throw 'Invalid ordered assembly capability contract'}
   if($cap.sfrBitMasks -isnot [string] -or ($cap.sfrBitMasks -ne '' -and $cap.sfrBitMasks -cnotmatch '^[0-9a-f]{2}:[0-9a-f]{2}(,[0-9a-f]{2}:[0-9a-f]{2})*$')){throw 'Invalid ordered assembly bit capability syntax'}
   $seen=@{}
@@ -25,10 +25,17 @@ function Get-Mx251OrderedAsm($Contract,[string]$Requested) {
    if($at -lt 128 -or $mask -eq 0 -or $seen.ContainsKey($at)){throw 'Invalid or duplicate ordered assembly bit capability'}
    $seen[$at]=$mask
   }
+  if($cap.ContainsKey('memoryStateBits')){
+   if($cap.memoryStateBits -isnot [string] -or $cap.memoryStateBits -cnotmatch '^[0-9a-f]{2}:[0-9a-f]{2}(,[0-9a-f]{2}:[0-9a-f]{2})*$' -or $cap.preservesCompilerStorage -isnot [bool] -or -not $cap.preservesCompilerStorage){throw 'Memory-state bits require stable compiler storage'}
+  }
   if($Requested -ne 'OFF' -and $cap.nop){
    $record.effective=$true;$record.bitMasks=$cap.sfrBitMasks;$record.reason='target-capability-present'
    $record.compilerArguments=@('--mcs251-ordered-asm')
    if($cap.sfrBitMasks){$record.compilerArguments+=@('--mcs251-ordered-asm-bits',$cap.sfrBitMasks)}
+   if($cap.ContainsKey('memoryStateBits')){
+    $record.memoryStateBits=$cap.memoryStateBits
+    $record.compilerArguments+=@('--mcs251-memory-state-bits',$cap.memoryStateBits)
+   }
   }
  }
  if($Requested -eq 'OFF'){$record.reason='explicit-off'}

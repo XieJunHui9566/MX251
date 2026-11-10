@@ -1777,7 +1777,7 @@ wide_emit(wide_function *f)
     case WM_ORDERED_ASM:
       /* 真 NOP 不是可删除的 MIR 空节点。整组指令保持原顺序和次数，
        * 无寄存器/标志临时值，不把 SFR 原子位写改成字节读改写。 */
-      we(f,"; wide ordered-asm instructions=%u\n",n->orderedAsmCount);
+      we(f,"; wide ordered-asm instructions=%u memory-state=%u\n",n->orderedAsmCount,n->memoryStateBarrier);
       for(unsigned j=0;j<n->orderedAsmCount;++j) {
         const wide_asm_instruction *instruction=&n->orderedAsm[j];
         if(instruction->operation==1)we(f,"\tnop\n");

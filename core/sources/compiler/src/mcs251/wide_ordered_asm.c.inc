@@ -1,8 +1,9 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * 仅把完整验证过的无寄存器破坏指令组导入有序 MIR；不透传任意汇编。
  * 位能力来自调用编译器的显式目标契约，而不是器件/函数/SDK 名称。
- * 契约保证这些 SFR 位不改变寄存器视图、存储映射、栈或执行模式。
- * 未声明、格式错误及核心状态一律整函数回退，不能部分接受一个块。
+ * Ordinary bits leave memory mapping unchanged. Memory-state bits may alter
+ * peripheral mapping, but preserve GPRs, flags, stack and compiler storage.
+ * Both use the existing full memory/motion barrier throughout the MIR passes.
  */
 #include "wide_ordered_contract.h"
 
@@ -11,6 +12,7 @@ wide_ordered_asm_profile(wide_function *f)
 {
   f->orderedAsmEnabled=mcs251OrderedAsmEnabled!=0;
   memcpy(f->orderedAsmBits,mcs251OrderedAsmBits,sizeof f->orderedAsmBits);
+  memcpy(f->memoryStateBits,mcs251MemoryStateBits,sizeof f->memoryStateBits);
   return true;
 }
 
@@ -43,8 +45,11 @@ wide_ordered_asm_import(wide_function *f,wide_node *n,iCode *ic)
            wide_asm_hex(p[2])<0 || wide_asm_hex(p[3])<0 || p[4]!='.' || p[5]<'0' || p[5]>'7')
           return wide_reject(f,"unsupported-ordered-asm-bit-spelling",__LINE__);
         address=(unsigned)(16*wide_asm_hex(p[2])+wide_asm_hex(p[3]));bit=(unsigned)(p[5]-'0');p+=6;
-        if(wide_asm_core_bits(address,1u<<bit))return wide_reject(f,"ordered-asm-core-state-write",__LINE__);
-        if(!(f->orderedAsmBits[address]&(1u<<bit)))return wide_reject(f,"ordered-asm-bit-not-capable",__LINE__);
+        if(f->memoryStateBits[address]&(1u<<bit))n->memoryStateBarrier=true;
+        else {
+          if(wide_asm_core_bits(address,1u<<bit))return wide_reject(f,"ordered-asm-core-state-write",__LINE__);
+          if(!(f->orderedAsmBits[address]&(1u<<bit)))return wide_reject(f,"ordered-asm-bit-not-capable",__LINE__);
+        }
         while(p<end && (*p==' ' || *p=='\t'))++p;
       }
       if(p<end && *p!=';')return wide_reject(f,"unsupported-ordered-asm-trailing-text",__LINE__);
@@ -55,7 +60,7 @@ wide_ordered_asm_import(wide_function *f,wide_node *n,iCode *ic)
   }
   if(!n->orderedAsmCount)return wide_reject(f,"empty-ordered-asm",__LINE__);
   n->op=WM_ORDERED_ASM;n->byteAccess=true;
-  dbuf_printf(f->diagnostics,"; wide ordered-asm admitted icode=%d instructions=%u barrier=memory-and-motion register-clobber=none\n",
-              ic->key,n->orderedAsmCount);
+  dbuf_printf(f->diagnostics,"; wide ordered-asm admitted icode=%d instructions=%u barrier=memory-and-motion register-clobber=none memory-state=%u\n",
+              ic->key,n->orderedAsmCount,n->memoryStateBarrier);
   return true;
 }

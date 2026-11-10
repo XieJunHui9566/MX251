@@ -15,6 +15,7 @@ extern char *mcs251IndexedFieldCapability;
 extern char *mcs251IndexedFieldContract;
 extern int mcs251OrderedAsmEnabled;
 extern unsigned char mcs251OrderedAsmBits[256];
+extern unsigned char mcs251MemoryStateBits[256];
 /* 不支持/容量限制允许旧路径接管；内部错误已报告，禁止继续发射旧路径。
  * 代码与诊断分别暂存，只有完整成功才提交候选机器代码。 */
 typedef enum { MCS251_WIDE_FALLBACK, MCS251_WIDE_ACCEPTED, MCS251_WIDE_ERROR } mcs251_wide_result;

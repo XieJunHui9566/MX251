@@ -14,12 +14,16 @@ wide_asm_hex(char c)
 }
 
 static inline int
+wide_asm_allocator_bits(unsigned address,unsigned mask)
+{
+  return wide_asm_core_address(address) || (address==0x87 && (mask&0x3f));
+}
+
+static inline int
 wide_asm_core_bits(unsigned address,unsigned mask)
 {
-  /* PCON 低六位含电源/执行控制；EXTRAM 与 EAXFR 改变普通访存含义，误配能力也不能开放。
-   * 同一 SFR 的其余位仍逐位核验，不能连带否定已声明的定时器位。 */
-  return wide_asm_core_address(address) ||
-    (address==0x87 && (mask&0x3f)) ||
+  /* Mapping controls require the separate storage-stable memory-state contract. */
+  return wide_asm_allocator_bits(address,mask) ||
     (address==0x8e && (mask&0x02)) || (address==0xba && (mask&0x80));
 }
 
@@ -39,7 +43,7 @@ wide_asm_core_address(unsigned address)
  * 只在返回 NULL 时发布输出，并把原声明放入构建命令和内容指纹。
  */
 static inline const char *
-wide_asm_parse_capabilities(const char *bits,unsigned char output[256])
+wide_asm_parse_bit_contract(const char *bits,unsigned char output[256],int memoryState)
 {
   unsigned char masks[256]={0};unsigned count=0;
   if(!bits || !*bits || strlen(bits)>767)return "expected non-empty NN:MM comma-separated bit capabilities";
@@ -49,12 +53,19 @@ wide_asm_parse_capabilities(const char *bits,unsigned char output[256])
       return "expected two hex digits for each SFR byte and mask (NN:MM)";
     unsigned address=(unsigned)(16*wide_asm_hex(p[0])+wide_asm_hex(p[1]));
     unsigned mask=(unsigned)(16*wide_asm_hex(p[3])+wide_asm_hex(p[4]));
-    if(++count>128 || !mask || wide_asm_core_bits(address,mask) || masks[address])
+    if(++count>128 || !mask || masks[address] ||
+       (memoryState?wide_asm_allocator_bits(address,mask):wide_asm_core_bits(address,mask)))
       return "zero/duplicate mask, core-state address or capability count is invalid";
     masks[address]=(unsigned char)mask;p+=5;
     if(!*p)break;
     if(*p++!=',' || !*p)return "expected comma separator with no empty capability";
   }
   memcpy(output,masks,sizeof masks);return NULL;
+}
+
+static inline const char *
+wide_asm_parse_capabilities(const char *bits,unsigned char output[256])
+{
+  return wide_asm_parse_bit_contract(bits,output,0);
 }
 #endif

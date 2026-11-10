@@ -73,6 +73,7 @@ typedef struct {
   int jumpStart, jumpCount;
   bool sign, floating, trueBranch;
   unsigned orderedAsmCount;
+  bool memoryStateBarrier;
   wide_asm_instruction orderedAsm[WASM_MAX];
   unsigned orderedReadCount;
   symbol *orderedReadSymbols[2];
@@ -115,6 +116,7 @@ typedef struct {
   iCode *rejectionOrigin;
   bool orderedAsmEnabled;
   unsigned char orderedAsmBits[256];
+  unsigned char memoryStateBits[256];
   struct isolated_valinfo_analysis *rangeAnalysis;
   ebbIndex *sourceBlocks; /* 仅借用当前函数 CFG 做纯地址支配证明，不修改 IR。 */
   struct dbuf_s *diagnostics, *candidateOutput;

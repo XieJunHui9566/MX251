@@ -138,6 +138,8 @@ int mcs251CallSavePackMode;
 int mcs251OrderedAsmEnabled;
 unsigned char mcs251OrderedAsmBits[256];
 static char *orderedAsmBitsSpec;
+unsigned char mcs251MemoryStateBits[256];
+static char *memoryStateBitsSpec;
 int mcs251FunctionMetadataEnabled;
 static int functionSharingEnabled;
 int mcs251MachineIrEnabled;
@@ -157,8 +159,8 @@ validateOrderedAsm (void)
     werror(E_BAD_INT_ARGUMENT,"deprecated MX251_WIDE_ORDERED_ASM environment; use --mcs251-ordered-asm and --mcs251-ordered-asm-bits");
     exit(EXIT_FAILURE);
   }
-  if(orderedAsmBitsSpec && !mcs251OrderedAsmEnabled) {
-    werror(E_BAD_INT_ARGUMENT,"--mcs251-ordered-asm-bits requires --mcs251-ordered-asm");
+  if((orderedAsmBitsSpec || memoryStateBitsSpec) && !mcs251OrderedAsmEnabled) {
+    werror(E_BAD_INT_ARGUMENT,"ordered bit contracts require --mcs251-ordered-asm");
     exit(EXIT_FAILURE);
   }
   if(mcs251OrderedAsmEnabled && !mcs251WideEnabled && !mcs251WideOrdinaryEnabled) {
@@ -167,6 +169,10 @@ validateOrderedAsm (void)
   }
   if(orderedAsmBitsSpec) {
     const char *error=wide_asm_parse_capabilities(orderedAsmBitsSpec,mcs251OrderedAsmBits);
+    if(error) {werror(E_BAD_INT_ARGUMENT,error);exit(EXIT_FAILURE);}
+  }
+  if(memoryStateBitsSpec) {
+    const char *error=wide_asm_parse_bit_contract(memoryStateBitsSpec,mcs251MemoryStateBits,1);
     if(error) {werror(E_BAD_INT_ARGUMENT,error);exit(EXIT_FAILURE);}
   }
 }
@@ -205,6 +211,7 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-word-compare-immediate", &mcs251WordCompareImmediateEnabled, "Use exact 16-bit immediate comparisons in the wide backend; default off" },
     { 0, "--mcs251-ordered-asm", &mcs251OrderedAsmEnabled, "Admit ordered NOP and target-declared numeric SFR bit writes in the wide backend" },
     { 0, "--mcs251-ordered-asm-bits", &orderedAsmBitsSpec, "<NN:MM,...> verified SFR byte:bit-mask capabilities; requires --mcs251-ordered-asm", CLAT_STRING },
+    { 0, "--mcs251-memory-state-bits", &memoryStateBitsSpec, "<NN:MM,...> mapping bits preserving GPRs, flags, stack and compiler storage; full memory/motion barrier", CLAT_STRING },
     { 0, "--mcs251-machine-ir", &mcs251MachineIrEnabled, "Optimize physical machine IR after either code generator" },
     { 0, "--mcs251-callee-preserve", &mcs251PreserveFile, "<file> per-function preserved register groups from the qualified builder", CLAT_STRING },
     { 0, "--mcs251-share-functions", &functionSharingEnabled, "Share ABI2 machine function templates with per-call constants; requires function metadata; experimental default off" },

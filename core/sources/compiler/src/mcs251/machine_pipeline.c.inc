@@ -60,7 +60,10 @@ static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi,bool wide) {
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
-      if(ic->op==INLINEASM || ic->op==JUMPTABLE)return;
+      /* Successful wide import has already classified every inline block as
+       * ordered NOP/bit operations. Unknown numeric bit effects remain local
+       * barriers in machine IR; they need not disable the entire function. */
+      if((ic->op==INLINEASM && !wide) || ic->op==JUMPTABLE)return;
   }
   const char *body=dbuf_get_buf(codeOutBuf)+start;
   size_t length=dbuf_get_length(codeOutBuf)-start;
