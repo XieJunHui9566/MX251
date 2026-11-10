@@ -1,0 +1,889 @@
+{
+  "schema": 1,
+  "implementationCommit": "126069e4b9a8204ac3403c9e4bb0a04001aca1a3",
+  "baseCommit": "8e93c2f",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\core-02\\core.json",
+    "sha256": "30e061cb674f22393f6a5cbd587d5f86a54befe4f3bfa07e7bc8dca402451afe"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "ef422d8f994834dd889674608bf85333e22ef1c6525e503622d581d6a863f743"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\comparison.json",
+    "sha256": "d0159dfa7166214943c9435dd26080c12e3385e03059d92bbb3e74c1e3ba32dd"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 25,
+    "unchanged": 50,
+    "larger": 0,
+    "savedBytes": 1329,
+    "mxTotalBytes": 206511,
+    "keilTotalBytes": 192051,
+    "within110": 49,
+    "within120": 61,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0752925004295735
+  },
+  "newWithin": {
+    "110": [
+      "p099"
+    ],
+    "120": [
+      "p097",
+      "p103"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "cases": 128,
+      "frames": 598,
+      "aggregateTicks": {
+        "0": 84711,
+        "1": 142285.5
+      },
+      "firmwareSha256": "41cb9abcbeb8dc3d959540e27ad079d4b6181170c20120683989fc606b9bc673",
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\capture-parent\\result.json",
+        "sha256": "2e3cad0f45b720ae106be16694347aaf7aab0fea592e3ac4fcc5aedca3b7463c"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\capture-parent\\uart.bin",
+        "sha256": "690e2430607d711353e39e41f37c7cfe1e1e6ce6e2180bb9adc55adac0c2e884"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-parent\\source.json",
+        "sha256": "adb40cf1263d151e89707d24abdc006038d1f2c20e4d985fd8288a4b0467190a"
+      },
+      "buildReceipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-parent\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "3c33f8286dc698991d07de57d36100b768d37597de8eda844ed2c3d8e8bb66c2"
+      },
+      "formatRuntime": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-parent\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "e8947252a7d19b79c34846b0f39572c42f8c86e3fedc3d1cd76ff1112ad5179b"
+      }
+    },
+    {
+      "variant": "new",
+      "cases": 128,
+      "frames": 625,
+      "aggregateTicks": {
+        "0": 41407,
+        "1": 141077.0
+      },
+      "firmwareSha256": "b11660fa8bf6d475130f08857218d47fbc150b95a9b4745a6a1119afc360dd63",
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\capture-new\\result.json",
+        "sha256": "1869afbca40f9dedbfacea4cb4d522d171572061d16553e4479c24aaab85a307"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\capture-new\\uart.bin",
+        "sha256": "09b856c2b4b230bbf89fa986a454b288339882d1d83a8ea851f2062a18b94c92"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-new\\source.json",
+        "sha256": "adb40cf1263d151e89707d24abdc006038d1f2c20e4d985fd8288a4b0467190a"
+      },
+      "buildReceipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-new\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "750fa9850b8aaeeb471c529ee8000da9bad9a65a9dac05884c2d57f73fd3f09f"
+      },
+      "formatRuntime": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-new\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "ba426beab7f8de4f70c7a29a3756a5b03f67f46858b757ccdd29b73a103dbd9d"
+      }
+    }
+  ],
+  "providers": [
+    {
+      "id": "p001",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p001\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p003",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p003\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p005",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p005\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p007",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p007\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p009",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p009\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p011",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p011\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p013",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p013\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p015",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p015\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p017",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p017\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p019",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p019\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p026",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p026\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p028",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p028\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p032",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p032\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p033",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 28,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p033\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "e37126c92d5de9093391c20745bc13ccce60d01be1cb6fed545ba86e6e913a4a"
+      }
+    },
+    {
+      "id": "p035",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p035\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p037",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p037\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p039",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p039\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p045",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p045\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p047",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p047\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p049",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p049\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p051",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p051\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p053",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p053\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p055",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p055\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p057",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p057\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p059",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 136,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p059\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "aafd26840b72517a50e974305baf02fef96828ad16b974674666a5692eb9252f"
+      }
+    },
+    {
+      "id": "p060",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p060\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "5a4529d204f46a53138c951c442775430d0a82eb4f7db210b1f165080aa09166"
+      }
+    },
+    {
+      "id": "p062",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 34,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p062\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "bc358d246b85aef9c10c31a2ddb639f81819755ff69b4c8236f75ae552a6bf83"
+      }
+    },
+    {
+      "id": "p064",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 28,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p064\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "37586b164866136c2d752ed9033da79b2f424533baf6e3061060ddf54376c6f7"
+      }
+    },
+    {
+      "id": "p066",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 34,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p066\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "0765679c6bedaf2120d3338e0a125b94ee6b14dac1db2f46f52a0faba74906c2"
+      }
+    },
+    {
+      "id": "p071",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p071\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p074",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p074\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p075",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p075\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p078",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p078\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "af436f51bab3cda085fd7585164e7faa5b2398568a6a66ac63955ed95dac5a86"
+      }
+    },
+    {
+      "id": "p080",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p080\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "8c212b0bd6a4383f68bc71d99fb02aab4303594554dbc8543a54b3a76e590d45"
+      }
+    },
+    {
+      "id": "p084",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 136,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p084\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "ced7c7c9dd3248067929dee495872037b6b54b7ba4abe3c1f9d58d3b3dfd1a4f"
+      }
+    },
+    {
+      "id": "p086",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p086\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p087",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p087\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p088",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p088\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p089",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p089\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p090",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p090\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p091",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p091\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p095",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p095\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p096",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p096\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p097",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 247,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p097\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "2eebeaf38fecc858414930f106758ed39ebbbb2635ffb7eb98853fc4b019b713"
+      }
+    },
+    {
+      "id": "p098",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p098\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "51210b8552fea78066d7ca180ecf9a74b12a1c2159423cfed2cd63ca26f03fda"
+      }
+    },
+    {
+      "id": "p099",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 247,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p099\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "4807a2ac94a0fcf82f4a610814ccb724f7be590ee9631e53e73853e2917319d1"
+      }
+    },
+    {
+      "id": "p100",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p100\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "b06e09a417822f285b190311014554861157af055f34b10d67ab205eb507b7a0"
+      }
+    },
+    {
+      "id": "p101",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 144,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p101\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "6d94fe9ac6a79b90b5e3a99ee70b28adfcbb08faea48beeb696b318d8646c799"
+      }
+    },
+    {
+      "id": "p102",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p102\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "3894119718b5e3278c3ff376698332bf83f12c8b51b40255dc6713e9d8ee16b6"
+      }
+    },
+    {
+      "id": "p103",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 255,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p103\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "560c46facbba1a86e43cb7856376955d05d03d77b4dad817aad3434478711124"
+      }
+    },
+    {
+      "id": "p104",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p104\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c8ee9842dbea9936736820cbd3395be81b91d0239ab07772a64dd6bc2ccafc16"
+      }
+    },
+    {
+      "id": "p107",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 4,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p107\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "4c9136750b6407cdfb6dc7535739a3b52d4e7a1641c5ec31e4c44f33e0fa58ea"
+      }
+    },
+    {
+      "id": "p108",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-raw-jump-outside-registered-vector",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p108\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "0d06ddc05b74912b93d1ef973ec68d1d5e9b20d342c97ac5ee4bb5401e9e4bb2"
+      }
+    },
+    {
+      "id": "p109",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 4,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p109\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "ae34d17261bf83cf7076f61d9a89b018d42b5a5483815ee56a757948818b47bf"
+      }
+    },
+    {
+      "id": "p110",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 4,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p110\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "8c8f010956b5f6cfc278713063f373fbe9f82deba1609e6e7c26b22a16cb15a1"
+      }
+    },
+    {
+      "id": "p111",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 4,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p111\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "d7d66c0c84364f5d879cd6c50c1167555752cbb3ca37d19b47b60292eadeb658"
+      }
+    },
+    {
+      "id": "p112",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p112\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "1d01d550f159201687f69f4fd2bf65fc15981727e8c2b5ada08c741f40c41e7a"
+      }
+    },
+    {
+      "id": "p113",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p113\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "75f727163c0397edd094bd554f1fb25e24efd2c61c616a092e1e888123feb1f7"
+      }
+    },
+    {
+      "id": "p114",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p114\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p117",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p117\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p119",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p119\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p122",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 4,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p122\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "3ff45b8e4c011d138310c49ca977c25d2fbfaedfbde26db951ac64f8a95da142"
+      }
+    },
+    {
+      "id": "p128",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "format-opaque-unit",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p128\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "c67fd8fabc5dc1d8d0a281202568a268c8754a552d88d4ff99246fa2d357b624"
+      }
+    },
+    {
+      "id": "p129",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p129\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p131",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p131\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p132",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p132\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p133",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p133\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p134",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p134\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p136",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p136\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p137",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p137\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p138",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p138\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p139",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p139\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p142",
+      "status": "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME",
+      "reason": null,
+      "savedBytes": 2,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p142\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "4dc944c91d04f1814ec152de2824140102d31648a47f720a5ecc76c1d0730d0a"
+      }
+    },
+    {
+      "id": "p146",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p146\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    },
+    {
+      "id": "p149",
+      "status": "FALLBACK_FULL_RUNTIME",
+      "reason": "no-constant-format-calls",
+      "savedBytes": 0,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\matrix-core-01\\projects\\p149\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "db3546380ee0c7585f4c3cb5dcc7522f82b216601d89dbcd261005ee199eede3"
+      }
+    }
+  ],
+  "applicationObjects": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\application-object-comparison.json",
+    "sha256": "fdc691f3eed6ef428bee2554b26ee76cba4e21cb596a5c37c26b349f6a819a3c"
+  },
+  "packagedEquivalence": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\packaged-equivalence.json",
+    "sha256": "350af18e77894f217a691e42c7460d5bbc99029f8b4e812b693b6a2f7ce9470d"
+  },
+  "checks": {
+    "negation": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\negate-checks\\results.json",
+      "sha256": "a6efe7f8a244977b3ac7ebfd387b265f09c682a743a09301922b1b8cf574bcdb"
+    },
+    "format": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\format-checks\\result.json",
+      "sha256": "9ed02a9ea371f4edd54b1bc12aa2f23a5b01727958c111ffbe148883f8b05342"
+    }
+  },
+  "inheritedLargeModelFailure": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\large-existing-limitation.json",
+    "sha256": "b32f4d04d18d1c7098abd2efa48884007051d656f162da77865addfd5b9cbbf9"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "provisionalCoreMetadata": "core-01 was staged before the implementation commit and inherited parent source-commit annotations. Compiler SHA-256, staged implementation bytes, build receipts and the final core-02 manifest identify the tested change.",
+  "stoppedExperiment": "Ten data-only units were examined for format admission. All ten projects had no constant format calls, so the admission change and its tests were discarded."
+}
