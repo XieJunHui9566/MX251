@@ -478,6 +478,10 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
     $mask=[Convert]::ToUInt32($m.Groups[2].Value,16)
     $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=(4294967295L -bxor $mask);kind='machine'}
    }
+   foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-isr-call callee=([^\s]+) omitted=([0-9a-f]{8})\s*$')){
+    $mask=[Convert]::ToUInt32($m.Groups[2].Value,16)
+    $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=[long]$mask;kind='isr'}
+   }
    foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-call-save caller=([^\s]+) site=([0-9]+) callee=([^\s]+) omitted=([0-9a-f]{8}) groups=([0-9]+) bytes=([0-9]+) verified=([01])\s*$')){
     if($m.Groups[1].Value -cne $f.symbol -or $m.Groups[7].Value -cne '1'){throw 'clobber-call-setup-proof-missing'}
     $mask=[Convert]::ToUInt32($m.Groups[4].Value,16)

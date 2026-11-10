@@ -26,7 +26,8 @@ def main():
         actual, _ = image(result['hex']['path'])
         assert actual['hex']['sha256'] == result['hex']['sha256']
         assert actual['payloadBytes'] == result['payloadBytes']
-        old_result = read(Path(old['evidence']['mx251']['path']))
+        old_evidence = old['evidence'].get('candidate', old['evidence'].get('mx251'))
+        old_result = read(Path(old_evidence['path']))
         old_receipt = read(Path(old_result['receipt']['path']))
         receipt = read(Path(result['receipt']['path']))
         assert receipt['compilerSha256'] == manifest['compiler']['sha256']
@@ -35,7 +36,7 @@ def main():
         row = {k: old[k] for k in ('id', 'name', 'keilBytes', 'stcBytes', 'stcStatus', 'semanticNotes', 'originalSourceIssue')}
         row.update(parentBytes=old['mx251Bytes'], mx251Bytes=result['payloadBytes'],
                    savedBytes=old['mx251Bytes']-result['payloadBytes'], sourceInputsIdentical=True,
-                   evidence=dict(parent=pin(Path(old['evidence']['mx251']['path'])), candidate=pin(resultfile),
+                   evidence=dict(parent=pin(Path(old_evidence['path'])), candidate=pin(resultfile),
                                  keil=old['evidence']['keil'], stc=old['evidence']['stc']))
         row['keilRatio'] = row['mx251Bytes'] / row['keilBytes']
         row['within110'] = 10*row['mx251Bytes'] <= 11*row['keilBytes']

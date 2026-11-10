@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * C ISR 的保存槽是编译器私有帧，不是 C 对象或公开的汇编参数接口。
- * 只处理无调用、无局部帧、无栈/间接访问、无内联汇编的普通 bank0 ISR。
+ * 处理无局部帧、无内联汇编的普通 bank0 ISR，复用构建反馈的调用改写集合。
  * 从最终指令和真实符号类型求核心寄存器效果；未知指令/地址完整回退。
  * 不移动或改写任何函数体访存。PSW1 首存末取始终保留。 */
 #include "wide_cost.h"
@@ -9,8 +9,8 @@
 #include "wide_ordered_contract.h"
 enum { LI_LINES=2048, LI_TEXT=512, LI_SAVES=64 };
 typedef struct {lineNode *node;char op[24],arg[3][LI_TEXT];unsigned nargs,bytes;bool label,empty;} li_line;
-typedef struct {uint32_t gpr;unsigned special;bool flags,memory,bit,unknown;} li_operand;
-typedef struct {uint32_t reads,writes;unsigned specialReads,specialWrites;bool flags;} li_effects;
+typedef struct {uint32_t gpr;unsigned special;bool flags,memory,bit,unknown,indirect;} li_operand;
+typedef struct {uint32_t reads,writes;unsigned specialReads,specialWrites,calls;bool flags;} li_effects;
 
 static bool li_parse(lineNode *node,li_line *r)
 {
@@ -38,8 +38,9 @@ static bool li_parse(lineNode *node,li_line *r)
   if(!j)return false;r->arg[a][j]=0;r->nargs=a+1;return true;
 }
 
-/* 只把分配的 DATA 对象及 ISA 固定普通端口视为非核心存储。
- * 其它外设地址可能改变存储映射或执行模式，未取得能力证明时拒绝。 */
+/* This pass leaves peripheral accesses in place. Direct SFR addresses outside
+ * the architectural registers and mapping/mode controls do not alias GPRs;
+ * they do not need the separate contract used to move ordered inline asm. */
 static li_operand li_direct(unsigned address,bool bit)
 {
   li_operand r={0};r.bit=bit;unsigned mask=bit?1u<<(address&7):255u;
@@ -50,7 +51,7 @@ static li_operand li_direct(unsigned address,bool bit)
   else if(!bit && address==0x84)r.special=MX251_SPECIAL_DPX;
   else if(address==0xd0 || address==0xd1 || address==0x81 || address==0xbe)r.unknown=true;
   else if(address==0x80 || address==0x90 || address==0xa0 || address==0xb0)r.memory=true;
-  else if(!wide_asm_core_bits(address,mask) && (mcs251OrderedAsmBits[address]&mask)==mask)r.memory=true;
+  else if(address>=0x80 && !wide_asm_core_bits(address,mask))r.memory=true;
   else r.unknown=true;
   return r;
 }
@@ -60,6 +61,9 @@ static li_operand li_operand_info(const char *text)
   li_operand r={0};mx251_effect_operand reg;
   if(*text=='#' && text[1])return r;
   if(!strcmp(text,"c") || !strcmp(text,"cy")){r.flags=true;return r;}
+  if(!strncmp(text,"acc.",4) && text[4]>='0' && text[4]<='7' && !text[5]){
+    r.gpr=UINT32_C(1)<<MCS251_BYTE_A;r.bit=true;return r;
+  }
   if(!strcmp(text,"dpxl")){r.special=MX251_SPECIAL_DPX;return r;}
   if(mx251EffectRegister(text,&reg)){
     r.gpr=reg.gpr;r.special=reg.special;r.unknown=(reg.special&MX251_SPECIAL_SPX)!=0;return r;
@@ -67,7 +71,12 @@ static li_operand li_operand_info(const char *text)
   if(strlen(text)==3 && text[0]=='a' && text[1]=='r' && text[2]>='0' && text[2]<='7'){
     r.gpr=UINT32_C(1)<<(text[2]-'0');return r;
   }
-  if(*text=='@'){r.unknown=true;return r;}
+  if(*text=='@'){
+    if(mx251EffectOperand(text,&reg)){
+      r.gpr=reg.gpr;r.special=reg.special;r.memory=r.indirect=true;return r;
+    }
+    r.unknown=true;return r;
+  }
   memmap *spaces[]={data,bit,sfr,sfrbit};
   for(unsigned i=0;i<sizeof spaces/sizeof spaces[0];++i)if(spaces[i])
     for(const set *node=spaces[i]->syms;node;node=node->next) {
@@ -104,11 +113,92 @@ static bool li_local_label(const char *name,li_line *lines,unsigned begin,unsign
   return false;
 }
 
+/* A C object address remains an object address through pointer copies and
+ * indexing. Integer-derived pointers and absolute objects need the actual
+ * machine address instead. Out-of-object C stores are not defined accesses. */
+static bool li_object_pointer(operand *p,unsigned depth)
+{
+  if(!p || !IS_SYMOP(p) || depth>16)return false;
+  symbol *s=OP_SYMBOL(p);iCode *def=NULL;
+  sym_link *type=operandType(p);
+  if(!IS_PTR(type) || getSize(type)!=3 ||
+     (DCL_TYPE(type)!=FPOINTER && DCL_TYPE(type)!=GPOINTER))return false;
+  if(s->remat)def=s->rematiCode;
+  else if(IS_ITEMP(p) && bitVectnBitsOn(OP_DEFS(p))==1)
+    def=hTabItemWithKey(iCodehTab,bitVectFirstBit(OP_DEFS(p)));
+  if(!def)return false;
+  if(def->op==ADDRESS_OF && IS_TRUE_SYMOP(IC_LEFT(def))){
+    symbol *object=OP_SYMBOL(IC_LEFT(def));sym_link *spec=getSpec(object->type);
+    return !SPEC_ABSA(spec) && !object->onStack &&
+      SPEC_SCLS(spec)!=S_SFR && SPEC_SCLS(spec)!=S_SBIT;
+  }
+  if(def->op==CAST || (def->op=='=' && !POINTER_SET(def)))
+    return li_object_pointer(IC_RIGHT(def),depth+1);
+  if(def->op=='+' || def->op=='-')return li_object_pointer(IC_LEFT(def),depth+1);
+  return false;
+}
+
+static bool li_indirect_store(li_line *l,li_line *lines,unsigned begin,unsigned at)
+{
+  mx251_effect_operand address;
+  if(!mx251EffectOperand(l->arg[0],&address))return false;
+  if(address.stack)return true;
+  if(address.special!=MX251_SPECIAL_DPX && (!address.gpr || address.width!=4))return false;
+  iCode *ic=l->node->ic;
+  if(ic && POINTER_SET(ic) && li_object_pointer(IC_RESULT(ic),0))return true;
+  if(strcmp(l->arg[0],"@dpx"))return false;
+  /* Match immediate DPX setup along a single-entry instruction sequence.
+   * A conditional exit preserves DPX on its fallthrough path; an incoming
+   * label, call or address write ends the search. */
+  unsigned low=0,high=0;bool haveLow=false,haveHigh=false;
+  for(unsigned i=at;i>begin;){
+    li_line *p=&lines[--i];if(p->empty)continue;if(p->label)break;
+    if(p->nargs==2 && !strcmp(p->op,"mov") && p->arg[1][0]=='#'){
+      char *end;unsigned long value=strtoul(p->arg[1]+1,&end,0);
+      if(end!=p->arg[1]+1 && !*end){
+        if(!strcmp(p->arg[0],"dptr") && !haveLow && value<=65535){low=(unsigned)value;haveLow=true;continue;}
+        if(!strcmp(p->arg[0],"dpxl") && !haveHigh && value<=255){high=(unsigned)value;haveHigh=true;continue;}
+      }
+    }
+    if(haveLow && haveHigh)break;
+    if(!strcmp(p->op,"jb") || !strcmp(p->op,"jnb") ||
+       !strcmp(p->op,"jc") || !strcmp(p->op,"jnc") ||
+       !strcmp(p->op,"jz") || !strcmp(p->op,"jnz"))continue;
+    /* Only simple operations on GPRs/direct objects can be crossed. */
+    li_operand dest=li_operand_info(p->arg[0]);
+    if(dest.unknown || dest.indirect || dest.special ||
+       (strcmp(p->op,"mov") && strcmp(p->op,"clr") &&
+        strcmp(p->op,"anl") && strcmp(p->op,"orl") && strcmp(p->op,"xrl") &&
+        strcmp(p->op,"add") && strcmp(p->op,"addc") && strcmp(p->op,"sub") &&
+        strcmp(p->op,"subb") && strcmp(p->op,"inc") && strcmp(p->op,"dec")))break;
+  }
+  unsigned long value=((unsigned long)high<<16)|low;
+  mx251_effect_operand source;unsigned width=1;
+  if(mx251EffectRegister(l->arg[1],&source))width=source.width;
+  return haveLow && haveHigh && value>=256 && value+width<=0x1000000ul;
+}
+
 static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned begin,unsigned end)
 {
   if(l->empty || l->label)return true;
   const char *op=l->op;
   if(!strcmp(op,"nop"))return l->nargs==0;
+  if(!strcmp(op,"ecall") || !strcmp(op,"lcall") || !strcmp(op,"acall")){
+    iCode *ic=l->node->ic;unsigned long writes;
+    if(l->nargs!=1 || !ic || ic->op!=CALL || !IS_SYMOP(IC_LEFT(ic)))return false;
+    symbol *callee=OP_SYMBOL(IC_LEFT(ic));
+    if(strcmp(l->arg[0],callee->rname) || !mcs251CallClobberWrites(callee,&writes))return false;
+    all->writes|=(uint32_t)writes;all->reads=UINT32_MAX;
+    /* Feedback describes GPRs only. Keep flags, bit bank and DPX saves. */
+    all->specialWrites|=MX251_SPECIAL_DPX;all->flags=true;++all->calls;return true;
+  }
+  if(!strcmp(op,"push") || !strcmp(op,"pop")){
+    if(l->nargs!=1)return false;li_operand a=li_operand_info(l->arg[0]);
+    if(a.unknown || a.indirect || a.flags || l->arg[0][0]=='#')return false;
+    if(!strcmp(op,"push")){all->reads|=a.gpr;all->specialReads|=a.special;}
+    else {all->writes|=a.gpr;all->specialWrites|=a.special;all->flags|=(a.gpr&MCS251_AB_BYTES)!=0;}
+    return true;
+  }
   /* 所有跳转必须来自 C IR 的本函数标签；没有可跨入保存区的汇编。 */
   if(!strcmp(op,"sjmp") || !strcmp(op,"ljmp") || !strcmp(op,"ejmp") ||
      !strcmp(op,"jc") || !strcmp(op,"jnc") || !strcmp(op,"jz") || !strcmp(op,"jnz") ||
@@ -145,9 +235,10 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
      l->nargs!=(move || compare || binary?2u:1u))return false;
   li_operand a=li_operand_info(l->arg[0]),b={0};if(l->nargs==2)b=li_operand_info(l->arg[1]);
   if(a.unknown || b.unknown || *l->arg[0]=='#')return false;
+  if(a.indirect && (!move || !li_indirect_store(l,lines,begin,(unsigned)(l-lines))))return false;
   all->reads|=b.gpr;all->specialReads|=b.special;all->flags|=a.flags || b.flags;
-  if(!move){all->reads|=a.gpr;all->specialReads|=a.special;}
-  if(!compare){all->writes|=a.gpr;all->specialWrites|=a.special;}
+  if(!move || a.indirect){all->reads|=a.gpr;all->specialReads|=a.special;}
+  if(!compare && !a.indirect){all->writes|=a.gpr;all->specialWrites|=a.special;}
   if(!move && !(bitop && a.bit && a.memory))all->flags=true;
   if(a.gpr&(UINT32_C(1)<<MCS251_BYTE_A))all->flags=true;
   return true;
@@ -159,13 +250,12 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic)
   if(enable && !strcmp(enable,"0"))return;
   if(!currFunc || !IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
      IFFUNC_ISCRITICAL(currFunc->type) || FUNC_REGBANK(currFunc->type) || options.debug ||
-     options.useXstack || currFunc->stack || currFunc->xstack || IFFUNC_HASFCALL(currFunc->type))return;
+     options.useXstack || currFunc->stack || currFunc->xstack)return;
   unsigned functions=0,ends=0;
   for(iCode *ic=lic;ic;ic=ic->next) {
     functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
-    if(ic->op==CALL || ic->op==PCALL || ic->op==INLINEASM || ic->op==JUMPTABLE ||
-       ic->op==CRITICAL || ic->op==ENDCRITICAL || ic->op==IPUSH || ic->op==IPOP ||
-       ic->op==ADDRESS_OF)return;
+    if(ic->op==PCALL || ic->op==INLINEASM || ic->op==JUMPTABLE ||
+       ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
   }
   if(functions!=1 || ends!=1)return;
   li_line *lines=Safe_alloc(LI_LINES*sizeof *lines);unsigned count=0,begin=0,end=0;
@@ -193,7 +283,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic)
     else ok=false;
   }
   if(npush!=npop || !npush)ok=false;
-  bool remove[LI_SAVES]={false};unsigned saved=0,bytes=0;
+  bool remove[LI_SAVES]={false};unsigned saved=0,bytes=0;uint32_t omitted=0;
   for(unsigned i=0;ok && i<npush;++i) {
     li_line *a=&lines[pushes[i]],*b=&lines[pops[npop-1-i]];const char *name=a->arg[0];
     if(strcmp(name,b->arg[0])){ok=false;break;}
@@ -202,25 +292,33 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic)
     else if(!strcmp(name,"b"))dead=!(effects.writes&(UINT32_C(1)<<MCS251_BYTE_B));
     else if(!strcmp(name,"dpl") || !strcmp(name,"dph"))dead=!(effects.specialWrites&MX251_SPECIAL_DPTR);
     else if(!strcmp(name,"dpxl"))dead=!(effects.specialWrites&MX251_SPECIAL_DPX);
-    else if(!strcmp(name,"dr16") || !strcmp(name,"dr20") || !strcmp(name,"dr24") || !strcmp(name,"dr28")){
-      unsigned r=(unsigned)atoi(name+2);width=4;dead=!(effects.writes&mcs251RegisterBytes(r,4));
-    } else if(!strcmp(name,"psw"))dead=bank>=0 && !effects.flags && !((effects.reads|effects.writes)&0xffu);
+    else if(!strcmp(name,"psw"))dead=bank>=0 && !effects.flags && !((effects.reads|effects.writes)&0xffu);
+    else {
+      mx251_effect_operand reg;
+      if(mx251EffectRegister(name,&reg) && reg.gpr){width=reg.width;dead=!(effects.writes&reg.gpr);}
+      else if(strlen(name)==3 && name[0]=='a' && name[1]=='r' && name[2]>='0' && name[2]<='7')
+        dead=!(effects.writes&(UINT32_C(1)<<(name[2]-'0')));
+    }
     if(dead) {
       unsigned ac=wide_instruction_bytes_context(a->node->line,strlen(a->node->line),li_cost_symbol,NULL);
       unsigned bc=wide_instruction_bytes_context(b->node->line,strlen(b->node->line),li_cost_symbol,NULL);
       if(!ac || !bc){ok=false;break;}remove[i]=true;saved+=width;bytes+=ac+bc;
+      omitted|=li_operand_info(name).gpr;
       if(!strcmp(name,"psw"))bytes+=3;
     }
   }
   if(ok && saved) {
+    for(unsigned i=begin;effects.calls && i<end;++i)
+      if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall"))
+        dbuf_printf(codeOutBuf,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
     for(unsigned i=0;i<npush;++i)if(remove[i]) {
       bool psw=!strcmp(lines[pushes[i]].arg[0],"psw");
       lines[pushes[i]].node->line=Safe_strdup("; mx251 leaf ISR: unused private save removed");
       lines[pops[npop-1-i]].node->line=Safe_strdup("; mx251 leaf ISR: paired restore removed");
       if(psw)lines[bank].node->line=Safe_strdup("; mx251 leaf ISR: unused bank selection removed");
     }
-    dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=1 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u psw1=retained frame=private compiler-proof=leaf-direct\n",
-      currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags);
+    dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private compiler-proof=body-effects\n",
+      currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls);
   } else dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
   Safe_free(lines);
 }
