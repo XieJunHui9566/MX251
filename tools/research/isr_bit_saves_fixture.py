@@ -10,6 +10,11 @@ def create(output):
     isr.create(output)
     path = output / 'call-boundary-isr.c'
     source = path.read_text()
+    # The probe selects all four classic banks. Keep its snapshot and control
+    # objects above 0x1f so recording one register cannot overwrite another.
+    source = source.replace('volatile __data u8 context_image[40];',
+                            'volatile __data u8 context_reserved_banks[24];\n'
+                            'volatile __data u8 context_image[40];')
     # Timer0/1 are stopped; software sets TF0/TF1 to trigger one interrupt.
     # Exercise non-classic bit-addressable TMOD without starting either timer.
     bits = '''    __asm
