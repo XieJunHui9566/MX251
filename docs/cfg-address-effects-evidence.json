@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "baseCommit": "fdbf6d8",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "d9557d4788ac2c27dd1ca88be877a3fecc3ad446",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\core-02\\core.json",
+    "sha256": "7f9ae1e32bca0e5096239bcfd451086f26f066bc0579cf1372b77cff185845ae"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "816fd3d2e879f4bc0fd8d3dac1425c2ed5d0f99b66a39ef728cd22136eba5c2e"
+  },
+  "compilerBinaryUnchanged": true,
+  "addressFacts": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\core-02\\build\\qualified\\CallAddressFacts.ps1",
+    "sha256": "eda6904089b65937970d7931a0e5fdac68c2528c80573d91cff283378569b789"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\comparison.json",
+    "sha256": "2de6c2a5a496746007589a0ddc7e7811aae251d77a7e3d01ab27d4787f7b9466"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 4,
+    "unchanged": 71,
+    "larger": 0,
+    "savedBytes": 108,
+    "mxTotalBytes": 203230,
+    "keilTotalBytes": 192051,
+    "within110": 56,
+    "within120": 70,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.058208496701397
+  },
+  "checks": {
+    "cfg": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\checks-01\\result.json",
+      "sha256": "aea97ed9365715e91ca7e13bf0b410ccbf7833cef9e0d09158d0e9a7ca9bae68"
+    },
+    "objects": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\object-checks\\results.json",
+      "sha256": "542d958000c9b502fb4ccc38b7fa743a718e26a9a21975bee6fbaaeb6f82d6e5"
+    }
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Build.ps1",
+      "sha256": "e187f3c3a75ef0b3132b045e77e5cf95febc73087db57b13e59f3c70dd270b70"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\CallAddressFacts.ps1",
+      "sha256": "eda6904089b65937970d7931a0e5fdac68c2528c80573d91cff283378569b789"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\CallClobberFeedback.ps1",
+      "sha256": "7e3efca4c5defc527403588805bc4feeb0589706a8ee37c24add9cbd1af355e2"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-cfg-address-effects.ps1",
+      "sha256": "c8ea609c89f9489e3afb301b8bded451732bc7da9921ef109046f7bebee598b4"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\cfg_address_effects_fixture.py",
+      "sha256": "057c2de3f376a83829cead10612a64ce3222a6d7ca4370ecba59e156ce8d4532"
+    }
+  ],
+  "runtimeArchives": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\core-02\\profiles\\AI8051U-34K64-32\\runtime\\libnativeint.lib",
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\core-02\\profiles\\STC32G12K128\\runtime\\libnativeint.lib",
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
+    }
+  ],
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\hardware-parent\\result.json",
+        "sha256": "12ced1a516ada29d0cdaed345a5875e4924fcac261a9b302cd0e4cfc8771e548"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\board-parent\\receipt.json",
+        "sha256": "be3ccd9820d2a996689247ac12260aaa5d99ba0d081c46eecd773b5be0ec2ac0"
+      },
+      "bytes": 2331,
+      "cases": 128,
+      "frames": 256,
+      "port": "COM13",
+      "firmwareSha256": "79acaeb0bd8a16f1e4b6b9e7ce7cc14bc9b94e81c5b2b3f6cd30cc068b7cba94"
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\hardware-candidate\\result.json",
+        "sha256": "74bc1af1179ae4eece6c39a43ac9bede88698f38d89ffe54b1cfeabcc33bb314"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\board-candidate\\receipt.json",
+        "sha256": "c513f53132775892a543933d618d5b25c5264ec943ed647f17f5a3be9cbdb5ae"
+      },
+      "bytes": 2323,
+      "cases": 128,
+      "frames": 255,
+      "port": "COM13",
+      "firmwareSha256": "9be22956c7838e394c61ca76e91594aa5e7e240002c10d0d108e9ec324c32d52"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "fixtureRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\qualification.json",
+    "sha256": "9d6c9494a33776a7099b2135ab9c925339322505628ae9b656c19220c161b184"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\address-effects\\attribution.json",
+    "sha256": "ad34170af0a0b39c016bf26908513186f0af75d8aff80bdcfb0c4eae1b2acebe"
+  },
+  "changedFunctions": [
+    {
+      "id": "p051",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 113,
+      "bytes": 109,
+      "savedBytes": 4
+    },
+    {
+      "id": "p051",
+      "unit": "u0",
+      "function": "_timer0",
+      "parentBytes": 180,
+      "bytes": 172,
+      "savedBytes": 8
+    },
+    {
+      "id": "p060",
+      "unit": "u0",
+      "function": "_WriteNbyte",
+      "parentBytes": 91,
+      "bytes": 75,
+      "savedBytes": 16
+    },
+    {
+      "id": "p060",
+      "unit": "u0",
+      "function": "_ReadNbyte",
+      "parentBytes": 115,
+      "bytes": 99,
+      "savedBytes": 16
+    },
+    {
+      "id": "p114",
+      "unit": "u0",
+      "function": "_DMA_Config",
+      "parentBytes": 89,
+      "bytes": 73,
+      "savedBytes": 16
+    },
+    {
+      "id": "p114",
+      "unit": "u0",
+      "function": "_WriteDataLCD",
+      "parentBytes": 65,
+      "bytes": 57,
+      "savedBytes": 8
+    },
+    {
+      "id": "p114",
+      "unit": "u0",
+      "function": "_WriteCommandLCD",
+      "parentBytes": 65,
+      "bytes": 57,
+      "savedBytes": 8
+    },
+    {
+      "id": "p129",
+      "unit": "u0",
+      "function": "_DMA_Config",
+      "parentBytes": 89,
+      "bytes": 73,
+      "savedBytes": 16
+    },
+    {
+      "id": "p129",
+      "unit": "u0",
+      "function": "_WriteDataLCD",
+      "parentBytes": 65,
+      "bytes": 57,
+      "savedBytes": 8
+    },
+    {
+      "id": "p129",
+      "unit": "u0",
+      "function": "_WriteCommandLCD",
+      "parentBytes": 65,
+      "bytes": 57,
+      "savedBytes": 8
+    }
+  ],
+  "newWithin": {
+    "110": [],
+    "120": []
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  }
+}
