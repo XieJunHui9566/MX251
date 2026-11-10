@@ -27,7 +27,9 @@ cases = ['cjne a,#1,finish0', 'cjne a,0x82,finish1',
          'addc a,#1', 'addc a,0x82', 'addc a,r7', 'addc a,@r0',
          'subb a,#1', 'subb a,0x82', 'subb a,r7', 'subb a,@r1',
          'rrc a', 'rlc a', 'djnz b,finish16', 'djnz r0,finish17',
-         'djnz r7,finish18', 'cpl a', 'pushw #_constant', 'div ab', 'div wr16,wr20']
+         'djnz r7,finish18', 'cpl a', 'pushw #_constant', 'div ab', 'div wr16,wr20',
+         'jbc acc.0,finish23', 'mov @r0,#16', 'mov @r1,#16',
+         'mov @r0,0x99', 'mov @r1,0x99', 'mov 0x99,@r0', 'mov 0x99,@r1']
 q = subprocess.run([str(exe), *cases], check=True, capture_output=True, text=True)
 costs = list(map(int, q.stdout.split()))
 asm = '.module cost\n.globl _constant\n.area CSEG (CODE)\n'

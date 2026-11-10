@@ -28,7 +28,10 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
       if(ic->op==FUNCTION)++entries;
       if(ic->op==ENDFUNCTION)++ends;
       if(ic->op==RETURN)++returns;
-      if(ic->op==JUMPTABLE || ic->op==PCALL || ic->op==INLINEASM)return false;
+      if(ic->op==JUMPTABLE || ic->op==PCALL)return false;
+      /* Comparison only runs after successful wide import, which validates
+       * every inline instruction and its target bit contract. */
+      if(ic->op==INLINEASM && !mcs251OrderedAsmEnabled)return false;
       if(ic->op==CALL) {
         operand *op=IC_LEFT(ic);
         if(!op || !IS_SYMOP(op) || !IS_FUNC(operandType(op)) ||
@@ -71,6 +74,15 @@ mcs251BackendBodyEligible(ebbIndex *ebbi)
 {
   const char *enabled=getenv("MX251_BODY_BACKEND_CHOICE");
   if(enabled && !strcmp(enabled,"0"))return false;
+  /* Newly admitted ordered functions often contain byte-oriented I/O loops.
+   * Compare complete bodies as well: retain the byte backend when it has
+   * fewer bytes and no more static instructions. This is a profitability
+   * heuristic, not a bound on execution time for every loop trip count. */
+  for(int b=0;b<ebbi->count;++b) {
+    eBBlock *bb=ebbi->bbOrder[b];
+    for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
+      if(ic->op==INLINEASM)return true;
+  }
   unsigned *degree=Safe_calloc(ebbi->count,sizeof *degree);
   unsigned remaining=0;bool valid=true;
   for(int b=0;b<ebbi->count;++b) {
@@ -101,6 +113,12 @@ mcs251BackendSymbol(const char *name,const void *unused)
 {
   (void)unused;
   wide_cost_operand result={WC_UNKNOWN,0,0};
+  if(strlen(name)==6 && name[0]=='0' && (name[1]=='x' || name[1]=='X') &&
+     isxdigit((unsigned char)name[2]) && isxdigit((unsigned char)name[3]) &&
+     name[4]=='.' && name[5]>='0' && name[5]<='7') {
+    unsigned address=(unsigned)strtoul(name,NULL,16);
+    if(address>=0x80)return (wide_cost_operand){address&7?WC_EXT_BIT:WC_BIT,0,0};
+  }
   if(!strcmp(name,"dpxl")){result.kind=WC_DIRECT;return result;}
   if(strlen(name)==3 && name[0]=='a' && name[1]=='r' && name[2]>='0' && name[2]<='7') {
     result.kind=WC_DIRECT;return result;

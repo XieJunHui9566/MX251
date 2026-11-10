@@ -51,6 +51,22 @@ for model in ('small','large'):
    assert 'wide-mir fallback: work' in text
    _,old=compile(source,a.baseline,[],name+'-old');assert obj==old
    rows.append(dict(model=model,optimization=opt,case=name,excludedMatches=True))
+  source='''typedef unsigned char u8;
+__sfr __at(0x99) sink;
+volatile __bit ready;
+volatile __data u8 index;
+__data u8 buffer[8];
+void work(void) {
+ u8 i;
+ __asm setb 0xba.7 __endasm;
+ for(i=0;i<8;++i) buffer[i]=16;
+ for(;;) if(ready) {ready=0; sink=buffer[index]; index=(index+1)&7;}
+}
+'''
+  text,obj=compile(source,a.sdcc,cap,'byte-loop')
+  assert 'mx251-body-choice function=_work selected=legacy' in text
+  _,old=compile(source,a.baseline,[],'byte-loop-old');assert obj==old
+  rows.append(dict(model=model,optimization=opt,case='byte-loop',selected='legacy',objectMatches=True))
   if model=='small' and opt=='speed':
    for i,bits in enumerate(('d0:08','85:01','87:01','ba:00','ba:80,ba:01','ba:80,')):
     compile('void work(void) {}',a.sdcc,['--mcs251-memory-state-bits',bits],'invalid-'+str(i),False)
