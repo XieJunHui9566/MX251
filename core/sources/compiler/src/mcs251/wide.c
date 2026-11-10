@@ -1039,9 +1039,13 @@ wide_import (wide_function *f, ebbIndex *ebbi)
             f->body=true;break;
           }
         }
-        /* 原研究开关的原生 16 位 DIV 准入保持独立，不随二次幂改写开放。 */
-        if(!getenv("MX251_WIDE_UNSIGNED_DIVISION") || strcmp(getenv("MX251_WIDE_UNSIGNED_DIVISION"),"1") ||
-           n->width!=2 || n->left.width!=2 || n->right.width!=2 ||
+        /* Narrow unsigned operands share the native divider. Result width
+         * can differ after integer promotion or truncation; the emitter
+         * zero-extends inputs and stores exactly the IR result width. */
+        const char *division=getenv("MX251_WIDE_UNSIGNED_DIVISION");
+        if((division && !strcmp(division,"0")) ||
+           n->width<1 || n->width>2 || n->left.width<1 || n->left.width>2 ||
+           n->right.width<1 || n->right.width>2 ||
            n->sign || n->left.sign || n->right.sign ||
            (n->right.value<0 && !divisor)) {
           dbuf_printf(f->diagnostics,"; wide division deferred result=%d/%d left=%d/%d right=%d/%d literal=%lu value=%d\n",n->width,n->sign,n->left.width,n->left.sign,n->right.width,n->right.sign,(unsigned long)divisor,n->right.value);

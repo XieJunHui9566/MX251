@@ -1934,6 +1934,16 @@ wide_emit(wide_function *f)
     case '*':wconstant_multiply(f,n);break;
     case WM_UMULW:wunsigned_multiply(f,n);break;
     case WM_UDIVW:case WM_UMODW:
+      if(n->left.width==1 && n->right.width==1) {
+        /* A is also the spill-load scratch: load B first. Both registers
+         * are reserved, so other live MIR values survive the divide. */
+        wload_byte(f,n->right,10);wload_byte(f,n->left,11);
+        we(f,"; wide unsigned byte division result=%s\n\tdiv\tab\n",n->op==WM_UDIVW?"quotient":"remainder");
+        int result=n->op==WM_UDIVW?11:10;
+        if(n->width==1)wstore_byte(f,n->result,result);
+        else {we(f,"\tmovz\twr16,r%d\n",result);wstore(f,n->result,16);}
+        break;
+      }
       /* WR16/WR20 先快照两端，DIV 写 DR16：WR16 为余数、WR18 为商。
        * 两个 DR 均为保留 scratch，不扩大分配寄存器的破坏集；原生
        * flags 不跨 MIR 节点存活，后继条件按既有路径重新比较。 */

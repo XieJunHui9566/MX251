@@ -147,6 +147,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
     return 0;
   }
   if(WC_OP("movs") || WC_OP("movz"))return a.kind==WC_REG && a.width==2 && b.kind==WC_REG && b.width==1?2:0;
+  if(WC_OP("div") && !strcmp(args,"ab") && !*second)return 1;
   if(WC_OP("mul") || WC_OP("div"))return a.kind==WC_REG && b.kind==WC_REG && a.width==b.width && a.width<=2?2:0;
   if(WC_OP("xch"))return a.kind==WC_REG && a.width==1 && a.reg==11 && (b.kind==WC_DIRECT || (b.kind==WC_REG && b.width==1 && b.reg<8))?2:0;
   if(WC_OP("mov")) {

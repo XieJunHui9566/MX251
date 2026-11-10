@@ -33,8 +33,7 @@ def compile_at(cc, d, name, flags, mode=None, division=False):
     env['SDCC_HOME'] = str(cc.resolve().parent.parent)
     if mode is not None:
         env['MX251_NARROW_UNSIGNED_NEGATE'] = mode
-    if division:
-        env['MX251_WIDE_UNSIGNED_DIVISION'] = '1'
+    env['MX251_WIDE_UNSIGNED_DIVISION'] = '1' if division else '0'
     cmd = [str(cc.resolve()), '-mmcs251', '--stack-auto',
            '--mcs251-wide-ordinary', *flags, '-c', 'probe.c', '-o', name + '.rel']
     q = subprocess.run(cmd, cwd=d, env=env, capture_output=True, timeout=60)
