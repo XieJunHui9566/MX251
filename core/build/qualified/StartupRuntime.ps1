@@ -1,4 +1,5 @@
-# 空外部初始化路径按最终链接长度裁剪；保留每个 CRT 出口的完整机器状态。
+# 按最终链接长度生成 C 初始化路径；入口保证对象初值、SPX 和中断状态。
+# 通用寄存器及算术标志是初始化过程的临时值，不属于无参 C 入口的输入。
 function Get-Mx251StartupDigest([byte[]]$Data){return [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($Data)).ToLowerInvariant()}
 function Read-Mx251StartupRel([byte[]]$Data,[string]$Name) {
  $null=Read-Mx251GcRel $Data $Name
@@ -79,8 +80,8 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
   if(-not $map.areas.ContainsKey($name) -or -not $map.symbols.ContainsKey('l_'+$name) -or -not $map.symbols.ContainsKey('s_'+$name) -or $map.areas[$name].size -ne $map.symbols['l_'+$name] -or $map.areas[$name].base -ne $map.symbols['s_'+$name]){throw 'startup-unproved-area-extent'}
   $sizes[$name]=$map.areas[$name].size
  }
- if($sizes.XINIT -or $sizes.XISEG){throw 'startup-copy-area-nonempty'}
- $replace=@('crtxinit.rel');if(-not $sizes.PSEG -and -not $sizes.XSEG){$replace+=@('crtxclear.rel')}
+ if($sizes.XINIT -ne $sizes.XISEG){throw 'startup-copy-size-mismatch'}
+ $replace=@('crtxclear.rel');if(-not $sizes.XINIT){$replace+=@('crtxinit.rel')}
  $objects=@();$inputs=@();$metadata=@{};$rawVectors=@();$mainCount=0
  $slots=[Collections.Generic.HashSet[int]]::new()
  foreach($u in $Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'}){
@@ -104,7 +105,7 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
    $inputs+=@{path=$asm;sha256=(Hash-File $path)}
    $begins=[regex]::Matches($text,'(?m)^; mx251-function begin schema=1 symbol=(\S+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])\s*$')
    $ends=[regex]::Matches($text,'(?m)^; mx251-function end schema=1 symbol=(\S+)\s*$')
-   if(-not $begins.Count -or $begins.Count -ne $ends.Count){throw 'startup-unproved-function-coverage'}
+   if($begins.Count -ne $ends.Count){throw 'startup-unproved-function-coverage'}
    $names=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
    for($i=0;$i -lt $begins.Count;$i++){
     $b=$begins[$i];$symbol=$b.Groups[1].Value
@@ -132,7 +133,7 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
  }
  if($mainCount -ne 1){throw 'startup-main-not-unique'}
  $objects+=@($Selection.selected)
- $members=@{};$startCount=0;$markerNames=@('__mcs51_genXINIT','__mcs51_genXRAMCLEAR')
+ $members=@{};$startCount=0;$hookReferenced=$false;$markerNames=@('__mcs51_genXINIT','__mcs51_genXRAMCLEAR')
  foreach($item in $objects){
   $ob=$item.rel;$member=$item.member;$crt=$member -and $Contract.crtMembers.ContainsKey($member)
   if($crt){if($ob.sha256 -cnotin @($Contract.crtMembers[$member]) -or $members.ContainsKey($member)){throw 'startup-nonstandard-crt'};$members[$member]=$item}
@@ -143,6 +144,7 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
    if($s.binding -ceq 'Def' -and $s.name -ceq '__sdcc_gsinit_startup' -and -not $start){throw 'startup-unknown-initial-entry'}
   }
   foreach($c in $ob.chunks){foreach($r in $c.refs){
+   if(-not $start -and $r.target -ceq '___sdcc_external_startup'){$hookReferenced=$true}
    if($r.target -cin $markerNames){throw 'startup-real-marker-reference'}
    if(-not $crt -and $r.target -cmatch '^(?:[sl]_)?GSINIT[34]$'){throw 'startup-init-address-reference'}
   }}
@@ -150,6 +152,9 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
    for($i=0;$i -lt $ob.areas.Count;$i++){
     $a=$ob.areas[$i]
     if(-not $a.size -or $a.name -cnotmatch '^(GSINIT[0-5]?|GSFINAL)$'){continue}
+    # 编译器生成的 C 对象初始化不接收前一 CRT 的临时寄存器值。
+    # 原始汇编及库自定义初始化仍走原启动路径。
+    if($metadata.ContainsKey($ob.name) -and $a.name -cin @('GSINIT','GSINIT3')){continue}
     $cs=@($ob.chunks|Where-Object{$_.area -eq $i -and $_.raw.Count -gt 3})
     if($a.name -cne 'GSFINAL' -or $a.size -ne 4 -or $cs.Count -ne 1){throw 'startup-custom-initialization'}
     $c=$cs[0]
@@ -165,7 +170,31 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
  if($startCount -ne 1 -or $members.Count -ne $Contract.crtMembers.Count){throw 'startup-incomplete-canonical-closure'}
  $archive=@($replace|ForEach-Object{$members[$_].path}|Sort-Object -Unique)
  if($archive.Count -ne 1){throw 'startup-ambiguous-crt-archive'}
- return @{replacements=$replace;archive=$archive[0];map=$map;inputs=$inputs;rawVectors=$rawVectors;sectionBytes=$sizes;selectedObjectCount=$objects.Count}
+ return @{replacements=$replace;archive=$archive[0];map=$map;inputs=$inputs;rawVectors=$rawVectors;sectionBytes=$sizes;selectedObjectCount=$objects.Count;hookReferenced=$hookReferenced;hook=$members['_startup.rel']}
+}
+
+function New-Mx251StartupAssembly([string]$Member,$Demand) {
+ $lines=[Collections.Generic.List[string]]::new()
+ foreach($area in @('CSEG','GSINIT0','GSINIT1','GSINIT2','GSINIT3','GSINIT4','GSINIT5','GSINIT','GSFINAL')){$lines.Add(".area $area (CODE)")}
+ if($Member -ceq 'crtxinit.rel'){
+  $lines.Add('.area GSINIT3 (CODE)');$lines.Add('__mcs51_genXINIT::')
+ } else {
+  $lines.Add('.area GSINIT4 (CODE)');$lines.Add('__mcs51_genXRAMCLEAR::')
+  foreach($name in @('PSEG','XSEG')){
+   $size=$Demand.sectionBytes[$name];if(-not $size){continue}
+   $address=$Demand.map.symbols['s_'+$name]
+   if($address -lt 0 -or $address+$size -gt 16777216){throw 'startup-address-width'}
+   $lines.Add(('mov dptr,#0x{0:x4}' -f ($address -band 65535)))
+   $lines.Add(('mov dpxl,#0x{0:x2}' -f (($address -shr 16) -band 255)))
+   $lines.Add('mov dr12,#0')
+   $lines.Add(('mov wr14,#0x{0:x4}' -f ($size -band 65535)))
+   $lines.Add(('mov r13,#0x{0:x2}' -f (($size -shr 16) -band 255)))
+   $lines.Add('clr a');$lines.Add('__mx251_clear_'+$name+':')
+   $lines.Add('mov @dpx,a');$lines.Add('inc dpx');$lines.Add('dec dr12')
+   $lines.Add('jne __mx251_clear_'+$name)
+  }
+ }
+ return ($lines -join "`n")+"`n"
 }
 
 function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$AdditionalArchives=@{}) {
@@ -173,7 +202,7 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
  try {
   . (Join-Path $PSScriptRoot 'StartupArchive.ps1')
   $contractPath=Join-Path $PSScriptRoot 'StartupRuntimeContract.json';$contract=Get-Content -LiteralPath $contractPath -Raw|ConvertFrom-Json -AsHashtable
-  if($contract.schema -ne 1 -or $contract.contract -cne 'mx251.empty-crt-state-preservation.v1'){throw 'startup-contract-mismatch'}
+  if($contract.schema -ne 2 -or $contract.contract -cne 'mx251.linked-c-initialization.v2'){throw 'startup-contract-mismatch'}
   $record.contractSha256=Hash-File $contractPath
   $assemblers=@($contract.assemblerSha256)
   if($contract.ContainsKey('compatibleAssemblerSha256')){$assemblers+=@($contract.compatibleAssemblerSha256)}
@@ -197,19 +226,13 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
    if([IO.Path]::GetFileName($member.name) -cne $member.name -or $hashes.ContainsKey($member.name)){throw 'startup-invalid-archive-member-name'}
    $path=Join-Path $work $member.name
    if($member.name -cin $demand.replacements){
-    $asm=[IO.Path]::ChangeExtension($member.name,'.asm');$template=Join-Path (Join-Path $PSScriptRoot 'startup-templates') $asm
-    if((Hash-File $template) -cne $contract.templates[$asm]){throw 'startup-template-drift'}
-    $text=[IO.File]::ReadAllText($template)
-    foreach($name in @('XINIT','XISEG','PSEG','XSEG')){
-     $value=$demand.map.symbols['s_'+$name];if($value -lt 0 -or $value -gt 16777215){throw 'startup-address-width'}
-     $text=$text.Replace('#(s_'+$name+' >> 16)',('#0x{0:x2}' -f (($value -shr 16) -band 255))).Replace('#s_'+$name,('#0x{0:x4}' -f ($value -band 65535)))
-    }
+    $asm=[IO.Path]::ChangeExtension($member.name,'.asm');$text=New-Mx251StartupAssembly $member.name $demand
     [IO.File]::WriteAllText((Join-Path $work $asm),$text,[Text.UTF8Encoding]::new($false))
     Run-Tool ('startup-runtime-'+[IO.Path]::GetFileNameWithoutExtension($member.name)) (Join-Path $ToolRoot 'bin/sdas251.exe') @('-plosgff',('startup-runtime/'+$member.name),('startup-runtime/'+$asm))
     $new=Read-Mx251StartupRel ([IO.File]::ReadAllBytes($path)) $member.name
-    $size=($new.areas|Measure-Object -Property size -Sum).Sum;$expected=if($member.name -ceq 'crtxinit.rel'){22}else{14}
-    if($size -ne $expected){throw 'startup-replacement-size-mismatch'}
-    $changes+=@{member=$member.name;beforeSha256=$member.sha256;afterSha256=$new.sha256;beforeBytes=if($member.name -ceq 'crtxinit.rel'){45}else{66};afterBytes=$size;sourceSha256=(Hash-File (Join-Path $work $asm))}
+    $old=Read-Mx251StartupRel $member.data $member.name
+    $size=($new.areas|Measure-Object -Property size -Sum).Sum
+    $changes+=@{member=$member.name;beforeSha256=$member.sha256;afterSha256=$new.sha256;beforeBytes=($old.areas|Measure-Object -Property size -Sum).Sum;afterBytes=$size;sourceSha256=(Hash-File (Join-Path $work $asm))}
    } else {[IO.File]::WriteAllBytes($path,$member.data)}
    $hashes[$member.name]=Hash-File $path;$arguments+=@('startup-runtime/'+$member.name)
   }
@@ -218,15 +241,28 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   if($newMembers.Count -ne $members.Count){throw 'startup-archive-count-changed'}
   for($i=0;$i -lt $members.Count;$i++){if($newMembers[$i].name -cne $members[$i].name -or $newMembers[$i].sha256 -cne $hashes[$members[$i].name]){throw 'startup-archive-order-content-changed'}}
   $backup=Join-Path $Root 'startup-baseline';$null=[IO.Directory]::CreateDirectory($backup)
-  foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Extension -ceq '.rst'}){
+  foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Name -in @('startup.asm','startup.rel') -or $_.Extension -ceq '.rst'}){
    [IO.File]::Copy($p.FullName,(Join-Path $backup $p.Name),$false);$saved+=@{name=$p.Name;sha256=(Hash-File $p.FullName)}
   }
   $record.baselineFiles=$saved
+  # 已选中的默认钩子只返回 0；自定义钩子在需求分析中保留原启动流程。
+  $startup=Join-Path $Root 'startup.asm';$text=[IO.File]::ReadAllText($startup)
+  $oldStartup=Read-Mx251StartupRel ([IO.File]::ReadAllBytes((Join-Path $Root 'startup.rel'))) 'startup.rel'
+  $pattern='(?m)^\s*ecall\s+___sdcc_external_startup\s*\r?\n\s*mov\s+a,dpl\s*\r?\n\s*jz\s+__sdcc_init_data\s*\r?\n\s*ejmp\s+__sdcc_program_startup\s*\r?\n__sdcc_init_data:\s*'
+  if([regex]::Matches($text,$pattern).Count -ne 1){throw 'startup-default-hook-sequence'}
+  [IO.File]::WriteAllText($startup,[regex]::Replace($text,$pattern,''),[Text.UTF8Encoding]::new($false))
+  Run-Tool 'startup-c-entry' (Join-Path $ToolRoot 'bin/sdas251.exe') @('-plosgff','startup.rel','startup.asm')
+  $newStartup=Read-Mx251StartupRel ([IO.File]::ReadAllBytes((Join-Path $Root 'startup.rel'))) 'startup.rel'
+  $changes+=@{member='startup.rel';beforeBytes=($oldStartup.areas|Measure-Object -Property size -Sum).Sum;afterBytes=($newStartup.areas|Measure-Object -Property size -Sum).Sum;sourceSha256=(Hash-File $startup)}
+  if(-not $demand.hookReferenced){
+   $changes+=@{member='_startup.rel';beforeBytes=($demand.hook.rel.areas|Where-Object{$_.flags -band 32}|Measure-Object -Property size -Sum).Sum;afterBytes=0}
+  }
   Run-Tool 'startup-link' $compilerExe (@('-L'+$privateDir)+$linkArgs)
   $after=Get-Mx251StartupSelection (Join-Path $Root 'linked.partial.map') $ToolRoot $contract $privateArchive $hashes
-  if($after.selected.Count -ne $selection.selected.Count){throw 'startup-selected-closure-count-changed'}
-  for($i=0;$i -lt $selection.selected.Count;$i++){
-   $a=$selection.selected[$i];$b=$after.selected[$i]
+  $expectedSelection=@($selection.selected|Where-Object{$demand.hookReferenced -or $_.member -cne '_startup.rel'})
+  if($after.selected.Count -ne $expectedSelection.Count){throw 'startup-selected-closure-count-changed'}
+  for($i=0;$i -lt $expectedSelection.Count;$i++){
+   $a=$expectedSelection[$i];$b=$after.selected[$i]
    if($a.member -cne $b.member -or [IO.Path]::GetFileName($a.path) -cne [IO.Path]::GetFileName($b.path)){throw 'startup-selected-order-changed'}
    $expected=if($a.member -cin $demand.replacements){$hashes[$a.member]}else{$a.sha256}
    if($b.sha256 -cne $expected){throw 'startup-selected-content-changed'}
@@ -235,7 +271,7 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   foreach($name in @('XISEG','PSEG','XSEG','HOME','SSEG')){
    if($map.areas[$name].base -ne $demand.map.areas[$name].base -or $map.areas[$name].size -ne $demand.map.areas[$name].size){throw 'startup-data-or-vector-layout-changed'}
   }
-  if($map.areas.XINIT.size -or $map.symbols.l_XINIT -or $map.symbols.l_XISEG){throw 'startup-copy-extent-changed'}
+  if($map.symbols.l_XINIT -ne $demand.sectionBytes.XINIT -or $map.symbols.l_XISEG -ne $demand.sectionBytes.XISEG){throw 'startup-copy-extent-changed'}
   $image=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.candidateBytes=$image.Count
   $delta=0;foreach($change in $changes){$delta+=$change.beforeBytes-$change.afterBytes}
   if($delta -le 0 -or $record.parentBytes-$record.candidateBytes -ne $delta){throw 'startup-whole-image-cost-mismatch'}
@@ -243,10 +279,10 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
    for($i=0;$i -lt 3;$i++){if(-not $image.ContainsKey($jump.source+$i) -or $image[$jump.source+$i] -ne $parentImage[$jump.source+$i]){throw 'startup-raw-vector-bytes-changed'}}
    if($image[$jump.target] -ne 138 -or $parentImage[$jump.target] -ne 138){throw 'startup-raw-target-changed'}
   }}
-  foreach($p in $demand.inputs){if((Hash-File (Join-Path $Root $p.path)) -cne $p.sha256){throw 'startup-input-drift'}}
+  foreach($p in $demand.inputs){if($p.path -cne 'startup.rel' -and (Hash-File (Join-Path $Root $p.path)) -cne $p.sha256){throw 'startup-input-drift'}}
   $trial=@($commands|Where-Object{$_.label -ceq 'startup-link'})[-1]
   $prior.label='startup-baseline-link';$trial.label='link';$trial.actualLogLabel='startup-link';Write-Json (Join-Path $Root 'commands.json') @($commands.ToArray())
-  $record.status='APPLIED_STATE_PRESERVING_EMPTY_CRT';$record.applied=$true;$record.savedBytes=$delta;$record.changes=$changes;$record.librarySha256=Hash-File $privateArchive;$accepted=$true
+  $record.status='APPLIED_LINKED_C_INITIALIZATION';$record.applied=$true;$record.savedBytes=$delta;$record.changes=$changes;$record.librarySha256=Hash-File $privateArchive;$accepted=$true
  } catch {
   if($_.Exception.Message -match 'PAUSE_REQUESTED'){throw}
   $record.reason=$_.Exception.Message;$record.diagnostic=$_.ScriptStackTrace
