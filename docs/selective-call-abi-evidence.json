@@ -1,0 +1,685 @@
+{
+  "schema": 1,
+  "implementationCommit": "5a21ecdc2224788ffe832641cf37f9761dcc82bb",
+  "baseCommit": "fe717c9",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\core-01\\core.json",
+    "sha256": "91f145316662ab2dff957a57a4f68949671cc96064cc09a293b3b1ff5f01c82b"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "6219b66b43a63fc999a1fc7365244624903b16afbdff44819533229c99edd4b3"
+  },
+  "selector": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\core-01\\build\\qualified\\SelectiveLeafAbi.ps1",
+    "sha256": "6c23c3ef055c94638bcd477e37a8be037da280b2948f9658d93d1022b43d203c"
+  },
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\qualification.json",
+    "sha256": "b63e39efb1bd847b6efbbacde0fa351694317e7372238d6122280aa5744be3dd"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\comparison.json",
+    "sha256": "367db85ad2307d40d0504d3582da9e0f366c8e8f4e3d892bd1029deb969e79eb"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 4,
+    "unchanged": 71,
+    "larger": 0,
+    "savedBytes": 635,
+    "mxTotalBytes": 205814,
+    "keilTotalBytes": 192051,
+    "within110": 49,
+    "within120": 62,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0716632561142614
+  },
+  "newWithin": {
+    "110": [],
+    "120": [
+      "p122"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  },
+  "changed": [
+    {
+      "id": "p078",
+      "parentBytes": 19153,
+      "codeBytes": 18975,
+      "savedBytes": 178,
+      "keilRatio": 1.057869208897809,
+      "calls": 58,
+      "calleeBefore": {
+        "name": "_LCD_WR_REG16",
+        "unit": "u4",
+        "bytes": 32,
+        "isr": false,
+        "pushPopBytes": 4,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "wide",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0",
+          "mx251-body-choice function=_LCD_WR_REG16 selected=wide"
+        ]
+      },
+      "calleeAfter": {
+        "name": "___m251r4_LCD_WR_REG16",
+        "unit": "u4",
+        "bytes": 27,
+        "isr": false,
+        "pushPopBytes": 4,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "unreported",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0"
+        ]
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p078\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "21bcb00b184a134937783648f33632b949138a3b816da5afdc89e66bf8919975"
+      },
+      "functionChanges": [
+        {
+          "name": "_LCD_DrawLine",
+          "before": 203,
+          "after": 202
+        },
+        {
+          "name": "__draw_circle_8",
+          "before": 253,
+          "after": 234
+        },
+        {
+          "name": "_LCD_ShowChar",
+          "before": 555,
+          "after": 551
+        },
+        {
+          "name": "_GUI_DrawFont16",
+          "before": 735,
+          "after": 733
+        },
+        {
+          "name": "_LCD_Init",
+          "before": 680,
+          "after": 544
+        },
+        {
+          "name": "_LCD_SetWindows",
+          "before": 91,
+          "after": 85
+        },
+        {
+          "name": "_LCD_direction",
+          "before": 110,
+          "after": 105
+        }
+      ]
+    },
+    {
+      "id": "p112",
+      "parentBytes": 6058,
+      "codeBytes": 5905,
+      "savedBytes": 153,
+      "keilRatio": 1.0352384291725105,
+      "calls": 57,
+      "calleeBefore": {
+        "name": "_LCD_WR_REG16",
+        "unit": "u0",
+        "bytes": 32,
+        "isr": false,
+        "pushPopBytes": 4,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "wide",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0",
+          "mx251-body-choice function=_LCD_WR_REG16 selected=wide"
+        ]
+      },
+      "calleeAfter": {
+        "name": "___m251r4_LCD_WR_REG16",
+        "unit": "u0",
+        "bytes": 27,
+        "isr": false,
+        "pushPopBytes": 4,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "unreported",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0"
+        ]
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p112\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e3686f5439a25ef8a89caded557ff2ebe070046eca4b6367c3fa9c194df7be04"
+      },
+      "functionChanges": [
+        {
+          "name": "_LCD_Init",
+          "before": 682,
+          "after": 542
+        },
+        {
+          "name": "_LCD_SetWindows",
+          "before": 91,
+          "after": 85
+        },
+        {
+          "name": "_LCD_ShowChar",
+          "before": 573,
+          "after": 571
+        }
+      ]
+    },
+    {
+      "id": "p113",
+      "parentBytes": 5859,
+      "codeBytes": 5706,
+      "savedBytes": 153,
+      "keilRatio": 1.0410509031198687,
+      "calls": 57,
+      "calleeBefore": {
+        "name": "_LCD_WR_REG16",
+        "unit": "u0",
+        "bytes": 32,
+        "isr": false,
+        "pushPopBytes": 4,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "wide",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0",
+          "mx251-body-choice function=_LCD_WR_REG16 selected=wide"
+        ]
+      },
+      "calleeAfter": {
+        "name": "___m251r4_LCD_WR_REG16",
+        "unit": "u0",
+        "bytes": 27,
+        "isr": false,
+        "pushPopBytes": 4,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "unreported",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0"
+        ]
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p113\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2784ecaf4ccc485b4a27801107c98ab340a549d82722e8b41388caa082be965b"
+      },
+      "functionChanges": [
+        {
+          "name": "_LCD_Init",
+          "before": 682,
+          "after": 542
+        },
+        {
+          "name": "_LCD_SetWindows",
+          "before": 91,
+          "after": 85
+        },
+        {
+          "name": "_LCD_ShowChar",
+          "before": 573,
+          "after": 571
+        }
+      ]
+    },
+    {
+      "id": "p122",
+      "parentBytes": 5230,
+      "codeBytes": 5079,
+      "savedBytes": 151,
+      "keilRatio": 1.1858510389913612,
+      "calls": 58,
+      "calleeBefore": {
+        "name": "_LCD_WR_REG16",
+        "unit": "u3",
+        "bytes": 25,
+        "isr": false,
+        "pushPopBytes": 0,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 2,
+        "wideRefusal": null,
+        "backend": "legacy",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mx251-body-choice function=_LCD_WR_REG16 selected=legacy"
+        ]
+      },
+      "calleeAfter": {
+        "name": "___m251r4_LCD_WR_REG16",
+        "unit": "u3",
+        "bytes": 26,
+        "isr": false,
+        "pushPopBytes": 0,
+        "entryExitPushPopBytes": 0,
+        "directCallSites": 3,
+        "wideRefusal": null,
+        "backend": "unreported",
+        "divisionDeferred": false,
+        "diagnostics": [
+          "mcs251 wide-mir accepted: LCD_WR_REG16; values=4 nodes=14 frame=0 folded-casts=0"
+        ]
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p122\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "6da7c14a6313fa9b7cba6b003529036955e67ae4dcc7c6cbbb1a939d31155a8f"
+      },
+      "functionChanges": [
+        {
+          "name": "_LCD_Init",
+          "before": 669,
+          "after": 533
+        },
+        {
+          "name": "_LCD_SetWindows",
+          "before": 91,
+          "after": 80
+        },
+        {
+          "name": "_LCD_direction",
+          "before": 98,
+          "after": 93
+        }
+      ]
+    }
+  ],
+  "selected": [
+    {
+      "id": "p078",
+      "chosen": {
+        "transport": "void(u8,u16)",
+        "calls": 58,
+        "unit": "u4",
+        "rank": 928,
+        "signature": "v(u8,u16)",
+        "symbol": "_LCD_WR_REG16"
+      },
+      "savedAgainstAbi2": 178,
+      "binding": {
+        "address": 16718522,
+        "calls": 58,
+        "symbol": "___m251r4_LCD_WR_REG16"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p078\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "a77c6e690ff7062b81204cc74eb86d3494c5f5fac2d6651fadbdaa37ce9f19c9"
+      }
+    },
+    {
+      "id": "p086",
+      "chosen": {
+        "transport": "void(u8,u8)",
+        "unit": "u1",
+        "signature": "v(u8,u8)",
+        "calls": 49,
+        "rank": 392,
+        "symbol": "_usb_write_reg"
+      },
+      "savedAgainstAbi2": 92,
+      "binding": {
+        "calls": 49,
+        "address": 16712106,
+        "symbol": "___m251r4_usb_write_reg"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p086\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "6d50a81a7fee333ad3cab3b2f5133b0ac8ade150f3e94c1751e1b4c23a60a1dd"
+      }
+    },
+    {
+      "id": "p087",
+      "chosen": {
+        "unit": "u1",
+        "symbol": "_usb_write_reg",
+        "calls": 61,
+        "transport": "void(u8,u8)",
+        "signature": "v(u8,u8)",
+        "rank": 488
+      },
+      "savedAgainstAbi2": 117,
+      "binding": {
+        "symbol": "___m251r4_usb_write_reg",
+        "address": 16712130,
+        "calls": 61
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p087\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "d99f5757d87db1762516a53a4484be8aba8df37988c0ccfb9d2ca72a6a19a849"
+      }
+    },
+    {
+      "id": "p088",
+      "chosen": {
+        "calls": 51,
+        "unit": "u1",
+        "symbol": "_usb_write_reg",
+        "rank": 408,
+        "signature": "v(u8,u8)",
+        "transport": "void(u8,u8)"
+      },
+      "savedAgainstAbi2": 93,
+      "binding": {
+        "calls": 51,
+        "address": 16712131,
+        "symbol": "___m251r4_usb_write_reg"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p088\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "f9a6672e5fd5d968e6552f6f7c638838172d4512259a12eb1ab8c0abc2d575ef"
+      }
+    },
+    {
+      "id": "p089",
+      "chosen": {
+        "transport": "void(u8,u8)",
+        "unit": "u1",
+        "symbol": "_usb_write_reg",
+        "rank": 328,
+        "calls": 41,
+        "signature": "v(u8,u8)"
+      },
+      "savedAgainstAbi2": 66,
+      "binding": {
+        "symbol": "___m251r4_usb_write_reg",
+        "address": 16712131,
+        "calls": 41
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p089\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "6d23f88ca23b0f3b2a9c86ee7458403e8cc356deb0453b11825af5a4b47c512b"
+      }
+    },
+    {
+      "id": "p090",
+      "chosen": {
+        "calls": 53,
+        "unit": "u1",
+        "transport": "void(u8,u8)",
+        "symbol": "_usb_write_reg",
+        "rank": 424,
+        "signature": "v(u8,u8)"
+      },
+      "savedAgainstAbi2": 98,
+      "binding": {
+        "address": 16712120,
+        "symbol": "___m251r4_usb_write_reg",
+        "calls": 53
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p090\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "dea4a774df0fb68004401cb5dc8a7f5905c1dc03ef514165f5a41d5f077ee4fb"
+      }
+    },
+    {
+      "id": "p091",
+      "chosen": {
+        "calls": 50,
+        "symbol": "_usb_write_reg",
+        "rank": 400,
+        "unit": "u1",
+        "signature": "v(u8,u8)",
+        "transport": "void(u8,u8)"
+      },
+      "savedAgainstAbi2": 90,
+      "binding": {
+        "address": 16712163,
+        "calls": 50,
+        "symbol": "___m251r4_usb_write_reg"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p091\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "78d901c52e27850a12f26ede0501f8ea12ef94a7d68d76f097db5f7b263c4443"
+      }
+    },
+    {
+      "id": "p095",
+      "chosen": {
+        "rank": 720,
+        "symbol": "_usb_write_reg",
+        "transport": "void(u8,u8)",
+        "calls": 90,
+        "unit": "u1",
+        "signature": "v(u8,u8)"
+      },
+      "savedAgainstAbi2": 184,
+      "binding": {
+        "calls": 90,
+        "address": 16712196,
+        "symbol": "___m251r4_usb_write_reg"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p095\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "9459f20cbbe2d359f858f068ecffd654dd359c9edee5f801dcee3778d27f130e"
+      }
+    },
+    {
+      "id": "p096",
+      "chosen": {
+        "unit": "u1",
+        "transport": "void(u8,u8)",
+        "signature": "v(u8,u8)",
+        "calls": 62,
+        "rank": 496,
+        "symbol": "_usb_write_reg"
+      },
+      "savedAgainstAbi2": 115,
+      "binding": {
+        "address": 16712143,
+        "symbol": "___m251r4_usb_write_reg",
+        "calls": 62
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p096\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "1f69ffbb1c7b6b9a94b991bc8b5f402d5e22798325a24200e55f1ebb669d83ce"
+      }
+    },
+    {
+      "id": "p112",
+      "chosen": {
+        "unit": "u0",
+        "signature": "v(u8,u16)",
+        "calls": 57,
+        "rank": 912,
+        "symbol": "_LCD_WR_REG16",
+        "transport": "void(u8,u16)"
+      },
+      "savedAgainstAbi2": 153,
+      "binding": {
+        "calls": 57,
+        "address": 16713413,
+        "symbol": "___m251r4_LCD_WR_REG16"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p112\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "ae663fd55def042e849fa715d4f5146647c030c2231970431b5d773966e25bac"
+      }
+    },
+    {
+      "id": "p113",
+      "chosen": {
+        "signature": "v(u8,u16)",
+        "transport": "void(u8,u16)",
+        "symbol": "_LCD_WR_REG16",
+        "unit": "u0",
+        "rank": 912,
+        "calls": 57
+      },
+      "savedAgainstAbi2": 153,
+      "binding": {
+        "calls": 57,
+        "symbol": "___m251r4_LCD_WR_REG16",
+        "address": 16713414
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p113\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "7459003dab90a16523ca7f4962daeb734abe4948dbf469b560fe5c7de515b043"
+      }
+    },
+    {
+      "id": "p117",
+      "chosen": {
+        "unit": "u0",
+        "rank": 272,
+        "transport": "void(u8,u8)",
+        "symbol": "_WritePWMA",
+        "calls": 34,
+        "signature": "v(u8,u8)"
+      },
+      "savedAgainstAbi2": 93,
+      "binding": {
+        "address": 16712108,
+        "symbol": "___m251r4_WritePWMA",
+        "calls": 34
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p117\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "4ab6b1c61bb65964e409e609549df4c555e83b099413c06350231a4e5ed117f7"
+      }
+    },
+    {
+      "id": "p122",
+      "chosen": {
+        "transport": "void(u8,u16)",
+        "rank": 928,
+        "signature": "v(u8,u16)",
+        "calls": 58,
+        "unit": "u3",
+        "symbol": "_LCD_WR_REG16"
+      },
+      "savedAgainstAbi2": 151,
+      "binding": {
+        "symbol": "___m251r4_LCD_WR_REG16",
+        "address": 16715351,
+        "calls": 58
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p122\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "a5be43a997951613a7929b33460290e8eeec1a47a3b11816fca2118e3c20dd39"
+      }
+    },
+    {
+      "id": "p128",
+      "chosen": {
+        "rank": 312,
+        "transport": "void(u8,u8)",
+        "symbol": "_usb_write_reg",
+        "unit": "u1",
+        "calls": 39,
+        "signature": "v(u8,u8)"
+      },
+      "savedAgainstAbi2": 66,
+      "binding": {
+        "address": 16712956,
+        "calls": 39,
+        "symbol": "___m251r4_usb_write_reg"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\matrix-core-01\\projects\\p128\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+        "sha256": "0f879cd92e207cf0b5e3a8016a73bd7be531032a167944884cd076f5e3b1bb39"
+      }
+    }
+  ],
+  "hardware": [
+    {
+      "variant": "parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 588,
+      "aggregateTicks": {
+        "0": 53568,
+        "1": 10084.5
+      },
+      "codeBytes": 2327,
+      "port": "COM13",
+      "serial": "82941086",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\capture-parent\\result.json",
+        "sha256": "8ebc41647680ee6508034529ca2f3f5a93afea92b78ef21b789f1e8601b0ad4f"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\capture-parent\\uart.bin",
+        "sha256": "89336e7976b20eff9c1740703528cce2ab3dafdba6ed2b252747ecec60fd4572"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\board-parent\\receipt.json",
+        "sha256": "3e08dfa10ad0e4d81529c956ff31b4af41e084ed84667414240574b0f29226ca"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\board-parent\\selective-leaf-abi.json",
+        "sha256": "796c7667230183a598ec4a70e7fd84deaaad8d1a0f90fdbffb6eef90a0eba120"
+      }
+    },
+    {
+      "variant": "auto",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 586,
+      "aggregateTicks": {
+        "0": 53440,
+        "1": 10083.0
+      },
+      "codeBytes": 2200,
+      "port": "COM13",
+      "serial": "82941086",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\capture-auto\\result.json",
+        "sha256": "ef9b8e3b89e633cc32113a81f7b003a088b60a5f65b426e5e2dc05e7ace58c73"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\capture-auto\\uart.bin",
+        "sha256": "df737ffa770bc74f4a13f155fcce9a6de8ac6d6ed5b40d8235b46818868f0f77"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\board-auto\\receipt.json",
+        "sha256": "9d1f59a9a64db18117d1cf4b6503a4f395735780c304a3bd6aeecd1e2ee58c17"
+      },
+      "selection": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\board-auto\\selective-leaf-abi.json",
+        "sha256": "2b862591ca62ee653fe0ee8f31035632ec85a5797a0da48759b786bad2a12bc2"
+      }
+    }
+  ],
+  "fixtureSourceInputsIdentical": true,
+  "selectorChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\selector-tests\\result.json",
+    "sha256": "d262b4b8a5503a13424ef265be9d4a257b466276262821fbc65dc658d964076c"
+  },
+  "hardwareFixture": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\automatic_call_abi_fixture.py",
+    "sha256": "4a1c1ab9215aed97cf2abbf9c231a42f2122eacdbbb24556c25a959359f06ed0"
+  },
+  "sourceAlgorithmsChanged": false,
+  "fullProjectRuntimeMeasured": false,
+  "reportRecipe": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\selective-call-abi\\finish.py",
+    "sha256": "1ca92ccabd1efecd4370b82cb9784507233ee9d7d95657b3716938d3ddb4e4cf"
+  }
+}
