@@ -1933,6 +1933,24 @@ wide_emit(wide_function *f)
       f->callOperands=(wide_bits){{0}};break;
     case '*':wconstant_multiply(f,n);break;
     case WM_UMULW:wunsigned_multiply(f,n);break;
+    case WM_UDIVMOD: {
+      int quotient=n->remainderFirst?n->pairedResult:n->result;
+      int remainder=n->remainderFirst?n->result:n->pairedResult;
+      if(n->left.width==1 && n->right.width==1) {
+        wload_byte(f,n->right,10);wload_byte(f,n->left,11);
+        we(f,"; wide unsigned byte division result=pair\n\tdiv\tab\n");
+        /* Store A first: spilling B may use A as its store scratch. */
+        if(f->values[quotient].width==1)wstore_byte(f,quotient,11);
+        else {we(f,"\tmovz\twr16,a\n");wstore(f,quotient,16);}
+        if(f->values[remainder].width==1)wstore_byte(f,remainder,10);
+        else {we(f,"\tmovz\twr16,b\n");wstore(f,remainder,16);}
+      } else {
+        wload(f,n->left,16,2);wload(f,n->right,20,2);
+        we(f,"; wide unsigned word division result=pair\n\tdiv\twr16,wr20\n");
+        wstore(f,quotient,18);wstore(f,remainder,16);
+      }
+      break;
+    }
     case WM_UDIVW:case WM_UMODW:
       if(n->left.width==1 && n->right.width==1) {
         /* A is also the spill-load scratch: load B first. Both registers

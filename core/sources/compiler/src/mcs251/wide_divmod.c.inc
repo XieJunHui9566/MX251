@@ -18,6 +18,57 @@ wide_native_integer_call(wide_node *n,symbol *callee)
     n->left.width==4 && n->right.width==4 && !n->left.floating && !n->right.floating;
 }
 
+/* Native DIV defines two independently allocated values. Define the later
+ * destination directly if it is unused in between; otherwise use a temporary
+ * and copy at the original definition. Each result has its own lifetime. */
+static unsigned
+wide_pair_native_divmod(wide_function *f)
+{
+  const char *enabled=getenv("MX251_NATIVE_DIVMOD");
+  if(enabled && !strcmp(enabled,"0"))return 0;
+  unsigned changes=0;
+  for(int at=0;at<f->nn;++at) {
+    wide_node second=f->nodes[at];
+    if((second.op!=WM_UDIVW && second.op!=WM_UMODW) || f->nv>=f->valueLimit)continue;
+    int first=-1;
+    for(int from=at-1;from>=0;--from) {
+      wide_node *n=&f->nodes[from];
+      if(wide_sink_block_barrier(n) ||
+         n->succ[0]!=from+1 || n->succ[1]>=0 || n->jumpCount)break;
+      if(wb_has(n->def,second.left.value) || wb_has(n->def,second.right.value))break;
+      if((n->op==WM_UDIVW || n->op==WM_UMODW) && n->op!=second.op &&
+         wide_divmod_operand_equal(n->left,second.left) &&
+         wide_divmod_operand_equal(n->right,second.right)) {first=from;break;}
+    }
+    if(first<0)continue;
+    wide_node *divide=&f->nodes[first];
+    bool direct=divide->result!=second.result;
+    for(int i=first+1;i<at;++i)
+      if(wb_has(f->nodes[i].use,second.result) || wb_has(f->nodes[i].def,second.result))direct=false;
+    int pair=second.result;
+    if(!direct) {
+      pair=f->nv++;
+      f->values[pair]=(wide_value){.sym=f->values[second.result].sym,
+        .width=second.width,.reg=-1,.slot=-1,.pin=-1,.preference=-1};
+    }
+    divide->remainderFirst=divide->op==WM_UMODW;
+    divide->op=WM_UDIVMOD;divide->pairedResult=pair;wb_set(&divide->def,pair);
+    second.left.value=-1;second.use=(wide_bits){{0}};
+    if(direct) {
+      second.op=WM_NOP;second.result=second.right.value=second.addressIndex.value=-1;
+      second.def=(wide_bits){{0}};
+    } else {
+      second.op='=';second.right=(wide_operand){.value=pair,.width=second.width};
+      wb_set(&second.use,pair);
+    }
+    f->nodes[at]=second;
+    dbuf_printf(f->diagnostics,"; wide native-divmod pair first=%d second=%d results=%d,%d\n",first,at,divide->result,pair);
+    ++changes;
+  }
+  if(changes)wide_reset_allocation(f);
+  return changes;
+}
+
 static unsigned
 wide_reuse_integer_quotients(wide_function *f)
 {

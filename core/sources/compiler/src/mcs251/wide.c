@@ -24,7 +24,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
 /* 存储上界与本轮导入限额分开：默认仍按 128/512 回退，独立比较容量收益。
  * 候选仍整体复制，数组内嵌避免分配试算之间共享可变位集或节点。
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
-enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS };
+enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 typedef struct { unsigned char operation,address,bit; } wide_asm_instruction;
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
@@ -70,6 +70,8 @@ typedef struct {
   signed char multiplyDigits[32];
   int multiplyTop;
   int result, label, target, succ[2], width;
+  int pairedResult; /* WM_UDIVMOD's second independently allocated result. */
+  bool remainderFirst;
   int jumpStart, jumpCount;
   bool sign, floating, trueBranch;
   unsigned orderedAsmCount;
@@ -2706,6 +2708,13 @@ wide_choose_range_multiply(wide_function *f,wide_selection_cost *cost)
     "range-multiply","calls",false,"multiply-original","multiply-trial",true,true);
 }
 
+static mcs251_wide_result
+wide_choose_native_divmod(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_pair_native_divmod,wide_choose_range_multiply,
+    "native-divmod","pairs",false,"divmod-original","divmod-trial",false,false);
+}
+
 /* 先比较值副本合并及既有 MIR 变换的完整函数候选，再处理最终 rotate
  * 发射。rotate 不回流至前面的候选比较，避免把局部替换后的字节数与
  * 替换前的热路径向量混合用于重新选择。副本合并不依赖 rotate 开关。 */
@@ -2714,7 +2723,7 @@ wide_choose_range_multiply(wide_function *f,wide_selection_cost *cost)
 static mcs251_wide_result
 wide_choose_simple_copies(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_value_copies,wide_choose_range_multiply,
+  return wide_choose_transform(f,cost,wide_value_copies,wide_choose_native_divmod,
     "value-copy","changes",false,"copies-original","copies-trial",false,false);
 }
 
