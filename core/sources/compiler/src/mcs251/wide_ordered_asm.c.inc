@@ -26,35 +26,15 @@ wide_ordered_asm_import(wide_function *f,wide_node *n,iCode *ic)
     /* SDCC 预处理后的块汇编以 0x87 保存部分换行；与 genInline 的
      * 分行规则一致，仅恢复指令边界，不放行任何额外操作或尾随文本。 */
     const char *end=line;while(*end && *end!='\n' && *end!='\r' && (unsigned char)*end!=0x87)++end;
-    const char *p=line;while(p<end && (*p==' ' || *p=='\t'))++p;
-    if(p<end && *p!=';') {
-      char op[5];unsigned length=0;
-      while(p<end && isalpha((unsigned char)*p)) {
-        if(length==sizeof op-1)return wide_reject(f,"unsupported-ordered-asm-opcode",__LINE__);
-        op[length++]=(char)tolower((unsigned char)*p++);
-      }
-      op[length]=0;
-      unsigned operation=!strcmp(op,"nop")?1:!strcmp(op,"setb")?2:!strcmp(op,"clr")?3:0;
-      if(!operation || (p<end && *p!=' ' && *p!='\t' && *p!=';'))
-        return wide_reject(f,"unsupported-ordered-asm-opcode-or-label",__LINE__);
-      while(p<end && (*p==' ' || *p=='\t'))++p;
-      unsigned address=0,bit=0;
-      if(operation!=1) {
-        /* 只接受规范的数值 byte.bit；不猜别名、表达式或 classic 位编号。 */
-        if(end-p<6 || p[0]!='0' || (p[1]!='x' && p[1]!='X') ||
-           wide_asm_hex(p[2])<0 || wide_asm_hex(p[3])<0 || p[4]!='.' || p[5]<'0' || p[5]>'7')
-          return wide_reject(f,"unsupported-ordered-asm-bit-spelling",__LINE__);
-        address=(unsigned)(16*wide_asm_hex(p[2])+wide_asm_hex(p[3]));bit=(unsigned)(p[5]-'0');p+=6;
-        if(f->memoryStateBits[address]&(1u<<bit))n->memoryStateBarrier=true;
-        else {
-          if(wide_asm_core_bits(address,1u<<bit))return wide_reject(f,"ordered-asm-core-state-write",__LINE__);
-          if(!(f->orderedAsmBits[address]&(1u<<bit)))return wide_reject(f,"ordered-asm-bit-not-capable",__LINE__);
-        }
-        while(p<end && (*p==' ' || *p=='\t'))++p;
-      }
-      if(p<end && *p!=';')return wide_reject(f,"unsupported-ordered-asm-trailing-text",__LINE__);
+    wide_asm_instruction instruction;
+    const char *error=wide_asm_decode(line,end,&instruction);
+    if(!error)error=wide_asm_validate(instruction,f->orderedAsmBits,f->memoryStateBits);
+    if(error)return wide_reject(f,error,__LINE__);
+    if(instruction.operation) {
       if(n->orderedAsmCount==WASM_MAX)return wide_reject(f,"ordered-asm-block-capacity",__LINE__);
-      n->orderedAsm[n->orderedAsmCount++]=(wide_asm_instruction){operation,address,bit};
+      n->orderedAsm[n->orderedAsmCount++]=instruction;
+      if(instruction.operation>1 && (f->memoryStateBits[instruction.address]&(1u<<instruction.bit)))
+        n->memoryStateBarrier=true;
     }
     line=end;if(*line=='\r')++line;if(*line=='\n' || (unsigned char)*line==0x87)++line;
   }

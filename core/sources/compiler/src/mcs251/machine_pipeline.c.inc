@@ -50,7 +50,30 @@ static int mcs251MachineMemory(const char *name,void *unused) {
     }
   return 0;
 }
-static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi,bool wide) {
+/* Capture inline effects before genInline consumes the source buffer. Both
+ * generators use exactly the same opcode parser and target bit capabilities. */
+static bool mcs251MachineOrderedBlocks(ebbIndex *ebbi) {
+  if(!mcs251OrderedAsmEnabled)return false;
+  for(int b=0;b<ebbi->count;++b) {
+    eBBlock *bb=ebbi->bbOrder[b];
+    for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)if(ic->op==INLINEASM) {
+      const char *source=IC_INLINE(ic);unsigned count=0;
+      if(!source)return false;
+      for(const char *line=source;*line;) {
+        const char *end=line;while(*end && *end!='\r' && *end!='\n' && (unsigned char)*end!=0x87)++end;
+        wide_asm_instruction instruction;
+        if(wide_asm_decode(line,end,&instruction) ||
+           wide_asm_validate(instruction,mcs251OrderedAsmBits,mcs251MemoryStateBits))return false;
+        count+=instruction.operation!=0;
+        line=end;if(*line=='\r')++line;if(*line=='\n' || (unsigned char)*line==0x87)++line;
+      }
+      if(!count)return false;
+    }
+  }
+  return true;
+}
+
+static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi,bool wide,bool orderedBlocks) {
   if(!mcs251MachineIrEnabled || options.debug || options.nopeep || !currFunc ||
      IFFUNC_ISNAKED(currFunc->type) || IFFUNC_ISISR(currFunc->type) ||
      IFFUNC_CALLEESAVES(currFunc->type) || FUNC_REGBANK(currFunc->type) ||
@@ -63,7 +86,7 @@ static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi,bool wide) {
       /* Successful wide import has already classified every inline block as
        * ordered NOP/bit operations. Unknown numeric bit effects remain local
        * barriers in machine IR; they need not disable the entire function. */
-      if((ic->op==INLINEASM && !wide) || ic->op==JUMPTABLE)return;
+      if((ic->op==INLINEASM && !wide && !orderedBlocks) || ic->op==JUMPTABLE)return;
   }
   const char *body=dbuf_get_buf(codeOutBuf)+start;
   size_t length=dbuf_get_length(codeOutBuf)-start;

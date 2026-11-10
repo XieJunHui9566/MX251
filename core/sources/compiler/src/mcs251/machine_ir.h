@@ -163,7 +163,10 @@ static int mi_parse(mi_program *p,const char *body,size_t length,uint32_t exitLi
             ++s;
           }
           o->text[k]=0;mi_operand_parse(o);
-          if(!strcmp(o->text,"psw") || !strcmp(o->text,"psw1"))return 0;
+          /* A saved/restored status word is a local unknown-effect barrier.
+           * A bank/mode assignment still excludes the complete body. */
+          if((!strcmp(o->text,"psw") || !strcmp(o->text,"psw1")) &&
+             !mi_is(n,"push") && !mi_is(n,"pop"))return 0;
           if(resolve && o->reg<0)o->memory=resolve(o->text,context);
           if(o->memory<0)return 0;
           if(!strcmp(o->text,"dpl") || !strcmp(o->text,"dph") || !strcmp(o->text,"dptr") ||

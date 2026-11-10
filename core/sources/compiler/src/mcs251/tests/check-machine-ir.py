@@ -19,6 +19,8 @@ def main():
     reference = importlib.util.spec_from_file_location('machine_model', Path(__file__).with_name('machine-ir-model.py'))
     machine = importlib.util.module_from_spec(reference); reference.loader.exec_module(machine)
     programs = {
+        'peripheral-bits': '_test:\n mov wr6,wr4\n cmp wr0,#32768\n setb 0xaf.7\n mov wr6,wr4\n setb 0xaf.7\n clr 0x9a.3\n cpl 0xce.2\n jc L\n mov wr12,wr6\nL:\n eret\n',
+        'peripheral-loop': '_test:\n mov r15,#0\nL:\n mov wr6,wr4\n clr 0xaf.7\n mov a,_data\n setb 0xaf.7\n mov _data,a\n mov wr6,wr4\n inc r15,#1\n cmp r15,#3\n jc L\n eret\n',
         'typed-memory': '_test:\n mov r6,#0\n mov a,_data\n mov r6,#0\n mov _data,a\n eret\n',
         'typed-call': '_test:\n mov wr6,wr2\n mov wr4,wr12\n ecall _known\n mov wr12,wr6\n eret\n',
         'cjne-fold': '_test:\n mov r6,#0\n cjne r6,#0,L\n mov r7,#3\nL:\n cmp r0,#1\n eret\n',
@@ -89,6 +91,8 @@ def main():
                 assert before[4:] == (False, False), (name, seed)
             executions += 1
     assert 'cjne' not in (args.output/'cjne-fold-optimized.asm').read_text()
+    bits = (args.output/'peripheral-bits-optimized.asm').read_text()
+    assert bits.count('setb 0xaf.7') == 2 and bits.count('mov wr6,wr4') == 1
     assert 'cjne' in (args.output/'cjne-flags-live-optimized.asm').read_text()
     assert 'mx251-machine-call' in (args.output/'typed-call-optimized.asm').read_text()
     for width in (2, 4):

@@ -70,7 +70,7 @@
     },
     "AI8051U-34K64-32": {
       "id": "AI8051U-34K64-32",
-      "revision": 5,
+      "revision": 6,
       "displayName": "AI8051U-34K64-32Bit（STC80251）",
       "instructionMode": "32-bit",
       "startup": {
@@ -120,7 +120,7 @@
         "orderedAsm": {
           "schema": 1,
           "nop": true,
-          "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:10,ac:d0,fd:d0",
+          "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:ff,ac:d0,fd:d0,af:ff,cd:c0,ce:ff",
           "preservesAllocatorContext": true,
           "memoryBarrier": "full",
           "motionBarrier": "full",

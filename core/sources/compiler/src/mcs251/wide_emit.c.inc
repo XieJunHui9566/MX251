@@ -1796,7 +1796,7 @@ wide_emit(wide_function *f)
       for(unsigned j=0;j<n->orderedAsmCount;++j) {
         const wide_asm_instruction *instruction=&n->orderedAsm[j];
         if(instruction->operation==1)we(f,"\tnop\n");
-        else we(f,"\t%s\t0x%02x.%u\n",instruction->operation==2?"setb":"clr",instruction->address,instruction->bit);
+        else we(f,"\t%s\t0x%02x.%u\n",instruction->operation==2?"setb":instruction->operation==3?"clr":"cpl",instruction->address,instruction->bit);
       }
       break;
     case RECEIVE:

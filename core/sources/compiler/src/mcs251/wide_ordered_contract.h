@@ -2,6 +2,8 @@
 #ifndef MCS251_WIDE_ORDERED_CONTRACT_H
 #define MCS251_WIDE_ORDERED_CONTRACT_H
 #include <string.h>
+#include <ctype.h>
+typedef struct { unsigned char operation,address,bit; } wide_asm_instruction;
 static inline int wide_asm_core_address(unsigned address);
 
 static inline int
@@ -35,7 +37,7 @@ wide_asm_core_address(unsigned address)
    * 其余地址也不是默认安全：仍须逐位命中独立核验的目标能力掩码。
    */
   return address<0x80 || (address>=0x81 && address<=0x86) ||
-    address==0xa2 || address==0xd0 || address==0xd1 ||
+    address==0xa2 || address==0xbe || address==0xd0 || address==0xd1 ||
     address==0xe0 || address==0xe3 || address==0xf0;
 }
 
@@ -67,5 +69,45 @@ static inline const char *
 wide_asm_parse_capabilities(const char *bits,unsigned char output[256])
 {
   return wide_asm_parse_bit_contract(bits,output,0);
+}
+
+/* Shared by MIR admission and machine-pipeline admission. Empty/comment
+ * lines have operation zero. Numeric byte.bit retains the exact SFR byte. */
+static inline const char *
+wide_asm_decode(const char *p,const char *end,wide_asm_instruction *instruction)
+{
+  memset(instruction,0,sizeof *instruction);
+  while(p<end && (*p==' ' || *p=='\t'))++p;
+  if(p==end || *p==';')return NULL;
+  char op[5];unsigned length=0;
+  while(p<end && isalpha((unsigned char)*p)) {
+    if(length==sizeof op-1)return "unsupported-ordered-asm-opcode";
+    op[length++]=(char)tolower((unsigned char)*p++);
+  }
+  op[length]=0;
+  unsigned operation=!strcmp(op,"nop")?1:!strcmp(op,"setb")?2:!strcmp(op,"clr")?3:!strcmp(op,"cpl")?4:0;
+  if(!operation || (p<end && *p!=' ' && *p!='\t' && *p!=';'))return "unsupported-ordered-asm-opcode-or-label";
+  while(p<end && (*p==' ' || *p=='\t'))++p;
+  if(operation!=1) {
+    if(end-p<6 || p[0]!='0' || (p[1]!='x' && p[1]!='X') ||
+       wide_asm_hex(p[2])<0 || wide_asm_hex(p[3])<0 || p[4]!='.' || p[5]<'0' || p[5]>'7')
+      return "unsupported-ordered-asm-bit-spelling";
+    instruction->address=(unsigned char)(16*wide_asm_hex(p[2])+wide_asm_hex(p[3]));
+    instruction->bit=(unsigned char)(p[5]-'0');p+=6;
+    while(p<end && (*p==' ' || *p=='\t'))++p;
+  }
+  if(p<end && *p!=';')return "unsupported-ordered-asm-trailing-text";
+  instruction->operation=(unsigned char)operation;return NULL;
+}
+
+static inline const char *
+wide_asm_validate(wide_asm_instruction instruction,const unsigned char bits[256],
+                  const unsigned char memoryBits[256])
+{
+  if(instruction.operation<=1)return NULL;
+  unsigned address=instruction.address,mask=1u<<instruction.bit;
+  if(memoryBits[address]&mask)return NULL;
+  if(wide_asm_core_bits(address,mask))return "ordered-asm-core-state-write";
+  return bits[address]&mask?NULL:"ordered-asm-bit-not-capable";
 }
 #endif

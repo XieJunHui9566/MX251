@@ -21,6 +21,7 @@ def execute(text, name, seed):
     regs = bytearray(randomizer.randrange(256) for _ in range(32))
     direct = {"_data": randomizer.randrange(256)}
     events = []
+    peripheral = {}
     memory = bytearray(8192)
     for i in range(0x1000 - 16, 0x1001):
         memory[i] = randomizer.randrange(256)
@@ -95,6 +96,14 @@ def execute(text, name, seed):
             carry = False
             continue
         if op == 'nop':
+            continue
+        if op in ('clr', 'setb', 'cpl') and len(args) == 1 and re.fullmatch(r'0x[0-9a-f]{2}\.[0-7]', args[0]):
+            address, bit = int(args[0][2:4], 16), int(args[0][5])
+            value = peripheral.get(address, (address*13+seed)&255)
+            mask = 1 << bit
+            value = value | mask if op == 'setb' else value & ~mask if op == 'clr' else value ^ mask
+            peripheral[address] = value
+            events.append(('bit', op, address, bit, value))
             continue
         if op in ('mul', 'div'):
             if args == ['ab']:

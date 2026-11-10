@@ -3860,8 +3860,9 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   size_t backendStart=dbuf_get_length(codeOutBuf),wideLength=0;
   char *wideText=NULL;
   short savedBank=mcs251GetEmittedRegisterBank();
+  bool orderedBlocks=mcs251MachineOrderedBlocks(ebbi);
   mcs251_wide_result wideResult=mcs251TryWideFunction(ebbi,narrowTrial);
-  if(wideResult==MCS251_WIDE_ACCEPTED)mcs251MachinePipeline(backendStart,ebbi,true);
+  if(wideResult==MCS251_WIDE_ACCEPTED)mcs251MachinePipeline(backendStart,ebbi,true,orderedBlocks);
 #ifdef MX251_WIDE_AUDIT
   if(memcmp(auditGlobal,&_G,sizeof _G) || memcmp(auditRegisters,mcs251_regs,sizeof mcs251_regs)) {
     werror(E_INTERNAL_ERROR,__FILE__,__LINE__,"wide changed legacy allocator state");return;
@@ -3973,7 +3974,7 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   recomputeValinfos (ic, ebbi, "_3");
 
   mcs251_genCode (ic);
-  mcs251MachinePipeline(backendStart,ebbi,false);
+  mcs251MachinePipeline(backendStart,ebbi,false,orderedBlocks);
   if(wideText) {
     mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength,narrowTrial || bodyChoice);
     mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart,narrowTrial || bodyChoice);

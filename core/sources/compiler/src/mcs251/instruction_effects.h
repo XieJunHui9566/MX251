@@ -3,6 +3,7 @@
 #define MX251_INSTRUCTION_EFFECTS_H
 #include "register_facts.h"
 #include "symbol_immediate.h"
+#include "wide_ordered_contract.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
@@ -116,6 +117,15 @@ static inline mx251_effects mx251InstructionEffects(const char *line,size_t leng
     e.specialReads=e.specialWrites=MX251_SPECIAL_SPX;e.memory=MX251_MEMORY_READ;return e;
   }
   if(!strcmp(op,"nop")) {if(*a || b)goto unknown;return e;}
+  if(!strcmp(op,"clr") || !strcmp(op,"setb") || !strcmp(op,"cpl")) {
+    wide_asm_instruction instruction;
+    if(!wide_asm_decode(line,line+length,&instruction) && instruction.operation>1 &&
+       !wide_asm_core_bits(instruction.address,1u<<instruction.bit)) {
+      /* Peripheral bit writes retain their memory effect, but do not kill
+       * GPR copies or flags. Mapping and execution controls remain unknown. */
+      e.memory=MX251_MEMORY_READ|MX251_MEMORY_WRITE;return e;
+    }
+  }
   /* 只接受本发射器的完整十六进制字面量，使用原始文本防止把空白
    * 拼成另一个数字。PUSHW只读取/更新SPX并写栈，不破坏GPR或flags。 */
   if(!strcmp(op,"pushw")) {
