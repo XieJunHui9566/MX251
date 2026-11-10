@@ -2769,10 +2769,19 @@ wide_choose_stack_call_addresses(wide_function *f,wide_selection_cost *cost)
 
 #include "wide_value_webs.c.inc"
 
+#include "wide_shared_tail.c.inc"
+
+static mcs251_wide_result
+wide_choose_shared_tails(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_shared_tails,wide_choose_stack_call_addresses,
+    "shared-tail","groups",false,"tail-original","tail-trial",true,true);
+}
+
 static mcs251_wide_result
 wide_choose_value_webs(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_value_webs,wide_choose_stack_call_addresses,
+  return wide_choose_transform(f,cost,wide_value_webs,wide_choose_shared_tails,
     "value-webs","splits",false,"webs-original","webs-trial",false,false);
 }
 
