@@ -524,7 +524,9 @@ static void
 wmemory(wide_function *f,wide_node *n,bool addressReady)
 {
   if(n->pointerAccess){wmemory_pointer(f,n);return;}
-  if(n->codeAccess && (!mcs251FlatCodeReadsEnabled || n->byteAccess)) {
+  /* Byte tables already have compact legacy indexed loads. Native word
+   * reads remove byte assembly without changing that backend choice. */
+  if(n->codeAccess && (!mcs251FlatCodeReadsEnabled || n->byteAccess || n->width==1)) {
     /* 沿用旧后端 MOVC 的逐字节读取与大端拼装。完整 DPX 自增，
      * 不用 16 位 DPTR 截断跨页地址；A/B 和 WR20/22 均为保留临时寄存器。
      * 先快照地址，最后才写结果，允许输入与输出分配到重叠寄存器。 */

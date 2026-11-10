@@ -1561,7 +1561,7 @@ wide_fold_indexed_addresses (wide_function *f)
       if(wb_has(n->use,result)) {
         if((n->op!=WM_LOAD && n->op!=WM_STORE) || n->left.value!=result ||
            n->right.value==result || n->addressOp || n->addressObject>=0 ||
-           (n->codeAccess && !mcs251FlatCodeReadsEnabled) || n->byteAccess || n->pointerAccess)break;
+           (n->codeAccess && (!mcs251FlatCodeReadsEnabled || n->width==1)) || n->byteAccess || n->pointerAccess)break;
         n->addressOp=address->op;n->left=address->left;n->addressIndex=address->right;
         n->use=wb_or(wb_minus(n->use,address->def),address->use);
         address->op=WM_NOP;address->use=address->def=(wide_bits){{0}};

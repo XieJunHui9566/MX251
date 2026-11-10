@@ -13,8 +13,8 @@ for model in ['small','large']:
    accesses=re.findall(r'wide code load width=(\d) volatile-bytes=(\d)',asm)
    assert sum(int(w) for w,v in accesses)==asm.count('movc\ta,@a+dptr')
    if native:
-    assert {int(w) for w in re.findall(r'wide native code load width=(\d)',asm)}=={1,2,4}
-    assert all(v=='1' for w,v in accesses)
+    assert {int(w) for w in re.findall(r'wide native code load width=(\d)',asm)}=={2,4}
+    assert all(v=='1' or w=='1' for w,v in accesses)
    else:
     assert {int(w) for w,v in accesses}=={1,2,4}
     assert 'wide native code load' not in asm
