@@ -9,6 +9,7 @@ def expected(kind,seed):
     a=0x12345678+seed; b=0x87654321^seed
     spi=0
     for i in range(8):
+        a=(a+[3,17,23,41,59,61,79,89][(seed+i)&7])&0xffffffff
         spi=(spi|128)^8
         observed=(8<<8)|spi
         x=(a+seed+i+observed)&0xffffffff
@@ -36,11 +37,23 @@ __sfr __at(0xaf) IE2;
 __sfr __at(0x9a) S2CON;
 __sfr __at(0xce) SPCTL;
 volatile __data u8 cell;
+u8 bits_choose(u8 value) {
+    __asm clr 0xaf.7 __endasm;
+    switch(value&7) {
+    case 0: cell=3; break; case 1: cell=17; break;
+    case 2: cell=23; break; case 3: cell=41; break;
+    case 4: cell=59; break; case 5: cell=61; break;
+    case 6: cell=79; break; default: cell=89; break;
+    }
+    __asm setb 0xaf.7 __endasm;
+    return cell;
+}
 u32 bits_work(u8 seed) {
     u32 a=0x12345678UL+seed,b=0x87654321UL^seed,observed;
     u8 i;
     IE2=0; S2CON=0; SPCTL=0;
     for(i=0;i<8;++i) {
+        a+=bits_choose(seed+i);
         cell=seed+i;
         __asm
             clr 0xaf.7
