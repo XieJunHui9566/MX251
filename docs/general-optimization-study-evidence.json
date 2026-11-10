@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "status": "RESEARCH_COMPLETE_NO_PRODUCTION_CHANGE",
+  "baselineCommit": "01d02a9",
+  "compiler": {
+    "path": "toolchain/bin/sdcc.exe",
+    "sha256": "6219b66b43a63fc999a1fc7365244624903b16afbdff44819533229c99edd4b3",
+    "versionBanner": "Underlying driver reports SDCC 4.6.0 #0; MX251 build identity is this manifest."
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\comparison.json",
+    "sha256": "0a55d46532695b13c7f2e613144a79e76d3d6c89fba7de56efefc08132f6be11"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\attribution.json",
+    "sha256": "4f57a3a4bf2bd9ec67b6b711b12f8f091b33bf23acc0f5c27203af7f6f7dc188"
+  },
+  "scan": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\scan.json",
+    "sha256": "af257a5d0f392a0009503a3e3b323b914c26381c13a88f9c109bf21268dbcba7"
+  },
+  "instructionSummary": {
+    "functions": 1124,
+    "applicationInstructionBytes": 104278,
+    "categories": {
+      "moves": 49387,
+      "other": 18118,
+      "calls": 10078,
+      "branches": 11777,
+      "pushPop": 9981,
+      "stack": 4937
+    },
+    "isrs": 109,
+    "unoptimizedIsrs": 37,
+    "rawBitIsrs": 15,
+    "rawBitIsrProjects": 13,
+    "rawBitIsrSaveBytes": 956,
+    "indirectJumpFunctions": 4,
+    "indirectJumpProjects": 4,
+    "indirectJumpBodyBytes": 1285,
+    "branchProjectionBytes": 0,
+    "branchProjectionProjects": 0
+  },
+  "callCandidates": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\call-candidates.json",
+    "sha256": "1845c44afc9d74c625f166a374aefa99716d497be535eab4aa3a7aaf4ba2584d"
+  },
+  "codeLoads": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\code-loads.json",
+    "sha256": "3f2a0564693463fb19912ccb91ad05e8190564f6b3a07deeba2c0393025bb5c5"
+  },
+  "abiTrials": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-trials.json",
+    "sha256": "ba5fb92d19edb3fbf84cbc59fe85bb0d7738d743fd5d8de10b0ff5e8c116a6e6"
+  },
+  "trials": [
+    {
+      "id": "p122",
+      "parentBytes": 5230,
+      "trialBytes": 5079,
+      "savedBytes": 151,
+      "keilBytes": 4283,
+      "keilRatio": 1.1858510389913612,
+      "sourceInputsIdentical": true,
+      "compilerIdentical": true,
+      "hardwareExecuted": false,
+      "actualNativeCalls": 58,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\matrix-core-01\\projects\\p122\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "c6943ebcf72a21578f03406963002f58aa2a396241b416833407351fecfce269"
+      },
+      "trial": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p122\\receipt.json",
+        "sha256": "eafca63654613963f891c90c733bac67be147d1b7e5c92d83b68985b6a5a1f6f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p122\\firmware.hex",
+        "sha256": "042dea1953fc07129c2bddfc08af423d0fa787ddd05f51c338aa88f9895bf2f4"
+      },
+      "commands": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p122\\commands.json",
+        "sha256": "b70ae3cad4961cf26f20a87b634a193775dac739d2909a13530f30db47387152"
+      },
+      "format": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p122\\format-runtime.json",
+        "sha256": "07088975074cfcd6bdff54c30e3b3eab3473340142e3a636d87339c669ed4531"
+      },
+      "parentFunctions": [
+        {
+          "name": "_LCD_WR_REG16",
+          "bytes": 25
+        },
+        {
+          "name": "_LCD_Init",
+          "bytes": 669
+        }
+      ],
+      "trialFunctions": [
+        {
+          "name": "___m251r4_LCD_WR_REG16",
+          "bytes": 26
+        },
+        {
+          "name": "_LCD_Init",
+          "bytes": 533
+        }
+      ]
+    },
+    {
+      "id": "p112",
+      "parentBytes": 6058,
+      "trialBytes": 5905,
+      "savedBytes": 153,
+      "keilBytes": 5704,
+      "keilRatio": 1.0352384291725105,
+      "sourceInputsIdentical": true,
+      "compilerIdentical": true,
+      "hardwareExecuted": false,
+      "actualNativeCalls": 57,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\matrix-core-01\\projects\\p112\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "93ade71aa9ecbdb3c57876b463b7c5c8a1bc0855f0525c4845a183ceff603429"
+      },
+      "trial": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p112\\receipt.json",
+        "sha256": "1eea298790ccd79cec4cc102dde64b85c039f529b3ed49a969ae5de9932c5a6e"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p112\\firmware.hex",
+        "sha256": "6ef016806c05699d93cdd2e3ee85835d60c04b70c655cdd6406db40b277df598"
+      },
+      "commands": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p112\\commands.json",
+        "sha256": "956575fc766354be638c9a26a938de41987f017344d8f73ff3219027e74b4d9e"
+      },
+      "format": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\abi-selected-p112\\format-runtime.json",
+        "sha256": "8da76b60a9f01a03194838c9cbd948a5b9fc67becdb1fe7ab7e39b4666147e9c"
+      },
+      "parentFunctions": [
+        {
+          "name": "_LCD_WR_REG16",
+          "bytes": 32
+        },
+        {
+          "name": "_LCD_Init",
+          "bytes": 682
+        }
+      ],
+      "trialFunctions": [
+        {
+          "name": "___m251r4_LCD_WR_REG16",
+          "bytes": 27
+        },
+        {
+          "name": "_LCD_Init",
+          "bytes": 542
+        }
+      ]
+    }
+  ],
+  "analysisScripts": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\scan.py",
+      "sha256": "2179243f0dd523dd46dbc31e0a84dff66689b6c7950df259a63e3fe9a6d827e0"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\call_candidates.py",
+      "sha256": "76fc72e82f747d193f362e0fb7630ccd76a9a238501bf7886ab029627ac9706b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\general-optimization\\finish.py",
+      "sha256": "587ec62985d840dbde645d3a3010ebca47a2977dfb1779f7d9736b12ab041b26"
+    }
+  ],
+  "implementationInputs": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\SelectiveLeafAbi.ps1",
+      "sha256": "efd0deefda0ea18eaf4b2dc3fbf33a922293e6728aaa1a64677f74bfe9b20016"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "ce830615bef6b5700c4b1aef3615c6ef50e9784a5f18c4b511167b56e707f831"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_ordered_asm.c.inc",
+      "sha256": "a039c5d1046ae5b786baf8f3a06dc8ae6e0495e2ecfefa6f7f05556854810fd7"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_emit.c.inc",
+      "sha256": "cae14f692caa7f62ffc374d73d5071bf83547924326f1909e635d0fe1f0af542"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\machine_pipeline.c.inc",
+      "sha256": "05aa8cc9e22451ee01f53398e8f3012164bda9c13364956b2d8bc1330426de5e"
+    }
+  ],
+  "keilListings": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p095\\keil\\unit7.lst",
+      "sha256": "7d65b8873253be57b3001a82111b484407715a68377a605aaf9a01e84bb3d144"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p039\\keil\\unit0.lst",
+      "sha256": "784341d7402fcf5ee24d16fc115cdb0d3c6270ad8d3fa66b213175245ad63010"
+    }
+  ],
+  "full75CountsUnchanged": {
+    "within120": 61,
+    "within110": 49
+  },
+  "hardwareExecuted": false
+}
