@@ -1,0 +1,245 @@
+{
+  "schema": 1,
+  "baseCommit": "c7d3c6f",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "c1676403a8af495859d9045948569873636cb9b0",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\core-02\\core.json",
+    "sha256": "0491c862976b710e325217c83e841f35fd4e0fd62787efc3841412b387377955"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "111c61f5979070e4c0264a4a77bbfd866a7db86e276cac46ec0583cb6154c585"
+  },
+  "callFeedback": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\core-02\\build\\qualified\\CallClobberFeedback.ps1",
+    "sha256": "e2039ed9f4a6c6aae26f6f23ec6c7d334b2b445240325d9fe19a1a86a280b8ce"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\comparison.json",
+    "sha256": "54073cea5c3ba04aa713da659d19b7b9426ea2b0f5148db71d1f90cb002b4ce9"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 3,
+    "unchanged": 72,
+    "larger": 0,
+    "savedBytes": 112,
+    "mxTotalBytes": 204413,
+    "keilTotalBytes": 192051,
+    "within110": 50,
+    "within120": 67,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.064368318831977
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\compiler-checks-02\\results.json",
+      "sha256": "3e2abe92a495102407e975a35c4977be7045d8deb1bec9566109a0075f69294f"
+    },
+    "configurations": 140,
+    "feedback": [
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\feedback-checks-02\\result-0.json",
+        "sha256": "bc60e075f882f7762d97d0d36adbe8b7539877377015dfb6b4e9db712463996a"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\feedback-checks-02\\result-1.json",
+        "sha256": "bc60e075f882f7762d97d0d36adbe8b7539877377015dfb6b4e9db712463996a"
+      }
+    ],
+    "hardwareFixture": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\isr_stack_packed_fixture.py",
+      "sha256": "a3c21504fc87f096221fcb39a7cc00b8b7585c84dfcebb147b8928652102af44"
+    }
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\CallClobberFeedback.ps1",
+      "sha256": "e2039ed9f4a6c6aae26f6f23ec6c7d334b2b445240325d9fe19a1a86a280b8ce"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "97937631ff35a2c3c2690a2bffaad6a763cea4857d9398a089bdb0a1455afe0f"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "d92e90b563249cd78ba22f5001cce0e2e6bea918f50718faf38af17042d97946"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-isr-call-feedback.ps1",
+      "sha256": "7c7e949b18afd0f3a777fc215fc9caced738cdc8ebedfba13e2efeb68e31b1ef"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-isr-saves.py",
+      "sha256": "beef052fdef17c894bc1cf9f5f833d3de7f2324bb50f791f503f2518ba05ff1a"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\isr_stack_packed_fixture.py",
+      "sha256": "a3c21504fc87f096221fcb39a7cc00b8b7585c84dfcebb147b8928652102af44"
+    }
+  ],
+  "hardwareResults": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\hardware-parent\\result.json",
+      "sha256": "7d90163dfb9a6986bf3edb7d6e948680cb1be583d9d8cac2144ac9eb042244ef"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\hardware-final\\result.json",
+      "sha256": "87b8b22deba02570d963d5abb07dede5e06217f73084f6523caa693e9b2b3a59"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "fixtureRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\qualification.json",
+    "sha256": "a05aaff47fc1787cf63ae99b3f98c6506901ab8b0868d285dd86958e59830490"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\attribution.json",
+    "sha256": "9c1bec8270710b74ab07dfc227c2a272c637f4e5acd5f50c070696fc584cfa51"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\hardware-parent\\result.json",
+        "sha256": "7d90163dfb9a6986bf3edb7d6e948680cb1be583d9d8cac2144ac9eb042244ef"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\board-parent\\receipt.json",
+        "sha256": "8b1ce2224208d22ce43c5012d760ffba533527ef4bfb8f3732f1958aa1a42848"
+      },
+      "bytes": 4420,
+      "interrupts": [
+        {
+          "name": "_context_irq",
+          "unit": "u3",
+          "bytes": 157,
+          "isr": true,
+          "pushPopBytes": 116,
+          "entryExitPushPopBytes": 104,
+          "directCallSites": 1,
+          "wideRefusal": null,
+          "backend": "entry-contract",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "wide admission function=context_irq skip=entry-contract",
+            "mx251-leaf-isr-fallback symbol=_context_irq reason=body-effect instruction=pushw\t#0x89ab",
+            "mx251-leaf-isr-fallback symbol=_context_irq reason=shape-or-cost-or-no-saving known=0 begin=42 end=71 pushes=26 pops=0"
+          ]
+        },
+        {
+          "name": "_context_leaf_irq",
+          "unit": "u3",
+          "bytes": 324,
+          "isr": true,
+          "pushPopBytes": 140,
+          "entryExitPushPopBytes": 104,
+          "directCallSites": 2,
+          "wideRefusal": null,
+          "backend": "entry-contract",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "wide admission function=context_leaf_irq skip=entry-contract"
+          ]
+        }
+      ],
+      "cases": 128,
+      "frames": 224,
+      "port": "COM13",
+      "firmwareSha256": "7a4e92506594d77f616374aa615a25da5c0c9f84ae649f12a908b9a180f1862e"
+    },
+    {
+      "variant": "final",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\hardware-final\\result.json",
+        "sha256": "87b8b22deba02570d963d5abb07dede5e06217f73084f6523caa693e9b2b3a59"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\isr-stack-packed\\board-final\\receipt.json",
+        "sha256": "d4698472f4b8efc84be9b1b0b1ba2d9a41080e644fd08cacd53894936d04660f"
+      },
+      "bytes": 4312,
+      "interrupts": [
+        {
+          "name": "_context_irq",
+          "unit": "u3",
+          "bytes": 97,
+          "isr": true,
+          "pushPopBytes": 56,
+          "entryExitPushPopBytes": 44,
+          "directCallSites": 1,
+          "wideRefusal": null,
+          "backend": "entry-contract",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "wide admission function=context_irq skip=entry-contract",
+            "mx251-leaf-isr-saves schema=2 symbol=_context_irq removed-bytes=12 stack-saved=12 core-reads=ffffffff core-writes=00fffef0 special-reads=5 special-writes=7 flags=1 calls=1 psw1=retained frame=private inline-bits=3 compiler-proof=body-effects"
+          ]
+        },
+        {
+          "name": "_context_leaf_irq",
+          "unit": "u3",
+          "bytes": 276,
+          "isr": true,
+          "pushPopBytes": 92,
+          "entryExitPushPopBytes": 56,
+          "directCallSites": 2,
+          "wideRefusal": null,
+          "backend": "entry-contract",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "wide admission function=context_leaf_irq skip=entry-contract"
+          ]
+        }
+      ],
+      "cases": 128,
+      "frames": 255,
+      "port": "COM13",
+      "firmwareSha256": "e1faadf4abf084452896c491dca0437b8f4dd08293b09a6319df350fe83b7ace"
+    }
+  ],
+  "changedFunctions": [
+    {
+      "id": "p049",
+      "unit": "u0",
+      "function": "_CMP_Isr",
+      "parentBytes": 332,
+      "bytes": 284,
+      "savedBytes": 48
+    },
+    {
+      "id": "p051",
+      "unit": "u0",
+      "function": "_timer0",
+      "parentBytes": 180,
+      "bytes": 164,
+      "savedBytes": 16
+    },
+    {
+      "id": "p136",
+      "unit": "u1",
+      "function": "_I2S_ISR",
+      "parentBytes": 309,
+      "bytes": 261,
+      "savedBytes": 48
+    }
+  ],
+  "newWithin": {
+    "110": [],
+    "120": [
+      "p051",
+      "p136"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  }
+}
