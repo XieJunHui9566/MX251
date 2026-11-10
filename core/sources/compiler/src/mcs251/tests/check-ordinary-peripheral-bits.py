@@ -75,6 +75,16 @@ void poll(void) {
   text,_=compile(source,a.sdcc,cap,'switch-native-call')
   assert 'mx251-body-choice function=_poll selected=' in text,(root,'switch comparison missing')
   assert re.search(r'mx251-backend-choice function=_poll .*unknown=0/0',text),(root,'switch cost missing')
+  source='''__sbit __at(0xd0) parity;
+static inline unsigned char bitwrite(unsigned char state) {
+ if(state) { __asm setb 0x9a.3 __endasm; }
+ else { __asm clr 0x9a.3 __endasm; }
+ return state;
+}
+unsigned char work(unsigned char x) { if(x) return bitwrite(!parity); return 0; }
+'''
+  text,_=compile(source,a.sdcc,cap,'bit-temporary')
+  assert re.search(r'mx251-backend-choice function=_work .*unknown=0/0',text),(root,'bit temporary cost missing')
   rows.append(dict(model=model,optimization=opt,accessOrder=True,optOutMatches=True,excludedMatches=True,nativeCallCompared=True))
 (a.output/'results.json').write_text(json.dumps(rows,indent=2)+'\n',newline='\n')
 print('PASS: 4 configurations; exact bit identity/access order, opt-out and core/unknown exclusions')

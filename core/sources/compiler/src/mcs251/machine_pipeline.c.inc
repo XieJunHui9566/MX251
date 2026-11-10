@@ -54,6 +54,7 @@ static int mcs251MachineMemory(const char *name,void *unused) {
  * generators use exactly the same opcode parser and target bit capabilities. */
 static bool mcs251MachineOrderedBlocks(ebbIndex *ebbi) {
   if(!mcs251OrderedAsmEnabled)return false;
+  bool found=false;
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)if(ic->op==INLINEASM) {
@@ -68,9 +69,10 @@ static bool mcs251MachineOrderedBlocks(ebbIndex *ebbi) {
         line=end;if(*line=='\r')++line;if(*line=='\n' || (unsigned char)*line==0x87)++line;
       }
       if(!count)return false;
+      found=true;
     }
   }
-  return true;
+  return found;
 }
 
 static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi,bool wide,bool orderedBlocks) {
