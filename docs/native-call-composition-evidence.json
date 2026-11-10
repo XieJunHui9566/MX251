@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "baseCommit": "911e386",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "a46789a3bb0657517a846ed7c8279134d2c986b4",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\core-01\\core.json",
+    "sha256": "45683fe2b0377f421d4a9e1bf57de7bd721baeeffd8e515a7e0f8004637695cf"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "b0bd236155564e0a405c2a4bcd7586ffd5af4122d41eda7ce698f5a39d8c46ff"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\comparison.json",
+    "sha256": "e077527c708d8c7efdb9c019bdb71504c9a600a3a7fc35b8f0d3e9ffcb06941b"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 2,
+    "unchanged": 73,
+    "larger": 0,
+    "savedBytes": 461,
+    "mxTotalBytes": 204525,
+    "keilTotalBytes": 192051,
+    "within110": 50,
+    "within120": 65,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0649514972585408
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\compiler-checks\\result.json",
+      "sha256": "1775ca888e6b3d6f7c1a7504c9b4f9eb6c43d1c15ca0fbc3a9f13b28b58726e6"
+    },
+    "variadic": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\variadic-checks\\result.json",
+      "sha256": "06276ec425d52f2cd15ec8f69724a53d668f0eab69596b6fe5b07283d36ace82"
+    },
+    "compilerChecker": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-native-call-composition.py",
+      "sha256": "41c14325a1f86a6c6f780a7e13f87f47cc9c269a2d41b9e782c18de24f832070"
+    },
+    "hardwareFixture": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\native_call_composition_fixture.py",
+      "sha256": "c69e65836e97bf0d910985b4263dc4038432dc1fe41b9c6366b8addda784a383"
+    }
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\backend_choice.c.inc",
+      "sha256": "c0951170b54c7681c01d39c00d5613cc333dea5d25b4b5fefcd159ec8f1dada4"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-native-call-composition.py",
+      "sha256": "41c14325a1f86a6c6f780a7e13f87f47cc9c269a2d41b9e782c18de24f832070"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\native-call-callees.c",
+      "sha256": "87eb8842d295a901f2ab1807d242bbc2d9a9885ad98213700795f1e46a358057"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\native-call-composition.c",
+      "sha256": "ea54bcbc38fc18ff7d2a629bbee572a2632e897191b73803383996a59bdc2630"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\native-call-composition.h",
+      "sha256": "c9713c34540f103367e85627135ec7e2a2c646c70494753e1e98396484773f44"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide.c",
+      "sha256": "0004bab254c54c6f47ef4ac460e1322c31b3f1c5c57dfb48012f7b3248c2d29b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\native_call_composition_fixture.py",
+      "sha256": "c69e65836e97bf0d910985b4263dc4038432dc1fe41b9c6366b8addda784a383"
+    }
+  ],
+  "hardwareResults": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\hardware-parent\\result.json",
+      "sha256": "68631ec9467a482fdfe8bbb030e94fd60510c70c09c3f128d2ab3a214504514c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\hardware-new\\result.json",
+      "sha256": "2f5088ea63e0a89341e68eed8ec87c4687c16b69e82e30bab149153006603fbd"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\qualification.json",
+    "sha256": "8d61581e559c1c9fb987f8d07cd19fcaa50ad28d8dee76e691d3e8d2b77fbcbd"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\attribution.json",
+    "sha256": "39134a367ef0acfaf2653c1488a0abaca24bf4ba5ed1576799a5633fe13d56d9"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\hardware-parent\\result.json",
+        "sha256": "68631ec9467a482fdfe8bbb030e94fd60510c70c09c3f128d2ab3a214504514c"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\board-parent\\receipt.json",
+        "sha256": "6343cc39b515f75d285b9fb869f928956dc3285b45fe69aaf984fa015590deba"
+      },
+      "bytes": 1744,
+      "cases": 128,
+      "frames": 652,
+      "aggregateTicks": {
+        "0": 3686.5,
+        "1": 10116
+      },
+      "port": "COM13",
+      "firmwareSha256": "0888f940e91bace39a1ab163569afcec7ee8ce0cb5dee21722d502cfc2b851ee"
+    },
+    {
+      "variant": "new",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\hardware-new\\result.json",
+        "sha256": "2f5088ea63e0a89341e68eed8ec87c4687c16b69e82e30bab149153006603fbd"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-call-composition\\board-new\\receipt.json",
+        "sha256": "73e8eb72bf73f455fa2044977bd30b5fa6d07d0b6746ac52bb7ce130a0fee724"
+      },
+      "bytes": 1625,
+      "cases": 128,
+      "frames": 644,
+      "aggregateTicks": {
+        "0": 3150.0,
+        "1": 10115
+      },
+      "port": "COM13",
+      "firmwareSha256": "58047210a4490bc40eef815f4256b6ff58e8359dafa4d4a41184975c06b808aa"
+    }
+  ],
+  "workloadTicksReduction": 0.1455309914553099,
+  "changedFunctions": [
+    {
+      "id": "p087",
+      "unit": "u7",
+      "function": "_uart_set_baud",
+      "parentBytes": 474,
+      "bytes": 284,
+      "savedBytes": 190
+    },
+    {
+      "id": "p095",
+      "unit": "u7",
+      "function": "_uart_set_baud",
+      "parentBytes": 616,
+      "bytes": 345,
+      "savedBytes": 271
+    }
+  ],
+  "newWithin": {
+    "110": [],
+    "120": [
+      "p087"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  }
+}
