@@ -6450,6 +6450,8 @@ mcs251EmitBitwiseAccumulatorToLeft (const char *instruction,
   Safe_free (l);
 }
 
+#include "gen_sfr_bit_test.c.inc"
+
 /*-----------------------------------------------------------------*/
 /* genAnd  - code for and                                          */
 /*-----------------------------------------------------------------*/
@@ -6461,6 +6463,15 @@ genAnd (iCode * ic, iCode * ifx)
   unsigned long long lit = 0ull;
 
   D (emitcode (";", "genAnd"));
+
+  operand *bitSource = IC_LEFT (ic), *bitMask = IC_RIGHT (ic);
+  if (IS_OP_LITERAL (bitSource)) { operand *swap = bitSource; bitSource = bitMask; bitMask = swap; }
+  if (IS_OP_LITERAL (bitMask))
+    {
+      int bit = isLiteralBit (ullFromVal (OP_VALUE (bitMask)));
+      if (bit && mcs251GenSfrBitTest (ic, bitSource, bit - 1))
+        return;
+    }
 
   aopOp ((left = IC_LEFT (ic)), ic, FALSE);
   aopOp ((right = IC_RIGHT (ic)), ic, FALSE);
@@ -7800,6 +7811,10 @@ genGetAbit (iCode * ic)
   int shCount;
 
   D (emitcode (";", "genGetAbit"));
+
+  if (IS_OP_LITERAL (IC_RIGHT (ic)) &&
+      mcs251GenSfrBitTest (ic, IC_LEFT (ic), (unsigned)ulFromVal (OP_VALUE (IC_RIGHT (ic)))))
+    return;
 
   left = IC_LEFT (ic);
   right = IC_RIGHT (ic);
@@ -11855,6 +11870,9 @@ genAssign (iCode * ic)
   int size, offset;
 
   D (emitcode (";", "genAssign"));
+
+  if (mcs251GenSfrBitSnapshot (ic))
+    return;
 
   if (mcs251GenFrameAccess (ic))
     return;

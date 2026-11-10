@@ -346,6 +346,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
   }
   if(npush!=npop || !npush)ok=false;
   bool remove[LI_SAVES]={false};unsigned saved=0,bytes=0;uint32_t omitted=0;
+  bool dropBank=bank>=0 && !((effects.reads|effects.writes)&0xffu);
   for(unsigned i=0;ok && i<npush;++i) {
     li_line *a=&lines[pushes[i]],*b=&lines[pops[npop-1-i]];const char *name=a->arg[0];
     if(strcmp(name,b->arg[0])){ok=false;break;}
@@ -366,19 +367,18 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
       unsigned bc=wide_instruction_bytes_context(b->node->line,strlen(b->node->line),li_cost_symbol,NULL);
       if(!ac || !bc){ok=false;break;}remove[i]=true;saved+=width;bytes+=ac+bc;
       omitted|=li_operand_info(name).gpr;
-      if(!strcmp(name,"psw"))bytes+=3;
     }
   }
-  if(ok && saved) {
+  if(dropBank)bytes+=3;
+  if(ok && (saved || dropBank)) {
     for(unsigned i=begin;effects.calls && i<end;++i)
       if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall"))
         dbuf_printf(codeOutBuf,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
     for(unsigned i=0;i<npush;++i)if(remove[i]) {
-      bool psw=!strcmp(lines[pushes[i]].arg[0],"psw");
       lines[pushes[i]].node->line=Safe_strdup("; mx251 leaf ISR: unused private save removed");
       lines[pops[npop-1-i]].node->line=Safe_strdup("; mx251 leaf ISR: paired restore removed");
-      if(psw)lines[bank].node->line=Safe_strdup("; mx251 leaf ISR: unused bank selection removed");
     }
+    if(dropBank)lines[bank].node->line=Safe_strdup("; mx251 leaf ISR: unused bank selection removed");
     dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
       currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls,(unsigned)inlineBits);
   } else dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
