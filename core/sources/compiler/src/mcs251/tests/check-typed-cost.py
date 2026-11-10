@@ -47,7 +47,12 @@ for reg in ('a','r0','r9','wr6','dr4'):
         cases.extend([(f'mov {reg},{expr}',size),(f'mov {expr},{reg}',size)])
 for offset in range(4):cases.append((f'mov (_Case+{offset}),#0x12',3))
 cases += [('mov a,_Sfr',2),('mov _Sfr,r7',3),('mov _Sfr,#3',3),('clr _case',2),('setb _case',2),('mov c,_case',2),('mov _case,c',2),('mov c,acc.0',2),('clr a',1),('mov r7,r15',2)]
+for address,move,branch in [('0x88',2,3),('0x89',3,4),('0xe6',3,4)]:
+    for bit in (0,7):
+        cases += [(f'mov c,{address}.{bit}',move),(f'mov {address}.{bit},c',move),
+                  (f'jb {address}.{bit},00100$',branch),(f'jnb {address}.{bit},00100$',branch)]
 unknown=['clr _Case','mov r7,_case','mov a,_CASE','mov a,(_Case+4)', 'mov a,(_Case-1)', 'mov a,(_Case+2147483648)', 'mov a,(_Case+4294967296)', 'mov a,(_Case+1+1)', 'mov a,((_Case))', 'mov a,(_Case+0x1)', 'mov a,_CaseSuffix','mov a,(_Sfr+1)', 'mov a,_external_xdata', 'setb _missing', 'mov c,_missing', 'mov dr4,@dr0', 'mov a,(0x1234)']
+unknown += ['mov c,0x89.8','jb 0x89.8,00100$','mov c,0x20.3']
 cases += [(ins,None) for ins in unknown]
 input_text='\n'.join(x[0] for x in cases)+'\n'
 q=run('evaluate',[d/'driver.exe'],d,input_text.encode());assert q.returncode==0
@@ -58,7 +63,7 @@ for i,((ins,expected),line) in enumerate(zip(cases,q.stdout.decode().splitlines(
     row=dict(instruction=ins,expected=expected,cost=actual,unknown=unk,legacyUnknown=legacy_unknown)
     if expected is not None:
         f=d/f'probe{i:03}.asm'
-        f.write_text('.module cost\n.optsdcc -mmcs251\n.area DSEG (DATA)\n_Case: .ds 4\n.area BSEG (BIT)\n_case: .ds 1\n_Sfr = 0x95\n.area CSEG (CODE)\n\t'+ins+'\n')
+        f.write_text('.module cost\n.optsdcc -mmcs251\n.area DSEG (DATA)\n_Case: .ds 4\n.area BSEG (BIT)\n_case: .ds 1\n_Sfr = 0x95\n.area CSEG (CODE)\n\t'+ins+'\n00100$:\n')
         q=run(f'assemble{i:03}',[a.assembler.resolve(),'-plosgff',f.name],d);assert q.returncode==0,(ins,q.stderr)
         text=f.with_suffix('.lst').read_text();line=next(x for x in text.splitlines() if x.endswith('\t'+ins))
         m=re.match(r'^      [0-9A-F]{6}(.*?)\s+\d+ \t',line);assert m,line
@@ -92,7 +97,7 @@ for model in ('small','large'):
         text=(wd/'core.asm').read_text()
         for name in ('external','mixed','bits'):assert 'wide-mir accepted: '+name+';' in text,(model,opt,name)
         assert 'wide-mir accepted: far_object;' not in text
-        costs=re.findall(r'; wide cost objective=(\S+) known-bytes=(\d+) unknown=(\d+) group-known=(\d+)',text)
+        costs=re.findall(r'^; wide cost objective=(\S+) known-bytes=(\d+) unknown=(\d+) group-known=(\d+)',text,re.M)
         assert len(costs)==3 and all(int(x[2])==0 and x[3]=='1' for x in costs),(wd,costs)
         results.append(dict(model=model,opt=opt,costs=costs,farSpaceFallback=True))
 (d/'frontend-results.json').write_text(json.dumps(results,indent=2)+'\n')

@@ -43,6 +43,12 @@ wide_cost_arg(const char *s)
   if(!strcmp(s,"a")) {a.kind=WC_REG;a.width=1;a.reg=11;return a;}
   /* ACC 的八个位是 ISA 固定 direct-bit 操作数；不扩大普通 SFR 符号知识。 */
   if(!strncmp(s,"acc.",4) && s[4]>='0' && s[4]<='7' && !s[5]) {a.kind=WC_BIT;return a;}
+  if(strlen(s)==6 && s[0]=='0' && (s[1]=='x' || s[1]=='X') &&
+     isxdigit((unsigned char)s[2]) && isxdigit((unsigned char)s[3]) &&
+     s[4]=='.' && s[5]>='0' && s[5]<='7') {
+    unsigned address=(unsigned)strtoul(s,NULL,16);
+    if(address>=0x80) {a.kind=address&7?WC_EXT_BIT:WC_BIT;return a;}
+  }
   if(!strcmp(s,"spx") || !strcmp(s,"dpx")) {a.kind=WC_REG;a.width=4;a.reg=s[0]=='s'?60:56;return a;}
   if(!strcmp(s,"dptr")) {a.kind=WC_DPTR;return a;}
   if(!strcmp(s,"c") || !strcmp(s,"cy")) {a.kind=WC_CARRY;return a;}
@@ -133,7 +139,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
   if(WC_OP("jc") || WC_OP("jnc") || WC_OP("jz") || WC_OP("jnz") || WC_OP("sjmp") ||
      WC_OP("je") || WC_OP("jne") || WC_OP("jg") || WC_OP("jle") || WC_OP("jsl") ||
      WC_OP("jsge") || WC_OP("jsg") || WC_OP("jsle"))return *args && !*second?2:0;
-  if(WC_OP("jb") || WC_OP("jnb"))return a.kind==WC_BIT && *second && *second!='@' && *second!='#'?3:0;
+  if(WC_OP("jb") || WC_OP("jnb"))return *second && *second!='@' && *second!='#'?(a.kind==WC_BIT?3:a.kind==WC_EXT_BIT?4:0):0;
   if(WC_OP("movc"))return !strcmp(args,"a") && (!strcmp(second,"@a+dptr") || !strcmp(second,"@a+pc"))?1:0;
   if(WC_OP("rl") || WC_OP("rr") || WC_OP("rlc") || WC_OP("rrc") || WC_OP("swap"))return a.kind==WC_REG && a.reg==11 && a.width==1 && !*second?1:0;
   if(WC_OP("clr"))return *second?0:a.kind==WC_EXT_BIT?3:a.kind==WC_BIT?2:((a.kind==WC_REG && a.reg==11 && a.width==1) || a.kind==WC_CARRY)?1:0;
@@ -153,6 +159,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
   if(WC_OP("xch"))return a.kind==WC_REG && a.width==1 && a.reg==11 && (b.kind==WC_DIRECT || (b.kind==WC_REG && b.width==1 && b.reg<8))?2:0;
   if(WC_OP("mov")) {
     if((a.kind==WC_CARRY && b.kind==WC_BIT) || (a.kind==WC_BIT && b.kind==WC_CARRY))return 2;
+    if((a.kind==WC_CARRY && b.kind==WC_EXT_BIT) || (a.kind==WC_EXT_BIT && b.kind==WC_CARRY))return 3;
     if(a.kind==WC_DPTR && b.kind==WC_IMM)return 3;
     if(a.kind==WC_REG && b.kind==WC_REG && a.width==b.width)return 2;
     if(a.kind==WC_REG && b.kind==WC_IMM)return a.width==1?(a.reg==11?2:3):4;

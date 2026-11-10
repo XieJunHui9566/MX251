@@ -78,7 +78,7 @@ static int bc_parse(bc_graph *g,const char *text,size_t length,wide_cost_resolve
     if(second && b.kind==WC_UNKNOWN && resolver)b=resolver(second,ctx);
     if(bc_cond(op) || !strcmp(op,"ejmp") || !strcmp(op,"sjmp")) {
       const char *target=args;
-      if(!strcmp(op,"jb") || !strcmp(op,"jnb")) {if(a.kind!=WC_BIT || !second)return 0;target=second;}
+      if(!strcmp(op,"jb") || !strcmp(op,"jnb")) {if((a.kind!=WC_BIT && a.kind!=WC_EXT_BIT) || !second)return 0;target=second;}
       else if(second)return 0;
       if(*target=='@' || !bc_copy(v->target,target,strlen(target)))return 0;
       v->branch=bc_cond(op)?2:!strcmp(op,"ejmp")?3:1;
