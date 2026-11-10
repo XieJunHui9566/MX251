@@ -1,0 +1,294 @@
+{
+  "schema": 1,
+  "baseCommit": "e156668",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "a6071ba696096d37e7ec8f89f3c3d6ad31e8f2bc",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\core-02\\core.json",
+    "sha256": "842e7191f1e45bdc72691bce36090bc4e7a3655bcac92cf6b21ca350d1acab65"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "d1eaaab8beab5b96d1e5179fa64e9831ed7ecf4b60f9bad7343c5c2fc35aa2e2"
+  },
+  "scalarBuildFeedback": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\core-02\\build\\qualified\\ScalarParameters.ps1",
+    "sha256": "3e3eec5e7886abb2d148313eeca916f722f466898d75ca0ba016dd6ee69719f4"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\comparison.json",
+    "sha256": "51e7cb7d70f9c8782dc0dc8a74f388cde7d26afb86f93192cdebf5e0bd571462"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 7,
+    "unchanged": 68,
+    "larger": 0,
+    "savedBytes": 555,
+    "mxTotalBytes": 203858,
+    "keilTotalBytes": 192051,
+    "within110": 53,
+    "within120": 68,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.0614784614503439
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\compiler-checks-02\\result.json",
+      "sha256": "17bebacf603031fa96dde15d5344b8536a29cca89c353f8b82cf5735c41af549"
+    },
+    "closure": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\closure-checks-03\\result.json",
+      "sha256": "f6e196817caa8e0b228b83e8d88194de1d734176f898c77dd54c77fb28334c71"
+    },
+    "hardwareFixture": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\scalar_conversions_fixture.py",
+      "sha256": "466488e73d0c95e593d58d8b3971f3a0622c59f6e0981515358ae81ba0dc40d6"
+    }
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\ScalarParameters.ps1",
+      "sha256": "3e3eec5e7886abb2d148313eeca916f722f466898d75ca0ba016dd6ee69719f4"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\scalar_metadata.c.inc",
+      "sha256": "68819d50addaaa48093db94cecc210a6753112582625b9cc926277ba5183d2f8"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-scalar-closure.ps1",
+      "sha256": "197d5f0d2985473e759244a1869f96b69125addcb3210147a8a42375ff8fed4b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-scalar-conversions.py",
+      "sha256": "d4c24134fcb9609bf31900f73128a312c10b01bbe480fc165e3e75252bf26bef"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\scalar-conversions-callees.c",
+      "sha256": "ab06fd7bd0a93e446465db2665db386ce40ff41a66fd00412564b237e42f6c8a"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\scalar-conversions-callers.c",
+      "sha256": "c5470f534e0ea432db488ea561830880df73f5181bc639a19b6419e606ed20f4"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\scalar-conversions.h",
+      "sha256": "5ef3fbe6580812bd9ceb303bb0d8d210fccf957597955c11dfad2043641e865b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\scalar_conversions_fixture.py",
+      "sha256": "466488e73d0c95e593d58d8b3971f3a0622c59f6e0981515358ae81ba0dc40d6"
+    }
+  ],
+  "hardwareResults": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\hardware-parent-02\\result.json",
+      "sha256": "3c7a86f0913137402cd2a726396729bba7df8a2715f94e55c84566de5f48e042"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\hardware-candidate-02\\result.json",
+      "sha256": "1d1459a928f58708a2de8f2898241cae91d8dfd73b7f93faea2570ecc1805750"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "fixtureRuntimeMeasured": true,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\qualification.json",
+    "sha256": "d9a67000334fade3eb60ed01d93ae670ca4e5a01968046ccdc099c7eb3dae263"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\attribution.json",
+    "sha256": "89d272a27bbeb5a1e4c5de95d0bdf56bfbe33ffa66a58d5d310922331a47329e"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\hardware-parent-02\\result.json",
+        "sha256": "3c7a86f0913137402cd2a726396729bba7df8a2715f94e55c84566de5f48e042"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\board-parent-02\\receipt.json",
+        "sha256": "e89936e77a111a6de80165addeee278cdd37a9bbce655ad3794544096e73717c"
+      },
+      "scalar": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\board-parent-02\\scalar-parameters.json",
+        "sha256": "b8c01afb8f8fc2d36195e77b0c5ad8729b26be51651ab26f04f835622e563191"
+      },
+      "bytes": 1810,
+      "cases": 128,
+      "frames": 654,
+      "port": "COM13",
+      "firmwareSha256": "97e6c17c5a14c499c29a2499fb2f61eae23b7b454432f52e45725aaab5045534",
+      "aggregateTicks": {
+        "0": 4800.0,
+        "1": 4415
+      }
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\hardware-candidate-02\\result.json",
+        "sha256": "1d1459a928f58708a2de8f2898241cae91d8dfd73b7f93faea2570ecc1805750"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\board-candidate-02\\receipt.json",
+        "sha256": "5426bf421625ac3ba6700a0ac035cda0b6dcf0df2d61a24806605c74e3f7fb50"
+      },
+      "scalar": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\board-candidate-02\\scalar-parameters.json",
+        "sha256": "ba4a561746206c77d27ed627007ee230386884e3f375b2d909db62e5ab9bb031"
+      },
+      "bytes": 1479,
+      "cases": 128,
+      "frames": 649,
+      "port": "COM13",
+      "firmwareSha256": "7650247352b4821e87a8b659a6743196a40923f3d77193da13b877babc7adc6b",
+      "aggregateTicks": {
+        "0": 3200.0,
+        "1": 2752
+      }
+    }
+  ],
+  "changedFunctions": [
+    {
+      "id": "p013",
+      "unit": "u0",
+      "function": "_SetWakeUpTime",
+      "parentBytes": 50,
+      "bytes": 7,
+      "savedBytes": 43
+    },
+    {
+      "id": "p045",
+      "unit": "u0",
+      "function": "_EEPROM_read_n",
+      "parentBytes": 81,
+      "bytes": 78,
+      "savedBytes": 3
+    },
+    {
+      "id": "p045",
+      "unit": "u0",
+      "function": "_EEPROM_write_n",
+      "parentBytes": 83,
+      "bytes": 80,
+      "savedBytes": 3
+    },
+    {
+      "id": "p049",
+      "unit": "u0",
+      "function": "_EEPROM_read_n",
+      "parentBytes": 81,
+      "bytes": 78,
+      "savedBytes": 3
+    },
+    {
+      "id": "p049",
+      "unit": "u0",
+      "function": "_EEPROM_write_n",
+      "parentBytes": 83,
+      "bytes": 80,
+      "savedBytes": 3
+    },
+    {
+      "id": "p078",
+      "unit": "u0",
+      "function": "_LCD_ShowString",
+      "parentBytes": 130,
+      "bytes": 128,
+      "savedBytes": 2
+    },
+    {
+      "id": "p078",
+      "unit": "u0",
+      "function": "_Gui_StrCenter",
+      "parentBytes": 130,
+      "bytes": 121,
+      "savedBytes": 9
+    },
+    {
+      "id": "p078",
+      "unit": "u4",
+      "function": "_LCD_ReadPoint",
+      "parentBytes": 84,
+      "bytes": 79,
+      "savedBytes": 5
+    },
+    {
+      "id": "p080",
+      "unit": "u0",
+      "function": "_LCD_ShowString",
+      "parentBytes": 130,
+      "bytes": 128,
+      "savedBytes": 2
+    },
+    {
+      "id": "p080",
+      "unit": "u0",
+      "function": "_Gui_StrCenter",
+      "parentBytes": 120,
+      "bytes": 121,
+      "savedBytes": -1
+    },
+    {
+      "id": "p080",
+      "unit": "u4",
+      "function": "_LCD_ReadReg",
+      "parentBytes": 94,
+      "bytes": 85,
+      "savedBytes": 9
+    },
+    {
+      "id": "p080",
+      "unit": "u4",
+      "function": "_LCD_ReadPoint",
+      "parentBytes": 87,
+      "bytes": 82,
+      "savedBytes": 5
+    },
+    {
+      "id": "p097",
+      "unit": "u0",
+      "function": "_LinSetBaudrate",
+      "parentBytes": 45,
+      "bytes": 19,
+      "savedBytes": 26
+    },
+    {
+      "id": "p134",
+      "unit": "u0",
+      "function": "_delay_ms",
+      "parentBytes": 27,
+      "bytes": 22,
+      "savedBytes": 5
+    },
+    {
+      "id": "p134",
+      "unit": "u0",
+      "function": "_SPI_DMA_TxTRIG",
+      "parentBytes": 119,
+      "bytes": 107,
+      "savedBytes": 12
+    }
+  ],
+  "newWithin": {
+    "110": [
+      "p013",
+      "p097",
+      "p134"
+    ],
+    "120": [
+      "p013"
+    ]
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  }
+}
