@@ -1,6 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * C ISR 的保存槽是编译器私有帧，不是 C 对象或公开的汇编参数接口。
- * 处理无局部帧、无内联汇编的普通 bank0 ISR，复用构建反馈的调用改写集合。
+ * 处理无局部帧的普通 bank0 ISR；内联汇编可含已知外设位操作。
+ * 复用构建反馈的调用改写集合。
  * 从最终指令和真实符号类型求核心寄存器效果；未知指令/地址完整回退。
  * 不移动或改写任何函数体访存。PSW1 首存末取始终保留。 */
 #include "wide_cost.h"
@@ -41,10 +42,9 @@ static bool li_parse(lineNode *node,li_line *r)
 /* This pass leaves peripheral accesses in place. Direct SFR addresses outside
  * the architectural registers and mapping/mode controls do not alias GPRs;
  * they do not need the separate contract used to move ordered inline asm. */
-static li_operand li_direct(unsigned address,bool bit)
+static li_operand li_direct_bits(unsigned address,unsigned mask,bool bit)
 {
-  li_operand r={0};r.bit=bit;unsigned mask=bit?1u<<(address&7):255u;
-  if(bit)address&=0xf8;
+  li_operand r={0};r.bit=bit;
   if(address==0xe0)r.gpr=UINT32_C(1)<<MCS251_BYTE_A;
   else if(address==0xf0)r.gpr=UINT32_C(1)<<MCS251_BYTE_B;
   else if(!bit && (address==0x82 || address==0x83))r.special=MX251_SPECIAL_DPTR;
@@ -56,9 +56,61 @@ static li_operand li_direct(unsigned address,bool bit)
   return r;
 }
 
+static li_operand li_direct(unsigned address,bool bit)
+{
+  return li_direct_bits(bit?address&0xf8:address,bit?1u<<(address&7):255u,bit);
+}
+
+/* 251 byte.bit names the exact SFR byte, including non-classic bit addresses. */
+static li_operand li_numeric_bit(const char *text)
+{
+  li_operand r={0};r.unknown=true;
+  if(strlen(text)!=6 || text[0]!='0' || (text[1]!='x' && text[1]!='X') ||
+     wide_asm_hex(text[2])<0 || wide_asm_hex(text[3])<0 || text[4]!='.' ||
+     text[5]<'0' || text[5]>'7')return r;
+  unsigned address=(unsigned)(16*wide_asm_hex(text[2])+wide_asm_hex(text[3]));
+  return li_direct_bits(address,1u<<(text[5]-'0'),true);
+}
+
+/* The complete inline block must consist of peripheral bit writes. This
+ * establishes its effects before final instructions enter the ordinary ISR
+ * analysis; labels, calls and other inline instructions retain the old frame. */
+static unsigned li_inline_bits(const char *source)
+{
+  unsigned count=0;if(!source)return 0;
+  for(const char *p=source;*p;) {
+    const char *end=p;while(*end && *end!='\r' && *end!='\n' && (unsigned char)*end!=0x87)++end;
+    size_t length=(size_t)(end-p);char text[LI_TEXT];
+    if(length>=sizeof text)return 0;
+    memcpy(text,p,length);text[length]=0;
+    lineNode node={0};node.line=text;li_line l;
+    if(!li_parse(&node,&l))return 0;
+    if(!l.empty) {
+      if(l.label || l.nargs!=1 || (strcmp(l.op,"clr") && strcmp(l.op,"setb") && strcmp(l.op,"cpl")))return 0;
+      li_operand bit=li_numeric_bit(l.arg[0]);
+      if(bit.unknown || !bit.memory || !bit.bit)return 0;
+      ++count;
+    }
+    p=end;if(*p=='\r')++p;if(*p=='\n' || (unsigned char)*p==0x87)++p;
+  }
+  return count;
+}
+
+/* genInline consumes its text buffer, so classify it before code emission. */
+static int mcs251IsrInlineBits(iCode *lic)
+{
+  int count=0;
+  if(!currFunc || !IFFUNC_ISISR(currFunc->type))return -1;
+  for(iCode *ic=lic;ic;ic=ic->next)if(ic->op==INLINEASM) {
+    unsigned n=li_inline_bits(IC_INLINE(ic));if(!n)return -1;count+=(int)n;
+  }
+  return count;
+}
+
 static li_operand li_operand_info(const char *text)
 {
   li_operand r={0};mx251_effect_operand reg;
+  if(text[0]=='0' && (text[1]=='x' || text[1]=='X') && strchr(text,'.'))return li_numeric_bit(text);
   if(*text=='#' && text[1])return r;
   if(!strcmp(text,"c") || !strcmp(text,"cy")){r.flags=true;return r;}
   if(!strncmp(text,"acc.",4) && text[4]>='0' && text[4]<='7' && !text[5]){
@@ -244,17 +296,17 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
   return true;
 }
 
-static void mcs251LeafIsrSaves(lineNode *head,iCode *lic)
+static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
 {
   const char *enable=getenv("MX251_LEAF_ISR_SAVES");
   if(enable && !strcmp(enable,"0"))return;
   if(!currFunc || !IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
      IFFUNC_ISCRITICAL(currFunc->type) || FUNC_REGBANK(currFunc->type) || options.debug ||
-     options.useXstack || currFunc->stack || currFunc->xstack)return;
+     options.useXstack || currFunc->stack || currFunc->xstack || inlineBits<0)return;
   unsigned functions=0,ends=0;
   for(iCode *ic=lic;ic;ic=ic->next) {
     functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
-    if(ic->op==PCALL || ic->op==INLINEASM || ic->op==JUMPTABLE ||
+    if(ic->op==PCALL || ic->op==JUMPTABLE ||
        ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
   }
   if(functions!=1 || ends!=1)return;
@@ -317,8 +369,8 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic)
       lines[pops[npop-1-i]].node->line=Safe_strdup("; mx251 leaf ISR: paired restore removed");
       if(psw)lines[bank].node->line=Safe_strdup("; mx251 leaf ISR: unused bank selection removed");
     }
-    dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private compiler-proof=body-effects\n",
-      currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls);
+    dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
+      currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls,(unsigned)inlineBits);
   } else dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
   Safe_free(lines);
 }

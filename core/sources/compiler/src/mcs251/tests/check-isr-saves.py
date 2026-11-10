@@ -30,6 +30,18 @@ cases={
  'narrow-pointer-cast':('*(volatile __data u8 *)buffer=value;',False,''),
  'mapping':('mapping |= 0x80;',False,''),
  'inline-asm':('__asm nop __endasm;',False,''),
+ 'peripheral-clear':('__asm clr 0x8f.4 __endasm;',True,''),
+ 'peripheral-block':('__asm\n; ordered bit writes\nSETB 0X89.7\nclr 0x89.4 ; comment\ncpl 0x89.5\n__endasm;',True,''),
+ 'peripheral-call':('__asm setb 0x98.1 __endasm; helper(); __asm clr 0x98.1 __endasm;',True,''),
+ 'peripheral-array':('__asm clr 0x8f.4 __endasm; buffer[index & 15]=value;',True,''),
+ 'peripheral-mapping-neighbor':('__asm setb 0xba.6 __endasm;',True,''),
+ 'inline-mapping':('__asm setb 0xba.7 __endasm;',False,''),
+ 'inline-auxr-mapping':('__asm clr 0x8e.1 __endasm;',False,''),
+ 'inline-power':('__asm setb 0x87.1 __endasm;',False,''),
+ 'inline-psw1':('__asm clr 0xd1.5 __endasm;',False,''),
+ 'inline-stack':('__asm clr 0x81.0 __endasm;',False,''),
+ 'inline-mixed-core':('__asm\nclr 0x8f.4\nclr 0xe0.0\n__endasm;',False,''),
+ 'inline-branch':('__asm\nclr 0x8f.4\nsjmp 00111$\n00111$:\nsetb 0x8f.4\n__endasm;',False,''),
  'other-bank':('value++;',False,' __using(1)'),
  'local-frame':('volatile u8 local[9]; local[0]=value; helper(); value=local[0];',False,''),
 }
@@ -50,6 +62,16 @@ for model in ('small','large'):
    match=re.search(r'mx251-leaf-isr-saves .*?removed-bytes=(\d+) .*?stack-saved=(\d+)',asm)
    assert bool(match)==optimized,(root,asm)
    assert re.search(r'push\s+0xd1',asm) and re.search(r'pop\s+0xd1',asm),root
+   if name.startswith('peripheral-'):
+    assert re.search(r'inline-bits=[1-9]',asm),root
+    oldasm,_=run(a.baseline,{},'baseline')
+    def body_instructions(text):
+     body=text.split('mx251-isr-body-begin',1)[1].split('mx251-isr-body-end',1)[0]
+     return [s for line in body.splitlines() if (s:=line.split(';',1)[0].strip())]
+    assert body_instructions(asm)==body_instructions(oldasm),(root,'body instructions changed')
+    if name in ('peripheral-clear','peripheral-block','peripheral-mapping-neighbor'):
+     assert re.findall(r'^\s*push\s+(\S+)',asm,re.M)==['0xd1'],root
+     assert re.findall(r'^\s*pop\s+(\S+)',asm,re.M)==['0xd1'],root
    if name=='known-call':
     assert not re.search(r'push\s+dr(?:0|8|12|16|24|28)\b',asm),root
     assert re.search(r'push\s+dr4\b',asm) and re.search(r'push\s+dr20\b',asm),root

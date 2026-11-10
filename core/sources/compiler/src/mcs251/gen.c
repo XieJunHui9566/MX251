@@ -12732,6 +12732,7 @@ void
 mcs251_genCode (iCode * lic)
 {
   iCode *ic;
+  int isrInlineBits = mcs251IsrInlineBits (lic);
   int cln = 0;
 #ifdef _DEBUG
   int cseq = 0;
@@ -13069,7 +13070,7 @@ mcs251_genCode (iCode * lic)
         fprintf (stderr,"OAT key=%d %s\n",q->ic?q->ic->key:0,q->line?q->line:"");
     }
 
-  mcs251LeafIsrSaves(genLine.lineHead,lic);
+  mcs251LeafIsrSaves(genLine.lineHead,lic,isrInlineBits);
 
   /* now do the actual printing */
   printLine (genLine.lineHead, codeOutBuf);
