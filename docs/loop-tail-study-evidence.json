@@ -1,0 +1,215 @@
+{
+  "status": "RESEARCH_ONLY",
+  "baseCommit": "077b1a66717e4130e93984537757eb3ac82c32ba",
+  "compilerModified": false,
+  "sdkModified": false,
+  "hardwareExecuted": false,
+  "newQualifiedCompiler": false,
+  "summary": {
+    "projects": 75,
+    "addressSites": 72,
+    "loopAddressSites": 56,
+    "loopAddressProjects": 26,
+    "loopAddressFunctions": 35,
+    "loopAddressCurrentBytes": 672,
+    "callFreeLoopAddressSites": 31,
+    "parameterizedTailProjects": 11,
+    "parameterizedTailFunctions": 15,
+    "repeatedExactTailBytes": 433
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\comparison.json",
+    "sha256": "51e7cb7d70f9c8782dc0dc8a74f388cde7d26afb86f93192cdebf5e0bd571462"
+  },
+  "outputs": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\inventory.json",
+      "sha256": "a09e15e7017a6f316ab40ce0ebea0b091ab8c2b50a953cf1166e73ffb69b32ff"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\focus.json",
+      "sha256": "ee2a701056e92861ac29e3dbb21325d8978dd11b532a43af1dc9f0b2ee410c7a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch.json",
+      "sha256": "3c5b9ffe3e8d959736605790c44fceff06bf3052d2b0bf311ff7f0ecf6b5fefb"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes.json",
+      "sha256": "7e0bc0676e6ebc6a1cbdcf194394e3edf05a49b353f87d57f3d95eb4ae606ec1"
+    }
+  ],
+  "scripts": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\loop_tail_study.py",
+      "sha256": "44f55ac87c1f8540e6dbd49373d041c977983f4c15d8cc2c71f0843c0fe6c942"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\loop_tail_details.py",
+      "sha256": "1e28f0c5a286f90f9a9630b214855e1fbeba2531140b5592f3e0af945b5c415b"
+    }
+  ],
+  "compilerSources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide.c",
+      "sha256": "0004bab254c54c6f47ef4ac460e1322c31b3f1c5c57dfb48012f7b3248c2d29b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_emit.c.inc",
+      "sha256": "7024f7347562ee22ca2f7fe0dc7c7b43a851830ef9e51d2f7d16f02c56a1d94d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_affine.c.inc",
+      "sha256": "d19db9f20c8baf4c353cf55368c214516098bbaedf6a92befa2f5634df26034d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_unsigned_affine.c.inc",
+      "sha256": "225a639c97461662f0e5660be52023ff64f9ccc6b1fe5a14e0e651a5fbf2c226"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_cfg_cleanup.c.inc",
+      "sha256": "0d6070117dbde6bf1b8a3cc9eac5ab41f52064a00c02e6e220ad129c129c5d9b"
+    }
+  ],
+  "focus": [
+    {
+      "id": "p051",
+      "unit": "u0",
+      "function": "_UpdatePwm",
+      "mxBytes": 208,
+      "keilBytes": 187
+    },
+    {
+      "id": "p074",
+      "unit": "u0",
+      "function": "_main",
+      "mxBytes": 323,
+      "keilBytes": 229
+    },
+    {
+      "id": "p095",
+      "unit": "u7",
+      "function": "_SetMCLK",
+      "mxBytes": 369,
+      "keilBytes": 196
+    },
+    {
+      "id": "p134",
+      "unit": "u0",
+      "function": "_LoadSPI",
+      "mxBytes": 191,
+      "keilBytes": 134
+    },
+    {
+      "id": "p039",
+      "unit": "u0",
+      "function": "_get_temperature",
+      "mxBytes": 334,
+      "keilBytes": 251
+    }
+  ],
+  "sketch": {
+    "scope": "Unlinked illustrative register assignments; static encoding only, no compiler optimization or runtime qualification.",
+    "assembler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\scalar-literal-conversions\\core-02\\toolchain\\bin\\sdas251.exe",
+      "sha256": "e5fa3df365111579807fd4d993ec6fcb408a1f0bff33be58e2a7d12078bdebc5"
+    },
+    "regions": [
+      {
+        "name": "old_loop",
+        "bytes": 73,
+        "instructions": 33,
+        "source": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\old_loop.asm",
+          "sha256": "8be10fbd564b4d28fc2c18c7b495c48d0fa46f6ef0c28c82fab61345900915b4"
+        },
+        "listing": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\old_loop.lst",
+          "sha256": "087ca485806ce816f079a772c72ddb40ad9d750420a622cb6afd64068908585e"
+        }
+      },
+      {
+        "name": "cursor_loop",
+        "bytes": 43,
+        "instructions": 15,
+        "source": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\cursor_loop.asm",
+          "sha256": "47361a822f4102ccc57b14fd4dab0284d3754312c4b5c7a7ffbe33921ead72cf"
+        },
+        "listing": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\cursor_loop.lst",
+          "sha256": "8004221a62a9c4863688b29bb65d590c041232be33e68c3343a4db9ddf1e6882"
+        }
+      },
+      {
+        "name": "old_pwm_tails",
+        "bytes": 186,
+        "instructions": 72,
+        "source": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\old_pwm_tails.asm",
+          "sha256": "606982e07f52b1bfa23f81859dd447801d66bb04988241a4ab9079a3e3be4da9"
+        },
+        "listing": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\old_pwm_tails.lst",
+          "sha256": "23ec59984ed69ec6d575edf4e0e3a326435898d2432356a096609e0b12c81d5c"
+        }
+      },
+      {
+        "name": "shared_pwm_tails",
+        "bytes": 88,
+        "instructions": 31,
+        "source": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\shared_pwm_tails.asm",
+          "sha256": "dcf2fddac850cd3f66e2b09afccd695afddb841e4ae134f96749ec17cf17f657"
+        },
+        "listing": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\encoding-sketch\\shared_pwm_tails.lst",
+          "sha256": "2f1f952ea5b42bce042724d50b3820a3d3121b5e29efbd00fef86f7e01831e2a"
+        }
+      }
+    ]
+  },
+  "probes": [
+    {
+      "id": "p051",
+      "compilerSha256": "d1eaaab8beab5b96d1e5179fa64e9831ed7ecf4b60f9bad7343c5c2fc35aa2e2",
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes\\p051\\probe.json",
+        "sha256": "379162b23414765fb75aa9dd48b318d43da25f8f43e68ba8ad8b342de00bffe0"
+      },
+      "assembly": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes\\p051\\u0.asm",
+        "sha256": "4a007493c4cc3a3b88469819a5ed9ecc1d558355b50ff8aae2a99f80c8cd69a1"
+      }
+    },
+    {
+      "id": "p074",
+      "compilerSha256": "d1eaaab8beab5b96d1e5179fa64e9831ed7ecf4b60f9bad7343c5c2fc35aa2e2",
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes\\p074\\probe.json",
+        "sha256": "a480a5bf8292714a44790035ffc496e3dcf78d1d9a2b9f1a2a241b252b141d0b"
+      },
+      "assembly": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes\\p074\\u0.asm",
+        "sha256": "a7392eebe6005c1f1c3cbc3bf558adc4f0d256b1966c6e4821f62850fa3119af"
+      }
+    },
+    {
+      "id": "p095",
+      "compilerSha256": "d1eaaab8beab5b96d1e5179fa64e9831ed7ecf4b60f9bad7343c5c2fc35aa2e2",
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes\\p095\\probe.json",
+        "sha256": "d76e5a0acc93eeb43f043803edf6e05f4f1b918e8fe16fe0e69d2c75e818333a"
+      },
+      "assembly": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\loop-tail-study\\mir-probes\\p095\\u7.asm",
+        "sha256": "e8bfd9bae2023ce725a4e4bf2456f97a3464bb7dcb2a9ead0b64a3bdbd38ac88"
+      }
+    }
+  ],
+  "priority": [
+    "multi-stream-loop-cursors-with-local-native-code-byte-load",
+    "typed-MIR-tail-sharing-with-constant-parameters"
+  ],
+  "scope": "Counts and fragment costs are feasibility evidence, not achieved compiler savings or runtime results."
+}
