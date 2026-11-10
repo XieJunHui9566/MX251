@@ -1,0 +1,13 @@
+typedef unsigned char u8;
+typedef unsigned int u16;
+typedef unsigned long u32;
+extern __data u32 source_rate, sample_a;
+extern __data u16 sample_word;
+extern __data u8 sample_byte;
+u32 native_mix(u32 a,u32 b,u16 c) __sdcccall(4);
+u8 native_byte(u8 a,u8 b) __sdcccall(4);
+u16 constant_reload(u32 divisor);
+u16 object_reload(u32 divisor);
+u32 snapshot_calls(u32 keep);
+u8 byte_snapshot(u8 value);
+u32 native_work(u8 seed);

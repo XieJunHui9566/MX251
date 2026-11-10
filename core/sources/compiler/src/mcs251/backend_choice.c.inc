@@ -44,7 +44,7 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
         operand *op=IC_LEFT(ic);
         if(!op || !IS_SYMOP(op) || !IS_FUNC(operandType(op)) ||
            (FUNC_SDCCCALL(operandType(op))!=2 &&
-            !(ordered && FUNC_SDCCCALL(operandType(op))==4)) ||
+            !((ordered || narrowTrial) && FUNC_SDCCCALL(operandType(op))==4)) ||
            (!narrowTrial && OP_SYMBOL(op)->cdef) ||
            mcs251InternalReturn(OP_SYMBOL(op)) || mcs251InternalArgument(OP_SYMBOL(op)))return false;
       }

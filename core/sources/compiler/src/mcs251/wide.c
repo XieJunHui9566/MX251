@@ -843,11 +843,20 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         n->ordinaryCall=FUNC_SDCCCALL(t)==2;
         n->variadicCall=IFFUNC_HASVARARGS(t);
         n->carryResult=wide_carry_result(t);
-        /* 新快照的物理取样顺序以普通 ABI2 的 SEND/IPUSH 为合同。
-         * ABI4 真实对象实参没有该顺序证明，保持此前整函数回退。 */
+        /* ABI4 的普通对象沿用 SEND/IPUSH 处的独立快照；到 CALL 只搬运
+         * 已求值的标量。此区间只含实参节点，不会跨过修改对象的操作。
+         * volatile 的多实参/逐字节取样顺序仍沿用原 ABI4 发射路径。 */
         if(!n->ordinaryCall) {
-          for(unsigned j=0;j<2;++j)if(pendingSampled[j])return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
-          for(unsigned j=0;j<pushedCount;++j)if(pushedSampled[j])return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
+          unsigned sampled=0;
+          for(unsigned j=0;j<2;++j)if(pendingSampled[j]) {
+            if(isOperandVolatile(pending[j],TRUE))return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
+            ++sampled;
+          }
+          for(unsigned j=0;j<pushedCount;++j)if(pushedSampled[j]) {
+            if(isOperandVolatile(pushed[j],TRUE))return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
+            ++sampled;
+          }
+          if(sampled)dbuf_printf(f->diagnostics,"; wide native argument snapshots icode=%d objects=%u order=ir\n",ic->key,sampled);
         }
         unsigned runtimeOperation=0,runtimeWidth=0,runtimeSigned=0;
         bool compilerIntegerRuntime=wide_integer_runtime_contract(OP_SYMBOL(IC_LEFT(ic)),&runtimeOperation,&runtimeWidth,&runtimeSigned);
