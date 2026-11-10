@@ -16,7 +16,7 @@ def check_listing(asm_path):
  for n,line in enumerate(lines,1):
   m=re.match(r'; wide short branch direction=(forward|backward) bound=(\d+) kind=(conditional|goto)',line)
   if m:
-   addr,data=listing[n+1];ins,target=lines[n].strip().split();assert ins in ['je','jne','jc','jnc','jg','jle','jsl','jsge','jsg','jsle','sjmp']
+   addr,data=listing[n+1];ins,target=lines[n].strip().split();assert ins in ['je','jne','jc','jnc','jg','jle','jsl','jsge','jsg','jsle','sjmp','jb','jnb'];target=target.rsplit(',',1)[-1]
    delta=labels[target]-addr-len(data);assert -128<=delta<=127
    assert (data[-1] if data[-1]<128 else data[-1]-256)==delta,(target,delta,data.hex())
    bound=int(m[2]);assert (0<=delta<=bound<=127) if m[1]=='forward' else (-128<=-bound<=delta<0)

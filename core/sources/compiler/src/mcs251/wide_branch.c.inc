@@ -9,7 +9,7 @@ wbranch_instruction_bound(const char *text,size_t length)
 {
   static const char *known[]={"add","sub","cmp","inc","dec","mul","anl","orl","xrl",
     "mov","movs","movz","movc","push","pushw","pop","eret","sra","srl","rl","rr","swap","clr",
-    "ejmp","ecall","jc","jnc","jz","jnz","je","jne","jg","jle","jsl","jsge","jsg","jsle","sjmp"};
+    "jb","jnb","ejmp","ecall","jc","jnc","jz","jnz","je","jne","jg","jle","jsl","jsge","jsg","jsle","sjmp"};
   size_t n=0;while(n<length && text[n]>='a' && text[n]<='z')++n;
   if(n<length && text[n]!='\t' && text[n]!=' ')return 0;
   for(unsigned i=0;i<sizeof known/sizeof known[0];++i)if(strlen(known[i])==n && !strncmp(text,known[i],n))return 6;
@@ -35,9 +35,9 @@ wrelax_branches(wide_function *f)
      * 前向中间区间与后向区间因此只能变短，不需要迭代或冒险放宽阈值。 */
     wassert(b->begin>=copied && b->end>=b->begin);
     dbuf_append(&out,source+copied,b->begin-copied);
-    dbuf_printf(&out,"; wide short branch direction=%s bound=%u kind=%s\n\t%s\t__wm_%s_%d\n",
+    dbuf_printf(&out,"; wide short branch direction=%s bound=%u kind=%s\n\t%s\t%s%s__wm_%s_%d\n",
                 forward?"forward":"backward",limit,b->condition?"conditional":"goto",
-                b->condition?b->condition:"sjmp",currFunc->rname,b->target);
+                b->condition?b->condition:"sjmp",b->operand?b->operand:"",b->operand?",":"",currFunc->rname,b->target);
     copied=b->end;++shortened;
     if(b->condition) {--f->emitInstructions;f->emitCost-=b->weight;}
   }

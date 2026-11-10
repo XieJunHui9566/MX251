@@ -287,17 +287,24 @@ warithmetic_byte(wide_function *f,wide_node *n)
   wstore_byte(f,n->result,work);
 }
 static void
-wbranch(wide_function *f,const char *condition,int target)
+wbranch_operand(wide_function *f,const char *condition,const char *operand,int target)
 {
-  /* 先生成距离无关的保底形式，完整发射后再用保守上界证明可缩短的分支。 */
-  static const char *pairs[][2]={{"je","jne"},{"jc","jnc"},{"jg","jle"},{"jsg","jsle"},{"jsl","jsge"},{"jz","jnz"}};
+  static const char *pairs[][2]={{"je","jne"},{"jc","jnc"},{"jg","jle"},{"jsg","jsle"},{"jsl","jsge"},{"jz","jnz"},{"jb","jnb"}};
   const char *inverse=NULL;
   for(unsigned i=0;i<sizeof pairs/sizeof pairs[0];++i)for(int j=0;j<2;++j)if(!strcmp(condition,pairs[i][j]))inverse=pairs[i][1-j];
   wassert(inverse);
-  wide_branch_site site={target,condition,dbuf_get_length(&f->output),0,f->emitUpper,0,f->emitBarrier,f->emitWeight};
-  int skip=wt(f);wj(f,inverse,skip);wj(f,"ejmp",target);wl(f,skip);
+  wide_branch_site site={target,condition,dbuf_get_length(&f->output),0,f->emitUpper,0,f->emitBarrier,f->emitWeight,operand};
+  int skip=wt(f);
+  if(operand)we(f,"\t%s\t%s,__wm_%s_%d\n",inverse,operand,currFunc->rname,skip);
+  else wj(f,inverse,skip);
+  wj(f,"ejmp",target);wl(f,skip);
   site.end=dbuf_get_length(&f->output);site.upperEnd=f->emitUpper;
   if(f->branchCount<(unsigned)f->nodeLimit)f->branches[f->branchCount++]=site;else f->relaxDisabled=true;
+}
+static void
+wbranch(wide_function *f,const char *condition,int target)
+{
+  wbranch_operand(f,condition,NULL,target);
 }
 static const char *wcondition(unsigned op,bool sign,bool truth) {
   switch(op) {
@@ -310,6 +317,8 @@ static const char *wcondition(unsigned op,bool sign,bool truth) {
   default:wassert(false);return NULL;
   }
 }
+#include "wide_predicate_branch.c.inc"
+
 static bool wcompare_op(unsigned op) {return op=='<'||op=='>'||op==LE_OP||op==GE_OP||op==EQ_OP||op==NE_OP;}
 
 /* A/B 始终是宽MIR保留暂存，条件码不跨节点保存。字节判零直接
@@ -1663,6 +1672,8 @@ wide_emit(wide_function *f)
     if(repeated>i) {i=repeated;continue;}
     int constants=wstack_constant_run(f,i);
     if(constants>i) {i=constants;continue;}
+    int predicate=wpredicate_branch(f,i);
+    if(predicate>i) {i=predicate;continue;}
     if(n->rotateCandidate) {wrotate_proposal(f,i);i+=2;continue;}
     if(wide_call_plain(f,i+1,2) && wmemory_byte_rmw(f,i)) {i+=2;continue;}
     /* 已经规范化的常量选位，只在紧邻且单用的 cast/store 链中直接写 C。
@@ -1727,8 +1738,8 @@ wide_emit(wide_function *f)
     if(n->op==WM_BIT_LOAD && i+1<f->nn && wide_call_plain(f,i+1,1) && f->nodes[i+1].op==IFX &&
        f->nodes[i+1].left.value==n->result && f->values[n->result].reads==1) {
       wide_node *branch=&f->nodes[++i];
-      we(f,"; wide bit branch %s\n\tmov\tc,%s\n",n->addressSymbol->rname,n->addressSymbol->rname);
-      wbranch(f,branch->trueBranch?"jc":"jnc",branch->target);continue;
+      we(f,"; wide bit branch %s\n",n->addressSymbol->rname);
+      wbranch_operand(f,branch->trueBranch?"jb":"jnb",n->addressSymbol->rname,branch->target);continue;
     }
     if(wcompare_op(n->op)) {
       if(n->left.width==1 && n->right.width==1)wcompare_byte(f,n->left,n->right);
@@ -1935,7 +1946,7 @@ wide_emit(wide_function *f)
     case LABEL:wl(f,n->label);break;
     case GOTO:
       if(i+1==f->nn || f->nodes[i+1].label!=n->target) {
-        wide_branch_site site={n->target,NULL,dbuf_get_length(&f->output),0,f->emitUpper,0,f->emitBarrier,f->emitWeight};
+        wide_branch_site site={n->target,NULL,dbuf_get_length(&f->output),0,f->emitUpper,0,f->emitBarrier,f->emitWeight,NULL};
         wj(f,"ejmp",n->target);site.end=dbuf_get_length(&f->output);site.upperEnd=f->emitUpper;
         if(f->branchCount<(unsigned)f->nodeLimit)f->branches[f->branchCount++]=site;else f->relaxDisabled=true;
       }

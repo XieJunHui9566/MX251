@@ -83,6 +83,7 @@ typedef struct { int label;size_t text;unsigned upper,barrier; } wide_label_site
 typedef struct {
   int target;const char *condition;size_t begin,end;
   unsigned upperBegin,upperEnd,barrier,weight;
+  const char *operand;
 } wide_branch_site;
 typedef struct {
   wide_label_site labels[WN_MAX*4];wide_branch_site branches[WN_MAX];

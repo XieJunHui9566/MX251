@@ -1,0 +1,315 @@
+{
+  "schema": 1,
+  "date": "2026-11-10",
+  "baselineCommit": "0c184cb",
+  "branch": "codex/predicate-branches",
+  "root": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches",
+  "developmentCore": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04",
+  "compilerSha256": "d9c08f6d7072a573ada970390030cdf479fbd40a97181ffab92ecdab69ce8285",
+  "projects": [
+    {
+      "project": "p080",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261110\\value-webs\\core-04-p080",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04-p080",
+      "parentBytes": 19707,
+      "candidateBytes": 19683,
+      "deltaBytes": -24,
+      "keilBytes": 18071,
+      "ratioToKeil": 1.0892036965303524,
+      "inputs": {
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+      },
+      "configurationEqual": true,
+      "configurationCanonicalSha256": "e3ae02c26faf7153b53023cf9d62d3237c6d35561a74910351a1b570db98fb3a",
+      "firmwareSha256": "0b38beab22820e1e468b4be030598f9a2f385a95e2522f3f9924cd0b6b3baa92",
+      "receiptSha256": "74e089998f82f86a445205624e70e4c2a7fb78846b24222996a2eff4be2721e5",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "function": "_LCD_ShowChar",
+          "parent": 573,
+          "current": 557,
+          "delta": -16
+        }
+      ]
+    },
+    {
+      "project": "p091",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261110\\value-webs\\core-04-p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04-p091",
+      "parentBytes": 5613,
+      "candidateBytes": 5559,
+      "deltaBytes": -54,
+      "keilBytes": 4401,
+      "ratioToKeil": 1.2631220177232447,
+      "inputs": {
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee"
+      },
+      "configurationEqual": true,
+      "configurationCanonicalSha256": "2b61fa2fc43f3b63db13d297920f09cf28f58148ae15a2b1bb12eff3fd04a7cd",
+      "firmwareSha256": "de15d5439aedc46662ee5a6fe26b603431682188a7ec484d0593a2bf30de4046",
+      "receiptSha256": "91d41e7de00994b6081c007112bd0c90c9ef2ad73b9e23449d6d00f780002aea",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "function": "_usb_setup",
+          "parent": 225,
+          "current": 198,
+          "delta": -27
+        },
+        {
+          "function": "_usb_read_reg",
+          "parent": 42,
+          "current": 32,
+          "delta": -10
+        },
+        {
+          "function": "_usb_out_ep1",
+          "parent": 57,
+          "current": 51,
+          "delta": -6
+        },
+        {
+          "function": "_usb_in_ep1",
+          "parent": 66,
+          "current": 60,
+          "delta": -6
+        },
+        {
+          "function": "_usb_write_reg",
+          "parent": 33,
+          "current": 28,
+          "delta": -5
+        }
+      ]
+    }
+  ],
+  "hardware": [
+    {
+      "version": "parent",
+      "build": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\board-parent\\.build\\mx251\\latest",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\capture-parent",
+      "codeBytes": 1854,
+      "firmwareSha256": "dadf746e0d84e631ed4cafd8fb11dc93922c646cea11c5a44f58fb48a2734764",
+      "receiptSha256": "6c15d18926f3d86129b522551bf47e4d0a9a87ea6460d0f033b9c044543487dc",
+      "uartSha256": "3f9ca3ebdde7b86352ff3f459ef8e40d2b16904ca4231bbd5e2d1632a20fc4cc",
+      "resultSha256": "8317b69e4e752f0aa264a9f6cd27546b166625f8f9cc003e07d3b111b62d1a1d",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 630,
+      "aggregateTicks": {
+        "0": 26434,
+        "1": 10147.0
+      },
+      "port": "COM13",
+      "inputs": {
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+        "predicate-branches.c": "93b120bd535f7d8c197fa221cb9ab7a3a3645e233a925132fc63ba2e895e98f9",
+        "machine-board.c": "ced7d85e34f48305eb9084c156cd67ce573c0d9f172b8aeb126e08af1b778024"
+      }
+    },
+    {
+      "version": "new",
+      "build": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\board-new\\.build\\mx251\\latest",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\capture-new",
+      "codeBytes": 1653,
+      "firmwareSha256": "fc6a223807cfe76a264443348d1760316bbdce27692fe626469d339387bfe5af",
+      "receiptSha256": "79c494c5da5723df4c1c706811f864a8b680754225337ae4c6aba7b26728c969",
+      "uartSha256": "ef261ac9d3c7703a4c66c5b75fde17314475dba30ff3b2d753b08d1f3bd69305",
+      "resultSha256": "87e67df00bb5d79bdfb4ca2dd47fe3b059cab50e4c7452d7d1f428bcffe1a6cc",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 623,
+      "aggregateTicks": {
+        "0": 23533,
+        "1": 10087.0
+      },
+      "port": "COM13",
+      "inputs": {
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+        "predicate-branches.c": "93b120bd535f7d8c197fa221cb9ab7a3a3645e233a925132fc63ba2e895e98f9",
+        "machine-board.c": "ced7d85e34f48305eb9084c156cd67ce573c0d9f172b8aeb126e08af1b778024"
+      }
+    }
+  ],
+  "checks": {
+    "compile-check": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\compile-check\\result.json",
+      "sha256": "3f16e84a3e8093ad6f80399a4bf3d8ba51eaca8fa22739da98dd63dfabc04ea7",
+      "result": {
+        "status": "PASS",
+        "configurations": [
+          {
+            "model": "small",
+            "optimization": "speed",
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-function-metadata",
+              "--mcs251-machine-ir",
+              "--mcs251-callee-preserve",
+              "preserve.txt",
+              "-c",
+              "predicate-branches.c"
+            ],
+            "bitBranches": 21,
+            "volatileReadWidths": true
+          },
+          {
+            "model": "small",
+            "optimization": "size",
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-function-metadata",
+              "--mcs251-machine-ir",
+              "--mcs251-callee-preserve",
+              "preserve.txt",
+              "-c",
+              "predicate-branches.c"
+            ],
+            "bitBranches": 21,
+            "volatileReadWidths": true
+          },
+          {
+            "model": "large",
+            "optimization": "speed",
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-function-metadata",
+              "--mcs251-machine-ir",
+              "--mcs251-callee-preserve",
+              "preserve.txt",
+              "-c",
+              "predicate-branches.c"
+            ],
+            "bitBranches": 21,
+            "volatileReadWidths": true
+          },
+          {
+            "model": "large",
+            "optimization": "size",
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-function-metadata",
+              "--mcs251-machine-ir",
+              "--mcs251-callee-preserve",
+              "preserve.txt",
+              "-c",
+              "predicate-branches.c"
+            ],
+            "bitBranches": 21,
+            "volatileReadWidths": true
+          }
+        ],
+        "effectsCommand": [
+          "E:\\MCU\\MINGW\\mingw64\\bin\\gcc.exe",
+          "-std=c17",
+          "-O2",
+          "-IC:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251",
+          "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\compile-check\\effects.c",
+          "-o",
+          "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\compile-check\\effects.exe"
+        ],
+        "effectsCases": 20
+      }
+    },
+    "branch-bounds": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\branch-bounds\\results.json",
+      "sha256": "fed2e7f160434b041cf34f1c97937cc1ed8f9901eee0da32085601a6d2bf7870",
+      "result": {
+        "passed": true,
+        "cases": 3108,
+        "actualHelperSha256": "6b40a4878613a1e5733d2ec7809214ba0efbdc067abcc21f24475e421ae4b9ea",
+        "compiler": "E:\\MCU\\MINGW\\mingw64\\bin\\gcc.exe"
+      }
+    }
+  },
+  "stages": [
+    {
+      "core": "core-01",
+      "p080": 19699,
+      "p091": 5595,
+      "note": "Initial mask fusion; before skipping MIR NOPs"
+    },
+    {
+      "core": "core-02",
+      "p091": 5586,
+      "note": "Adjacent loads through deleted MIR NOPs"
+    },
+    {
+      "core": "core-03",
+      "p080": 19720,
+      "p091": 5593,
+      "rejected": true,
+      "note": "Removed backend register-write subset restriction; reverted"
+    },
+    {
+      "core": "core-04",
+      "p080": 19683,
+      "p091": 5559,
+      "note": "Final: retained backend policy, integer promotions and accumulator bit effects"
+    }
+  ],
+  "rejectedPatch": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\predicate-branches\\backend-choice-trial.patch",
+    "sha256": "69ad4871e44ba4ca8e8536a5007e89ba71f4d4ef6dd5d62edd11f5817ccddf64"
+  },
+  "limitations": [
+    "No whole-project Keil runtime comparison.",
+    "Independent predicate kernel is not a whole-project speed result.",
+    "No SDK changes and no public release update.",
+    "Only edited-line newline normalization followed the final compiler snapshot."
+  ]
+}

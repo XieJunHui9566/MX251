@@ -138,6 +138,11 @@ static inline mx251_effects mx251InstructionEffects(const char *line,size_t leng
     e.reads=e.writes=UINT32_C(1)<<MCS251_BYTE_A;
     e.flagsWrites=UINT32_MAX;return e;
   }
+  if(!strcmp(op,"jb") || !strcmp(op,"jnb")) {
+    if(strncmp(a,"acc.",4) || a[4]<'0' || a[4]>'7' || a[5] ||
+       !b || !mx251EffectLocalLabel(b,body,bodyLength))goto unknown;
+    e.reads=UINT32_C(1)<<MCS251_BYTE_A;return e;
+  }
   if(!strcmp(op,"sjmp") || !strcmp(op,"ljmp") || !strcmp(op,"ejmp") ||
      !strcmp(op,"je") || !strcmp(op,"jne") || !strcmp(op,"jc") || !strcmp(op,"jnc") ||
      !strcmp(op,"jz") || !strcmp(op,"jnz")) {
