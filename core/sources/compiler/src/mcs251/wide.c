@@ -1542,8 +1542,8 @@ wide_fold_indexed_addresses (wide_function *f)
   for(int i=0;i<f->nn;++i) {
     wide_node *address=&f->nodes[i];int result=address->result,definitions=0,uses=0;
     if((address->op!='+' && address->op!='-') || result<0 ||
-       !f->values[result].pointer || f->values[result].codePointer ||
-       address->left.width!=4 || address->left.codePointer || address->right.floating ||
+       !f->values[result].pointer || (f->values[result].codePointer && !mcs251FlatCodeReadsEnabled) ||
+       address->left.width!=4 || (address->left.codePointer && !mcs251FlatCodeReadsEnabled) || address->right.floating ||
        address->left.value==result || address->right.value==result ||
        (address->right.value>=0 && f->values[address->right.value].pointer))continue;
     for(int k=0;k<f->nn;++k) {
@@ -1553,7 +1553,7 @@ wide_fold_indexed_addresses (wide_function *f)
     if(definitions!=1 || uses!=1)continue;
     /* 仅把纯地址运算移到同一直线片段中的唯一普通数据访问。
      * 不移动内存读写；来源若重定义或越过控制流/调用，保留原计算。
-     * CODE、volatile 与直接栈对象沿用已经验证的独立访问路径。 */
+     * 已声明统一地址读取的 CODE 与普通 RAM 共用地址生成。 */
     for(int j=i+1;j<f->nn;++j) {
       wide_node *n=&f->nodes[j];
       if(n->op==LABEL || n->op==GOTO || n->op==IFX || n->op==JUMPTABLE ||
@@ -1561,7 +1561,7 @@ wide_fold_indexed_addresses (wide_function *f)
       if(wb_has(n->use,result)) {
         if((n->op!=WM_LOAD && n->op!=WM_STORE) || n->left.value!=result ||
            n->right.value==result || n->addressOp || n->addressObject>=0 ||
-           n->codeAccess || n->byteAccess || n->pointerAccess)break;
+           (n->codeAccess && !mcs251FlatCodeReadsEnabled) || n->byteAccess || n->pointerAccess)break;
         n->addressOp=address->op;n->left=address->left;n->addressIndex=address->right;
         n->use=wb_or(wb_minus(n->use,address->def),address->use);
         address->op=WM_NOP;address->use=address->def=(wide_bits){{0}};

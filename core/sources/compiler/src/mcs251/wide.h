@@ -5,6 +5,7 @@
 extern int mcs251WideEnabled;
 extern int mcs251WideOrdinaryEnabled;
 extern int mcs251VolatileDataWideEnabled;
+extern int mcs251FlatCodeReadsEnabled;
 extern int mcs251ConstantRotateFusionEnabled;
 extern int mcs251WordCompareImmediateEnabled;
 extern int mcs251RangeNarrowMultiplyEnabled;

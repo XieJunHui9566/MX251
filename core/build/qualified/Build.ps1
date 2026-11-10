@@ -116,6 +116,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  if($Backend -eq 'ordinary-wide'){$f+='--mcs251-wide-ordinary'}
  if($Backend -eq 'explicit-wide'){$f+='--mcs251-wide-backend'}
  if($Backend -in @('ordinary-wide','explicit-wide')){$f+=@($orderedAsmRecord.compilerArguments)}
+ if($Backend -in @('ordinary-wide','explicit-wide')){$f+=@($codeReadRecord.compilerArguments)}
  if($C251BitComplement){$f+='--mcs251-c251-bit-complement'}
  $f+='--mcs251-function-metadata'
  if($FunctionSharing){$f+='--mcs251-share-functions'}
@@ -224,6 +225,7 @@ try {
  foreach($key in $commonKeys){if(-not $config.ContainsKey($key)){throw "Missing project property: $key"}}
  $targetContract=Get-Mx251TargetContract $config.target
  $orderedAsmRecord=Get-Mx251OrderedAsm $targetContract $OrderedAsm
+ $codeReadRecord=Get-Mx251CodeReads $targetContract
  $layout=$targetContract.qualifiedMemory
  $objectAddressRecord=[ordered]@{enabled=$false;requested=($env:MX251_OBJECT_ADDRESS_NATIVE -ceq '1');reason='disabled';contract='mcs251-flat24-codeff-spx-v1';finalClosureRequired=$true;hardwareQualified=$false}
  if($objectAddressRecord.requested){
@@ -461,6 +463,7 @@ try {
  $receipt.nativeIntegerRuntime=[bool]$NativeIntegerRuntime
  $receipt.c251BitComplement=[bool]$C251BitComplement
  $receipt.orderedAsm=$orderedAsmRecord
+ $receipt.nativeCodeReads=$codeReadRecord
  $receipt.wideCapacity=[ordered]@{schema=1;valueLimit=[int]$WideValueLimit;nodeLimit=[int]$WideNodeLimit;overflow='whole-function-fallback-with-reason';selection='explicit-build-option'}
  $receipt.wordCompareImmediate=[bool]$WordCompareImmediate
  $receipt.rangeNarrowMultiply=[bool]$RangeNarrowMultiply

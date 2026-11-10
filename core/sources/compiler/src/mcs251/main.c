@@ -124,6 +124,7 @@ static int nativeIntegerEnabled;
 int mcs251WideEnabled;
 int mcs251WideOrdinaryEnabled;
 int mcs251VolatileDataWideEnabled;
+int mcs251FlatCodeReadsEnabled;
 int mcs251ConstantRotateFusionEnabled;
 int mcs251WordCompareImmediateEnabled;
 int mcs251RangeNarrowMultiplyEnabled;
@@ -194,6 +195,7 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-native-int-runtime", &nativeIntegerEnabled, "Use reentrant ABI4 long multiply/divide/modulo; requires libnativeint" },
     { 0, "--mcs251-wide-backend", &mcs251WideEnabled, "Experimental whole-function wide-register integer backend; ABI4 with legacy fallback" },
     { 0, "--mcs251-wide-ordinary", &mcs251WideOrdinaryEnabled, "Experimental reentrant ABI2 functions; implies wide backend, preserves ordinary ABI" },
+    { 0, "--mcs251-flat-code-reads", &mcs251FlatCodeReadsEnabled, "Target contract: CODE pointers use unified 24-bit addresses with unaligned native word reads" },
     { 0, "--mcs251-constant-rotate-fusion", &mcs251ConstantRotateFusionEnabled, "Experimental unsigned32 constant rotate fusion; whole-function known-cost gate" },
     { 0, "--mcs251-volatile-data-wide", &mcs251VolatileDataWideEnabled, "Opt in to full-object WR/DR volatile accesses for allocated DATA scalars without an address-taken flag; not an atomic guarantee" },
     { 0, "--mcs251-callee-cost-sha256", &mcs251CalleeCostSha, "<sha256> pin exact callee evidence file", CLAT_STRING },

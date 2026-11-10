@@ -42,6 +42,17 @@ function Get-Mx251OrderedAsm($Contract,[string]$Requested) {
  return $record
 }
 
+function Get-Mx251CodeReads($Contract) {
+ $record=[ordered]@{enabled=$false;contract='flat24-code-reads-v1';compilerArguments=@()}
+ if($Contract.compilerCapabilities.ContainsKey('nativeCodeReads')){
+  $cap=$Contract.compilerCapabilities.nativeCodeReads
+  Keys-Only $cap @('schema','contract') 'native CODE read capability'
+  if($cap.schema -ne 1 -or $cap.contract -cne $record.contract -or $Contract.instructionMode -cne '32-bit'){throw 'Invalid native CODE read capability'}
+  $record.enabled=$true;$record.compilerArguments=@('--mcs251-flat-code-reads')
+ }
+ return $record
+}
+
 function Assert-Mx251TargetProfile($Lock,$Contract,[string]$ProfileRoot,[string]$Runtime) {
  # schema 2 不再允许 profile 另存一套可漂移的向量/中断/MDU 配置。
  Keys-Only $Lock @('schema','target','mx251Version','toolchain','profile','compilerOverlay','targetContract') 'profile lock'

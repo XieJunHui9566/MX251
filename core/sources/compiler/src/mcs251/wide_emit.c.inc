@@ -524,7 +524,7 @@ static void
 wmemory(wide_function *f,wide_node *n,bool addressReady)
 {
   if(n->pointerAccess){wmemory_pointer(f,n);return;}
-  if(n->codeAccess) {
+  if(n->codeAccess && (!mcs251FlatCodeReadsEnabled || n->byteAccess)) {
     /* 沿用旧后端 MOVC 的逐字节读取与大端拼装。完整 DPX 自增，
      * 不用 16 位 DPTR 截断跨页地址；A/B 和 WR20/22 均为保留临时寄存器。
      * 先快照地址，最后才写结果，允许输入与输出分配到重叠寄存器。 */
@@ -578,7 +578,11 @@ wmemory(wide_function *f,wide_node *n,bool addressReady)
       we(f,"\tanl\twr16,#0x00ff\n");
       address=16;
     } else address=wread(f,n->left,16,4);
-    we(f,"; wide memory %s width=%d volatile-bytes=0\n",store?"store":"load",n->width);
+    /* CODE remains read-only in MIR. The target contract permits the same
+     * physical loads as unified RAM, including unaligned words. Volatile
+     * CODE reads retain the byte transactions above. */
+    if(n->codeAccess)wassert(!store);
+    we(f,"; wide %s %s width=%d volatile-bytes=0\n",n->codeAccess?"native code":"memory",store?"store":"load",n->width);
     if(n->width==1) {
       if(store) {
         if(n->right.value>=0 && f->values[n->right.value].reg>=0)
@@ -733,6 +737,15 @@ wrange_multiply(wide_function *f,wide_node *n)
 static void
 wunsigned_multiply(wide_function *f,wide_node *n)
 {
+  wide_operand input=n->left,scale=n->right;
+  if(input.value<0) {wide_operand t=input;input=scale;scale=t;}
+  if(n->width<=2 && scale.value<0 && (scale.literal==2 || scale.literal==4)) {
+    int shifts=scale.literal==2?1:2;
+    we(f,"; wide unsigned scale shift=%d width=%d\n",shifts,n->width);
+    wload(f,input,16,2);
+    for(int k=0;k<shifts;++k)we(f,"\tadd\twr16,wr16\n");
+    wstore(f,n->result,16);return;
+  }
   /* DR16/DR20 不参与分配；两个输入先快照到不重叠的 WR16/WR20。
    * MUL 的完整积写 DR16，窄结果取低字 WR18，再由 wstore 取低字节。
    * 新增的 8x8->8 保留两个因子，结果按模 2^8 截断。结果与输入的别名、
