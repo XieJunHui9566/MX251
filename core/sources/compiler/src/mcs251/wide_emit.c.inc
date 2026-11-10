@@ -460,15 +460,16 @@ wmemory_symbol(wide_function *f,wide_node *n)
   bool reverse=!store && n->argumentReadReverse;
   /* 普通直接 RAM 可使用对应宽度的 MOV。volatile/SFR 仍逐字节，
    * 严格保留原事务顺序；只移除 A/B 中转，不缓存对象、不合并访问。 */
-  if(!reverse && (!n->byteAccess || n->volatileDataWideAccess) && n->width>1 && !n->addressOffset &&
-     !IS_AGGREGATE(n->addressSymbol->type)) {
+  // Direct field nodes retain the object's declared width and offset.
+  // Nonvolatile fields use the same native MOV as a standalone scalar.
+  if(!reverse && (!n->byteAccess || n->volatileDataWideAccess) && n->width>1) {
     if(n->volatileDataWideAccess)we(f,"; wide volatile DATA object width=%d transactions=1 ordered=1 atomic=unqualified\n",n->width);
     if(store) {
       int source=wread(f,n->right,20,n->width);
-      we(f,"\tmov\t(%s),%s%d\n",n->addressSymbol->rname,wp(n->width),source);
+      we(f,"\tmov\t(%s%+d),%s%d\n",n->addressSymbol->rname,n->addressOffset,wp(n->width),source);
     } else {
       int dest=reg>=0?reg:20;
-      we(f,"\tmov\t%s%d,(%s)\n",wp(n->width),dest,n->addressSymbol->rname);
+      we(f,"\tmov\t%s%d,(%s%+d)\n",wp(n->width),dest,n->addressSymbol->rname,n->addressOffset);
       wstore(f,n->result,dest);
     }
     return;

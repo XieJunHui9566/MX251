@@ -1,0 +1,595 @@
+{
+  "schema": 1,
+  "date": "2026-11-10",
+  "baselineCommit": "916fe33",
+  "branch": "codex/direct-field-access",
+  "root": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields",
+  "developmentCore": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04",
+  "compilerSha256": "02725244c5db56cd8e549e04ff8721606b5ee622e679660a875eaa2ba944e921",
+  "projects": [
+    {
+      "project": "p080",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261110\\branch-facts\\core-02-p080",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04-p080",
+      "parentBytes": 19696,
+      "candidateBytes": 19497,
+      "deltaBytes": -199,
+      "keilBytes": 18071,
+      "ratioToKeil": 1.078910962315312,
+      "inputs": {
+        "src/gui.h": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63",
+        "src/main.c": "ef85fb490d505bcacb064a4bc4a35d6fce3abe2de2eac9b7bcfe83f13e7ab0b4",
+        "src/test.h": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081",
+        "src/gui.c": "1b48e8d3e0f84b84493746a25da09260e391bab0f4100dd6ff8f25b2a3d64d68",
+        "src/font.h": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943",
+        "src/pic.h": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0",
+        "src/sys.c": "dacef2ad5e17474ebb2603f68eee02b31d235c1bb00bf1e336efdbf4d6a69f45",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/sys.h": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02",
+        "src/lcd.h": "79949eb136a2c2f53b963e56718164157768393f697b9fe20c7f8fd31a27cdb9",
+        "src/ai8051u.h": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b",
+        "src/test.c": "dded60e65b9120b8f73c3a8fcacfff94f5f1c32fbf1f511d5e75a8a6ce405e28",
+        "src/lcd.c": "2a430fcf215b856af939428efa036e58dd62f83c877d7016adab3c3543b75718"
+      },
+      "configurationEqual": true,
+      "configurationCanonicalSha256": "e3ae02c26faf7153b53023cf9d62d3237c6d35561a74910351a1b570db98fb3a",
+      "firmwareSha256": "25d181069822262c1532c407c7cefda2633db107eddf568cf6bac43207b2d9b3",
+      "receiptSha256": "ab947293318c7288dfba4175af4d03978afff9b56122ca8321fd7e5b1ca11484",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "function": "_Test_Circle",
+          "parent": 322,
+          "current": 282,
+          "delta": -40
+        },
+        {
+          "function": "_Test_FillRec",
+          "parent": 342,
+          "current": 310,
+          "delta": -32
+        },
+        {
+          "function": "_Test_Color",
+          "parent": 324,
+          "current": 300,
+          "delta": -24
+        },
+        {
+          "function": "_Test_Triangle",
+          "parent": 404,
+          "current": 380,
+          "delta": -24
+        },
+        {
+          "function": "_DrawTestPage",
+          "parent": 181,
+          "current": 169,
+          "delta": -12
+        },
+        {
+          "function": "_LCD_Clear",
+          "parent": 75,
+          "current": 63,
+          "delta": -12
+        },
+        {
+          "function": "_LCD_ShowChar",
+          "parent": 557,
+          "current": 547,
+          "delta": -10
+        },
+        {
+          "function": "_LCD_ReadPoint",
+          "parent": 95,
+          "current": 87,
+          "delta": -8
+        },
+        {
+          "function": "_Gui_StrCenter",
+          "parent": 133,
+          "current": 126,
+          "delta": -7
+        },
+        {
+          "function": "_GUI_DrawFont16",
+          "parent": 722,
+          "current": 716,
+          "delta": -6
+        },
+        {
+          "function": "_Gui_Drawbmp16",
+          "parent": 161,
+          "current": 155,
+          "delta": -6
+        },
+        {
+          "function": "_LCD_Fill",
+          "parent": 131,
+          "current": 125,
+          "delta": -6
+        },
+        {
+          "function": "_LCD_SetWindows",
+          "parent": 186,
+          "current": 180,
+          "delta": -6
+        },
+        {
+          "function": "_LCD_ShowString",
+          "parent": 144,
+          "current": 138,
+          "delta": -6
+        },
+        {
+          "function": "_Test_Read",
+          "parent": 427,
+          "current": 421,
+          "delta": -6
+        },
+        {
+          "function": "_LCD_ReadRAM_Prepare",
+          "parent": 16,
+          "current": 13,
+          "delta": -3
+        },
+        {
+          "function": "_LCD_WriteRAM_Prepare",
+          "parent": 16,
+          "current": 13,
+          "delta": -3
+        },
+        {
+          "function": "_Show_Str",
+          "parent": 497,
+          "current": 501,
+          "delta": 4
+        },
+        {
+          "function": "_LCD_direction",
+          "parent": 81,
+          "current": 89,
+          "delta": 8
+        }
+      ]
+    },
+    {
+      "project": "p087",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261110\\branch-facts\\core-02-p087",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04-p087",
+      "parentBytes": 4451,
+      "candidateBytes": 4434,
+      "deltaBytes": -17,
+      "keilBytes": 3531,
+      "ratioToKeil": 1.2557349192863212,
+      "inputs": {
+        "src/uart.h": "d9dda34b3801835b3cf52d9671da7162f012e855f4cfb7c2617c7d02a993e63e",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/util.c": "b4db48ee22753ba4e232120237076596719d51b37972277edf24cae7c15c58b1",
+        "src/usb_req_std.c": "9c9072cdb458d90c3b041dfb1032bac0406d50da660b054327b44982efe5aaa7",
+        "src/usb_req_class.h": "9521175f03daaa7be154be72c119bb2cb589daa1e6da6da833d4fa9ddb438214",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb.h": "e4907af1fc1f16949c3b7f0be0a0247d1de6d6bc967569ee7813ec57247f8bc8",
+        "src/main.c": "4f322294bb076d461cb685baf4a281024ca07c9c1e7b4d9e06f57d311eedeb21",
+        "src/usb.c": "83cdccb0703fe217af14bc39bef6038000d8084a0f54e8326cf064b5b9369274",
+        "src/usb_desc.c": "a135b67f3d6da12e2d76efa348b39dae058e5eaca0716bf0a791a2d6eb2d8cab",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/config.h": "c81b1067c03ce14c2f38f2a083fe5ac15356d8a5f1e5a83cab2a446730efb4ca",
+        "src/usb_req_class.c": "1b72070f87d6b5ee0ff561bb7c97e82d2501540edab85b9bccc57a78ad65c222",
+        "src/usb_desc.h": "6b9ec7f72eb481c1c85a188d877a635d77add5a5345c5b2ca8fd8952b4878f62",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/uart.c": "56f087dec578909760cfee0d2aaaeb7f99a64e5028b91b085818217380f4f7b4",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2"
+      },
+      "configurationEqual": true,
+      "configurationCanonicalSha256": "2aae9a929f54649458c80880bdbd455f5965a5aee41de20f7e3f583700f683b3",
+      "firmwareSha256": "f0ec110aede12220bbfb2ae270f0714cd8d8a4915c05d8f2be7cbd5fe9a61433",
+      "receiptSha256": "3649675f1179c6eec0c53567b116f245f31e64625498fe3abebc83050d821ed3",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "function": "_usb_uart_settings",
+          "parent": 73,
+          "current": 64,
+          "delta": -9
+        },
+        {
+          "function": "_usb_setup",
+          "parent": 198,
+          "current": 190,
+          "delta": -8
+        }
+      ]
+    },
+    {
+      "project": "p091",
+      "parent": "E:\\STVAPP\\MX251-mainline-20261110\\branch-facts\\core-02-p091",
+      "candidate": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04-p091",
+      "parentBytes": 5386,
+      "candidateBytes": 5360,
+      "deltaBytes": -26,
+      "keilBytes": 4401,
+      "ratioToKeil": 1.2179050215860032,
+      "inputs": {
+        "src/usb_desc.c": "155c83f9c132fb2219cee84c4e1308522d5dafe8207153a5f309bd98fba1653a",
+        "src/usb_desc.h": "d5e40436c9ee15f1d8cac024c505d5f75940cf92635b46a9e5f5de4d2e5cdad5",
+        "src/usb_req_class.c": "bd9d6e7def2f765538601a9afee346f6b09d89886f6a1a772fd442cd7f21a50a",
+        "src/usb_req_class.h": "5244aac8162f4e226c5c5e1be67273be6f61c7238627faecf03bf2d18a60c077",
+        "src/usb.c": "05237168a264bf0a0e41f6a715e4559c2f1d45d06914e3752a2e0524f082adc7",
+        "src/usb_req_vendor.c": "a16774d0a78697fc720ed4c2b94227e720010678536bbe6828e1911b25911ab2",
+        "src/usb_req_vendor.h": "94d221e62f8032730d4663082eb1105731b8ba3a8c37366d691a2bab647e7b6b",
+        "src/usb_req_std.c": "925d16400241faba57c070a2dcd616ffed9a0659251f596e32e8dd5f4ca4f1d4",
+        "src/memory.h": "cb50108091e2002636279f7a2ee06d8e61e90854158246a02d43f3d30ddc8814",
+        "src/ai8051u.h": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9",
+        "src/scsi.h": "e17ce5e5890341b8fe39440ead983fcbe984f2da3bc44922d520f14a933d70da",
+        "src/intrins.h": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348",
+        "src/usb.h": "2556250ec20ba2359e20706642d48ff17498c3349b8c693f1c636e64b808456b",
+        "src/memory.c": "2f905108338c2daa649919be391bb741cfbeb804220711d2b3095ea6c1435d7f",
+        "src/main.c": "9f151e7a0f06da7b118f3bb3f09cd5912fd587308a7a847f3bb3902c4c49b571",
+        "src/util.c": "12bb6c111fb7f79d1d78af217a8efc6cf7d0391529737741e7468c04eb1dd0bf",
+        "src/scsi.c": "136639f6cd8ac775d4642f7c61ec80ba43cd7c85951d4eaf428087a5f0b2e678",
+        "src/util.h": "dbe73b58e855a189030d7efc94b86dd74a25c63b67a4cc4823116a2d8029b9ee",
+        "src/config.h": "c727bbb530ebaac485091254330a6fcff49dccf2224c605a74dd2348cec9dadb",
+        "src/usb_req_std.h": "a39b9a4573118055bd2ebddb956039dc1bf4585f05efe86a875a2dee6f2ddaeb"
+      },
+      "configurationEqual": true,
+      "configurationCanonicalSha256": "2b61fa2fc43f3b63db13d297920f09cf28f58148ae15a2b1bb12eff3fd04a7cd",
+      "firmwareSha256": "3e395084741e46ed701bdb458b4d8bc70bb7fd7815bd401e4f3c8345f64d63c2",
+      "receiptSha256": "0611b7a717d551d2e36498991fded7b6da5ce6905485e8d90e8bfe903b1d2da0",
+      "callFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "functions": [
+        {
+          "function": "_scsi_read10",
+          "parent": 95,
+          "current": 86,
+          "delta": -9
+        },
+        {
+          "function": "_scsi_write10",
+          "parent": 93,
+          "current": 84,
+          "delta": -9
+        },
+        {
+          "function": "_usb_setup",
+          "parent": 198,
+          "current": 190,
+          "delta": -8
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "parent": {
+      "build": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\board-parent\\.build\\mx251\\latest",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\capture-parent",
+      "codeBytes": 1541,
+      "compilerSha256": "1e54a610054d2c71ffc17c14c88c0282a57208799fad64121b26596c88625043",
+      "firmwareSha256": "a8bff831db4c916de9edf9d30060486f1b9af12fe6d4f139f65d90f72aa0434d",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 630,
+      "aggregateTicks": {
+        "0": 11520,
+        "1": 10087.0
+      },
+      "port": "COM13",
+      "uartSha256": "3c0258398ba996f902a5b8a55e62886e2f11c91a4e12b287e1ca55363c0bdfe2",
+      "inputs": {
+        "direct-fields-objects.c": "18ba0cd574d5461d4150990392bf10432abd419cf17ba6f2b1b9b6285bffdbec",
+        "direct-fields-access.c": "d1195a68319eb430e8efb22781995d838e47b966b4058036c39b7b3ded4077f0",
+        "machine-board.c": "51a57f6db6f24c78d9efcbe28b25cc2eb56671ceea0f2f4fbbb648b14de02cb5",
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+        "direct-fields.h": "65a7ea797b9b6e220c0a39cfe0816b76c8bd3af37609fc5d4e26388da565154a"
+      }
+    },
+    "new": {
+      "build": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\board-new\\.build\\mx251\\latest",
+      "capture": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\capture-new",
+      "codeBytes": 1471,
+      "compilerSha256": "02725244c5db56cd8e549e04ff8721606b5ee622e679660a875eaa2ba944e921",
+      "firmwareSha256": "0638b852a1fb8ae5e77ce0f3c4247f83e8e4c88755484febb271bea0438300e5",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 634,
+      "aggregateTicks": {
+        "0": 10560,
+        "1": 10087.0
+      },
+      "port": "COM13",
+      "uartSha256": "324dc5a57d05641e6957ed6fedbd0cd644a5f6aa677a65a8e388d92c55594178",
+      "inputs": {
+        "direct-fields-access.c": "d1195a68319eb430e8efb22781995d838e47b966b4058036c39b7b3ded4077f0",
+        "machine-control.c": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc",
+        "machine-board.h": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7",
+        "machine-board.c": "51a57f6db6f24c78d9efcbe28b25cc2eb56671ceea0f2f4fbbb648b14de02cb5",
+        "direct-fields.h": "65a7ea797b9b6e220c0a39cfe0816b76c8bd3af37609fc5d4e26388da565154a",
+        "direct-fields-objects.c": "18ba0cd574d5461d4150990392bf10432abd419cf17ba6f2b1b9b6285bffdbec"
+      }
+    },
+    "workload": {
+      "kind0": "native DATA fields with unaligned offsets and byte aliases",
+      "kind1": "existing control-flow workload",
+      "seeds": 64,
+      "iterationsPerSeed": 8,
+      "clockMHz": 40,
+      "timer": "Timer0 /12T",
+      "uart": 115200
+    }
+  },
+  "checks": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index",
+      "result": {
+        "status": "PASS",
+        "configurations": 4,
+        "commands": [
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-cases.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\small-speed",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-objects.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\small-speed",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "extra.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\small-speed",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-cases.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\small-size",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-objects.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\small-size",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "extra.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\small-size",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-cases.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\large-speed",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-objects.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\large-speed",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-speed",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "extra.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\large-speed",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-cases.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\large-size",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "data-index-objects.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\large-size",
+            "exitCode": 0
+          },
+          {
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--opt-code-size",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "extra.c"
+            ],
+            "output": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-data-index\\large-size",
+            "exitCode": 0
+          }
+        ]
+      }
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\check-direct-fields",
+      "result": {
+        "status": "PASS",
+        "configurations": [
+          {
+            "model": "small",
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--stack-auto",
+              "--opt-code-speed",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "direct-fields-access.c"
+            ],
+            "unalignedOffsets": [
+              1,
+              3
+            ],
+            "volatileReads": 11,
+            "volatileWrites": 11
+          },
+          {
+            "model": "large",
+            "command": [
+              "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\core-04\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--stack-auto",
+              "--opt-code-speed",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--mcs251-function-metadata",
+              "-c",
+              "direct-fields-access.c"
+            ],
+            "unalignedOffsets": [
+              1,
+              3
+            ],
+            "volatileReads": 11,
+            "volatileWrites": 11
+          }
+        ]
+      }
+    }
+  ],
+  "rejectedPointerExtension": {
+    "patch": "E:\\STVAPP\\MX251-mainline-20261110\\direct-pointer-fields\\pointer-fields-trial.patch",
+    "patchSha256": "c4480e82cca46f41e2ac2adc47df09ea66cc1649ff1354eb4593b5b995cb4ab0",
+    "core01": {
+      "p087": 4628,
+      "p091": 5564
+    },
+    "core03": {
+      "p087": 4464,
+      "p091": 5396
+    },
+    "reason": "Broadening pointer-bearing DATA layouts made more functions use the wide backend; after symbol-address store folding, total USB size still increased. Reverted; retained native scalar field access only.",
+    "hardwareExecuted": false
+  },
+  "notes": [
+    "SDK inputs and project configuration unchanged; no function/project-name matching.",
+    "Core-04 measurements precede whitespace cleanup and removal of an outdated transaction=bytes diagnostic only.",
+    "Complete-project runtime versus Keil remains unmeasured; the hardware timing is an independent field workload versus parent MX251.",
+    "Core-02 USB builds failed on a relocation expression shifted by zero; core-03 corrected it. Core-04 excludes the pointer extension altogether."
+  ]
+}

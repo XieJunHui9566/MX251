@@ -618,7 +618,7 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
     if(IS_EXTERN(object->etype))dbuf_printf(f->diagnostics,"; wide proven extern DATA field icode=%d offset=%d width=%d\n",ic->key,offset,n->width);
     n->byteAccess=isVolatile(object->type) || isVolatile(pt->next) || isOperandVolatile(value,TRUE);
     f->body=true;
-    dbuf_printf(f->diagnostics,"; wide near DATA field icode=%d offset=%d width=%d transaction=bytes\n",ic->key,offset,n->width);
+    dbuf_printf(f->diagnostics,"; wide near DATA field icode=%d offset=%d width=%d\n",ic->key,offset,n->width);
     return true;
   }
   /* 仅将同块已证明的 DATA 符号地址物化为线性 generic 指针。
