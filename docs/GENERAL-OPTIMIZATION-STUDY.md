@@ -1,6 +1,6 @@
 # 通用优化再筛选：调用、指令效果与 CODE 读取
 
-第二项中的 ISR 保存部分已完成，见 [外设位操作参与中断保存精简](ISR-PERIPHERAL-BITS.md)。普通函数的指令效果贯通仍是后续方向。
+第二项中的 ISR 保存与普通函数部分均已完成，见 [外设位操作参与中断保存精简](ISR-PERIPHERAL-BITS.md)、[普通函数外设位优化](ORDINARY-PERIPHERAL-BITS.md)。第三项的实现与结果见 [CODE 常量读取与地址生成](NATIVE-CODE-READS.md)。
 
 第一项已接入通用构建选择器，实现和统一工程结果见 [非叶函数自动寄存器传参](SELECTIVE-CALL-ABI.md)。下文保留实施前的研究证据。
 

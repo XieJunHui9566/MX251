@@ -1,0 +1,486 @@
+{
+  "schema": 1,
+  "baseCommit": "eee789a",
+  "status": "DEVELOPMENT_TESTED",
+  "implementationCommit": "f5f1c5247861e2cfade3bf3bc94328033267524a",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\core-04\\core.json",
+    "sha256": "3888046bd02c280ea097c159615890a931022516e92598995f76f05a52866db8"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\core-04\\toolchain\\bin\\sdcc.exe",
+    "sha256": "9d9141c10972ad475d27eeffac7dfaae76e8bb3fa0b2db768086507cebc340fe"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\comparison.json",
+    "sha256": "97cfade6ba6b7b58b8ddecb15a7610d091ab095d914221f95d4c36d63b34dd97"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 26,
+    "unchanged": 49,
+    "larger": 0,
+    "savedBytes": 415,
+    "mxTotalBytes": 204986,
+    "keilTotalBytes": 192051,
+    "within110": 50,
+    "within120": 64,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0673519013178792
+  },
+  "hardwareResults": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\hardware-switch-parent\\result.json",
+      "sha256": "18e9b9d71b43f2143b70af3aa8741dadc62d7f57394ccfb70852cd1bd476c56d"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\hardware-switch-final\\result.json",
+      "sha256": "6dc51e96f25c766378b080c52319bdf6a19e7d8c98c6d0036aefcb069f24af7e"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "metadata": "Companion qualification; frozen core Pending fields are retained.",
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\qualification.json",
+    "sha256": "8129a0dc6719171b861ba328f047463b7272abb60796ec8ee7fb6501976f6288"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\attribution.json",
+    "sha256": "496fbbc7fa442b343fa17e5f100c346335694f2c387550ef8572669ffb34d0d2"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\hardware-switch-parent\\result.json",
+        "sha256": "18e9b9d71b43f2143b70af3aa8741dadc62d7f57394ccfb70852cd1bd476c56d"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\board-switch-parent\\receipt.json",
+        "sha256": "e58af8bc20e8dd8d59bee0b2c757b0f4981da2072684bf1f0b8b929448ab4291"
+      },
+      "bytes": 1640,
+      "aggregateTicks": {
+        "0": 13426.0,
+        "1": 10084
+      },
+      "port": "COM13",
+      "firmwareSha256": "9a0a9faaa4ceddf37ca2e5e73a04f1f35890aa7be5b2e901872d8a717a96ea60"
+    },
+    {
+      "variant": "final",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\hardware-switch-final\\result.json",
+        "sha256": "6dc51e96f25c766378b080c52319bdf6a19e7d8c98c6d0036aefcb069f24af7e"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\board-switch-final\\receipt.json",
+        "sha256": "977c77d9ad4df06f5e147caf7dcd4d3e820fab56703f894ac644d137e1133fce"
+      },
+      "bytes": 1307,
+      "aggregateTicks": {
+        "0": 8282.5,
+        "1": 10082.5
+      },
+      "port": "COM13",
+      "firmwareSha256": "052e8f2be94652e8937e0b67f7395b70f8cb950d53a2c3bc15e19df2d51c67fc"
+    }
+  ],
+  "workloadTicksReduction": 0.3830999553105914,
+  "changedFunctions": [
+    {
+      "id": "p005",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 154,
+      "bytes": 152,
+      "savedBytes": 2
+    },
+    {
+      "id": "p007",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 158,
+      "bytes": 156,
+      "savedBytes": 2
+    },
+    {
+      "id": "p007",
+      "unit": "u0",
+      "function": "_Send_595",
+      "parentBytes": 19,
+      "bytes": 17,
+      "savedBytes": 2
+    },
+    {
+      "id": "p009",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 109,
+      "bytes": 108,
+      "savedBytes": 1
+    },
+    {
+      "id": "p011",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 137,
+      "bytes": 114,
+      "savedBytes": 23
+    },
+    {
+      "id": "p019",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 129,
+      "bytes": 122,
+      "savedBytes": 7
+    },
+    {
+      "id": "p037",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 359,
+      "bytes": 355,
+      "savedBytes": 4
+    },
+    {
+      "id": "p066",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 244,
+      "bytes": 231,
+      "savedBytes": 13
+    },
+    {
+      "id": "p071",
+      "unit": "u0",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p084",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 467,
+      "bytes": 429,
+      "savedBytes": 38
+    },
+    {
+      "id": "p086",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 114,
+      "bytes": 112,
+      "savedBytes": 2
+    },
+    {
+      "id": "p087",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 130,
+      "bytes": 128,
+      "savedBytes": 2
+    },
+    {
+      "id": "p088",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 116,
+      "bytes": 114,
+      "savedBytes": 2
+    },
+    {
+      "id": "p088",
+      "unit": "u3",
+      "function": "_usb_class_in",
+      "parentBytes": 316,
+      "bytes": 256,
+      "savedBytes": 60
+    },
+    {
+      "id": "p089",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 116,
+      "bytes": 114,
+      "savedBytes": 2
+    },
+    {
+      "id": "p089",
+      "unit": "u3",
+      "function": "_usb_class_in",
+      "parentBytes": 269,
+      "bytes": 231,
+      "savedBytes": 38
+    },
+    {
+      "id": "p090",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 124,
+      "bytes": 122,
+      "savedBytes": 2
+    },
+    {
+      "id": "p095",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 122,
+      "bytes": 120,
+      "savedBytes": 2
+    },
+    {
+      "id": "p096",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 118,
+      "bytes": 116,
+      "savedBytes": 2
+    },
+    {
+      "id": "p096",
+      "unit": "u3",
+      "function": "_usb_class_in",
+      "parentBytes": 566,
+      "bytes": 465,
+      "savedBytes": 101
+    },
+    {
+      "id": "p097",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 16,
+      "bytes": 14,
+      "savedBytes": 2
+    },
+    {
+      "id": "p097",
+      "unit": "u0",
+      "function": "_putchar",
+      "parentBytes": 22,
+      "bytes": 20,
+      "savedBytes": 2
+    },
+    {
+      "id": "p098",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 16,
+      "bytes": 14,
+      "savedBytes": 2
+    },
+    {
+      "id": "p098",
+      "unit": "u0",
+      "function": "_putchar",
+      "parentBytes": 22,
+      "bytes": 20,
+      "savedBytes": 2
+    },
+    {
+      "id": "p104",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 255,
+      "bytes": 253,
+      "savedBytes": 2
+    },
+    {
+      "id": "p107",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 236,
+      "bytes": 226,
+      "savedBytes": 10
+    },
+    {
+      "id": "p107",
+      "unit": "u0",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p108",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 258,
+      "bytes": 253,
+      "savedBytes": 5
+    },
+    {
+      "id": "p108",
+      "unit": "u0",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p109",
+      "unit": "u0",
+      "function": "_UartPutc",
+      "parentBytes": 16,
+      "bytes": 14,
+      "savedBytes": 2
+    },
+    {
+      "id": "p109",
+      "unit": "u0",
+      "function": "_putchar",
+      "parentBytes": 22,
+      "bytes": 20,
+      "savedBytes": 2
+    },
+    {
+      "id": "p109",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 236,
+      "bytes": 226,
+      "savedBytes": 10
+    },
+    {
+      "id": "p109",
+      "unit": "u0",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p110",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 236,
+      "bytes": 226,
+      "savedBytes": 10
+    },
+    {
+      "id": "p110",
+      "unit": "u0",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p111",
+      "unit": "u0",
+      "function": "_main",
+      "parentBytes": 236,
+      "bytes": 226,
+      "savedBytes": 10
+    },
+    {
+      "id": "p111",
+      "unit": "u0",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p122",
+      "unit": "u1",
+      "function": "_SPI_WriteByte",
+      "parentBytes": 19,
+      "bytes": 17,
+      "savedBytes": 2
+    },
+    {
+      "id": "p122",
+      "unit": "u1",
+      "function": "_SPI_ReadByte",
+      "parentBytes": 22,
+      "bytes": 20,
+      "savedBytes": 2
+    },
+    {
+      "id": "p122",
+      "unit": "u1",
+      "function": "_SPI_P2P_Write",
+      "parentBytes": 82,
+      "bytes": 84,
+      "savedBytes": -2
+    },
+    {
+      "id": "p122",
+      "unit": "u2",
+      "function": "_SetTimer2Baudraye",
+      "parentBytes": 37,
+      "bytes": 31,
+      "savedBytes": 6
+    },
+    {
+      "id": "p128",
+      "unit": "u1",
+      "function": "_usb_init",
+      "parentBytes": 82,
+      "bytes": 75,
+      "savedBytes": 7
+    }
+  ],
+  "newWithin": {
+    "110": [
+      "p011"
+    ],
+    "120": []
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\compiler-checks-04\\results.json",
+      "sha256": "a281de31251e962b1dc93d095f18e8951177f0571b00a9bae271c381c80d8d52"
+    },
+    "machinePrograms": 189,
+    "machineExecutions": 12096,
+    "assemblerCases": 33,
+    "machine": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\machine-checks\\result.json",
+      "sha256": "da8c4a1acc78da61e295c14f73285f6eae0c7e29ecf7f9feacc0dd03f65afd60"
+    },
+    "assemblerObject": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\encoding-checks-251\\cost.rel",
+      "sha256": "22c4a2ec14fc4c530b2520f7c004f053fa0d45104a02516d2fd502ca752363d3"
+    },
+    "assemblerSource": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\encoding-checks-251\\cost.asm",
+      "sha256": "825cb76c53093387b371ecb92a5692c828af5d6ae46cedbc7f51abc69638a597"
+    },
+    "compilerChecker": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-ordinary-peripheral-bits.py",
+      "sha256": "27347cc3501fda7cb75df898e9bd68b64447b5c31809b45d19944971c2e30b7b"
+    },
+    "encodingChecker": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-narrow-negate-encoding.py",
+      "sha256": "61a083d789bad0ed6d6cec15470f74f2cbfaf47fe18fd8639403f4dcd93a1cb3"
+    },
+    "hardwareFixture": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\ordinary_bits_fixture.py",
+      "sha256": "cced71bdfe77da26739e97d214b4cb65434c4362da261ec857dae5ef069c57d3"
+    }
+  },
+  "trials": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\pilot-results-02.json",
+      "sha256": "bfafd01d375e40f86ce79d1a67e033ed44581a9c04b6f54c9e0e333423e60b87"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\pilot-results-04.json",
+      "sha256": "b205c7333bbbae779e5cc98d813a2c2d9bd3d0108672c38857b941050cbf5905"
+    }
+  ]
+}
