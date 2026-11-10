@@ -244,6 +244,16 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
     /* Feedback describes GPRs only. Keep flags, bit bank and DPX saves. */
     all->specialWrites|=MX251_SPECIAL_DPX;all->flags=true;++all->calls;return true;
   }
+  /* Reuse the emitter's effects for word arguments and relative stack
+   * cleanup. These change the argument stack, not the private saved values;
+   * arbitrary SPX assignments and inline stack access are still excluded. */
+  if(!strcmp(op,"pushw") ||
+     ((!strcmp(op,"inc") || !strcmp(op,"dec")) && !strcmp(l->arg[0],"spx"))) {
+    mx251_effects e=mx251InstructionEffects(l->node->line,strlen(l->node->line),NULL,0);
+    if(e.unknown || e.writes || e.specialWrites!=MX251_SPECIAL_SPX)return false;
+    all->reads|=e.reads;all->specialReads|=e.specialReads;all->specialWrites|=e.specialWrites;
+    all->flags|=(e.flagsReads|e.flagsWrites)!=0;return true;
+  }
   if(!strcmp(op,"push") || !strcmp(op,"pop")){
     if(l->nargs!=1)return false;li_operand a=li_operand_info(l->arg[0]);
     if(a.unknown || a.indirect || a.flags || l->arg[0][0]=='#')return false;

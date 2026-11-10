@@ -307,7 +307,9 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
    $analysis=if($reason){@{writes=4294967295L;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects}
    # An ISR is never a normal callable definition. Its direct C calls can
    # still consume callee summaries, including when the unit only has ISRs.
-   if($m.Groups[2].Value -eq '1' -and $m.Groups[4].Value -eq '0' -and $m.Groups[5].Value -eq '0' -and
+   # Inline assembly does not hide direct calls. The compiler decides whether
+   # that ISR body can use the facts; its callable ABI remains unknown here.
+   if($m.Groups[2].Value -eq '1' -and $m.Groups[5].Value -eq '0' -and
       $contract.Count -eq 1 -and $contract[0].Groups[1].Value -eq '2' -and
       $contract[0].Groups[2].Value -eq '0' -and $contract[0].Groups[3].Value -eq '0') {
     $isrCalls=Get-Mx251BankBody $body $aliases $objects

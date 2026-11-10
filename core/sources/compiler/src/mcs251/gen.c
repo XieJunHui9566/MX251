@@ -2104,6 +2104,8 @@ restorePackedIsrContext (void)
   emitpop ("0xd1");
 }
 
+static unsigned li_inline_bits(const char *source);
+
 static bool
 usePackedIsrContext (iCode *ic, sym_link *ftype)
 {
@@ -2112,10 +2114,10 @@ usePackedIsrContext (iCode *ic, sym_link *ftype)
       FUNC_REGBANK (ftype) || options.useXstack || options.debug ||
       inExcludeList ("acc") || inExcludeList ("b"))
     return false;
-  /* C stack objects are above the complete context frame. Inline assembly
-     may inspect its old private layout, so keep that entry on the old path. */
+  /* C stack objects are above the complete context frame. Known peripheral
+     bit writes do not inspect it; other inline assembly keeps its old layout. */
   for (; ic && ic->op != ENDFUNCTION; ic = ic->next)
-    if (ic->op == INLINEASM) return false;
+    if (ic->op == INLINEASM && !li_inline_bits (IC_INLINE (ic))) return false;
   return true;
 }
 

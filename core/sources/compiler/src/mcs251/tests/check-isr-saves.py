@@ -13,10 +13,14 @@ __sfr __at(0x98) status;
 __sbit __at(0x98) ready;
 __sfr __at(0xba) mapping;
 void helper(void); void unknown(void);
+void word_helper(u8,u16); void long_helper(u8,unsigned long);
 volatile __xdata u8 *pointer;
 '''
 cases={
  'known-call':('helper();',True,''),
+ 'word-argument':('word_helper(value,0x1234u);',True,''),
+ 'long-argument':('long_helper(value,0x12345678UL);',True,''),
+ 'variable-argument':('word_helper(value,((u16)value << 8) | index);',True,''),
  'unknown-call':('unknown();',False,''),
  'call-and-array':('helper(); buffer[index & 15] = value;',True,''),
  'indexed-array':('if (ready) {ready=0; buffer[index & 15]=value;}',True,''),
@@ -33,6 +37,10 @@ cases={
  'peripheral-clear':('__asm clr 0x8f.4 __endasm;',True,''),
  'peripheral-block':('__asm\n; ordered bit writes\nSETB 0X89.7\nclr 0x89.4 ; comment\ncpl 0x89.5\n__endasm;',True,''),
  'peripheral-call':('__asm setb 0x98.1 __endasm; helper(); __asm clr 0x98.1 __endasm;',True,''),
+ 'peripheral-word-call':('__asm setb 0x98.1 __endasm; word_helper(value,0x1234u);',True,''),
+ 'peripheral-unknown-call':('__asm setb 0x98.1 __endasm; unknown();',False,''),
+ 'peripheral-local-frame':('volatile u8 local[9]; __asm clr 0x8f.4 __endasm; local[0]=value; helper(); value=local[0];',False,''),
+ 'peripheral-other-bank':('__asm clr 0x8f.4 __endasm; helper();',False,' __using(1)'),
  'peripheral-array':('__asm clr 0x8f.4 __endasm; buffer[index & 15]=value;',True,''),
  'peripheral-mapping-neighbor':('__asm setb 0xba.6 __endasm;',True,''),
  'inline-mapping':('__asm setb 0xba.7 __endasm;',False,''),
@@ -45,13 +53,14 @@ cases={
  'other-bank':('value++;',False,' __using(1)'),
  'local-frame':('volatile u8 local[9]; local[0]=value; helper(); value=local[0];',False,''),
 }
+packed_changes={'peripheral-call','peripheral-word-call','peripheral-unknown-call','peripheral-local-frame'}
 rows=[]
 for model in ('small','large'):
  for opt in ('speed','size'):
   for name,(body,optimized,attribute) in cases.items():
    root=a.output/(model+'-'+opt+'-'+name);root.mkdir()
    (root/'test.c').write_text(header+'void irq(void) __interrupt(1)'+attribute+' {'+body+'}\n')
-   (root/'effects.txt').write_text('MX251-CALL-CLOBBERS-2\nglobal _helper 2 003000c0\n')
+   (root/'effects.txt').write_text('MX251-CALL-CLOBBERS-2\nglobal _helper 2 003000c0\nglobal _word_helper 2 003000c0\nglobal _long_helper 2 003000c0\n')
    cmd=['-mmcs251','--model-'+model,'--opt-code-'+opt,'--stack-auto','--mcs251-wide-ordinary',
         '--mcs251-leaf-effects','effects.txt','-c','test.c']
    def run(compiler,extra,suffix):
@@ -63,7 +72,7 @@ for model in ('small','large'):
    assert bool(match)==optimized,(root,asm)
    assert re.search(r'push\s+0xd1',asm) and re.search(r'pop\s+0xd1',asm),root
    if name.startswith('peripheral-'):
-    assert re.search(r'inline-bits=[1-9]',asm),root
+    if optimized:assert re.search(r'inline-bits=[1-9]',asm),root
     oldasm,_=run(a.baseline,{},'baseline')
     def body_instructions(text):
      body=text.split('mx251-isr-body-begin',1)[1].split('mx251-isr-body-end',1)[0]
@@ -76,12 +85,22 @@ for model in ('small','large'):
     assert not re.search(r'push\s+dr(?:0|8|12|16|24|28)\b',asm),root
     assert re.search(r'push\s+dr4\b',asm) and re.search(r'push\s+dr20\b',asm),root
     assert 'calls=1' in asm
-   if not optimized:
+   if name in ('word-argument','long-argument','peripheral-word-call'):
+    assert re.search(r'pushw\s+#0x',asm) and re.search(r'dec\s+spx,#',asm),root
+   if name in packed_changes:
+    assert 'gpr=ffffffff bank=0 packed=1' in asm,root
+   if not optimized and name not in packed_changes:
     _,old=run(a.baseline,{},'baseline');assert obj==old,(root,'excluded case changed')
    _,disabled=run(a.sdcc,{'MX251_LEAF_ISR_SAVES':'0'},'disabled')
    _,old_disabled=run(a.baseline,{'MX251_LEAF_ISR_SAVES':'0'},'old-disabled')
-   assert disabled==old_disabled,(root,'opt-out changed')
+   if name not in packed_changes:
+    assert disabled==old_disabled,(root,'opt-out changed')
+   else:
+    disabled_asm=(root/'disabled.asm').read_text(encoding='latin1')
+    assert 'mx251-leaf-isr-saves' not in disabled_asm,root
+    assert 'gpr=ffffffff bank=0 packed=1' in disabled_asm,root
+    assert len(re.findall(r'^\s*push\s+dr\d+\b',disabled_asm,re.M))==8,root
    rows.append(dict(model=model,optimization=opt,case=name,optimized=optimized,
                     savedBytes=int(match[1]) if match else 0,stackBytes=int(match[2]) if match else 0))
 (a.output/'results.json').write_text(json.dumps(rows,indent=2)+'\n',newline='\n')
-print('PASS',len(rows),'ISR configurations; excluded and disabled objects match the parent compiler')
+print('PASS',len(rows),'ISR configurations; argument effects, packed peripheral calls, exclusions and opt-out')
