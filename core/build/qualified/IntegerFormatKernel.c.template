@@ -19,6 +19,11 @@ static unsigned char mx_number(uint16_t value, unsigned char radix,
     do {
         if (radix==16u) { rem=(unsigned char)(value & 15u); value >>= 4; }
         else if (radix==8u) { rem=(unsigned char)(value & 7u); value >>= 3; }
+        else if (sizeof(value)==2u) {
+            /* Both operations use the target's unsigned word division. */
+            rem=(unsigned char)(value % 10u);
+            value/=10u;
+        }
         else {
             rem=0; bit=16;
             do {

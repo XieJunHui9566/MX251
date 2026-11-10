@@ -48,17 +48,16 @@ for model in ('small', 'large'):
         (d / 'probe.c').write_text(source)
         flags = ['--model-' + model, '--opt-code-' + opt]
         parent = compile_at(a.baseline, d, 'parent', flags)
+        compile_at(a.baseline, d, 'parent-disabled', flags, '0')
         forced = compile_at(a.baseline, d, 'forced', flags, '1')
         candidate = compile_at(a.sdcc, d, 'candidate', flags)
         disabled = compile_at(a.sdcc, d, 'disabled', flags, '0')
-        assert (d / 'parent.rel').read_bytes() == (d / 'disabled.rel').read_bytes()
-        for name in ('nn', 'baud_reload'):
+        assert (d / 'parent-disabled.rel').read_bytes() == (d / 'disabled.rel').read_bytes()
+        for name in ('nn', 'baud_reload', 'loop_negate'):
             assert 'mx251-narrow-negate function=_' + name + ' selected=wide' in candidate
             assert body(candidate, name) == body(forced, name), name
         assert 'mx251-narrow-negate function=_nb selected=legacy' in candidate
-        for name in ('nb', 'loop_negate'):
-            assert body(candidate, name) == body(parent, name), name
-        assert 'mx251-narrow-negate function=_loop_negate' not in candidate
+        assert body(candidate, 'nb') == body(parent, 'nb')
         sizes = {}
         for name in ('parent', 'candidate'):
             rel = (d / (name + '.rel')).read_text()
@@ -79,7 +78,8 @@ for model in ('small', 'large'):
             assert sizes_div[1] <= sizes_div[0], sizes_div
         rows.append(dict(model=model, optimization=opt, **sizes,
                          selectedWideMatchesExistingEmitter=True,
-                         cheaperByteNegationAndLoopMatchParent=True))
+                         cheaperByteNegationMatchesParent=True,
+                         loopNegationMatchesExistingEmitter=True))
 (a.output_dir / 'results.json').write_text(json.dumps(dict(
     compilerSha256=hashlib.sha256(a.sdcc.read_bytes()).hexdigest(),
     configurations=rows, hardwareExecuted=False), indent=2) + '\n')

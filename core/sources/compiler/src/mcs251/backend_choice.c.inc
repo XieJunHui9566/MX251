@@ -43,9 +43,10 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
   return entries==1 && ends==1;
 }
 
-/* Narrow unsigned negation can admit an entire function. Compare both bodies
- * before choosing it. Start with loop-free IR; the existing loop policy stays
- * in charge of functions containing loops. */
+/* Narrow unsigned negation can admit an entire function, including its loops.
+ * Compare both complete bodies before choosing it. The ordinary wide importer
+ * validates operations and CFG; selection requires fewer bytes and no more
+ * static instructions. This does not estimate loop execution counts. */
 static bool
 mcs251BackendNarrowTrial(ebbIndex *ebbi)
 {
@@ -55,7 +56,6 @@ mcs251BackendNarrowTrial(ebbIndex *ebbi)
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next) {
-      if(ic->depth)return false;
       if(ic->op==UNARYMINUS) {
         sym_link *t=operandType(IC_RESULT(ic));int width=getSize(t);
         if(IS_INTEGRAL(t) && SPEC_USIGN(getSpec(t)) && (width==1 || width==2))found=true;

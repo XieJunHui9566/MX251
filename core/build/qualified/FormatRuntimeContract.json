@@ -8,7 +8,7 @@
     "sha256": "ce2e30748592b9c320ba5ca2d060d5686771fa0f2e2585fbeb717a2f4cd5d97a",
     "origin": "reviewed compact_format integer kernel"
   },
-  "kernelSha256": "184d4fd765f355015759b435f3dd4e78c52d5bfbc5498d86b124dffd120e5f4d",
+  "kernelSha256": "a0dca0d42d165f837bf47dbb696062b72a795214334ae0172609624a9b64bd9c",
   "archives": {
     "lib/mcs251-large-stack-auto/libfloat.lib": "ded18d51f487b8d2cbd7201f6d9a623a9952e1ff80af9b8a6c3804c0859a81a5",
     "lib/mcs251-large-stack-auto/libint.lib": "d16816782c301344408acbc7610a31d16fcb0657d61a6633dc995ed0f6e3dd6b",

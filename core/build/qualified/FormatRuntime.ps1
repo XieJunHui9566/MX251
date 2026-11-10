@@ -291,7 +291,7 @@ function Get-Mx251FormatHex([string]$Path) {
  return ,$seen
 }
 
-function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[string[]]$LinkArguments,$AdditionalArchives=@{}) {
+function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[string[]]$LinkArguments,$AdditionalArchives=@{},[switch]$MachineIr) {
  $record=[ordered]@{schema=1;status='FALLBACK_FULL_RUNTIME';applied=$false;hardwareExecuted=$false}
  $saved=@();$baselineCommand=$null;$trialCommand=$null;$accepted=$false
  try {
@@ -319,6 +319,8 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   $record.sourceSha256=Hash-File $sourcePath
   # 库不继承项目宏或包含目录，避免同名头文件/宏改变公开运行库契约。
   $compileArgs=@('-mmcs251',('--model-'+$Config.model),'--stack-auto','--opt-code-size','--std-sdcc11','--nostdinc',('-I'+(Join-Path $ToolRoot 'include')),('-I'+(Join-Path $ToolRoot 'include/mcs51')),'--mcs251-wide-ordinary','--mcs251-function-metadata','-c','format-runtime.c','-o','format-runtime.rel')
+  if($MachineIr){$compileArgs+='--mcs251-machine-ir'}
+  $record.machineIr=[bool]$MachineIr
   Run-Tool 'format-runtime' $compilerExe $compileArgs
   Check-Assembly (Join-Path $Root 'format-runtime.asm')
   $backup=Join-Path $Root 'format-baseline';[IO.Directory]::CreateDirectory($backup)|Out-Null

@@ -415,7 +415,7 @@ try {
  . (Join-Path $PSScriptRoot 'FormatRuntime.ps1')
  $formatArchives=@{}
  if($NativeIntegerRuntime){$formatArchives[(Join-Path $ProfileRoot 'runtime/libnativeint.lib')]=@($lock.profile|Where-Object{$_.path -ceq 'runtime/libnativeint.lib'})[0].sha256}
- $formatRuntimeRecord=Invoke-Mx251FormatRuntime $outputRoot $config $toolRoot $args $formatArchives
+ $formatRuntimeRecord=Invoke-Mx251FormatRuntime $outputRoot $config $toolRoot $args $formatArchives -MachineIr:$MachineIr
  Write-Json (Join-Path $outputRoot 'format-runtime.json') $formatRuntimeRecord
  . (Join-Path $PSScriptRoot 'StartupRuntime.ps1')
  $startupRuntimeRecord=Invoke-Mx251StartupRuntime $outputRoot $config $toolRoot $formatArchives
