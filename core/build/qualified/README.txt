@@ -57,3 +57,11 @@ STC32G 两模型直接/回调各 2560 结果 + 中断；AI 两模型回调和固
 静态实际收益：calls 双模型各 -100B/-25 对 PUSH/POP；回调与 AIcalls 各 -48B/
 -12 对；协议 -16B/-4 对。MOV、显式 SPX 字节/字访问、ABI 转换和 spill 减少均为0。
 详细计时和真实函数见 mx251-v0.0120/report.html，单项提升不能替代完整应用结论。
+
+高频叶函数自动试选（2026-11-10）
+Build-CMake.ps1 与底层 Build.ps1 默认 SelectiveLeafAbi=AUTO；CMake 变量为
+MX251_SELECTIVE_LEAF_ABI=AUTO。OFF 关闭。全部 ordinary-wide stack-auto C 单元的
+standard 工程可试选一个高频双整数参数叶函数，使用已有 ABI4 契约重建完整工程，
+最终 HEX 更小才采用。SDK 无需添加属性或修改调用。每次最多额外完整编译一次。
+selective-leaf-abi.json 和 receipt 保存选择；采用时 leaf-abi/baseline、candidate
+保留两份构建。详见 docs/AUTOMATIC-LEAF-ABI.md（仓库根目录）。

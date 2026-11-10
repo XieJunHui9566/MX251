@@ -22,6 +22,7 @@ param(
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
  [ValidateSet('128','256','512')][string]$WideValueLimit='128',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='512',
+ [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
  [switch]$ManagedOutput
 )
 $ErrorActionPreference='Stop'
@@ -148,6 +149,7 @@ try {
  . (Join-Path $PSScriptRoot 'InterruptDiagnostics.ps1')
  . (Join-Path $PSScriptRoot 'TargetProfile.ps1')
  $projectPath=(Resolve-Path -LiteralPath $Project).Path
+ $projectFileSha256=Hash-File $projectPath
  $projectRoot=Split-Path -Parent $projectPath
  $toolRoot=(Resolve-Path -LiteralPath $ToolchainRoot).Path.TrimEnd('\')
  $config=Get-Content -LiteralPath $projectPath -Raw -Encoding UTF8 | ConvertFrom-Json -AsHashtable
@@ -451,6 +453,8 @@ try {
  $receipt.targetContract=[ordered]@{id=$targetContract.id;revision=$targetContract.revision;registrySha256=(Hash-File (Join-Path $PSScriptRoot 'TargetContracts.json'));startupSha256=$targetContract.startup.sha256;interruptVectors=$targetContract.interruptVectors;qualifiedMemory=$layout}
  $receipt.binary=[ordered]@{file='firmware.bin';sha256=(Hash-File (Join-Path $outputRoot 'firmware.bin'));baseAddress=$layout.codeBase;length=$binary.Length;gapFill=255}
  $receipt.interruptClosure=[ordered]@{schema=1;finalVerified=$true;addedEntries=@($interruptPlan.added);manifestSha256=(Hash-File (Join-Path $outputRoot 'interrupt-vectors.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'InterruptVectors.ps1'))}
+ $receipt.projectFileSha256=$projectFileSha256
+ $receipt.internalAbi4=if($env:MX251_INTERNAL_ABI4_CONTRACT){@{path=$env:MX251_INTERNAL_ABI4_CONTRACT;sha256=(Hash-File $env:MX251_INTERNAL_ABI4_CONTRACT)}}else{$null}
  $receipt.functionSharing=[bool]$FunctionSharing
  $receipt.machineIr=[bool]$MachineIr
  $receipt.calleePreservation=[bool]$CalleePreservation
@@ -484,6 +488,7 @@ try {
   volatileDataWide=$receipt.volatileDataWide
   constantRotateFusion=$receipt.constantRotateFusion
   cmakeInputSha256=if($CMakeInput){Hash-File $CMakeInput}else{$null}
+  internalAbi4=$receipt.internalAbi4
   abi=if($config.explicitAbi){'mcs251-r4-enabled'}else{'ordinary'}
  }
  . (Join-Path $PSScriptRoot 'CallEffects.ps1')
@@ -498,7 +503,15 @@ try {
  $receipt.functionGc=[ordered]@{enabled=[bool]$FunctionGc;record=$functionGcRecord;manifestSha256=if($FunctionGc){Hash-File (Join-Path $outputRoot 'function-gc/manifest.json')}else{$null};scriptSha256=if($FunctionGc){Hash-File (Join-Path $PSScriptRoot 'FunctionGc.ps1')}else{$null}}
  Write-Json (Join-Path $outputRoot 'receipt.json') $receipt
  Write-Json (Join-Path $outputRoot 'build-state.json') @{status='complete';firmware='firmware.hex';firmwareSha256=$receipt.firmwareSha256}
- Write-Output "Build complete: $outputRoot\firmware.hex ($($memory.Count) code bytes)"
+ . (Join-Path $PSScriptRoot 'FunctionGc.ps1')
+ . (Join-Path $PSScriptRoot 'SelectiveLeafAbi.ps1')
+ $selection=Invoke-Mx251SelectiveLeafAbi $outputRoot $config $receipt $toolRoot $ProfileRoot $PSCommandPath $PSBoundParameters
+ Write-Json (Join-Path $outputRoot 'selective-leaf-abi.json') $selection
+ $receipt=Get-Content -LiteralPath (Join-Path $outputRoot 'receipt.json') -Raw|ConvertFrom-Json -AsHashtable
+ $receipt.selectiveLeafAbi=@{mode=$SelectiveLeafAbi;status=$selection.status;applied=$selection.applied;savedBytes=$selection.savedBytes;recordSha256=(Hash-File (Join-Path $outputRoot 'selective-leaf-abi.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'SelectiveLeafAbi.ps1'))}
+ $receipt.buildIdentity.selectiveLeafAbi=$receipt.selectiveLeafAbi
+ Write-Json (Join-Path $outputRoot 'receipt.json') $receipt
+ Write-Output "Build complete: $outputRoot\firmware.hex ($($receipt.codeBytes) code bytes; leaf ABI: $($selection.status))"
  exit 0
 } catch {
  $message=$_.Exception.Message

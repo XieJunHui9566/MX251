@@ -16,6 +16,7 @@ param(
  [switch]$MachineIr,
  [switch]$CalleePreservation,
  [switch]$NativeIntegerRuntime,
+ [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
  [switch]$WordCompareImmediate
 )
 $ErrorActionPreference='Stop'
@@ -69,6 +70,7 @@ $arguments=@('-S',$project,'-B',$build,'-G','Ninja',('-DCMAKE_MAKE_PROGRAM='+[IO
  ('-DMX251_CONSTANT_ROTATE_FUSION='+(&$onoff $ConstantRotateFusion)),('-DMX251_WORD_COMPARE_IMMEDIATE='+(&$onoff $WordCompareImmediate)),
  ('-DMX251_FUNCTION_SHARING='+(&$onoff $FunctionSharing)),
  ('-DMX251_MACHINE_IR='+(&$onoff $MachineIr)),
+ ('-DMX251_SELECTIVE_LEAF_ABI='+$SelectiveLeafAbi),
  ('-DMX251_CALLEE_PRESERVATION='+(&$onoff $CalleePreservation)),
  ('-DMX251_NATIVE_INTEGER_RUNTIME='+(&$onoff $NativeIntegerRuntime)),
  ('-DMX251_C251_BIT_COMPLEMENT='+(&$onoff $C251BitComplement)),
@@ -81,6 +83,7 @@ if($receipt.status -cne 'complete' -or $receipt.compilerSha256 -cne $manifest.co
 $record=[ordered]@{status='complete';coreBuildId=$manifest.buildId;compilerSha256=$manifest.compiler.sha256;
  receipt=$receiptPath;receiptSha256=(Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash.ToLowerInvariant();
  hardwareExecuted=$false;functionSharing=[bool]$FunctionSharing;machineIr=[bool]$MachineIr;nativeIntegerRuntime=[bool]$NativeIntegerRuntime;c251BitComplement=[bool]$C251BitComplement;volatileDataWide=[bool]$VolatileDataWide;functionGc=$FunctionGc;sourceVersion=$manifest.sourceVersion}
+$record.selectiveLeafAbi=$receipt.selectiveLeafAbi
 $record.calleePreservation=[bool]$CalleePreservation
 [IO.File]::WriteAllText($success,(ConvertTo-Json -InputObject $record -Depth 10),[Text.UTF8Encoding]::new($false))
 Write-Host "MX251 build complete: $receiptPath"

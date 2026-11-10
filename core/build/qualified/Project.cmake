@@ -13,6 +13,11 @@ option(MX251_VOLATILE_DATA_WIDE "Explicit ordinary DATA volatile object width; n
 option(MX251_WORD_COMPARE_IMMEDIATE "Use exact 16-bit immediate comparisons" OFF)
 option(MX251_LEAF_CALL_FEEDBACK "Experimental bound two-pass leaf register effects" OFF)
 option(MX251_FUNCTION_GC "Conservative whole-firmware function reachability" OFF)
+set(MX251_SELECTIVE_LEAF_ABI "AUTO" CACHE STRING "Try one closed hot leaf with register arguments (AUTO or OFF)")
+set_property(CACHE MX251_SELECTIVE_LEAF_ABI PROPERTY STRINGS AUTO OFF)
+if(NOT MX251_SELECTIVE_LEAF_ABI MATCHES "^(AUTO|OFF)$")
+  message(FATAL_ERROR "MX251_SELECTIVE_LEAF_ABI must be AUTO or OFF")
+endif()
 set(MX251_ORDERED_ASM "AUTO" CACHE STRING "Use declared target ordered-assembly capability (AUTO or OFF)")
 set_property(CACHE MX251_ORDERED_ASM PROPERTY STRINGS AUTO OFF)
 set(MX251_WIDE_VALUE_LIMIT "128" CACHE STRING "Bounded wide backend value capacity")
@@ -161,6 +166,7 @@ function(mx251_firmware target)
       -Project "${CMAKE_SOURCE_DIR}/mx251.json" -ToolchainRoot "${MX251_TOOLCHAIN}"
       -ProfileRoot "${MX251_PROFILE}" -OutputDirectory "${CMAKE_SOURCE_DIR}/.build/mx251/latest"
       -CMakeInput "${CMAKE_BINARY_DIR}/mx251-inputs.json"
+      -SelectiveLeafAbi "${MX251_SELECTIVE_LEAF_ABI}"
       -OrderedAsm "${MX251_ORDERED_ASM}"
       -WideValueLimit "${MX251_WIDE_VALUE_LIMIT}" -WideNodeLimit "${MX251_WIDE_NODE_LIMIT}"
       ${feedback_arguments}

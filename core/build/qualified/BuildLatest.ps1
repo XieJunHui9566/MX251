@@ -20,6 +20,7 @@ param(
  [switch]$NativeIntegerRuntime,
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
+ [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
  [ValidateSet('128','256','512')][string]$WideValueLimit='128',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='512'
@@ -88,6 +89,7 @@ try {
  if($NativeIntegerRuntime){$start.ArgumentList.Add('-NativeIntegerRuntime')}
  if($FunctionGc){$start.ArgumentList.Add('-FunctionGc')}
  if($FunctionGcKeep){$start.ArgumentList.Add('-FunctionGcKeep');$start.ArgumentList.Add($FunctionGcKeep)}
+ $start.ArgumentList.Add('-SelectiveLeafAbi');$start.ArgumentList.Add($SelectiveLeafAbi)
  $start.ArgumentList.Add('-OrderedAsm');$start.ArgumentList.Add($OrderedAsm)
  $start.ArgumentList.Add('-WideValueLimit');$start.ArgumentList.Add($WideValueLimit)
  $start.ArgumentList.Add('-WideNodeLimit');$start.ArgumentList.Add($WideNodeLimit)
@@ -95,7 +97,7 @@ try {
  try {
   if(-not $process.Start()){throw 'Cannot start the qualified build script'}
   $stdout=$process.StandardOutput.ReadToEndAsync();$stderr=$process.StandardError.ReadToEndAsync()
-  if(-not $process.WaitForExit(600000)){$process.Kill($true);$process.WaitForExit();throw 'Managed build timeout'}
+  if(-not $process.WaitForExit(1200000)){$process.Kill($true);$process.WaitForExit();throw 'Managed build timeout'}
   $out=$stdout.GetAwaiter().GetResult();$err=$stderr.GetAwaiter().GetResult();$code=$process.ExitCode
  } finally {$process.Dispose()}
  [IO.Directory]::CreateDirectory($outputRoot)|Out-Null
