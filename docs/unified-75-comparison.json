@@ -1,0 +1,3230 @@
+{
+  "status": "COMPLETE_OFFLINE_MATRIX",
+  "summary": {
+    "projects": 75,
+    "builds": {
+      "mx251": {
+        "BUILT": 75
+      },
+      "keil": {
+        "BUILT": 75
+      },
+      "stc": {
+        "BUILT": 59,
+        "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+        "FAILED": 3
+      }
+    },
+    "keilComparable": 75,
+    "within110": 30,
+    "within120": 45,
+    "mxTotalBytes": 216192,
+    "keilTotalBytes": 192051,
+    "medianKeilRatio": 1.1282981530343008,
+    "geometricMeanKeilRatio": 1.1769786501627268,
+    "smallerThanKeil": 15,
+    "stcRawComparable": 59,
+    "smallerThanStcRaw": 52,
+    "mxStcSubsetBytes": 166728,
+    "stcSubsetBytes": 222458,
+    "stcSemanticDifferenceDiagnostics": 46,
+    "initialUnifiedBytes": 259317,
+    "integrationSavedBytes": 43125,
+    "integrationImprovedProjects": 57,
+    "integrationUnchangedProjects": 18,
+    "integrationLargerProjects": 0,
+    "startupStatuses": {
+      "APPLIED_STATE_PRESERVING_EMPTY_CRT": 57,
+      "FALLBACK_FULL_STARTUP": 18
+    },
+    "leafStatuses": {
+      "NO_CANDIDATE": 65,
+      "SMALLER_IMAGE": 10
+    },
+    "fullProjectRuntimeQualified": 0,
+    "weightedKeilRatio": 1.1257009856756799,
+    "weightedStcRawRatio": 0.7494808008702767
+  },
+  "rows": [
+    {
+      "id": "p001",
+      "name": "01-用P0口做跑马灯/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p001\\mx251\\result.json",
+          "sha256": "7abb62cbdc045c50acd770d1c9741d6367277439dfaab40ec5d19d3e4e5a3a85"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p001\\keil\\result.json",
+          "sha256": "6f16800482548f0acc20dba2a02eb076238daaf7d1c556034940b24138b3a200"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p001\\stc\\result.json",
+          "sha256": "f687d1102940257ef870569188105aac54b2552f3f2278841ef8508a0fb7bc8c"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p001\\mx251\\result.json",
+          "sha256": "feeb0f9b88dbff2c184c1f3642725a85896fd28b0a5c8fd225ceee28e2f4be9e"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 256,
+      "mx251BuildSeconds": 14.801824699999997,
+      "keilStatus": "BUILT",
+      "keilBytes": 180,
+      "keilBuildSeconds": 0.5337662999991153,
+      "stcStatus": "BUILT",
+      "stcBytes": 164,
+      "stcBuildSeconds": 0.42696000000069034,
+      "stcError": null,
+      "keilRatio": 1.4222222222222223,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 1.5609756097560976,
+      "initialUnifiedBytes": 331,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p003",
+      "name": "02-Timer0-Timer1-Timer2-Timer3-Timer4测试程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p003\\mx251\\result.json",
+          "sha256": "1517f35e6591ef6bb0fd92dfc59cea67e9290ebecf58b0513572a2b20da92d6d"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p003\\keil\\result.json",
+          "sha256": "65ce2fe411fb91ec036fc6fec197574c9e4d94df92a922e199f4759031034364"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p003\\stc\\result.json",
+          "sha256": "40e3c4a0fd76c7b06681520c8ba2aebaaac5a554e7f9048f3169f503fd69c482"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p003\\mx251\\result.json",
+          "sha256": "55e49d6ce7b7db8c2f19eb38d611826bcfb57baba4a51223e9a9d5753f06d239"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 388,
+      "mx251BuildSeconds": 14.43712559999949,
+      "keilStatus": "BUILT",
+      "keilBytes": 286,
+      "keilBuildSeconds": 0.10628120000001218,
+      "stcStatus": "BUILT",
+      "stcBytes": 900,
+      "stcBuildSeconds": 0.6276167999985773,
+      "stcError": null,
+      "keilRatio": 1.3566433566433567,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.4311111111111111,
+      "initialUnifiedBytes": 463,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p005",
+      "name": "03.1-通过IO口控制74HC595驱动8个共阴极数码管/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p005\\mx251\\result.json",
+          "sha256": "5852ae63e43195f040195ca74e64fb802ba61b6eda9cda8f4fc2de222291d5a2"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p005\\keil\\result.json",
+          "sha256": "bfb2109066b687a657a84c2cfcd0b6ddad03be4534f888702824dc3e12d57506"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p005\\stc\\result.json",
+          "sha256": "471738daaad7eddf698974401a3dfff5d4e751137ed6626c48cb556e81ed4d33"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p005\\mx251\\result.json",
+          "sha256": "9040b7d29448eea2ab06ab38eaf84cfbf1264f1a6c7a8e315a953afafb4ab53f"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 607,
+      "mx251BuildSeconds": 14.673678099999961,
+      "keilStatus": "BUILT",
+      "keilBytes": 564,
+      "keilBuildSeconds": 0.10372840000127326,
+      "stcStatus": "BUILT",
+      "stcBytes": 1163,
+      "stcBuildSeconds": 0.8016767999997683,
+      "stcError": null,
+      "keilRatio": 1.076241134751773,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.5219260533104041,
+      "initialUnifiedBytes": 682,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p007",
+      "name": "03.2-通过硬件SPI控制74HC595驱动8个共阴极数码管/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p007\\mx251\\result.json",
+          "sha256": "3803fb1d1e44dc750e4a2e77cbe855632832a65337fa029e0d9e3e08ebf0e854"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p007\\keil\\result.json",
+          "sha256": "1e8186680ac17bfb1784f84f658cccf374353a7e79dc915d06dbd327a06cd83a"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p007\\stc\\result.json",
+          "sha256": "1caf97e06d65c91a7c190ea2c683c3909b8b83cf3f8dc8bcce4cf3dc44133464"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p007\\mx251\\result.json",
+          "sha256": "d5ae195687895157a268e1922a45761c2dcee11d49cf37c49293695d389d7cb3"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 653,
+      "mx251BuildSeconds": 14.871513399999458,
+      "keilStatus": "BUILT",
+      "keilBytes": 618,
+      "keilBuildSeconds": 0.10432659999969474,
+      "stcStatus": "BUILT",
+      "stcBytes": 1237,
+      "stcBuildSeconds": 0.8448377000004257,
+      "stcError": null,
+      "keilRatio": 1.0566343042071198,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.5278900565885206,
+      "initialUnifiedBytes": 728,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p009",
+      "name": "04-利用T0,T1引脚做外部计数器/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p009\\mx251\\result.json",
+          "sha256": "c93aa12677fcf45c7d5b8c39ef5d0019dd88b6d349c5048773d75a57778aecdc"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p009\\keil\\result.json",
+          "sha256": "077c02d7d312a7d7c8e7aea4a50a62dd17018ab9ced79d481dc90eb134c0ff72"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p009\\stc\\result.json",
+          "sha256": "f5c08237978e213a5c87080615f98d3eabae06be799b4a83f0054642f4666c64"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p009\\mx251\\result.json",
+          "sha256": "ff10355f46461918fb89b385b2ff6b77ae714a91315980bb8338a51954268a95"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 302,
+      "mx251BuildSeconds": 13.876681200001258,
+      "keilStatus": "BUILT",
+      "keilBytes": 168,
+      "keilBuildSeconds": 0.12600949999978184,
+      "stcStatus": "BUILT",
+      "stcBytes": 735,
+      "stcBuildSeconds": 0.5213185000011435,
+      "stcError": null,
+      "keilRatio": 1.7976190476190477,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.4108843537414966,
+      "initialUnifiedBytes": 377,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p011",
+      "name": "05-利用定时器1测量INT1引脚低电平脉冲宽度/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p011\\mx251\\result.json",
+          "sha256": "18efbf807d77c64e940f62be86bde363afce8055fe274e54e45c5f8ab5d9aa9a"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p011\\keil\\result.json",
+          "sha256": "7b8e55d43b6f4aa78ed1021406bbb0323c83c3246818526714a1fa2c00c1220b"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p011\\stc\\result.json",
+          "sha256": "423b7c9e2b1490afa84f716eae3468123f37a7952b97b2a65cf93f62091498f5"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p011\\mx251\\result.json",
+          "sha256": "9abb3dc0321b535042a690a3cf5533bf8abae3501f424fffaa68b4f24c5e7d7d"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 806,
+      "mx251BuildSeconds": 14.836205300000074,
+      "keilStatus": "BUILT",
+      "keilBytes": 542,
+      "keilBuildSeconds": 0.09586870000021008,
+      "stcStatus": "BUILT",
+      "stcBytes": 1230,
+      "stcBuildSeconds": 0.7891177000001335,
+      "stcError": null,
+      "keilRatio": 1.4870848708487086,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.6552845528455284,
+      "initialUnifiedBytes": 881,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p013",
+      "name": "06-主时钟停振低功耗模式-专用唤醒定时器唤醒/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p013\\mx251\\result.json",
+          "sha256": "0249ef5114c57af4292e748fd89f9d1b12ee912f898cb659f9658a81156c1c44"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p013\\keil\\result.json",
+          "sha256": "72c0919362099e5ec6634c5e71e6a0b62878232998496ebfa2e6e5ccee363138"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p013\\stc\\result.json",
+          "sha256": "4cd9e582ea985900eb0cf420069b86a7bceeb04e2fcfd8108c3b3751e15bb0af"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p013\\mx251\\result.json",
+          "sha256": "a64d832feef57190c04e15deae3101c0bafbf4d67050f779dc5df3ed14d381a8"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 538,
+      "mx251BuildSeconds": 15.433975400001145,
+      "keilStatus": "BUILT",
+      "keilBytes": 324,
+      "keilBuildSeconds": 0.15272960000038438,
+      "stcStatus": "BUILT",
+      "stcBytes": 376,
+      "stcBuildSeconds": 0.865125899999839,
+      "stcError": null,
+      "keilRatio": 1.6604938271604939,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 1.4308510638297873,
+      "initialUnifiedBytes": 613,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p015\\mx251\\result.json",
+          "sha256": "b1997282965730be1834a92118d5578c8f9c00f3aad58be87165fd12dd3df08b"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p015\\keil\\result.json",
+          "sha256": "3695e7af506ca29376876b3817afcd9c07dcfe49b86849af0cfaf7250009a5e3"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p015\\stc\\result.json",
+          "sha256": "06cb0a7316219f493778ffeddf7b874ce9f84875d55ca999df48654d2fbc0ef7"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p015\\mx251\\result.json",
+          "sha256": "f71c59bee8833aaf23a700e6447702cf5a40fb55516747100c174e02f5602f12"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 581,
+      "mx251BuildSeconds": 15.079141999998683,
+      "keilStatus": "BUILT",
+      "keilBytes": 272,
+      "keilBuildSeconds": 0.15567489999921236,
+      "stcStatus": "BUILT",
+      "stcBytes": 926,
+      "stcBuildSeconds": 0.7657208000000537,
+      "stcError": null,
+      "keilRatio": 2.136029411764706,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.6274298056155507,
+      "initialUnifiedBytes": 656,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p017",
+      "name": "08-看门狗复位测试程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p017\\mx251\\result.json",
+          "sha256": "468b6456db87fb760a890ddca666733739040ed9a5aeaca44a51d148a92b0536"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p017\\keil\\result.json",
+          "sha256": "7774e6d35d2a1e27f7efa576d63b90f8c7231e8ceb6758cc605960898dfff091"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p017\\stc\\result.json",
+          "sha256": "2fa1ea3f467953a5ae900a667a362dbdad125c7ca799df4b328b26eeb12b2a5c"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p017\\mx251\\result.json",
+          "sha256": "3385a8b6554700a075dbce693b8c96702ec59d88d1184230b91d7e73da105167"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 440,
+      "mx251BuildSeconds": 16.77411320000101,
+      "keilStatus": "BUILT",
+      "keilBytes": 359,
+      "keilBuildSeconds": 0.12965660000008938,
+      "stcStatus": "BUILT",
+      "stcBytes": 380,
+      "stcBuildSeconds": 0.7600593999995908,
+      "stcError": null,
+      "keilRatio": 1.2256267409470751,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 1.1578947368421053,
+      "initialUnifiedBytes": 515,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p019",
+      "name": "09-软件设置CPU工作的内部时钟源-HIRC-PLL-IRC32K/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p019\\mx251\\result.json",
+          "sha256": "6cae7c1d5c5833af1ab9f32b05b8c13f045c9acfec3b09466312546b651b9e81"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p019\\keil\\result.json",
+          "sha256": "c601f00c3df120f0b252b7ec30a5fe60ab1f62658844a86e400a38871dfa7ec3"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p019\\stc\\result.json",
+          "sha256": "9b05616d6b4d776b96fdd1a6084184d337c89480cd64844fe5ccd3bcdff42f67"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p019\\mx251\\result.json",
+          "sha256": "4e5da74511cd764b5ba042a4e4ec1bc8172e6d42b919cacd8189dd38126af062"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 18 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 602,
+      "mx251BuildSeconds": 14.415375700000368,
+      "keilStatus": "BUILT",
+      "keilBytes": 477,
+      "keilBuildSeconds": 0.09692079999877024,
+      "stcStatus": "BUILT",
+      "stcBytes": 447,
+      "stcBuildSeconds": 0.7791641000003438,
+      "stcError": null,
+      "keilRatio": 1.2620545073375262,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 1.3467561521252795,
+      "initialUnifiedBytes": 602,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p026",
+      "name": "12-串口3中断模式与电脑收发测试，需飞线/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p026\\mx251\\result.json",
+          "sha256": "3ddd4bd985bd47036d67cd08d9027b9bc3cd58665762e6ea7582ce0628b9f2c0"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p026\\keil\\result.json",
+          "sha256": "af84b6481411fac26873c05d89c29c98ecf25ec8e48494684ea02a5aac324344"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p026\\stc\\result.json",
+          "sha256": "2d425c0ba99f62de9c67be94ff20fb2dfa2121f47c563d55fe2771abbdf96068"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p026\\mx251\\result.json",
+          "sha256": "9ea4eb99ceb55ad582da1480efbfab6d27385d868d4397c4bd141db204f3c928"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 417,
+      "mx251BuildSeconds": 16.89465569999993,
+      "keilStatus": "BUILT",
+      "keilBytes": 334,
+      "keilBuildSeconds": 0.1151996999997209,
+      "stcStatus": "BUILT",
+      "stcBytes": 1018,
+      "stcBuildSeconds": 0.8815204999991693,
+      "stcError": null,
+      "keilRatio": 1.248502994011976,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.40962671905697445,
+      "initialUnifiedBytes": 492,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p028",
+      "name": "13-串口4中断模式与电脑收发测试，需飞线/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p028\\mx251\\result.json",
+          "sha256": "73898baf1e093f831fe49918c98d006d5b12e6d101983ca777cc33c25397d6b5"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p028\\keil\\result.json",
+          "sha256": "291b32bdcc5ab3bc22ffc7b7b3d62af0d1d9acb75274c6b4bc6f3ffc15214d1f"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p028\\stc\\result.json",
+          "sha256": "33f4f23cdc7769237c93cc055e29a2cc1439da985bbc229ef30e1caba613b249"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p028\\mx251\\result.json",
+          "sha256": "37c7eebdb9a871c03ab6ae39be1640ac3e09f9b2551d4dc0e5278fcd75919326"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 418,
+      "mx251BuildSeconds": 16.8595150000001,
+      "keilStatus": "BUILT",
+      "keilBytes": 334,
+      "keilBuildSeconds": 0.12786220000089088,
+      "stcStatus": "BUILT",
+      "stcBytes": 1018,
+      "stcBuildSeconds": 0.9123232000001735,
+      "stcError": null,
+      "keilRatio": 1.251497005988024,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.4106090373280943,
+      "initialUnifiedBytes": 493,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p032\\mx251\\result.json",
+          "sha256": "eebf88684d544a898f86024602c2b780fdb23e2687e54969ab165d8333de17eb"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p032\\keil\\result.json",
+          "sha256": "93137e30fa7253367afd1bc55d6c548d26b870e2c9c6c3d2a33b7eb71e9bf493"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p032\\stc\\result.json",
+          "sha256": "a7fa37b59b6e25168cbfaccb423a01893af297b87d6efd8e9f3d7beaeaab29ae"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p032\\mx251\\result.json",
+          "sha256": "1800697db50341941ccce61eb8468e7566c843b68ff0a8addf3be428658804ed"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 949,
+      "mx251BuildSeconds": 18.003350500001034,
+      "keilStatus": "BUILT",
+      "keilBytes": 704,
+      "keilBuildSeconds": 0.18195700000069337,
+      "stcStatus": "BUILT",
+      "stcBytes": 1504,
+      "stcBuildSeconds": 1.1882533999996667,
+      "stcError": null,
+      "keilRatio": 1.3480113636363635,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.6309840425531915,
+      "initialUnifiedBytes": 972,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p033",
+      "name": "14.3-外中断INT0-INT1-INT2-INT3- INT4测试-串口打印中断计数/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p033\\mx251\\result.json",
+          "sha256": "bb4e80aa9b944d10c84da5498ff76ab631b5425bbe3f2a9eb72edd262049ec1c"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p033\\keil\\result.json",
+          "sha256": "d4f7e84a36b15f8f8283d2eb06619c4cd90f6c5d707abe1acc5cbd2fee2ffe27"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p033\\stc\\result.json",
+          "sha256": "21321eacd28be51e0f89f573bd9993d2a1ac4eccb7a6054a7a089a247d7fdada"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p033\\mx251\\result.json",
+          "sha256": "adbf2654e8c09d91c032fd017f54eb320ca299ddea78490842f8a4e2fdd38803"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 903,
+      "mx251BuildSeconds": 16.905626100000518,
+      "keilStatus": "BUILT",
+      "keilBytes": 1154,
+      "keilBuildSeconds": 0.11376480000035372,
+      "stcStatus": "BUILT",
+      "stcBytes": 1183,
+      "stcBuildSeconds": 1.1041698000008182,
+      "stcError": null,
+      "keilRatio": 0.7824956672443674,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.7633136094674556,
+      "initialUnifiedBytes": 978,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p035",
+      "name": "15-IO行列扫描按键，数码管显示键值，按键调整数码管显示内容/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p035\\mx251\\result.json",
+          "sha256": "0f5175385fc85cb37a76a6f5b63deed6975c5c31c04fea36f0cdc10fd11b4040"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p035\\keil\\result.json",
+          "sha256": "e99d0a56eb0fde6d6f7550f9b5b1b3382a82617ae466ec4fbf6ae4d332633c32"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p035\\stc\\result.json",
+          "sha256": "0011b385daa3d4e0b7c828363471f0bf77f52c078507f279a36f3f88cd80bf41"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p035\\mx251\\result.json",
+          "sha256": "c561b4bb4b10c956c08789f8b2862aa44676301d5cc6a35c078d5bceacb7d512"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 968,
+      "mx251BuildSeconds": 15.477026200000182,
+      "keilStatus": "BUILT",
+      "keilBytes": 989,
+      "keilBuildSeconds": 0.1663683000006131,
+      "stcStatus": "BUILT",
+      "stcBytes": 1602,
+      "stcBuildSeconds": 1.1243811000003916,
+      "stcError": null,
+      "keilRatio": 0.9787664307381193,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6042446941323346,
+      "initialUnifiedBytes": 1043,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p037",
+      "name": "16-ADC检测16个按键，数码管显示键值，按键调整数码管显示内容/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p037\\mx251\\result.json",
+          "sha256": "44bb3c9477067d00619ae07f14b4eaf8d58a0b1a55e39a51a886fa3ccd4d72e7"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p037\\keil\\result.json",
+          "sha256": "425e5f7090141a93bb4488ac7ef4e3e6cf82898f4156163f31316899c0320da3"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p037\\stc\\result.json",
+          "sha256": "031328be3b0572943a501149d635a4c1f3debe237063a701bb5cb9646a6cd032"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p037\\mx251\\result.json",
+          "sha256": "b6fe8af0fe905f67cd849ac75a360c5712d53238a712de37b33bc77cc6155e2a"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1018,
+      "mx251BuildSeconds": 18.776451399999132,
+      "keilStatus": "BUILT",
+      "keilBytes": 1033,
+      "keilBuildSeconds": 0.13401300000077754,
+      "stcStatus": "BUILT",
+      "stcBytes": 1740,
+      "stcBuildSeconds": 1.2415087999997922,
+      "stcError": null,
+      "keilRatio": 0.9854791868344628,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.5850574712643678,
+      "initialUnifiedBytes": 1093,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p039\\mx251\\result.json",
+          "sha256": "6d496346e85dab7fee960e4bc6cafe9c45408b0b125880672be08daae8520a62"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p039\\keil\\result.json",
+          "sha256": "b93af23ab910b7284761d90809e598cc8b1f4fe83b928d655686f6ce98942f6d"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p039\\stc\\result.json",
+          "sha256": "2947cd4c4ba50136a72eed22ee12bd37cbe4d3c5714fb9f811d3c9581212d5ac"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p039\\mx251\\result.json",
+          "sha256": "c55375a2e89808fc00c767b8381bfb8a1cfb0d42b34e9f9461cb819a0812218a"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1763,
+      "mx251BuildSeconds": 19.039651999999478,
+      "keilStatus": "BUILT",
+      "keilBytes": 1105,
+      "keilBuildSeconds": 0.15998709999985294,
+      "stcStatus": "BUILT",
+      "stcBytes": 2594,
+      "stcBuildSeconds": 1.5154277000001457,
+      "stcError": null,
+      "keilRatio": 1.595475113122172,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.6796453353893601,
+      "initialUnifiedBytes": 1838,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p045\\mx251\\result.json",
+          "sha256": "253f19e1b47ef778ff36b5bd3dbb683be35722571e09717dda3d3ebd105d91d2"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p045\\keil\\result.json",
+          "sha256": "42d6d4be9d93153430e6cda7494397e2081f601810fe8020cbc7e535f83432b1"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p045\\stc\\result.json",
+          "sha256": "6e8bc524c00bcbe17c209e135eb50c5f64fde050c9d2629858bf775c1ca1dea6"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p045\\mx251\\result.json",
+          "sha256": "099e72b19ef52af8b31e02f70c3d74f48fac7348b8c77c5747994a6171f625d2"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1277,
+      "mx251BuildSeconds": 19.180692900001304,
+      "keilStatus": "BUILT",
+      "keilBytes": 832,
+      "keilBuildSeconds": 0.1358622000007017,
+      "stcStatus": "BUILT",
+      "stcBytes": 1763,
+      "stcBuildSeconds": 1.290913000000728,
+      "stcError": null,
+      "keilRatio": 1.5348557692307692,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.7243335224049915,
+      "initialUnifiedBytes": 1352,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p047\\mx251\\result.json",
+          "sha256": "ee44c02b4e371ab7e22ef8cb89cffdca154aaa5287f4f6f06aad1b22fceb1b72"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p047\\keil\\result.json",
+          "sha256": "e918ea2578e185f7cb0ef9ef609d1466a11fd921d4fe2ea435467021d0d0b374"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p047\\stc\\result.json",
+          "sha256": "f22b783d0801c669da3e90bb782b51be114c2d2ad5b9ea84c629fc39921ee34c"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p047\\mx251\\result.json",
+          "sha256": "e6ca1dedf10890e61f2ed82df3e33cca4f20f84564e489e62145d54e035669aa"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 3 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 292,
+      "mx251BuildSeconds": 14.283204600000317,
+      "keilStatus": "BUILT",
+      "keilBytes": 160,
+      "keilBuildSeconds": 0.14206559999911406,
+      "stcStatus": "BUILT",
+      "stcBytes": 755,
+      "stcBuildSeconds": 0.6967844999999215,
+      "stcError": null,
+      "keilRatio": 1.825,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.38675496688741723,
+      "initialUnifiedBytes": 367,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p049\\mx251\\result.json",
+          "sha256": "4b8dc3d82f11bb6198ef23387094e72822fb4c1c23f87f3aedac9889895f2673"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p049\\keil\\result.json",
+          "sha256": "fc7aca7bf34676cd1e6a21be5e7307b9bad6b3f43a3c125beeae25497893f50e"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p049\\stc\\result.json",
+          "sha256": "7682732005ed2b87f69ca012a2eeba0667f7d80a63664e1a0fd00fabbc8d1d7f"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p049\\mx251\\result.json",
+          "sha256": "e8c1b2f6a6f1bfe425c58b825e0f89ebaf9e15d05060d3fae2b175ff25b4d602"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 3 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1484,
+      "mx251BuildSeconds": 19.373456299999816,
+      "keilStatus": "BUILT",
+      "keilBytes": 1002,
+      "keilBuildSeconds": 0.14670059999843943,
+      "stcStatus": "BUILT",
+      "stcBytes": 2129,
+      "stcBuildSeconds": 1.1719134999984817,
+      "stcError": null,
+      "keilRatio": 1.4810379241516967,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.697040864255519,
+      "initialUnifiedBytes": 1559,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p051",
+      "name": "23-PCA型PWM输出呼吸灯效果/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p051\\mx251\\result.json",
+          "sha256": "9fea9cca21e3d99bb2bff75ba5281a3045555fb199c9766707d1d3604649ef17"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p051\\keil\\result.json",
+          "sha256": "7a093ca0e365bb011c9054f733fc17df553d62d399bc27da5bd3e14fa06df227"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p051\\stc\\result.json",
+          "sha256": "03a1d1280c4eff4970ac84dade3980b7fc165339976701530dd3e281e706567e"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p051\\mx251\\result.json",
+          "sha256": "edaa9d69280c7f3f47301abb3398e560b709da0f41dd15aa3380ab75a91d76e1"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 28 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 789,
+      "mx251BuildSeconds": 15.07419039999877,
+      "keilStatus": "BUILT",
+      "keilBytes": 608,
+      "keilBuildSeconds": 0.13381540000045788,
+      "stcStatus": "BUILT",
+      "stcBytes": 1691,
+      "stcBuildSeconds": 0.8422039999986737,
+      "stcError": null,
+      "keilRatio": 1.2976973684210527,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.4665878178592549,
+      "initialUnifiedBytes": 864,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p053",
+      "name": "24-高级PWM1-PWM2-PWM3-PWM4，驱动P0口呼吸灯实验程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p053\\mx251\\result.json",
+          "sha256": "f680d343a829e928fb7f0f0149a4533f9f56a53aa197c4cd2700ca580ae83a4d"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p053\\keil\\result.json",
+          "sha256": "d1daef571aae626aeae3ca042f154165072b2ac4259199b6e0b504c0acec5f2a"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p053\\stc\\result.json",
+          "sha256": "98b6570cbc5b133563a5cb60157f3d490f4ec6271a295ec313f10d479eec73d2"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p053\\mx251\\result.json",
+          "sha256": "f550dadd9868b9fa2fe3a3b795682b3870a623af49cb53db35b0c98fb570238e"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 38 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 788,
+      "mx251BuildSeconds": 14.904690200000914,
+      "keilStatus": "BUILT",
+      "keilBytes": 691,
+      "keilBuildSeconds": 0.09777329999997164,
+      "stcStatus": "BUILT",
+      "stcBytes": 1103,
+      "stcBuildSeconds": 0.887782600000719,
+      "stcError": null,
+      "keilRatio": 1.1403762662807526,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.71441523118767,
+      "initialUnifiedBytes": 863,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p055",
+      "name": "25-高级PWM5-PWM6-PWM7-PWM8输出呼吸灯效果测试程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p055\\mx251\\result.json",
+          "sha256": "2a5753a7d003efd4a45adad9335a70ed3d06819221b7dadfba0392de18b10f64"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p055\\keil\\result.json",
+          "sha256": "88c3a55ac7e2b72a90c25a914634a7cd15ffa19204deac0218043ef782ad23cc"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p055\\stc\\result.json",
+          "sha256": "8a1e4f6c9cb98c57844ca542cbc580e66c3ca07078966121d7bce49ec8b966ab"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p055\\mx251\\result.json",
+          "sha256": "ca6a63c384ce3c59e23b19b7c5022bc228ffbda799e21ff8cb48c810657be95f"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 34 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 748,
+      "mx251BuildSeconds": 14.950132699999813,
+      "keilStatus": "BUILT",
+      "keilBytes": 651,
+      "keilBuildSeconds": 0.10609070000100473,
+      "stcStatus": "BUILT",
+      "stcBytes": 1102,
+      "stcBuildSeconds": 0.88208990000021,
+      "stcError": null,
+      "keilRatio": 1.1490015360983103,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.6787658802177858,
+      "initialUnifiedBytes": 823,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p057",
+      "name": "26-通过PWM驱动无源蜂鸣器实验程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p057\\mx251\\result.json",
+          "sha256": "2cffb9e06bf8f80fcaab2ea1ad12713d2625fb1873f8746e12cfa58854f53efa"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p057\\keil\\result.json",
+          "sha256": "1c434d00498fffef31b95e299c69a4bbe56a9c0731fb348485c8e1591e0771d0"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p057\\stc\\result.json",
+          "sha256": "2b40aaa1595cf65659adb2ac1ef5db7071a3f8e26e9f4a719a9b0b7a94f3fe38"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p057\\mx251\\result.json",
+          "sha256": "50c4e93f7c47e0f4788f1248c9159899f898e3b3e7d0584468522d20a41ee225"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 12 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 560,
+      "mx251BuildSeconds": 15.851345899998705,
+      "keilStatus": "BUILT",
+      "keilBytes": 525,
+      "keilBuildSeconds": 0.10268879999966884,
+      "stcStatus": "BUILT",
+      "stcBytes": 1118,
+      "stcBuildSeconds": 0.9330313999998907,
+      "stcError": null,
+      "keilRatio": 1.0666666666666667,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.5008944543828264,
+      "initialUnifiedBytes": 635,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p059",
+      "name": "27-通过定时器周期性调度任务综合例程，简单实用的任务调度系统，推荐",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p059\\mx251\\result.json",
+          "sha256": "4a79a5c1138feba0bf356ea8feed1d31fd18221b6b3c2c36d46428f13d079510"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p059\\keil\\result.json",
+          "sha256": "afcd03671587ba26e7bedf951c14ed3e7a51b82f2dd81a682508880d9f285888"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p059\\stc\\result.json",
+          "sha256": "307b0b3e82158e8be2a474a07f440db0303f89ac596b64fbdb23fb8e5fabc6af"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p059\\mx251\\result.json",
+          "sha256": "e7dcbf9d4e162ffcb704fbd5bb512d8961a02a75462e5716d42be81ecf82ca04"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 12 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 3891,
+      "mx251BuildSeconds": 23.238742600000478,
+      "keilStatus": "BUILT",
+      "keilBytes": 3210,
+      "keilBuildSeconds": 0.847501000000193,
+      "stcStatus": "BUILT",
+      "stcBytes": 5145,
+      "stcBuildSeconds": 3.0050152000003436,
+      "stcError": null,
+      "keilRatio": 1.2121495327102805,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.756268221574344,
+      "initialUnifiedBytes": 3891,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p060",
+      "name": "28-I2C主机模式访问AT24C02程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p060\\mx251\\result.json",
+          "sha256": "f86db493ee63802c8f03d47ab843732ee5efa023a89edea3e3b4c9d82a77f119"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p060\\keil\\result.json",
+          "sha256": "37ffb53e2cd9396fbf9444b7614d59a7f8c75be7e486784c18c1bea92965de0b"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p060\\stc\\result.json",
+          "sha256": "4ee2c7543534f489adbc4b8eea209858500d93ba208a407a5c72b0b3807a3dac"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p060\\mx251\\result.json",
+          "sha256": "f3f75f2763ee1814bf62b5e6b765b003d8fd266cd3035c625977deaf7ab356b0"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 16 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1578,
+      "mx251BuildSeconds": 20.61642579999898,
+      "keilStatus": "BUILT",
+      "keilBytes": 1473,
+      "keilBuildSeconds": 0.1269164000004821,
+      "stcStatus": "BUILT",
+      "stcBytes": 2467,
+      "stcBuildSeconds": 1.0696779000008974,
+      "stcError": null,
+      "keilRatio": 1.0712830957230142,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6396432914471017,
+      "initialUnifiedBytes": 1653,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p062",
+      "name": "29-红外遥控信号(NEC码)定时器0中断接收程序-串口打印用户码和键值/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p062\\mx251\\result.json",
+          "sha256": "0c72b714549b8a3b36b5be10da95de15dfbc60f9589d8865bbe457453b3a8a1a"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p062\\keil\\result.json",
+          "sha256": "16122179dd7d9d99ac29856fc12d71625c0d9dd23f4965384d627f240c2af9e7"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p062\\stc\\result.json",
+          "sha256": "acc890a103f6ee106945d7f0efb16dba449ca4e01a8cd2f2a646f04fa28f7d51"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p062\\mx251\\result.json",
+          "sha256": "2267793180739945cd2e9758bfd35a991633554ee42b40e516d4ee80f95835e9"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1189,
+      "mx251BuildSeconds": 17.842176399999516,
+      "keilStatus": "BUILT",
+      "keilBytes": 1241,
+      "keilBuildSeconds": 0.14091539999935776,
+      "stcStatus": "BUILT",
+      "stcBytes": 1751,
+      "stcBuildSeconds": 0.859345900000335,
+      "stcError": null,
+      "keilRatio": 0.9580983078162773,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6790405482581382,
+      "initialUnifiedBytes": 1264,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p064",
+      "name": "30-红外发射程序(NEC码)-使用PWM4产生38KHz载波/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p064\\mx251\\result.json",
+          "sha256": "2e32b2b85926cb669534a8aee7789b45804004b1b7526f9382c9f45085d66e56"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p064\\keil\\result.json",
+          "sha256": "c5988e8d964ecdc33b949a1aed1157f9ca1b9984b2827f835c385efbb2cd5fa5"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p064\\stc\\result.json",
+          "sha256": "bffc75d93b6315055eff19ecfec1bfc51df6eff988769c7cd3ed1d6c017dfd00"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p064\\mx251\\result.json",
+          "sha256": "b59a76161fa3a844b619d3a8ba12a3d9e632cc81cd4e11bc7fbe6ba684cc7e2b"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 24 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1499,
+      "mx251BuildSeconds": 18.209534300000087,
+      "keilStatus": "BUILT",
+      "keilBytes": 1700,
+      "keilBuildSeconds": 0.13770099999965169,
+      "stcStatus": "BUILT",
+      "stcBytes": 1772,
+      "stcBuildSeconds": 1.0524492999993527,
+      "stcError": null,
+      "keilRatio": 0.8817647058823529,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.8459367945823928,
+      "initialUnifiedBytes": 1574,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p066",
+      "name": "31-IO行列式按键扫描，按键命令红外发射-同时接收，串口打印用户码和键值程序/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p066\\mx251\\result.json",
+          "sha256": "fe56bca87a8b978d113a9946d9738a85ddf6c75db563b707ab24c71ac9f4f716"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p066\\keil\\result.json",
+          "sha256": "bdcac44d65c9e4771578bf50f75335ce801eac0356d35e2bf3d1a53214a402b6"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p066\\stc\\result.json",
+          "sha256": "64fb649b7587b7928b26e4b8c29410c5f5856bbee380a3f1e8d8a8396ba39b10"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p066\\mx251\\result.json",
+          "sha256": "efc7d529be944c8b4680c8267551e28d8e2f3b894ebc8433b798ec5697ce6c79"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 24 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1910,
+      "mx251BuildSeconds": 18.931802199998856,
+      "keilStatus": "BUILT",
+      "keilBytes": 1901,
+      "keilBuildSeconds": 0.09837100000004284,
+      "stcStatus": "BUILT",
+      "stcBytes": 2648,
+      "stcBuildSeconds": 1.091585500000292,
+      "stcError": null,
+      "keilRatio": 1.0047343503419253,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.7212990936555891,
+      "initialUnifiedBytes": 1985,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p071",
+      "name": "35-板载焊接的外部扩展32K xdata测试程序",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p071\\mx251\\result.json",
+          "sha256": "10b2d914d5fd2ef508d4c269acb2c07a5c86dcd417e2155704cd06bc16335dfa"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p071\\keil\\result.json",
+          "sha256": "c6b4a330ccd9344b900d59ae1cff2364c04066f022603f341d5b5d64696df1da"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p071\\stc\\result.json",
+          "sha256": "4d57ade8b9414797bec86f6f00355200e691dd725a777eb7f93d07fe77ae129c"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p071\\mx251\\result.json",
+          "sha256": "02f40a998754581c16a493cd40d386e6db37c9263711043bf5890670e98fa752"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 11 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 34374,
+      "mx251BuildSeconds": 31.692556500000137,
+      "keilStatus": "BUILT",
+      "keilBytes": 33926,
+      "keilBuildSeconds": 0.2176116999999067,
+      "stcStatus": "BUILT",
+      "stcBytes": 36020,
+      "stcBuildSeconds": 1.8149333000001207,
+      "stcError": null,
+      "keilRatio": 1.0132052113423333,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.9543031649083842,
+      "initialUnifiedBytes": 34374,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p074\\mx251\\result.json",
+          "sha256": "86f2988262e1d63855f4c909ef6861966d4b7e3a2761bdedd0b072d75c255b82"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p074\\keil\\result.json",
+          "sha256": "0751e97c5e9f2f37955789fe89f41d7c6b39827c69249fd2599eac84e13d78fb"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p074\\stc\\result.json",
+          "sha256": "a8db6eadab6bbe9e2f9b6268cea6d4fe714aeb1fbef9e79086269dcd839bf495"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p074\\mx251\\result.json",
+          "sha256": "d4c2c1317418dbcc64d907e81fe15d9120efe7370c1f167e78c83ad8ce54b9ac"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 25 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1283,
+      "mx251BuildSeconds": 19.135420099999465,
+      "keilStatus": "BUILT",
+      "keilBytes": 909,
+      "keilBuildSeconds": 0.28116770000087854,
+      "stcStatus": "BUILT",
+      "stcBytes": 1791,
+      "stcBuildSeconds": 1.328684300000532,
+      "stcError": null,
+      "keilRatio": 1.4114411441144115,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.7163595756560581,
+      "initialUnifiedBytes": 1306,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p075",
+      "name": "36.4-LCD128x64显示图形文字-ST7920-IO口模拟M6800并行接口",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p075\\mx251\\result.json",
+          "sha256": "d9a414c51dfc8e481db930303535715e3fbd08b49702eb9ce1efabecfe274102"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p075\\keil\\result.json",
+          "sha256": "a877d68b36cea65c9d18cfbc4cb479593e10c6d3fbee323c86c96f94b184e35d"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p075\\stc\\result.json",
+          "sha256": "a9efa7d282fb8ae28f50834187a83fda5e3a246da2180177d3c1436eb0cb6809"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p075\\mx251\\result.json",
+          "sha256": "7ff3ef6aba17c006bf0fc5409772af75718cc1406eb1110675d2dc96a87f8729"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1975,
+      "mx251BuildSeconds": 25.803280100000848,
+      "keilStatus": "BUILT",
+      "keilBytes": 1789,
+      "keilBuildSeconds": 0.13473759999942558,
+      "stcStatus": "BUILT",
+      "stcBytes": 2607,
+      "stcBuildSeconds": 1.0449816999989707,
+      "stcError": null,
+      "keilRatio": 1.1039686975964227,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.7575757575757576,
+      "initialUnifiedBytes": 2050,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p078",
+      "name": "37.3-2.4寸TFT320240彩屏，ILI9325驱动IC，IO模拟I8080接口程序/Project",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p078\\mx251\\result.json",
+          "sha256": "9fd1477ec756cb6ab3717d2b86363637cae40b53c252571d2216b49041262af9"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p078\\keil\\result.json",
+          "sha256": "744c391872a9abcc88eced2284e8532669d41d1160307cde82f3652a9c06b385"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p078\\stc\\result.json",
+          "sha256": "8329360a225bb3a3ed3968a5cac919d7e188a7c4c23a08c30a2e1dce9ec8bd53"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p078\\mx251\\result.json",
+          "sha256": "6ae169f9dd765c42aa51edda2685b857f9c86e12c22c364e9f39a4d594bedbaf"
+        }
+      },
+      "semanticNotes": [
+        "外部符号 tp_pixad, tp_pixlcd, vx, vy, chx, chy **没有找到定义**：编译器给它**另外分配了一份内存**，它**不会**与其它源文件里的同名变量共享（读写互不影响）。若这是有意的（单文件自带一份）可忽略；若要共享，请把定义写到某一个 .c 里、其余文件只留 extern 声明，并把它们**一起编译**。"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 19303,
+      "mx251BuildSeconds": 292.6389186999986,
+      "keilStatus": "BUILT",
+      "keilBytes": 17937,
+      "keilBuildSeconds": 0.37420340000062424,
+      "stcStatus": "BUILT",
+      "stcBytes": 30087,
+      "stcBuildSeconds": 11.57014429999981,
+      "stcError": null,
+      "keilRatio": 1.076155432904053,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6415727722936817,
+      "initialUnifiedBytes": 19303,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p080",
+      "name": "38-3.5寸ILI9486驱动TFT显示屏实验程序/Project",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p080\\mx251\\result.json",
+          "sha256": "9be96146589fbf4831ab7149171edfeb193919e492d2dab1aba08bcfad0fcee2"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p080\\keil\\result.json",
+          "sha256": "3316fc3fcc63e5e08167a2606fa41421927e1801ea48a7359e1d0f08c5da2b7a"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p080\\stc\\result.json",
+          "sha256": "467c90013fa6048439fafcb78080594731b6182f8800f46cecf036792b5008f1"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p080\\mx251\\result.json",
+          "sha256": "2fd715a0471864e27babf2161d82f491476495abc079eed71cc65eb764044678"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 19318,
+      "mx251BuildSeconds": 259.473655400001,
+      "keilStatus": "BUILT",
+      "keilBytes": 18071,
+      "keilBuildSeconds": 0.5481230999994295,
+      "stcStatus": "BUILT",
+      "stcBytes": 30543,
+      "stcBuildSeconds": 16.804741099998864,
+      "stcError": null,
+      "keilRatio": 1.0690055890653534,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6324853485250302,
+      "initialUnifiedBytes": 19318,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p084",
+      "name": "41-内部RTC时钟程序-使用外部32768晶振，才能保证RTC精度/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p084\\mx251\\result.json",
+          "sha256": "fe838fb87b4451a6671961bc891876c7975bfa8799661d304c776f553649e536"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p084\\keil\\result.json",
+          "sha256": "0df1c7c35a3119c5a2bf45594aa563056c6c3be5e4ee3e1384e18e66f7899ad2"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p084\\stc\\result.json",
+          "sha256": "de6a028b437595a2318580ac185942c1a3449f2cb5a8f217ce37636c321c2177"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p084\\mx251\\result.json",
+          "sha256": "f9c713720785dd05a5881d0678b4e6a0a9fb9f676bea51a2af396ae58be700a3"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 2209,
+      "mx251BuildSeconds": 18.588700500000414,
+      "keilStatus": "BUILT",
+      "keilBytes": 2261,
+      "keilBuildSeconds": 0.2462255999998888,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0004943000003549969,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.9770013268465281,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 2284,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p086",
+      "name": "42-USB-HID(Human Interface Device)协议范例",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p086\\mx251\\result.json",
+          "sha256": "5e1579adc0857411dff25df16a3b083895a45662ae5cdb444a115a48a5fb43fa"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p086\\keil\\result.json",
+          "sha256": "962a68445e3799b5543b24719c29c9d35bebf32416264f66b4272559a0b618cc"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p086\\stc\\result.json",
+          "sha256": "cd2dacb460872ada79b36c0d27429c3910060cceb364ac085e0ccd55f7d1d417"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p086\\mx251\\result.json",
+          "sha256": "e3e19f9a4e7348e8b2bb75307aa6b68f261d5c0d8fe2a1c639dbd78e5625c089"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 2919,
+      "mx251BuildSeconds": 46.50942799999939,
+      "keilStatus": "BUILT",
+      "keilBytes": 2633,
+      "keilBuildSeconds": 0.8107244000002538,
+      "stcStatus": "BUILT",
+      "stcBytes": 3817,
+      "stcBuildSeconds": 4.550385099999403,
+      "stcError": null,
+      "keilRatio": 1.108621344473984,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.7647367042179722,
+      "initialUnifiedBytes": 2919,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p087",
+      "name": "43-USB-CDC(Communication Device Class)协议范例",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p087\\mx251\\result.json",
+          "sha256": "a0f9218990f3511ebe4de5fba0ac0ef365bca71159b0ce67e86ae1a40c13ad31"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p087\\keil\\result.json",
+          "sha256": "41940a2aa0d3066696d404d86c7518352a0c3cf97dc4cd558150e70674d58a46"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p087\\stc\\result.json",
+          "sha256": "1316ee8d0e7db9b43db21d0921e2645661e3011dae2fb5b8ca437d339f093022"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p087\\mx251\\result.json",
+          "sha256": "17d289445ae5c192b889d3ba161813f1fe81730c1faeaae41b8475eb61b7d994"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 4379,
+      "mx251BuildSeconds": 51.094444499998644,
+      "keilStatus": "BUILT",
+      "keilBytes": 3531,
+      "keilBuildSeconds": 3.204782200000409,
+      "stcStatus": "BUILT",
+      "stcBytes": 4758,
+      "stcBuildSeconds": 3.082590699999855,
+      "stcError": null,
+      "keilRatio": 1.2401585952987821,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.9203446826397647,
+      "initialUnifiedBytes": 4379,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p088",
+      "name": "44-基于USB-HID协议的USB键盘范例",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p088\\mx251\\result.json",
+          "sha256": "7c10ec1181591c2a5255d4f50ffcae5781c0d09e506de52180455ce33bcf420a"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p088\\keil\\result.json",
+          "sha256": "46310f6f219283e34719ad27f34ce4bf6971cc4c26e97deb5db912cf99fda4ee"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p088\\stc\\result.json",
+          "sha256": "47d178642278d9f1ef7c27e6c42c73d7adb28c99a5fb9ceb4e27df494cbe6d6a"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p088\\mx251\\result.json",
+          "sha256": "c0b4ef470d61126a76c6008647a8f547054fd7db1cfb6d8cf93ced6983c8ff79"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 3421,
+      "mx251BuildSeconds": 48.36670140000024,
+      "keilStatus": "BUILT",
+      "keilBytes": 3032,
+      "keilBuildSeconds": 0.5972904000009294,
+      "stcStatus": "BUILT",
+      "stcBytes": 4377,
+      "stcBuildSeconds": 2.4837234999995417,
+      "stcError": null,
+      "keilRatio": 1.1282981530343008,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.7815855608864519,
+      "initialUnifiedBytes": 3421,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p089",
+      "name": "45-基于USB-HID协议的USB鼠标范例",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p089\\mx251\\result.json",
+          "sha256": "9c89d165ec62bfcfd46361a1a04d0affcca7ddeefb4db9a1d83e75d4b71f6381"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p089\\keil\\result.json",
+          "sha256": "712bd5ddd06978cb90d371f95036546d6f2fc62349fb5c0cfe729ffb41d75e86"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p089\\stc\\result.json",
+          "sha256": "ef538e50f702904ea5c82f309caf254b186c166b3707a2017a1fa171091f42ef"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p089\\mx251\\result.json",
+          "sha256": "8dd93ef18a9e3266b6e67a8ac10aab2c50c280eba64d72352f4c8de8d1d7ceba"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 3040,
+      "mx251BuildSeconds": 44.979920499999935,
+      "keilStatus": "BUILT",
+      "keilBytes": 2687,
+      "keilBuildSeconds": 0.5835339999994176,
+      "stcStatus": "BUILT",
+      "stcBytes": 3881,
+      "stcBuildSeconds": 2.9323108999997203,
+      "stcError": null,
+      "keilRatio": 1.1313732787495347,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.7833032723524864,
+      "initialUnifiedBytes": 3040,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p090",
+      "name": "46-基于WINUSB协议的范例",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p090\\mx251\\result.json",
+          "sha256": "5c8065302297b31c46d7a0f687fb4485f919e568802890b1570a73fe1c6f216e"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p090\\keil\\result.json",
+          "sha256": "698048f7e1c7e486b18f4bd4a1fc55394a10f8f018198e50ebb4f33c57610db7"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p090\\stc\\result.json",
+          "sha256": "88d48c2794a7fdf4d8376050a893370f1d5ba204a3db912ac84307ccf39d7881"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p090\\mx251\\result.json",
+          "sha256": "866a7e79236b71aa26fe9725ce876c7acb4c2082c68ea6c8182f066fb45a3cc4"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 3197,
+      "mx251BuildSeconds": 43.285227599999416,
+      "keilStatus": "BUILT",
+      "keilBytes": 2951,
+      "keilBuildSeconds": 0.5559728000007453,
+      "stcStatus": "BUILT",
+      "stcBytes": 4090,
+      "stcBuildSeconds": 2.3343220999995538,
+      "stcError": null,
+      "keilRatio": 1.0833615723483565,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.7816625916870416,
+      "initialUnifiedBytes": 3197,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p091",
+      "name": "47-MSC(Mass Storage Class)协议范例-U盘演示程序",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p091\\mx251\\result.json",
+          "sha256": "be424b1587d41114bc6a3f2e2a3eeb9710c8bb53297f4465dddf630f397e58f5"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p091\\keil\\result.json",
+          "sha256": "6c436b4030d71ff72718782812447d4a5b8bc316551126e15ed9be227bf6709b"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p091\\stc\\result.json",
+          "sha256": "6f06d15216f0a012a368b70629bd52f0e77f2c9843e19de882c05942af90daad"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p091\\mx251\\result.json",
+          "sha256": "3bee92e7a20f72ad9562df83c7617da96f47634303daacfc513a3f6da560ffac"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问",
+        "scsi.c 第 108 行: 隐式窄化赋值: pData（unsigned long）← 13 字节值（104 位），可能截断——已自动改写为显式 (unsigned long) 转换（可在「自动改写」处撤销）",
+        "外部符号 UsbBuffer **没有找到定义**：编译器给它**另外分配了一份内存**，它**不会**与其它源文件里的同名变量共享（读写互不影响）。若这是有意的（单文件自带一份）可忽略；若要共享，请把定义写到某一个 .c 里、其余文件只留 extern 声明，并把它们**一起编译**。"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 5189,
+      "mx251BuildSeconds": 56.177330399999846,
+      "keilStatus": "BUILT",
+      "keilBytes": 4401,
+      "keilBuildSeconds": 0.6486277000003611,
+      "stcStatus": "BUILT",
+      "stcBytes": 7343,
+      "stcBuildSeconds": 3.8298432000010507,
+      "stcError": null,
+      "keilRatio": 1.1790502158600318,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.7066594035135503,
+      "initialUnifiedBytes": 5189,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p095",
+      "name": "51-USB-CDC转双串口-根据串口波特率选择出厂时校准的几种常用时钟频率做主频",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p095\\mx251\\result.json",
+          "sha256": "728a459c437029776b23815d12861825a45456e42bf5e4049428a8c0861abe6a"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p095\\keil\\result.json",
+          "sha256": "104c1da1b5428039db491d476bfb268afd1cf441f124d1ae2f382bf7af9ce396"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p095\\stc\\result.json",
+          "sha256": "53ac70f2b42bac2eeeea55910e0d4a7a01ba697a25ff800d791eb3d00bbeec6f"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p095\\mx251\\result.json",
+          "sha256": "68de5e3fdba58f33e726fe339689237c237c0b37a8843290da3ddc1b4d8e2c96"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 10 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 6249,
+      "mx251BuildSeconds": 54.53929679999965,
+      "keilStatus": "BUILT",
+      "keilBytes": 4830,
+      "keilBuildSeconds": 0.7016446000016003,
+      "stcStatus": "BUILT",
+      "stcBytes": 7174,
+      "stcBuildSeconds": 4.4140006000016,
+      "stcError": null,
+      "keilRatio": 1.2937888198757763,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.8710621689434067,
+      "initialUnifiedBytes": 6249,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p096",
+      "name": "52-USB鼠标-键盘复合设备例程",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p096\\mx251\\result.json",
+          "sha256": "5566af63aab6b46228646a44ca29d07c0e72b931cb50387576c0901b9a08e830"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p096\\keil\\result.json",
+          "sha256": "b3cb2bbf36516f3f22e9e76d082d6690f5cde4fcd43ed8a20a3c0d14cd618346"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p096\\stc\\result.json",
+          "sha256": "47518573ef2b712ad47a961ad44ead06aebd56b7db920afee57c3646a08ca099"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p096\\mx251\\result.json",
+          "sha256": "4e7bf23af6b8130cf1794db86c5cee5786edcf9bdf640aa61afe8b5be9a4f8f4"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 2 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 4151,
+      "mx251BuildSeconds": 47.93469569999979,
+      "keilStatus": "BUILT",
+      "keilBytes": 3469,
+      "keilBuildSeconds": 0.8325948999990942,
+      "stcStatus": "BUILT",
+      "stcBytes": 5095,
+      "stcBuildSeconds": 3.9209165000011126,
+      "stcError": null,
+      "keilRatio": 1.1965984433554337,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.8147203140333661,
+      "initialUnifiedBytes": 4151,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p097",
+      "name": "56-LIN总线从机收发测试-USART1",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p097\\mx251\\result.json",
+          "sha256": "47a6ffc1a1e2de8ad43a75c9a4fabcab4583359caab666a20022b77e41b3fdca"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p097\\keil\\result.json",
+          "sha256": "3cc005bdd3e52ad50a91ead092a8c2b70acfaf1e358c796a2b5179a3c17ba0af"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p097\\stc\\result.json",
+          "sha256": "c2037c50e4ff724a749d280a29b9c465437b66a338da6deb3f7d5bb623c03547"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p097\\mx251\\result.json",
+          "sha256": "db74d455a6b494141e8a979360e272882fbe18d38213ad6cb4165030c223e88a"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 8 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 2207,
+      "mx251BuildSeconds": 20.487712199999805,
+      "keilStatus": "BUILT",
+      "keilBytes": 1648,
+      "keilBuildSeconds": 0.14908680000007735,
+      "stcStatus": "BUILT",
+      "stcBytes": 2507,
+      "stcBuildSeconds": 1.1410783999999694,
+      "stcError": null,
+      "keilRatio": 1.3391990291262137,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.8803350618268847,
+      "initialUnifiedBytes": 2282,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p098",
+      "name": "57-LIN总线主机收发测试-USART1",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p098\\mx251\\result.json",
+          "sha256": "01906d8562778e20ff260cb7b77f2e1952d4802c0b707ab561731bc45e446838"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p098\\keil\\result.json",
+          "sha256": "fb37f19f2154efd0d321b3651c48dc187100994cec7a6aa3d97165c7615da994"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p098\\stc\\result.json",
+          "sha256": "95caf53c72c1ba1920d11013c5f5628dd013e88f72816c6ae1a374b939b1ccda"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p098\\mx251\\result.json",
+          "sha256": "688dc607e585ed7adbe6bb7835771718269216d34bdf3beb1dbd77a3f89a2b12"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 6 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1385,
+      "mx251BuildSeconds": 25.3172693000015,
+      "keilStatus": "BUILT",
+      "keilBytes": 1694,
+      "keilBuildSeconds": 0.14707410000119125,
+      "stcStatus": "BUILT",
+      "stcBytes": 1869,
+      "stcBuildSeconds": 1.1379962000009982,
+      "stcError": null,
+      "keilRatio": 0.8175914994096812,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.7410379882289995,
+      "initialUnifiedBytes": 1460,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p099",
+      "name": "58-LIN总线从机收发测试-USART2",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p099\\mx251\\result.json",
+          "sha256": "17a0d9b040e3213acad87ee81d6be5fc2588d3ce699204a10c9ad0f5340dccc5"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p099\\keil\\result.json",
+          "sha256": "cb1adbee339501cd53a4dad1c94023ff6df4776badfd9aa6b7e912bc389c9b74"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p099\\stc\\result.json",
+          "sha256": "d993433382ca1a71591a8d691b17473ec8012e16a5b349fa3f0ee3ba3d9667a8"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p099\\mx251\\result.json",
+          "sha256": "abebe50b2d2fad8e05baf2d68cb0de96eecd2df0cfe360fadef73a8fc0c7f9c3"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 9 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1976,
+      "mx251BuildSeconds": 23.339095400000588,
+      "keilStatus": "BUILT",
+      "keilBytes": 1674,
+      "keilBuildSeconds": 0.13091369999892777,
+      "stcStatus": "BUILT",
+      "stcBytes": 2527,
+      "stcBuildSeconds": 1.132060800000545,
+      "stcError": null,
+      "keilRatio": 1.1804062126642771,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.7819548872180451,
+      "initialUnifiedBytes": 2051,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p100",
+      "name": "59-LIN总线主机收发测试-USART2",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p100\\mx251\\result.json",
+          "sha256": "b595cdfadb0ce427b3872991a2a92848182589d1e3566f8a2f0f0ad37c673b31"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p100\\keil\\result.json",
+          "sha256": "482397385fdba2d15e6822a44f3e0f67ecdd248a83be6731fdf6062713958f30"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p100\\stc\\result.json",
+          "sha256": "5b1c6bdad7226352838fb0781a857eb0fb0164e2b02fc7807fdef9b219c8a266"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p100\\mx251\\result.json",
+          "sha256": "dc6533166248acf0749dca472cbbd57f23fa9c03f6065a9d809e2d8762c5b770"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 7 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1442,
+      "mx251BuildSeconds": 24.810665700000754,
+      "keilStatus": "BUILT",
+      "keilBytes": 1706,
+      "keilBuildSeconds": 0.11753979999957664,
+      "stcStatus": "BUILT",
+      "stcBytes": 2203,
+      "stcBuildSeconds": 1.186589200000526,
+      "stcError": null,
+      "keilRatio": 0.8452520515826495,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6545619609623241,
+      "initialUnifiedBytes": 1517,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p101",
+      "name": "60-DMA-ADC采样数据自动存储/16路ADC转换-串口返回结果",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p101\\mx251\\result.json",
+          "sha256": "ad7166e98f84656fc0b6e8c9239b03f937a963be0aa4905803d039386e37d0f8"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p101\\keil\\result.json",
+          "sha256": "2107f5f65996305a76dfb8e66eedf6d49bed5269e6dbdc6c631ac5a388e5166a"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p101\\stc\\result.json",
+          "sha256": "2adc6dbf5252f7cae6b6aa1f77d3699d32190f64461309616797eb0c25c31ca9"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p101\\mx251\\result.json",
+          "sha256": "8b649c02db718f18535467ad914dba1c0d8bc02231b4c4b0560e87920fddbad7"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1267,
+      "mx251BuildSeconds": 20.41666140000052,
+      "keilStatus": "BUILT",
+      "keilBytes": 1189,
+      "keilBuildSeconds": 0.399653299999045,
+      "stcStatus": "BUILT",
+      "stcBytes": 1897,
+      "stcBuildSeconds": 2.0598843000007037,
+      "stcError": null,
+      "keilRatio": 1.065601345668629,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.6678966789667896,
+      "initialUnifiedBytes": 1342,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p102",
+      "name": "60-DMA-ADC采样数据自动存储/16路ADC转换使用DMA-串口返回结果-指定缓冲区地址",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p102\\mx251\\result.json",
+          "sha256": "412414cdb8ba0a1b78e3ba71934242c0d769c14913c872aa773c96be04131ccf"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p102\\keil\\result.json",
+          "sha256": "196903ef5489139c7e80b5c4e16a9af963c6269ec2dbebd64d7de5ac9004edcb"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p102\\stc\\result.json",
+          "sha256": "d456e0ca6fe1e7b698de7c556a0988f3e887b2f43b63ccd38f3ed533b359c1e7"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p102\\mx251\\result.json",
+          "sha256": "2c9511f53d900cb5e0efa674ec73efc6a08dc7443ca876d0fcb96260776ca506"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1178,
+      "mx251BuildSeconds": 14.574040999999852,
+      "keilStatus": "BUILT",
+      "keilBytes": 1289,
+      "keilBuildSeconds": 0.47709559999930207,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0005209999999351567,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.9138867339022498,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 1253,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p103",
+      "name": "60-DMA-ADC采样数据自动存储/16路ADC转换使用DMA-串口返回结果-结构体存储结果",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p103\\mx251\\result.json",
+          "sha256": "eace8ab64971a39b623e004bea69020b5553d6fae332250ff21466aa4beecc5a"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p103\\keil\\result.json",
+          "sha256": "58aacb516c337bd2e1c448c05c8b10e2d39f280fd99bf86421a805d4f5d64c60"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p103\\stc\\result.json",
+          "sha256": "46a86d1ac2763635415684175e769445eddefd59beb08a150c85ff97fe407f83"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p103\\mx251\\result.json",
+          "sha256": "bc6dc36695953d8d279620e4aefd7ffef291c45d8eb9aacef2d0fe42810db8e5"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1844,
+      "mx251BuildSeconds": 14.988274100000126,
+      "keilStatus": "BUILT",
+      "keilBytes": 1286,
+      "keilBuildSeconds": 0.3088293999990128,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0003448000006756047,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 1.4339035769828927,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 1867,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p104",
+      "name": "61-DMA-M2M存储器与存储器之间读写",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p104\\mx251\\result.json",
+          "sha256": "cbe96737eb6326f3c05f9a6891064390d029c13a5e89aeb0f960931d327e7dc9"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p104\\keil\\result.json",
+          "sha256": "a88ec40fde5623f8e94ff7f1a607ebd3c6d42002cf528b167ce85d6553db6bdc"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p104\\stc\\result.json",
+          "sha256": "f12fcb09da49fcf816ad6fef2ec1a06b5b661291163df46518850dafe61745f4"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p104\\mx251\\result.json",
+          "sha256": "c32dae8a6fbeebf396fad07fe5aef180f75d3a1b8251f8c2f79cd350879cc8dd"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1239,
+      "mx251BuildSeconds": 10.511065799999415,
+      "keilStatus": "BUILT",
+      "keilBytes": 1280,
+      "keilBuildSeconds": 0.372624800000267,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0009204999987559859,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.96796875,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7631,
+      "integrationSavedBytes": 6392
+    },
+    {
+      "id": "p107",
+      "name": "64-DMA-UART串口与存储器数据自动收发/串口1使用DMA中断模式与电脑收发测试",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p107\\mx251\\result.json",
+          "sha256": "c6aacffa93ad68f7a10df8209b5d7145dc53c0b47a444c33ca3755883ab77bb2"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p107\\keil\\result.json",
+          "sha256": "c3f16ef3cc9c8f17d3643a83e1a98f079fc3e726992b7ff87a6ac7aa06c1ab25"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p107\\stc\\result.json",
+          "sha256": "d5fcaf88bfc53c77060afc65fe6f7e09cd660179dbe772bc52419fcde2b7a341"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p107\\mx251\\result.json",
+          "sha256": "bf2861ba3aa2d5e7b5f3256109da6cecd8a96e5dd95f95e883f37c6b2a0c83c2"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1110,
+      "mx251BuildSeconds": 10.354706500000248,
+      "keilStatus": "BUILT",
+      "keilBytes": 1482,
+      "keilBuildSeconds": 0.5005626999991364,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0003186999983881833,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.7489878542510121,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7869,
+      "integrationSavedBytes": 6759
+    },
+    {
+      "id": "p108",
+      "name": "64-DMA-UART串口与存储器数据自动收发/串口1使用DMA中断模式与电脑收发测试-超时中断",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p108\\mx251\\result.json",
+          "sha256": "4112e553309301e403373330f0d7aa6c349e4a359376c56faddb3f02dd593702"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p108\\keil\\result.json",
+          "sha256": "4a8c66450baa20e801e65678e16ce3ded7d142e5274a31bc2730507db0a57775"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p108\\stc\\result.json",
+          "sha256": "272c9f5ed1639947d3a0b35485f3988ca92dbdecf336923fdcdb60233ba2c143"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p108\\mx251\\result.json",
+          "sha256": "f990940b3623ae064adacaa81cce3628445798b8eaef8d72a299b7da5d36f56c"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": {
+        "status": "ORIGINAL_VENDOR_RAW_VECTOR_TARGET_NOT_AN_ISR",
+        "evidence": {
+          "path": "E:\\STVAPP\\MCU-StdioX\\.artifacts\\ai8051u-sdcc251-20261023\\compiler-optimization\\mx251-printf-runtime-20261101\\generic-rollout\\p108-vector-gap-v1\\reference-review.json",
+          "sha256": "df2a98b46d59746c47b307dfaa23a0ed5a2a1c704edba7b4e1a2068172b7d272"
+        },
+        "scope": "The Keil original also targets the interior of main. Fixed source and reference kept unchanged; no correctness pass or closure exception."
+      },
+      "mx251Status": "BUILT",
+      "mx251Bytes": 7808,
+      "mx251BuildSeconds": 12.12962940000034,
+      "keilStatus": "BUILT",
+      "keilBytes": 1434,
+      "keilBuildSeconds": 0.3048025999996753,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.00041280000004917383,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 5.4449093444909344,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7808,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p109",
+      "name": "64-DMA-UART串口与存储器数据自动收发/串口2使用DMA中断模式与电脑收发测试",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p109\\mx251\\result.json",
+          "sha256": "5e5713b8715ba068e524ae259f0404ce3b82422ed845b3c219dcdec338c8efa4"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p109\\keil\\result.json",
+          "sha256": "9162b15ba73c80f315d349a5dceab25189a6ba36f06b63ce151fd0d2169fbd4d"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p109\\stc\\result.json",
+          "sha256": "de07ccaccd336bb255f73c5e4620b162e045cd3bca5c68a3d71a9aba5b1a83fd"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p109\\mx251\\result.json",
+          "sha256": "579415429bbe60d13560832bd508a40edc1464a1279137ff8bacb1910b9676c9"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1101,
+      "mx251BuildSeconds": 14.756054499999664,
+      "keilStatus": "BUILT",
+      "keilBytes": 1463,
+      "keilBuildSeconds": 0.5617581000005885,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0004031000007671537,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.7525632262474368,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7860,
+      "integrationSavedBytes": 6759
+    },
+    {
+      "id": "p110",
+      "name": "64-DMA-UART串口与存储器数据自动收发/串口3使用DMA中断模式与电脑收发测试",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p110\\mx251\\result.json",
+          "sha256": "2bb4eebd6bd941dd5598d78b4208cfcb5e2c950d6dd605cc9839fab239eef184"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p110\\keil\\result.json",
+          "sha256": "5df4695e80d51d7a122a0b4bcf587b623698e22fc954903ad8ec78333c096eeb"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p110\\stc\\result.json",
+          "sha256": "75a234b92f60e0c6793debae3fda34bc8c88909483f52028603dfa62774307c0"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p110\\mx251\\result.json",
+          "sha256": "ab62d2fde61cb68bce666973793deed7ab71a14cd1cec685b1fef9af49c4e8e5"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1101,
+      "mx251BuildSeconds": 15.034700400001384,
+      "keilStatus": "BUILT",
+      "keilBytes": 1462,
+      "keilBuildSeconds": 0.4221643999990192,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.00036639999962062575,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.753077975376197,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7860,
+      "integrationSavedBytes": 6759
+    },
+    {
+      "id": "p111",
+      "name": "64-DMA-UART串口与存储器数据自动收发/串口4使用DMA中断模式与电脑收发测试",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p111\\mx251\\result.json",
+          "sha256": "b8fb44064a1cf9d2f8c63ac7b21ae5af088ab68d18a473b1fe4350a65fb8bdd3"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p111\\keil\\result.json",
+          "sha256": "43e6ecfc3cf6ba087b854d56629873ec534af1a6f3ff93fed9a55189f3ea5f16"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p111\\stc\\result.json",
+          "sha256": "0fbf74443dae614886855a68ff77d851748de5a57ac8a7587a3960632077dce0"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p111\\mx251\\result.json",
+          "sha256": "b9d823e84308fdc7115261ebb38aa119aa9b4184a3543e77c8d3deccaa05934e"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1101,
+      "mx251BuildSeconds": 15.766397399998823,
+      "keilStatus": "BUILT",
+      "keilBytes": 1461,
+      "keilBuildSeconds": 0.5901505999991059,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0003240000005462207,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.7535934291581109,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7860,
+      "integrationSavedBytes": 6759
+    },
+    {
+      "id": "p112",
+      "name": "65-DMA-LCD12864-M6800接口，TFT320240-I8080接口，液晶屏测试/Test_I8080_DMA_8bit_TFT_ILI9325",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p112\\mx251\\result.json",
+          "sha256": "219189f97b5e7e29d87fb248d7b7659a072869cdfaf35623910a8162f09a48f1"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p112\\keil\\result.json",
+          "sha256": "25db6c7d9a1542a8b6c3bba2bcffba8e07f20fbf7ba6cdc5e760635acde3e2ee"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p112\\stc\\result.json",
+          "sha256": "912437f5c6a0923bcf78fbeadec971410e5b0a0bddbe7021d55bdcd8ffb9fc6c"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p112\\mx251\\result.json",
+          "sha256": "5f534ddde31135b23f093788a66c73befec439ac039a560e5569b25d3c85b704"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 6140,
+      "mx251BuildSeconds": 28.43523760000062,
+      "keilStatus": "BUILT",
+      "keilBytes": 5704,
+      "keilBuildSeconds": 0.4673356999992393,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0005856000007042894,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 1.076437587657784,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 6140,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p113",
+      "name": "65-DMA-LCD12864-M6800接口，TFT320240-I8080接口，液晶屏测试/Test_I8080_INT_8bit_TFT_ILI9325",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p113\\mx251\\result.json",
+          "sha256": "cb91e70c942aa761764e658a481470e2984f988105819192efbbcb6f764f9f20"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p113\\keil\\result.json",
+          "sha256": "29aec8476954caf8d35daf593bb838d5b3cb07ff1f02a371560a79bd77998d14"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p113\\stc\\result.json",
+          "sha256": "bb39ab665bfe39fc6a3a1b1b2b1146df4e5075432b31e8a7c0332ea84d9cb50d"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p113\\mx251\\result.json",
+          "sha256": "631571d009628812d8ec64efb608f469ac869e788ee82ee7bfeaa9f51930af47"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 6009,
+      "mx251BuildSeconds": 34.773956899998666,
+      "keilStatus": "BUILT",
+      "keilBytes": 5481,
+      "keilBuildSeconds": 0.3145969999986846,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0004107000004296424,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 1.0963327859879584,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 6009,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p114",
+      "name": "65-DMA-LCD12864-M6800接口，TFT320240-I8080接口，液晶屏测试/Test_M6800_DMA_8bit_LCD12864_ST7920",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p114\\mx251\\result.json",
+          "sha256": "a9bb17ab0d6886044cf91b2ceae1f4f3fdbaa8c4b2cc24918f252b7d41ee6738"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p114\\keil\\result.json",
+          "sha256": "8e7f05042dd509756526c08af3f2793a7624f867ecf5780c61a7e679c28e1c5b"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p114\\stc\\result.json",
+          "sha256": "f445950ef03cce9cd7f722c287693d98bba9d84eb1fc765878de9fa45ab9cb0d"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p114\\mx251\\result.json",
+          "sha256": "cfdf5fe6e4159752a0c0d22a5ac2fafb8b2987795821aab15599bead0a22af2a"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 3578,
+      "mx251BuildSeconds": 26.754810299999008,
+      "keilStatus": "BUILT",
+      "keilBytes": 3250,
+      "keilBuildSeconds": 0.5262737000011839,
+      "stcStatus": "FAILED",
+      "stcBytes": null,
+      "stcBuildSeconds": 2.4776543000007223,
+      "stcError": "main-DMA-V21.c 第 57 行: _at_ 定义错误: DisTmp @ 0x10000: 与已分配的 xdata 变量区重叠（普通变量已占用至 0x10002）\nmain-DMA-V21.c 第 103 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）；数组名未定义，无法按下标访问\nmain-DMA-V21.c 第 103 行: 未定义的变量或寄存器: DisTmp —— ★ 这个名字**在本文件里声明过、是那条声明报错了**（上面的 `_at_`/声明错误）—— **先修那条** ★\nmain-DMA-V21.c 第 103 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）\nmain-DMA-V21.c 第 105 行第 13 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）\nmain-DMA-V21.c 第 108 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）；数组名未定义，无法按下标访问\nmain-DMA-V21.c 第 108 行: 未定义的变量或寄存器: DisTmp —— ★ 这个名字**在本文件里声明过、是那条声明报错了**（上面的 `_at_`/声明错误）—— **先修那条** ★\nmain-DMA-V21.c 第 108 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）\nmain-DMA-V21.c 第 110 行第 13 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）",
+      "keilRatio": 1.100923076923077,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 3601,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p117",
+      "name": "68-高速HS-PWM1-HS-PWM2-HS-PWM3-HS-PWM4，驱动P0口呼吸灯实验程序",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p117\\mx251\\result.json",
+          "sha256": "222ce07bef20f7fa73d7ad0cf34d29e1f2dc34f31eb589c201f02efc1b269653"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p117\\keil\\result.json",
+          "sha256": "d70f86249885df370ff3c9ecf9494983e805f5a674cab392b9cb21b609790cf1"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p117\\stc\\result.json",
+          "sha256": "f292e1431b1baf4cd06b18d8661595b719c61e527545240afd93250e659ad6e5"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p117\\mx251\\result.json",
+          "sha256": "d2aba713c3539236fc63d38082904f5fd02ec5e2ba7023aa1f7115b1d9f42ab8"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 47 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 950,
+      "mx251BuildSeconds": 33.03759059999902,
+      "keilStatus": "BUILT",
+      "keilBytes": 826,
+      "keilBuildSeconds": 0.2690656000013405,
+      "stcStatus": "BUILT",
+      "stcBytes": 1671,
+      "stcBuildSeconds": 2.158915399999387,
+      "stcError": null,
+      "keilRatio": 1.1501210653753027,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 0.5685218432076601,
+      "initialUnifiedBytes": 1025,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p119",
+      "name": "70-USART1作为SPI与USART2作为SPI相互通信例程",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p119\\mx251\\result.json",
+          "sha256": "6395a43c86701365d079914e52498bcb71c37d371674e0c8539ab8d8a2a634b1"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p119\\keil\\result.json",
+          "sha256": "48213ad302b2bcd82b7b6838278c58f59314254bc36d12dd110ebd3d17d5d740"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p119\\stc\\result.json",
+          "sha256": "5cb491a64849653d5be86892784fe86e500dd9a0c51c438e9cbf80c4a24fdb55"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p119\\mx251\\result.json",
+          "sha256": "e6d178f86ed395bf9e665a9d9fdf190c83771c6e34d088d64b326ae01bc9a4c8"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 12 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 678,
+      "mx251BuildSeconds": 17.085651000001235,
+      "keilStatus": "BUILT",
+      "keilBytes": 499,
+      "keilBuildSeconds": 0.507017600000836,
+      "stcStatus": "BUILT",
+      "stcBytes": 1258,
+      "stcBuildSeconds": 1.518752100000711,
+      "stcError": null,
+      "keilRatio": 1.3587174348697395,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.5389507154213037,
+      "initialUnifiedBytes": 701,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p122",
+      "name": "72.1-UART-SPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p122\\mx251\\result.json",
+          "sha256": "b2b450d0aa3e0e53d197bffbea09058384a7f34cc27557e6039cf6a268dd3bf7"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p122\\keil\\result.json",
+          "sha256": "f1376b6279f58b0763c51f3793d0350d27d7dcfa63dfb75c2cb3dde932948437"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p122\\stc\\result.json",
+          "sha256": "8f49dcb8105d52949f9979bb8e4dd897acf152459dd640c61f549f1969b86bd0"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p122\\mx251\\result.json",
+          "sha256": "a298cf6de3ff4d5dabcda6992a198e124c18a99438d5a5095ee569f3a2198b3c"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 5568,
+      "mx251BuildSeconds": 24.264198099999703,
+      "keilStatus": "BUILT",
+      "keilBytes": 4283,
+      "keilBuildSeconds": 4.805442499999117,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.00033909999910974875,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 1.3000233481204764,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 5643,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p128",
+      "name": "74-USB声卡-TLV320AIC23B-内部36.864MHz-用外部32768Hz晶振自动追频调节内部时钟",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p128\\mx251\\result.json",
+          "sha256": "5a1002246d004cf6666fe187a73268e7793f53871645ab679c020cb8d52b066d"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p128\\keil\\result.json",
+          "sha256": "35065b094feea88d24855c877499084e102d34dfe2bedd90f423d31e12b8dc2d"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p128\\stc\\result.json",
+          "sha256": "658d9b5face9a0db4a2ff3e70f9d8303e9754de06b83af4df6947faf89e5ba3f"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p128\\mx251\\result.json",
+          "sha256": "8030c1a0c5cdba97f89b3a87245797bc7bb5af1a4b18f6b2fbc65e5b07f13ca8"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 4349,
+      "mx251BuildSeconds": 52.778817500000514,
+      "keilStatus": "BUILT",
+      "keilBytes": 3938,
+      "keilBuildSeconds": 3.701130600000397,
+      "stcStatus": "FAILED",
+      "stcBytes": null,
+      "stcBuildSeconds": 4.823112000000037,
+      "stcError": "usb_desc.c 第 23 行: 数组初始化值 48000 超出元素类型 8 位有符号范围: CONFIGDESC[91]",
+      "keilRatio": 1.1043676993397664,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 4349,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p129",
+      "name": "75-并口LCD128x64显示图形文字-ST7920-用DMA-M6800接口自动刷新",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p129\\mx251\\result.json",
+          "sha256": "a221d60adbdb0c1ddc35169c8becd316cb26c67e6e3f3f9a01c4a363daaaec1c"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p129\\keil\\result.json",
+          "sha256": "37c510b38307e6f40dbab5059f5e89a5115ec927936ef1e0dc71edd57cff20b3"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p129\\stc\\result.json",
+          "sha256": "929e3f5edb0512b93bdaf4b891ca29f38fee6fe27d8989aeca5b60e86dbcb2e9"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p129\\mx251\\result.json",
+          "sha256": "af4ffe1ca975fdd836f246676e891d8acb03e32a854582bc6bfaf1914292243b"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 3578,
+      "mx251BuildSeconds": 25.149718999999095,
+      "keilStatus": "BUILT",
+      "keilBytes": 3250,
+      "keilBuildSeconds": 0.7731708999999682,
+      "stcStatus": "FAILED",
+      "stcBytes": null,
+      "stcBuildSeconds": 2.6083587000011903,
+      "stcError": "main-DMA-V21.c 第 56 行: _at_ 定义错误: DisTmp @ 0x10000: 与已分配的 xdata 变量区重叠（普通变量已占用至 0x10002）\nmain-DMA-V21.c 第 104 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）；数组名未定义，无法按下标访问\nmain-DMA-V21.c 第 104 行: 未定义的变量或寄存器: DisTmp —— ★ 这个名字**在本文件里声明过、是那条声明报错了**（上面的 `_at_`/声明错误）—— **先修那条** ★\nmain-DMA-V21.c 第 104 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）\nmain-DMA-V21.c 第 106 行第 13 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）\nmain-DMA-V21.c 第 109 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）；数组名未定义，无法按下标访问\nmain-DMA-V21.c 第 109 行: 未定义的变量或寄存器: DisTmp —— ★ 这个名字**在本文件里声明过、是那条声明报错了**（上面的 `_at_`/声明错误）—— **先修那条** ★\nmain-DMA-V21.c 第 109 行第 24 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）\nmain-DMA-V21.c 第 111 行第 13 列: 未定义的标识符: DisTmp（可能缺少 #define DisTmp，或变量/函数名拼写错误）",
+      "keilRatio": 1.100923076923077,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 3601,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p131",
+      "name": "77-DMA SPI刷新OLED12864显示屏程序，SSD1306驱动，0.96寸",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p131\\mx251\\result.json",
+          "sha256": "27e2e3b5951912decd85e8e489ea3b52ced0c3767d68fc6b7cce8978d57ebaab"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p131\\keil\\result.json",
+          "sha256": "ef852ebbc8715e61cefd4e278a0c60a0d6749e5aed2294ba5dc256c29a60b887"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p131\\stc\\result.json",
+          "sha256": "463776308cd6467c15bd49bd459715c1973f6de60ef477f4e7d19973a30f3c50"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p131\\mx251\\result.json",
+          "sha256": "74292537c4d92e64327a3aa5de23ff3ce0f1cf367be71ccb74d66a530becf0a5"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 35 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 5570,
+      "mx251BuildSeconds": 35.01674829999865,
+      "keilStatus": "BUILT",
+      "keilBytes": 5304,
+      "keilBuildSeconds": 0.32404090000090946,
+      "stcStatus": "BUILT",
+      "stcBytes": 6694,
+      "stcBuildSeconds": 4.030127699999866,
+      "stcError": null,
+      "keilRatio": 1.0501508295625943,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.8320884374066329,
+      "initialUnifiedBytes": 5593,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p132",
+      "name": "78-DMA SPI刷新LCD12864显示屏程序，ST7565R驱动，1.44寸",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p132\\mx251\\result.json",
+          "sha256": "c6cc12a665b68e310064fb11b4de474cd0a9dbdc8169a0cb1cc223559d34b9c9"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p132\\keil\\result.json",
+          "sha256": "60c4b9e5a91cf633de1858fa40a42a135178f3b3fd385120f02d2a626a268108"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p132\\stc\\result.json",
+          "sha256": "bdbdc64cb3fc3b597bd50d9f61ff7a843cf7b084ebc22e3a1d6a2e85bd4fadbc"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p132\\mx251\\result.json",
+          "sha256": "d3fbe049a211243a3e89fb05e4e0ef9dd07603b255395fe6802eb603c2ec5fa0"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 35 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 5502,
+      "mx251BuildSeconds": 33.83138280000094,
+      "keilStatus": "BUILT",
+      "keilBytes": 5308,
+      "keilBuildSeconds": 0.6462859000002936,
+      "stcStatus": "BUILT",
+      "stcBytes": 6732,
+      "stcBuildSeconds": 4.245715200000632,
+      "stcError": null,
+      "keilRatio": 1.03654860587792,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 0.8172905525846702,
+      "initialUnifiedBytes": 5525,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p133\\mx251\\result.json",
+          "sha256": "f712d7b8360ea3e8bf4f639c74f4ec5076720c80d0f42c14b4455ff09bee205a"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p133\\keil\\result.json",
+          "sha256": "c1ede8dd08f561bb688eb2416c1ccea1a9ac57aef6c1f94baa6a230e8a5aae76"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p133\\stc\\result.json",
+          "sha256": "ffce0ef6859c473442ed845032110e449c03866dd90b9e98c11bf4a03ae2699e"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p133\\mx251\\result.json",
+          "sha256": "78af21d2226c52b69e8cb4690f4020c860e63360d425e2acf5941ba57777a0e3"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 19 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 582,
+      "mx251BuildSeconds": 15.648159400001532,
+      "keilStatus": "BUILT",
+      "keilBytes": 404,
+      "keilBuildSeconds": 0.7656239999996615,
+      "stcStatus": "BUILT",
+      "stcBytes": 1073,
+      "stcBuildSeconds": 1.8361585000002378,
+      "stcError": null,
+      "keilRatio": 1.4405940594059405,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.5424044734389561,
+      "initialUnifiedBytes": 582,
+      "integrationSavedBytes": 0
+    },
+    {
+      "id": "p134",
+      "name": "80-SPI-DMA发送-驱动WS2812彩灯",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p134\\mx251\\result.json",
+          "sha256": "aeed6d91f2cf99cc9030a6158f4272ecbc758c419d85e626e3d37052773a431e"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p134\\keil\\result.json",
+          "sha256": "937212cf64111969edcd7318321134ed7dd4a27b6a9ac7c70483cc797554527a"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p134\\stc\\result.json",
+          "sha256": "45cc921ebd5d35730e7a713d343afa6bbff7f814c07beca172cd2b5c7a1a5dde"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p134\\mx251\\result.json",
+          "sha256": "8fc5c4ea7c870900fc76123c58ecbfa927b59deb6fb2aa39e779c68a79f06a73"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 25 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 993,
+      "mx251BuildSeconds": 19.846290499999668,
+      "keilStatus": "BUILT",
+      "keilBytes": 780,
+      "keilBuildSeconds": 1.0976190000001225,
+      "stcStatus": "BUILT",
+      "stcBytes": 1897,
+      "stcBuildSeconds": 2.3910744000004343,
+      "stcError": null,
+      "keilRatio": 1.273076923076923,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.5234580917237743,
+      "initialUnifiedBytes": 1016,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p136\\mx251\\result.json",
+          "sha256": "91985a5eb3922991769bf927ea6122459c93968de122764228950c70c72964c8"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p136\\keil\\result.json",
+          "sha256": "6760dc341099829e3f366f31889baaaa39a3dbf59ee177eec4820a06344dfb13"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p136\\stc\\result.json",
+          "sha256": "de97682b31c18b27bec2c8a92588a4829e14eedde30f2ed9c97a333c41e12ffc"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p136\\mx251\\result.json",
+          "sha256": "2314d0d156b6c12f2f4cdd7876594738c4845ac1e1c11a36b6a46864e393f506"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 55 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 5206,
+      "mx251BuildSeconds": 35.90641109999888,
+      "keilStatus": "BUILT",
+      "keilBytes": 4128,
+      "keilBuildSeconds": 1.5149038999988989,
+      "stcStatus": "BUILT",
+      "stcBytes": 6076,
+      "stcBuildSeconds": 5.671985799999675,
+      "stcError": null,
+      "keilRatio": 1.261143410852713,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.8568136932192232,
+      "initialUnifiedBytes": 5229,
+      "integrationSavedBytes": 23
+    },
+    {
+      "id": "p137",
+      "name": "83-高级PWM硬件移相/PWMA_Asymetric_Test",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p137\\mx251\\result.json",
+          "sha256": "ba27cbea3ae5144383a8dde4b0ff9b638faca35a3ed0b85c46a46492effb522f"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p137\\keil\\result.json",
+          "sha256": "9053c3797c9b3fc79a97496ad4e0d086c2e36f957b016987dbd0092d8594d194"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p137\\stc\\result.json",
+          "sha256": "652fd49d065635f1f61c17ae80c8ba661840fd11619230f81d8212c3a09292a6"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p137\\mx251\\result.json",
+          "sha256": "2ab861d3c9eee14ec9b838b6c584feac71c7eeb8843275bba42a333e11639b83"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 38 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 511,
+      "mx251BuildSeconds": 15.928052799999932,
+      "keilStatus": "BUILT",
+      "keilBytes": 454,
+      "keilBuildSeconds": 0.2722109999995155,
+      "stcStatus": "BUILT",
+      "stcBytes": 246,
+      "stcBuildSeconds": 1.1841850000000704,
+      "stcError": null,
+      "keilRatio": 1.1255506607929515,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 2.0772357723577235,
+      "initialUnifiedBytes": 586,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p138",
+      "name": "83-高级PWM硬件移相/PWMA_Combined 3-phase_Test",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p138\\mx251\\result.json",
+          "sha256": "a8ce9c10ef5d0929e6067fdb4654cbd4cf601576e643ad9218ad4180a91e44db"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p138\\keil\\result.json",
+          "sha256": "bea2b67899fcb55c553af0d291e56680d76b9a7e7578b939e152c26326aa6467"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p138\\stc\\result.json",
+          "sha256": "e68a69dcd1ce83f29d87f48c7c3bdd41b74613848f4fb1ed131cbeeed068d182"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p138\\mx251\\result.json",
+          "sha256": "096f2f0a22373c92132da49a023106654db833e8df726d55a1ab4c6f0fbcae25"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 43 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 545,
+      "mx251BuildSeconds": 16.440286499999274,
+      "keilStatus": "BUILT",
+      "keilBytes": 498,
+      "keilBuildSeconds": 0.2099039000004268,
+      "stcStatus": "BUILT",
+      "stcBytes": 276,
+      "stcBuildSeconds": 1.1387061000004906,
+      "stcError": null,
+      "keilRatio": 1.0943775100401607,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": 1.9746376811594204,
+      "initialUnifiedBytes": 620,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p139",
+      "name": "83-高级PWM硬件移相/PWMA_Combined_Test",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p139\\mx251\\result.json",
+          "sha256": "860ce9d26ce869277a73ce39a67e4703696aa6feafbc599e2565347ee79d0c97"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p139\\keil\\result.json",
+          "sha256": "b01a4f3b2976cbde6a2380306b72ff34a8b7547dbbbe32d7269bb0c338e7ff80"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p139\\stc\\result.json",
+          "sha256": "032e65a5dc088dec0dc4fbb3891a616fbe65f69b42bda55194431021a2244296"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p139\\mx251\\result.json",
+          "sha256": "51c5cfe5c37cc9123126903659315d64bad0100fb90fbec3a04a40a5e56c1108"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 38 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 511,
+      "mx251BuildSeconds": 16.20581149999998,
+      "keilStatus": "BUILT",
+      "keilBytes": 454,
+      "keilBuildSeconds": 0.1375216000014916,
+      "stcStatus": "BUILT",
+      "stcBytes": 247,
+      "stcBuildSeconds": 1.0128624999997555,
+      "stcError": null,
+      "keilRatio": 1.1255506607929515,
+      "within110": false,
+      "within120": true,
+      "mxStcRatio": 2.068825910931174,
+      "initialUnifiedBytes": 586,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p142",
+      "name": "86-普通IO口中断-休眠唤醒/C语言",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p142\\mx251\\result.json",
+          "sha256": "fe93b7646d4be1618747616c889d03f22c37f06a5e2f0445a8b4ae7946def7c5"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p142\\keil\\result.json",
+          "sha256": "e17f5528ea5f24fa857be329e7e7afc275e4f22c199069d6681a32eec6237ba3"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p142\\stc\\result.json",
+          "sha256": "66099cd8fb27c3a3a83ed41f4e0465396fc96c0a758f56f23de1fab262d206d4"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p142\\mx251\\result.json",
+          "sha256": "219f233ecc59c56f09e43c9438d546916a453b97ec720e34fa9b4dbe952cf543"
+        }
+      },
+      "semanticNotes": [],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 1551,
+      "mx251BuildSeconds": 17.0201464999991,
+      "keilStatus": "BUILT",
+      "keilBytes": 1858,
+      "keilBuildSeconds": 0.2574872000004689,
+      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
+      "stcBytes": null,
+      "stcBuildSeconds": 0.0003687999997055158,
+      "stcError": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+      "keilRatio": 0.8347685683530678,
+      "within110": true,
+      "within120": true,
+      "mxStcRatio": null,
+      "initialUnifiedBytes": 7995,
+      "integrationSavedBytes": 6444
+    },
+    {
+      "id": "p146",
+      "name": "A01-如发现P32按键接地用户程序就软复位到系统区不停电下载",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p146\\mx251\\result.json",
+          "sha256": "539df2c18e56792710d9571b2f39e74879d098c57703a3ac1c55fa327165c00c"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p146\\keil\\result.json",
+          "sha256": "733db0d7f30f2db77b0b77ac2a60ccf26ddc810f9aafa94059636f1faebf6a48"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p146\\stc\\result.json",
+          "sha256": "645d71116418f98b565cff0bd2d3d0762ae4ccaf6f8bc5129abd853dc015bd05"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p146\\mx251\\result.json",
+          "sha256": "30528cc969de8842b5b7a2f44a1ba45f75f5c7dd492d2b99062588207d164d34"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 405,
+      "mx251BuildSeconds": 15.620000099999743,
+      "keilStatus": "BUILT",
+      "keilBytes": 277,
+      "keilBuildSeconds": 0.3255614000008791,
+      "stcStatus": "BUILT",
+      "stcBytes": 923,
+      "stcBuildSeconds": 1.387530300000435,
+      "stcError": null,
+      "keilRatio": 1.4620938628158844,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.4387865655471289,
+      "initialUnifiedBytes": 480,
+      "integrationSavedBytes": 75
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "evidence": {
+        "mx251": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\projects\\p149\\mx251\\result.json",
+          "sha256": "99118eecd23876097257312935a1409e0348455cbac2e8dcbb257bd3dd565766"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p149\\keil\\result.json",
+          "sha256": "177900b13a2016ec9f55f8e9649fe2b0cc4efb822f12c2b83c9350313b17af9a"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p149\\stc\\result.json",
+          "sha256": "7522d609f91a7db8074f56f0f6e647024cb035f97ce412d8fda30ef9b1acad0c"
+        },
+        "initialUnified": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p149\\mx251\\result.json",
+          "sha256": "bbadde72b2acf7052900911b95a963023c2016f9d23692990fd16a1a2459ed22"
+        }
+      },
+      "semanticNotes": [
+        "⚠️ 本次编译**剥离了 1 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+      ],
+      "originalSourceIssue": null,
+      "mx251Status": "BUILT",
+      "mx251Bytes": 586,
+      "mx251BuildSeconds": 14.402068900000813,
+      "keilStatus": "BUILT",
+      "keilBytes": 423,
+      "keilBuildSeconds": 0.3663142000004882,
+      "stcStatus": "BUILT",
+      "stcBytes": 1118,
+      "stcBuildSeconds": 1.5052952999994886,
+      "stcError": null,
+      "keilRatio": 1.3853427895981087,
+      "within110": false,
+      "within120": false,
+      "mxStcRatio": 0.5241502683363148,
+      "initialUnifiedBytes": 609,
+      "integrationSavedBytes": 23
+    }
+  ],
+  "configuration": {
+    "output": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run",
+    "corpus": "E:/MCU/MX251-STC-SDK/research/official-box-comparison-20261101",
+    "ledger": "E:/STVAPP/MCU-StdioX/handoff/MX251-unfinished-20261104/evidence/current-nonmath-acceptance.json",
+    "core": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-integrated-20261110\\core",
+    "pwsh": "C:/Users/jav/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe",
+    "cmake": "E:/STVAPP/MX251-edata-dev/host/cmake/bin/cmake.exe",
+    "ninja": "E:/STVAPP/MX251-edata-dev/host/ninja/ninja.exe",
+    "keil": "E:/MCU/Keil5/C251",
+    "node": "E:/nodejs/node.exe",
+    "stcAdapter": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\stcide_compile.mjs",
+    "stcVendor": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor",
+    "keilVectorAdapter": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\keil-adapter\\adapter.py",
+    "keilVectorAdapterIds": [
+      "p074",
+      "p114",
+      "p122",
+      "p128",
+      "p129",
+      "p131",
+      "p132",
+      "p133",
+      "p134",
+      "p136"
+    ],
+    "mxSwitches": [
+      "-FunctionSharing",
+      "-MachineIr",
+      "-CalleePreservation",
+      "-NativeIntegerRuntime",
+      "-C251BitComplement",
+      "-SelectiveLeafAbi",
+      "AUTO"
+    ],
+    "stcOptions": {
+      "eepromSize": 0,
+      "mathLib": "mdu32",
+      "stringEncoding": "gb2312",
+      "optimize": true,
+      "ptrMode": "24"
+    },
+    "toolFiles": [
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-integrated-20261110\\core\\toolchain\\bin\\sdcc.exe",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\keil-adapter\\adapter.py",
+      "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\stcide_compile.mjs",
+      "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\unified_sdk_matrix.py",
+      "E:\\MCU\\Keil5\\C251\\BIN\\C251.EXE",
+      "E:\\MCU\\Keil5\\C251\\BIN\\A251.EXE",
+      "E:\\MCU\\Keil5\\C251\\BIN\\L251.exe",
+      "E:\\MCU\\Keil5\\C251\\BIN\\OH251.EXE",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor\\chunks\\chunk-CM2DCH7G.js",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor\\chunks\\chunk-OEKRUSUJ.js",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor\\chunks\\chunk-VF3TAQQT.js",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor\\chunks\\chunk-VGV3K7ZW.js",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor\\chunks\\chunk-XFNMII4Z.js",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official\\vendor\\ide.worker.js",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-integrated-20261110\\core\\build\\qualified\\StartupRuntime.ps1",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-integrated-20261110\\core\\build\\qualified\\StartupRuntimeContract.json",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-integrated-20261110\\core\\build\\qualified\\Build.ps1",
+      "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\MX251-integrated-20261110\\core\\build\\qualified\\FormatRuntime.ps1"
+    ]
+  },
+  "compiler": {
+    "path": "toolchain/bin/sdcc.exe",
+    "sha256": "c62fc14e9a6eed7eb62227f4cea78b533bf9aeeab50051377c1c96b75dfe013b",
+    "versionBanner": "Underlying driver reports SDCC 4.6.0 #0; MX251 build identity is this manifest."
+  },
+  "candidateManifest": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\verified-run\\inputs.json",
+    "sha256": "422b26e395c488ca4387e583fffc0a297224229478fb69767e08eb7255d50279"
+  },
+  "referenceManifest": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\inputs.json",
+    "sha256": "d15170b0812ed9af8a1d28d23997bae7f20e8239c986f162579dbddde2fc00b2"
+  },
+  "measurement": "Unique Intel HEX payload bytes; address gaps and HEX text overhead excluded.",
+  "runtime": "Firmware execution time was not measured. Build seconds are host wall time under concurrent load.",
+  "stcScope": "Current official worker; native 24-bit-pointer configuration, not Keil XSMALL equivalence. Raw size comparison only.",
+  "hardwareExecuted": false
+}

@@ -18,12 +18,15 @@ def main():
     args = parser.parse_args()
     manifest = read(args.candidate/'inputs.json')
     reference_manifest = read(args.references/'inputs.json')
+    assert manifest['configuration']['mxSwitches'] == reference_manifest['configuration']['mxSwitches']
     references = {r['id']: r for r in reference_manifest['projects']}
     rows, counters, startup, leaf = [], collections.Counter(), collections.Counter(), collections.Counter()
     for project in manifest['projects']:
         key = project['id']
         assert project['sourceManifest']['sha256'] == references[key]['sourceManifest']['sha256']
         row = dict(id=key, name=project['name'], evidence={}, semanticNotes=[])
+        gap = project.get('historicalCorrectnessGap')
+        row['originalSourceIssue'] = gap if isinstance(gap, dict) and gap.get('status', '').startswith('ORIGINAL_VENDOR_') else None
         for suite, root in [('mx251', args.candidate), ('keil', args.references), ('stc', args.references)]:
             path = root/'projects'/key/suite/'result.json'
             result = read(path)
@@ -49,6 +52,10 @@ def main():
         row['within110'] = row['keilRatio'] is not None and 10*row['mx251Bytes'] <= 11*row['keilBytes']
         row['within120'] = row['keilRatio'] is not None and 5*row['mx251Bytes'] <= 6*row['keilBytes']
         row['mxStcRatio'] = row['mx251Bytes']/row['stcBytes'] if row['mx251Bytes'] and row['stcBytes'] else None
+        baseline_path = args.references/'projects'/key/'mx251/result.json'
+        row['initialUnifiedBytes'] = read(baseline_path)['payloadBytes']
+        row['integrationSavedBytes'] = row['initialUnifiedBytes']-row['mx251Bytes']
+        row['evidence']['initialUnified'] = pin(baseline_path)
         rows.append(row)
     assert len(rows) == 75
     comparable = [r for r in rows if r['keilRatio'] is not None]
@@ -63,6 +70,11 @@ def main():
                    stcRawComparable=len(stc), smallerThanStcRaw=sum(r['mx251Bytes'] < r['stcBytes'] for r in stc),
                    mxStcSubsetBytes=sum(r['mx251Bytes'] for r in stc), stcSubsetBytes=sum(r['stcBytes'] for r in stc),
                    stcSemanticDifferenceDiagnostics=sum(bool(r['semanticNotes']) for r in stc),
+                   initialUnifiedBytes=sum(r['initialUnifiedBytes'] for r in rows),
+                   integrationSavedBytes=sum(r['integrationSavedBytes'] for r in rows),
+                   integrationImprovedProjects=sum(r['integrationSavedBytes'] > 0 for r in rows),
+                   integrationUnchangedProjects=sum(r['integrationSavedBytes'] == 0 for r in rows),
+                   integrationLargerProjects=sum(r['integrationSavedBytes'] < 0 for r in rows),
                    startupStatuses=dict(startup), leafStatuses=dict(leaf), fullProjectRuntimeQualified=0)
     summary['weightedKeilRatio'] = summary['mxTotalBytes']/summary['keilTotalBytes']
     summary['weightedStcRawRatio'] = summary['mxStcSubsetBytes']/summary['stcSubsetBytes']
@@ -81,6 +93,12 @@ def main():
              f"75 项体积合计 MX251/Keil：**{summary['mxTotalBytes']} / {summary['keilTotalBytes']} B**，加权比 **{summary['weightedKeilRatio']:.2%}**，逐工程比值中位数 **{summary['medianKeilRatio']:.2%}**。", '',
              f"STC-IDE 有 {len(stc)} 项原始 HEX 数值可比较，MX251 在其中 {summary['smallerThanStcRaw']} 项更小；其中 {summary['stcSemanticDifferenceDiagnostics']} 项 STC 诊断提及 far 剥离、未定义外部变量另行分配等语义差异。STC 数值只作独立工具链参考，不计入同模型达线数量。", '',
              '体积按 HEX 实际地址上的有效字节计数，排除空洞和文本开销。运行时间本次未测；完整工程双体积/时间达标记录仍为 0。所有工程保持既有算法，只沿用方言、初始化括号和中断向量适配。', '',
+             '## 统一版本与整合修复', '',
+             '统一推荐包：`MX251-integrated-20261110`，编译器源码 `961e551`，构建整合提交 `8abae8d`。通过 `Build.cmd -ProjectPath <工程路径> -C251Compatibility` 构建本批 C251 方言工程。普通 C 工程省略兼容开关。', '',
+             '在此前已验证的后端优化之上，恢复当前汇编器对应的启动裁剪，使其可与原生整数库共存；同时让格式化库和启动分析支持多个绝对向量经过共享跳板到达已注册 C 中断入口。上述规则均不匹配 SDK、工程编号或函数名称。', '',
+             f"与本次第一轮统一候选相比，整合后 {summary['integrationImprovedProjects']} 项体积减少、{summary['integrationUnchangedProjects']} 项相同、{summary['integrationLargerProjects']} 项增加，总计减少 **{summary['integrationSavedBytes']} B**。第一轮与最终轮的编译器二进制和显式开关相同，变化来自构建层恢复已有优化。", '',
+             'Keil 使用原始授权 C251 5.60，XSMALL、ROM(LARGE)、OPTIMIZE(7,SPEED)。10 项高编号中断沿用已验证的 NOINTVECTOR+A251 向量适配，未修改 Keil 编译器；本次 75 项 HEX 体积全部与既有参考吻合。STC-IDE 使用 2026-11-10 获取的官方 worker `stc-ide-ff7d2e83`，原始快照和指纹保留在证据目录。', '',
+             'STC 的 3 项编译失败为 p114、p129（绝对地址对象与变量区冲突）和 p128（48000 初始化到 8 位数组元素）。p108 的厂商原始汇编向量跳到 main 内部，原始 Keil 也存在此问题，表中保留体积但不宣称功能通过。', '',
              '## 全部工程', '', '| ID | 工程 | MX251/B | Keil/B | MX/Keil | STC-IDE/B | 备注 |',
              '| --- | --- | ---: | ---: | ---: | ---: | --- |']
     table = []
@@ -93,6 +111,8 @@ def main():
             note += '；STC 编译失败'
         elif row['semanticNotes']:
             note += '；STC 语义差异诊断'
+        if row['originalSourceIssue']:
+            note += '；厂商原始向量未指向 ISR（Keil 同样存在）'
         values = [row['id'], row['name'], row['mx251Bytes'] or '—', row['keilBytes'] or '—', ratio, row['stcBytes'] or '—', note]
         lines.append('| '+' | '.join(str(v).replace('|', '\\|') for v in values)+' |')
         cells = ''.join('<td>'+html.escape(str(v))+'</td>' for v in values)
