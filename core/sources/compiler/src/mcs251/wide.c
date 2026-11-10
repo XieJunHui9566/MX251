@@ -56,6 +56,7 @@ typedef struct {
   bool argumentReadReverse; /* ABI2 SEND reads least significant byte first. */
   bool rotateCandidate; /* proposal only: original MIR/allocation remain frozen */
   bool volatileDataWideAccess; /* explicit object-access contract; byteAccess remains true */
+  bool nativeCodeByte; /* Selected loop-local unified CODE byte load. */
   bool nativeIndexed;
   unsigned indexedExtent,indexedOrdinal;
   bool privateUnionWordAccess; /* transaction width only; byteAccess still guards aliases */
@@ -108,6 +109,7 @@ typedef struct {
   bool promotedStackObjects; /* Keep object allocation choices after scalar promotion. */
   bool narrowNegate;
   bool nativeIndexedTrial;
+  int cursorCount,cursorLabels[32];
   unsigned domainCount,domainValues[4];
   bool callEffectsInvalid;
   bool callFrame;
@@ -1654,6 +1656,7 @@ wide_reset_allocation(wide_function *f)
 
 #include "wide_constant_addresses.c.inc"
 #include "wide_affine.c.inc"
+#include "wide_loop_cursor.c.inc"
 
 /* 只消除直线尾部中仅供 IFX 使用的逻辑非临时值。
  * 已取样的输入原样复用；不删读写、不跨调用/标签/内存节点，也不改变
@@ -2433,6 +2436,8 @@ static int wide_resolve_callee_cost(const char *name,const void *context,unsigne
  * 内部错误一直向上传播，未知编码或任一成本退步时保留完整旧候选。 */
 #include "indexed_field_flags.h"
 
+#include "wide_cursor_cost.c.inc"
+
 static mcs251_wide_result
 wide_choose_transform_frame(wide_function *f,wide_selection_cost *cost,
   unsigned (*transform)(wide_function *),
@@ -2467,7 +2472,8 @@ wide_choose_transform_frame(wide_function *f,wide_selection_cost *cost,
          * 旧选择器默认 false，保持历史规则和永久失败样本的重放。 */
         const char *canonicalOption=getenv("MX251_CANONICAL_BRANCH_COST");
         bool canonicalBranches=canonicalOption && !strcmp(canonicalOption,"1");
-        int loopDecision=canonicalBranches?
+        int loopDecision=!strcmp(kind,"loop-cursor")?
+          wide_cursor_cost_compare(f,trial,&originalCode,&trialCode):canonicalBranches?
           wide_loop_cost_compare_canonical(dbuf_get_buf(&originalCode),dbuf_get_length(&originalCode),
             dbuf_get_buf(&trialCode),dbuf_get_length(&trialCode),wide_resolve_cost_operand,wide_resolve_callee_cost,f,trial):useOperandContext?
           wide_loop_cost_compare_callees(dbuf_get_buf(&originalCode),dbuf_get_length(&originalCode),
@@ -2663,10 +2669,17 @@ wide_choose_affine(wide_function *f,wide_selection_cost *cost)
 }
 
 static mcs251_wide_result
+wide_choose_loop_cursors(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_loop_cursors,wide_choose_affine,
+    "loop-cursor","loops",false,"cursor-original","cursor-trial",true,true);
+}
+
+static mcs251_wide_result
 wide_choose_native_indexed(wide_function *f,wide_selection_cost *cost)
 {
-  if(!mcs251IndexedFieldEnabled)return wide_choose_affine(f,cost);
-  return wide_choose_transform(f,cost,wide_native_indexed_fields,wide_choose_affine,
+  if(!mcs251IndexedFieldEnabled)return wide_choose_loop_cursors(f,cost);
+  return wide_choose_transform(f,cost,wide_native_indexed_fields,wide_choose_loop_cursors,
     "native-indexed-field","sites",false,"indexed-old","indexed-trial",true,true);
 }
 
