@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "implementationCommit": "badd485a37ea8d53677236507009f2d1f77cb5d9",
+  "baseCommit": "f3d2501",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\core-01\\core.json",
+    "sha256": "e5cfb200168156ce2e7dd9e54b9635dfc3f7ac9c4f2985049cdd13700fe388bf"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "6219b66b43a63fc999a1fc7365244624903b16afbdff44819533229c99edd4b3"
+  },
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\qualification.json",
+    "sha256": "1a6b101899b5d10c9d39f22cba808626aed2db0213c07e3f0f7c71536e8ae931"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\comparison.json",
+    "sha256": "0a55d46532695b13c7f2e613144a79e76d3d6c89fba7de56efefc08132f6be11"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 13,
+    "unchanged": 62,
+    "larger": 0,
+    "savedBytes": 62,
+    "mxTotalBytes": 206449,
+    "keilTotalBytes": 192051,
+    "within110": 49,
+    "within120": 61,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0749696695148685
+  },
+  "newWithin": {
+    "110": [],
+    "120": []
+  },
+  "lostWithin": {
+    "110": [],
+    "120": []
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 599,
+      "aggregateTicks": {
+        "0": 17840,
+        "1": 198400.0
+      },
+      "codeBytes": 3904,
+      "firmwareSha256": "2669d0cc342f085c9b442cebe9d05340e4099fedcbaf7d913e8c8ee82454606a",
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\capture-parent\\result.json",
+        "sha256": "b04cb450c9fea8f68c9b6da8522aadbc49a78a06fcae491559f067b715e3c347"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\capture-parent\\uart.bin",
+        "sha256": "9664ffcf548d03f06caebacf100a00b8442bfe13c172d6cb9bbb6d7bd9b75a4e"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\board-parent\\source.json",
+        "sha256": "53a963b0ca96b70bcee3dc574113b9ba334868efbc677e2d85f2e20f47d91715"
+      },
+      "buildReceipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\board-parent\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e71bf453fa50796672b26de40e4cbbeb9612b5894e4006b673ea8c939865ed28"
+      }
+    },
+    {
+      "variant": "new",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 608,
+      "aggregateTicks": {
+        "0": 16592,
+        "1": 192256.0
+      },
+      "codeBytes": 3815,
+      "firmwareSha256": "012c5b72ebc3dd10c0ee3e80de5a0e563eb0eccf121575edd190e8c8789c63e1",
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\capture-new\\result.json",
+        "sha256": "32d6b9a1043007e24e85e4b16701bab79ac846f49ed357f1f370aba905afb475"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\capture-new\\uart.bin",
+        "sha256": "b966bdbbd1ec8f2a726808256bdf996b0db362479b69a908249d53f8cf26360f"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\board-new\\source.json",
+        "sha256": "53a963b0ca96b70bcee3dc574113b9ba334868efbc677e2d85f2e20f47d91715"
+      },
+      "buildReceipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\board-new\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b4f185beb52db89b65c0f10091660002ed97f26af318fd5f96cb19ec74340928"
+      }
+    },
+    {
+      "variant": "format-parent",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 625,
+      "aggregateTicks": {
+        "0": 41407,
+        "1": 141077.0
+      },
+      "codeBytes": 5255,
+      "firmwareSha256": "b11660fa8bf6d475130f08857218d47fbc150b95a9b4745a6a1119afc360dd63",
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\capture-new\\result.json",
+        "sha256": "1869afbca40f9dedbfacea4cb4d522d171572061d16553e4479c24aaab85a307"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\capture-new\\uart.bin",
+        "sha256": "09b856c2b4b230bbf89fa986a454b288339882d1d83a8ea851f2062a18b94c92"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-new\\source.json",
+        "sha256": "adb40cf1263d151e89707d24abdc006038d1f2c20e4d985fd8288a4b0467190a"
+      },
+      "buildReceipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\board-new\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "750fa9850b8aaeeb471c529ee8000da9bad9a65a9dac05884c2d57f73fd3f09f"
+      }
+    },
+    {
+      "variant": "format-new",
+      "status": "PASS",
+      "cases": 128,
+      "frames": 618,
+      "aggregateTicks": {
+        "0": 40415,
+        "1": 141078.0
+      },
+      "codeBytes": 5248,
+      "firmwareSha256": "95b1d4ad504492446bd3d5f0d9202b6b45f8a71b2f80846aef6f85ea1bc6d4c2",
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\capture-format\\result.json",
+        "sha256": "1c90fe9b14381b73bba0c3fba9a0ecbe14be84d465b8de0ee319a076ca739f87"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\capture-format\\uart.bin",
+        "sha256": "c26b38f389c81e1661b3bf65abb648ab148309bf8a394b944a2ee252e49dbbd7"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\board-format\\source.json",
+        "sha256": "adb40cf1263d151e89707d24abdc006038d1f2c20e4d985fd8288a4b0467190a"
+      },
+      "buildReceipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\board-format\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "242729355778ea4472fd3bcd8147d1a8274aaf9ba2cca4d10429e041d610b827"
+      }
+    }
+  ],
+  "objectSummary": {
+    "applicationObjects": 178,
+    "applicationChanged": 4,
+    "formatObjects": 25,
+    "formatChanged": 10
+  },
+  "objectComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\object-comparison.json",
+    "sha256": "9b8979e94b211810137370eef669bbf1e59465b7c9194e26be2142b1aee39f27"
+  },
+  "checks": {
+    "nativePairs": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\final-pair-checks\\result.json",
+      "sha256": "6583df5f272f528030559f8a1fff020a054b9cf81bb3bd34427f731c352d998f"
+    },
+    "nativeNarrow": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\final-narrow-checks\\results.json",
+      "sha256": "fe46482f1b72b136fdab1e88d833b4f6b147df7ec6e4e9ffbd9d44565122bed0"
+    },
+    "softwareLong": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\native-divmod\\long-checks\\result.json",
+      "sha256": "7eeda231f6dea7d32b68f67ab088315d6751fe32983cc784e8ca2efa6e2def1f"
+    }
+  },
+  "fullProjectRuntimeMeasured": false,
+  "inheritedLargeFormatIssue": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\format-native\\large-existing-limitation.json",
+    "sha256": "b32f4d04d18d1c7098abd2efa48884007051d656f162da77865addfd5b9cbbf9"
+  },
+  "scope": "Unsigned native 8/16-bit quotient and remainder within straight-line MIR regions; sampled operands and independently allocated results. Existing signed and software 32-bit paths retained."
+}
