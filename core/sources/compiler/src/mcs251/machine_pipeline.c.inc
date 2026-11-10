@@ -1,5 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later */
 #include "machine_ir.h"
+#include "machine_branch.h"
 extern int mcs251MachineIrEnabled;
 extern bool mcs251CallClobberWrites(symbol *,unsigned long *);
 static int mcs251MachineCall(const char *name,uint32_t *reads,uint32_t *writes,void *context) {
@@ -49,11 +50,13 @@ static int mcs251MachineMemory(const char *name,void *unused) {
     }
   return 0;
 }
-static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi) {
+static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi,bool wide) {
   if(!mcs251MachineIrEnabled || options.debug || options.nopeep || !currFunc ||
      IFFUNC_ISNAKED(currFunc->type) || IFFUNC_ISISR(currFunc->type) ||
      IFFUNC_CALLEESAVES(currFunc->type) || FUNC_REGBANK(currFunc->type) ||
-     mcs251GetEmittedRegisterBank())return;
+     (!wide && mcs251GetEmittedRegisterBank()))return;
+  /* Wide code names physical GPRs and does not update the byte emitter's
+   * arN alias state. Its register bank comes from currFunc, checked above. */
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
@@ -71,5 +74,13 @@ static void mcs251MachinePipeline(size_t start,ebbIndex *ebbi) {
   unsigned counts[3];char *optimized=mi_optimize(body,length,exits,mcs251MachineMemory,mcs251MachineCall,ebbi,counts);
   if(optimized) {
     dbuf_set_length(codeOutBuf,start);dbuf_append_str(codeOutBuf,optimized);free(optimized);
+  }
+  const char *branches=getenv("MX251_FINAL_BRANCHES");
+  if(!branches || !strcmp(branches,"1")) {
+    body=dbuf_get_buf(codeOutBuf)+start;length=dbuf_get_length(codeOutBuf)-start;
+    optimized=mb_optimize(body,length,mcs251BackendSymbol,NULL);
+    if(optimized) {
+      dbuf_set_length(codeOutBuf,start);dbuf_append_str(codeOutBuf,optimized);free(optimized);
+    }
   }
 }
