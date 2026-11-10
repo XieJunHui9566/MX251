@@ -1,12 +1,16 @@
-# One closed leaf per build; use the existing ABI4 compiler contract and compare
+# One closed function per build; use the existing ABI4 compiler contract and compare
 # complete linked images. Call frequency only ranks trials, not claimed savings.
 function Get-Mx251LeafAbiCandidates([string]$Root,$Config,[string]$ToolRoot,[string]$ProfileRoot,[string[]]$Keep=@()) {
  if($Config.explicitAbi -or $Config.runtime -cne 'standard' -or @($Config.archives).Count){return}
- if(@($Config.units|Where-Object{$_.backend -cne 'ordinary-wide' -or -not $_.stackAuto -or [IO.Path]::GetExtension($_.file) -cne '.c'}).Count){return}
+ $cUnits=@($Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'})
+ $rawUnits=@($Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -cne '.c'})
+ if(@($cUnits|Where-Object{$_.backend -cne 'ordinary-wide' -or -not $_.stackAuto}).Count){return}
  $definitions=[hashtable]::new([StringComparer]::Ordinal);$texts=[hashtable]::new([StringComparer]::Ordinal);$calls=@();$refs=[hashtable]::new([StringComparer]::Ordinal)
- foreach($u in $Config.units){
+ $slots=[Collections.Generic.HashSet[int]]::new()
+ foreach($u in $cUnits){
   $text=[IO.File]::ReadAllText((Join-Path $Root ($u.name+'.asm')))
   if($text -cmatch '(?m)^; mx251-function begin .* (?:opaque|indirect)=1(?: |$)'){return}
+  foreach($m in [regex]::Matches($text,'(?m)^; mx251-irq-definition schema=2 symbol=\S+ slot=([0-9]+) private=[01]\s*$')){$null=$slots.Add([int]$m.Groups[1].Value)}
   $texts[$u.name]=$text
   $rel=Read-Mx251GcRel ([IO.File]::ReadAllBytes((Join-Path $Root ($u.name+'.rel')))) $u.name
   foreach($name in $rel.Definitions){if(-not $refs.ContainsKey($name)){$refs[$name]=0};$refs[$name]++}
@@ -15,7 +19,6 @@ function Get-Mx251LeafAbiCandidates([string]$Root,$Config,[string]$ToolRoot,[str
    $sig=[regex]::Matches($body,'(?m)^; mx251-scalar-definition schema=1 symbol='+$escaped+' signature=(\S+)\s*$')
    $abi=[regex]::Matches($body,'(?m)^;\s*mx251-bank-contract schema=1 symbol='+$escaped+' abi=2 bank=0 naked=0\s*$')
    if($sig.Count -ne 1 -or $abi.Count -ne 1 -or $m.Groups[2].Value -ne '0' -or $m.Groups[3].Value -ne '0'){continue}
-   if($body -cmatch '(?m)^\s*(?:[a-z]*call|ejmp|ljmp)\s+(?!__wm_)'){continue}
    if($text -cnotmatch ('(?m)^\s*\.globl\s+'+$escaped+'\s*$')){continue}
    if(-not $definitions.ContainsKey($name)){$definitions[$name]=@()}
    $definitions[$name]+=@{symbol=$name;unit=$u.name;signature=$sig[0].Groups[1].Value}
@@ -23,6 +26,14 @@ function Get-Mx251LeafAbiCandidates([string]$Root,$Config,[string]$ToolRoot,[str
   foreach($m in [regex]::Matches($text,'(?m)^; mx251-scalar-call schema=1 owner=(\S+) target=(\S+) signature=(\S+) values=\S+\s*$')){
    $calls+=@{unit=$u.name;owner=$m.Groups[1].Value;target=$m.Groups[2].Value;signature=$m.Groups[3].Value}
   }
+ }
+ # Numeric vector stubs have no function ABI. Reuse the existing vector
+ # analysis to distinguish registered ISR entrances from arbitrary raw code.
+ if($rawUnits.Count){
+  try{
+   $vectorHome=Get-Mx251FormatHome (Join-Path $Root 'linked.partial.map')
+   foreach($u in $rawUnits){$null=Get-Mx251FormatRawVectors $Root $u $vectorHome $slots}
+  }catch{return}
  }
  $excluded=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
  foreach($name in $Keep){$null=$excluded.Add($name)}
@@ -71,7 +82,7 @@ function Get-Mx251LeafAbiCandidates([string]$Root,$Config,[string]$ToolRoot,[str
 function Assert-Mx251LeafAbiBinding([string]$Root,$Config,$Selected){
  $old=$Selected.symbol;$name='___m251r4_'+$old.Substring(1);$escaped=[regex]::Escape($name)
  $image=Get-Mx251FormatHex (Join-Path $Root 'firmware.hex');$definitions=@();$calls=@();$abi=0
- foreach($u in $Config.units){
+ foreach($u in $Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'}){
   $lines=[IO.File]::ReadAllLines((Join-Path $Root ($u.name+'.asm')))
   $expected=0
   foreach($raw in $lines){
