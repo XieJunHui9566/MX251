@@ -4,6 +4,37 @@
 #ifndef MCS251_BACKEND_ENCODING_H
 #define MCS251_BACKEND_ENCODING_H
 #include "wide_cost.h"
+/* The byte backend nests additions when selecting an individual byte of a
+ * field. Resolve only one declared symbol plus integer offsets. */
+static int bc_offset_expression(const char **input,const char *name,unsigned depth,int *symbols,long long *value)
+{
+  if(depth>16)return 0;
+  const char *p=*input;long long result=0;int sign=1;
+  for(;;) {
+    long long term=0;int before=*symbols;
+    if(*p=='(') {
+      ++p;if(!bc_offset_expression(&p,name,depth+1,symbols,&term) || *p++!=')')return 0;
+    } else if(isdigit((unsigned char)*p)) {
+      char *end;unsigned long n=strtoul(p,&end,0);
+      if(end==p || n>INT_MAX)return 0;p=end;term=n;
+    } else {
+      size_t n=strlen(name);
+      if(!n || strncmp(p,name,n) || ++*symbols!=1)return 0;
+      p+=n;
+    }
+    if(sign<0 && *symbols!=before)return 0;
+    result+=sign*term;if(result<INT_MIN || result>INT_MAX)return 0;
+    if(*p!='+' && *p!='-')break;
+    sign=*p++=='+'?1:-1;
+  }
+  *input=p;*value=result;return 1;
+}
+static inline int bc_symbol_offset(const char *operand,const char *name,unsigned size)
+{
+  int symbols=0;long long offset=0;const char *p=operand;
+  if(!bc_offset_expression(&p,name,0,&symbols,&offset) || *p || symbols!=1 || offset<0 || (unsigned long long)offset>=size)return -1;
+  return (int)offset;
+}
 static unsigned
 bc_instruction_bytes_mode(const char *text,size_t length,wide_cost_resolver resolver,const void *ctx,int narrow)
 {
@@ -37,6 +68,18 @@ bc_instruction_bytes_mode(const char *text,size_t length,wide_cost_resolver reso
     return 0;
   }
   if(second==2)return 0;
+  if(narrow && !strcmp(op,"djnz"))
+    return second==1 && y && (dst.kind==WC_DIRECT ||
+      (dst.kind==WC_REG && dst.width==1 && dst.reg<8))?3:0;
+  if(narrow && !strcmp(op,"cpl"))
+    return !second && dst.kind==WC_REG && dst.width==1 && dst.reg==11?1:0;
+  if(narrow && !strcmp(op,"pushw") && !second && a[0]=='#') {
+    const char *q=a+1;
+    if(isalpha((unsigned char)*q) || *q=='_' || *q=='$' || *q=='.') {
+      do {++q;} while(isalnum((unsigned char)*q) || *q=='_' || *q=='$' || *q=='.');
+      if(!*q)return 4;
+    }
+  }
   if(narrow && (!strcmp(op,"addc") || !strcmp(op,"subb"))) {
     if(second!=1 || dst.kind!=WC_REG || dst.width!=1 || dst.reg!=11)return 0;
     if(src.kind==WC_IMM || src.kind==WC_DIRECT ||

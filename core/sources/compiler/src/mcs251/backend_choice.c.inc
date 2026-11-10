@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * 同一 IR 的完整普通/宽后端候选。现有选择比较线性体或共同 CFG 区域；
- * 新增窄无符号取负按无循环函数的完整体积与静态指令数选择。
+ * 无环 C 控制流及窄无符号取负使用完整体积与静态指令数选择。
  * 不交换ASM片段，不改变声明/调用约定，也不以函数或器件名称选择。 */
 #include "internal_return.h"
 #include "wide_cost.h"
@@ -62,6 +62,40 @@ mcs251BackendNarrowTrial(ebbIndex *ebbi)
   return found;
 }
 
+/* Whole-body selection for acyclic C control flow. Unlike the path-dominance
+ * selector, this compares both complete implementations, including branch
+ * encodings and shared tails. It is a size/instruction-count heuristic, not
+ * a claim that every input takes the same number of cycles. */
+static bool
+mcs251BackendBodyEligible(ebbIndex *ebbi)
+{
+  const char *enabled=getenv("MX251_BODY_BACKEND_CHOICE");
+  if(enabled && !strcmp(enabled,"0"))return false;
+  unsigned *degree=Safe_calloc(ebbi->count,sizeof *degree);
+  unsigned remaining=0;bool valid=true;
+  for(int b=0;b<ebbi->count;++b) {
+    eBBlock *bb=ebbi->bbOrder[b];
+    if(bb->noPath){degree[b]=UINT_MAX;continue;}
+    ++remaining;
+    for(const set *s=bb->succList;s;s=s->next) {
+      eBBlock *next=s->item;if(next->noPath)continue;
+      int j=0;for(;j<ebbi->count && ebbi->bbOrder[j]!=next;++j){}
+      if(j==ebbi->count){valid=false;break;}
+      ++degree[j];
+    }
+  }
+  while(valid && remaining) {
+    int b=0;for(;b<ebbi->count && degree[b];++b){}
+    if(b==ebbi->count){valid=false;break;}
+    degree[b]=UINT_MAX;--remaining;
+    for(const set *s=ebbi->bbOrder[b]->succList;s;s=s->next) {
+      eBBlock *next=s->item;if(next->noPath)continue;
+      for(int j=0;j<ebbi->count;++j)if(ebbi->bbOrder[j]==next){--degree[j];break;}
+    }
+  }
+  Safe_free(degree);return valid;
+}
+
 static wide_cost_operand
 mcs251BackendSymbol(const char *name,const void *unused)
 {
@@ -76,7 +110,7 @@ mcs251BackendSymbol(const char *name,const void *unused)
     for(const set *node=spaces[i]->syms;node;node=node->next) {
       const symbol *s=node->item;
       if(!s || !s->rname[0] || getSize(s->type)<=0)continue;
-      if(wide_cost_symbol_offset(name,s->rname,(unsigned)getSize(s->type))<0)continue;
+      if(bc_symbol_offset(name,s->rname,(unsigned)getSize(s->type))<0)continue;
       result.kind=IN_BITSPACE(spaces[i])?WC_BIT:WC_DIRECT;return result;
     }
   return result;

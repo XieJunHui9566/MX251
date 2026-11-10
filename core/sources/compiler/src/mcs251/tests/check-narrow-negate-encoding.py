@@ -26,10 +26,11 @@ cases = ['cjne a,#1,finish0', 'cjne a,0x82,finish1',
          'cjne @r0,#1,finish4', 'cjne @r1,#1,finish5',
          'addc a,#1', 'addc a,0x82', 'addc a,r7', 'addc a,@r0',
          'subb a,#1', 'subb a,0x82', 'subb a,r7', 'subb a,@r1',
-         'rrc a', 'rlc a']
+         'rrc a', 'rlc a', 'djnz b,finish16', 'djnz r0,finish17',
+         'djnz r7,finish18', 'cpl a', 'pushw #_constant']
 q = subprocess.run([str(exe), *cases], check=True, capture_output=True, text=True)
 costs = list(map(int, q.stdout.split()))
-asm = '.module cost\n.area CSEG (CODE)\n'
+asm = '.module cost\n.globl _constant\n.area CSEG (CODE)\n'
 for i, ins in enumerate(cases):
     asm += f'.globl begin{i}, finish{i}\nbegin{i}:\n\t{ins}\nfinish{i}:\n'
 (a.output_dir / 'cost.asm').write_text(asm)
