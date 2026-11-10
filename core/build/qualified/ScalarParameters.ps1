@@ -27,12 +27,12 @@ function Get-Mx251ScalarFacts([string]$Root,$Config,[string]$ToolRoot) {
  foreach($p in Get-ChildItem -LiteralPath (Join-Path $ToolRoot 'lib') -Directory|Where-Object{$_.Name -like 'mcs251*'}|Get-ChildItem -Recurse -File -Filter '*.lib'){
   foreach($member in @(Read-Mx251GcArchive $p.FullName)){foreach($ref in $member.rel.References){$null=$libraryRefs.Add($ref)}}
  }
- $selected=@()
+ $selected=@();$unreferenced=@()
  foreach($name in @($definitions.Keys|Sort-Object -CaseSensitive)){
   $d=$definitions[$name]
   if($duplicates.ContainsKey($name) -or -not $functions.ContainsKey($name) -or $libraryRefs.Contains($name)){continue}
   $f=$functions[$name];if($f.unit -cne $d.unit -or $f.isr -cne '0' -or $f.escape -cne '0'){continue}
-  $edges=@($calls|Where-Object{$_.target -ceq $name});if(-not $edges.Count){continue}
+  $edges=@($calls|Where-Object{$_.target -ceq $name})
   if(@($edges|Where-Object{$_.signature -cne $d.signature -or -not $functions.ContainsKey($_.owner) -or $functions[$_.owner].unit -cne $_.unit}).Count){continue}
   $signature=[regex]::Match($d.signature,'^(?:v|[iu](?:8|16|32))\((?<args>(?:[iu](?:8|16|32)|p[123]_[0-9]+)(?:,(?:[iu](?:8|16|32)|p[123]_[0-9]+)){0,7})\)$')
   if(-not $signature.Success){continue};$types=@($signature.Groups['args'].Value.Split(','));$bad=$false;$machineCalls=0
@@ -45,6 +45,8 @@ function Get-Mx251ScalarFacts([string]$Root,$Config,[string]$ToolRoot) {
   # startup 是锁定配置提供的根，不能把根当作普通常量调用。
   if($name -cin @(Get-Mx251GcTokens ([IO.File]::ReadAllText((Join-Path $Root 'startup.asm'))))){$bad=$true}
   if($bad -or $machineCalls -ne $edges.Count){continue}
+  # 常量调用者可能删掉整个分支；无任何机器入口的定义交给后续 GC。
+  if(-not $edges.Count){$unreferenced+=$name;continue}
   for($i=0;$i -lt $types.Count;$i++){
    if($types[$i] -cnotmatch '^[iu](8|16|32)$'){continue}
    if(@($edges|Where-Object{$_.values.Count -ne $types.Count -or $_.values[$i] -cnotmatch '^[0-9a-f]{8}$'}).Count){continue}
@@ -52,7 +54,7 @@ function Get-Mx251ScalarFacts([string]$Root,$Config,[string]$ToolRoot) {
    $selected+=@{unit=$d.unit;name=$name;signature=$d.signature;ordinal=$i+1;type=$types[$i];bits=$bits[0];callCount=$edges.Count}
   }
  }
- return @{selected=$selected;inputs=$fingerprints;calls=$calls}
+ return @{selected=$selected;unreferenced=$unreferenced;inputs=$fingerprints;calls=$calls}
 }
 function Get-Mx251ScalarObjectCost([string]$Path){
  $t=[IO.File]::ReadAllText($Path);$code=0L;$data=@{}
@@ -141,7 +143,7 @@ function Invoke-Mx251ScalarParameters([string]$Root,$Config,[string]$ToolRoot){
   $final=Get-Mx251ScalarFacts $Root $Config $ToolRoot
   foreach($r in $record.selected){
    $matches=@($final.selected|Where-Object{$_.unit -ceq $r.unit -and $_.name -ceq $r.name -and $_.ordinal -eq $r.ordinal -and $_.signature -ceq $r.signature -and $_.bits -ceq $r.bits})
-   if($matches.Count -ne 1){throw 'scalar-final-entry-fact-not-retained'}
+   if($matches.Count -ne 1 -and $r.name -cnotin $final.unreferenced){throw 'scalar-final-entry-fact-not-retained'}
   }
   $record.finalFacts=$final;$record.status='APPLIED_BOUND_ORDINARY_SCALAR_PARAMETERS';$record.applied=$true;$accepted=$true
  }catch{

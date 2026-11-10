@@ -26,14 +26,14 @@ static void ordinaryScalarMetadata(ebbIndex *ebbi)
         }
         operand *actual=setup?IC_LEFT(setup):NULL;unsigned width=ordinaryScalarType(formal->type);
         if(!width || duplicate || walked>1024 || !actual || !IS_OP_LITERAL(actual) ||
-           ordinaryScalarType(operandType(actual))!=width ||
-           SPEC_USIGN(getSpec(operandType(actual)))!=SPEC_USIGN(getSpec(formal->type))) {
+           !ordinaryScalarType(operandType(actual))) {
           dbuf_printf(codeOutBuf,"?");continue;
         }
-        double value=operandLitValue(actual);double modulus=width==4?4294967296.0:(double)(1UL<<(width*8));
-        if(value<0)value+=modulus;
-        if(value<0 || value>=modulus || (double)(unsigned long)value!=value){dbuf_printf(codeOutBuf,"?");continue;}
-        dbuf_printf(codeOutBuf,"%08lx",(unsigned long)value);
+        /* SEND/IPUSH literals may retain a narrower type or different sign.
+         * Record the formal's transported bits, including integer conversion,
+         * rather than requiring identical literal and parameter types. */
+        unsigned long long mask=(1ULL<<(width*8))-1;
+        dbuf_printf(codeOutBuf,"%08lx",(unsigned long)(operandLitValueUll(actual)&mask));
       }
       if(!ordinal)dbuf_printf(codeOutBuf,"-");dbuf_printf(codeOutBuf,"\n");
     }
