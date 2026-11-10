@@ -138,6 +138,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
   if(WC_OP("rl") || WC_OP("rr") || WC_OP("rlc") || WC_OP("rrc") || WC_OP("swap"))return a.kind==WC_REG && a.reg==11 && a.width==1 && !*second?1:0;
   if(WC_OP("clr"))return *second?0:a.kind==WC_EXT_BIT?3:a.kind==WC_BIT?2:((a.kind==WC_REG && a.reg==11 && a.width==1) || a.kind==WC_CARRY)?1:0;
   if(WC_OP("setb"))return *second?0:a.kind==WC_EXT_BIT?3:a.kind==WC_BIT?2:a.kind==WC_CARRY?1:0;
+  if(WC_OP("cpl"))return *second?0:a.kind==WC_EXT_BIT?3:a.kind==WC_BIT?2:a.kind==WC_CARRY?1:0;
   if(WC_OP("pushw"))return (wide_cost_literal_word(rawOperands,limit) || mx251SymbolImmediate(rawOperands,limit))?4:0;
   if(WC_OP("push") || WC_OP("pop"))return !*second && (a.kind==WC_REG || a.kind==WC_DIRECT)?2:0;
   if(WC_OP("sra") || WC_OP("srl"))return a.kind==WC_REG && a.width<=2 && !*second?2:0;

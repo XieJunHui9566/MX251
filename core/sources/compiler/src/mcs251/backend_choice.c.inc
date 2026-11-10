@@ -34,7 +34,9 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
       if(ic->op==FUNCTION)++entries;
       if(ic->op==ENDFUNCTION)++ends;
       if(ic->op==RETURN)++returns;
-      if(ic->op==JUMPTABLE || ic->op==PCALL)return false;
+      /* Ordered functions use complete-body costs, including jump-table
+       * dispatch and entries; they do not use the common-CFG selector. */
+      if((ic->op==JUMPTABLE && !ordered) || ic->op==PCALL)return false;
       /* Comparison only runs after successful wide import, which validates
        * every inline instruction and its target bit contract. */
       if(ic->op==INLINEASM && !mcs251OrderedAsmEnabled)return false;

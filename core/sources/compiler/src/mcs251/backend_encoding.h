@@ -68,6 +68,7 @@ bc_instruction_bytes_mode(const char *text,size_t length,wide_cost_resolver reso
     return 0;
   }
   if(second==2)return 0;
+  if(narrow && !strcmp(op,"jmp"))return !second && !strcmp(a,"@a+dptr")?1:0;
   if(narrow && !strcmp(op,"jbc"))
     return second==1 && dst.kind==WC_BIT && y && *b!='@' && *b!='#'?3:0;
   if(narrow && !strcmp(op,"mov") && second==1) {

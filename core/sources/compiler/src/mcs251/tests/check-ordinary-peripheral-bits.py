@@ -66,6 +66,15 @@ void poll(void) {
 '''
   text,_=compile(source,a.sdcc,cap,'native-call')
   assert 'mx251-body-choice function=_poll selected=' in text,(root,'native-call comparison missing')
+  source=source.replace('output(3,n);', '''switch(n&7) {
+ case 0: index=3; break; case 1: index=17; break;
+ case 2: index=23; break; case 3: index=41; break;
+ case 4: index=59; break; case 5: index=61; break;
+ case 6: index=79; break; default: index=89; break;
+ } output(3,n);''')
+  text,_=compile(source,a.sdcc,cap,'switch-native-call')
+  assert 'mx251-body-choice function=_poll selected=' in text,(root,'switch comparison missing')
+  assert re.search(r'mx251-backend-choice function=_poll .*unknown=0/0',text),(root,'switch cost missing')
   rows.append(dict(model=model,optimization=opt,accessOrder=True,optOutMatches=True,excludedMatches=True,nativeCallCompared=True))
 (a.output/'results.json').write_text(json.dumps(rows,indent=2)+'\n',newline='\n')
 print('PASS: 4 configurations; exact bit identity/access order, opt-out and core/unknown exclusions')
