@@ -1,0 +1,568 @@
+{
+  "schema": 1,
+  "status": "RESEARCH_ONLY_NO_COMPILER_OR_SDK_CHANGE",
+  "date": "2026-11-10",
+  "sourceBase": "76ff7c7",
+  "compilerImplementationCommit": "f5f1c5247861e2cfade3bf3bc94328033267524a",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\core-04\\toolchain\\bin\\sdcc.exe",
+    "sha256": "9d9141c10972ad475d27eeffac7dfaae76e8bb3fa0b2db768086507cebc340fe"
+  },
+  "stableQualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\ordinary-bits\\qualification.json",
+    "sha256": "8129a0dc6719171b861ba328f047463b7272abb60796ec8ee7fb6501976f6288"
+  },
+  "cohortSummary": {
+    "projects": 75,
+    "improved": 26,
+    "unchanged": 49,
+    "larger": 0,
+    "savedBytes": 415,
+    "mxTotalBytes": 204986,
+    "keilTotalBytes": 192051,
+    "within110": 50,
+    "within120": 64,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 53,
+    "weightedKeilRatio": 1.0673519013178792
+  },
+  "researchSummary": {
+    "projects": 11,
+    "bytesTo120All": 6693,
+    "bytesTo120ExcludingOriginalVectorIssue": 658,
+    "matchedIsrBodyGapBytes": 825,
+    "isrEntryExitPushPopBytes": 852,
+    "keilIsrAllPushPopBytes": 420
+  },
+  "buildsRun": 0,
+  "hardwareExecuted": false,
+  "optimizedCompilerProduced": false,
+  "measurements": "Existing final ASM/RST/HEX plus Keil maps/listings. No measured savings from proposals; no complete-project runtime comparison.",
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\attribution.json",
+    "sha256": "1d0a1ed869a6b27f0c284ea9cc3e728ce6e10a163048ffc07202ce969b7ac149"
+  },
+  "historicalNarrow": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\historical-narrow.json",
+    "sha256": "38cabddb3ece00885d1fb46198907eb1656c47230cebd27a6c3ac56eb8d3c132"
+  },
+  "originalVectorReview": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\p108-reference-review.json",
+    "sha256": "44d587852e8332339c445f3d61ea54e59b78bde7d2963263f690569a7f67efee"
+  },
+  "excerpts": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\p074-main.txt",
+      "sha256": "243016943c9837f8656c4c485ab40216b1143b4830170e6e3acb2529f254df84"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\p087-uart_set_baud.txt",
+      "sha256": "455590c01250b862846ed76ed133d1fb4bb3acc1020b65885e1f2718d08874aa"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\p095-SetMCLK.txt",
+      "sha256": "2290559a08bc461d029ceaa7367af62fe95954faacff16932dc7dc5e11ae7256"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\p095-uart_set_baud.txt",
+      "sha256": "7d389b4cf17ad2fd2d42ac2859cf356d5b0dc07c7e57627cc017a869054e0008"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\remaining-eleven\\p136-PlayProcess.txt",
+      "sha256": "01ca860ca9ff4776294fb9c1d11897996f469202b43a8a801e03cdd86fc63106"
+    }
+  ],
+  "implementationAndPriorEvidence": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\remaining_eleven.py",
+      "sha256": "1dc44d000337f68a68671e164ab0e7abb633f1f7ee9e35ac43004ee45f674dad"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\focus_size_band.py",
+      "sha256": "742bc38aa3dcc9e5f2740206230ddc7290a63b11734f0d32ad8898eb1fb76cf0"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\call_layout.py",
+      "sha256": "976e22b7b85cee0f101f2febd47be49f6ee041eb05051d504724166af97bda7c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\backend_choice.c.inc",
+      "sha256": "cacd165eaaed0b325d7b635cfe8d8dbc6b64b312e1c05821524736fae8aad5ab"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide.c",
+      "sha256": "cd0100f4d2a505367a0339a9eecc6a71d6537127af94175864de0cae5ddaaff0"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "0260587bd83de90dfa1a04e1a020508e9c5cd17b981efb345e7e67b32148b4f4"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "529ce3d219b0c4479a476f098934d74b5c79ed958909f88be1c578e0d059e3c9"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_ordered_contract.h",
+      "sha256": "71510f8d5e05cd56370f05221475b6405d71e8bacf921c9c8e5c87b2eec3b588"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\device\\lib\\mcs251\\native-int\\_divulong.asm",
+      "sha256": "0ae56487d48125ae6137d0ec8575a7f1f2b73c6f250ac4a694624fe9f3b15169"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\FormatRuntime.ps1",
+      "sha256": "fbc62aba4194375e6738b7b477b612fd63709aac07ef6547ea2e98e66d0af39e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\NARROW-NEGATE.md",
+      "sha256": "8771b28f266e5b9131ad85d1bdddcc7bf4ad2b5a98fb0a70595d5aff7435c93b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\narrow-negate-evidence.json",
+      "sha256": "b40b137fe58d2d91ec65362ef9ab46922ba4f6d617b489871c19f68c86ec2259"
+    }
+  ],
+  "projects": [
+    {
+      "id": "p013",
+      "name": "06-主时钟停振低功耗模式-专用唤醒定时器唤醒/C语言",
+      "mxBytes": 486,
+      "keilBytes": 324,
+      "ratio": 1.5,
+      "bytesTo120": 98,
+      "bytesTo110": 130,
+      "partition": {
+        "mx": {
+          "application": 233,
+          "csegOutsideFunctions": 213,
+          "constants": 8,
+          "startupVectors": 32
+        },
+        "keil": {
+          "startupVectors": 25,
+          "application": 208,
+          "libraries": 83,
+          "constants": 8
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mxBytes": 1065,
+      "keilBytes": 832,
+      "ratio": 1.2800480769230769,
+      "bytesTo120": 67,
+      "bytesTo110": 150,
+      "partition": {
+        "mx": {
+          "application": 969,
+          "csegOutsideFunctions": 0,
+          "constants": 51,
+          "startupVectors": 45
+        },
+        "keil": {
+          "startupVectors": 31,
+          "application": 750,
+          "constants": 51
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mxBytes": 204,
+      "keilBytes": 160,
+      "ratio": 1.275,
+      "bytesTo120": 12,
+      "bytesTo110": 28,
+      "partition": {
+        "mx": {
+          "application": 147,
+          "csegOutsideFunctions": 0,
+          "constants": 0,
+          "startupVectors": 57
+        },
+        "keil": {
+          "startupVectors": 28,
+          "application": 132
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mxBytes": 1269,
+      "keilBytes": 1002,
+      "ratio": 1.2664670658682635,
+      "bytesTo120": 67,
+      "bytesTo110": 167,
+      "partition": {
+        "mx": {
+          "application": 1158,
+          "csegOutsideFunctions": 0,
+          "constants": 51,
+          "startupVectors": 60
+        },
+        "keil": {
+          "startupVectors": 31,
+          "application": 920,
+          "constants": 51
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p051",
+      "name": "23-PCA型PWM输出呼吸灯效果/C语言",
+      "mxBytes": 730,
+      "keilBytes": 608,
+      "ratio": 1.200657894736842,
+      "bytesTo120": 1,
+      "bytesTo110": 62,
+      "partition": {
+        "mx": {
+          "application": 693,
+          "csegOutsideFunctions": 0,
+          "constants": 0,
+          "startupVectors": 37
+        },
+        "keil": {
+          "startupVectors": 28,
+          "application": 580
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mxBytes": 1149,
+      "keilBytes": 909,
+      "ratio": 1.2640264026402641,
+      "bytesTo120": 59,
+      "bytesTo110": 150,
+      "partition": {
+        "mx": {
+          "application": 960,
+          "csegOutsideFunctions": 0,
+          "constants": 68,
+          "startupVectors": 121
+        },
+        "keil": {
+          "startupVectors": 28,
+          "application": 813,
+          "constants": 68
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p087",
+      "name": "43-USB-CDC(Communication Device Class)协议范例",
+      "mxBytes": 4256,
+      "keilBytes": 3531,
+      "ratio": 1.2053242707448315,
+      "bytesTo120": 19,
+      "bytesTo110": 372,
+      "partition": {
+        "mx": {
+          "application": 3821,
+          "csegOutsideFunctions": 213,
+          "constants": 131,
+          "startupVectors": 91
+        },
+        "keil": {
+          "startupVectors": 31,
+          "application": 3286,
+          "constants": 131,
+          "libraries": 83
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "format-opaque-unit"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "SMALLER_IMAGE",
+          "applied": true
+        }
+      }
+    },
+    {
+      "id": "p095",
+      "name": "51-USB-CDC转双串口-根据串口波特率选择出厂时校准的几种常用时钟频率做主频",
+      "mxBytes": 6107,
+      "keilBytes": 4830,
+      "ratio": 1.2643892339544514,
+      "bytesTo120": 311,
+      "bytesTo110": 794,
+      "partition": {
+        "mx": {
+          "application": 5583,
+          "csegOutsideFunctions": 213,
+          "constants": 205,
+          "startupVectors": 106
+        },
+        "keil": {
+          "startupVectors": 75,
+          "application": 4457,
+          "constants": 215,
+          "libraries": 83
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "format-opaque-unit"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "SMALLER_IMAGE",
+          "applied": true
+        }
+      }
+    },
+    {
+      "id": "p108",
+      "name": "64-DMA-UART串口与存储器数据自动收发/串口1使用DMA中断模式与电脑收发测试-超时中断",
+      "mxBytes": 7755,
+      "keilBytes": 1434,
+      "ratio": 5.407949790794979,
+      "bytesTo120": 6035,
+      "bytesTo110": 6178,
+      "partition": {
+        "mx": {
+          "application": 631,
+          "csegOutsideFunctions": 6833,
+          "constants": 56,
+          "startupVectors": 235
+        },
+        "keil": {
+          "startupVectors": 99,
+          "application": 514,
+          "constants": 53,
+          "libraries": 768
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "format-raw-jump-outside-registered-vector"
+        },
+        "startup-runtime.json": {
+          "status": "FALLBACK_FULL_STARTUP",
+          "applied": false,
+          "reason": "format-raw-jump-outside-registered-vector"
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mxBytes": 4975,
+      "keilBytes": 4128,
+      "ratio": 1.2051841085271318,
+      "bytesTo120": 22,
+      "bytesTo110": 435,
+      "partition": {
+        "mx": {
+          "application": 4166,
+          "csegOutsideFunctions": 0,
+          "constants": 681,
+          "startupVectors": 128
+        },
+        "keil": {
+          "startupVectors": 31,
+          "application": 3416,
+          "constants": 681
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mxBytes": 509,
+      "keilBytes": 423,
+      "ratio": 1.2033096926713949,
+      "bytesTo120": 2,
+      "bytesTo110": 44,
+      "partition": {
+        "mx": {
+          "application": 442,
+          "csegOutsideFunctions": 0,
+          "constants": 0,
+          "startupVectors": 67
+        },
+        "keil": {
+          "startupVectors": 28,
+          "application": 395
+        },
+        "mxUnattributed": 0,
+        "keilUnattributed": 0
+      },
+      "runtimeReports": {
+        "format-runtime.json": {
+          "status": "FALLBACK_FULL_RUNTIME",
+          "applied": false,
+          "reason": "no-constant-format-calls"
+        },
+        "startup-runtime.json": {
+          "status": "APPLIED_LINKED_C_INITIALIZATION",
+          "applied": true
+        },
+        "selective-leaf-abi.json": {
+          "status": "NO_CANDIDATE",
+          "applied": false
+        }
+      }
+    }
+  ],
+  "recommendedOrder": [
+    "Compose existing backend selection and argument snapshots with native ABI4 calls",
+    "Extend ISR stack/call effects and compatible packed saves",
+    "Evaluate compact integer runtime organization and operand-width selection",
+    "Combine loop address lowering with complete-body costs and common-tail normalization"
+  ]
+}
