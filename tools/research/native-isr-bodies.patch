@@ -1,0 +1,371 @@
+diff --git a/core/sources/compiler/src/mcs251/backend_choice.c.inc b/core/sources/compiler/src/mcs251/backend_choice.c.inc
+index f821f1a..c6e5184 100644
+--- a/core/sources/compiler/src/mcs251/backend_choice.c.inc
++++ b/core/sources/compiler/src/mcs251/backend_choice.c.inc
+@@ -123,6 +123,7 @@ mcs251BackendSymbol(const char *name,const void *unused)
+ {
+   (void)unused;
+   wide_cost_operand result={WC_UNKNOWN,0,0};
++  if(IFFUNC_ISISR(currFunc->type) && !strcmp(name,"bits"))return (wide_cost_operand){WC_DIRECT,0,0};
+   if(name[0]=='b' && name[1]>='0' && name[1]<='7' && !name[2])
+     return (wide_cost_operand){WC_BIT,0,0};
+   if(strlen(name)==6 && name[0]=='0' && (name[1]=='x' || name[1]=='X') &&
+diff --git a/core/sources/compiler/src/mcs251/gen_leaf_isr.c.inc b/core/sources/compiler/src/mcs251/gen_leaf_isr.c.inc
+index 379c9b2..ad7cc06 100644
+--- a/core/sources/compiler/src/mcs251/gen_leaf_isr.c.inc
++++ b/core/sources/compiler/src/mcs251/gen_leaf_isr.c.inc
+@@ -147,7 +147,7 @@ static li_operand li_operand_info(const char *text)
+ static wide_cost_operand li_cost_symbol(const char *name,const void *unused)
+ {
+   (void)unused;li_operand a=li_operand_info(name);wide_cost_operand r={WC_UNKNOWN,0,0};
+-  if(!strcmp(name,"psw")){r.kind=WC_DIRECT;return r;}
++  if(!strcmp(name,"psw") || !strcmp(name,"bits")){r.kind=WC_DIRECT;return r;}
+   if(!a.unknown && (a.memory || a.gpr || a.special))r.kind=a.bit?WC_BIT:WC_DIRECT;
+   return r;
+ }
+@@ -156,7 +156,7 @@ static wide_cost_operand li_cost_symbol(const char *name,const void *unused)
+ static bool li_local_label(const char *name,li_line *lines,unsigned begin,unsigned end)
+ {
+   const char *p=name;while(isdigit((unsigned char)*p))++p;
+-  if(p==name || strcmp(p,"$"))return false;
++  if((p==name || strcmp(p,"$")) && strncmp(name,"__wm_",5))return false;
+   size_t n=strlen(name);
+   for(unsigned i=begin;i<end;++i)if(lines[i].label) {
+     p=lines[i].node->line;while(isspace((unsigned char)*p))++p;
+@@ -235,6 +235,11 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
+   if(l->empty || l->label)return true;
+   const char *op=l->op;
+   if(!strcmp(op,"nop"))return l->nargs==0;
++  if(!strcmp(op,"mul") || !strcmp(op,"div")) {
++    mx251_effects e=mx251InstructionEffects(l->node->line,strlen(l->node->line),NULL,0);
++    if(e.unknown)return false;
++    all->reads|=e.reads;all->writes|=e.writes;all->flags=true;return true;
++  }
+   if(!strcmp(op,"ecall") || !strcmp(op,"lcall") || !strcmp(op,"acall")){
+     iCode *ic=l->node->ic;unsigned long writes;
+     if(l->nargs!=1 || !ic || ic->op!=CALL || !IS_SYMOP(IC_LEFT(ic)))return false;
+@@ -247,8 +252,8 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
+   /* Reuse the emitter's effects for word arguments and relative stack
+    * cleanup. These change the argument stack, not the private saved values;
+    * arbitrary SPX assignments and inline stack access are still excluded. */
+-  if(!strcmp(op,"pushw") ||
+-     ((!strcmp(op,"inc") || !strcmp(op,"dec")) && !strcmp(l->arg[0],"spx"))) {
++  if(!strcmp(op,"pushw") ||
++     ((!strcmp(op,"inc") || !strcmp(op,"dec") || !strcmp(op,"add") || !strcmp(op,"sub")) && !strcmp(l->arg[0],"spx"))) {
+     mx251_effects e=mx251InstructionEffects(l->node->line,strlen(l->node->line),NULL,0);
+     if(e.unknown || e.writes || e.specialWrites!=MX251_SPECIAL_SPX)return false;
+     all->reads|=e.reads;all->specialReads|=e.specialReads;all->specialWrites|=e.specialWrites;
+@@ -293,8 +298,10 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
+     !strcmp(op,"anl") || !strcmp(op,"orl") || !strcmp(op,"xrl");
+   bool unary=!strcmp(op,"inc") || !strcmp(op,"dec") || !strcmp(op,"rl") || !strcmp(op,"rr") ||
+     !strcmp(op,"rlc") || !strcmp(op,"rrc") || !strcmp(op,"sll") || !strcmp(op,"srl") || !strcmp(op,"sra");
++  bool step=unary && l->nargs==2 && l->arg[1][0]=='#' &&
++    (!strcmp(op,"inc") || !strcmp(op,"dec"));
+   if((!move && !compare && !bitop && !binary && !unary) ||
+-     l->nargs!=(move || compare || binary?2u:1u))return false;
++     l->nargs!=(move || compare || binary || step?2u:1u))return false;
+   li_operand a=li_operand_info(l->arg[0]),b={0};if(l->nargs==2)b=li_operand_info(l->arg[1]);
+   if(a.unknown || b.unknown || *l->arg[0]=='#')return false;
+   if(a.indirect && (!move || !li_indirect_store(l,lines,begin,(unsigned)(l-lines))))return false;
+@@ -306,20 +313,10 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
+   return true;
+ }
+ 
+-static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
++static void li_trim_saves(lineNode *head,int inlineBits,struct dbuf_s *diagnostics)
+ {
+   const char *enable=getenv("MX251_LEAF_ISR_SAVES");
+   if(enable && !strcmp(enable,"0"))return;
+-  if(!currFunc || !IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
+-     IFFUNC_ISCRITICAL(currFunc->type) || FUNC_REGBANK(currFunc->type) || options.debug ||
+-     options.useXstack || currFunc->stack || currFunc->xstack || inlineBits<0)return;
+-  unsigned functions=0,ends=0;
+-  for(iCode *ic=lic;ic;ic=ic->next) {
+-    functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
+-    if(ic->op==PCALL || ic->op==JUMPTABLE ||
+-       ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
+-  }
+-  if(functions!=1 || ends!=1)return;
+   li_line *lines=Safe_alloc(LI_LINES*sizeof *lines);unsigned count=0,begin=0,end=0;
+   unsigned pushes[LI_SAVES],pops[LI_SAVES],npush=0,npop=0;int bank=-1;bool ok=true;li_effects effects={0};
+   for(lineNode *p=head;p;p=p->next) {
+@@ -333,7 +330,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
+     li_line *l=&lines[i];if(l->empty || l->label)continue;
+     if(i>=begin && i<end) {
+       if(!li_body_effect(l,&effects,lines,begin,end)){
+-        dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=body-effect instruction=%s\n",currFunc->rname,l->node->line);ok=false;
++        dbuf_printf(diagnostics,"; mx251-leaf-isr-fallback symbol=%s reason=body-effect instruction=%s\n",currFunc->rname,l->node->line);ok=false;
+       }
+       continue;
+     }
+@@ -373,14 +370,72 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
+   if(ok && (saved || dropBank)) {
+     for(unsigned i=begin;effects.calls && i<end;++i)
+       if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall"))
+-        dbuf_printf(codeOutBuf,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
++        dbuf_printf(diagnostics,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
+     for(unsigned i=0;i<npush;++i)if(remove[i]) {
+       lines[pushes[i]].node->line=Safe_strdup("; mx251 leaf ISR: unused private save removed");
+       lines[pops[npop-1-i]].node->line=Safe_strdup("; mx251 leaf ISR: paired restore removed");
+     }
+     if(dropBank)lines[bank].node->line=Safe_strdup("; mx251 leaf ISR: unused bank selection removed");
+-    dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
++    dbuf_printf(diagnostics,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
+       currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls,(unsigned)inlineBits);
+-  } else dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
++  } else dbuf_printf(diagnostics,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
+   Safe_free(lines);
+ }
++
++static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
++{
++  if(!currFunc || !IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
++     IFFUNC_ISCRITICAL(currFunc->type) || FUNC_REGBANK(currFunc->type) || options.debug ||
++     options.useXstack || currFunc->stack || currFunc->xstack || inlineBits<0)return;
++  unsigned functions=0,ends=0;
++  for(iCode *ic=lic;ic;ic=ic->next) {
++    functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
++    if(ic->op==PCALL || ic->op==JUMPTABLE ||
++       ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
++  }
++  if(functions==1 && ends==1)li_trim_saves(head,inlineBits,codeOutBuf);
++}
++
++#include "machine_branch.h"
++
++/* Wide locals and spills are above the context, addressed relative to SPX.
++ * A frame needs no adjustment when context pairs are removed, but initially
++ * keep its complete layout. Calls retain their real IR for the common effects
++ * analysis; generated labels are checked against this body's own labels. */
++void mcs251FinishWideIsr(struct dbuf_s *output,ebbIndex *ebbi,int frame)
++{
++  char *text=Safe_strdup(dbuf_c_str(output)),*line=text;
++  lineNode *head=NULL,*tail=NULL;
++  while(*line) {
++    char *end=strchr(line,'\n');if(end)*end=0;
++    lineNode *p=newLineNode(line);
++    if(tail){tail->next=p;p->prev=tail;}else head=p;tail=p;
++    li_line parsed;
++    if(li_parse(p,&parsed) && !strcmp(parsed.op,"ecall") && parsed.nargs==1)
++      for(int b=0;b<ebbi->count;++b) {
++        eBBlock *bb=ebbi->bbOrder[b];
++        for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
++          if(ic->op==CALL && IS_SYMOP(IC_LEFT(ic)) &&
++             !strcmp(parsed.arg[0],OP_SYMBOL(IC_LEFT(ic))->rname))p->ic=ic;
++      }
++    if(!end)break;line=end+1;
++  }
++  dbuf_set_length(output,0);
++  if(!frame)li_trim_saves(head,0,output);
++  /* Keep the original spelling and column placement of labels/metadata. */
++  for(lineNode *p=head;p;p=p->next)dbuf_printf(output,"%s\n",p->line);
++  while(head){lineNode *next=head->next;Safe_free(head->line);Safe_free(head->aln);Safe_free(head);head=next;}
++  Safe_free(text);
++  /* The bank switch belongs to the context, outside branch relaxation. */
++  const char *all=dbuf_get_buf(output),*begin=strstr(all,"; mx251-isr-body-begin\n");
++  const char *end=strstr(all,"; mx251-isr-body-end\n");
++  if(begin && end && (begin=strchr(begin,'\n')+1)<end) {
++    char *shortened=mb_optimize(begin,(size_t)(end-begin),li_cost_symbol,NULL);
++    if(shortened) {
++      struct dbuf_s result;dbuf_init(&result,dbuf_get_length(output));
++      dbuf_append(&result,all,(size_t)(begin-all));dbuf_append_str(&result,shortened);
++      dbuf_append(&result,end,dbuf_get_length(output)-(size_t)(end-all));
++      dbuf_destroy(output);*output=result;free(shortened);
++    }
++  }
++}
+diff --git a/core/sources/compiler/src/mcs251/ralloc.c b/core/sources/compiler/src/mcs251/ralloc.c
+index 81f5d3a..baf2fff 100644
+--- a/core/sources/compiler/src/mcs251/ralloc.c
++++ b/core/sources/compiler/src/mcs251/ralloc.c
+@@ -3847,7 +3847,8 @@ mcs251_assignRegisters (ebbIndex * ebbi)
+ #endif
+   mcs251GcBegin (ebbi);
+   bool narrowTrial=mcs251BackendNarrowTrial(ebbi);
+-  bool compareBackend=narrowTrial || mcs251BackendChoiceEligible(ebbi,false);
++  bool isrTrial=mcs251WideIsrEligible();
++  bool compareBackend=isrTrial || narrowTrial || mcs251BackendChoiceEligible(ebbi,false);
+   bool bodyChoice=compareBackend && mcs251BackendBodyEligible(ebbi);
+   int backendKeys[BC_LABELS];unsigned backendKeyCount=0;
+   if(compareBackend)for(int b=0;b<ebbi->count;++b) {
+@@ -3976,9 +3977,9 @@ mcs251_assignRegisters (ebbIndex * ebbi)
+   mcs251_genCode (ic);
+   mcs251MachinePipeline(backendStart,ebbi,false,orderedBlocks);
+   if(wideText) {
+-    mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength,narrowTrial || bodyChoice);
+-    mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart,narrowTrial || bodyChoice);
+-    bool legacy=narrowTrial ?
++    mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength,isrTrial || narrowTrial || bodyChoice);
++    mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart,isrTrial || narrowTrial || bodyChoice);
++    bool legacy=(isrTrial || narrowTrial) ?
+       wideCost.unknown || legacyCost.unknown || wideCost.bytes>=legacyCost.bytes ||
+       wideCost.instructions>legacyCost.instructions :
+       /* Ordered I/O bodies use complete size, not a one-instruction saving
+@@ -3986,7 +3987,7 @@ mcs251_assignRegisters (ebbIndex * ebbi)
+       bodyChoice ? !wideCost.unknown && !legacyCost.unknown && legacyCost.bytes<wideCost.bytes &&
+         (orderedBlocks || legacyCost.instructions<=wideCost.instructions) : mcs251BackendChooseLegacy(&wideCost,&legacyCost);
+     int cfg=0;
+-    if(!narrowTrial && !bodyChoice && !legacy && (wideCost.unknown || legacyCost.unknown)) {
++    if(!isrTrial && !narrowTrial && !bodyChoice && !legacy && (wideCost.unknown || legacyCost.unknown)) {
+       cfg=bc_choose(wideText,wideLength,dbuf_get_buf(codeOutBuf)+backendStart,
+         dbuf_get_length(codeOutBuf)-backendStart,currFunc->rname,backendKeys,backendKeyCount,
+         mcs251BackendSymbol,NULL);
+@@ -3995,6 +3996,7 @@ mcs251_assignRegisters (ebbIndex * ebbi)
+ 
+     if(!legacy){mcs251SetEmittedRegisterBank(savedBank);dbuf_set_length(codeOutBuf,backendStart);dbuf_append(codeOutBuf,wideText,wideLength);}
+     if(bodyChoice)dbuf_printf(codeOutBuf,"; mx251-body-choice function=%s selected=%s\n",currFunc->rname,legacy?"legacy":"wide");
++    if(isrTrial)dbuf_printf(codeOutBuf,"; mx251-isr-choice function=%s selected=%s\n",currFunc->rname,legacy?"legacy":"wide");
+     if(narrowTrial)dbuf_printf(codeOutBuf,"; mx251-narrow-negate function=%s selected=%s\n",currFunc->rname,legacy?"legacy":"wide");
+     dbuf_printf(codeOutBuf,"; mx251-backend-choice function=%s selected=%s wide-bytes=%u legacy-bytes=%u wide-ins=%u legacy-ins=%u wide-peak=%u legacy-peak=%u unknown=%u/%u\n",
+       currFunc->rname,legacy?"legacy":"wide",wideCost.bytes,legacyCost.bytes,wideCost.instructions,legacyCost.instructions,wideCost.peak,legacyCost.peak,wideCost.unknown,legacyCost.unknown);
+diff --git a/core/sources/compiler/src/mcs251/wide.c b/core/sources/compiler/src/mcs251/wide.c
+index 31532fc..67e4d73 100644
+--- a/core/sources/compiler/src/mcs251/wide.c
++++ b/core/sources/compiler/src/mcs251/wide.c
+@@ -105,6 +105,7 @@ typedef struct {
+   uint32_t scratchAddress;
+   int scratchNode,scratchNextNode;
+   bool body, sampledQualified, formalAddress, ordinaryEntry, allocationInvalid;
++  bool interruptEntry;
+   bool nativeReceiveFree;
+   bool promotedStackObjects; /* Keep object allocation choices after scalar promotion. */
+   bool narrowNegate;
+@@ -2194,6 +2195,7 @@ wide_resolve_cost_operand(const char *text,const void *context)
+ {
+   const wide_function *f=context;
+   wide_cost_operand unknown={WC_UNKNOWN,0,0};
++  if(f->interruptEntry && !strcmp(text,"bits"))return (wide_cost_operand){WC_DIRECT,0,0};
+   for(int i=0;i<f->nn;++i) {
+     const wide_node *n=&f->nodes[i];symbol *s=n->addressSymbol;
+     if(n->op==WM_VOLATILE_BIT_READ)for(unsigned j=0;j<n->orderedReadCount;++j) {
+@@ -2854,6 +2856,20 @@ wide_is_function_body (ebbIndex *ebbi)
+   return entries == 1 && ends == 1;
+ }
+ 
++bool
++mcs251WideIsrEligible(void)
++{
++  const char *enabled=getenv("MX251_NATIVE_ISR");
++  return (!enabled || strcmp(enabled,"0")) && mcs251WideEnabled &&
++    mcs251WideOrdinaryEnabled && currFunc && IFFUNC_ISISR(currFunc->type) &&
++    FUNC_SDCCCALL(currFunc->type)==2 && IS_VOID(currFunc->type->next) &&
++    !FUNC_ARGS(currFunc->type) && !IFFUNC_ISNAKED(currFunc->type) &&
++    !IFFUNC_ISCRITICAL(currFunc->type) && !IFFUNC_CALLEESAVES(currFunc->type) &&
++    !IFFUNC_ISBANKEDCALL(currFunc->type) && !FUNC_REGBANK(currFunc->type) &&
++    !options.debug && !options.useXstack && !options.noRegParams &&
++    !options.excludeRegsSet;
++}
++
+ static mcs251_wide_result
+ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnostics, bool narrowNegate)
+ {
+@@ -2867,7 +2883,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
+      (ordinary && (!mcs251WideOrdinaryEnabled || currFunc->cdef ||
+                    !(IFFUNC_ISREENT(currFunc->type) || options.stackAuto))) ||
+      options.debug || options.useXstack || options.noRegParams ||
+-     IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
++     (IFFUNC_ISISR(currFunc->type) && !mcs251WideIsrEligible()) || IFFUNC_ISNAKED(currFunc->type) ||
+      IFFUNC_ISCRITICAL(currFunc->type) || IFFUNC_CALLEESAVES(currFunc->type) ||
+      IFFUNC_ISBANKEDCALL(currFunc->type) || FUNC_REGBANK(currFunc->type) ||
+      IFFUNC_HASVARARGS(currFunc->type) ||
+@@ -2878,6 +2894,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
+     if((wide_code_pointer(arg->type) && !ordinary) || (ordinary && !wide_abi_type(arg->type,currFunc->type))) {dbuf_printf(diagnostics,"; wide admission function=%s skip=parameter-type\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
+   if(!wide_stack_signature(currFunc->type)) {dbuf_printf(diagnostics,"; wide admission function=%s skip=stack-signature\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
+   f=Safe_alloc(sizeof *f);memset(f,0,sizeof *f);f->ordinaryEntry=ordinary;f->diagnostics=diagnostics;f->candidateOutput=output;
++  f->interruptEntry=IFFUNC_ISISR(currFunc->type);
+   f->narrowNegate=narrowNegate;
+   f->domainCount=mcs251ParameterDomainValues(currFunc,FUNC_ARGS(currFunc->type),1,f->domainValues);
+   if(fatalError){Safe_free(f);return MCS251_WIDE_ERROR;}
+diff --git a/core/sources/compiler/src/mcs251/wide.h b/core/sources/compiler/src/mcs251/wide.h
+index 73269a3..f7d3018 100644
+--- a/core/sources/compiler/src/mcs251/wide.h
++++ b/core/sources/compiler/src/mcs251/wide.h
+@@ -21,4 +21,6 @@ extern unsigned char mcs251MemoryStateBits[256];
+  * 代码与诊断分别暂存，只有完整成功才提交候选机器代码。 */
+ typedef enum { MCS251_WIDE_FALLBACK, MCS251_WIDE_ACCEPTED, MCS251_WIDE_ERROR } mcs251_wide_result;
+ mcs251_wide_result mcs251TryWideFunction (ebbIndex *, bool narrowNegate);
++bool mcs251WideIsrEligible(void);
++void mcs251FinishWideIsr(struct dbuf_s *, ebbIndex *, int frame);
+ #endif
+diff --git a/core/sources/compiler/src/mcs251/wide_cost.h b/core/sources/compiler/src/mcs251/wide_cost.h
+index e63a90d..cee3989 100644
+--- a/core/sources/compiler/src/mcs251/wide_cost.h
++++ b/core/sources/compiler/src/mcs251/wide_cost.h
+@@ -78,7 +78,8 @@ wide_cost_arg(const char *s)
+     }
+     a.kind=s[k]?WC_INDEXED:WC_INDIRECT;return a;
+   }
+-  if(!strcmp(s,"b") || !strcmp(s,"acc") || !strcmp(s,"dpl") || !strcmp(s,"dph")) {a.kind=WC_DIRECT;return a;}
++  if(!strcmp(s,"b") || !strcmp(s,"acc") || !strcmp(s,"dpl") || !strcmp(s,"dph") ||
++     !strcmp(s,"psw") || !strcmp(s,"dpxl")) {a.kind=WC_DIRECT;return a;}
+   /* 强制 direct 的汇编拼写可独立确定长度；未解析的普通符号不猜测存储空间。 */
+   if((*s=='*' && s[1]) || (!strncmp(s,"s:",2) && s[2])) {a.kind=WC_DIRECT;return a;}
+   n=strtol(s,&end,0);
+@@ -130,7 +131,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
+   /* 固定 ACC.bit 已在操作数分类中识别，其余位仍要求类型上下文。 */
+ #define WC_OP(s) (!strcmp(op,(s)))
+   if(WC_OP("nop"))return !*args?1:0;
+-  if(WC_OP("eret") && !*args)return 1;
++  if((WC_OP("eret") || WC_OP("reti")) && !*args)return 1;
+   if(WC_OP("ejmp") || WC_OP("ecall")) {
+     if(!*args || *second)return 0;
+     if(a.kind==WC_INDIRECT && a.width==4)return 2;
+diff --git a/core/sources/compiler/src/mcs251/wide_emit.c.inc b/core/sources/compiler/src/mcs251/wide_emit.c.inc
+index 5af49f1..2ec1976 100644
+--- a/core/sources/compiler/src/mcs251/wide_emit.c.inc
++++ b/core/sources/compiler/src/mcs251/wide_emit.c.inc
+@@ -53,6 +53,7 @@ wrestore_preserved(wide_function *f)
+ static void
+ wreturn(wide_function *f)
+ {
++  if(f->interruptEntry) {wj(f,"ejmp",2000000);return;}
+   wstep(f,60,4,true,f->frame);
+   wrestore_preserved(f);
+   we(f,"\teret\n");
+@@ -1216,6 +1217,7 @@ wordinary_forward_return(wide_function *f,int index)
+ static bool
+ wcall_tail_return(wide_function *f,int index)
+ {
++  if(f->interruptEntry)return false;
+   wide_node *call=&f->nodes[index];
+   /* The caller frame must no longer own storage visible to the callee.
+    * Outgoing stack arguments still require the caller's cleanup on return. */
+@@ -1642,7 +1644,7 @@ wrotate_proposal(wide_function *f,int i)
+ static void
+ wide_emit(wide_function *f)
+ {
+-  f->preserved=wide_preserve_registers(currFunc);f->preservedBytes=0;
++  f->preserved=f->interruptEntry?0:wide_preserve_registers(currFunc);f->preservedBytes=0;
+   const int groups[]={8,12,24,28};
+   for(unsigned i=0;i<4;++i) {
+     int reg=groups[i],width=reg==8?2:4;
+@@ -1673,6 +1675,13 @@ wide_emit(wide_function *f)
+       if(f->preserved&wide_mask(reg,width))we(f,"\tpush\t%s%d\n",wp(width),reg);
+     }
+   }
++  if(f->interruptEntry) {
++    we(f,"; mx251-native-isr frame=%d\n\tpush\t0xd1\n",f->frame);
++    if(IFFUNC_HASFCALL(currFunc->type))we(f,"\tpush\tbits\n");
++    we(f,"\tpush\tpsw\n\tmov\tpsw,#0x00\n");
++    for(int reg=0;reg<32;reg+=4)we(f,"\tpush\tdr%d\n",reg);
++    we(f,"\tpush\tdpl\n\tpush\tdph\n\tpush\tdpxl\n; mx251-isr-body-begin\n");
++  }
+   wstep(f,60,4,false,f->frame);
+   if(f->nativeReceiveFree)wnative_receive_prefix(f);
+   if(mcs251ConstantRotateFusionEnabled)wide_constant_rotate(f);
+@@ -2056,5 +2065,15 @@ wide_emit(wide_function *f)
+     default:wbinary(f,n);break;
+     }
+   }
++  if(f->interruptEntry) {
++    wl(f,2000000);
++    wstep(f,60,4,true,f->frame);
++    we(f,"; mx251-isr-body-end\n\tpop\tdpxl\n\tpop\tdph\n\tpop\tdpl\n");
++    for(int reg=28;reg>=0;reg-=4)we(f,"\tpop\tdr%d\n",reg);
++    we(f,"\tpop\tpsw\n");
++    if(IFFUNC_HASFCALL(currFunc->type))we(f,"\tpop\tbits\n");
++    we(f,"\tpop\t0xd1\n\treti\n");
++  }
+   wrelax_branches(f);
++  if(f->interruptEntry)mcs251FinishWideIsr(&f->output,f->sourceBlocks,f->frame);
+ }

@@ -1,0 +1,50 @@
+{
+  "status": "EXPERIMENT_NOT_ADOPTED",
+  "baselineCommit": "8f9893b",
+  "artifacts": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\native-isr\\native-isr-bodies.patch",
+      "sha256": "319342eab5b0b33d35d34f1d43ed7fa4a4f07a8b15dd2b7c8bdc02fda675e03b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\native-isr\\prototype-sources.json",
+      "sha256": "6d110b7d3b200cc9ef907811f34db0097a0bbe858f83c4320d120cb6ccd7316c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\native-isr\\unit_probe.py",
+      "sha256": "3ad3485a6dfd62a0e2e65acf910adbe9fb2500ba901faac9fd57cd96edc82a57"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\native-isr\\unit-probe-02.json",
+      "sha256": "d6bacb80bf863513ba24f62f7467d16f6a3d3dd28c91508d59c825be7b4344d4"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\native-isr\\pilot-02.log",
+      "sha256": "4fb85453bf56fa6132920bb116e2fce45bfe34f10da843d0d41fb2533ac166d5"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\native-isr\\core-02\\toolchain\\bin\\sdcc.exe",
+      "sha256": "b51a4c7fcd216ab2f89c4e107da14a87e9bbe84892fba67f94d9339f4691a4ed"
+    }
+  ],
+  "unitProbe": {
+    "compiledUnits": 73,
+    "failed": 0,
+    "selectedFunctions": 3,
+    "estimatedFunctionBytesSaved": 16
+  },
+  "fullPilot": {
+    "projects": [
+      "p032",
+      "p045",
+      "p049",
+      "p074",
+      "p136",
+      "p146"
+    ],
+    "smaller": 0,
+    "equal": 6,
+    "larger": 0
+  },
+  "hardwareExecuted": false
+}
