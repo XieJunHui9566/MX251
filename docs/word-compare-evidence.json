@@ -1,0 +1,144 @@
+{
+  "status": "QUALIFIED_DEVELOPMENT_CORE",
+  "sourceCommit": "4bcebe717eef14998a492d129dfd1328c51518c9",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "fb4835e49d6fd199339482785a2158023e1e9fe81224d5e19b77bb88923aeab3"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\core-02\\core.json",
+    "sha256": "371bebf13038f9717e483de5e5dde95a1ff6bdf75e80a67109df4077f9bed820"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 22,
+    "unchanged": 51,
+    "larger": 2,
+    "savedBytes": 92,
+    "mxTotalBytes": 203138,
+    "keilTotalBytes": 192051,
+    "within110": 56,
+    "within120": 71,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.0577294572795768
+  },
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\Build-CMake.ps1",
+      "sha256": "52377b40a06f7a89988b2c99faa0dec6a48526d5dad003a8f0af47d1e7d11e8e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Build.ps1",
+      "sha256": "5405805c29112c6126ea5ba5978d970aee33ace045d7d288589058fc27fd6028"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\BuildLatest.ps1",
+      "sha256": "2a237ead50f0ca9d1abc3cf7424c32f5eeba1d89baabaa2c9909cf03c9f76bd7"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Project.cmake",
+      "sha256": "dfd1bf1ce4ac66586a268cd5f563fc4e7a9e4cb51268f3ecc1fbb775efb3ad98"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\SelectiveLeafAbi.ps1",
+      "sha256": "71655e8fedfd486d07cf7ddf50b3e45f0883071ea365d7795c6f0d3159a43c12"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\main.c",
+      "sha256": "2f2e55ab1df9deedd1c6afab216b0d51603016968c58e598c954fea160c72566"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-word-compare.py",
+      "sha256": "411acd29b020915e917c0d96f971445bf56ff1853abf0ae7ffaed96f51eb855b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\word-compare-cases.c",
+      "sha256": "d19c886f7ade997960072f059dbcda48777d539961adafb3212b3d663b69dc1e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\selective_leaf_abi.py",
+      "sha256": "9c683be78a7564f68784bd14d604fc03200791a32f95ce39dbd1a7f150ab3556"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\word_compare_fixture.py",
+      "sha256": "77a027aba0d80783595d10d6ca4638e9a5e7cd4c098ed63a81c7515dac7c1590"
+    }
+  ],
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\comparison.json",
+    "sha256": "d6cdf69b984f30fbdef2ee45753ad4811118bcbc35c31b1fee4196b82e03ec40"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\attribution.json",
+    "sha256": "f1d50da5f5d345600b2cc174f6cc0b7031ed9af810ae23031df9dc2c097c7474"
+  },
+  "compilerChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\checks-02\\result.json",
+    "sha256": "b871b96c6d6b057e20cbad75b2339ff58b9a33ef5beee94b94c7c8bbf40f7aba"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\hardware-parent\\result.json",
+        "sha256": "a3c8b6faacb1ab605a25885168c637a92e28d287a867dc0b3d778560838aaabf"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\board-parent\\receipt.json",
+        "sha256": "c062ac7c602ab0fd9c7e5fb6be9d0621e7a884f4d02cb4ef8a906a0b536e038a"
+      },
+      "bytes": 1108,
+      "cases": 128,
+      "frames": 638,
+      "port": "COM13",
+      "firmwareSha256": "e70640bb61e8323c279967b587c8cd7452ee6cff15528db7ee70834fd5ed5480",
+      "aggregateTicks": {
+        "0": 11735,
+        "1": 11768.5
+      }
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\hardware-candidate\\result.json",
+        "sha256": "ed147d4d1b535d6bfac2c6cd3b2b45c56ccdbe9ac8f9c498c5e367d265c3714d"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\board-candidate\\receipt.json",
+        "sha256": "afb5b794270ff17a904e8a9cf2524278abbf94dea0d74abfdafb9a3597acd211"
+      },
+      "bytes": 1076,
+      "cases": 128,
+      "frames": 515,
+      "port": "COM13",
+      "firmwareSha256": "210dfcd2ea63ec676e601a90bdc771bffb0b000cfb6d46f1c52c1f364bfb353c",
+      "aggregateTicks": {
+        "0": 11391.5,
+        "1": 11441.5
+      }
+    }
+  ],
+  "optOutCmake": {
+    "result": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\opt-out-cmake\\projects\\p087\\mx251\\result.json",
+      "sha256": "940f66cd55ec98cc80f9b08b4e088e8012143c4d7e0675b2fda5b908c1e92a2e"
+    },
+    "receipt": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\opt-out-cmake\\projects\\p087\\mx251\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "f9e408d40174990ef05ed22eecbd2728020cd322f72933302e804e3b2ccf6954"
+    },
+    "selectiveAbi": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261111\\word-compare\\opt-out-cmake\\projects\\p087\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+      "sha256": "e16bd88f3325673ee979e669f2cabd18c4af74cab7ef648085dd560d8f42f074"
+    },
+    "sameHexAsParent": true
+  },
+  "boardBuild": "core-01, identical compiler SHA-256 to final core-02; optimization disabled/enabled",
+  "fullProjectRuntimeMeasured": false,
+  "defaultInstallChanged": false
+}
