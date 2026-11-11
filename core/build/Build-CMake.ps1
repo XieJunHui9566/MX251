@@ -17,7 +17,7 @@ param(
  [switch]$CalleePreservation,
  [switch]$NativeIntegerRuntime,
  [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
- [switch]$WordCompareImmediate
+ [switch]$WordCompareImmediate=$true
 )
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version Latest

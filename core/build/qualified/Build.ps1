@@ -7,7 +7,7 @@ param(
  [string]$CMakeInput,
  [switch]$C251BitComplement,
  [switch]$LeafCallFeedback,
- [switch]$WordCompareImmediate,
+ [switch]$WordCompareImmediate=$true,
  [switch]$RangeNarrowMultiply,
  [string]$CalleeCostFile,
  [string]$CalleeCostSha256,
@@ -121,7 +121,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  $f+='--mcs251-function-metadata'
  if($FunctionSharing){$f+='--mcs251-share-functions'}
  if($MachineIr){$f+='--mcs251-machine-ir'}
- if($WordCompareImmediate){$f+='--mcs251-word-compare-immediate'}
+ if($WordCompareImmediate){$f+='--mcs251-word-compare-immediate'}else{$f+='--no-mcs251-word-compare-immediate'}
  if($RangeNarrowMultiply){$f+='--mcs251-range-narrow-multiply'}
  if($CalleeCostFile){$f+=@('--mcs251-callee-cost',$CalleeCostFile,'--mcs251-callee-cost-sha256',$CalleeCostSha256)}
  if($ConstantRotateFusion -and $Backend -in @('ordinary-wide','explicit-wide')){$f+='--mcs251-constant-rotate-fusion'}

@@ -133,7 +133,10 @@ function Invoke-Mx251SelectiveLeafAbi([string]$Root,$Config,$Receipt,[string]$To
  foreach($key in $BuildParameters.Keys){
   if($key -in @('OutputDirectory','ManagedOutput','SelectiveLeafAbi')){continue}
   $value=$BuildParameters[$key]
-  if($value -is [Management.Automation.SwitchParameter]){if($value.IsPresent){$start.ArgumentList.Add('-'+$key)}}
+  if($value -is [Management.Automation.SwitchParameter]){
+   if($value.IsPresent){$start.ArgumentList.Add('-'+$key)}
+   elseif($key -ceq 'WordCompareImmediate'){$start.ArgumentList.Add('-WordCompareImmediate:$false')}
+  }
   else{$start.ArgumentList.Add('-'+$key);$start.ArgumentList.Add([string]$value)}
  }
  $record.arguments=@($start.ArgumentList);$process=[Diagnostics.Process]::new();$process.StartInfo=$start

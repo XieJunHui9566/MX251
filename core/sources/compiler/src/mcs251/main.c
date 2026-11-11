@@ -126,7 +126,8 @@ int mcs251WideOrdinaryEnabled;
 int mcs251VolatileDataWideEnabled;
 int mcs251FlatCodeReadsEnabled;
 int mcs251ConstantRotateFusionEnabled;
-int mcs251WordCompareImmediateEnabled;
+int mcs251WordCompareImmediateEnabled=1;
+static int wordCompareImmediateDisabled;
 int mcs251RangeNarrowMultiplyEnabled;
 char *mcs251CalleeCostFile,*mcs251CalleeCostSha;
 int mcs251ScratchConstantRetentionEnabled;
@@ -210,7 +211,8 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-call-save-pack", &mcs251CallSavePackMode, "<0|1|2> caller saves: off/exact order/private layout; experimental default off", CLAT_INTEGER },
     { 0, "--mcs251-pure-static-scalar-inline", &mcs251PureStaticScalarInlineEnabled, "Expand bounded pure static scalar leaves with original frontend semantics; default off" },
     { 0, "--mcs251-scratch-constant-retention", &mcs251ScratchConstantRetentionEnabled, "Retain DR16 word constants across proven adjacent far24 byte transactions; default off" },
-    { 0, "--mcs251-word-compare-immediate", &mcs251WordCompareImmediateEnabled, "Use exact 16-bit immediate comparisons in the wide backend; default off" },
+    { 0, "--mcs251-word-compare-immediate", &mcs251WordCompareImmediateEnabled, "Use exact 16-bit immediate comparisons in the wide backend; default on" },
+    { 0, "--no-mcs251-word-compare-immediate", &wordCompareImmediateDisabled, "Use register comparisons for 16-bit constants" },
     { 0, "--mcs251-ordered-asm", &mcs251OrderedAsmEnabled, "Admit ordered NOP and target-declared numeric SFR bit writes in the wide backend" },
     { 0, "--mcs251-ordered-asm-bits", &orderedAsmBitsSpec, "<NN:MM,...> verified SFR byte:bit-mask capabilities; requires --mcs251-ordered-asm", CLAT_STRING },
     { 0, "--mcs251-memory-state-bits", &memoryStateBitsSpec, "<NN:MM,...> mapping bits preserving GPRs, flags, stack and compiler storage; full memory/motion barrier", CLAT_STRING },
@@ -400,6 +402,7 @@ _mcs251_finaliseOptions (void)
   validateExtendedStack ();
   validateInterruptVectorCount ();
   validateOrderedAsm ();
+  if(wordCompareImmediateDisabled)mcs251WordCompareImmediateEnabled=0;
   if(mcs251ConstantRotateFusionEnabled && !mcs251WideEnabled && !mcs251WideOrdinaryEnabled) {
     werror(E_BAD_INT_ARGUMENT,"--mcs251-constant-rotate-fusion requires --mcs251-wide-backend or --mcs251-wide-ordinary");
     exit(EXIT_FAILURE);

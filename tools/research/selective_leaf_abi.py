@@ -157,6 +157,8 @@ def run(args):
                               ("constantRotateFusion", "ConstantRotateFusion")]:
             if parent.get(field):
                 command.append("-" + option)
+            elif field == "wordCompareImmediate":
+                command.append("-WordCompareImmediate:$false")
         if parent["functionGc"]["enabled"]:
             command.append("-FunctionGc")
             if keep:

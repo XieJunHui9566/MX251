@@ -8,7 +8,7 @@ param(
  [Parameter(Mandatory=$true)][string]$CMakeInput,
  [switch]$C251BitComplement,
  [switch]$LeafCallFeedback,
- [switch]$WordCompareImmediate,
+ [switch]$WordCompareImmediate=$true,
  [switch]$RangeNarrowMultiply,
  [string]$CalleeCostFile,
  [string]$CalleeCostSha256,
@@ -78,7 +78,7 @@ try {
  foreach($argument in @('-NoLogo','-NoProfile','-NonInteractive','-File',$BuildScript,'-Project',$projectPath,'-ToolchainRoot',$ToolchainRoot,'-ProfileRoot',$ProfileRoot,'-OutputDirectory',$outputRoot,'-CMakeInput',$CMakeInput,'-ManagedOutput')){$start.ArgumentList.Add($argument)}
  if($C251BitComplement){$start.ArgumentList.Add('-C251BitComplement')}
  if($LeafCallFeedback){$start.ArgumentList.Add('-LeafCallFeedback')}
- if($WordCompareImmediate){$start.ArgumentList.Add('-WordCompareImmediate')}
+ $start.ArgumentList.Add('-WordCompareImmediate:$'+([bool]$WordCompareImmediate).ToString().ToLowerInvariant())
  if($RangeNarrowMultiply){$start.ArgumentList.Add('-RangeNarrowMultiply')}
  if($CalleeCostFile){$start.ArgumentList.Add('-CalleeCostFile');$start.ArgumentList.Add($CalleeCostFile);$start.ArgumentList.Add('-CalleeCostSha256');$start.ArgumentList.Add($CalleeCostSha256)}
  if($VolatileDataWide){$start.ArgumentList.Add('-VolatileDataWide')}
