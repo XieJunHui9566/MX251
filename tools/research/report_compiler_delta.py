@@ -13,13 +13,23 @@ def main():
     p.add_argument('--baseline', type=Path, required=True)
     p.add_argument('--candidate', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
-    p.add_argument('--title', default='MX251 编译器更新：75 项体积对比')
+    p.add_argument('--title')
+    p.add_argument('--exclude-ids', default='', help='Comma-separated IDs omitted from this comparison')
     args = p.parse_args()
     baseline = read(args.baseline)
     manifest = read(args.candidate / 'inputs.json')
     assert manifest['configuration']['mxSwitches'] == baseline['configuration']['mxSwitches']
+    excluded = (set(filter(None, args.exclude_ids.split(',')))
+                | set(manifest['configuration'].get('excludeIds', []))
+                | set(baseline.get('excludedIds', [])))
+    baseline_ids = {r['id'] for r in baseline['rows']}
+    candidate_ids = {r['id'] for r in manifest['projects']}
+    assert excluded <= baseline_ids | candidate_ids | set(baseline.get('excludedIds', [])), excluded
+    assert baseline_ids - excluded == candidate_ids - excluded
     rows = []
     for old in baseline['rows']:
+        if old['id'] in excluded:
+            continue
         resultfile = args.candidate / 'projects' / old['id'] / 'mx251/result.json'
         result = read(resultfile)
         assert result['status'] == 'BUILT', (old['id'], result)
@@ -42,7 +52,8 @@ def main():
         row['within110'] = 10*row['mx251Bytes'] <= 11*row['keilBytes']
         row['within120'] = 5*row['mx251Bytes'] <= 6*row['keilBytes']
         rows.append(row)
-    assert len(rows) == len(manifest['projects']) == 75
+    assert rows and len(rows) == len(candidate_ids - excluded)
+    title = args.title or f'MX251 编译器更新：{len(rows)} 项体积对比'
     summary = dict(projects=len(rows), improved=sum(r['savedBytes'] > 0 for r in rows),
                    unchanged=sum(r['savedBytes'] == 0 for r in rows), larger=sum(r['savedBytes'] < 0 for r in rows),
                    savedBytes=sum(r['savedBytes'] for r in rows), mxTotalBytes=sum(r['mx251Bytes'] for r in rows),
@@ -52,6 +63,7 @@ def main():
                    smallerThanStcRaw=sum(r['stcBytes'] is not None and r['mx251Bytes'] < r['stcBytes'] for r in rows))
     summary['weightedKeilRatio'] = summary['mxTotalBytes'] / summary['keilTotalBytes']
     record = dict(status='COMPLETE_UNIFORM_COMPILER_DELTA', summary=summary, rows=rows,
+                  excludedIds=sorted(excluded),
                   baseline=pin(args.baseline), candidateManifest=pin(args.candidate / 'inputs.json'),
                   compiler=manifest['compiler'], configuration=manifest['configuration'],
                   measurement='Unique Intel HEX payload bytes, excluding address gaps.',
@@ -59,11 +71,13 @@ def main():
                   stcScope=baseline['stcScope'], fullProjectRuntimeMeasured=False)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.with_suffix('.json').write_text(json.dumps(record, ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
-    intro = f"75/75 构建成功；{summary['improved']} 项缩小、{summary['unchanged']} 项相同、{summary['larger']} 项变大，共减少 {summary['savedBytes']} B。"
+    intro = f"{len(rows)}/{len(rows)} 项构建结果可比；{summary['improved']} 项缩小、{summary['unchanged']} 项相同、{summary['larger']} 项变大，共减少 {summary['savedBytes']} B。"
     counts = f"体积 ≤Keil 120%：{summary['within120']} 项，其中 ≤110%：{summary['within110']} 项；合计 {summary['mxTotalBytes']}/{summary['keilTotalBytes']} B（{summary['weightedKeilRatio']:.2%}）。"
     scope = '全部工程采用同一编译器和配置。Keil/STC 复用上一轮相同源输入的结果；STC 仅作原始 HEX 数值参考。完整工程运行时间未测。'
+    if excluded:
+        scope += ' 本表排除：' + ', '.join(sorted(excluded)) + '；排除项目不计入分母或节省字节。'
     headings = ['ID', '工程', '父版/B', '本轮/B', '减少/B', 'Keil/B', 'MX/Keil', 'STC/B']
-    lines = ['# '+args.title, '', intro, '', counts, '', scope, '', '| '+' | '.join(headings)+' |',
+    lines = ['# '+title, '', intro, '', counts, '', scope, '', '| '+' | '.join(headings)+' |',
              '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |']
     table = []
     for row in rows:
@@ -80,7 +94,7 @@ def main():
 <input id="q" placeholder="搜索 ID 或工程名称" size="42"><label><input id="changed" type="checkbox">只看有变化的工程</label><button id="sort">按 MX/Keil 降序</button><span id="count"></span>
 <table><thead><tr>HEADINGS</tr></thead><tbody>ROWS</tbody></table><p><small>编译器 SHA-256：HASH</small></p></main>
 <script>const q=document.querySelector('#q'),c=document.querySelector('#changed'),b=document.querySelector('tbody');function filter(){let n=0;for(const r of b.rows){const show=r.textContent.toLowerCase().includes(q.value.toLowerCase())&&(!c.checked||Number(r.dataset.saved)!==0);r.hidden=!show;if(show)n++}document.querySelector('#count').textContent=n+' 项'}q.oninput=c.onchange=filter;document.querySelector('#sort').onclick=()=>[...b.rows].sort((a,z)=>Number(z.dataset.ratio)-Number(a.dataset.ratio)).forEach(r=>b.append(r));filter();</script></html>'''
-    for key, value in {'TITLE':html.escape(args.title), 'INTRO':intro, 'COUNTS':counts, 'SCOPE':scope,
+    for key, value in {'TITLE':html.escape(title), 'INTRO':intro, 'COUNTS':counts, 'SCOPE':scope,
                        'HEADINGS':''.join('<th>'+h+'</th>' for h in headings), 'ROWS':''.join(table), 'HASH':manifest['compiler']['sha256']}.items():
         page = page.replace(key, value)
     args.output.with_suffix('.html').write_text(page, encoding='utf8', newline='\n')

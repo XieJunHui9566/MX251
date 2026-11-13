@@ -99,6 +99,9 @@ def prepare(config):
     rows = [r for r in read(config['ledger'])['rows']
             if r['temporaryAcceptanceLabel'] != '体积尚不可按同模型验收，耗时未知']
     assert len(rows) == 75 and len({r['id'] for r in rows}) == 75
+    excluded = set(config.get('excludeIds', []))
+    assert excluded <= {r['id'] for r in rows}, excluded
+    rows = [r for r in rows if r['id'] not in excluded]
     manifest = root/'inputs.json'
     if manifest.exists():
         assert read(manifest)['configuration'] == config
