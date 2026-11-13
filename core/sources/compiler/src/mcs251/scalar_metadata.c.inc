@@ -1,10 +1,26 @@
 #include "ordinary_scalar.h"
+/* A definition with an empty old-style parameter list is a zero-argument
+ * entry. Calls additionally need the actual argument fact from AST lowering;
+ * f() in a declaration alone does not specify the argument count. Keep this
+ * information out of scalar propagation and ABI selection. */
+static bool nearOldStyleNoArgSignature(sym_link *ft,char *out,size_t size)
+{
+  if(!ft || !IS_FUNC(ft) || (!FUNC_NOPROTOTYPE(ft) && !ft->funcAttrs.oldStyle))return false;
+  value *arg=FUNC_ARGS(ft);
+  if(arg && (arg->next || !IS_VOID(arg->type)))return false;
+  sym_link normalized=*ft;
+  FUNC_NOPROTOTYPE((&normalized))=false;
+  normalized.funcAttrs.oldStyle=false;
+  return ordinaryScalarSignatureMode(&normalized,out,size,true);
+}
+
 static void ordinaryScalarMetadata(ebbIndex *ebbi)
 {
   char signature[128];
   if(ordinaryScalarSignature(currFunc->type,signature,sizeof signature))
     dbuf_printf(codeOutBuf,"; mx251-scalar-definition schema=1 symbol=%s signature=%s\n",currFunc->rname,signature);
-  else if(FUNC_SDCCCALL(currFunc->type)==4 && ordinaryScalarSignatureMode(currFunc->type,signature,sizeof signature,true))
+  else if((FUNC_SDCCCALL(currFunc->type)==4 && ordinaryScalarSignatureMode(currFunc->type,signature,sizeof signature,true)) ||
+          nearOldStyleNoArgSignature(currFunc->type,signature,sizeof signature))
     dbuf_printf(codeOutBuf,"; mx251-near-definition schema=1 symbol=%s signature=%s\n",currFunc->rname,signature);
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
@@ -13,6 +29,9 @@ static void ordinaryScalarMetadata(ebbIndex *ebbi)
       symbol *callee=OP_SYMBOL(IC_LEFT(ic));sym_link *ft=operandType(IC_LEFT(ic));
       if(IS_FUNC(ft) && FUNC_SDCCCALL(ft)==4 && ordinaryScalarSignatureMode(ft,signature,sizeof signature,true))
         dbuf_printf(codeOutBuf,"; mx251-near-call schema=1 owner=%s target=%s signature=%s\n",currFunc->rname,callee->rname,signature);
+      else if(nearOldStyleNoArgSignature(ft,signature,sizeof signature))
+        dbuf_printf(codeOutBuf,"; mx251-near-call schema=1 owner=%s target=%s signature=%s\n",currFunc->rname,callee->rname,
+          ic->noCallArgs && !ic->parmBytes?signature:"?");
       if(!ordinaryScalarSignature(ft,signature,sizeof signature))continue;
       dbuf_printf(codeOutBuf,"; mx251-scalar-call schema=1 owner=%s target=%s signature=%s values=",currFunc->rname,callee->rname,signature);
       unsigned ordinal=0;

@@ -803,6 +803,7 @@ copyiCode (iCode * ic)
   nic->block = ic->block;
   nic->level = ic->level;
   nic->parmBytes = ic->parmBytes;
+  nic->noCallArgs = ic->noCallArgs;
   nic->hasBranchHint = ic->hasBranchHint;
   nic->branchHint = ic->branchHint;
 
@@ -3948,6 +3949,7 @@ geniCodeCall (operand * left, ast * parms, int lvl)
 
   /* stack adjustment after call */
   ic->parmBytes = stack;
+  ic->noCallArgs = !parms;
 
   if (!IS_STRUCT (type))
     {

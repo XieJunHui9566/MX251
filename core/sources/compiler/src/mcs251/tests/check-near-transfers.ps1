@@ -34,6 +34,8 @@ $cases=@(
  @{name='opaque';text=$template.Replace('opaque=0','opaque=1');calls=0;jumps=0},
  @{name='stack-parameter';text=$template.Replace('signature=u16(u16)','signature=u16(u16,u8)');calls=0;jumps=1},
  @{name='native-two-registers';text=$template.Replace('scalar-','near-').Replace('signature=u16(u16)','signature=u16(u16,u16)').Replace('abi=2','abi=4');calls=1;jumps=1},
+ @{name='old-style-zero-arguments';text=$template.Replace('scalar-','near-').Replace('signature=u16(u16)','signature=u16()');calls=1;jumps=1},
+ @{name='mixed-unknown-call';text=$template.Replace('ecall _callee',"; mx251-near-call schema=1 owner=_caller target=_callee signature=?`necall _callee`necall _callee");calls=0;jumps=1},
  @{name='library-entry';text=$template;exclude=@('_callee');calls=0;jumps=1},
  @{name='address-in-data';text=$template+"`n.dw _callee";calls=0;jumps=1},
  @{name='tail-call';text=$template.Replace('ejmp L1','ejmp _far');calls=0;jumps=0},

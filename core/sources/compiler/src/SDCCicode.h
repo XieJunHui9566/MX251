@@ -147,6 +147,7 @@ typedef struct iCode
   unsigned nosupdate:1;         /* don't update spillocation with this */
   unsigned generated:1;         /* code generated for this one */
   unsigned parmPush:1;          /* parameter push Vs spill push */
+  bool noCallArgs:1;            /* source CALL/PCALL has no actual arguments */
   unsigned supportRtn:1;        /* will cause a call to a support routine */
   unsigned regsSaved:1;         /* registers have been saved */
   unsigned bankSaved:1;         /* register bank has been saved */
