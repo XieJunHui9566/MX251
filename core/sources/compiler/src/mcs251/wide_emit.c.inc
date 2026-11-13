@@ -230,6 +230,75 @@ wload_byte(wide_function *f,wide_operand o,int dest)
       we(f,"\tmov\ta,%s\n",address);if(dest!=11)we(f,"\tmov\tr%d,a\n",dest);}
   }
 }
+static int
+wpack_source_byte(wide_function *f,wide_operand o)
+{
+  if(o.value<0)return -1;
+  wide_value *v=&f->values[o.value];
+  return v->reg>=0 && v->reg+v->width<=16?v->reg+v->width-1:-1;
+}
+
+static void
+wpack_load_byte(wide_function *f,wide_operand o,int dest)
+{
+  if(o.value<0 || f->values[o.value].width==1) {wload_byte(f,o,dest);return;}
+  wide_value *v=&f->values[o.value];int byte=wpack_source_byte(f,o);
+  if(byte>=0) {if(byte!=dest)we(f,"\tmov\tr%d,r%d\n",dest,byte);}
+  else {
+    if(v->reg>=0)we(f,"\tmov\twr10,wr%d\n",v->reg+v->width-2);
+    else {char address[32];wa(address,v->slot+v->width-f->frame-f->stackDepth);we(f,"\tmov\ta,%s\n",address);}
+    if(dest!=11)we(f,"\tmov\tr%d,a\n",dest);
+  }
+}
+
+static void
+wpack_bytes(wide_function *f,wide_node *n)
+{
+  wide_value *v=&f->values[n->result];int base=v->reg,width=n->width;
+  we(f,"; wide byte-pack width=%d reg=%d\n",width,base);
+  if(base>=0 && base+width<=16) {
+    int source[4];unsigned pending=(1u<<width)-1;
+    for(int k=0;k<width;++k) {
+      source[k]=wpack_source_byte(f,n->byteLanes[k]);
+      if(source[k]==base+k)pending&=~(1u<<k);
+    }
+    /* A parallel byte copy can overlap its dying inputs. Drain destinations
+     * no pending source needs; break each remaining cycle with reserved A. */
+    while(pending) {
+      bool progress=false;
+      for(int k=0;k<width;++k)if(pending&(1u<<k)) {
+        bool needed=false;
+        for(int j=0;j<width;++j)if(j!=k && (pending&(1u<<j)) && source[j]==base+k)needed=true;
+        if(needed)continue;
+        if(source[k]>=0)we(f,"\tmov\tr%d,r%d\n",base+k,source[k]);
+        else wpack_load_byte(f,n->byteLanes[k],base+k);
+        pending&=~(1u<<k);progress=true;
+      }
+      if(!progress) {
+        int k=0;while(!(pending&(1u<<k)))++k;
+        int reg=source[k];wassert(reg>=0 && reg!=11);
+        we(f,"\tmov\ta,r%d\n",reg);
+        for(int j=0;j<width;++j)if((pending&(1u<<j)) && source[j]==reg)source[j]=11;
+      }
+    }
+    return;
+  }
+  /* Upper words and spilled results have no byte aliases. Build each word
+   * in B:A, then use the existing reserved wide scratch/result store. */
+  for(int k=0;k<width;k+=2) {
+    wide_operand low=n->byteLanes[k+1];
+    wpack_load_byte(f,n->byteLanes[k],10);
+    if(low.value>=0 && f->values[low.value].reg>=16) {
+      we(f,"\tmov\ta,#0\n\tmov\twr%d,wr10\n",16+k);
+      wpack_load_byte(f,low,11);
+      we(f,"\tmovz\twr20,a\n\torl\twr%d,wr20\n",16+k);
+    } else {
+      wpack_load_byte(f,low,11);we(f,"\tmov\twr%d,wr10\n",16+k);
+    }
+  }
+  wstore(f,n->result,16);
+}
+
 static void
 wcompare_byte(wide_function *f,wide_operand left,wide_operand right)
 {
@@ -2040,6 +2109,7 @@ wide_emit(wide_function *f)
       int work=v->reg>=0&&v->width>1?v->reg:16;
       wload(f,n->right,work,width);wstore_known(f,n->result,work,wcanonical_pointer(f,n->right));break;
     }
+    case WM_BYTE_PACK:wpack_bytes(f,n);break;
     case LEFT_OP:case RIGHT_OP:wshift(f,n);break;
     case WM_ROTATE_LEFT:wrotate(f,n);break;
     case '!': {

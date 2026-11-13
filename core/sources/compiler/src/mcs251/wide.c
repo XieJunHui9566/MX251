@@ -26,6 +26,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
 enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
+enum { WM_BYTE_PACK = WM_UDIVMOD + 1 };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
@@ -48,6 +49,7 @@ typedef struct {
   unsigned op;
   iCode *origin;
   wide_operand left, right, addressIndex;
+  wide_operand byteLanes[4]; /* WM_BYTE_PACK, most significant byte first. */
   symbol *callee;
   symbol *addressSymbol;
   int addressOffset, addressObject;
@@ -1657,6 +1659,10 @@ wide_reset_allocation(wide_function *f)
     for(unsigned k=0;k<3+n->stackArgs;++k)if(wb_has(n->use,values[k])) {
       ++f->values[values[k]].reads;f->values[values[k]].weight+=1+4*n->origin->depth;
     }
+    if(n->op==WM_BYTE_PACK)for(int k=0;k<n->width;++k)if(n->byteLanes[k].value>=0) {
+      int v=n->byteLanes[k].value;
+      ++f->values[v].reads;f->values[v].weight+=1+4*n->origin->depth;
+    }
   }
 }
 
@@ -2478,7 +2484,7 @@ wide_choose_transform_frame(wide_function *f,wide_selection_cost *cost,
         /* 仅新候选显式使用现有 symbol 解析器；未知地址仍为拒绝。
          * 旧选择器默认 false，保持历史规则和永久失败样本的重放。 */
         const char *canonicalOption=getenv("MX251_CANONICAL_BRANCH_COST");
-        bool canonicalBranches=canonicalOption && !strcmp(canonicalOption,"1");
+        bool canonicalBranches=!strcmp(kind,"byte-pack") || (canonicalOption && !strcmp(canonicalOption,"1"));
         int loopDecision=!strcmp(kind,"loop-cursor")?
           wide_cursor_cost_compare(f,trial,&originalCode,&trialCode):canonicalBranches?
           wide_loop_cost_compare_canonical(dbuf_get_buf(&originalCode),dbuf_get_length(&originalCode),
@@ -2537,10 +2543,19 @@ wide_choose_transform(wide_function *f,wide_selection_cost *cost,
     originalKind,trialKind,requireKnownPaths,useOperandContext,true);
 }
 
+#include "wide_byte_pack.c.inc"
+
+static mcs251_wide_result
+wide_choose_byte_pack(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_byte_packs,wide_choose_domain,
+    "byte-pack","groups",false,"pack-original","pack-trial",false,true);
+}
+
 static mcs251_wide_result
 wide_choose_pointer_copy(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_entry_pointer_copies,wide_choose_domain,
+  return wide_choose_transform(f,cost,wide_entry_pointer_copies,wide_choose_byte_pack,
     "pointer-copy","copies",true,"original","trial",false,false);
 }
 
