@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "ec7987e78bb556523bb184ba79236e77bc9ddb01",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\core-01\\core.json",
+    "sha256": "03a6634479f40e5bb0d73a27e59056ffee2d02ed09876fee4117f63303c35bd2"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "7dc4bf9ff35400c3dda143bc68b38e79da14fb273011ad09d9a03bdc6c94c1b9"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\Build-Optimized.ps1",
+    "sha256": "f277dcbb4aff78e195be4a4496e282a0b859c801715250eefaba15293dc52edb"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\candidate-01.json",
+    "sha256": "45efa38e4137c77d4d44b723b4518a312b733c8319af3753a02514fe743deb70"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\comparison.json",
+    "sha256": "729ba5c0a219edb6855f142c1dee88f21c7216c5da146302f9d64729c6bd88f4"
+  },
+  "finalComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\comparison.json",
+    "sha256": "72dedd4e750aa4f8d7fdcfb4d59d096e7f89a620457c514aacbcc31e4547c6e9"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 10,
+    "unchanged": 65,
+    "larger": 0,
+    "savedBytes": 259,
+    "mxTotalBytes": 191805,
+    "keilTotalBytes": 192049,
+    "within110": 65,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 0.9987294909111737
+  },
+  "remaining110": [
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mx251Bytes": 4696,
+      "keilBytes": 4128,
+      "keilRatio": 1.1375968992248062,
+      "gap110Bytes": 156
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mx251Bytes": 986,
+      "keilBytes": 832,
+      "keilRatio": 1.1850961538461537,
+      "gap110Bytes": 71
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mx251Bytes": 1172,
+      "keilBytes": 1002,
+      "keilRatio": 1.1696606786427146,
+      "gap110Bytes": 70
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "mx251Bytes": 1279,
+      "keilBytes": 1105,
+      "keilRatio": 1.1574660633484164,
+      "gap110Bytes": 64
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mx251Bytes": 468,
+      "keilBytes": 404,
+      "keilRatio": 1.1584158415841583,
+      "gap110Bytes": 24
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mx251Bytes": 485,
+      "keilBytes": 423,
+      "keilRatio": 1.1465721040189125,
+      "gap110Bytes": 20
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mx251Bytes": 192,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mx251Bytes": 1015,
+      "keilBytes": 909,
+      "keilRatio": 1.1166116611661165,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mx251Bytes": 785,
+      "keilBytes": 704,
+      "keilRatio": 1.1150568181818181,
+      "gap110Bytes": 11
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "mx251Bytes": 306,
+      "keilBytes": 272,
+      "keilRatio": 1.125,
+      "gap110Bytes": 7
+    }
+  ],
+  "gap110Bytes": 455,
+  "checks": {
+    "argumentObjects": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\tests-03\\result.json",
+      "sha256": "75b4d273b1d446879af8c364a946b1ae7a661039286bc36bd5114bfc57329413"
+    },
+    "variadicCalls": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\tests-variadic\\result.json",
+      "sha256": "00fcc718646b3f165dc6c3f2efb9de8881b9848fd62e7dd0aa46a82d911010aa"
+    },
+    "receipts": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\receipt-audit.json",
+      "sha256": "bf19fb4b627be97632d16fd7f9f743145bd317875e5aabaf44c8bcb6d732514a"
+    }
+  },
+  "hardware": {
+    "parent": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\hardware-parent\\result.json",
+        "sha256": "1c45a29f15d46694208672a89cf01d7fe0563abaa5aaa5e193beb8c5792ccd6b"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\fixture-parent\\source.json",
+        "sha256": "e41e2841930f1de704b61fb909c1063fae675c0133583a3b5fde2fd9e3065ae4"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\fixture-parent\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "656cb4b358d5cd0e09c2042a489aacc66eba29b018b725d382935abf482ce199"
+      },
+      "bytes": 1716,
+      "cases": 128,
+      "frames": 528,
+      "aggregateTicks": {
+        "0": 3147.0,
+        "1": 3175.0
+      }
+    },
+    "new": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\hardware-new\\result.json",
+        "sha256": "c5eed6e0e4627979f169b6433b5c3ba4cd93078c5887a5d1f40a5500d342ac39"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\fixture-new\\source.json",
+        "sha256": "e41e2841930f1de704b61fb909c1063fae675c0133583a3b5fde2fd9e3065ae4"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\fixture-new\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "91b985f4accff0b4689a3d6f1aa4c3572a4512ed4239d87874754be152a94a9f"
+      },
+      "bytes": 1631,
+      "cases": 128,
+      "frames": 523,
+      "aggregateTicks": {
+        "0": 3076.0,
+        "1": 2816.0
+      }
+    },
+    "timer": "Timer0 /12T, 40 MHz; sum of per-input median ticks over 64 inputs in each group",
+    "groups": {
+      "0": "native ABI snapshots and division",
+      "1": "ordinary and native calls with mutating globals, signed integers and float bit patterns"
+    },
+    "runtimeReductionPercent": {
+      "0": 2.2561169367651734,
+      "1": 11.307086614173222
+    }
+  },
+  "functionAttribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\function-attribution.json",
+    "sha256": "e7f9bf6d8211d555f18aac424aa207a7cd896c55eac9f5953b69ed7218718ce5"
+  },
+  "research": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\body-gap-research\\remaining11.json",
+    "sha256": "7ca14a10db18118fb11c3277e0203ffee413f23daaaa40fc17658c8e99988803"
+  },
+  "inheritedQualifications": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\qualification.json",
+      "sha256": "32c67b12d1c7adf80ab1c5a58c9b3e5f742a4082709749d9d43a3a45df1e13f6"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\target-sfr-layout-evidence.json",
+      "sha256": "bb30565a76a56eab700f3342fad97aa916c238f115bea9e88eab04d9548b903d"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false
+}

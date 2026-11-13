@@ -82,13 +82,13 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 22,
-    "unchanged": 53,
+    "improved": 10,
+    "unchanged": 65,
     "larger": 0,
-    "savedBytes": 320,
-    "mxTotalBytes": 192064,
+    "savedBytes": 259,
+    "mxTotalBytes": 191805,
     "keilTotalBytes": 192049,
-    "within110": 64,
+    "within110": 65,
     "within120": 75,
     "stcStatuses": {
       "BUILT": 59,
@@ -96,50 +96,42 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 1.000078105066936
+    "weightedKeilRatio": 0.9987294909111737
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03\\core.json",
-    "sha256": "63f962b7c2e352dbd553f244c04f00593cecd99b0da5dc3b29db7ba162aa3198"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\core-01\\core.json",
+    "sha256": "03a6634479f40e5bb0d73a27e59056ffee2d02ed09876fee4117f63303c35bd2"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03\\toolchain\\bin\\sdcc.exe",
-    "sha256": "e7535e05441c305d51d59e4ae9576a3603ff10fcede3d5f60e4a1383686b5910"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "7dc4bf9ff35400c3dda143bc68b38e79da14fb273011ad09d9a03bdc6c94c1b9"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\candidate-03.json",
-    "sha256": "f2274065dc5e9e7957ca921751f453d77af9af02fd7dfc9ca27e151117a41c21"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\candidate-01.json",
+    "sha256": "45efa38e4137c77d4d44b723b4518a312b733c8319af3753a02514fe743deb70"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\comparison.json",
-    "sha256": "729ba5c0a219edb6855f142c1dee88f21c7216c5da146302f9d64729c6bd88f4"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\comparison.json",
+    "sha256": "72dedd4e750aa4f8d7fdcfb4d59d096e7f89a620457c514aacbcc31e4547c6e9"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\qualification.json",
-    "sha256": "baa23dae7c7bdb85390e8d1a62052c74dd35f417441c7b57e27841b22e40984c"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\qualification.json",
+    "sha256": "7b980ecc9e576325d287532b418c0c732ddead61682ff08350bb3803ed22d73d"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\matrix-03\\projects\\p108\\input-overrides.json",
-      "sha256": "7ea5a4cb4b14be8f5368df394c1d6f53b692090bc939db25d8aa91e1c9def922"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\matrix-01\\projects\\p108\\input-overrides.json",
+      "sha256": "a8819cc45bbb5a5fa85e0e3b6fd7673869bb555cb1532c1de1399cea9715db12"
     }
   },
   "remaining110": [
     {
       "id": "p136",
       "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4741,
+      "mx251Bytes": 4696,
       "keilBytes": 4128,
-      "keilRatio": 1.1484980620155039,
-      "gap110Bytes": 201
-    },
-    {
-      "id": "p122",
-      "name": "72.1-UART-SPI-TFT_DMA_P2P外设到外设_显示图片程序",
-      "mx251Bytes": 4785,
-      "keilBytes": 4283,
-      "keilRatio": 1.1172075647910342,
-      "gap110Bytes": 74
+      "keilRatio": 1.1375968992248062,
+      "gap110Bytes": 156
     },
     {
       "id": "p045",
@@ -214,7 +206,7 @@
       "gap110Bytes": 7
     }
   ],
-  "gap110Bytes": 574,
+  "gap110Bytes": 455,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -225,7 +217,7 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-final.json",
-    "sha256": "4e6f72f83211178fe9b12f76f714be621a739e66bf6dab0afe4497a5f59e82c1"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\comparison.json",
+    "sha256": "729ba5c0a219edb6855f142c1dee88f21c7216c5da146302f9d64729c6bd88f4"
   }
 }
