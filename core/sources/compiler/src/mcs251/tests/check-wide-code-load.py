@@ -24,9 +24,6 @@ for model in ['small','large']:
    rows.append(dict(model=model,opt=opt,native=native,accepted=accepted,codeLoadSites=len(accesses),movcBytes=sum(int(w) for w,v in accesses),volatileBytes=8))
 header='typedef unsigned char u8;typedef unsigned long u32;\n#define ABI __reentrant __sdcccall(4)\n'
 negative={
- 'code-param':'u32 f(const u8 __code *p) ABI {return *p;}',
- 'code-return':'const u8 __code *f(u32 n) ABI {return (const u8 __code *)n;}',
- 'code-call':'u32 g(const u8 __code *) ABI;u32 f(u32 n) ABI {return g((const u8 __code *)n);}',
  'code-store':'void f(u32 n,u32 v) ABI {*(u8 __code *)n=v;}',
  'atomic-code':'u32 f(u32 n) ABI {return *(_Atomic(u32) __code *)n;}',
 }
@@ -42,4 +39,4 @@ for model in ['small','large']:
   assert (outputs[0][0]==0)==(outputs[1][0]==0)
   if not outputs[0][0]:assert outputs[0][1]==outputs[1][1],(model,name)
   rows.append(dict(model=model,boundary=name,diagnostic=bool(outputs[0][0]),fallbackMachineCodeIdentical=not outputs[0][0]))
-(a.output_dir/'results.json').write_text(json.dumps(rows,indent=2));print('PASS 8 CODE configurations and 10 address-space/ABI boundaries')
+(a.output_dir/'results.json').write_text(json.dumps(rows,indent=2));print('PASS 8 CODE configurations and 4 address-space boundaries')

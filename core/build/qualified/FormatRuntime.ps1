@@ -343,6 +343,14 @@ function Get-Mx251FormatHex([string]$Path) {
  return ,$seen
 }
 
+function Get-Mx251FormatObjectBytes([string]$Path) {
+ $bytes=0
+ foreach($m in [regex]::Matches([IO.File]::ReadAllText($Path),'(?m)^A \S+ size ([0-9A-F]+) flags ([0-9A-F]+) addr [0-9A-F]+\r?$')){
+  if([Convert]::ToInt32($m.Groups[2].Value,16) -band 0x20){$bytes+=[Convert]::ToInt32($m.Groups[1].Value,16)}
+ }
+ return $bytes
+}
+
 function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[string[]]$LinkArguments,$AdditionalArchives=@{},[switch]$MachineIr) {
  $record=[ordered]@{schema=1;status='FALLBACK_FULL_RUNTIME';applied=$false;hardwareExecuted=$false}
  $saved=@();$baselineCommand=$null;$trialCommand=$null;$accepted=$false
@@ -370,14 +378,37 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   $parentImage=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.parentBytes=$parentImage.Count
   $source=New-Mx251FormatSource $demand ([IO.File]::ReadAllText($kernelPath))
   $sourcePath=Join-Path $Root 'format-runtime.c';[IO.File]::WriteAllText($sourcePath,$source,[Text.UTF8Encoding]::new($false))
-  $record.sourceSha256=Hash-File $sourcePath
   # 库不继承项目宏或包含目录，避免同名头文件/宏改变公开运行库契约。
-  $compileArgs=@('-mmcs251',('--model-'+$Config.model),'--stack-auto','--opt-code-size','--std-sdcc11','--nostdinc',('-I'+(Join-Path $ToolRoot 'include')),('-I'+(Join-Path $ToolRoot 'include/mcs51')),'--mcs251-wide-ordinary','--mcs251-function-metadata','-c','format-runtime.c','-o','format-runtime.rel')
+  $compileArgs=@('-mmcs251',('--model-'+$Config.model),'--stack-auto','--opt-code-size','--std-sdcc11','--nostdinc',('-I'+(Join-Path $ToolRoot 'include')),('-I'+(Join-Path $ToolRoot 'include/mcs51')),'--mcs251-native-abi','--mcs251-wide-ordinary','--mcs251-function-metadata','-c','format-runtime.c','-o','format-runtime.rel')
   if($MachineIr){$compileArgs+='--mcs251-machine-ir'}
   if($demand.nativeIntegerDivision){$compileArgs+='--mcs251-native-int-runtime'}
   $record.machineIr=[bool]$MachineIr
-  Run-Tool 'format-runtime' $compilerExe $compileArgs
-  Check-Assembly (Join-Path $Root 'format-runtime.asm')
+  # Select private register transport using assembled code size, including
+  # all callers. Walkers and conversion kernels have different register
+  # pressure, so also price register walkers with ordinary conversion calls.
+  # Every candidate keeps the public variadic entries on ABI2.
+  $sources=[ordered]@{abi2=$source
+   body4=[regex]::Replace($source,'(?m)^(static int mx_\w+\([^{};]*?\))\r?$','$1 __reentrant __sdcccall(4)')
+   abi4=[regex]::Replace($source,'(?m)^(static (?:unsigned char|int) mx_\w+\([^{};]*?\))\r?$','$1 __reentrant __sdcccall(4)')}
+  $choices=@();$best=$null
+  foreach($name in $sources.Keys){
+   [IO.File]::WriteAllText($sourcePath,$sources[$name],[Text.UTF8Encoding]::new($false))
+   Run-Tool ('format-runtime-'+$name) $compilerExe $compileArgs
+   Check-Assembly (Join-Path $Root 'format-runtime.asm')
+   $candidate=@{name=$name;codeBytes=(Get-Mx251FormatObjectBytes (Join-Path $Root 'format-runtime.rel'))}
+   $choices+=@($candidate)
+   $directory=Join-Path $Root ('format-'+$name);[IO.Directory]::CreateDirectory($directory)|Out-Null
+   foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'format-runtime.*'}){
+    [IO.File]::Copy($p.FullName,(Join-Path $directory $p.Name),$false)
+   }
+   if($null -eq $best -or $candidate.codeBytes -lt $best.codeBytes){$best=$candidate}
+  }
+  $record.privateAbi=$best.name
+  $record.abiChoice=@{candidates=$choices;selected=$best.name}
+  foreach($p in Get-ChildItem -LiteralPath (Join-Path $Root ('format-'+$best.name)) -File){[IO.File]::Copy($p.FullName,(Join-Path $Root $p.Name),$true)}
+  $selectedCommand=@($commands|Where-Object{$_.label -ceq ('format-runtime-'+$best.name)})[-1]
+  $selectedCommand.actualLogLabel=$selectedCommand.label;$selectedCommand.label='format-runtime'
+  $record.sourceSha256=Hash-File $sourcePath
   $backup=Join-Path $Root 'format-baseline';[IO.Directory]::CreateDirectory($backup)|Out-Null
   foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Extension -ceq '.rst'}){
    [IO.File]::Copy($p.FullName,(Join-Path $backup $p.Name),$false);$saved+=@{name=$p.Name;sha256=(Hash-File $p.FullName)}

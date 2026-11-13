@@ -160,16 +160,16 @@ wide_value_type (sym_link *t, bool sampled)
     (!IS_BITINT (t) || SPEC_BITINTWIDTH (t) == 8*size) &&
     (size == 1 || size == 2 || size == 4);
 }
-/* CODE 只扩展函数内部的取址/读取，公开 ABI 仍只接纳原有平坦数据指针。 */
+/* CODE transport uses wide_abi_type; scalar operations keep CODE separate. */
 static bool wide_type(sym_link *t) {return wide_value_type(t,false) && !wide_code_pointer(t) && !IS_BIT(t) && !IS_BOOL(t);}
 
-/* 普通 ABI2 已定义三字节 CODE 指针运输；MIR 补零为四字节不改变
- * DPL/DPH/B 或物理栈槽。ABI4 仍保持原有类型合同与原后端诊断。
+/* ABI2 and ABI4 transport three-byte CODE pointers. MIR zero-extension
+ * to four bytes leaves the physical register and stack layout unchanged.
  * 读取空间由 codePointer/codeAccess 传递，不能退化为 XDATA。 */
 static bool
 wide_abi_type(sym_link *t,sym_link *functionType)
 {
-  return wide_type(t) || (FUNC_SDCCCALL(functionType)==2 &&
+  return wide_type(t) || ((FUNC_SDCCCALL(functionType)==2 || FUNC_SDCCCALL(functionType)==4) &&
     wide_code_pointer(t) && wide_value_type(t,false));
 }
 
@@ -366,7 +366,7 @@ wide_symbol_snapshot(wide_function *f,wide_node *n,operand *op,bool store,wide_o
   if(s->onStack && (!s->_isparm || wide_register_parameter(s)) &&
      ((IS_SPEC(s->type) && IS_SPEC(t)) ||
       (wide_pointer(s->type) && wide_pointer(t) && wide_code_pointer(t)==wide_code_pointer(s->type) &&
-       (!wide_code_pointer(t) || (f->ordinaryEntry && s->_isparm)))) &&
+       (!wide_code_pointer(t) || (s->_isparm && wide_abi_type(t,currFunc->type))))) &&
      !IS_BITVAR(t) && !IS_BOOL(t) && wide_value_type(t,true) &&
      getSize(t)==getSize(s->type)) {
     int object,width=wide_width(t);
@@ -2921,10 +2921,9 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
      IFFUNC_ISBANKEDCALL(currFunc->type) || FUNC_REGBANK(currFunc->type) ||
      IFFUNC_HASVARARGS(currFunc->type) ||
      (!wide_abi_type(currFunc->type->next,currFunc->type) && !IS_VOID(currFunc->type->next))) {dbuf_printf(diagnostics,"; wide admission function=%s skip=entry-contract\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
-  /* 普通 ABI2 复用原三字节 CODE 指针合同；显式 ABI4 的 CODE 形参
-   * 继续回退，让原 genFunction 给出诊断，不隐式扩展原生公开 ABI。 */
+  /* Entry and call argument types use the same ABI transport contract. */
   for(value *arg=FUNC_ARGS(currFunc->type);arg;arg=arg->next)
-    if((wide_code_pointer(arg->type) && !ordinary) || (ordinary && !wide_abi_type(arg->type,currFunc->type))) {dbuf_printf(diagnostics,"; wide admission function=%s skip=parameter-type\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
+    if(!wide_abi_type(arg->type,currFunc->type)) {dbuf_printf(diagnostics,"; wide admission function=%s skip=parameter-type\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
   if(!wide_stack_signature(currFunc->type)) {dbuf_printf(diagnostics,"; wide admission function=%s skip=stack-signature\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
   f=Safe_alloc(sizeof *f);memset(f,0,sizeof *f);f->ordinaryEntry=ordinary;f->diagnostics=diagnostics;f->candidateOutput=output;
   f->narrowNegate=narrowNegate;
