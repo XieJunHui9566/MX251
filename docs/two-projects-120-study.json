@@ -1,0 +1,97 @@
+{
+  "status": "STATIC_FEASIBILITY_STUDY",
+  "date": "2026-11-13",
+  "activeCohort": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\active-sdk-cohort.json",
+    "sha256": "44de8153d5143fe9c9fe2184f28b27bb3126d8d3ea30314c4db40258f42ac58d"
+  },
+  "compilerChanged": false,
+  "newBuildsRun": false,
+  "hardwareExecuted": false,
+  "fullProjectRuntimeMeasured": false,
+  "projects": [
+    {
+      "id": "p045",
+      "currentBytes": 1034,
+      "keilBytes": 832,
+      "target120Bytes": 998,
+      "bytesNeeded": 36,
+      "staticCandidateSaving": 48,
+      "staticCandidateBytes": 986,
+      "staticCandidateRatio": 1.1850961538461537,
+      "evidence": [
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p045\\mx251\\.build\\mx251\\latest\\u0.rst",
+          "sha256": "e90bc72f74c1e8784ad219996b371413b64191dc700649fd494494d4e162bd26"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p045\\mx251\\.build\\mx251\\latest\\u0.asm",
+          "sha256": "17b9a44b517061b330a4319e315f0270ed4f7c5becbd39bd9b072311e7c62e58"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p045\\keil\\unit0.lst",
+          "sha256": "8bb5f5ce64d55076e955f6cca054559c86f057c02d791cd56c66d1bc3a063e43"
+        }
+      ],
+      "mechanism": "Use existing packed ISR context once inline peripheral status operations are classified for private stack effects.",
+      "currentSavePairs": 26,
+      "currentSaveBytes": 104,
+      "packedSavePairs": 14,
+      "packedSaveBytes": 56,
+      "bankSelectionBytesUnchanged": 3,
+      "trigger": "clr 0x87.5 is rejected by the shared PCON low-six-bit classifier before packed context and leaf-save passes."
+    },
+    {
+      "id": "p047",
+      "currentBytes": 194,
+      "keilBytes": 160,
+      "target120Bytes": 192,
+      "bytesNeeded": 2,
+      "staticCandidateSaving": 2,
+      "staticCandidateBytes": 192,
+      "staticCandidateRatio": 1.2,
+      "evidence": [
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p047\\mx251\\.build\\mx251\\latest\\u0.rst",
+          "sha256": "7e71941faaed83776fefdcf372b4fc132586c211eaf64517e8db5fcdde53ad30"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p047\\mx251\\.build\\mx251\\latest\\u0.asm",
+          "sha256": "ccd7c1a087e6a4d159d13449eb7ff84331a44566928ea719ad925f8f22392a26"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p047\\keil\\unit0.lst",
+          "sha256": "d630acbf6e153dcb2d2f28692989319c544582d1400a88b6fa8f3258d5474429"
+        }
+      ],
+      "mechanism": "Propagate dead-GPR analysis across known peripheral bit operations without changing those operations.",
+      "instruction": "mov r7,a",
+      "address": "0xFF012D",
+      "encoding": "A5 FF",
+      "rstLine": 758,
+      "noSubsequentR7Read": true
+    }
+  ],
+  "implementationSources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "02130d84a69b1b3e843aae71b6ac97c830c228b4c3e043b377809c84cd4cd6d0"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "de8029401b7790b23b86f39fe3cefa43a8451c97feb50739da9dda4f87b30b9b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_ordered_contract.h",
+      "sha256": "71510f8d5e05cd56370f05221475b6405d71e8bacf921c9c8e5c87b2eec3b588"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_transfer_values.c.inc",
+      "sha256": "c8d38cd9bf463ae209a2781c8ea522061777da886e6d790b87745565c924fc66"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\peep.c",
+      "sha256": "3ff2c1568bf2f6e00721b21f47ca04339c1dce84ce3cb4fc9b0f7edba46f090d"
+    }
+  ]
+}
