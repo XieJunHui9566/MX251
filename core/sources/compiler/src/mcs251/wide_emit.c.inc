@@ -519,6 +519,7 @@ wmemory_symbol(wide_function *f,wide_node *n)
 #include "wide_scratch_constant.c.inc"
 #include "wide_single_byte.c.inc"
 #include "wide_byte_rmw.c.inc"
+#include "wide_indexed_address.c.inc"
 
 static void
 wmemory(wide_function *f,wide_node *n,bool addressReady)
@@ -531,7 +532,7 @@ wmemory(wide_function *f,wide_node *n,bool addressReady)
      * 不用 16 位 DPTR 截断跨页地址；A/B 和 WR20/22 均为保留临时寄存器。
      * 先快照地址，最后才写结果，允许输入与输出分配到重叠寄存器。 */
     wassert(n->op==WM_LOAD && n->addressObject<0);
-    int address=wread(f,n->left,16,4);
+    int address=addressReady?16:windexed_address(f,n);
     we(f,"; wide code load width=%d volatile-bytes=%d\n\tmov\tdpx,dr%d\n",n->width,n->byteAccess,address);
     /* 地址先完整复制到 DPX，结果才可覆盖原寄存器。单字节 MOVC 的
      * 结果直接写回，不扩展到 WR20 再截回；易失读取仍恰好一次。 */
@@ -564,22 +565,7 @@ wmemory(wide_function *f,wide_node *n,bool addressReady)
     return;
   }
   if(!n->byteAccess) {
-    int address;
-    if(addressReady)address=16;
-    else if(n->addressOp) {
-      /* 保留原四字节加减与24位指针规范化，只省去中间地址的存储。
-       * DR16/DR20均为保留寄存器；先形成地址，再装载待写入的数据。 */
-      we(f,"; wide indexed address op=%c index-width=%d\n",n->addressOp,n->addressIndex.width);
-      wload(f,n->left,16,4);
-      wide_operand offset=n->addressIndex;uint32_t literal=offset.literal;
-      if(offset.sign && offset.width<4 && (literal&(UINT32_C(1)<<(8*offset.width-1))))
-        literal|=~((UINT32_C(1)<<(8*offset.width))-1);
-      if(offset.value<0 && literal<=0xffff) {
-        wstep(f,16,4,n->addressOp=='-',literal);
-      } else {int index=wread(f,offset,20,4);we(f,"\t%s\tdr16,dr%d\n",n->addressOp=='+'?"add":"sub",index);}
-      we(f,"\tanl\twr16,#0x00ff\n");
-      address=16;
-    } else address=wread(f,n->left,16,4);
+    int address=addressReady?16:windexed_address(f,n);
     /* CODE remains read-only in MIR. The target contract permits the same
      * physical loads as unified RAM, including unaligned words. Volatile
      * CODE reads retain the byte transactions above. */
@@ -1696,6 +1682,8 @@ wide_emit(wide_function *f)
     if(predicate>i) {i=predicate;continue;}
     if(n->rotateCandidate) {wrotate_proposal(f,i);i+=2;continue;}
     if(wide_call_plain(f,i+1,2) && wmemory_byte_rmw(f,i)) {i+=2;continue;}
+    int indexed=windexed_scaled_memory(f,i);
+    if(indexed>i) {i=indexed;continue;}
     /* 已经规范化的常量选位，只在紧邻且单用的 cast/store 链中直接写 C。
      * 不跨真实读取、标签或调用；目标 bit/SFR 仍发生一次独立写入。
      * 非单用结果仍生成字节 0/1，供其他消费者使用。 */
