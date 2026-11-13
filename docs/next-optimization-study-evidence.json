@@ -1,0 +1,241 @@
+{
+  "status": "READ_ONLY_STUDY",
+  "baselineCommit": "5a87634106a8c17557044c27b43f9b904ca2b5d6",
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\comparison.json",
+    "sha256": "25ed42bf4c980d837c1522dfa26287f3d8b57f15e4c4fb00273dedfe226268ea"
+  },
+  "qualifiedCompiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "cddad2e1e1c46f115aeb774b0be34376f61c1a356df8228b0791c6c7799b8049"
+  },
+  "summary": {
+    "tables": 17,
+    "tableProjects": 10,
+    "dispatchBytes": 275,
+    "slotBytes": 636,
+    "repeatedTargetTables": 15,
+    "sameRegisterReloads": {
+      "sites": 21,
+      "projects": 8,
+      "bytes": 63
+    },
+    "defaultVectors": {
+      "sites": 63,
+      "projects": 63,
+      "bytes": 1137
+    },
+    "callingIsrs": {
+      "sites": 30,
+      "projects": 28,
+      "bytes": 600
+    },
+    "repeatDpxlLeads": {
+      "sites": 115,
+      "projects": 25,
+      "bytes": 345
+    },
+    "existingMatcherDpxl": {
+      "sites": 39,
+      "projects": 10,
+      "bytes": 117
+    }
+  },
+  "remaining": [
+    {
+      "id": "p015",
+      "mxBytes": 306,
+      "keilBytes": 272,
+      "bytesTo110": 7
+    },
+    {
+      "id": "p032",
+      "mxBytes": 787,
+      "keilBytes": 704,
+      "bytesTo110": 13
+    },
+    {
+      "id": "p039",
+      "mxBytes": 1279,
+      "keilBytes": 1105,
+      "bytesTo110": 64
+    },
+    {
+      "id": "p045",
+      "mxBytes": 1034,
+      "keilBytes": 832,
+      "bytesTo110": 119
+    },
+    {
+      "id": "p047",
+      "mxBytes": 194,
+      "keilBytes": 160,
+      "bytesTo110": 18
+    },
+    {
+      "id": "p049",
+      "mxBytes": 1174,
+      "keilBytes": 1002,
+      "bytesTo110": 72
+    },
+    {
+      "id": "p074",
+      "mxBytes": 1039,
+      "keilBytes": 909,
+      "bytesTo110": 40
+    },
+    {
+      "id": "p095",
+      "mxBytes": 5380,
+      "keilBytes": 4830,
+      "bytesTo110": 67
+    },
+    {
+      "id": "p108",
+      "mxBytes": 7752,
+      "keilBytes": 1434,
+      "bytesTo110": 6175
+    },
+    {
+      "id": "p122",
+      "mxBytes": 4785,
+      "keilBytes": 4283,
+      "bytesTo110": 74
+    },
+    {
+      "id": "p133",
+      "mxBytes": 473,
+      "keilBytes": 404,
+      "bytesTo110": 29
+    },
+    {
+      "id": "p136",
+      "mxBytes": 4753,
+      "keilBytes": 4128,
+      "bytesTo110": 213
+    },
+    {
+      "id": "p146",
+      "mxBytes": 307,
+      "keilBytes": 277,
+      "bytesTo110": 3
+    },
+    {
+      "id": "p149",
+      "mxBytes": 485,
+      "keilBytes": 423,
+      "bytesTo110": 20
+    }
+  ],
+  "bytesTo110ExcludingP108": 739,
+  "tableWidths": {
+    "currentLayoutSame64KTables": 17,
+    "currentLayoutSame2KTables": 8,
+    "same2KSlots": 42,
+    "slotOnlyGrossDifference": 201,
+    "p095LocalModel": {
+      "clusteredSwitchDifference": 56,
+      "threeByteDenseTableDifference": 11,
+      "total": 67,
+      "scope": "Static local instruction cost; not a compiled image or timing result"
+    }
+  },
+  "research": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\optimization-research\\remaining14.json",
+      "sha256": "8553f103dd084210b2b04b8b803f6face09e0191651ea97c8603abc6f7f75058"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\optimization-research\\full75.json",
+      "sha256": "39a0335ed32480e8f1e2dfac47cff9dbc7956a0ce6b9ed8ab293b1c9b055cb8f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\optimization-research\\inventory.py",
+      "sha256": "3ba2bc872baf3dbe735fceba3b7531524581315e951537629fb6f4753597b72f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\optimization-research\\inventory.json",
+      "sha256": "e85d1d55159b8546e578dc5dbed12579256b3f830c46854b588479f0d7463d4c"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\main.c",
+      "sha256": "2f2e55ab1df9deedd1c6afab216b0d51603016968c58e598c954fea160c72566"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\SDCCicode.c",
+      "sha256": "d2cfce9d79dc79096750cc33851c88cee944aae678521b23f4b924c4b1f979ea"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_emit.c.inc",
+      "sha256": "74ad9382180ae27ed7c98140211a1b166bcf92f8c335a2343a90fedf4ef56647"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_lower.c.inc",
+      "sha256": "9aa103bc8faa3276701bd8ca440a7320d64a6b4384d2049adf88197ee0b73304"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "de8029401b7790b23b86f39fe3cefa43a8451c97feb50739da9dda4f87b30b9b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\dpx_high_literal.h",
+      "sha256": "0e4de6d50ea4e266cc8e9a671be517b5e785f10ba3820d85a59cfd6726067ae2"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\NearTransfers.ps1",
+      "sha256": "79a758778a9bc34f7da038f833b01a0dbd6d95fdc5a7a06e6676e0c88e3b4dda"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\CallClobberFeedback.ps1",
+      "sha256": "7e3efca4c5defc527403588805bc4feeb0589706a8ee37c24add9cbd1af355e2"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\FormatRuntime.ps1",
+      "sha256": "fbc62aba4194375e6738b7b477b612fd63709aac07ef6547ea2e98e66d0af39e"
+    }
+  ],
+  "p108": {
+    "target": "0xFF006B",
+    "mxTargetPresent": false,
+    "keilContainingSegment": "?PR?MAIN?UART1",
+    "keilSegmentStart": "0xFF0026",
+    "keilSegmentEnd": "0xFF00EE",
+    "registeredCInterrupts": [
+      4
+    ],
+    "commentedInterrupt": 13,
+    "inputs": [
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p108\\mx251\\.build\\mx251\\latest\\src\\isr.asm",
+        "sha256": "30a57db935a33b5f14bdf513f6527276eeb4fb9efc95c868f571338884b1f1b5"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p108\\mx251\\.build\\mx251\\latest\\src\\uart1.c",
+        "sha256": "a8e23478c90fbba2c63d6cf92dbd034b5df2257e02968426c42ea53e75587550"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p108\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ee91afcf67011759d73b1e94b957967265d69d57fbb9ab0d45ee14fa0ab5fbe3"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p108\\mx251\\.build\\mx251\\latest\\project.snapshot.json",
+        "sha256": "f903dfb83e01f0757da724ba3dc34c755b86c9a94f40533ac7895fd8823cefc7"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p108\\keil\\FIRMWARE.MAP",
+        "sha256": "95e0885ca3a2bc08b83a8dabf9b78372a874cacaa888ffdc9a0274bc2aa44487"
+      }
+    ]
+  },
+  "priority": [
+    "target-cost switch selection and linked table stride",
+    "special-register effects for DPXL and ISR calls"
+  ],
+  "compilerChanged": false,
+  "firmwareBuilt": false,
+  "hardwareOperated": false,
+  "newQualifiedResults": false,
+  "fullProjectRuntimeMeasured": false
+}
