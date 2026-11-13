@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * 同一 IR 的完整普通/宽后端候选。现有选择比较线性体或共同 CFG 区域；
- * 无环 C 控制流及窄无符号取负使用完整体积与静态指令数选择。
+ * 无环 C 控制流、ABI4 及窄无符号取负使用完整体积与静态指令数选择。
  * 不交换ASM片段，不改变声明/调用约定，也不以函数或器件名称选择。 */
 #include "internal_return.h"
 #include "wide_cost.h"
@@ -19,10 +19,10 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
 {
   const char *enabled=getenv("MX251_LINEAR_BACKEND_CHOICE");
   if(enabled && !strcmp(enabled,"0"))return false;
-  if(!currFunc || FUNC_SDCCCALL(currFunc->type)!=2 ||
+  if(!currFunc || (FUNC_SDCCCALL(currFunc->type)!=2 && FUNC_SDCCCALL(currFunc->type)!=4) ||
      mcs251InternalReturn(currFunc) || mcs251InternalArgument(currFunc) ||
      IFFUNC_ISISR(currFunc->type) || options.debug)return false;
-  bool ordered=false;
+  bool native=FUNC_SDCCCALL(currFunc->type)==4,ordered=false;
   if(mcs251OrderedAsmEnabled)for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
@@ -45,8 +45,8 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
         operand *op=IC_LEFT(ic);
         if(!op || !IS_SYMOP(op) || !IS_FUNC(operandType(op)) ||
            (FUNC_SDCCCALL(operandType(op))!=2 &&
-            !((ordered || narrowTrial) && FUNC_SDCCCALL(operandType(op))==4)) ||
-           (!narrowTrial && OP_SYMBOL(op)->cdef) ||
+            !((native || ordered || narrowTrial) && FUNC_SDCCCALL(operandType(op))==4)) ||
+           (!native && !narrowTrial && OP_SYMBOL(op)->cdef) ||
            mcs251InternalReturn(OP_SYMBOL(op)) || mcs251InternalArgument(OP_SYMBOL(op)))return false;
       }
     }
@@ -55,7 +55,7 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
 }
 
 /* Narrow unsigned negation can admit an entire function, including its loops.
- * Compare both complete bodies before choosing it. The ordinary wide importer
+ * Compare both complete bodies before choosing it. The wide importer
  * validates operations and CFG; selection requires fewer bytes and no more
  * static instructions. This does not estimate loop execution counts. */
 static bool
@@ -76,7 +76,7 @@ mcs251BackendNarrowTrial(ebbIndex *ebbi)
   return found;
 }
 
-/* Whole-body selection for acyclic C control flow. Unlike the path-dominance
+/* Whole-body selection for ABI4 and acyclic ABI2 C control flow. Unlike the path-dominance
  * selector, this compares both complete implementations, including branch
  * encodings and shared tails. It is a size/instruction-count heuristic, not
  * a claim that every input takes the same number of cycles. */
@@ -85,6 +85,10 @@ mcs251BackendBodyEligible(ebbIndex *ebbi)
 {
   const char *enabled=getenv("MX251_BODY_BACKEND_CHOICE");
   if(enabled && !strcmp(enabled,"0"))return false;
+  /* Both emitters implement ABI4's register and physical stack slots.
+   * Compare the complete function, including loops and ABI2/ABI4 calls,
+   * so byte-oriented code can retain the smaller native-ABI implementation. */
+  if(currFunc && FUNC_SDCCCALL(currFunc->type)==4)return true;
   /* Newly admitted ordered functions often contain byte-oriented I/O loops.
    * Compare complete bodies as well: retain the byte backend when it has
    * fewer bytes and no more static instructions. This is a profitability
