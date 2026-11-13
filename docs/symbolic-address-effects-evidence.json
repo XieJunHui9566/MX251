@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "d01b11e3be76c37f5960977e187ff8b4707ab9b7",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\core-01\\core.json",
+    "sha256": "530a86770da00ad639bf9b71d415767c5e3fc16441b668b22c08ff7f0c484a84"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "572b7a68b5c667dc15d6cb57fa68cfb1b530a06136f189b7c9c260fbc4117e77"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\Build-Optimized.ps1",
+    "sha256": "f277dcbb4aff78e195be4a4496e282a0b859c801715250eefaba15293dc52edb"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\candidate-01.json",
+    "sha256": "717e94e1c07526e7b615e365ea18cfdcd619c0115da6bc30517a624fc96bb003"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\comparison-targeted.json",
+    "sha256": "e3302964acc92ee72b432e1a1106d504e87bd0b7d7a7e409ca0e5553146eb758"
+  },
+  "summary": {
+    "projects": 6,
+    "improved": 1,
+    "unchanged": 5,
+    "larger": 0,
+    "savedBytes": 9
+  },
+  "checks": {
+    "symbolRanges": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\test-symbols\\result.json",
+      "sha256": "09fb4d2efadfcfefdb1c4cc8c7dae87839e4d82281cbe70818e16d50d247cc0e"
+    },
+    "cfg": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\test-cfg\\result.json",
+      "sha256": "48a21a0f15b8f99b1b752a3204069584e9d3bcac642b4fa9944b88ab187cade9"
+    },
+    "dpx": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\test-dpx\\result.json",
+      "sha256": "4f873c41bba4f454c5216f5d65289a2d61380c56064dd0aa8c20356a37e5bd68"
+    },
+    "sfr": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\test-sfr\\result.json",
+      "sha256": "eb95319f60416c2a4b2822c6c61541e4c31044d458a5d662ba0dc74878106236"
+    }
+  },
+  "hardware": {
+    "status": "PASS",
+    "cases": 128,
+    "frames": 254,
+    "result": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\hardware\\result.json",
+      "sha256": "d918ef06e5772ee5f855903061e143831225266d9f504764bcde726da66ce3a9"
+    },
+    "source": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\fixture\\source.json",
+      "sha256": "9c93ce74cdd539a8556d8923150f8567bdcdbbd5c8a732b136cfb64f003d5f32"
+    },
+    "generator": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\symbol_address_isr_fixture.py",
+      "sha256": "05bc4cd7590ccd912ad6e7fcdda6a218f9b1596e65c299bf53cd7701603b0baa"
+    },
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\fixture\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "4d8233e580f561f5c605ed65d5a87999409479122f6b9b37de0651011014471e"
+    },
+    "fullProjectRuntimeMeasured": false
+  },
+  "survey": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\symbolic-address-effects\\survey.json",
+    "sha256": "85378c06e0f14a9a75f1b7e29079a3d0b8503b0a1eaccc8ce8021dda533c9559"
+  },
+  "scope": "Six selected complete projects. Not a new uniform75 qualification."
+}
