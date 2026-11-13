@@ -1,0 +1,15 @@
+typedef unsigned char u8;
+typedef unsigned int u16;
+typedef unsigned long u32;
+extern u32 address_tag;
+u32 address_forward(const u8 *p);
+u32 address_reverse(const u8 *p);
+u32 address_negative(const u8 *p);
+u32 address_volatile(const volatile u8 *p);
+u32 address_calls(const u8 *p);
+u32 address_branch(const u8 *p,u8 select);
+u32 address_scratch(const u8 *p,u32 value);
+u32 address_changed(const u8 *p,u8 offset);
+void address_store(u8 *p);
+u8 address_read(const u8 *p);
+u32 address_case(u8 kind,u8 seed);

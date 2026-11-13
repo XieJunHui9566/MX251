@@ -3,6 +3,7 @@
 #include "wide_branch.c.inc"
 #include "wide_call_save_plan.h"
 extern int mcs251CallSavePackMode;
+#include "wide_relative_address.c.inc"
 static void we (wide_function *f,const char *format,...) {
   size_t begin=dbuf_get_length(&f->output);
   va_list ap;va_start(ap,format);dbuf_vprintf(&f->output,format,ap);va_end(ap);
@@ -10,6 +11,7 @@ static void we (wide_function *f,const char *format,...) {
   for(size_t i=begin;i<end;++i)if(p[i]=='\t' && (!i || p[i-1]=='\n')) {++f->emitInstructions;f->emitCost+=f->emitWeight;}
   for(size_t i=begin;i<end;) {
     size_t next=i;while(next<end && p[next]!='\n')++next;
+    wrelative_observe(f,p+i,next-i);
     if(next==end)f->relaxDisabled=true;
     if(p[i]=='\t') {unsigned bound=wbranch_instruction_bound(p+i+1,next-i-1);if(bound)f->emitUpper+=bound;else ++f->emitBarrier;}
     else if(next>i && p[i]!=';' && p[next-1]!=':')++f->emitBarrier;
@@ -591,7 +593,7 @@ wmemory_symbol(wide_function *f,wide_node *n)
 #include "wide_indexed_address.c.inc"
 
 static void
-wmemory(wide_function *f,wide_node *n,bool addressReady)
+wmemory_emit(wide_function *f,wide_node *n,bool addressReady)
 {
   if(n->pointerAccess){wmemory_pointer(f,n);return;}
   /* Byte tables already have compact legacy indexed loads. Native word
@@ -726,6 +728,32 @@ wstore_chain_offset(wide_function *f,wide_node *n,int64_t *offset)
     value-=INT64_C(1)<<bits;
   *offset=n->addressOp=='-'?-value:value;
   return true;
+}
+
+static void
+wmemory(wide_function *f,wide_node *n,bool addressReady)
+{
+  int64_t offset=0,delta=0;
+  bool eligible=wrelative_candidate(f,n,addressReady,&offset);
+  bool reuse=eligible && f->relativeAddressValid &&
+    f->relativeAddressBase==n->left.value && wrelative_path(f,f->relativeAddressNode,f->scratchNode);
+  if(reuse) {
+    delta=offset-f->relativeAddressOffset;
+    reuse=delta>=-65535 && delta<=65535 && (offset || !delta);
+  }
+  f->relativeAddressValid=false;
+  if(reuse) {
+    we(f,"; wide relative-address base=v%d previous=%lld offset=%lld delta=%lld\n",
+      n->left.value,(long long)f->relativeAddressOffset,(long long)offset,(long long)delta);
+    wstep(f,16,4,delta<0,(uint32_t)(delta<0?-delta:delta));
+    we(f,"\tanl\twr16,#0x00ff\n");
+  }
+  wmemory_emit(f,n,addressReady || reuse);
+  if(eligible && (n->op==WM_STORE || f->values[n->result].reg<0 ||
+     !(wide_mask(f->values[n->result].reg,n->width)&wide_mask(f->values[n->left.value].reg,4)))) {
+    f->relativeAddressValid=true;f->relativeAddressBase=n->left.value;
+    f->relativeAddressOffset=offset;f->relativeAddressNode=f->scratchNode;
+  }
 }
 
 #include "wide_stack_constants.c.inc"
@@ -1709,6 +1737,7 @@ wide_emit(wide_function *f)
   }
   bool reachable[WN_MAX];wide_emit_reachable(f,reachable);
   f->scratchAddressValid=false;f->scratchNode=f->scratchNextNode=-1;
+  f->relativeAddressValid=false;
   we(f,"\n; mcs251 wide-mir accepted: %s; values=%d nodes=%d frame=%d folded-casts=%d\n%s:\n",currFunc->name,f->nv,f->nn,f->frame,f->foldedCasts,currFunc->rname);
   if(f->reusedParameterLoads)we(f,"; wide repeated parameter loads reused=%d\n",f->reusedParameterLoads);
   for(int i=0;i<f->nv;++i) {

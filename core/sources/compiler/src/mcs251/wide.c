@@ -107,6 +107,9 @@ typedef struct {
   bool scratchAddressValid;
   uint32_t scratchAddress;
   int scratchNode,scratchNextNode;
+  bool relativeAddressValid;
+  int relativeAddressBase,relativeAddressNode;
+  int64_t relativeAddressOffset;
   bool body, sampledQualified, formalAddress, ordinaryEntry, allocationInvalid;
   bool nativeReceiveFree;
   bool promotedStackObjects; /* Keep object allocation choices after scalar promotion. */
