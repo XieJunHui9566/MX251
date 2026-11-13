@@ -230,7 +230,10 @@ function Invoke-Mx251FunctionGc {
     if($signedBranch -and $operand -cnotmatch '^(?:[A-Za-z_][A-Za-z0-9_.$]*|[0-9]+\$)$'){&$addIssue 'SIGNED_BRANCH_TARGET_UNPROVEN' "${name}:$($i+1) $operand"}
     $bitOperands=Get-Mx251GcBitOperands $instruction $operand
     foreach($invalidBit in $bitOperands.invalidConstants){&$addIssue 'BIT_OPERAND_UNPROVEN' "${name}:$($i+1) $invalidBit"}
-    $doc.records.Add(@{owner=$owner;line=$i;kind='instruction';expression=$operand;tokens=@(Get-Mx251GcTokens $operand);bitBuiltinTokens=$bitOperands.knownTokens;signedBranch=$signedBranch;absoluteControl=$absoluteControl})
+    # E: qualifies a MOV memory operand; retain the symbol inside it. A bare
+    # symbol named e (including a call target) still participates in the graph.
+    $tokenOperand=if($instruction -eq 'mov'){[regex]::Replace($operand,'(?i)(^|,)\s*e\s*:','$1')}else{$operand}
+    $doc.records.Add(@{owner=$owner;line=$i;kind='instruction';expression=$operand;tokens=@(Get-Mx251GcTokens $tokenOperand);bitBuiltinTokens=$bitOperands.knownTokens;signedBranch=$signedBranch;absoluteControl=$absoluteControl})
    }
   }
   if($active){&$addIssue 'UNCLOSED_FUNCTION' $active.id}

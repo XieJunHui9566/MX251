@@ -47,6 +47,7 @@ eret
 $config=@{units=@(@{name='u0';file='fixture.c'});archives=@();link=@('u0','@startup')}
 $cases=@(
  @{name='registered-vector';operand='0xff006b';base=[long]0xff0000;resolved=$true},
+ @{name='edata-operand';operand='0xff006b';base=[long]0xff0000;resolved=$true},
  @{name='decimal-vector';operand='16711787';base=[long]0xff0000;resolved=$true},
  @{name='relocated-code-base';operand='0xfe006b';base=[long]0xfe0000;resolved=$true},
  @{name='vector-interior';operand='0xff006c';base=[long]0xff0000;resolved=$false},
@@ -65,6 +66,10 @@ foreach($case in $cases){
  $root=Join-Path $Output $case.name;$null=New-Item -ItemType Directory -Path $root
  $asm=Join-Path $root 'u0.asm';$obj=Join-Path $root 'u0.rel'
  $text=$source
+ if($case.name -eq 'edata-operand'){
+  $text=".globl _value`n"+$text.Replace("ecall _live","mov dr4,e:(_value+0)`nmov E:(_value+0),dr4`necall e")
+  $text=$text.Replace('_live','e')
+ }
  if($case.name -eq 'not-an-isr'){$text=$text.Replace('symbol=_irq isr=1','symbol=_irq isr=0')}
  if($case.name.StartsWith('naked-')){
   $extra=if($case.name -eq 'naked-extra-instruction'){"nop`n"}else{''}
