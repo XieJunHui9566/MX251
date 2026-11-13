@@ -6,6 +6,8 @@ $repo=Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 . (Join-Path $repo 'core/build/qualified/IndirectFormat.ps1')
 function Hash-File([string]$Path) { return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant() }
 $null=New-Item -ItemType Directory -Path $Output
+$constants=Read-Mx251FormatConstants @('.area CONST','; mx251-string-literal schema=1 symbol=_empty bytes=00','; mx251-string-literal schema=1 symbol=_byte bytes=ff00')
+if($constants['_empty'] -cne '' -or [int]$constants['_byte'][0] -ne 255){throw 'empty or Latin-1 literal decoding failed'}
 $wide="mov a,#((_fmt+0)>>16)`npush acc`npushw #(_fmt+0)"
 $legacy="mov a,#(_fmt >> 16)`npush acc`npushw #_fmt`nmov a,#_fmt"
 foreach($setup in @($wide,$legacy)) {
@@ -41,6 +43,11 @@ $config=@{runtime='standard';explicitAbi=$false;archives=@();units=@(@{file='u0.
 [IO.File]::WriteAllBytes((Join-Path $Output 'u0.rel'),[byte[]]@(0))
 $d=Get-Mx251FormatDemand $Output $config
 if($d.calls.Count -ne 1 -or ($d.calls[0].argumentBytes -join ',') -cne '2,3'){throw 'late bank contract or slot recognition failed'}
+foreach($runtime in @('native-int-mdu32','native-math-mdu32')) {
+ $config.runtime=$runtime
+ if((Get-Mx251FormatDemand $Output $config).calls.Count -ne 1){throw 'MDU format demand changed'}
+}
+$config.runtime='standard'
 $rejected=@()
 foreach($change in @(@('abi=2 bank=0','abi=4 bank=0'),@('pushw #0x1234','push dr4'),@('_fmt+0','_fmt+1'))) {
  [IO.File]::WriteAllText((Join-Path $Output 'u0.asm'),$body.Replace($change[0],$change[1]))

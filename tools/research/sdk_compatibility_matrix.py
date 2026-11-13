@@ -41,6 +41,11 @@ def prepare(config, coverage, project):
         if path.suffix.lower() not in ('.c', '.h'): continue
         before = path.read_bytes()
         after = before
+        if project['id'] == 'p083' and path.name.lower() == 'sample.c':
+            # Both arguments are unsigned long; keep the native and adapted
+            # comparison inputs identical instead of accepting mismatched varargs.
+            after = after.replace(b'Result2=%d', b'Result2=%lu')
+            after = after.replace(b'Result3=%u', b'Result3=%lu')
         if project['id'] in ('p070', 'p106', 'p123'):
             after = after.replace(b'QSPI_Init', b'QSPI_init')
         if project['id'] in ('p144', 'p145'):
@@ -56,7 +61,7 @@ def prepare(config, coverage, project):
             errata.append(dict(before=old, after=matrix.pin(path)))
             next(f for f in meta['files'] if f['name'] == path.name)['copySha256'] = matrix.pin(path)['sha256']
     matrix.save(base/'source-errata.json', dict(files=errata,
-        reason='Correct symbol case, pointer indirection and missing arguments in vendor examples'))
+        reason='Correct symbol case, pointer indirection, missing arguments and long printf specifiers in vendor examples'))
     matrix.save(base/'original-inputs.json', meta)
     texts = {p.name: prep.decode(p) for p in (base/'native').iterdir()
              if p.suffix.lower() in ('.c', '.h', '.asm')}
@@ -86,6 +91,10 @@ def prepare(config, coverage, project):
     (out/'src/intrins.h').write_text('#define _nop_() do { __asm nop __endasm; } while (0)\n', encoding='ascii')
     model = 'large' if project['id'] in ('p144', 'p145') else 'small'
     runtime = 'native-math' if libraries else 'standard'
+    if libraries and all('mdu32' in name for name in libraries):
+        # Preserve the requested hardware integer provider without pulling in
+        # a floating-point profile. Selection is by input library capability.
+        runtime = 'native-int-mdu32'
     settings = dict(schema=2, target='AI8051U-34K64-32', model=model,
         optimization='speed', backend='ordinary-wide', explicitAbi=False,
         standard='sdcc11', runtime=runtime, defines=[])
@@ -122,19 +131,20 @@ def main():
     ids = set(args.ids.split(','))
     projects = [p for p in matrix.read(args.coverage/'inputs.json')['projects'] if p['id'] in ids]
     assert {p['id'] for p in projects} == ids
-    tasks = []
+    tasks, prepared = [], []
     for original in projects:
         prepare(config, args.coverage, original)
         project = dict(original, libraries=[])
         project.pop('preparationError', None)
         base = args.output/'projects'/project['id']
         project['sourceManifest'] = matrix.pin(base/'original-inputs.json')
+        prepared.append(project)
         local = dict(config)
         settings = matrix.read(base/'mx251/mx251.json')
         if settings['runtime'] != 'standard' or settings['model'] == 'large':
             local['mxSwitches'] = [s for s in config['mxSwitches'] if s != '-NativeIntegerRuntime']
         tasks.append((local, project, 'mx251'))
-    matrix.save(args.output/'inputs.json', dict(projects=projects, configuration=config,
+    matrix.save(args.output/'inputs.json', dict(projects=prepared, configuration=config,
         runner=matrix.pin(__file__)))
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as pool:
         rows = list(pool.map(lambda t: matrix.one(*t), tasks))

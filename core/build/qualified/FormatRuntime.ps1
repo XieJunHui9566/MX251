@@ -10,10 +10,9 @@ function Read-Mx251FormatConstants([string[]]$Lines) {
   if($area -ceq 'CONST' -and $line -cmatch '^; mx251-string-literal schema=1 symbol=([A-Za-z_.$][A-Za-z_.$0-9]*) bytes=((?:[0-9a-f]{2})+)$'){
    $label=$Matches[1];$bytes=[Convert]::FromHexString($Matches[2]);$end=[Array]::IndexOf($bytes,[byte]0)
    if($end -lt 0 -or $end -gt 32767){continue}
-   $prefix=if($end){$bytes[0..($end-1)]}else{@()}
    if($table.ContainsKey($label)){throw 'duplicate-literal-metadata'}
    # Latin-1 仅作字节到字符串的一一映射，不转码项目的中文/UTF-8 数据。
-   $table[$label]=[Text.Encoding]::Latin1.GetString([byte[]]$prefix)
+   $table[$label]=[Text.Encoding]::Latin1.GetString($bytes,0,$end)
   }
  }
  return ,$table
@@ -128,7 +127,7 @@ function Test-Mx251FormatInitializerUnit([string[]]$Lines) {
 }
 
 function Get-Mx251FormatDemand([string]$Root,$Config) {
- if($Config.runtime -cnotin @('standard','native-int','native-math') -or $Config.explicitAbi -or @($Config.archives).Count){throw 'unsupported-format-runtime-or-project-archive'}
+ if($Config.runtime -cnotin @('standard','native-int','native-math','native-int-mdu32','native-math-mdu32') -or $Config.explicitAbi -or @($Config.archives).Count){throw 'unsupported-format-runtime-or-project-archive'}
  $calls=@();$fingerprints=@();$rawVectors=@();$indirectEvidence=@();$apiPattern='(?<![A-Za-z0-9_.$])_+(?:printf|vprintf|sprintf|vsprintf|snprintf|vsnprintf|fprintf|vfprintf|print_format)(?![A-Za-z0-9_.$])'
  $formatHome=Get-Mx251FormatHome (Join-Path $Root 'linked.partial.map')
  $slots=[Collections.Generic.HashSet[int]]::new()
