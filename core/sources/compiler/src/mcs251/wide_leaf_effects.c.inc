@@ -4,7 +4,7 @@
 extern char *mcs251LeafEffectsFile;
 extern char *mcs251PreserveFile;
 typedef struct wide_leaf_effect {
-  char name[SDCC_NAME_MAX+1];unsigned abi,dpxWrites;uint32_t writes;bool local;
+  char name[SDCC_NAME_MAX+1];unsigned abi,dpxWrites,bitsWrites;uint32_t writes;bool local;
   struct wide_leaf_effect *next;
 } wide_leaf_effect;
 static wide_leaf_effect *wideLeafEffects;
@@ -27,15 +27,17 @@ static void wide_load_effects(const char *path,bool preserve) {
   if(!file)goto invalid;
   if(wide_effect_line(file,line,sizeof line)!=1 ||
      (preserve?strcmp(line,"MX251-CALLEE-PRESERVE-1"):
-     (strcmp(line,"MX251-LEAF-EFFECTS-1") && strcmp(line,"MX251-CALL-CLOBBERS-1") && strcmp(line,"MX251-CALL-CLOBBERS-2") && strcmp(line,"MX251-CALL-CLOBBERS-3"))))goto invalid;
-  bool dpx=!preserve && !strcmp(line,"MX251-CALL-CLOBBERS-3");
+     (strcmp(line,"MX251-LEAF-EFFECTS-1") && strcmp(line,"MX251-CALL-CLOBBERS-1") && strcmp(line,"MX251-CALL-CLOBBERS-2") && strcmp(line,"MX251-CALL-CLOBBERS-3") && strcmp(line,"MX251-CALL-CLOBBERS-4"))))goto invalid;
+  bool bits=!preserve && !strcmp(line,"MX251-CALL-CLOBBERS-4");
+  bool dpx=bits || (!preserve && !strcmp(line,"MX251-CALL-CLOBBERS-3"));
   bool scoped=preserve || dpx || !strcmp(line,"MX251-CALL-CLOBBERS-2");
   int status;
   while((status=wide_effect_line(file,line,sizeof line))==1) {
     char *scope=scoped?strtok(line," \t"):NULL;
     char *name=strtok(scoped?NULL:line," \t"),*abi=strtok(NULL," \t"),*mask=strtok(NULL," \t");
-    char *dpxMask=dpx?strtok(NULL," \t"):NULL,*extra=strtok(NULL," \t");
+    char *dpxMask=dpx?strtok(NULL," \t"):NULL,*bitsMask=bits?strtok(NULL," \t"):NULL,*extra=strtok(NULL," \t");
     if(dpx && (!dpxMask || strlen(dpxMask)!=1 || *dpxMask<'0' || *dpxMask>'3'))goto invalid;
+    if(bits && (!bitsMask || strlen(bitsMask)!=1 || *bitsMask<'0' || *bitsMask>'1'))goto invalid;
     if(scoped && (!scope || (strcmp(scope,"local") && strcmp(scope,"global"))))goto invalid;
     bool local=scoped && !strcmp(scope,"local");
     if(!name || !abi || !mask || extra || strlen(name)>SDCC_NAME_MAX || strlen(mask)!=8 ||
@@ -47,6 +49,7 @@ static void wide_load_effects(const char *path,bool preserve) {
     wide_leaf_effect *entry=Safe_alloc(sizeof *entry);strcpy(entry->name,name);
     entry->abi=(unsigned)(*abi-'0');entry->writes=(uint32_t)strtoul(mask,NULL,16);entry->local=local;
     entry->dpxWrites=dpx?(unsigned)(*dpxMask-'0'):3u;
+    entry->bitsWrites=bits?(unsigned)(*bitsMask-'0'):1u;
     if(preserve) {
       uint32_t bits=entry->writes;
       if(!bits || (bits&~UINT32_C(0xff00f300)))goto invalid;
@@ -91,4 +94,12 @@ unsigned mcs251CallDpxWrites(symbol *callee) {
   for(wide_leaf_effect *p=wideLeafEffects;p;p=p->next)
     if(p->local==!!IS_STATIC(callee->etype) && p->abi==FUNC_SDCCCALL(callee->type) && !strcmp(p->name,callee->rname))return p->dpxWrites;
   return 3u;
+}
+/* Private temporary bits are distinct from allocated C bit objects. */
+unsigned mcs251CallBitsWrites(symbol *callee) {
+  const char *enable=getenv("MX251_BITS_CALL_EFFECTS");
+  if(!callee || (enable && !strcmp(enable,"0")))return 1u;
+  for(wide_leaf_effect *p=wideLeafEffects;p;p=p->next)
+    if(p->local==!!IS_STATIC(callee->etype) && p->abi==FUNC_SDCCCALL(callee->type) && !strcmp(p->name,callee->rname))return p->bitsWrites;
+  return 1u;
 }

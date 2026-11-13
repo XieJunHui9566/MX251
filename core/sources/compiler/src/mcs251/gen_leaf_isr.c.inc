@@ -9,10 +9,11 @@
 #include "wide.h"
 #include "wide_ordered_contract.h"
 extern unsigned mcs251CallDpxWrites(symbol *callee);
+extern unsigned mcs251CallBitsWrites(symbol *callee);
 enum { LI_LINES=2048, LI_TEXT=512, LI_SAVES=64 };
 typedef struct {lineNode *node;char op[24],arg[3][LI_TEXT];unsigned nargs,bytes;bool label,empty;} li_line;
-typedef struct {uint32_t gpr;unsigned special;bool flags,memory,bit,unknown,indirect;} li_operand;
-typedef struct {uint32_t reads,writes;unsigned specialReads,specialWrites,calls;bool flags;} li_effects;
+typedef struct {uint32_t gpr;unsigned special;bool flags,memory,bit,unknown,indirect,privateBits;} li_operand;
+typedef struct {uint32_t reads,writes;unsigned specialReads,specialWrites,calls;bool flags,bitsWrites;} li_effects;
 
 static bool li_parse(lineNode *node,li_line *r)
 {
@@ -52,7 +53,7 @@ static li_operand li_direct_bits(unsigned address,unsigned mask,bool bit)
   else if(!bit && address==0x84)r.special=MX251_SPECIAL_DPXL;
   else if(address==0xd0 || address==0xd1 || mcs251StackSfrAddress(address))r.unknown=true;
   else if(address==0x80 || address==0x90 || address==0xa0 || address==0xb0)r.memory=true;
-  else if(address>=0x80 && !wide_asm_core_bits(address,mask))r.memory=true;
+  else if(address>=0x80 && wide_asm_private_frame_bits(address,mask))r.memory=true;
   else r.unknown=true;
   return r;
 }
@@ -104,7 +105,7 @@ static int mcs251IsrInlineBits(iCode *lic)
   int count=0;
   if(!currFunc || !IFFUNC_ISISR(currFunc->type))return -1;
   for(iCode *ic=lic;ic;ic=ic->next)if(ic->op==INLINEASM) {
-    unsigned n=li_inline_bits(IC_INLINE(ic),false);if(!n)return -1;count+=(int)n;
+    unsigned n=li_inline_bits(IC_INLINE(ic),true);if(!n)return -1;count+=(int)n;
   }
   return count;
 }
@@ -114,6 +115,9 @@ static li_operand li_operand_info(const char *text)
   li_operand r={0};mx251_effect_operand reg;
   if(text[0]=='0' && (text[1]=='x' || text[1]=='X') && strchr(text,'.'))return li_numeric_bit(text);
   if(*text=='#' && text[1])return r;
+  if(!strcmp(text,"bits") || (text[0]=='b' && text[1]>='0' && text[1]<='7' && !text[2])) {
+    r.privateBits=r.memory=true;r.bit=strcmp(text,"bits")!=0;return r;
+  }
   if(!strcmp(text,"c") || !strcmp(text,"cy")){r.flags=true;return r;}
   if(!strncmp(text,"acc.",4) && text[4]>='0' && text[4]<='7' && !text[5]){
     r.gpr=UINT32_C(1)<<MCS251_BYTE_A;r.bit=true;return r;
@@ -245,6 +249,27 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
   if(l->empty || l->label)return true;
   const char *op=l->op;
   if(!strcmp(op,"nop"))return l->nargs==0;
+  if(!strcmp(op,"mul") && l->nargs==1 && !strcmp(l->arg[0],"ab")) {
+    all->reads|=MCS251_AB_BYTES;all->writes|=MCS251_AB_BYTES;all->flags=true;return true;
+  }
+  if(!strcmp(op,"jmp") && l->nargs==1 && !strcmp(l->arg[0],"@a+dptr")) {
+    /* Only the emitter's adjacent, fully local jump table can dispatch into
+     * the private body. Check metadata, entry count and every target. */
+    unsigned at=(unsigned)(l-lines)+1,entries=0;char owner[LI_TEXT],label[LI_TEXT];bool metadata=false;
+    while(at<end && lines[at].empty) {
+      const char *text=lines[at].node->line,*mark=text?strstr(text,"mx251-jump-table schema=1 "):NULL;
+      if(mark && sscanf(mark,"mx251-jump-table schema=1 owner=%511s label=%511s entries=%u stride=4 dispatch=a-dptr",owner,label,&entries)==3 &&
+         !strcmp(owner,currFunc->rname) && entries>0 && entries<=256)metadata=true;
+      ++at;
+    }
+    if(!metadata || at>=end || !lines[at].label || !li_local_label(label,lines,at,at+1))return false;
+    for(unsigned k=0;k<entries;++k) {
+      do {++at;}while(at<end && lines[at].empty);
+      if(at>=end || strcmp(lines[at].op,"ejmp") || lines[at].nargs!=1 ||
+         !li_local_label(lines[at].arg[0],lines,begin,end))return false;
+    }
+    all->reads|=UINT32_C(1)<<MCS251_BYTE_A;all->specialReads|=MX251_SPECIAL_DPX;return true;
+  }
   if(!strcmp(op,"ecall") || !strcmp(op,"lcall") || !strcmp(op,"acall")){
     iCode *ic=l->node->ic;unsigned long writes;
     if(l->nargs!=1 || !ic || ic->op!=CALL || !IS_SYMOP(IC_LEFT(ic)))return false;
@@ -252,6 +277,7 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
     if(strcmp(l->arg[0],callee->rname) || !mcs251CallClobberWrites(callee,&writes))return false;
     all->writes|=(uint32_t)writes;all->reads=UINT32_MAX;
     all->specialWrites|=mcs251CallDpxWrites(callee);
+    all->bitsWrites|=mcs251CallBitsWrites(callee)!=0;
     all->flags=true;++all->calls;return true;
   }
   /* Reuse the emitter's effects for word arguments and relative stack
@@ -268,7 +294,7 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
     if(l->nargs!=1)return false;li_operand a=li_operand_info(l->arg[0]);
     if(a.unknown || a.indirect || a.flags || l->arg[0][0]=='#')return false;
     if(!strcmp(op,"push")){all->reads|=a.gpr;all->specialReads|=a.special;}
-    else {all->writes|=a.gpr;all->specialWrites|=a.special;all->flags|=(a.gpr&MCS251_AB_BYTES)!=0;}
+    else {all->writes|=a.gpr;all->specialWrites|=a.special;all->flags|=(a.gpr&MCS251_AB_BYTES)!=0;all->bitsWrites|=a.privateBits;}
     return true;
   }
   /* 所有跳转必须来自 C IR 的本函数标签；没有可跨入保存区的汇编。 */
@@ -291,7 +317,7 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
     if(comparebranch)b=li_operand_info(l->arg[1]);
     if(a.unknown || b.unknown || *l->arg[0]=='#' || (bitbranch && !a.bit))return false;
     all->reads|=a.gpr|b.gpr;all->specialReads|=a.special|b.special;all->flags|=a.flags|b.flags;
-    if(decrementbranch || !strcmp(op,"jbc")){all->writes|=a.gpr;all->specialWrites|=a.special;}
+    if(decrementbranch || !strcmp(op,"jbc")){all->writes|=a.gpr;all->specialWrites|=a.special;all->bitsWrites|=a.privateBits;}
     /* CJNE 改写 C；DJNZ 对各模式的 flags 按整体保守保留。 */
     if(comparebranch || decrementbranch || (a.gpr&(UINT32_C(1)<<MCS251_BYTE_A)))all->flags=true;
     return true;
@@ -310,10 +336,72 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
   if(a.indirect && (!move || !li_indirect_store(l,lines,begin,(unsigned)(l-lines))))return false;
   all->reads|=b.gpr;all->specialReads|=b.special;all->flags|=a.flags || b.flags;
   if(!move || a.indirect){all->reads|=a.gpr;all->specialReads|=a.special;}
-  if(!compare && !a.indirect){all->writes|=a.gpr;all->specialWrites|=a.special;}
+  if(!compare && !a.indirect){all->writes|=a.gpr;all->specialWrites|=a.special;all->bitsWrites|=a.privateBits;}
   if(!move && !(bitop && a.bit && a.memory))all->flags=true;
   if(a.gpr&(UINT32_C(1)<<MCS251_BYTE_A))all->flags=true;
   return true;
+}
+
+/* With no local frame, save slots have no address-dependent consumers. Build
+ * both ends together, switch bank before register saves, and restore PSW last.
+ * Group only already-preserved bytes; DPX's padding byte is private scratch. */
+static void li_group_saves(li_line *lines,unsigned *pushes,unsigned *pops,
+                           unsigned count,const bool *removed,int bank,bool dropBank)
+{
+  uint32_t gpr=0;unsigned before=0,oldStack=0,dpx=0;
+  char names[LI_SAVES][32];unsigned nn=0;
+  for(unsigned i=0;i<count;++i)if(!removed[i]) {
+    li_line *a=&lines[pushes[i]],*b=&lines[pops[count-1-i]];
+    unsigned ac=wide_instruction_bytes_context(a->node->line,strlen(a->node->line),li_cost_symbol,NULL);
+    unsigned bc=wide_instruction_bytes_context(b->node->line,strlen(b->node->line),li_cost_symbol,NULL);
+    /* Private bit-bank and PSW1 operands are direct byte saves. */
+    if(!ac || !bc)return;
+    before+=ac+bc;
+    li_operand operand=li_operand_info(a->arg[0]);mx251_effect_operand reg;
+    unsigned width=mx251EffectRegister(a->arg[0],&reg)?reg.width:1;
+    if(!strcmp(a->arg[0],"dpx"))width=4;
+    oldStack+=width;
+    if(operand.gpr){if(gpr&operand.gpr)return;gpr|=operand.gpr;}
+    else if(!strcmp(a->arg[0],"dpl"))dpx|=1;
+    else if(!strcmp(a->arg[0],"dph"))dpx|=2;
+    else if(!strcmp(a->arg[0],"dpxl"))dpx|=4;
+    else {if(strlen(a->arg[0])>=sizeof names[0])return;strcpy(names[nn++],a->arg[0]);}
+  }
+  if((gpr&255) && (bank<0 || dropBank))return;
+  unsigned prefix=nn,newStack=oldStack;
+  if(dpx==7){strcpy(names[nn++],"dpx");++newStack;}
+  else if(dpx==3)strcpy(names[nn++],"wr58");
+  else {
+    if(dpx&1)strcpy(names[nn++],"dpl");
+    if(dpx&2)strcpy(names[nn++],"dph");
+    if(dpx&4)strcpy(names[nn++],"dpxl");
+  }
+  for(unsigned reg=0;reg<32;) {
+    if(!(gpr&(UINT32_C(1)<<reg))){++reg;continue;}
+    unsigned width=1;
+    if(!(reg&3) && (gpr&(UINT32_C(15)<<reg))==(UINT32_C(15)<<reg))width=4;
+    else if(!(reg&1) && (gpr&(UINT32_C(3)<<reg))==(UINT32_C(3)<<reg))width=2;
+    if(width==1 && reg>=16)return;
+    SNPRINTF(names[nn++],sizeof names[0],"%sr%u",width==4?"d":width==2?"w":"",reg);
+    reg+=width;
+  }
+  unsigned after=4*nn;if(after>=before || !nn)return;
+  struct dbuf_s entry,exit;dbuf_init(&entry,256);dbuf_init(&exit,256);
+  for(unsigned i=0;i<nn;++i) {
+    if(i==prefix && bank>=0 && !dropBank)dbuf_printf(&entry,"%s\n",lines[bank].node->line);
+    dbuf_printf(&entry,"\tpush\t%s\n",names[i]);
+    dbuf_printf(&exit,"\tpop\t%s\n",names[nn-1-i]);
+  }
+  /* A body with no GPR/DPX saves may still retain its bank selection. */
+  if(prefix==nn && bank>=0 && !dropBank)dbuf_printf(&entry,"%s\n",lines[bank].node->line);
+  for(unsigned i=0;i<count;++i) {
+    lines[pushes[i]].node->line=Safe_strdup(i?"; mx251 grouped save":dbuf_c_str(&entry));
+    lines[pops[i]].node->line=Safe_strdup(i?"; mx251 grouped restore":dbuf_c_str(&exit));
+  }
+  if(bank>=0)lines[bank].node->line=Safe_strdup("; mx251 bank selection belongs to grouped entry");
+  dbuf_printf(codeOutBuf,"; mx251-isr-save-groups schema=1 symbol=%s saved-bytes=%u stack-before=%u stack-after=%u frame=private\n",
+    currFunc->rname,before-after,oldStack,newStack);
+  dbuf_destroy(&entry);dbuf_destroy(&exit);
 }
 
 static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
@@ -326,7 +414,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
   unsigned functions=0,ends=0;
   for(iCode *ic=lic;ic;ic=ic->next) {
     functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
-    if(ic->op==PCALL || ic->op==JUMPTABLE ||
+    if(ic->op==PCALL ||
        ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
   }
   if(functions!=1 || ends!=1)return;
@@ -356,6 +444,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
   }
   if(npush!=npop || !npush)ok=false;
   bool remove[LI_SAVES]={false};unsigned saved=0,bytes=0,omittedDpx=0;uint32_t omitted=0;
+  bool omittedBits=false;
   bool dropBank=bank>=0 && !((effects.reads|effects.writes)&0xffu);
   for(unsigned i=0;ok && i<npush;++i) {
     li_line *a=&lines[pushes[i]],*b=&lines[pops[npop-1-i]];const char *name=a->arg[0];
@@ -363,8 +452,10 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
     bool dead=false;unsigned width=1;
     if(!strcmp(name,"acc"))dead=!(effects.writes&(UINT32_C(1)<<MCS251_BYTE_A));
     else if(!strcmp(name,"b"))dead=!(effects.writes&(UINT32_C(1)<<MCS251_BYTE_B));
+    else if(!strcmp(name,"dpx")){width=4;dead=!(effects.specialWrites&MX251_SPECIAL_DPX);}
     else if(!strcmp(name,"dpl") || !strcmp(name,"dph"))dead=!(effects.specialWrites&MX251_SPECIAL_DPTR);
     else if(!strcmp(name,"dpxl"))dead=!(effects.specialWrites&MX251_SPECIAL_DPXL);
+    else if(!strcmp(name,"bits"))dead=!effects.bitsWrites;
     else if(!strcmp(name,"psw"))dead=bank>=0 && !effects.flags && !((effects.reads|effects.writes)&0xffu);
     else {
       mx251_effect_operand reg;
@@ -378,6 +469,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
       if(!ac || !bc){ok=false;break;}remove[i]=true;saved+=width;bytes+=ac+bc;
       omitted|=li_operand_info(name).gpr;
       omittedDpx|=li_operand_info(name).special&MX251_SPECIAL_DPX;
+      omittedBits|=li_operand_info(name).privateBits;
     }
   }
   if(dropBank)bytes+=3;
@@ -386,6 +478,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
       if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall")) {
         dbuf_printf(codeOutBuf,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
         if(omittedDpx)dbuf_printf(codeOutBuf,"; mx251-isr-dpx-call callee=%s omitted=%u\n",lines[i].arg[0],omittedDpx);
+        if(omittedBits)dbuf_printf(codeOutBuf,"; mx251-isr-bits-call callee=%s omitted=1\n",lines[i].arg[0]);
       }
     for(unsigned i=0;i<npush;++i)if(remove[i]) {
       lines[pushes[i]].node->line=Safe_strdup("; mx251 leaf ISR: unused private save removed");
@@ -395,5 +488,6 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
     dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
       currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls,(unsigned)inlineBits);
   } else dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
+  if(ok)li_group_saves(lines,pushes,pops,npush,remove,bank,dropBank);
   Safe_free(lines);
 }

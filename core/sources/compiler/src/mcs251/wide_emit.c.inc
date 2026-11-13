@@ -529,6 +529,7 @@ wmemory_symbol(wide_function *f,wide_node *n)
   int value=store?n->right.value:n->result;
   int reg=value>=0?f->values[value].reg:-1;
   bool reverse=!store && n->argumentReadReverse;
+  if(store && reg>=0 && n->right.width>n->width)reg+=n->right.width-n->width;
   /* 普通直接 RAM 可使用对应宽度的 MOV。volatile/SFR 仍逐字节，
    * 严格保留原事务顺序；只移除 A/B 中转，不缓存对象、不合并访问。 */
   // Direct field nodes retain the object's declared width and offset.
@@ -746,7 +747,8 @@ wmemory(wide_function *f,wide_node *n,bool addressReady)
     we(f,"; wide relative-address base=v%d previous=%lld offset=%lld delta=%lld\n",
       n->left.value,(long long)f->relativeAddressOffset,(long long)offset,(long long)delta);
     wstep(f,16,4,delta<0,(uint32_t)(delta<0?-delta:delta));
-    we(f,"\tanl\twr16,#0x00ff\n");
+    if(!windexed_object_access(f,n))we(f,"\tanl\twr16,#0x00ff\n");
+    else we(f,"; wide relative object address padding=zero\n");
   }
   wmemory_emit(f,n,addressReady || reuse);
   if(eligible && (n->op==WM_STORE || f->values[n->result].reg<0 ||
@@ -1012,6 +1014,14 @@ wshift(wide_function *f,wide_node *n)
   wide_value *dest=&f->values[n->result];int width=n->width==1?2:n->width;
   int work=dest->reg>=0&&n->width>1?dest->reg:16;
   bool right=n->op==RIGHT_OP;
+  if(n->width==1 && n->left.width==1 && n->right.value<0 &&
+     n->right.literal<8 && !n->left.floating && !n->left.codePointer) {
+    int byte=dest->reg>=0?dest->reg:11;
+    wload_byte(f,n->left,byte);
+    for(unsigned count=0;count<n->right.literal;++count)
+      we(f,"\t%s\tr%d\n",right?(n->left.sign?"sra":"srl"):"sll",byte);
+    wstore_byte(f,n->result,byte);return;
+  }
   if(right && n->width==4 && !n->left.sign && n->right.value<0 &&
      n->right.literal>=24 && n->right.literal<32) {
     /* 无符号高位移只剩最高字节有贡献。先取样该字节再写目标，兼容
@@ -1797,6 +1807,18 @@ wide_emit(wide_function *f)
        f->nodes[i+1].right.value==n->result && f->values[n->result].reads==1) {
       wide_node memory=f->nodes[++i];memory.right=n->right;
       we(f,"; wide bit cast-store fused\n");wbit_store(f,&memory);continue;
+    }
+    /* A single-use integer truncation can feed the adjacent direct store
+     * from its original low bytes. Keep the store width and volatility. */
+    if((n->op==CAST || n->op=='=') && n->result>=0 && n->right.value>=0 &&
+       n->right.width>=n->width && !n->floating && !n->right.floating &&
+       !f->values[n->right.value].pointer && !f->values[n->result].pointer &&
+       f->values[n->result].reads==1 && i+1<f->nn && wide_call_plain(f,i+1,1) &&
+       f->nodes[i+1].op==WM_SYMBOL_STORE && f->nodes[i+1].right.value==n->result &&
+       f->nodes[i+1].width==n->width && !wb_has(f->nodes[i+1].out,n->result)) {
+      wide_node memory=f->nodes[++i];memory.right=n->right;
+      we(f,"; wide integer cast-store fused width=%d source-width=%d\n",n->width,n->right.width);
+      wmemory_symbol(f,&memory);continue;
     }
     /* 同一原始赋值的唯一使用就是紧随其后的真实写回；用立即数写入，
      * 保留每个 volatile 字节事务，不将常量值搬进再搬出临时寄存器。 */

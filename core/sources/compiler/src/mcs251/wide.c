@@ -2766,6 +2766,7 @@ wide_choose_native_divmod(wide_function *f,wide_selection_cost *cost)
  * 发射。rotate 不回流至前面的候选比较，避免把局部替换后的字节数与
  * 替换前的热路径向量混合用于重新选择。副本合并不依赖 rotate 开关。 */
 #include "wide_value_copy.c.inc"
+#include "wide_object_values.c.inc"
 
 static mcs251_wide_result
 wide_choose_simple_copies(wide_function *f,wide_selection_cost *cost)
@@ -2774,12 +2775,19 @@ wide_choose_simple_copies(wide_function *f,wide_selection_cost *cost)
     "value-copy","changes",false,"copies-original","copies-trial",false,false);
 }
 
+static mcs251_wide_result
+wide_choose_object_values(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_object_values,wide_choose_simple_copies,
+    "object-values","loads",false,"object-values-original","object-values-trial",false,false);
+}
+
 #include "wide_definition_copies.c.inc"
 
 static mcs251_wide_result
 wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_definition_copies,wide_choose_simple_copies,
+  return wide_choose_transform(f,cost,wide_definition_copies,wide_choose_object_values,
     "definition-copy","changes",false,"definitions-original","definitions-trial",false,false);
 }
 

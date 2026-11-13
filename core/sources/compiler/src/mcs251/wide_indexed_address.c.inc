@@ -3,6 +3,40 @@
  * The integer scale keeps its original width before pointer extension. */
 static void wmemory(wide_function *,wide_node *,bool);
 
+/* Allocated C objects lie wholly in the target's 24-bit address domain. A
+ * defined dereference of an object-derived pointer lies in that same object;
+ * its full-width sum therefore already has zero padding. Do not infer this
+ * from a pointer's type alone, or from a mutable/loaded/absolute address. */
+static bool
+windexed_object_base(wide_function *f,int value,unsigned depth)
+{
+  if(value<0 || depth>16 || !f->values[value].pointer ||
+     f->values[value].width!=4 || f->values[value].symbolSnapshot)return false;
+  wide_node *definition=NULL;
+  for(int i=0;i<f->nn;++i)if(wb_has(f->nodes[i].def,value)) {
+    if(definition)return false;definition=&f->nodes[i];
+  }
+  if(!definition)return false;
+  wide_node *n=definition;
+  if(n->op==WM_ADDRESS && n->addressSymbol) {
+    symbol *s=n->addressSymbol;sym_link *spec=getSpec(s->type);
+    return !SPEC_ABSA(spec) && !s->_isparm && getSize(s->type)>0 &&
+      SPEC_SCLS(spec)!=S_SFR && SPEC_SCLS(spec)!=S_SBIT;
+  }
+  if((n->op=='=' || n->op==CAST) && n->right.width==4)
+    return windexed_object_base(f,n->right.value,depth+1);
+  if((n->op=='+' || n->op=='-') && n->left.width==4)
+    return windexed_object_base(f,n->left.value,depth+1);
+  return false;
+}
+
+static bool
+windexed_object_access(wide_function *f,wide_node *n)
+{
+  return (n->op==WM_LOAD || n->op==WM_STORE) && !n->byteAccess &&
+    !n->pointerAccess && n->width>0 && windexed_object_base(f,n->left.value,0);
+}
+
 static bool
 windexed_address_enabled(void)
 {
@@ -47,7 +81,8 @@ windexed_address(wide_function *f,wide_node *n)
       wstep(f,16,4,n->addressOp=='-',literal);
     } else {int index=wread(f,offset,20,4);we(f,"\t%s\tdr16,dr%d\n",n->addressOp=='+'?"add":"sub",index);}
   }
-  we(f,"\tanl\twr16,#0x00ff\n");
+  if(!windexed_object_access(f,n))we(f,"\tanl\twr16,#0x00ff\n");
+  else we(f,"; wide object address padding=zero\n");
   return 16;
 }
 
@@ -85,7 +120,9 @@ windexed_scaled_memory(wide_function *f,int first)
   for(unsigned k=0;k<shifts;++k)we(f,"\tadd\twr18,wr18\n");
   /* Truncate at 16 bits before extending, as in the unfused integer node. */
   f->emitWeight=1+4*memory->origin->depth;
-  we(f,"\tsub\twr16,wr16\n\tadd\tdr16,dr%d\n\tanl\twr16,#0x00ff\n",base);
+  we(f,"\tsub\twr16,wr16\n\tadd\tdr16,dr%d\n",base);
+  if(!windexed_object_access(f,memory))we(f,"\tanl\twr16,#0x00ff\n");
+  else we(f,"; wide object address padding=zero\n");
   f->scratchAddressValid=false;f->scratchNode=next;
   wmemory(f,memory,true);
   return next;

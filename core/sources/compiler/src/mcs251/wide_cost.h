@@ -16,7 +16,7 @@ typedef struct { int kind, width, reg; } wide_cost_operand;
 enum { WC_UNKNOWN, WC_REG, WC_IMM, WC_DIRECT, WC_INDIRECT, WC_INDEXED, WC_DPTR, WC_CARRY, WC_BIT, WC_EXT_BIT };
 typedef wide_cost_operand (*wide_cost_resolver)(const char *,const void *);
 
-/* 只识别发射器使用的 symbol、(symbol) 和 (symbol+十进制偏移)。
+/* 只识别发射器使用的 symbol、(symbol) 和 (symbol+整数偏移)。
  * C 符号区分大小写；偏移必须仍在已声明对象内，不接受任意汇编表达式。 */
 static int
 wide_cost_symbol_offset(const char *operand,const char *name,unsigned size)
@@ -27,8 +27,14 @@ wide_cost_symbol_offset(const char *operand,const char *name,unsigned size)
   if(!length || strncmp(p,name,length))return -1;
   p+=length;
   if(*p=='+') {
-    ++p;if(!isdigit((unsigned char)*p))return -1;
-    do {unsigned digit=(unsigned)(*p++-'0');if(offset>(INT_MAX-digit)/10u)return -1;offset=offset*10+digit;} while(isdigit((unsigned char)*p));
+    ++p;unsigned base=10;
+    if(p[0]=='0' && (p[1]=='x' || p[1]=='X')){base=16;p+=2;}
+    unsigned digits=0;
+    while(isdigit((unsigned char)*p) || (base==16 && isxdigit((unsigned char)*p))) {
+      unsigned digit=isdigit((unsigned char)*p)?(unsigned)(*p-'0'):(unsigned)(tolower((unsigned char)*p)-'a'+10);
+      if(offset>(INT_MAX-digit)/base)return -1;offset=offset*base+digit;++p;++digits;
+    }
+    if(!digits)return -1;
   }
   if(paren) {if(*p!=')')return -1;++p;}
   return !*p && offset<size?(int)offset:-1;
@@ -147,7 +153,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
   if(WC_OP("cpl"))return *second?0:a.kind==WC_EXT_BIT?3:a.kind==WC_BIT?2:a.kind==WC_CARRY?1:0;
   if(WC_OP("pushw"))return (wide_cost_literal_word(rawOperands,limit) || mx251SymbolImmediate(rawOperands,limit))?4:0;
   if(WC_OP("push") || WC_OP("pop"))return !*second && (a.kind==WC_REG || a.kind==WC_DIRECT)?2:0;
-  if(WC_OP("sra") || WC_OP("srl"))return a.kind==WC_REG && a.width<=2 && !*second?2:0;
+  if(WC_OP("sra") || WC_OP("srl") || WC_OP("sll"))return a.kind==WC_REG && a.width<=2 && !*second?2:0;
   if(WC_OP("inc") || WC_OP("dec")) {
     if(*second && strcmp(second,"#1") && strcmp(second,"#2") && strcmp(second,"#4"))return 0;
     if(a.kind==WC_REG)return a.width==1 && a.reg==11 && (!*second || !strcmp(second,"#1"))?1:2;

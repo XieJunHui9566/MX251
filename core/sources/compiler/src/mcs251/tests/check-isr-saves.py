@@ -39,8 +39,8 @@ cases={
  'peripheral-call':('__asm setb 0x98.1 __endasm; helper(); __asm clr 0x98.1 __endasm;',True,''),
  'peripheral-word-call':('__asm setb 0x98.1 __endasm; word_helper(value,0x1234u);',True,''),
  'peripheral-unknown-call':('__asm setb 0x98.1 __endasm; unknown();',False,''),
- 'peripheral-status-call':('__asm clr 0x87.5 __endasm; helper();',False,''),
- 'peripheral-power-call':('__asm setb 0x87.1 __endasm; helper();',False,''),
+ 'peripheral-status-call':('__asm clr 0x87.5 __endasm; helper();',True,''),
+ 'peripheral-power-call':('__asm setb 0x87.1 __endasm; helper();',True,''),
  'peripheral-status-stack':('__asm\nclr 0x87.5\nmov spx,dr0\n__endasm; helper();',False,''),
  'peripheral-local-frame':('volatile u8 local[9]; __asm clr 0x8f.4 __endasm; local[0]=value; helper(); value=local[0];',False,''),
  'peripheral-other-bank':('__asm clr 0x8f.4 __endasm; helper();',False,' __using(1)'),
@@ -48,7 +48,7 @@ cases={
  'peripheral-mapping-neighbor':('__asm setb 0xba.6 __endasm;',True,''),
  'inline-mapping':('__asm setb 0xba.7 __endasm;',False,''),
  'inline-auxr-mapping':('__asm clr 0x8e.1 __endasm;',False,''),
- 'inline-power':('__asm setb 0x87.1 __endasm;',False,''),
+ 'inline-power':('__asm setb 0x87.1 __endasm;',True,''),
  'inline-psw1':('__asm clr 0xd1.5 __endasm;',False,''),
  'inline-stack':('__asm clr 0x81.0 __endasm;',False,''),
  'inline-mixed-core':('__asm\nclr 0x8f.4\nclr 0xe0.0\n__endasm;',False,''),
@@ -72,6 +72,7 @@ for model in ('small','large'):
     (root/(suffix+'.log')).write_bytes(r.stdout+r.stderr);assert not r.returncode,(root,r.stderr)
     return (root/(suffix+'.asm')).read_text(encoding='latin1'),(root/(suffix+'.rel')).read_bytes()
    asm,obj=run(a.sdcc,{},'current')
+   packed='gpr=ffffffff bank=0 packed=1' in asm
    match=re.search(r'mx251-leaf-isr-saves .*?removed-bytes=(\d+) .*?stack-saved=(\d+)',asm)
    assert bool(match)==optimized,(root,asm)
    assert re.search(r'push\s+0xd1',asm) and re.search(r'pop\s+0xd1',asm),root
@@ -93,17 +94,19 @@ for model in ('small','large'):
     assert re.search(r'pushw\s+#0x',asm) and re.search(r'dec\s+spx,#',asm),root
    if name in packed_changes:
     assert 'gpr=ffffffff bank=0 packed=1' in asm,root
-   if not optimized and name not in packed_changes:
+   if not optimized and not packed:
     _,old=run(a.baseline,{},'baseline');assert obj==old,(root,'excluded case changed')
    _,disabled=run(a.sdcc,{'MX251_LEAF_ISR_SAVES':'0'},'disabled')
    _,old_disabled=run(a.baseline,{'MX251_LEAF_ISR_SAVES':'0'},'old-disabled')
-   if name not in packed_changes:
+   if not packed:
     assert disabled==old_disabled,(root,'opt-out changed')
    else:
     disabled_asm=(root/'disabled.asm').read_text(encoding='latin1')
     assert 'mx251-leaf-isr-saves' not in disabled_asm,root
     assert 'gpr=ffffffff bank=0 packed=1' in disabled_asm,root
     assert len(re.findall(r'^\s*push\s+dr\d+\b',disabled_asm,re.M))==8,root
+    assert re.search(r'^\s*push\s+dpx\b',disabled_asm,re.M),root
+    assert re.search(r'^\s*pop\s+dpx\b',disabled_asm,re.M),root
    rows.append(dict(model=model,optimization=opt,case=name,optimized=optimized,
                     savedBytes=int(match[1]) if match else 0,stackBytes=int(match[2]) if match else 0))
 (a.output/'results.json').write_text(json.dumps(rows,indent=2)+'\n',newline='\n')

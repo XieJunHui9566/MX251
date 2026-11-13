@@ -41,6 +41,7 @@ int main(void) {
 (d/'driver.c').write_text(driver)
 q=run('gcc',[a.gcc.resolve(),'-std=c17','-O2','-Wall','-Wextra','-I'+str(header),d/'driver.c','-o',d/'driver.exe'],d);assert q.returncode==0
 cases=[]
+cases += [('sll r5',2),('sll wr6',2),('mov a,(_Case+0x1)',2)]
 for reg in ('a','r0','r9','wr6','dr4'):
     for expr in ('_Case','(_Case)','(_Case+0)'):
         size=2 if reg=='a' else 3
@@ -52,7 +53,7 @@ for address,move,branch in [('0x88',2,3),('0x89',3,4),('0xe6',3,4)]:
         cases += [(f'mov c,{address}.{bit}',move),(f'mov {address}.{bit},c',move),
                   (f'jb {address}.{bit},00100$',branch),(f'jnb {address}.{bit},00100$',branch),
                   (f'jbc {address}.{bit},00100$',branch)]
-unknown=['clr _Case','mov r7,_case','mov a,_CASE','mov a,(_Case+4)', 'mov a,(_Case-1)', 'mov a,(_Case+2147483648)', 'mov a,(_Case+4294967296)', 'mov a,(_Case+1+1)', 'mov a,((_Case))', 'mov a,(_Case+0x1)', 'mov a,_CaseSuffix','mov a,(_Sfr+1)', 'mov a,_external_xdata', 'setb _missing', 'mov c,_missing', 'mov dr4,@dr0', 'mov a,(0x1234)']
+unknown=['clr _Case','mov r7,_case','mov a,_CASE','mov a,(_Case+4)', 'mov a,(_Case-1)', 'mov a,(_Case+2147483648)', 'mov a,(_Case+4294967296)', 'mov a,(_Case+1+1)', 'mov a,((_Case))', 'mov a,(_Case+0x4)', 'mov a,_CaseSuffix','mov a,(_Sfr+1)', 'mov a,_external_xdata', 'setb _missing', 'mov c,_missing', 'mov dr4,@dr0', 'mov a,(0x1234)']
 unknown += ['mov c,0x89.8','jb 0x89.8,00100$','mov c,0x20.3']
 cases += [(ins,None) for ins in unknown]
 input_text='\n'.join(x[0] for x in cases)+'\n'

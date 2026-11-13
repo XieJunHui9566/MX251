@@ -51,6 +51,7 @@ function Get-Mx251DirectGprMask([long]$Address,[int]$Width,$State) {
   if($i -in @(130,131,132,133)){$State.low=$null;$State.high=$null}
   if($i -in @(130,131)){$State.dpxWrites=1 -bor [long]$State['dpxWrites']}
   if($i -in @(132,133)){$State.dpxWrites=2 -bor [long]$State['dpxWrites']}
+  if($i -ge 32 -and $i -lt 48){$State.bitsWrites=1}
   if($i -lt 8){$mask=$mask -bor ([long]1 -shl [int]$i)}
   elseif($i -eq 224){$mask=$mask -bor 2048}
   elseif($i -eq 240){$mask=$mask -bor 1024}
@@ -96,6 +97,7 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
   if($Bit -and $object.space -ceq 'bit' -and $object.offset -eq 0){return 0}
   if(-not $Bit -and $object.space -ceq 'data' -and $object.offset -ge 0 -and $object.offset+$Width -le $object.size){return 0}
  }
+ if($lower -ceq 'bits' -or $lower -cmatch '^b[0-7]$'){$State.bitsWrites=1;return 0}
  if($Bit) {
   if($lower -in @('c','cy','ac','ov','p','f0','f1')){return 0}
   $m=[regex]::Match($t,'^(.+)\.([0-7])$')
@@ -110,7 +112,7 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
   if($address -eq 215){return 0} # Numeric or declared bit alias of PSW.CY.
   if($null -eq $address -or $address -lt 0 -or $address -gt 255 -or $address -in @(211,212)){throw 'unresolved-or-bank-changing-bit-write'}
   if($address -ge 128){return (Get-Mx251DirectGprMask ($address -band 248) 1 $State)}
-  return 0
+  $State.bitsWrites=1;return 0
  }
  $reg=Get-Mx251BankRegister $t
  if($reg.known){
@@ -149,7 +151,7 @@ function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAd
  }
  $facts=if($WithAddressFacts){Get-Mx251CfgAddressFacts $Body $Aliases $Objects $(if($SfrLayout -ceq 'sph85-v1'){133}else{190})}else{@{}}
  $lineIndex=-1
- $mask=0;$count=0;$state=@{low=$null;high=$null;dpxWrites=0;sph=$(if($SfrLayout -ceq 'sph85-v1'){133}else{190});constants=@{};objects=$Objects};$reason=$null
+ $mask=0;$count=0;$state=@{low=$null;high=$null;dpxWrites=0;bitsWrites=0;sph=$(if($SfrLayout -ceq 'sph85-v1'){133}else{190});constants=@{};objects=$Objects};$reason=$null
  try {
   foreach($raw in $Body.Split("`n")) {
    ++$lineIndex;$state.addressFacts=$facts[$lineIndex]
@@ -224,9 +226,9 @@ function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAd
    }
    throw ('unknown-instruction:'+ $op)
   }
- } catch {$reason=$_.Exception.Message;$mask=4294967295L;$state.dpxWrites=3}
+ } catch {$reason=$_.Exception.Message;$mask=4294967295L;$state.dpxWrites=3;$state.bitsWrites=1}
  if($reason -eq 'unknown-indirect-write' -and -not $WithAddressFacts -and $env:MX251_CFG_ADDRESS_EFFECTS -ne '0'){return (Get-Mx251BankBody $Body $Aliases $Objects -WithAddressFacts -SfrLayout $SfrLayout)}
- return @{writes=$mask;dpxWrites=$state.dpxWrites;calls=@($calls);reason=$reason;instructions=$count;failureLine=$(if($reason){$line}else{$null})}
+ return @{writes=$mask;dpxWrites=$state.dpxWrites;bitsWrites=$state.bitsWrites;calls=@($calls);reason=$reason;instructions=$count;failureLine=$(if($reason){$line}else{$null})}
 }
 # Object references retain an extent instead of receiving a made-up numeric
 # address. This also distinguishes a bit object from an SFR bit alias.
@@ -323,7 +325,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@(),$Mem
    elseif($contract[0].Groups[2].Value -ne '0' -or $contract[0].Groups[3].Value -ne '0'){$reason='special-function-abi'}
    else{$abi=[int]$contract[0].Groups[1].Value}
    $objects=$unitObjects[$unit.name]
-   $analysis=if($reason){@{writes=4294967295L;dpxWrites=3;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects -SfrLayout $sfrLayout}
+   $analysis=if($reason){@{writes=4294967295L;dpxWrites=3;bitsWrites=1;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects -SfrLayout $sfrLayout}
    # An ISR is never a normal callable definition. Its direct C calls can
    # still consume callee summaries, including when the unit only has ISRs.
    # Inline assembly does not hide direct calls. The compiler decides whether
@@ -336,6 +338,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@(),$Mem
    }
    $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases;objects=$objects;sfrLayout=$sfrLayout}
    $row.localDpxWrites=$analysis.dpxWrites;$row.dpxWrites=$analysis.dpxWrites
+   $row.localBitsWrites=$analysis.bitsWrites;$row.bitsWrites=$analysis.bitsWrites
    $row.preserved=if($abi -in @(2,4)){Get-Mx251CalleePreservation $body $symbol}else{0L}
    $row.writes=$row.localWrites -band (4294967295L -bxor $row.preserved)
    if(-not $symbols.ContainsKey($symbol)){$symbols[$symbol]=@()};$symbols[$symbol]+=@($row);$all+=@($row)
@@ -348,7 +351,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@(),$Mem
   $row.writes=$row.localWrites
   # Existing library contracts describe GPRs only. Do not infer DPX effects
   # from a missing field in an older, hash-bound runtime manifest.
-  $row.localDpxWrites=3;$row.dpxWrites=3
+  $row.localDpxWrites=3;$row.dpxWrites=3;$row.localBitsWrites=1;$row.bitsWrites=1
   $row.preserved=0L
   if(-not $symbols.ContainsKey($row.symbol)){$symbols[$row.symbol]=@()}
   $symbols[$row.symbol]+=@($row);$all+=@($row)
@@ -357,18 +360,20 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@(),$Mem
  do {
   $changed=$false
   foreach($row in $all) {
-   $mask=$row.localWrites;$dpx=$row.localDpxWrites
+   $mask=$row.localWrites;$dpx=$row.localDpxWrites;$bits=$row.localBitsWrites
    foreach($callee in $row.calls) {
     $definitions=@(if($symbols.ContainsKey($callee)){$symbols[$callee]})
     $local=@($definitions|Where-Object{$_.unit -ceq $row.unit -and -not $_.exported})
     $targets=@(if($local.Count){$local}else{$definitions|Where-Object{$_.exported}})
-    if($targets.Count -ne 1 -or $targets[0].abi -notin @(2,4)){$mask=4294967295L;$dpx=3;break}
+    if($targets.Count -ne 1 -or $targets[0].abi -notin @(2,4)){$mask=4294967295L;$dpx=3;$bits=1;break}
     $mask=$mask -bor $targets[0].writes
     $dpx=$dpx -bor $targets[0].dpxWrites
+    $bits=$bits -bor $targets[0].bitsWrites
    }
    if($row.preserved){$mask=$mask -band (4294967295L -bxor [long]$row.preserved)}
    if($mask -ne $row.writes){$row.writes=$mask;$changed=$true}
    if($dpx -ne $row.dpxWrites){$row.dpxWrites=$dpx;$changed=$true}
+   if($bits -ne $row.bitsWrites){$row.bitsWrites=$bits;$changed=$true}
   }
  } while($changed)
  return @{symbols=$symbols;functions=$all}
@@ -415,18 +420,18 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   $defs=@($scan.symbols[$key]);$defs=@($defs|Where-Object{$_.exported})
   if($defs.Count -eq 1 -and $defs[0].abi -in @(2,4) -and $defs[0].writes -ne 4294967295L -and
      $owners.ContainsKey($key) -and $owners[$key].Count -eq 1 -and $owners[$key][0] -ceq $defs[0].unit){
-   $bindings+=@{symbol=$key;key=$key;local=$false;unit=$defs[0].unit;abi=$defs[0].abi;writes=$defs[0].writes;dpxWrites=$defs[0].dpxWrites}
+   $bindings+=@{symbol=$key;key=$key;local=$false;unit=$defs[0].unit;abi=$defs[0].abi;writes=$defs[0].writes;dpxWrites=$defs[0].dpxWrites;bitsWrites=$defs[0].bitsWrites}
   }
  }
  if($ScopedLocals) {
   foreach($f in $scan.functions) {
    if($f.exported -or $f.abi -notin @(2,4) -or $f.writes -eq 4294967295L){continue}
    $same=@($scan.symbols[$f.symbol]|Where-Object{$_.unit -ceq $f.unit})
-   if($same.Count -eq 1){$bindings+=@{symbol=$f.symbol;key=($f.unit+':'+$f.symbol);local=$true;unit=$f.unit;abi=$f.abi;writes=$f.writes;dpxWrites=$f.dpxWrites}}
+   if($same.Count -eq 1){$bindings+=@{symbol=$f.symbol;key=($f.unit+':'+$f.symbol);local=$true;unit=$f.unit;abi=$f.abi;writes=$f.writes;dpxWrites=$f.dpxWrites;bitsWrites=$f.bitsWrites}}
   }
  }
  $record.bindings=$bindings
- $record.analysis=@($scan.functions|ForEach-Object{@{symbol=$_.symbol;unit=$_.unit;abi=$_.abi;localWrites=$_.localWrites;writes=$_.writes;localDpxWrites=$_.localDpxWrites;dpxWrites=$_.dpxWrites;calls=$_.calls;reason=$_.reason;instructions=$_.instructions}})
+ $record.analysis=@($scan.functions|ForEach-Object{@{symbol=$_.symbol;unit=$_.unit;abi=$_.abi;localWrites=$_.localWrites;writes=$_.writes;localDpxWrites=$_.localDpxWrites;dpxWrites=$_.dpxWrites;localBitsWrites=$_.localBitsWrites;bitsWrites=$_.bitsWrites;calls=$_.calls;reason=$_.reason;instructions=$_.instructions}})
  if(-not $bindings.Count){return $record}
  $byName=New-Mx251OrdinalMap;foreach($b in $bindings){$byName[$b.key]=$b}
  $units=@()
@@ -455,12 +460,12 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   # 最多四次编译，只重编引用变化事实的单元；最终仍逐项核对真实省略位。
   # 不收敛、无新增事实或任何身份/边界失败都恢复原对象，不放宽安全判断。
   for($attempt=0;$attempt -lt $record.maxAttempts;$attempt++) {
-  $lines=@('MX251-CALL-CLOBBERS-3')+@($bindings|Where-Object{-not $_.local -and -not $disabled.Contains($_.key)}|ForEach-Object{('global '+$_.symbol+' '+$_.abi+' {0:x8} {1}' -f [long]$_.writes,$_.dpxWrites)})
+  $lines=@('MX251-CALL-CLOBBERS-4')+@($bindings|Where-Object{-not $_.local -and -not $disabled.Contains($_.key)}|ForEach-Object{('global '+$_.symbol+' '+$_.abi+' {0:x8} {1} {2}' -f [long]$_.writes,$_.dpxWrites,$_.bitsWrites)})
   [IO.File]::WriteAllText($path,($lines -join "`n")+"`n",[Text.UTF8Encoding]::new($false));$record.feedbackSha256=Hash-File $path
   $record.feedbackFiles=@()
   foreach($u in $(if($ScopedLocals){$units}else{@()})){
    $unitPath=Join-Path $Root ('call-clobbers-'+$u.name+'.txt')
-   $unitLines=@('MX251-CALL-CLOBBERS-3')+@($bindings|Where-Object{(-not $_.local -or $_.unit -ceq $u.name) -and -not $disabled.Contains($_.key)}|ForEach-Object{($(if($_.local){'local'}else{'global'})+' '+$_.symbol+' '+$_.abi+' {0:x8} {1}' -f [long]$_.writes,$_.dpxWrites)})
+   $unitLines=@('MX251-CALL-CLOBBERS-4')+@($bindings|Where-Object{(-not $_.local -or $_.unit -ceq $u.name) -and -not $disabled.Contains($_.key)}|ForEach-Object{($(if($_.local){'local'}else{'global'})+' '+$_.symbol+' '+$_.abi+' {0:x8} {1} {2}' -f [long]$_.writes,$_.dpxWrites,$_.bitsWrites)})
    [IO.File]::WriteAllText($unitPath,($unitLines -join "`n")+"`n",[Text.UTF8Encoding]::new($false))
    $record.feedbackFiles+=@{path=$unitPath;sha256=(Hash-File $unitPath)}
   }
@@ -480,7 +485,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    if(-not $final.symbols.ContainsKey($b.symbol)){throw 'clobber-final-definition-missing'}
    $defs=@($final.symbols[$b.symbol]|Where-Object{if($b.local){-not $_.exported -and $_.unit -ceq $b.unit}else{$_.exported}})
    if($defs.Count -ne 1 -or $defs[0].unit -cne $b.unit -or $defs[0].abi -ne $b.abi){throw ('clobber-final-definition-changed:'+ $b.symbol)}
-   if(($defs[0].writes -band (4294967295L -bxor $b.writes)) -or ($defs[0].dpxWrites -band (3 -bxor $b.dpxWrites))){$expanded+=@{symbol=$b.key;before=$b.writes;after=$defs[0].writes;beforeDpx=$b.dpxWrites;afterDpx=$defs[0].dpxWrites}}
+   if(($defs[0].writes -band (4294967295L -bxor $b.writes)) -or ($defs[0].dpxWrites -band (3 -bxor $b.dpxWrites)) -or ($defs[0].bitsWrites -and -not $b.bitsWrites)){$expanded+=@{symbol=$b.key;before=$b.writes;after=$defs[0].writes;beforeDpx=$b.dpxWrites;afterDpx=$defs[0].dpxWrites;beforeBits=$b.bitsWrites;afterBits=$defs[0].bitsWrites}}
   }
   $record.expandedBounds=$expanded
   # 分配器可改变未被省略的寄存器；正确性条件是每一个实际省略位都与
@@ -509,6 +514,9 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
     $mask=[Convert]::ToUInt32($m.Groups[2].Value,16)
     $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=[long]$mask;kind='isr'}
    }
+   foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-isr-bits-call callee=([^\s]+) omitted=1\s*$')){
+    $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=0L;kind='isr-bits'}
+   }
    foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-isr-dpx-call callee=([^\s]+) omitted=([1-3])\s*$')){
     $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=0L;removedDpx=[int]$m.Groups[2].Value;kind='isr-dpx'}
    }
@@ -528,6 +536,8 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    if($defs.Count -ne 1 -or $defs[0].abi -ne $binding.abi){throw ('clobber-actual-binding-violated:'+ $use.callee)}
    if(($defs[0].writes -band $use.removed) -or ($use.kind -ceq 'ordinary' -and ($use.boundaryWrites -band $use.removed))){$null=$violations.Add($key)}
    if($use.kind -ceq 'isr-dpx' -and ($defs[0].dpxWrites -band $use.removedDpx)){$null=$violations.Add($key)}
+   if($use.kind -ceq 'isr-bits' -and $defs[0].bitsWrites){$null=$violations.Add($key)}
+   $use.finalCalleeBitsWrites=$defs[0].bitsWrites
    $use.finalCalleeWrites=$defs[0].writes
    $use.finalCalleeDpxWrites=$defs[0].dpxWrites
   }
@@ -541,11 +551,12 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    $record.repairBounds=@();$repairProgress=$false;$newDisabled=@()
    foreach($growth in $expanded){
     if($disabled.Contains($growth.symbol)){continue}
-    $binding=$byName[$growth.symbol];$before=$binding.writes;$beforeDpx=$binding.dpxWrites
+    $binding=$byName[$growth.symbol];$before=$binding.writes;$beforeDpx=$binding.dpxWrites;$beforeBits=$binding.bitsWrites
     $binding.writes=$binding.writes -bor $growth.after
     $binding.dpxWrites=$binding.dpxWrites -bor $growth.afterDpx
-    if($binding.writes -ne $before -or $binding.dpxWrites -ne $beforeDpx){$repairProgress=$true;$null=$repairTargets.Add($growth.symbol)}
-    $record.repairBounds+=@{symbol=$growth.symbol;before=$before;after=$binding.writes;beforeDpx=$beforeDpx;afterDpx=$binding.dpxWrites}
+    $binding.bitsWrites=$binding.bitsWrites -bor $growth.afterBits
+    if($binding.writes -ne $before -or $binding.dpxWrites -ne $beforeDpx -or $binding.bitsWrites -ne $beforeBits){$repairProgress=$true;$null=$repairTargets.Add($growth.symbol)}
+    $record.repairBounds+=@{symbol=$growth.symbol;before=$before;after=$binding.writes;beforeDpx=$beforeDpx;afterDpx=$binding.dpxWrites;beforeBits=$beforeBits;afterBits=$binding.bitsWrites}
    }
    foreach($name in $violations){
     # 普通调用参数准备/结果搬运的破坏并不属于 callee。不能靠扩大 callee
@@ -568,7 +579,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    continue
   }
   $record.status='FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED';$record.finalValidated=$true
-  $record.finalAnalysis=@($final.functions|ForEach-Object{@{symbol=$_.symbol;unit=$_.unit;abi=$_.abi;writes=$_.writes;dpxWrites=$_.dpxWrites;reason=$_.reason}})
+  $record.finalAnalysis=@($final.functions|ForEach-Object{@{symbol=$_.symbol;unit=$_.unit;abi=$_.abi;writes=$_.writes;dpxWrites=$_.dpxWrites;bitsWrites=$_.bitsWrites;reason=$_.reason}})
   break
   }
  } catch {

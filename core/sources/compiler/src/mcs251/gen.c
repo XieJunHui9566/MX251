@@ -37,6 +37,7 @@
 #include "rtrack.h"
 #include "gen.h"
 #include "frame.h"
+#include "carry_observation.h"
 #include "internal_return.h"
 #include "dbuf_string.h"
 
@@ -2085,17 +2086,27 @@ savePackedIsrContext (void)
   for (int reg = 0; reg < 32; reg += 4)
     emitcode ("push", "dr%d", reg);
   _G.stack.pushed += 32;
-  if (!inExcludeList ("dpl")) emitpush ("dpl");
-  if (!inExcludeList ("dph")) emitpush ("dph");
-  emitpush ("dpxl");
+  if (!inExcludeList ("dpl") && !inExcludeList ("dph"))
+    { emitcode ("push", "dpx"); _G.stack.pushed += 4; }
+  else
+    {
+      if (!inExcludeList ("dpl")) emitpush ("dpl");
+      if (!inExcludeList ("dph")) emitpush ("dph");
+      emitpush ("dpxl");
+    }
 }
 
 static void
 restorePackedIsrContext (void)
 {
-  emitpop ("dpxl");
-  if (!inExcludeList ("dph")) emitpop ("dph");
-  if (!inExcludeList ("dpl")) emitpop ("dpl");
+  if (!inExcludeList ("dpl") && !inExcludeList ("dph"))
+    { emitcode ("pop", "dpx"); _G.stack.pushed -= 4; }
+  else
+    {
+      emitpop ("dpxl");
+      if (!inExcludeList ("dph")) emitpop ("dph");
+      if (!inExcludeList ("dpl")) emitpop ("dpl");
+    }
   for (int reg = 28; reg >= 0; reg -= 4)
     emitcode ("pop", "dr%d", reg);
   _G.stack.pushed -= 32;
@@ -3843,6 +3854,62 @@ mcs251GenDwordArithmetic (operand *left, operand *right, operand *result,
 /*-----------------------------------------------------------------*/
 /* genPlus - generates code for addition                           */
 /*-----------------------------------------------------------------*/
+static bool
+mcs251KnownZeroByte (operand *op, const iCode *use, unsigned byte, unsigned depth)
+{
+  if(!op || depth>12 || isOperandVolatileOrAtomic(op,TRUE))return false;
+  if(IS_OP_LITERAL(op))return !(operandLitValueUll(op)&(0xffULL<<(8*byte)));
+  if(!IS_ITEMP(op))return false;
+  for(const iCode *p=use->prev;p;p=p->prev) {
+    if(p->op==LABEL || p->op==GOTO || p->op==IFX || p->op==CALL || p->op==PCALL ||
+       p->op==INLINEASM || p->op==FUNCTION || p->op==JUMPTABLE)return false;
+    if(POINTER_SET(p) || !IC_RESULT(p) || !IS_SYMOP(IC_RESULT(p)) ||
+       OP_SYMBOL(IC_RESULT(p))!=OP_SYMBOL(op))continue;
+    operand *right=IC_RIGHT(p),*left=IC_LEFT(p);
+    if(p->op=='=')return mcs251KnownZeroByte(right,p,byte,depth+1);
+    if(p->op==CAST && right && !IS_PTR(operandType(right)) &&
+       (IS_CHAR(operandType(right)) || IS_INT(operandType(right)))) {
+      if(byte>=(unsigned)getSize(operandType(right)))return SPEC_USIGN(getSpec(operandType(right)));
+      return mcs251KnownZeroByte(right,p,byte,depth+1);
+    }
+    if(p->op==LEFT_OP && right && IS_OP_LITERAL(right)) {
+      unsigned shift=(unsigned)operandLitValueUll(right);
+      if(shift<32 && !(shift%8))return byte<shift/8 || mcs251KnownZeroByte(left,p,byte-shift/8,depth+1);
+    }
+    return false;
+  }
+  return false;
+}
+
+static bool
+mcs251GenDisjointByteAdd (iCode *ic)
+{
+  operand *left=IC_LEFT(ic), *right=IC_RIGHT(ic), *result=IC_RESULT(ic);
+  unsigned size=getDataSize(result);operand *source[4];
+  struct valinfo lv=getOperandValinfo(ic,left),rv=getOperandValinfo(ic,right);
+  if((size!=2 && size!=4) || IS_PTR(operandType(result)) ||
+     AOP_TYPE(left)!=AOP_REG || AOP_TYPE(right)!=AOP_REG ||
+     (AOP_TYPE(result)!=AOP_REG && AOP_TYPE(result)!=AOP_DIR) ||
+     AOP_SIZE(left)!=size || AOP_SIZE(right)!=size ||
+     isOperandVolatileOrAtomic(left,TRUE) || isOperandVolatileOrAtomic(right,TRUE) ||
+     isOperandVolatileOrAtomic(result,TRUE))return false;
+  for(unsigned i=0;i<size;++i) {
+    unsigned long long mask=0xffULL<<(8*i);
+    if((!lv.anything && !lv.nothing && (lv.knownbitsmask&mask)==mask && !(lv.knownbits&mask)) || mcs251KnownZeroByte(left,ic,i,0))source[i]=right;
+    else if((!rv.anything && !rv.nothing && (rv.knownbitsmask&mask)==mask && !(rv.knownbits&mask)) || mcs251KnownZeroByte(right,ic,i,0))source[i]=left;
+    else return false;
+  }
+  /* A destination byte may alias the current source, but not a later one. */
+  if(AOP_TYPE(result)==AOP_REG)for(unsigned i=0;i<size;++i)
+    for(unsigned j=i+1;j<size;++j)
+      if(AOP(result)->aopu.aop_reg[i]->rIdx==AOP(source[j])->aopu.aop_reg[j]->rIdx)return false;
+  emitcode(";","mx251 disjoint byte addition width=%u",size);
+  for(unsigned i=0;i<size;++i)opPut(result,opGet(source[i],i,FALSE,FALSE),i);
+  /* The original addition cannot carry out of any byte. */
+  emitcode("clr","c");
+  return true;
+}
+
 static void
 genPlus (iCode * ic)
 {
@@ -3865,6 +3932,8 @@ genPlus (iCode * ic)
   unsigned topbytemask = (IS_BITINT (resulttype) && SPEC_USIGN (resulttype) && (SPEC_BITINTWIDTH (resulttype) % 8)) ?
     (0xffu >> (8 - SPEC_BITINTWIDTH (resulttype) % 8)) : 0xffu;
   bool maskedtopbyte = (topbytemask != 0xffu);
+
+  if(!maskedtopbyte && mcs251GenDisjointByteAdd(ic))goto release;
 
   /* if literal, literal on the right or
      if left requires ACC or right is already
@@ -3919,6 +3988,22 @@ genPlus (iCode * ic)
   leftOp = IC_LEFT (ic);
   rightOp = IC_RIGHT (ic);
   op = IC_LEFT (ic);
+
+  /* A byte doubling defines the same result and outgoing CY as SLL. Select
+     its register form directly instead of routing through the accumulator. */
+  if (!maskedtopbyte && size == 1 && AOP_TYPE (leftOp) == AOP_REG &&
+      AOP_TYPE (rightOp) == AOP_REG && AOP_TYPE (IC_RESULT (ic)) == AOP_REG &&
+      AOP_SIZE (leftOp) == 1 && AOP_SIZE (rightOp) == 1 &&
+      sameRegs (AOP (leftOp), AOP (rightOp)) &&
+      !isOperandVolatileOrAtomic (leftOp, TRUE) && !isOperandVolatileOrAtomic (rightOp, TRUE) &&
+      !isOperandVolatileOrAtomic (IC_RESULT (ic), TRUE))
+    {
+      const char *source = AOP (leftOp)->aopu.aop_reg[0]->name;
+      const char *dest = AOP (IC_RESULT (ic))->aopu.aop_reg[0]->name;
+      if (strcmp (source, dest)) emitcode ("mov", "%s,%s", dest, source);
+      emitcode ("sll", "%s", dest);
+      goto release;
+    }
 
   if (!maskedtopbyte &&
       mcs251GenWordArithmetic (leftOp, rightOp, IC_RESULT (ic),
@@ -7824,6 +7909,23 @@ genGetAbit (iCode * ic)
   aopOp (result, ic, FALSE);
 
   shCount = (int) ulFromVal (AOP (IC_RIGHT (ic))->aopu.aop_lit);
+
+  /* The front end made the observed outgoing bit explicit. Consume that
+     dependency and the adjacent in-place byte shift as one native SLL. */
+  iCode *shift = ic->next;
+  if (shCount == 7 && mcs251_carry_operand (result) && AOP_TYPE (left) == AOP_REG &&
+      AOP_SIZE (left) == 1 && shift && !shift->generated && shift->op == LEFT_OP &&
+      IS_OP_LITERAL (IC_RIGHT (shift)) && operandLitValue (IC_RIGHT (shift)) == 1 &&
+      isOperandEqual (left, IC_LEFT (shift)) && isOperandEqual (left, IC_RESULT (shift)) &&
+      !isOperandVolatileOrAtomic (left, TRUE))
+    {
+      emitcode ("sll", "%s", AOP (left)->aopu.aop_reg[0]->name);
+      shift->generated = 1;
+      freeAsmop (result, NULL, ic, TRUE);
+      freeAsmop (right, NULL, ic, TRUE);
+      freeAsmop (left, NULL, ic, TRUE);
+      return;
+    }
 
   /* get the needed byte into a */
   MOVA (opGet (left, shCount / 8, FALSE, FALSE));
