@@ -522,8 +522,50 @@ wmemory_stack(wide_function *f,wide_node *n)
 }
 
 static void
+wmemory_edata(wide_function *f,wide_node *n)
+{
+  bool store=n->op==WM_EDATA_STORE;
+  int value=store?n->right.value:n->result;
+  int reg=value>=0?f->values[value].reg:-1;
+  we(f,"; wide edata %s %s width=%d volatile=%d reverse=%d\n",
+     store?"store":"load",n->addressSymbol->rname,n->width,n->byteAccess,n->argumentReadReverse);
+  if(!n->byteAccess && n->width>1) {
+    int r=store?wread(f,n->right,20,n->width):(reg>=0?reg:20);
+    if(store)we(f,"\tmov\te:(%s%+d),%s%d\n",n->addressSymbol->rname,n->addressOffset,wp(n->width),r);
+    else {
+      we(f,"\tmov\t%s%d,e:(%s%+d)\n",wp(n->width),r,n->addressSymbol->rname,n->addressOffset);
+      wstore(f,n->result,r);
+    }
+    return;
+  }
+  if(store && reg>=0 && n->right.width>n->width)reg+=n->right.width-n->width;
+  bool low=reg>=0 && reg+n->width<=16;
+  if(store && !low && value>=0)wload(f,n->right,20,n->width==1?2:n->width);
+  for(int j=0;j<n->width;++j) {
+    int k=n->argumentReadReverse?n->width-1-j:j;
+    int r=low?reg+k:(n->width==1?11:10+(k&1));
+    if(store) {
+      if(value<0) {
+        r=11;
+        we(f,"\tmov\ta,#0x%02lx\n",(unsigned long)((n->right.literal>>(8*(n->width-k-1)))&255));
+      } else if(!low)we(f,"\tmov\twr10,wr%d\n",20+(k&~1));
+      we(f,"\tmov\te:(%s+%d),r%d\n",n->addressSymbol->rname,n->addressOffset+k,r);
+    } else {
+      we(f,"\tmov\tr%d,e:(%s+%d)\n",r,n->addressSymbol->rname,n->addressOffset+k);
+      if(!low && n->width>1 && (n->argumentReadReverse?!(k&1):(k&1)))
+        we(f,"\tmov\twr%d,wr10\n",20+(k&~1));
+    }
+  }
+  if(!store && !low) {
+    if(n->width==1)wstore_byte(f,n->result,11);
+    else wstore(f,n->result,20);
+  }
+}
+
+static void
 wmemory_symbol(wide_function *f,wide_node *n)
 {
+  if(n->op==WM_EDATA_LOAD || n->op==WM_EDATA_STORE){wmemory_edata(f,n);return;}
   bool store=n->op==WM_SYMBOL_STORE;
   we(f,"; wide symbol %s %s width=%d volatile=%d\n",store?"store":"load",n->addressSymbol->rname,n->width,n->byteAccess);
   int value=store?n->right.value:n->result;
@@ -1814,7 +1856,7 @@ wide_emit(wide_function *f)
        n->right.width>=n->width && !n->floating && !n->right.floating &&
        !f->values[n->right.value].pointer && !f->values[n->result].pointer &&
        f->values[n->result].reads==1 && i+1<f->nn && wide_call_plain(f,i+1,1) &&
-       f->nodes[i+1].op==WM_SYMBOL_STORE && f->nodes[i+1].right.value==n->result &&
+       (f->nodes[i+1].op==WM_SYMBOL_STORE || f->nodes[i+1].op==WM_EDATA_STORE) && f->nodes[i+1].right.value==n->result &&
        f->nodes[i+1].width==n->width && !wb_has(f->nodes[i+1].out,n->result)) {
       wide_node memory=f->nodes[++i];memory.right=n->right;
       we(f,"; wide integer cast-store fused width=%d source-width=%d\n",n->width,n->right.width);
@@ -1823,7 +1865,7 @@ wide_emit(wide_function *f)
     /* 同一原始赋值的唯一使用就是紧随其后的真实写回；用立即数写入，
      * 保留每个 volatile 字节事务，不将常量值搬进再搬出临时寄存器。 */
     if(n->op=='=' && n->right.value<0 && i+1<f->nn && wide_call_plain(f,i+1,1) &&
-       f->nodes[i+1].op==WM_SYMBOL_STORE && f->nodes[i+1].origin==n->origin &&
+       (f->nodes[i+1].op==WM_SYMBOL_STORE || f->nodes[i+1].op==WM_EDATA_STORE) && f->nodes[i+1].origin==n->origin &&
        f->nodes[i+1].right.value==n->result && f->values[n->result].reads==1 &&
        n->right.width==n->width) {
       wide_node memory=f->nodes[++i];memory.right=n->right;wmemory_symbol(f,&memory);continue;
@@ -2008,7 +2050,8 @@ wide_emit(wide_function *f)
       break;
     }
     case WM_LOAD:wmemory(f,n,false);break;
-    case WM_SYMBOL_LOAD:case WM_SYMBOL_STORE:wmemory_symbol(f,n);break;
+    case WM_SYMBOL_LOAD:case WM_SYMBOL_STORE:
+    case WM_EDATA_LOAD:case WM_EDATA_STORE:wmemory_symbol(f,n);break;
     case WM_BIT_CAST:
       wboolean_result(f,n,wtest_condition(f,n->right,true));break;
     case WM_BIT_LOAD:

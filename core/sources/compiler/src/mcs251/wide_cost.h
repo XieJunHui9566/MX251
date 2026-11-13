@@ -13,7 +13,7 @@
 #include <string.h>
 typedef struct { unsigned bytes, unknown; } wide_byte_cost;
 typedef struct { int kind, width, reg; } wide_cost_operand;
-enum { WC_UNKNOWN, WC_REG, WC_IMM, WC_DIRECT, WC_INDIRECT, WC_INDEXED, WC_DPTR, WC_CARRY, WC_BIT, WC_EXT_BIT };
+enum { WC_UNKNOWN, WC_REG, WC_IMM, WC_DIRECT, WC_INDIRECT, WC_INDEXED, WC_DPTR, WC_CARRY, WC_BIT, WC_EXT_BIT, WC_EXT_DIRECT };
 typedef wide_cost_operand (*wide_cost_resolver)(const char *,const void *);
 
 /* 只识别发射器使用的 symbol、(symbol) 和 (symbol+整数偏移)。
@@ -171,6 +171,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
     if(a.kind==WC_REG && b.kind==WC_IMM)return a.width==1?(a.reg==11?2:3):4;
     if(a.kind==WC_REG && b.kind==WC_DIRECT)return a.width==1 && a.reg==11?2:3;
     if(a.kind==WC_DIRECT && b.kind==WC_REG)return b.width==1 && b.reg==11?2:3;
+    if((a.kind==WC_EXT_DIRECT && b.kind==WC_REG) || (a.kind==WC_REG && b.kind==WC_EXT_DIRECT))return 4;
     if(a.kind==WC_DIRECT && (b.kind==WC_IMM || b.kind==WC_DIRECT))return 3;
     if(a.kind==WC_REG && a.width<=2 && (b.kind==WC_INDIRECT || b.kind==WC_INDEXED))return b.kind==WC_INDEXED?4:3;
     if(b.kind==WC_REG && b.width<=2 && (a.kind==WC_INDIRECT || a.kind==WC_INDEXED))return a.kind==WC_INDEXED?4:3;

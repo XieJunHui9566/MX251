@@ -45,6 +45,7 @@ wide_initializer_observers(wide_function *f,const char **why)
     if(n->op==CALL || n->op==PCALL || n->op==WM_ORDERED_ASM ||
        n->op==WM_VOLATILE_BIT_READ || n->op==WM_BIT_LOAD || n->op==WM_BIT_STORE ||
        n->op==WM_SYMBOL_LOAD || n->op==WM_SYMBOL_STORE || n->op==WM_PARAM_STORE ||
+       n->op==WM_EDATA_LOAD || n->op==WM_EDATA_STORE ||
        n->op==WM_PARAM_ADDRESS || n->byteAccess || n->codeAccess || n->pointerAccess) {
       *why="call-or-observable-state";return false;
     }

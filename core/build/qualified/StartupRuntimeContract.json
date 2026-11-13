@@ -591,5 +591,5 @@
     "partial": "3e9ab7787b2d078238bb75a6b412c8e6e93d29ec4d31bc54779d552d349d32a1"
   },
   "assemblerSha256": "f862c1d931aaf011f722bb55be9a52b9d09c90b6cfc5f75f2393ed66279319ae",
-  "compatibleAssemblerSha256": ["e5fa3df365111579807fd4d993ec6fcb408a1f0bff33be58e2a7d12078bdebc5", "bec84c23d4dff57d7d7d618bce23c9368d422c10de2dae99e7daae385cb82ecc"]
+  "compatibleAssemblerSha256": ["e5fa3df365111579807fd4d993ec6fcb408a1f0bff33be58e2a7d12078bdebc5", "bec84c23d4dff57d7d7d618bce23c9368d422c10de2dae99e7daae385cb82ecc", "c1a1f5004609c64cde3c38354e662deec3e8d0fa41c5f405cae8a46a601c1815"]
 }

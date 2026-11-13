@@ -24,6 +24,8 @@ driver=r'''
 #include "wide_cost.h"
 static wide_cost_operand resolve(const char *s,const void *unused) {
   (void)unused;
+  if(!strncmp(s,"e:",2) && wide_cost_symbol_offset(s+2,"_Extended",4)>=0)
+    return (wide_cost_operand){WC_EXT_DIRECT,0,0};
   if(wide_cost_symbol_offset(s,"_Case",4)>=0 || wide_cost_symbol_offset(s,"_Sfr",1)>=0)
     return (wide_cost_operand){WC_DIRECT,0,0};
   if(wide_cost_symbol_offset(s,"_case",1)>=0)return (wide_cost_operand){WC_BIT,0,0};
@@ -41,6 +43,8 @@ int main(void) {
 (d/'driver.c').write_text(driver)
 q=run('gcc',[a.gcc.resolve(),'-std=c17','-O2','-Wall','-Wextra','-I'+str(header),d/'driver.c','-o',d/'driver.exe'],d);assert q.returncode==0
 cases=[]
+for reg in ('a','r0','r9','wr6','dr4'):
+    cases += [(f'mov {reg},e:(_Extended+0)',4),(f'mov e:(_Extended+0),{reg}',4)]
 cases += [('sll r5',2),('sll wr6',2),('mov a,(_Case+0x1)',2)]
 for reg in ('a','r0','r9','wr6','dr4'):
     for expr in ('_Case','(_Case)','(_Case+0)'):
@@ -65,7 +69,7 @@ for i,((ins,expected),line) in enumerate(zip(cases,q.stdout.decode().splitlines(
     row=dict(instruction=ins,expected=expected,cost=actual,unknown=unk,legacyUnknown=legacy_unknown)
     if expected is not None:
         f=d/f'probe{i:03}.asm'
-        f.write_text('.module cost\n.optsdcc -mmcs251\n.area DSEG (DATA)\n_Case: .ds 4\n.area BSEG (BIT)\n_case: .ds 1\n_Sfr = 0x95\n.area CSEG (CODE)\n\t'+ins+'\n00100$:\n')
+        f.write_text('.module cost\n.optsdcc -mmcs251\n.globl _Extended\n.area DSEG (DATA)\n_Case: .ds 4\n.area BSEG (BIT)\n_case: .ds 1\n_Sfr = 0x95\n.area CSEG (CODE)\n\t'+ins+'\n00100$:\n')
         q=run(f'assemble{i:03}',[a.assembler.resolve(),'-plosgff',f.name],d);assert q.returncode==0,(ins,q.stderr)
         text=f.with_suffix('.lst').read_text();line=next(x for x in text.splitlines() if x.endswith('\t'+ins))
         m=re.match(r'^      [0-9A-F]{6}(.*?)\s+\d+ \t',line);assert m,line

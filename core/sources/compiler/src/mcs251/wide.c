@@ -26,7 +26,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
 enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
-enum { WM_BYTE_PACK = WM_UDIVMOD + 1 };
+enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
@@ -410,28 +410,40 @@ wide_symbol_snapshot(wide_function *f,wide_node *n,operand *op,bool store,wide_o
     return true;
   }
   int width=getSize(t);
-  /* 真实对象每次都读写内存，不能按 symbol 合并为长期寄存器值。
-   * 先只接纳直接 RAM 标量及单字节 SFR；位空间、分页、CODE、远对象、
-   * 指针、形参/栈对象及 atomic 均保持原来的整函数回退。 */
+  bool extended=m==edata || m==e_abs;
+  /* EDATA has a 16-bit linear address, distinct from direct DATA/SFR.
+   * Keep each volatile transaction and snapshot at its original IR node. */
   if(s->onStack || s->_isparm || !IS_SPEC(t) || IS_BITVAR(t) || IS_BOOL(t) ||
-     !wide_value_type(t,true) || !IN_DIRSPACE(m) || IN_BITSPACE(m) ||
-     IN_CODESPACE(m) || IN_FARSPACE(m) || IN_PAGEDSPACE(m) ||
+     !wide_value_type(t,true) || (!extended && (!IN_DIRSPACE(m) || IN_FARSPACE(m))) ||
+     IN_BITSPACE(m) || IN_CODESPACE(m) || IN_PAGEDSPACE(m) ||
      (m==sfr && width!=1) || (IN_REGSP(m) && m!=sfr) ||
+     (extended && SPEC_ABSA(s->etype) &&
+      (SPEC_ADDR(s->etype)<0 || SPEC_ADDR(s->etype)>65536-width)) ||
      !wide_capacity_room(f,1,1,__LINE__))return false;
+  int offset=0;
+  if(extended && !store && n->origin->op==CAST && IS_INTEGRAL(t)) {
+    sym_link *to=operandType(IC_RESULT(n->origin));
+    /* Legacy integer truncation reads only the retained low bytes. Keep
+     * that access extent for volatile EDATA as well as its byte order. */
+    if(IS_INTEGRAL(to) && !IS_BIT(to) && !IS_BOOL(to) && getSize(to)<width) {
+      offset=width-getSize(to);width=getSize(to);
+    }
+  }
   int value=f->nv++;
   bool floating=IS_FLOAT(t),sign=!floating && !SPEC_USIGN(getSpec(t));
   f->values[value]=(wide_value){.sym=s,.width=width,.sign=sign,.floating=floating,
     .symbolSnapshot=true,.reg=-1,.slot=-1,.pin=-1,.preference=-1};
   *v=(wide_operand){.value=value,.width=width,.sign=sign,.floating=floating,.codePointer=wide_code_pointer(t)};
   wide_node *memory=&f->nodes[f->nn++];
-  *memory=(wide_node){.op=store?WM_SYMBOL_STORE:WM_SYMBOL_LOAD,.origin=n->origin,
+  *memory=(wide_node){.op=extended?(store?WM_EDATA_STORE:WM_EDATA_LOAD):(store?WM_SYMBOL_STORE:WM_SYMBOL_LOAD),.origin=n->origin,
     .result=store?-1:value,.width=width,.sign=sign,.floating=floating,
-    .addressSymbol=s,.addressObject=-1,.label=-1,.target=-1,.succ={-1,-1},
+    .addressSymbol=s,.addressObject=-1,.addressOffset=offset,.label=-1,.target=-1,.succ={-1,-1},
     .left={.value=-1},.right={.value=-1},.addressIndex={.value=-1},
     .byteAccess=isVolatile(t) || isOperandVolatile(op,TRUE) || m==sfr,
     .volatileDataWideAccess=wide_volatile_data_object(s,t)};
   if(store){memory->right=*v;wb_set(&memory->use,value);}
   else wb_set(&memory->def,value);
+  if(extended)memory->argumentReadReverse=memory->byteAccess;
   return true;
 }
 
@@ -813,12 +825,13 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(pushedSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pushedSample[slot]))return wide_import_reject(f,ic,__LINE__);
           wide_node *memory=&f->nodes[f->nn-1];
-          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_BIT_LOAD)
+          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_EDATA_LOAD && memory->op!=WM_BIT_LOAD)
             return wide_reject(f,"argument-snapshot-memory-contract",__LINE__);
           /* Keep the object's access width. A call needs a value snapshot,
            * not byte transactions for ordinary RAM. Volatile arguments keep
            * their existing byte order, including with the DATA-wide opt-in. */
           memory->volatileDataWideAccess=false;
+          memory->argumentReadReverse=false; /* IPUSH reads physical MSB first. */
           dbuf_printf(f->diagnostics,"; wide argument snapshot icode=%d kind=stack slot=%u value=%d width=%d\n",ic->key,slot,pushedSample[slot].value,pushedSample[slot].width);
         }
         n->op=WM_NOP;f->body=true;break;
@@ -830,7 +843,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(pendingSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pendingSample[slot]))return wide_import_reject(f,ic,__LINE__);
           wide_node *memory=&f->nodes[f->nn-1];
-          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_BIT_LOAD)
+          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_EDATA_LOAD && memory->op!=WM_BIT_LOAD)
             return wide_reject(f,"argument-snapshot-memory-contract",__LINE__);
           memory->volatileDataWideAccess=false;
           memory->argumentReadReverse=memory->byteAccess && memory->width>1;
@@ -854,17 +867,19 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         n->ordinaryCall=FUNC_SDCCCALL(t)==2;
         n->variadicCall=IFFUNC_HASVARARGS(t);
         n->carryResult=wide_carry_result(t);
-        /* ABI4 的普通对象沿用 SEND/IPUSH 处的独立快照；到 CALL 只搬运
-         * 已求值的标量。此区间只含实参节点，不会跨过修改对象的操作。
-         * volatile 的多实参/逐字节取样顺序仍沿用原 ABI4 发射路径。 */
+        /* ABI4 objects are sampled at SEND/IPUSH in IR order. EDATA keeps
+         * legacy LSB-first SEND and MSB-first IPUSH byte transactions;
+         * CALL transports the sampled values, including volatile operands. */
         if(!n->ordinaryCall) {
           unsigned sampled=0;
           for(unsigned j=0;j<2;++j)if(pendingSampled[j]) {
-            if(isOperandVolatile(pending[j],TRUE))return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
+            memmap *m=SPEC_OCLS(OP_SYMBOL(pending[j])->etype);
+            if(isOperandVolatile(pending[j],TRUE) && m!=edata && m!=e_abs)return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
             ++sampled;
           }
           for(unsigned j=0;j<pushedCount;++j)if(pushedSampled[j]) {
-            if(isOperandVolatile(pushed[j],TRUE))return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
+            memmap *m=SPEC_OCLS(OP_SYMBOL(pushed[j])->etype);
+            if(isOperandVolatile(pushed[j],TRUE) && m!=edata && m!=e_abs)return wide_reject(f,"argument-snapshot-abi4-contract",__LINE__);
             ++sampled;
           }
           if(sampled)dbuf_printf(f->diagnostics,"; wide native argument snapshots icode=%d objects=%u order=ir\n",ic->key,sampled);
@@ -1134,8 +1149,8 @@ wide_import_order_samples:
         wide_node operation=*n,writeback;bool hasWriteback=false;int at=first;
         for(int k=first+1;k<f->nn;++k) {
           wide_node memory=f->nodes[k];
-          if(memory.op==WM_SYMBOL_STORE || memory.op==WM_PARAM_STORE || memory.op==WM_OBJECT_STORE) {if(hasWriteback)return wide_import_reject(f,ic,__LINE__);writeback=memory;hasWriteback=true;}
-          else {if(memory.op!=WM_SYMBOL_LOAD && memory.op!=WM_BIT_LOAD && memory.op!=WM_PARAM_LOAD && memory.op!=WM_OBJECT_LOAD)return wide_import_reject(f,ic,__LINE__);f->nodes[at++]=memory;}
+          if(memory.op==WM_SYMBOL_STORE || memory.op==WM_EDATA_STORE || memory.op==WM_PARAM_STORE || memory.op==WM_OBJECT_STORE) {if(hasWriteback)return wide_import_reject(f,ic,__LINE__);writeback=memory;hasWriteback=true;}
+          else {if(memory.op!=WM_SYMBOL_LOAD && memory.op!=WM_EDATA_LOAD && memory.op!=WM_BIT_LOAD && memory.op!=WM_PARAM_LOAD && memory.op!=WM_OBJECT_LOAD)return wide_import_reject(f,ic,__LINE__);f->nodes[at++]=memory;}
         }
         f->nodes[at++]=operation;
         if(hasWriteback)f->nodes[at++]=writeback;
@@ -2225,6 +2240,9 @@ wide_resolve_cost_operand(const char *text,const void *context)
       if(!strcmp(text,spelling))return (wide_cost_operand){instruction->address&7?WC_EXT_BIT:WC_BIT,0,0};
     }
     bool bit=n->op==WM_BIT_LOAD || n->op==WM_BIT_STORE || n->op==WM_BIT_CAST;
+    if(s && (n->op==WM_EDATA_LOAD || n->op==WM_EDATA_STORE) &&
+       !strncmp(text,"e:",2) && wide_cost_symbol_offset(text+2,s->rname,getSize(s->type))>=0)
+      return (wide_cost_operand){WC_EXT_DIRECT,0,0};
     if(!s || (!bit && n->op!=WM_SYMBOL_LOAD && n->op!=WM_SYMBOL_STORE))continue;
     memmap *m=SPEC_OCLS(s->etype);
     if(!m || s->onStack || s->_isparm)continue;

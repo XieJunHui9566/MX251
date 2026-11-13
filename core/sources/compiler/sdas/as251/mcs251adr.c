@@ -216,6 +216,17 @@ addr(struct expr *esp)
 		unget(c);
 		start = ip;
 		c = getnb();
+		/* Explicit linear dir16, including externs and addresses below 256. */
+		if ((c == 'e' || c == 'E') && get() == ':') {
+			expr(esp, 0);
+			esp->e_mode = S_EXT;
+			if (!esp->e_flag && esp->e_base.e_ap == NULL &&
+			    (esp->e_addr & ~0xFFFF))
+				xerr('d', "E: requires a 16-bit linear address.");
+			return esp->e_mode;
+		}
+		ip = start;
+		c = getnb();
 		if ((c == 's' || c == 'S') && get() == ':') {
 			expr(esp, 0);
 			esp->e_mode = S_DIR;

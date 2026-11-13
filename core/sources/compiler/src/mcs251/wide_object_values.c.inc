@@ -59,7 +59,7 @@ wide_object_values(wide_function *f)
       } else if(value.value>=0 && value.width==n->width && count<WN_MAX)
         facts[count++]=(fact){s,n->addressObject,n->addressOffset,n->width,value};
     } else if(n->byteAccess || n->op==WM_STORE || n->op==WM_PARAM_STORE ||
-              n->op==WM_BIT_STORE || store)count=0;
+              n->op==WM_BIT_STORE || n->op==WM_EDATA_STORE || store)count=0;
     if(n->succ[0]!=at+1 || n->succ[1]>=0 || n->jumpCount) {
       count=0;for(int v=0;v<f->nv;++v)aliases[v]=-1;
     }
