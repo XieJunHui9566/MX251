@@ -29,6 +29,16 @@ wide_asm_core_bits(unsigned address,unsigned mask)
     (address==0x8e && (mask&0x02)) || (address==0xba && (mask&0x80));
 }
 
+/* Packing a complete ISR context does not move body instructions or discard
+ * state. PCON bit writes do not inspect the private stack or alias GPRs, even
+ * when they affect execution state. Keep that fact separate from permission
+ * to move accesses or retain cached values across those writes. */
+static inline int
+wide_asm_private_frame_bits(unsigned address,unsigned mask)
+{
+  return address==0x87 || !wide_asm_core_bits(address,mask);
+}
+
 static inline int
 wide_asm_core_address(unsigned address)
 {

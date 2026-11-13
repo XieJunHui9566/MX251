@@ -75,7 +75,7 @@ static li_operand li_numeric_bit(const char *text)
 /* The complete inline block must consist of peripheral bit writes. This
  * establishes its effects before final instructions enter the ordinary ISR
  * analysis; labels, calls and other inline instructions retain the old frame. */
-static unsigned li_inline_bits(const char *source)
+static unsigned li_inline_bits(const char *source,bool privateFrame)
 {
   unsigned count=0;if(!source)return 0;
   for(const char *p=source;*p;) {
@@ -83,12 +83,13 @@ static unsigned li_inline_bits(const char *source)
     size_t length=(size_t)(end-p);char text[LI_TEXT];
     if(length>=sizeof text)return 0;
     memcpy(text,p,length);text[length]=0;
-    lineNode node={0};node.line=text;li_line l;
-    if(!li_parse(&node,&l))return 0;
-    if(!l.empty) {
-      if(l.label || l.nargs!=1 || (strcmp(l.op,"clr") && strcmp(l.op,"setb") && strcmp(l.op,"cpl")))return 0;
-      li_operand bit=li_numeric_bit(l.arg[0]);
-      if(bit.unknown || !bit.memory || !bit.bit)return 0;
+    wide_asm_instruction instruction;
+    if(wide_asm_decode(text,text+length,&instruction))return 0;
+    if(instruction.operation) {
+      if(instruction.operation<2)return 0;
+      unsigned address=instruction.address,mask=1u<<instruction.bit;
+      if(privateFrame ? !wide_asm_private_frame_bits(address,mask) :
+                        wide_asm_core_bits(address,mask))return 0;
       ++count;
     }
     p=end;if(*p=='\r')++p;if(*p=='\n' || (unsigned char)*p==0x87)++p;
@@ -102,7 +103,7 @@ static int mcs251IsrInlineBits(iCode *lic)
   int count=0;
   if(!currFunc || !IFFUNC_ISISR(currFunc->type))return -1;
   for(iCode *ic=lic;ic;ic=ic->next)if(ic->op==INLINEASM) {
-    unsigned n=li_inline_bits(IC_INLINE(ic));if(!n)return -1;count+=(int)n;
+    unsigned n=li_inline_bits(IC_INLINE(ic),false);if(!n)return -1;count+=(int)n;
   }
   return count;
 }

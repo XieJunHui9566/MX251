@@ -39,6 +39,9 @@ cases={
  'peripheral-call':('__asm setb 0x98.1 __endasm; helper(); __asm clr 0x98.1 __endasm;',True,''),
  'peripheral-word-call':('__asm setb 0x98.1 __endasm; word_helper(value,0x1234u);',True,''),
  'peripheral-unknown-call':('__asm setb 0x98.1 __endasm; unknown();',False,''),
+ 'peripheral-status-call':('__asm clr 0x87.5 __endasm; helper();',False,''),
+ 'peripheral-power-call':('__asm setb 0x87.1 __endasm; helper();',False,''),
+ 'peripheral-status-stack':('__asm\nclr 0x87.5\nmov spx,dr0\n__endasm; helper();',False,''),
  'peripheral-local-frame':('volatile u8 local[9]; __asm clr 0x8f.4 __endasm; local[0]=value; helper(); value=local[0];',False,''),
  'peripheral-other-bank':('__asm clr 0x8f.4 __endasm; helper();',False,' __using(1)'),
  'peripheral-array':('__asm clr 0x8f.4 __endasm; buffer[index & 15]=value;',True,''),
@@ -53,7 +56,8 @@ cases={
  'other-bank':('value++;',False,' __using(1)'),
  'local-frame':('volatile u8 local[9]; local[0]=value; helper(); value=local[0];',False,''),
 }
-packed_changes={'peripheral-call','peripheral-word-call','peripheral-unknown-call','peripheral-local-frame'}
+packed_changes={'peripheral-call','peripheral-word-call','peripheral-unknown-call','peripheral-local-frame',
+                'peripheral-status-call','peripheral-power-call'}
 rows=[]
 for model in ('small','large'):
  for opt in ('speed','size'):

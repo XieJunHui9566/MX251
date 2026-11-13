@@ -2104,7 +2104,7 @@ restorePackedIsrContext (void)
   emitpop ("0xd1");
 }
 
-static unsigned li_inline_bits(const char *source);
+static unsigned li_inline_bits(const char *source,bool privateFrame);
 
 static bool
 usePackedIsrContext (iCode *ic, sym_link *ftype)
@@ -2117,7 +2117,7 @@ usePackedIsrContext (iCode *ic, sym_link *ftype)
   /* C stack objects are above the complete context frame. Known peripheral
      bit writes do not inspect it; other inline assembly keeps its old layout. */
   for (; ic && ic->op != ENDFUNCTION; ic = ic->next)
-    if (ic->op == INLINEASM && !li_inline_bits (IC_INLINE (ic))) return false;
+    if (ic->op == INLINEASM && !li_inline_bits (IC_INLINE (ic),true)) return false;
   return true;
 }
 

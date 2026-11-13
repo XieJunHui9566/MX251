@@ -27,11 +27,34 @@
 #include "ralloc.h"
 #include "gen.h"
 #include "internal_return.h"
+#include "wide_ordered_contract.h"
 
 extern bool mcs251CallClobberWrites (symbol *callee, unsigned long *writes);
 
 #define D(x) x
 #define DEADMOVEERROR() do {werror(E_INTERNAL_ERROR, __FILE__, __LINE__, "error in deadmove");} while(0)
+
+/* Check the whole original inline block, including lines after this node.
+ * Numeric peripheral bit writes preserve register values; labels, fixed-PC
+ * expressions and register/mapping operations retain the scan boundary. */
+static bool
+inlinePreservesRegisters (lineNode *node)
+{
+  iCode *ic = node->ic;
+  if (!ic || ic->op != INLINEASM) return false;
+  while (node->prev && node->prev->ic == ic) node = node->prev;
+  for (; node && node->ic == ic; node = node->next)
+    {
+      if (node->isComment || node->isDebug) continue;
+      if (!node->isInline || !node->line || node->isLabel) return false;
+      wide_asm_instruction instruction;
+      if (wide_asm_decode (node->line, node->line + strlen (node->line), &instruction) ||
+          (instruction.operation > 1 &&
+           wide_asm_core_bits (instruction.address, 1u << instruction.bit)))
+        return false;
+    }
+  return true;
+}
 
 typedef enum
 {
@@ -339,10 +362,12 @@ scan4op (lineNode **pl, const char *pReg, const char *untilOp,
       if (!(*pl)->line || (*pl)->isDebug || (*pl)->isComment)
         continue;
 
-      /* don't optimize across inline assembler,
-         e.g. isLabel doesn't work there */
+      /* Known peripheral writes stay in place and do not use this register. */
       if ((*pl)->isInline)
-        return S4O_ABORT;
+        {
+          if (!inlinePreservesRegisters (*pl)) return S4O_ABORT;
+          continue;
+        }
 
       if ((*pl)->visited)
         return S4O_VISITED;
