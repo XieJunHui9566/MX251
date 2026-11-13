@@ -3802,6 +3802,7 @@ fixParamPassing (iCode *ic)
 /*                    will return an array of eBBlock pointers     */
 /*-----------------------------------------------------------------*/
 #include "mcs251/carry_observation.c.inc"
+#include "mcs251/exact_float_scale.c.inc"
 
 eBBlock **
 eBBlockFromiCode (iCode *ic)
@@ -3861,6 +3862,7 @@ eBBlockFromiCode (iCode *ic)
   while (optimizeOpWidth (ebbi->bbOrder, ebbi->count))
     optimizeCastCast (ebbi->bbOrder, ebbi->count);
   optimizeNegation (ebbi->bbOrder, ebbi->count);
+  mcs251OptimizeExactFloatScale (ebbi->bbOrder, ebbi->count);
 
   /* Burn the corpses, so the dead may rest in peace,
      safe from cse necromancy */

@@ -1,0 +1,1370 @@
+{
+  "status": "COMPLETE",
+  "date": "2026-11-14",
+  "baseCommit": "63ead71c8f01cecd7fd3eeb7a5e623e51954d75c",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "daaae529e4f5b54d16390d4d1446632cf373ca2a19257a39f45a3159461c7001"
+  },
+  "summary": {
+    "before": 63721,
+    "after": 63109,
+    "at120": 5,
+    "at110": 4,
+    "savedBytes": 612
+  },
+  "rows": [
+    {
+      "id": "p041",
+      "before": 2844,
+      "after": 2844,
+      "savedBytes": 0,
+      "keil": 2582,
+      "keilPercent": 110.14717273431448,
+      "selectedSuite": "mx251-native",
+      "variants": {
+        "mx251-native": 2844,
+        "mx251-standard": 4687
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "80b98a8bed685db9e9c10385a6fd3e6ea2a3324c8b9102e09bbaa7842ab11f0a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "044e524c529d9c0e4fe5626b5c792af7bc4a006c8125b3835a46fcd41c40375f"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\src\\ai8051u.h",
+          "sha256": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\src\\main.c",
+          "sha256": "e70ad9562fec027b40be84439919d4774211da48ebb5dd06a9b3db907f8ce0df"
+        }
+      ]
+    },
+    {
+      "id": "p076",
+      "before": 19323,
+      "after": 19323,
+      "savedBytes": 0,
+      "keil": 19918,
+      "keilPercent": 97.0127522843659,
+      "selectedSuite": "mx251-standard",
+      "variants": {
+        "mx251-native": 19478,
+        "mx251-standard": 19323
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5b10a40d9807ebb79a6dbe1e30888fa4fb2fa8f84a25f277007b08877e7cc7d1"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "d253a2244c565314ef4d09761210566aa4604765fb49a58ebdc82cef386ee07b"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\font.h",
+          "sha256": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\gui.c",
+          "sha256": "a1e1da47ad5f12fc5461e74e07e43020d20b3004e46281183e575c69ae13ca8b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\lcd.c",
+          "sha256": "ec747872bda87285cb2837c2cbe61b86c907bd522aacd706c10ddd906c3341f9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\lcd.h",
+          "sha256": "8f37e0eef67302a9afa63b5119854db7e72e01e3014e6df754136dd11aea82dc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\main.c",
+          "sha256": "7cc4b845a59bfe2359d91090a561c24971dc6755bc46f8d42ec4b491bfd7011e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\sys.c",
+          "sha256": "86b854283e9f9aba924535fd9f3b57ee87710e17680531fcccb478d7792863b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\sys.h",
+          "sha256": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\test.c",
+          "sha256": "46d3d55d2f1059170b1adfd74a172ccc08f136573e3de46f22073d898eb38903"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\touch.c",
+          "sha256": "392f6ff9cea1d62b131558475cafaef1d8163523f45efc6a13a26a0827700921"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\src\\touch.h",
+          "sha256": "a49e5b33a9c4a21398eb3073265373ef29decd5546121656c4481ca65eacbfd5"
+        }
+      ]
+    },
+    {
+      "id": "p077",
+      "before": 19285,
+      "after": 19285,
+      "savedBytes": 0,
+      "keil": 19921,
+      "keilPercent": 96.8073891872898,
+      "selectedSuite": "mx251-standard",
+      "variants": {
+        "mx251-native": 19424,
+        "mx251-standard": 19285
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b1f23c406bee18fbd6e764931f7dfd4ff69c5e0baad686c38f746568bd4c1a6f"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a593ed41590cdbcc5c7ffecb54308382fc76cb4d85d4361feb4876434b92b672"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\font.h",
+          "sha256": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\gui.c",
+          "sha256": "a1e1da47ad5f12fc5461e74e07e43020d20b3004e46281183e575c69ae13ca8b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\isr.asm",
+          "sha256": "35adeb531d5bfbdda1ec0c2bd03c25de19b8a5de78b048cc41f55003bd22f1dd"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\lcd.c",
+          "sha256": "e80d971e3d990fe5725086d44138ceb78f3bed45cef5697904f3f72f3e9950f0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\lcd.h",
+          "sha256": "8f37e0eef67302a9afa63b5119854db7e72e01e3014e6df754136dd11aea82dc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\main.c",
+          "sha256": "7cc4b845a59bfe2359d91090a561c24971dc6755bc46f8d42ec4b491bfd7011e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\sys.c",
+          "sha256": "86b854283e9f9aba924535fd9f3b57ee87710e17680531fcccb478d7792863b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\sys.h",
+          "sha256": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\test.c",
+          "sha256": "46d3d55d2f1059170b1adfd74a172ccc08f136573e3de46f22073d898eb38903"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\touch.c",
+          "sha256": "392f6ff9cea1d62b131558475cafaef1d8163523f45efc6a13a26a0827700921"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\src\\touch.h",
+          "sha256": "a49e5b33a9c4a21398eb3073265373ef29decd5546121656c4481ca65eacbfd5"
+        }
+      ]
+    },
+    {
+      "id": "p079",
+      "before": 18764,
+      "after": 18764,
+      "savedBytes": 0,
+      "keil": 19556,
+      "keilPercent": 95.95009204336264,
+      "selectedSuite": "mx251-standard",
+      "variants": {
+        "mx251-native": 19198,
+        "mx251-standard": 18764
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "64c8ec4c94ae8aef7145dc232ba09a2dff4e3c5c7ce5b32a2de1cff4c69be95b"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e6e12fb0057df01eb261d52499ae30a7385418d62ccc608521ccbef84bbb160f"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\font.h",
+          "sha256": "91def5cdc97587e27953c164ffc549deef87b37480de2ee956d80812e3ae0df5"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\gui.c",
+          "sha256": "25da1cd793976de533d7e006ec9d64bd26f96d403616d2ef4a5b87f849391742"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\isr.asm",
+          "sha256": "5d409310f86bac13e742de65ec36b7da01f9843cf9cb57115c07e02b32261c15"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\lcd.c",
+          "sha256": "caa8ed27b68426954a748abdaa206e7d679046a852a19c478bfe9ff516f40c53"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\lcd.h",
+          "sha256": "4a03c27a5f4e961611aedab28be35081a0ab2a4416d5eda39ed57933c57c166e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\main.c",
+          "sha256": "3087dbc50bebce3b3ba8a0cdeef082d5671df5e0616db7a8e39e44e11764e9c4"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\sys.c",
+          "sha256": "5a7be8af43dcdd1d3b1beb2c88c129affd9fbd00e840dbb94193bec94fbf923d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\sys.h",
+          "sha256": "45d028662a9530d9ecc4a3cccd821cdc77123e02b185a6dca942b7f8b8a5cb6b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\test.c",
+          "sha256": "c29b5ab08693d3d73ccfc48bcf67f401d91759fccbe1699f2f93f868e30eea74"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\touch.c",
+          "sha256": "ee4a6347e8d97cb1a13a8f322123685239aecbd07b0ab469fbd1b3bac13de956"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\src\\touch.h",
+          "sha256": "da4e95f89e59f4de0a6ad8364a0bc7f956ae1e7208587bcbe84004eb6c0c9c70"
+        }
+      ]
+    },
+    {
+      "id": "p081",
+      "before": 3505,
+      "after": 2893,
+      "savedBytes": 612,
+      "keil": 2806,
+      "keilPercent": 103.10049893086244,
+      "selectedSuite": "mx251-native",
+      "variants": {
+        "mx251-native": 2893,
+        "mx251-standard": 4736
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7dffd5f54012df403debbf174f3763a008edc825dfdc621ef721564dd91a17e4"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ac49aeb48bdcdbedd20f77655ecf856f8325b33c96c131af0ad2661594c190ec"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\src\\ai8051u.h",
+          "sha256": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\src\\main.c",
+          "sha256": "646bd651a69366750a262cd47617bc86e74e014d6356f267fbd858c0c9ed9cc2"
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "old": {
+      "status": "PASS",
+      "cases": 128,
+      "frames": 644,
+      "aggregateTicks": {
+        "0": 1854.0,
+        "1": 12275
+      },
+      "firmwareSha256": "c5b89f265742319d0d0985ba2bb4aab55bc918ba49c8231973671a27f8d18e09",
+      "evidence": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\hardware-old\\uart.bin",
+        "sha256": "0bc51b492db5326a14a592585ac4021593b70351adae8b980d79b5df37d115fb"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\board-old\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7f355cfbb2d6f3e316401a1fbed96fcf1abde16bbcc6043fb7b712b8c94be9c8"
+      },
+      "fixtureBytes": 2539
+    },
+    "new": {
+      "status": "PASS",
+      "cases": 128,
+      "frames": 518,
+      "aggregateTicks": {
+        "0": 384.0,
+        "1": 2116.0
+      },
+      "firmwareSha256": "adea04779474d05fa43c3ce10f2393d11f9c8ce419e2ef10b941071e6ca4d601",
+      "evidence": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\hardware-new\\uart.bin",
+        "sha256": "9685856a1eee5bf661ab92551600f3234c5393a9afd2a6e22d2b03f5740c1fd5"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\board-new\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "223da131c4920ca706e6135f028926410a6aed8122853edffb60562d9313ce89"
+      },
+      "fixtureBytes": 1105
+    },
+    "timing": [
+      {
+        "kind": "0",
+        "before": 1854.0,
+        "after": 384.0,
+        "reductionPercent": 79.28802588996764
+      },
+      {
+        "kind": "1",
+        "before": 12275,
+        "after": 2116.0,
+        "reductionPercent": 82.76171079429734
+      }
+    ]
+  },
+  "checks": {
+    "status": "PASS",
+    "compilerCases": [
+      {
+        "backend": "legacy",
+        "name": "five_eighths",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "commuted",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "byte",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "power_division",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "signed_result",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "wide_result",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "tiny",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "volatile_input",
+        "floatCalls": []
+      },
+      {
+        "backend": "legacy",
+        "name": "signed_input",
+        "floatCalls": [
+          "___sint2fs",
+          "___fsmul",
+          "___fs2sint"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "rounded_product",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "decimal",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "decimal_division",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsdiv",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "narrow_result",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uchar"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "signed_overflow",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2sint"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "shared_float",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "legacy",
+        "name": "volatile_float",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "five_eighths",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "commuted",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "byte",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "power_division",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "signed_result",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "wide_result",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "tiny",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "volatile_input",
+        "floatCalls": []
+      },
+      {
+        "backend": "wide",
+        "name": "signed_input",
+        "floatCalls": [
+          "___sint2fs",
+          "___fsmul",
+          "___fs2sint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "rounded_product",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "decimal",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "decimal_division",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsdiv",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "narrow_result",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uchar"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "signed_overflow",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2sint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "shared_float",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      },
+      {
+        "backend": "wide",
+        "name": "volatile_float",
+        "floatCalls": [
+          "___uint2fs",
+          "___fsmul",
+          "___fs2uint"
+        ]
+      }
+    ],
+    "exhaustiveComparisons": 393216,
+    "roundingCounterexample": {
+      "input": 65109,
+      "factor": 0.2529296875
+    }
+  },
+  "attribution": {
+    "before": {
+      "bytes": 3505,
+      "functions": [
+        {
+          "name": "_main",
+          "unit": "u0",
+          "bytes": 228,
+          "isr": false,
+          "pushPopBytes": 26,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 7,
+          "wideRefusal": "call-abi-or-argument-contract",
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir fallback: main",
+            "wide refusal function=main stage=import reason=call-abi-or-argument-contract source-line=875 icode=115 opcode=382 values=37 nodes=82 value-limit=512 node-limit=2048 objects=0 frame=0"
+          ]
+        },
+        {
+          "name": "_ReadTemperature",
+          "unit": "u0",
+          "bytes": 209,
+          "isr": false,
+          "pushPopBytes": 8,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 14,
+          "wideRefusal": "call-abi-or-argument-contract",
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir fallback: ReadTemperature",
+            "wide refusal function=ReadTemperature stage=import reason=call-abi-or-argument-contract source-line=875 icode=57 opcode=382 values=10 nodes=26 value-limit=512 node-limit=2048 objects=0 frame=0"
+          ]
+        },
+        {
+          "name": "_DisplayTemperature",
+          "unit": "u0",
+          "bytes": 109,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "wide",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: DisplayTemperature; values=19 nodes=57 frame=0 folded-casts=0",
+            "mx251-body-choice function=_DisplayTemperature selected=wide"
+          ]
+        },
+        {
+          "name": "_delay_us",
+          "unit": "u0",
+          "bytes": 28,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_delay_us selected=legacy"
+          ]
+        },
+        {
+          "name": "_DS18B20_Reset",
+          "unit": "u0",
+          "bytes": 41,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 5,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_DS18B20_Reset selected=legacy"
+          ]
+        },
+        {
+          "name": "_DS18B20_ReadByte",
+          "unit": "u0",
+          "bytes": 44,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 3,
+          "wideRefusal": null,
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: DS18B20_ReadByte; values=4 nodes=25 frame=0 folded-casts=0"
+          ]
+        },
+        {
+          "name": "_DS18B20_WriteByte",
+          "unit": "u0",
+          "bytes": 54,
+          "isr": false,
+          "pushPopBytes": 8,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 3,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_DS18B20_WriteByte selected=legacy"
+          ]
+        },
+        {
+          "name": "_Send_595",
+          "unit": "u0",
+          "bytes": 25,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_Send_595 selected=legacy"
+          ]
+        },
+        {
+          "name": "_DisplayScan",
+          "unit": "u0",
+          "bytes": 81,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 2,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_DisplayScan selected=legacy"
+          ]
+        },
+        {
+          "name": "_timer0",
+          "unit": "u0",
+          "bytes": 36,
+          "isr": true,
+          "pushPopBytes": 28,
+          "entryExitPushPopBytes": 28,
+          "directCallSites": 1,
+          "wideRefusal": null,
+          "backend": "entry-contract",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "wide admission function=timer0 skip=entry-contract",
+            "mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f08e2 special-reads=0 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+          ]
+        },
+        {
+          "name": "_UartInit",
+          "unit": "u0",
+          "bytes": 29,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": "ordered-asm-core-state-write",
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir fallback: UartInit",
+            "wide refusal function=UartInit stage=import reason=ordered-asm-core-state-write source-line=32 icode=12 opcode=361 values=0 nodes=3 value-limit=512 node-limit=2048 objects=0 frame=0"
+          ]
+        },
+        {
+          "name": "_UartPutc",
+          "unit": "u0",
+          "bytes": 12,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: UartPutc; values=3 nodes=12 frame=0 folded-casts=0"
+          ]
+        },
+        {
+          "name": "_putchar",
+          "unit": "u0",
+          "bytes": 18,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 1,
+          "wideRefusal": null,
+          "backend": "wide",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: putchar; values=2 nodes=9 frame=0 folded-casts=0",
+            "mx251-body-choice function=_putchar selected=wide"
+          ]
+        }
+      ],
+      "partition": {
+        "applicationInstructions": 914,
+        "otherCseg": 2365,
+        "constants": 66,
+        "startupVectorsAndOther": 160
+      },
+      "libraryMembers": [
+        "_fsdiv.rel",
+        "crtclear.rel",
+        "crtxinit.rel",
+        "_fsmul.rel",
+        "crtxclear.rel",
+        "_uint2fs.rel",
+        "_fs2uint.rel",
+        "_startup.rel",
+        "_fs2ulong.rel",
+        "_ulong2fs.rel"
+      ],
+      "gc": {
+        "status": "CLOSED_GRAPH_CANDIDATE",
+        "issues": [],
+        "removedFunctions": [],
+        "resolvedAbsoluteTargets": []
+      },
+      "inputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.asm",
+          "sha256": "9846e6f7cb27666f2885c4c481592322b5389f9aa948331ed8612ec730f9c4fe"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.rst",
+          "sha256": "449e7230d42af621f7012f639911c210fb86a07d86285a9b0a365a9ab2306d16"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "6e5d9d9369b12e6aa6c59dd9bfa566fdd981e6d4d9562de7ee01bc65ea0a374a"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\linked.partial.map",
+          "sha256": "8ee756ca7d0426cb51c19a290d75332b26d9372509168d2c66992e35b3e3aaea"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\project.snapshot.json",
+          "sha256": "bf4273d9fceeaa2d29ce36b895dd6a448f5d5b8c6a86006985080a13638dc8ef"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\function-gc\\manifest.json",
+          "sha256": "4da68f12a753ae960b19990963a23de993bf2fa25a78c89b0754041a1086b5ef"
+        }
+      ]
+    },
+    "after": {
+      "bytes": 2893,
+      "functions": [
+        {
+          "name": "_main",
+          "unit": "u0",
+          "bytes": 228,
+          "isr": false,
+          "pushPopBytes": 26,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 7,
+          "wideRefusal": "call-abi-or-argument-contract",
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir fallback: main",
+            "wide refusal function=main stage=import reason=call-abi-or-argument-contract source-line=875 icode=115 opcode=382 values=37 nodes=82 value-limit=512 node-limit=2048 objects=0 frame=0"
+          ]
+        },
+        {
+          "name": "_ReadTemperature",
+          "unit": "u0",
+          "bytes": 163,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 8,
+          "wideRefusal": null,
+          "backend": "wide",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: ReadTemperature; values=18 nodes=40 frame=0 folded-casts=0",
+            "mx251-body-choice function=_ReadTemperature selected=wide"
+          ]
+        },
+        {
+          "name": "_DisplayTemperature",
+          "unit": "u0",
+          "bytes": 109,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "wide",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: DisplayTemperature; values=19 nodes=57 frame=0 folded-casts=0",
+            "mx251-body-choice function=_DisplayTemperature selected=wide"
+          ]
+        },
+        {
+          "name": "_delay_us",
+          "unit": "u0",
+          "bytes": 28,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_delay_us selected=legacy"
+          ]
+        },
+        {
+          "name": "_DS18B20_Reset",
+          "unit": "u0",
+          "bytes": 41,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 5,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_DS18B20_Reset selected=legacy"
+          ]
+        },
+        {
+          "name": "_DS18B20_ReadByte",
+          "unit": "u0",
+          "bytes": 44,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 3,
+          "wideRefusal": null,
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: DS18B20_ReadByte; values=4 nodes=25 frame=0 folded-casts=0"
+          ]
+        },
+        {
+          "name": "_DS18B20_WriteByte",
+          "unit": "u0",
+          "bytes": 54,
+          "isr": false,
+          "pushPopBytes": 8,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 3,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_DS18B20_WriteByte selected=legacy"
+          ]
+        },
+        {
+          "name": "_Send_595",
+          "unit": "u0",
+          "bytes": 25,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_Send_595 selected=legacy"
+          ]
+        },
+        {
+          "name": "_DisplayScan",
+          "unit": "u0",
+          "bytes": 81,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 2,
+          "wideRefusal": null,
+          "backend": "legacy",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mx251-body-choice function=_DisplayScan selected=legacy"
+          ]
+        },
+        {
+          "name": "_timer0",
+          "unit": "u0",
+          "bytes": 36,
+          "isr": true,
+          "pushPopBytes": 28,
+          "entryExitPushPopBytes": 28,
+          "directCallSites": 1,
+          "wideRefusal": null,
+          "backend": "entry-contract",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "wide admission function=timer0 skip=entry-contract",
+            "mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f08e2 special-reads=0 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+          ]
+        },
+        {
+          "name": "_UartInit",
+          "unit": "u0",
+          "bytes": 29,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": "ordered-asm-core-state-write",
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir fallback: UartInit",
+            "wide refusal function=UartInit stage=import reason=ordered-asm-core-state-write source-line=32 icode=12 opcode=361 values=0 nodes=3 value-limit=512 node-limit=2048 objects=0 frame=0"
+          ]
+        },
+        {
+          "name": "_UartPutc",
+          "unit": "u0",
+          "bytes": 12,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 0,
+          "wideRefusal": null,
+          "backend": "unreported",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: UartPutc; values=3 nodes=12 frame=0 folded-casts=0"
+          ]
+        },
+        {
+          "name": "_putchar",
+          "unit": "u0",
+          "bytes": 18,
+          "isr": false,
+          "pushPopBytes": 0,
+          "entryExitPushPopBytes": 0,
+          "directCallSites": 1,
+          "wideRefusal": null,
+          "backend": "wide",
+          "divisionDeferred": false,
+          "diagnostics": [
+            "mcs251 wide-mir accepted: putchar; values=2 nodes=9 frame=0 folded-casts=0",
+            "mx251-body-choice function=_putchar selected=wide"
+          ]
+        }
+      ],
+      "partition": {
+        "applicationInstructions": 868,
+        "otherCseg": 1799,
+        "constants": 66,
+        "startupVectorsAndOther": 160
+      },
+      "libraryMembers": [
+        "_fsdiv.rel",
+        "crtclear.rel",
+        "crtxinit.rel",
+        "crtxclear.rel",
+        "_uint2fs.rel",
+        "_startup.rel",
+        "_ulong2fs.rel"
+      ],
+      "gc": {
+        "status": "CLOSED_GRAPH_CANDIDATE",
+        "issues": [],
+        "removedFunctions": [],
+        "resolvedAbsoluteTargets": []
+      },
+      "inputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.asm",
+          "sha256": "55c99b51f8306426431fab0a01f225c54da2c942621645cec4571a0b75e4567a"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.rst",
+          "sha256": "c3c174de8e680cf5c2e62727810087cf619a8d75c922c4d97339d76b93ba2a21"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "7dffd5f54012df403debbf174f3763a008edc825dfdc621ef721564dd91a17e4"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\linked.partial.map",
+          "sha256": "307822d9bd722cbcf7568a4312f9b72830442f22834f18cdcc406781350121ec"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\project.snapshot.json",
+          "sha256": "d0bf0eba4389eff6dadd05b2cfa2ede87ed863a57b9ef5d9977287cc32ab50ca"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\function-gc\\manifest.json",
+          "sha256": "b7cb7fa1a305babe8cbf3628433aa4dbd11729798265a253de25305371b1772c"
+        }
+      ]
+    },
+    "keil": {
+      "bytes": 2806,
+      "partition": {
+        "startupVectors": 28,
+        "constants": 70,
+        "libraries": 1988,
+        "functionSegments": 720
+      },
+      "functions": {
+        "MAIN": 175,
+        "DISPLAYTEMPERATURE": 111,
+        "READTEMPERATURE": 106,
+        "DISPLAYSCAN": 72,
+        "DS18B20_READBYTE": 43,
+        "DS18B20_WRITEBYTE": 41,
+        "DS18B20_RESET": 40,
+        "DELAY_US": 31,
+        "UARTINIT": 29,
+        "TIMER0": 26,
+        "SEND_595": 22,
+        "UARTPUTC": 12,
+        "PUTCHAR": 12
+      },
+      "segments": [
+        {
+          "name": "?CO?start251?4",
+          "bytes": 3,
+          "category": "startupVectors",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?CO?PRINTF",
+          "bytes": 4,
+          "category": "constants",
+          "memoryClass": "CONST"
+        },
+        {
+          "name": "?CO?vectors?1",
+          "bytes": 3,
+          "category": "startupVectors",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?C?LIB_CODE",
+          "bytes": 1988,
+          "category": "libraries",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?MAIN?MAIN",
+          "bytes": 175,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?DISPLAYTEMPERATURE?MAIN",
+          "bytes": 111,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?READTEMPERATURE?MAIN",
+          "bytes": 106,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?DISPLAYSCAN?MAIN",
+          "bytes": 72,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?CO?MAIN",
+          "bytes": 51,
+          "category": "constants",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?DS18B20_READBYTE?MAIN",
+          "bytes": 43,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?DS18B20_WRITEBYTE?MAIN",
+          "bytes": 41,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?DS18B20_RESET?MAIN",
+          "bytes": 40,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?DELAY_US?MAIN",
+          "bytes": 31,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?UARTINIT?MAIN",
+          "bytes": 29,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?TIMER0?MAIN",
+          "bytes": 26,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?SEND_595?MAIN",
+          "bytes": 22,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?C_C51STARTUP",
+          "bytes": 19,
+          "category": "startupVectors",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?C_C51STARTUP?3",
+          "bytes": 3,
+          "category": "startupVectors",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?UARTPUTC?MAIN",
+          "bytes": 12,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?PR?PUTCHAR?MAIN",
+          "bytes": 12,
+          "category": "functionSegments",
+          "memoryClass": "CODE"
+        },
+        {
+          "name": "?HC?MAIN",
+          "bytes": 15,
+          "category": "constants",
+          "memoryClass": "HCONST"
+        }
+      ],
+      "inputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p081\\keil\\firmware.hex",
+          "sha256": "ea4a073055b5ff768d79c5f18cc6d3a1025cc2180e771e9fd91d0d363480c39d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p081\\keil\\FIRMWARE.MAP",
+          "sha256": "50ad2ec39e77144338b9f0c0db7fff84e85dc03b88fd09373b9932db07af9466"
+        }
+      ]
+    },
+    "removedLibraryMembers": [
+      "_fs2uint.rel",
+      "_fs2ulong.rel",
+      "_fsmul.rel"
+    ]
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\SDCCopt.c",
+      "sha256": "74ed6740d78387854322790b5832dec43e759b1c18b9f74bad9fe92af9913d2c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\exact_float_scale.c.inc",
+      "sha256": "131d1c71a921700334394df89507fabc5a83bf6eade46d49d8f8ae67ae7f92d6"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-exact-float-scale.py",
+      "sha256": "ae76f7c007ecd2e9d6e8ed8c17ffdc73656fc9b6698dd598e6fdc6a1f5ecfe33"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\exact_float_scale_fixture.py",
+      "sha256": "0349193b89c581bf7a82f0167be50dcd4239bfde6a30947da938c19a6ca94d03"
+    }
+  ],
+  "artifacts": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale",
+  "sdkSourcesChanged": false,
+  "original75Rerun": false,
+  "keilRuntimeCompared": false,
+  "reproduction": {
+    "check": [
+      "E:/MCU/python/python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-exact-float-scale.py",
+      "--compiler",
+      "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\core\\toolchain\\bin\\sdcc.exe",
+      "--output",
+      "<fresh-check-directory>"
+    ],
+    "matrix": [
+      "E:/MCU/python/python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\float_format_edata_matrix.py",
+      "--coverage",
+      "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage",
+      "--output",
+      "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix",
+      "--core",
+      "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\core",
+      "--ids",
+      "p041,p076,p077,p079,p081"
+    ],
+    "boardFixture": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\exact_float_scale_fixture.py",
+    "boardBuildSwitches": [
+      "-FunctionSharing",
+      "-MachineIr",
+      "-CalleePreservation",
+      "-C251BitComplement",
+      "-SelectiveLeafAbi",
+      "AUTO"
+    ]
+  }
+}
