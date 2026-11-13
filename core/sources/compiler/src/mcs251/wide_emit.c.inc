@@ -162,17 +162,18 @@ static void wstore(wide_function *f,int value,int source) {wstore_known(f,value,
 /* 栈实参的地址只依赖 SPX，不读取待分配 GPR。直接写已验证的最终
  * 位置可省去 DR16 搬运；读取的物理宽度、地址顺序和有符号扩展与旧路径
  * 完全一致。尤其窄 volatile 仍只读同一字节，不扩大成相邻参数访问。
- * 不借用 A/B、DR16/DR20 或与其它活值重叠的位置；未知宽度/溢出槽回退。 */
+ * 最终位置排除 A/B、DR16/DR20 和其它活值；三字节指针沿用 A 零扩展。 */
 static bool
 wparameter_load_direct(wide_function *f,wide_node *n)
 {
   const char *enable=getenv("MX251_STACK_PARAM_DIRECT");
   if(n->op!=WM_PARAM_LOAD || n->result<0 || n->result>=f->nv)return false;
-  /* 相同物理/逻辑宽度无需扩展、截断或借用 A/B，正常入口自动采用。
-   * 其它运输形式仍保持原有研究开关及回退，不能扩大此次资格范围。 */
-  if(n->left.width!=n->width && (!enable || strcmp(enable,"1")))return false;
   wide_value *v=&f->values[n->result];
   int width=n->width,sourceWidth=n->left.width,reg=v->reg;
+  bool pointer3=v->pointer && sourceWidth==3 && width==4;
+  /* 三字节指针的 MOVZ 已清零填充字节。其它非等宽整数运输仍由
+   * 原有研究开关控制，尤其不把任意四字节整数视为规范指针。 */
+  if(sourceWidth!=width && !pointer3 && (!enable || strcmp(enable,"1")))return false;
   if(v->width!=width || (width!=1 && width!=2 && width!=4) ||
      sourceWidth<1 || sourceWidth>4 || reg<0 ||
      !mcs251RegisterEncodable(reg,width))return false;
@@ -198,8 +199,7 @@ wparameter_load_direct(wide_function *f,wide_node *n)
     else we(f,"\tmov\twr%d,%s\n",low,a);
     if(width==4) {if(n->left.sign)wsign_word(f,reg,low);else wi(f,reg,2,0);}
   }
-  /* 保留旧 wstore 的远指针补位规则，不把整数来源误当作规范指针。 */
-  if(v->pointer)we(f,"\tanl\twr%d,#0x00ff\n",reg);
+  if(v->pointer && !pointer3)we(f,"\tanl\twr%d,#0x00ff\n",reg);
   return true;
 }
 static bool
@@ -790,7 +790,7 @@ wbinary(wide_function *f,wide_node *n)
       } else we(f,"\t%s\twr%d,wr%d\n",op,work+k,rhs+k);
     }
   }
-  wstore(f,n->result,work);
+  wstore_known(f,n->result,work,n->boundedCursorStep);
 }
 static void
 wshift_one(wide_function *f,int reg,int width,bool right,bool sign)
@@ -1849,7 +1849,7 @@ wide_emit(wide_function *f)
         else we(f,"\tmov\twr%d,%s\n",low,a);
         if(n->width==4) {if(n->left.sign)wsign_word(f,16,low);else wi(f,16,2,0);}
       }
-      wstore(f,n->result,16);break;
+      wstore_known(f,n->result,16,sourceWidth==3 && n->width==4);break;
     }
     case WM_PARAM_STORE: {
       int base=n->addressOffset-f->frame-f->stackDepth-f->preservedBytes,physical=n->left.width;

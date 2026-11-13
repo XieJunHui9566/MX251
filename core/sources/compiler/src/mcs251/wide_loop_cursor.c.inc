@@ -143,10 +143,14 @@ wide_loop_cursors(wide_function *f)
       n->width=4;n->result=base;
       n->left=(wide_operand){.value=base,.width=4,.codePointer=f->values[base].codePointer};
       n->right=(wide_operand){.value=-1,.width=4,.literal=1};
+      /* Every observed cursor is inside this allocated 24-bit object. The
+       * final increment may reach one-past, but has no consumer after exit.
+       * Keep the 32-bit increment and carry this proof to its emission. */
+      n->boundedCursorStep=true;
       n->use=n->def=(wide_bits){{0}};wb_set(&n->use,base);wb_set(&n->def,base);
       n->in=n->out=(wide_bits){{0}};n->succ[0]=at+s+1;n->succ[1]=-1;
     }
-    dbuf_printf(f->diagnostics,"; wide loop-cursor trial streams=%d trip=%lu index=%d modulo-bits=24\n",
+    dbuf_printf(f->diagnostics,"; wide loop-cursor trial streams=%d trip=%lu index=%d bounded-object=1\n",
       count,(unsigned long)bound,index);
     ++changed;
   }

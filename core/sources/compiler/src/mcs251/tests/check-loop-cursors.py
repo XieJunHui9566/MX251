@@ -38,6 +38,12 @@ for model in ('small', 'large'):
         selected = re.findall(r'loop-cursor choice function=(\S+) loops=\d+ selected=1', outputs['enabled'])
         assert 'cursor_copy' in selected, selected
         assert 'cursor_fill' in selected, selected
+        for name in ('cursor_copy', 'cursor_fill'):
+            body = outputs['enabled'].split('symbol=_' + name + ' ', 1)[1].split('; mx251-function end', 1)[0]
+            assert 'bounded-object=1' in body
+            assert not re.search(r'\banl\s+wr\d+,#0x00ff', body), name
+        parameter = outputs['enabled'].split('symbol=_cursor_parameter ', 1)[1].split('; mx251-function end', 1)[0]
+        assert re.search(r'\banl\s+wr\d+,#0x00ff', parameter)
         for name in ('cursor_dynamic', 'cursor_call', 'cursor_ordered', 'cursor_wrap', 'cursor_parameter'):
             assert name not in selected, name
         assert 'loop-cursor choice' not in outputs['disabled']

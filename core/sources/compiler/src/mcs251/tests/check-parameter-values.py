@@ -64,9 +64,21 @@ for model in ('small', 'large'):
         widths = set(map(int, re.findall(r'^; wide parameter-value ordinal=\d+ physical=(\d+)', native, re.M)))
         assert widths == {1, 2, 3, 4}, widths
         assert 'wide ordinary ABI2 entry: first=DPL/DPH/B/A stack=physical' in ordinary
+        pointer_loads = 0
+        for asm in (native, ordinary):
+            for match in re.finditer(r'; wide stack parameter direct reg=(\d+) physical=3 logical=4 entry-offset=-?\d+\n', asm):
+                reg = int(match[1])
+                load = re.match(r'\s*mov\s+a,(@spx[^\n]*)\n\s*movz\s+wr(\d+),a\n\s*mov\s+wr(\d+),(@spx[^\n]*)\n', asm[match.end():])
+                assert load and int(load[2]) == reg and int(load[3]) == reg + 2
+                assert not re.match(r'\s*anl\s+wr\d+,#0x00ff', asm[match.end()+load.end():])
+                pointer_loads += 1
+        assert pointer_loads >= 4, pointer_loads
+        # Arbitrary parameter arithmetic still normalizes the 24-bit result.
+        assert re.search(r'\banl\s+wr\d+,#0x00ff', body(ordinary, 'pv_ordinary'))
         for asm in assemblies.values():
             assert not re.search(r'\br(?:1[6-9]|[23]\d)\b', asm), 'Unencodable byte register'
         rows.append(dict(model=model, optimization=opt, promotedWidths=sorted(widths),
-                         jumpTable=True, addressedParameterRetained=True, volatileParametersRetained=True))
+                         pointerDirectLoads=pointer_loads, jumpTable=True,
+                         addressedParameterRetained=True, volatileParametersRetained=True))
 (a.output / 'result.json').write_text(json.dumps(dict(status='PASS', configurations=rows, commands=commands), indent=2) + '\n')
 print('PASS: small/large x speed/size; ABI2/4; 1/2/3/4-byte slots; loops, switch, addressed and volatile parameters')

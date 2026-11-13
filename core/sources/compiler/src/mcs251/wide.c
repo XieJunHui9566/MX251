@@ -57,6 +57,7 @@ typedef struct {
   bool rotateCandidate; /* proposal only: original MIR/allocation remain frozen */
   bool volatileDataWideAccess; /* explicit object-access contract; byteAccess remains true */
   bool nativeCodeByte; /* Selected loop-local unified CODE byte load. */
+  bool boundedCursorStep; /* Object-local cursor; final one-past result is unobserved. */
   bool nativeIndexed;
   unsigned indexedExtent,indexedOrdinal;
   bool privateUnionWordAccess; /* transaction width only; byteAccess still guards aliases */
