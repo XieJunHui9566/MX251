@@ -809,7 +809,10 @@ wide_import (wide_function *f, ebbIndex *ebbi)
           wide_node *memory=&f->nodes[f->nn-1];
           if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_BIT_LOAD)
             return wide_reject(f,"argument-snapshot-memory-contract",__LINE__);
-          memory->byteAccess=true;memory->volatileDataWideAccess=false;
+          /* Keep the object's access width. A call needs a value snapshot,
+           * not byte transactions for ordinary RAM. Volatile arguments keep
+           * their existing byte order, including with the DATA-wide opt-in. */
+          memory->volatileDataWideAccess=false;
           dbuf_printf(f->diagnostics,"; wide argument snapshot icode=%d kind=stack slot=%u value=%d width=%d\n",ic->key,slot,pushedSample[slot].value,pushedSample[slot].width);
         }
         n->op=WM_NOP;f->body=true;break;
@@ -823,8 +826,8 @@ wide_import (wide_function *f, ebbIndex *ebbi)
           wide_node *memory=&f->nodes[f->nn-1];
           if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_BIT_LOAD)
             return wide_reject(f,"argument-snapshot-memory-contract",__LINE__);
-          memory->byteAccess=true;memory->volatileDataWideAccess=false;
-          memory->argumentReadReverse=memory->width>1;
+          memory->volatileDataWideAccess=false;
+          memory->argumentReadReverse=memory->byteAccess && memory->width>1;
           dbuf_printf(f->diagnostics,"; wide argument snapshot icode=%d kind=register slot=%u value=%d width=%d\n",ic->key,slot,pendingSample[slot].value,pendingSample[slot].width);
           n->op=WM_NOP;
         }
