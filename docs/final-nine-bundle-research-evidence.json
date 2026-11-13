@@ -1,0 +1,464 @@
+{
+  "schema": 1,
+  "status": "RESEARCH_ONLY_NOT_IMPLEMENTED",
+  "date": "2026-11-13",
+  "sourceCommit": "00c678b231e7a9f2b35b5f1ca36afc43c24717bf",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "b28eb786451de65e87926b7173dd81bdee0f6fc4f07324a656d357f810ab2812"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
+    "sha256": "46564957c66e38e2429462df6995426f4b2801aedb630a1f5f8c9249557708e6"
+  },
+  "cohortSummary": {
+    "projects": 75,
+    "improved": 2,
+    "unchanged": 73,
+    "larger": 0,
+    "savedBytes": 26,
+    "mxTotalBytes": 191046,
+    "keilTotalBytes": 192049,
+    "within110": 66,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 0.99477737452421
+  },
+  "remainingGap110Bytes": 296,
+  "remainingIsrSummary": {
+    "projects": 9,
+    "mxBytes": 10226,
+    "keilBytes": 9030,
+    "isrProjects": 9,
+    "isrFunctions": 18,
+    "isrEntryExitPushPopBytes": 492,
+    "isrsWithCalls": 7,
+    "leafIsrOptimizationFunctions": 15,
+    "matchedIsrNetGapBytes": 307,
+    "divisionDeferredProjects": 0,
+    "divisionDeferred": [],
+    "coreStateFallbackProjects": 3,
+    "coreStateFallbackFunctions": 3,
+    "coreStateFallbackBodyBytes": 474,
+    "refusalReasons": [
+      {
+        "reason": "ordered-asm-core-state-write",
+        "functions": 3,
+        "projects": [
+          "p015",
+          "p045",
+          "p149"
+        ],
+        "bodyBytes": 474
+      },
+      {
+        "reason": "ordered-asm-bit-not-capable",
+        "functions": 3,
+        "projects": [
+          "p032",
+          "p047",
+          "p049"
+        ],
+        "bodyBytes": 223
+      },
+      {
+        "reason": "unsupported-volatile-dummy-read-operand",
+        "functions": 1,
+        "projects": [
+          "p133"
+        ],
+        "bodyBytes": 129
+      }
+    ]
+  },
+  "opportunities": {
+    "contextGrouping": {
+      "sites": 71,
+      "projects": 53,
+      "grossBytes": 748,
+      "remaining": {
+        "p015": 0,
+        "p032": 40,
+        "p039": 8,
+        "p045": 16,
+        "p047": 0,
+        "p049": 16,
+        "p133": 8,
+        "p136": 16,
+        "p149": 8
+      }
+    },
+    "startupLayout": {
+      "sites": 75,
+      "projects": 75,
+      "grossBytes": 600,
+      "remaining": {
+        "p015": 8,
+        "p032": 8,
+        "p039": 8,
+        "p045": 8,
+        "p047": 8,
+        "p049": 8,
+        "p133": 8,
+        "p136": 8,
+        "p149": 8
+      }
+    },
+    "emptyInternalRam": {
+      "sites": 9,
+      "projects": 9,
+      "grossBytes": 81,
+      "remaining": {
+        "p015": 0,
+        "p032": 0,
+        "p039": 0,
+        "p045": 0,
+        "p047": 9,
+        "p049": 0,
+        "p133": 9,
+        "p136": 0,
+        "p149": 0
+      }
+    },
+    "reload": {
+      "sites": 26,
+      "projects": 9,
+      "grossBytes": 78,
+      "remaining": {
+        "p015": 0,
+        "p032": 0,
+        "p039": 3,
+        "p045": 0,
+        "p047": 0,
+        "p049": 12,
+        "p133": 0,
+        "p136": 27,
+        "p149": 0
+      }
+    },
+    "indexMasks": {
+      "sites": 86,
+      "projects": 24,
+      "grossBytes": 344,
+      "remaining": {
+        "p015": 0,
+        "p032": 0,
+        "p039": 28,
+        "p045": 0,
+        "p047": 0,
+        "p049": 0,
+        "p133": 0,
+        "p136": 44,
+        "p149": 0
+      }
+    },
+    "relativeMasks": {
+      "sites": 7,
+      "projects": 2,
+      "grossBytes": 28,
+      "remaining": {
+        "p015": 0,
+        "p032": 0,
+        "p039": 0,
+        "p045": 0,
+        "p047": 0,
+        "p049": 0,
+        "p133": 0,
+        "p136": 24,
+        "p149": 0
+      }
+    },
+    "narrowByteShift": {
+      "sites": 25,
+      "projects": 9,
+      "grossBytes": 100,
+      "remaining": {
+        "p015": 0,
+        "p032": 0,
+        "p039": 8,
+        "p045": 0,
+        "p047": 0,
+        "p049": 0,
+        "p133": 0,
+        "p136": 0,
+        "p149": 0
+      }
+    }
+  },
+  "baseBundleProjection": [
+    {
+      "id": "p015",
+      "mxBytes": 306,
+      "keilBytes": 272,
+      "gap110Bytes": 7,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 0,
+      "baseBundleSketchBytes": 8,
+      "baseBundleRemainingBytes": 0,
+      "baseBundleWouldPass": true,
+      "route": "Startup layout"
+    },
+    {
+      "id": "p032",
+      "mxBytes": 785,
+      "keilBytes": 704,
+      "gap110Bytes": 11,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 40,
+      "baseBundleSketchBytes": 48,
+      "baseBundleRemainingBytes": 0,
+      "baseBundleWouldPass": true,
+      "route": "Startup layout plus leaf GPR/DPX save grouping"
+    },
+    {
+      "id": "p039",
+      "mxBytes": 1252,
+      "keilBytes": 1105,
+      "gap110Bytes": 37,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 8,
+      "baseBundleSketchBytes": 16,
+      "baseBundleRemainingBytes": 21,
+      "baseBundleWouldPass": false,
+      "route": "Startup/context grouping, native observed-carry shift and unsigned demanded width/predicate or object bounds"
+    },
+    {
+      "id": "p045",
+      "mxBytes": 974,
+      "keilBytes": 832,
+      "gap110Bytes": 59,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 16,
+      "baseBundleSketchBytes": 24,
+      "baseBundleRemainingBytes": 35,
+      "baseBundleWouldPass": false,
+      "route": "Startup/context grouping, PCON frame effects, private bit-temp closure, carry shift and repeated-load/divmod or state-point admission"
+    },
+    {
+      "id": "p047",
+      "mxBytes": 192,
+      "keilBytes": 160,
+      "gap110Bytes": 16,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 9,
+      "contextGroupingSketchBytes": 0,
+      "baseBundleSketchBytes": 17,
+      "baseBundleRemainingBytes": 0,
+      "baseBundleWouldPass": true,
+      "route": "Startup layout plus empty internal RAM initialization demand"
+    },
+    {
+      "id": "p049",
+      "mxBytes": 1153,
+      "keilBytes": 1002,
+      "gap110Bytes": 51,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 16,
+      "baseBundleSketchBytes": 24,
+      "baseBundleRemainingBytes": 27,
+      "baseBundleWouldPass": false,
+      "route": "Startup/context grouping, pointer-parameter write summary, carry shift and nonvolatile value forwarding"
+    },
+    {
+      "id": "p133",
+      "mxBytes": 468,
+      "keilBytes": 404,
+      "gap110Bytes": 24,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 9,
+      "contextGroupingSketchBytes": 8,
+      "baseBundleSketchBytes": 25,
+      "baseBundleRemainingBytes": 0,
+      "baseBundleWouldPass": true,
+      "route": "Startup layout, empty internal RAM demand and DPX save grouping"
+    },
+    {
+      "id": "p136",
+      "mxBytes": 4611,
+      "keilBytes": 4128,
+      "gap110Bytes": 71,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 16,
+      "baseBundleSketchBytes": 24,
+      "baseBundleRemainingBytes": 47,
+      "baseBundleWouldPass": false,
+      "route": "Startup/context grouping, object-derived address normalization and nonvolatile value forwarding"
+    },
+    {
+      "id": "p149",
+      "mxBytes": 485,
+      "keilBytes": 423,
+      "gap110Bytes": 20,
+      "startupLayoutSketchBytes": 8,
+      "emptyInternalRamSketchBytes": 0,
+      "contextGroupingSketchBytes": 8,
+      "baseBundleSketchBytes": 16,
+      "baseBundleRemainingBytes": 4,
+      "baseBundleWouldPass": false,
+      "route": "Startup/context grouping plus compiler-owned jump-table effects"
+    }
+  ],
+  "baseBundleWouldPass": 4,
+  "knownFrameGrouping": {
+    "functions": 44,
+    "grossBytes": 456
+  },
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\remaining9.json",
+      "sha256": "9db2c583c477e0f8948b1075ef9697ed8e5b86d4bd7bdc572e7bd7cb1fba2e64"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\inventory.json",
+      "sha256": "07dc297abc0cc800537f87aa6dacc36f6f6b2a6f299ee8c4c788a5859058f084"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\opportunities.json",
+      "sha256": "bf6d5508a8c5e7cfebb84bb8520931dfb06d168334a4f37a6863e0eb08c5e57e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\inventory.py",
+      "sha256": "82c7470eedef81b3c71ff0fdff2c2f283796d99d4d6042247b82b97d178c8db6"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\opportunities.py",
+      "sha256": "accab24a49d792dacf8e3926ca45d98e5778aa212252f0a2cb7900d1c6913a33"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\finalize_research.py",
+      "sha256": "e4d71bd02aa04eee90d0e649cb2e8c021033f08e1340edc35142bd0c7244e7f7"
+    }
+  ],
+  "reusedTools": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\remaining_eleven.py",
+      "sha256": "1dc44d000337f68a68671e164ab0e7abb633f1f7ee9e35ac43004ee45f674dad"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\focus_size_band.py",
+      "sha256": "742bc38aa3dcc9e5f2740206230ddc7290a63b11734f0d32ad8898eb1fb76cf0"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\call_layout.py",
+      "sha256": "976e22b7b85cee0f101f2febd47be49f6ee041eb05051d504724166af97bda7c"
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "19e925dc1b478c334332a00438d021da34a5d00ad63f80d2c9f495d693b87c8c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "4e0d16cc538138574c93151aeecde7707c0c4c49557bc0b7a7aa58a57b3f525f"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_ordered_contract.h",
+      "sha256": "b26f7bb2b38fcf6237c08a0a008360bc68be4996dbc6de9835a81f0c306f4cec"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_indexed_address.c.inc",
+      "sha256": "29174e10e539a219f9044145785fd7ae2c2906bfbf5cda311b7a53117f3f5079"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_divmod.c.inc",
+      "sha256": "be16bf7a09690ab62f948d056ec22a285f716ae9aab2636c5d76101193265ddc"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide.c",
+      "sha256": "9d5ed0416271b1c6ba6b1dd9020bf79bb11be605f089a4e607d887d658464054"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\instruction_effects.h",
+      "sha256": "271da250967c6f3b83fb3cd6ce0362f2793c395c1e1ffb4ba2d0b81a596b6d9a"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_cost.h",
+      "sha256": "7cefb8be1322dfffbff990d139cc405dad599ef90760f72842876de02167d89e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\CallClobberFeedback.ps1",
+      "sha256": "433c6ad870ff8a866ad2653649c41de5c1ac38e318360df92da7918fc27c705d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\CallAddressFacts.ps1",
+      "sha256": "451087f817fa33127fa92ad3ca4dc53972f7cc33928560c8e9f1ef80bc6884d2"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\StartupRuntime.ps1",
+      "sha256": "ad50995a04791b11b74895508f5fe632c4fee8adc3353560bfa29e164abd6664"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\sdas\\as251\\mcs251mch.c",
+      "sha256": "bb5e4d477b5a5524d893bf02f092a3b2b5d4987fb822611a9a58f4fd0b75e20c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\sdas\\as251\\mcs251pst.c",
+      "sha256": "654cbafe3feeb7365f97328b58e087bdee01e9885449d2e33284beddb68e1a05"
+    }
+  ],
+  "manual": {
+    "input": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261110\\memory-state\\AI8051U-cn.pdf",
+      "sha256": "dd149405673130db1e0fc0570149ef405058a08591290701bf2704544459b06e"
+    },
+    "pdfPages": [
+      629,
+      1754,
+      1755
+    ],
+    "extracts": [
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\manual-629.txt",
+        "sha256": "007bd7e9a64144b39f2e9d0fcdb71c8a1d4a955592101e545cb0068b223f4d9c"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\manual-1754.txt",
+        "sha256": "a10c16ab13138551afec53d7e94952391b958b4a76642114f31e92a8ec6d527e"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\final-nine-bundle-research\\manual-1755.txt",
+        "sha256": "5dc15031eef94b8eb5c3944fadc7b3b2de039251a3e613880d1892187a9bf198"
+      }
+    ],
+    "note": "Local vendor manual: DPX/DR56 alias and register PUSH/POP encodings. No instruction executed this turn."
+  },
+  "findings": {
+    "pointerWriteBlock": "p049 EEPROM_read_n: unknown-indirect-write at destination loaded from a pointer parameter; unconditional global clobber omission is invalid without argument provenance.",
+    "jumpTableBlock": "p149 uart_isr: JUMPTABLE early exclusion; existing table metadata, dispatch arithmetic and table target validation must all participate.",
+    "pconBlock": "p045 LVD_Routine: inline PCON bit block rejected before leaf analysis; numeric JBC 0x87.5 also classified as unknown.",
+    "objectMaskCandidate": {
+      "p039Bytes": 28,
+      "p136Bytes": 60,
+      "p136ExcludedUnknownArgumentBytes": 8,
+      "conditional": true
+    },
+    "nativeCarryShift": {
+      "sites": 12,
+      "grossBytes": 72,
+      "remainingIds": [
+        "p039",
+        "p045",
+        "p049",
+        "p136"
+      ]
+    },
+    "uncertainty": "p045 has the least slack; completing shared infrastructure does not by itself establish that all nine final linked images pass."
+  },
+  "noBuilds": true,
+  "noHardware": true,
+  "noCompilerSdkConfigurationChanges": true,
+  "fullProjectRuntimeMeasured": false,
+  "estimateScope": "Static candidate bytes; not a new compiler, size qualification or runtime result. Reallocation, instruction flags, frame layout and final branch widths can change net savings."
+}
