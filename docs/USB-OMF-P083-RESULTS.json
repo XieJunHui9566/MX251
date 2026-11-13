@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "branch": "codex/usb-omf-format-runtime",
+  "compilerSha256": "37a9307dc71054060f72218da481417bb3a834f5198b6acdc1e840f9cc3b35c0",
+  "p083": {
+    "previousMxBytes": 9331,
+    "previousKeilBytes": 1457,
+    "correctedSoftwareMxBytes": 3169,
+    "correctedMduMxBytes": 2994,
+    "correctedKeilBytes": 1459,
+    "ratioPercent": 205.2090472926662,
+    "sourceCorrection": "Two unsigned long printf operands changed from %d/%u to %lu in both comparison copies",
+    "current": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\final-matrix\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "5e8f5f6785020a7389116872ec50c895ec34b3b6a763e1506d306f5badb105d6"
+    },
+    "keil": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\p083-fixed\\projects\\p083\\keil\\result.json",
+      "sha256": "64032ca8e8761338cd18a4071ed48adbf4948196e9b19d4c5694a5f515eb54d0"
+    },
+    "errata": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\final-matrix\\projects\\p083\\source-errata.json",
+      "sha256": "69095ca3f355fd8cf717c2c06215df58b89d4265226d913425cfa4a50557019d"
+    },
+    "breakdown": {
+      "application": 2057,
+      "formatter": 681,
+      "arithmetic": 107,
+      "constants": 114,
+      "startup": 35
+    },
+    "nextBackendWork": "EDATA true-symbol snapshots and native argument sampling; preserve volatile byte order",
+    "completeProjectHardwareExecuted": false
+  },
+  "omf": {
+    "status": "PASS",
+    "modules": 5,
+    "segments": 9,
+    "relocations": 23,
+    "layouts": [
+      {
+        "layout": 0,
+        "bytes": 74,
+        "equal": true
+      },
+      {
+        "layout": 1,
+        "bytes": 74,
+        "equal": true
+      }
+    ],
+    "checksumRejection": true,
+    "unknownRelocationRejection": true,
+    "hardwareExecuted": false,
+    "cAbiAdapted": false
+  },
+  "usb": [
+    {
+      "library": "usb_cdc_32.LIB",
+      "sha256": "059163d166f7b5cc6850842476f20515a064b51856ada0a94edb9c684e37c894",
+      "modules": 6,
+      "publics": 105,
+      "segments": 105,
+      "relocations": 721,
+      "unsupported": {
+        "absolute-data": 1,
+        "absolute-or-special-public": 3,
+        "relocation:06": 5,
+        "relocation:16": 3,
+        "segment-attributes:000100cb00000000": 1,
+        "segment-attributes:0106010000000001": 1,
+        "segment-class:12": 1,
+        "segment-class:4": 1
+      },
+      "inventory": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\usb-inventory\\usb_cdc_32.LIB.json",
+        "sha256": "ca001d7836ba117d234e818d9e4dc70d24da154d0caa1d74e3977891829f621f"
+      },
+      "fullLibraryImported": false,
+      "usbHardwareExecuted": false
+    },
+    {
+      "library": "usb_cdc_32g.LIB",
+      "sha256": "35fce805f7f707e6b59977fe45542fb40f9f59b7609cdabf2dbd1759839d63f9",
+      "modules": 6,
+      "publics": 105,
+      "segments": 102,
+      "relocations": 699,
+      "unsupported": {
+        "absolute-data": 1,
+        "absolute-or-special-public": 3,
+        "relocation:06": 5,
+        "relocation:16": 3,
+        "segment-attributes:000100cb00000000": 1,
+        "segment-attributes:0106010000000001": 1,
+        "segment-class:12": 1,
+        "segment-class:4": 1
+      },
+      "inventory": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\usb-inventory\\usb_cdc_32g.LIB.json",
+        "sha256": "e083215a8058a0bf769673873718a7beb3ce54a47d941cb3dcb6ad0c100d56c6"
+      },
+      "fullLibraryImported": false,
+      "usbHardwareExecuted": false
+    },
+    {
+      "library": "usb_hid_32.LIB",
+      "sha256": "bc80ab571e3e0c8906bb86e667857a4ab5177decff71ac320052ca0e46da49ce",
+      "modules": 6,
+      "publics": 106,
+      "segments": 103,
+      "relocations": 696,
+      "unsupported": {
+        "absolute-data": 1,
+        "absolute-or-special-public": 3,
+        "relocation:06": 6,
+        "relocation:16": 2,
+        "segment-attributes:000100cb00000000": 1,
+        "segment-attributes:0106010000000001": 1,
+        "segment-class:4": 1
+      },
+      "inventory": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\usb-inventory\\usb_hid_32.LIB.json",
+        "sha256": "a5a1ddbce50c6a8434ca71fbba22be27dd8a542ceef75fe12350bf2b3821128a"
+      },
+      "fullLibraryImported": false,
+      "usbHardwareExecuted": false
+    }
+  ],
+  "formatHardware": {
+    "status": "PASS",
+    "cases": 128,
+    "timingMeasured": false,
+    "record": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\format-hardware\\result.json",
+      "sha256": "8db1c1e52f705ced62bf1ab3e76fba550ba3f7c06d39aa3ef9eaf03f3a6b08cc"
+    }
+  },
+  "fullSdkRerun": false,
+  "coverage": 106,
+  "totalCProjects": 114
+}
