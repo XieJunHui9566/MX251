@@ -1,27 +1,27 @@
 # 当前 SDK 对照范围：75 项
 
-2026-11-13，统一编译器 `carry-shift-compatibility/core-02`，实现 `c4a9e4f`。
+2026-11-13，统一编译器 `indexed-address-generation/core-03`，实现 `482d089`。
 
 - 体积 ≤Keil 120%：**75/75**。
 - 体积 ≤Keil 110%：**65/75**。
-- MX251 / Keil 合计 **191828 / 192049 B（99.88%）**。
-- 相对上一统一版，0 项缩小、73 项相同、2 项变大，净增加 23 B。
-- 剩余 10 项到 110% 的逐项整数缺口合计 **466 B**。
+- MX251 / Keil 合计 **191722 / 192049 B（99.83%）**。
+- 相对上一统一版，22 项缩小、52 项相同、1 项变大，减少 **106 B**。
+- 剩余 10 项到 110% 的逐项整数缺口合计 **427 B**。
 
-此前发现的十二项相邻移位/CY 读取缺口已修复，两个后端的独立实板检查 128/128 组通过。实现及限定范围见 [CY 兼容性修复](CARRY-OBSERVATION.md)。这些达线数字仍是体积统计，完整工程功能与运行时间不能由定向测试代替。
+本轮改进通用下标扩展、缩放与地址相加，详见 [地址生成结果](INDEXED-ADDRESS-GENERATION.md)。父版和新版各 128/128 组实板测试通过；这些达线数字仍是体积统计，完整工程运行时间尚未验收。
 
 ## 输入与参考
 
-74 项保持原冻结输入。p108 使用双方一致的单行汇编修复：共享未使用扩展向量出口改为 RETI，C 文件未改，见 [p108 记录](P108-VECTOR-REPAIR.md)。Keil/STC-IDE 复用同源参考。STC 为 59 项 HEX、13 项不支持汇编输入、3 项失败，只作原始体积参考。
+74 项保持原冻结输入。p108 使用双方一致的单行汇编修复：共享未使用扩展向量出口改为 RETI，C 文件未改，见 [p108 记录](P108-VECTOR-REPAIR.md)。Keil/STC-IDE 复用同源参考。STC 为 59 项 HEX、13 项不支持汇编输入、3 项失败，只作原始体积参考。上一轮 [CY 兼容性修复](CARRY-OBSERVATION.md) 继续包含于本版。
 
 ## 剩余 110% 项目
 
 | 工程 | MX251/B | Keil/B | 尚差/B |
 | --- | ---: | ---: | ---: |
-| p136 | 4707 | 4128 | 167 |
+| p136 | 4690 | 4128 | 150 |
 | p045 | 986 | 832 | 71 |
 | p049 | 1172 | 1002 | 70 |
-| p039 | 1279 | 1105 | 64 |
+| p039 | 1257 | 1105 | 42 |
 | p133 | 468 | 404 | 24 |
 | p149 | 485 | 423 | 20 |
 | p047 | 192 | 160 | 16 |
@@ -31,8 +31,8 @@
 
 ## 后续使用
 
-入口：`E:/STVAPP/MX251-mainline-20261113/carry-shift-compatibility/Build-Optimized-02.ps1`。
+入口：`E:/STVAPP/MX251-mainline-20261113/indexed-address-generation/Build-Optimized-03.ps1`。
 
-配置：同目录 `candidate-02.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-02`；后续使用新输出目录，并以 `comparison.json` 为对比基线。
+配置：同目录 `candidate-03.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-03`；后续使用新输出目录，以 `comparison.json` 为对比基线。
 
-[结构化名单](active-sdk-cohort.json) 与 [本轮证据](carry-observation-evidence.json) 绑定编译器、配置、报告及测试。上一版 [整对象参数读取](ARGUMENT-OBJECT-LOADS.md) 的结果与研究报告继续保留。后续优化方向见 [剩余十项研究](REMAINING-TEN-STATISTICS.md)，其中 CY 问题已由本轮解决。
+[结构化名单](active-sdk-cohort.json) 与 [本轮证据](indexed-address-evidence.json) 绑定编译器、配置、报告及测试。

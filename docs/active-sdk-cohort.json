@@ -82,11 +82,11 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 0,
-    "unchanged": 73,
-    "larger": 2,
-    "savedBytes": -23,
-    "mxTotalBytes": 191828,
+    "improved": 22,
+    "unchanged": 52,
+    "larger": 1,
+    "savedBytes": 106,
+    "mxTotalBytes": 191722,
     "keilTotalBytes": 192049,
     "within110": 65,
     "within120": 75,
@@ -96,42 +96,42 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 0.998849252013809
+    "weightedKeilRatio": 0.9982973095407943
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\core-02\\core.json",
-    "sha256": "2baf891591f33d781f169f31998f9329e9c4d3ecb275e0d94b41aab8319e2009"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\core-03\\core.json",
+    "sha256": "de8a1172fbedb0bcefeb6a1b4ffd0dfcd3f069b6f3949ccc3c3e35074c10b054"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\core-02\\toolchain\\bin\\sdcc.exe",
-    "sha256": "7169532b3f92b2caec0fd56e81911c7ce055179bfec17a143753006ce1408895"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "16146a3d926037c55a398925609bdb1b584fa02abb0c72882114d46a3cf2fbe0"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\candidate-02.json",
-    "sha256": "a772a70d5f6c37a1e1438a48e6e696bd9c72f6d9181b4988cecf2bac0fae420b"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\candidate-03.json",
+    "sha256": "ed795084ecc648cf8ab6e7786a5e544a2ab21956d50219c838f62d2d5f05760a"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\comparison.json",
-    "sha256": "4447e1f28ee32993c1a9ff83b9d0855adbfc513f043da3212168b1bb2f21974f"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\comparison.json",
+    "sha256": "922f4b625d395e9a057f8747f0385081d1527f1a46694d5d1a2486a7e7911372"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\qualification.json",
-    "sha256": "da0f5fdece8a73570ef3da890b058093c7c99f2f974e04e9bb1a0e2107903f03"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\qualification.json",
+    "sha256": "dc211dca536edf06b4a3f2f2f664be2e4994d99bc5e05a90dbd1d809b98c2901"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\matrix-02\\projects\\p108\\input-overrides.json",
-      "sha256": "50cda166de1186c92441873805ebc3fa5d2fb7e23d38cdecd4c3e9405bc54027"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\matrix-03\\projects\\p108\\input-overrides.json",
+      "sha256": "63efe7a771c9d050f177d3386670c15e014004dfe49aa49439c9b0f8c8f25043"
     }
   },
   "remaining110": [
     {
       "id": "p136",
       "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4707,
+      "mx251Bytes": 4690,
       "keilBytes": 4128,
-      "keilRatio": 1.1402616279069768,
-      "gap110Bytes": 167
+      "keilRatio": 1.136143410852713,
+      "gap110Bytes": 150
     },
     {
       "id": "p045",
@@ -152,10 +152,10 @@
     {
       "id": "p039",
       "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
-      "mx251Bytes": 1279,
+      "mx251Bytes": 1257,
       "keilBytes": 1105,
-      "keilRatio": 1.1574660633484164,
-      "gap110Bytes": 64
+      "keilRatio": 1.1375565610859728,
+      "gap110Bytes": 42
     },
     {
       "id": "p133",
@@ -206,7 +206,7 @@
       "gap110Bytes": 7
     }
   ],
-  "gap110Bytes": 466,
+  "gap110Bytes": 427,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -217,7 +217,7 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\comparison.json",
-    "sha256": "72dedd4e750aa4f8d7fdcfb4d59d096e7f89a620457c514aacbcc31e4547c6e9"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\comparison.json",
+    "sha256": "4447e1f28ee32993c1a9ff83b9d0855adbfc513f043da3212168b1bb2f21974f"
   }
 }
