@@ -13,11 +13,13 @@
 
 后续进展：`ebf7f31` 已将 p045/p047 分别降至 **986 B（118.51%）/192 B（120.00%）**。本轮仅重编这两项，上述统计保留为上一轮完整基线；新版核心、验证与两项结果见 [外设位保存布局与活跃性](PERIPHERAL-FRAME-LIVENESS.md)。
 
+p108 后续修复：`b000611` 在独立副本中修正汇编出口，并为 MX251 增加通用 RETI 入口识别。同修正输入下 **1214 / 1432 B（84.78%）**；C 源码未改，短帧及独立长超时夹具已实测。它与历史冻结输入不同，结果单列，详见 [p108 修复与实板范围](P108-VECTOR-REPAIR.md)。
+
 ## 后续使用
 
 当前逐项报告：`E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json`，同目录有 Markdown 和 HTML。
 
-后续构建采用 `E:/STVAPP/MX251-mainline-20261113/peripheral-frame-liveness/core-01.json` 为配置模板，保留 `"excludeIds": ["p108"]`，按候选版本更新 `core`、`output` 和相应工具路径。`unified_sdk_matrix.py --ids all` 将只准备和构建这 74 项。原 75 项配置未修改，仍可复现历史结果。
+后续构建采用 `E:/STVAPP/MX251-mainline-20261113/p108-repair/core-01.json` 为配置模板，保留 `"excludeIds": ["p108"]`，按候选版本更新 `core`、`output` 和相应工具路径。`unified_sdk_matrix.py --ids all` 将只准备和构建这 74 项。p108 修复副本由 `p108_vector_repair.py` 单独构建。原 75 项配置未修改，仍可复现历史结果。
 
 后续比较以当前 74 项 `comparison.json` 为 baseline。`report_compiler_delta.py` 自动沿用 baseline 与候选配置的排除项，分母按实际名单计算；对历史 75 项结果生成当前视图时使用 `--exclude-ids p108`。
 

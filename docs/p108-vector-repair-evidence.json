@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "scope": "p108-repaired-only",
+  "implementationCommit": "b000611e154710d11d866d9f6347cecb664286a3",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\core-01\\core.json",
+    "sha256": "c1a41e9b190b63182ccd72b3c523055a54d6611e888d4c05abb6a987e1b6d7c0"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\core-01.json",
+    "sha256": "6ad009f791f3a680b5ba44ee62fca6ff73ed714bef86feb974291c3d2d53c617"
+  },
+  "compiler": {
+    "path": "toolchain/bin/sdcc.exe",
+    "sha256": "41a6a0b6225b7fa7342d5ed99f7fb66abcbc87442e3dcea9d9b95ce7ba9e2443",
+    "versionBanner": "Underlying driver reports SDCC 4.6.0 #0; MX251 build identity is this manifest."
+  },
+  "benchmark": {
+    "originalHistorical": {
+      "mx251Bytes": 7752,
+      "keilBytes": 1434
+    },
+    "pairedSourceManifest": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-final\\projects\\p108\\repaired-inputs.json",
+      "sha256": "7d853bfa071862fee1abe99c66b35d658d106257f897a611c05c0a19ab4ba81d"
+    },
+    "parentReport": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-parent\\comparison.json",
+      "sha256": "5ac168928881990c94782ca150a63e2c111cb2215e9171fd1d75022b28a43953"
+    },
+    "candidateReport": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-final\\comparison.json",
+      "sha256": "ecfad9dd0a42a89e1e95bbc0f2648b343e26981c684d9b884112487f3d1fd324"
+    },
+    "oldCoreBytes": 7750,
+    "newCoreBytes": 1214,
+    "keilBytes": 1432,
+    "ratioPercent": 84.77653631284916,
+    "savedCompilerBytes": 6536,
+    "cSourcesChanged": false,
+    "frozenCorpusChanged": false,
+    "sameInputsAsOriginalCohort": false
+  },
+  "stages": [
+    {
+      "stage": "format-runtime",
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-final\\projects\\p108\\mx251\\.build\\mx251\\latest\\format-runtime.json",
+        "sha256": "d10f5c9918f19cc4be29ffe0ae0ba7fbb9dd0cc6582275bb7a96663f3da7a2ed"
+      },
+      "savedBytes": 6426
+    },
+    {
+      "stage": "startup-runtime",
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-final\\projects\\p108\\mx251\\.build\\mx251\\latest\\startup-runtime.json",
+        "sha256": "22f5ccb5575a58082a960d2102dd9976382d67640fa8e25f75ccc614cb3af5fb"
+      },
+      "savedBytes": 100.0
+    },
+    {
+      "stage": "near-transfers",
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-final\\projects\\p108\\mx251\\.build\\mx251\\latest\\near-transfers.json",
+        "sha256": "44e520ddeea570e1f504fc3b28d3bc1d570e26460c24fa6f7de1a87c6a492867"
+      },
+      "savedBytes": 10
+    }
+  ],
+  "checks": [
+    {
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\raw-vector-checks-01\\result.json",
+        "sha256": "de0f36c59e8d3cccb98f5be91cf8dc7db2e3b86883501aafe5fff4cd04919421"
+      },
+      "count": 19,
+      "status": "PASS"
+    },
+    {
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\c-vector-regression\\result.json",
+        "sha256": "f3bcda2a94bc123792026c2810b735266d32daf0f7c64019a8f5ab7842debccb"
+      },
+      "count": 6,
+      "status": "PASS"
+    }
+  ],
+  "hardware": [
+    {
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-keil-short-02\\result.json",
+        "sha256": "9dec4f7754cdbafb4df9fe714a3b7573448f2d722a669d2df76a063df1f92c6c"
+      },
+      "status": "PASS",
+      "passed": 9,
+      "lengths": [
+        1,
+        7,
+        31,
+        2,
+        15,
+        29,
+        3,
+        17,
+        23
+      ],
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-01\\projects\\p108\\keil\\firmware.hex",
+        "sha256": "e2ede27db1d2fe4336abf2dbb9731c826340ca47f3a79d9fd31b16e2c3d8919e"
+      },
+      "variant": "asm-repaired-original-c"
+    },
+    {
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-mx251-short\\result.json",
+        "sha256": "7aa4685e21509544cce6f40cd396a2b371dd3c66730c2bfceb40fc359e75d3ab"
+      },
+      "status": "PASS",
+      "passed": 9,
+      "lengths": [
+        1,
+        7,
+        31,
+        2,
+        15,
+        29,
+        3,
+        17,
+        23
+      ],
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-01\\projects\\p108\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "c95cb0f35d762d4be517e52144ab7decffd362501471a6ca7fdf159f63755860"
+      },
+      "variant": "asm-repaired-original-c"
+    },
+    {
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-keil-usb\\result.json",
+        "sha256": "099c85b5ee6c46a1b3d628e494fa590a1f26b02102400bf064f0b4ca32d9c2bd"
+      },
+      "status": "PASS",
+      "passed": 9,
+      "lengths": [
+        1,
+        7,
+        31,
+        255,
+        256,
+        511,
+        17,
+        513,
+        1023
+      ],
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\usb-fixture\\projects\\p108\\keil\\firmware.hex",
+        "sha256": "7d0030df83efacd156f63f50c1e0c35f647d9e5d685ae1735e68e9938849c55f"
+      },
+      "variant": "usb-timeout-fixture"
+    },
+    {
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-mx251-usb\\result.json",
+        "sha256": "98690bc8044803daf315ad0eb2fec58cdbcd399c890ae9cf6a7434c3b24d91b5"
+      },
+      "status": "PASS",
+      "passed": 9,
+      "lengths": [
+        1,
+        7,
+        31,
+        255,
+        256,
+        511,
+        17,
+        513,
+        1023
+      ],
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\usb-fixture\\projects\\p108\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "9ee2c7d349e97e2551566aaa98a55111deb2f566985f892f586f109b09309428"
+      },
+      "variant": "usb-timeout-fixture"
+    }
+  ],
+  "originalTimeoutLongFrame": {
+    "status": "FAIL_IN_BOTH",
+    "requestedLength": 255,
+    "observedCountHeaders": [
+      1,
+      248
+    ],
+    "missingInputBytes": 6,
+    "keil": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-keil-01\\result.json",
+      "sha256": "022950c80c613b2c3d4e3b8a909f9dab22abcecceff7ce066c0e6211a111a904"
+    },
+    "mx251": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-mx251-01\\result.json",
+      "sha256": "c92d741e7a5abcfd086bf48be6a4962db4aebb59d05192e10948bf5458856f3e"
+    },
+    "keilCapture": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-keil-01\\03-rx.bin",
+      "sha256": "d8783af4618d4193201b1bd196773ef9b7c585311d767a1531735e729ada52d6"
+    },
+    "mx251Capture": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\hardware-mx251-01\\03-rx.bin",
+      "sha256": "d8783af4618d4193201b1bd196773ef9b7c585311d767a1531735e729ada52d6"
+    }
+  },
+  "usbFixture": {
+    "sourceManifest": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\usb-fixture\\projects\\p108\\repaired-inputs.json",
+      "sha256": "f2a238f0dc7c18bdf2e6f72e5518c1901cfff0906418ce4bb8f1b5f0b3dd0e55"
+    },
+    "change": "UR1TOTH: 0x00 -> 0x04 in both C dialects, test only; not part of the 1214/1432 B benchmark",
+    "mx251Bytes": 1215,
+    "keilBytes": 1434
+  },
+  "firmwareExecutionTime": null,
+  "fullCohortRebuilt": false,
+  "boardLeftWith": "MX251 USB timeout fixture"
+}
