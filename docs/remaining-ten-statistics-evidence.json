@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "status": "READ_ONLY_RESEARCH_NO_COMPILER_CHANGE",
+  "baselineGitCommit": "557165d",
+  "compilerImplementationCommit": "ec7987e",
+  "compilerSha256": "7dc4bf9ff35400c3dda143bc68b38e79da14fb273011ad09d9a03bdc6c94c1b9",
+  "summary": {
+    "projects": 75,
+    "within100": 35,
+    "within110": 65,
+    "within120": 75,
+    "mxBytes": 191805,
+    "keilBytes": 192049,
+    "remainingProjects": 10,
+    "bytesTo110": 455,
+    "topFourBytesTo110": 361,
+    "remainingDefaultRetiBytes": 246,
+    "remainingStartupVectorGap": 439,
+    "loopTailInventory": {
+      "projects": 75,
+      "addressSites": 64,
+      "loopAddressSites": 48,
+      "loopAddressProjects": 25,
+      "loopAddressFunctions": 33,
+      "loopAddressCurrentBytes": 576,
+      "callFreeLoopAddressSites": 22,
+      "parameterizedTailProjects": 11,
+      "parameterizedTailFunctions": 14,
+      "repeatedExactTailBytes": 283
+    },
+    "carryCompatibility": {
+      "projects": 12,
+      "functions": 12,
+      "sourceShiftByOne": 12,
+      "missingDplRead": 12,
+      "missingSllOrRl": 12,
+      "keilHasSll": 12,
+      "backends": {
+        "wide": 10,
+        "legacy": 2
+      },
+      "ids": [
+        "p005",
+        "p011",
+        "p017",
+        "p035",
+        "p037",
+        "p039",
+        "p045",
+        "p049",
+        "p059",
+        "p084",
+        "p128",
+        "p136"
+      ],
+      "remainingIds": [
+        "p039",
+        "p045",
+        "p049",
+        "p136"
+      ]
+    },
+    "compare32": {
+      "sites": 31,
+      "extension16Sites": 19,
+      "projects": 4,
+      "nominalReductionAtFourBytes": 50,
+      "remainingNominalReduction": 12
+    }
+  },
+  "reports": {
+    "comparison.json": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\comparison.json",
+      "sha256": "72dedd4e750aa4f8d7fdcfb4d59d096e7f89a620457c514aacbcc31e4547c6e9"
+    },
+    "qualification.json": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\qualification.json",
+      "sha256": "7b980ecc9e576325d287532b418c0c732ddead61682ff08350bb3803ed22d73d"
+    },
+    "remaining10.json": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-ten-study\\remaining10.json",
+      "sha256": "eecb0457fba7811bf2df39a38ea6403216aa4e563e2a309b1b173375300de16f"
+    },
+    "loop-tail.json": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-ten-study\\loop-tail.json",
+      "sha256": "f592c45dad54ca35c85a1c389ec8b412bacc5d883ada7032df0b8d6f626780e5"
+    },
+    "statistics.json": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-ten-study\\statistics.json",
+      "sha256": "484980dc0a4936164265afbe8062eb104d3309e37dc3da76c2a42ac1d9212745"
+    }
+  },
+  "scripts": {
+    "remaining_eleven.py": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\remaining_eleven.py",
+      "sha256": "1dc44d000337f68a68671e164ab0e7abb633f1f7ee9e35ac43004ee45f674dad"
+    },
+    "loop_tail_study.py": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\loop_tail_study.py",
+      "sha256": "44f55ac87c1f8540e6dbd49373d041c977983f4c15d8cc2c71f0843c0fe6c942"
+    },
+    "remaining_ten_statistics.py": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\remaining_ten_statistics.py",
+      "sha256": "ffefd3d979103ccdd54efcab35e2e5bb656e443d8f7e503558be8b4fc5cce4f2"
+    }
+  },
+  "findings": {
+    "carryCompatibility": "Twelve paired source/Keil/final-MX observations: source shifts dat then reads CY; Keil retains SLL; MX no longer reads dat or shifts it. Both wide and legacy outputs affected. First removal pass and introducing commit not determined.",
+    "priority": [
+      "repair explicit CY dependency compatibility",
+      "extend object-aware and control-flow-aware address generation",
+      "consider local shared tails and 32-bit immediate compares"
+    ],
+    "scope": "Final HEX size thresholds only; no full-project runtime qualification. Pattern inventory is not measured savings. Default RETI bytes retained; no startup policy change. No new compilation or device operation."
+  }
+}
