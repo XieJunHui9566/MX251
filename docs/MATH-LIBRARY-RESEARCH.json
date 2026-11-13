@@ -1,0 +1,1127 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "scope": "math-library gap research, no production implementation changes",
+  "baselineCompiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc"
+  },
+  "baselineMathArchive": {
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\profiles\\STC32G12K128\\runtime\\libnativefloat.lib",
+    "sha256": "b49d69fb5a9d93619889667663af9ca4edc080c4b7b301c7f46ae48bb034f3ee"
+  },
+  "baselineTag": "baseline-20261113",
+  "baselineGitCommit": "5d807027c5273c72dfa38a15c4d717ce1c8d4bec",
+  "oldLibraryReceipt": {
+    "path": "E:\\STVAPP\\MCU-StdioX\\.artifacts\\ai8051u-sdcc251-20261023\\compiler-optimization\\mx251-unified-20261103\\evidence\\math-library-receipt.json",
+    "sha256": "f7540cf99164e0efed375cf0efc5e41f69e2570d5ba1e5cbdd6549e2253cf0bb"
+  },
+  "oldLibraryCompilerSha256": "25d144e99e88d47303a9e6bea06561921143c6ef0f2a66120ca1575c77b2333a",
+  "rebuild": {
+    "inputLock": {
+      "path": "E:\\STVAPP\\MX251-baseline\\research\\math-library-20261113\\rebuild\\input-lock.json",
+      "sha256": "74c9618587f46e584f313ed6bd2c3ea999ce308e1a9e00d9d489ae055305a0a2"
+    },
+    "failure": {
+      "path": "E:\\STVAPP\\MX251-baseline\\research\\math-library-20261113\\rebuild\\failure.json",
+      "sha256": "42da9af577899248acfee9ced4f92509a22f59921296cb1caab86570871a2440"
+    },
+    "completeMembers": 65,
+    "rawRelMembers": 66,
+    "archivePublished": false,
+    "hardwareExecuted": false,
+    "oldCodeAndConstBytes": 15795,
+    "newRawCodeAndConstBytes": 15563,
+    "failureReason": "sqrt_domain textual recipe expects (_errno); current code prints (_errno+0). Both raw objects are 10 bytes. No recipe edit or release archive made.",
+    "memberDeltas": [
+      {
+        "member": "_atof.rel",
+        "oldBytes": 871,
+        "newBytes": 869,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_schar2fs.rel",
+        "oldBytes": 26,
+        "newBytes": 26,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_sint2fs.rel",
+        "oldBytes": 25,
+        "newBytes": 25,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_slong2fs.rel",
+        "oldBytes": 56,
+        "newBytes": 56,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_slonglong2fs.rel",
+        "oldBytes": 257,
+        "newBytes": 257,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_uchar2fs.rel",
+        "oldBytes": 26,
+        "newBytes": 26,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_uint2fs.rel",
+        "oldBytes": 27,
+        "newBytes": 27,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_ulong2fs.rel",
+        "oldBytes": 119,
+        "newBytes": 119,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_ulonglong2fs.rel",
+        "oldBytes": 743,
+        "newBytes": 739,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2schar.rel",
+        "oldBytes": 75,
+        "newBytes": 73,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2sint.rel",
+        "oldBytes": 77,
+        "newBytes": 75,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2slong.rel",
+        "oldBytes": 54,
+        "newBytes": 54,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2slonglong.rel",
+        "oldBytes": 441,
+        "newBytes": 441,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2uchar.rel",
+        "oldBytes": 43,
+        "newBytes": 42,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2uint.rel",
+        "oldBytes": 46,
+        "newBytes": 45,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2ulong.rel",
+        "oldBytes": 121,
+        "newBytes": 121,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fs2ulonglong.rel",
+        "oldBytes": 821,
+        "newBytes": 821,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsadd.rel",
+        "oldBytes": 442,
+        "newBytes": 442,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsdiv.rel",
+        "oldBytes": 414,
+        "newBytes": 414,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsmul.rel",
+        "oldBytes": 400,
+        "newBytes": 400,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fssub.rel",
+        "oldBytes": 51,
+        "newBytes": 51,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fseq.rel",
+        "oldBytes": 91,
+        "newBytes": 91,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fslt.rel",
+        "oldBytes": 129,
+        "newBytes": 127,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsneq.rel",
+        "oldBytes": 91,
+        "newBytes": 91,
+        "recipeCompleted": true
+      },
+      {
+        "member": "fabsf.rel",
+        "oldBytes": 100,
+        "newBytes": 100,
+        "recipeCompleted": true
+      },
+      {
+        "member": "frexpf.rel",
+        "oldBytes": 480,
+        "newBytes": 480,
+        "recipeCompleted": true
+      },
+      {
+        "member": "ldexpf.rel",
+        "oldBytes": 1002,
+        "newBytes": 888,
+        "recipeCompleted": true
+      },
+      {
+        "member": "expf.rel",
+        "oldBytes": 1121,
+        "newBytes": 1113,
+        "recipeCompleted": true
+      },
+      {
+        "member": "powf.rel",
+        "oldBytes": 209,
+        "newBytes": 202,
+        "recipeCompleted": true
+      },
+      {
+        "member": "sincosf.rel",
+        "oldBytes": 542,
+        "newBytes": 527,
+        "recipeCompleted": true
+      },
+      {
+        "member": "sinf.rel",
+        "oldBytes": 22,
+        "newBytes": 22,
+        "recipeCompleted": true
+      },
+      {
+        "member": "cosf.rel",
+        "oldBytes": 28,
+        "newBytes": 28,
+        "recipeCompleted": true
+      },
+      {
+        "member": "logf.rel",
+        "oldBytes": 542,
+        "newBytes": 542,
+        "recipeCompleted": true
+      },
+      {
+        "member": "log10f.rel",
+        "oldBytes": 45,
+        "newBytes": 45,
+        "recipeCompleted": true
+      },
+      {
+        "member": "sqrtf.rel",
+        "oldBytes": 231,
+        "newBytes": 224,
+        "recipeCompleted": true
+      },
+      {
+        "member": "tancotf.rel",
+        "oldBytes": 1075,
+        "newBytes": 1057,
+        "recipeCompleted": true
+      },
+      {
+        "member": "tanf.rel",
+        "oldBytes": 7,
+        "newBytes": 7,
+        "recipeCompleted": true
+      },
+      {
+        "member": "cotf.rel",
+        "oldBytes": 166,
+        "newBytes": 164,
+        "recipeCompleted": true
+      },
+      {
+        "member": "asincosf.rel",
+        "oldBytes": 1028,
+        "newBytes": 1018,
+        "recipeCompleted": true
+      },
+      {
+        "member": "asinf.rel",
+        "oldBytes": 185,
+        "newBytes": 180,
+        "recipeCompleted": true
+      },
+      {
+        "member": "acosf.rel",
+        "oldBytes": 186,
+        "newBytes": 181,
+        "recipeCompleted": true
+      },
+      {
+        "member": "atanf.rel",
+        "oldBytes": 339,
+        "newBytes": 339,
+        "recipeCompleted": true
+      },
+      {
+        "member": "atan2f.rel",
+        "oldBytes": 436,
+        "newBytes": 436,
+        "recipeCompleted": true
+      },
+      {
+        "member": "sincoshf.rel",
+        "oldBytes": 917,
+        "newBytes": 915,
+        "recipeCompleted": true
+      },
+      {
+        "member": "sinhf.rel",
+        "oldBytes": 54,
+        "newBytes": 54,
+        "recipeCompleted": true
+      },
+      {
+        "member": "coshf.rel",
+        "oldBytes": 55,
+        "newBytes": 55,
+        "recipeCompleted": true
+      },
+      {
+        "member": "tanhf.rel",
+        "oldBytes": 525,
+        "newBytes": 521,
+        "recipeCompleted": true
+      },
+      {
+        "member": "floorf.rel",
+        "oldBytes": 186,
+        "newBytes": 182,
+        "recipeCompleted": true
+      },
+      {
+        "member": "ceilf.rel",
+        "oldBytes": 158,
+        "newBytes": 143,
+        "recipeCompleted": true
+      },
+      {
+        "member": "modff.rel",
+        "oldBytes": 128,
+        "newBytes": 128,
+        "recipeCompleted": true
+      },
+      {
+        "member": "errno.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "isinf.rel",
+        "oldBytes": 75,
+        "newBytes": 75,
+        "recipeCompleted": true
+      },
+      {
+        "member": "isnan.rel",
+        "oldBytes": 49,
+        "newBytes": 49,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fscmp.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsget1arg.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsget2args.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsnormalize.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsreturnval.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsrshift.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsswapargs.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_logexpf.rel",
+        "oldBytes": 0,
+        "newBytes": 0,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_fsle.rel",
+        "oldBytes": 159,
+        "newBytes": 157,
+        "recipeCompleted": true
+      },
+      {
+        "member": "sqrt_domain.rel",
+        "oldBytes": 10,
+        "newBytes": 10,
+        "recipeCompleted": false
+      },
+      {
+        "member": "fsmul_u16.rel",
+        "oldBytes": 9,
+        "newBytes": 9,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_sincosf_compat.rel",
+        "oldBytes": 140,
+        "newBytes": 140,
+        "recipeCompleted": true
+      },
+      {
+        "member": "_tancotf_compat.rel",
+        "oldBytes": 140,
+        "newBytes": 140,
+        "recipeCompleted": true
+      }
+    ]
+  },
+  "currentMath123": {
+    "receipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\research\\math-library-20261113\\math123-current\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "6a4c96f656d8addeff1f5401f7b2456d6621da4b7f6e8a06d37fb00105187387"
+    },
+    "codeBytes": 11139,
+    "firmwareSha256": "84f115d0461d811831d7afedd13d2a9a6e861114fc51eec98c70a21c1af3c998",
+    "historicalSameSourceBuildBytes": 11971,
+    "historicalHardwareBuildBytes": 11974,
+    "sourceMatches": [
+      {
+        "file": "CMakeLists.txt",
+        "sha256": "e4d44d2f2e08450f5ca115ff072cb07051e13a7b32d3ce1c6e96a9533cdf2658",
+        "unchanged": true
+      },
+      {
+        "file": "main.c",
+        "sha256": "34fa7f6b7024443d238cd8b4edbf434f212e68350ca7f68cd9968bb75a27ac32",
+        "unchanged": true
+      },
+      {
+        "file": "math_port.h",
+        "sha256": "99403d251043c717f0b33f79cba8b3b49ac85bc806dcdc1320638074befdcd5f",
+        "unchanged": true
+      },
+      {
+        "file": "math_vectors.h",
+        "sha256": "538ab8fec26e5a29d747e48758bbe4612dbdedb195747353e86007fe1a71d7b5",
+        "unchanged": true
+      },
+      {
+        "file": "mx251.json",
+        "sha256": "614929b88f08c18bf0c2d29e15516023dcefa8c1b57fb8b78d318e5f7efdefbc",
+        "unchanged": true
+      },
+      {
+        "file": "software_math.c",
+        "sha256": "733a0a3d0109893f4259f32276867876852e64d1f9a3eb7e586360cf291f9e82",
+        "unchanged": true
+      },
+      {
+        "file": "stc32g_test.h",
+        "sha256": "76ff474165b29649c976252967c8281bf0651a92cbc9ae71c931575ac715add8",
+        "unchanged": true
+      },
+      {
+        "file": "usb_poll.c",
+        "sha256": "abb037d7a2035cbe58bccd1a49fb1b0b2c308ca9d77b4044e24cb62a4eaf8690",
+        "unchanged": true
+      }
+    ],
+    "runtime": "native-math",
+    "hardwareExecuted": false,
+    "newTimePercentKeil": null,
+    "qualifiedKeilMath123Denominator": null,
+    "selectedMathMembers": [
+      "_fsdiv.rel",
+      "_fssub.rel",
+      "_fs2slong.rel",
+      "_slong2fs.rel",
+      "_fsmul.rel",
+      "tanf.rel",
+      "cosf.rel",
+      "sqrtf.rel",
+      "sinf.rel",
+      "_fsadd.rel",
+      "atanf.rel",
+      "tancotf.rel",
+      "sincosf.rel",
+      "errno.rel",
+      "_ulong2fs.rel",
+      "_fs2ulong.rel",
+      "sqrt_domain.rel"
+    ],
+    "selectedMathCodeAndConstBytes": 3911,
+    "selectedRebuildMemberDeltaBytes": -40,
+    "memberDeltaNote": "Sum of selected relocatable members; not a newly linked replacement firmware size.",
+    "flags": [
+      "FunctionSharing",
+      "MachineIr",
+      "CalleePreservation",
+      "SelectiveLeafAbi=AUTO",
+      "NearTransfers=AUTO"
+    ],
+    "wrappers": [
+      {
+        "function": "_sw_fadd",
+        "bytesBeforeLinkPass": 141,
+        "frameBytes": 12,
+        "stackByteMoves": 24
+      },
+      {
+        "function": "_sw_fsub",
+        "bytesBeforeLinkPass": 141,
+        "frameBytes": 12,
+        "stackByteMoves": 24
+      },
+      {
+        "function": "_sw_fmul",
+        "bytesBeforeLinkPass": 141,
+        "frameBytes": 12,
+        "stackByteMoves": 24
+      },
+      {
+        "function": "_sw_fdiv",
+        "bytesBeforeLinkPass": 141,
+        "frameBytes": 12,
+        "stackByteMoves": 24
+      },
+      {
+        "function": "_sw_sqrt",
+        "bytesBeforeLinkPass": 97,
+        "frameBytes": 8,
+        "stackByteMoves": 16
+      },
+      {
+        "function": "_sw_sin",
+        "bytesBeforeLinkPass": 97,
+        "frameBytes": 8,
+        "stackByteMoves": 16
+      },
+      {
+        "function": "_sw_cos",
+        "bytesBeforeLinkPass": 97,
+        "frameBytes": 8,
+        "stackByteMoves": 16
+      },
+      {
+        "function": "_sw_tan",
+        "bytesBeforeLinkPass": 97,
+        "frameBytes": 8,
+        "stackByteMoves": 16
+      },
+      {
+        "function": "_sw_atan",
+        "bytesBeforeLinkPass": 97,
+        "frameBytes": 8,
+        "stackByteMoves": 16
+      }
+    ],
+    "wrapperStackInstructionBytes": 686,
+    "wrapperStackInstructionLengths": {
+      "4": 158,
+      "3": 18
+    }
+  },
+  "historicalMath18": {
+    "asOf": "2026-11-02",
+    "source": {
+      "path": "E:\\STVAPP\\MCU-StdioX\\.artifacts\\ai8051u-sdcc251-20261023\\compiler-optimization\\mx251-unified-20261103\\evidence\\math-outcome.json",
+      "sha256": "ac81be1dde30dff3aba9624f27cb03eb39830735ece39fdb6f5816ef431b781b"
+    },
+    "compilerSha256": "25d144e99e88d47303a9e6bea06561921143c6ef0f2a66120ca1575c77b2333a",
+    "mxCodeBytes": 9163,
+    "keilCodeBytes": 4464,
+    "mxTotalMedianTicks": 10064,
+    "keilTotalMedianTicks": 8003,
+    "clockHz": 11059200,
+    "timerClocksPerTick": 12,
+    "mathCodeBytes": 3911,
+    "otherBytes": 5252,
+    "rows": [
+      {
+        "name": "identity",
+        "mxTicks": 72,
+        "keilTicks": 29,
+        "mxPercentKeil": 248.2759
+      },
+      {
+        "name": "add-xor32",
+        "mxTicks": 74,
+        "keilTicks": 29,
+        "mxPercentKeil": 255.1724
+      },
+      {
+        "name": "sub-xor32",
+        "mxTicks": 74,
+        "keilTicks": 29,
+        "mxPercentKeil": 255.1724
+      },
+      {
+        "name": "mul16-to32",
+        "mxTicks": 75,
+        "keilTicks": 28,
+        "mxPercentKeil": 267.8571
+      },
+      {
+        "name": "mul32",
+        "mxTicks": 82,
+        "keilTicks": 35,
+        "mxPercentKeil": 234.2857
+      },
+      {
+        "name": "udiv32",
+        "mxTicks": 243,
+        "keilTicks": 151,
+        "mxPercentKeil": 160.9272
+      },
+      {
+        "name": "umod32",
+        "mxTicks": 243,
+        "keilTicks": 153,
+        "mxPercentKeil": 158.8235
+      },
+      {
+        "name": "shift32",
+        "mxTicks": 104,
+        "keilTicks": 58,
+        "mxPercentKeil": 179.3103
+      },
+      {
+        "name": "crc8steps",
+        "mxTicks": 161,
+        "keilTicks": 123,
+        "mxPercentKeil": 130.8943
+      },
+      {
+        "name": "max32",
+        "mxTicks": 76,
+        "keilTicks": 30,
+        "mxPercentKeil": 253.3333
+      },
+      {
+        "name": "float-add",
+        "mxTicks": 176,
+        "keilTicks": 142,
+        "mxPercentKeil": 123.9437
+      },
+      {
+        "name": "float-mul",
+        "mxTicks": 152,
+        "keilTicks": 90,
+        "mxPercentKeil": 168.8889
+      },
+      {
+        "name": "float-div",
+        "mxTicks": 280,
+        "keilTicks": 292,
+        "mxPercentKeil": 95.8904
+      },
+      {
+        "name": "sqrtf",
+        "mxTicks": 471,
+        "keilTicks": 745,
+        "mxPercentKeil": 63.2215
+      },
+      {
+        "name": "sinf",
+        "mxTicks": 1457,
+        "keilTicks": 1167,
+        "mxPercentKeil": 124.85
+      },
+      {
+        "name": "cosf",
+        "mxTicks": 2016,
+        "keilTicks": 1246,
+        "mxPercentKeil": 161.7978
+      },
+      {
+        "name": "tanf",
+        "mxTicks": 2314,
+        "keilTicks": 1891,
+        "mxPercentKeil": 122.3691
+      },
+      {
+        "name": "atanf",
+        "mxTicks": 1994,
+        "keilTicks": 1765,
+        "mxPercentKeil": 112.9745
+      }
+    ],
+    "note": "Historical whole-wrapper timings including harness overhead. No subtraction of empty wrapper or attribution to bare math kernels. Not current compiler performance."
+  },
+  "keilReference": {
+    "map": {
+      "path": "E:\\STVAPP\\MCU-StdioX\\.artifacts\\ai8051u-sdcc251-20261023\\math-comparison\\keil-board9\\BENCH.MAP",
+      "sha256": "9f6c5702f2307d74fa72b7571b567cea0735a64c2b236d9d1c77517ae6cd93e3"
+    },
+    "wrapperListing": {
+      "path": "E:\\STVAPP\\MCU-StdioX\\.artifacts\\ai8051u-sdcc251-20261023\\math-comparison\\keil-board9\\kernel15.LST",
+      "sha256": "228643824833caa57c4bd05e60329f713799d2c659ceae57895f9d6be4224635"
+    },
+    "header": {
+      "path": "E:\\MCU\\Keil5\\C251\\INC\\MATH.H",
+      "sha256": "1641284a1fa09cff216d642e90460bc1d5c271fb79d8ce0cd7071ffce358b15e"
+    },
+    "observedSharedSymbols": [
+      "?C?FPGETOPN2?",
+      "?C?FPRESULT?",
+      "?C?FPRESULT2?",
+      "?C?FPNANRESULT?",
+      "?C?FP2SERIES?",
+      "?C?FPSERIES?"
+    ],
+    "totalLibrarySegmentBytesIncludingIntegerRuntime": 1550,
+    "note": "Older AI8051U Math18 static map; not a fresh STC timing measurement and not a pure floating-library byte total."
+  },
+  "stcReference": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\stc-official\\vendor\\chunks\\chunk-VF3TAQQT.js",
+      "sha256": "490290bee0a60e1db579154c9e7d662ae4c7a18c17e249b99a36600cb46a67fc"
+    },
+    "targetDefinitions": {
+      "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\stc-official\\vendor\\chunks\\chunk-CM2DCH7G.js",
+      "sha256": "d0736f24bc74fe3449b2d94952e97333c362165a8de8dd12fb22c9e736211505"
+    },
+    "observed": [
+      "STC32G12K128: mdu32=true, tfpu=false",
+      "AI8051U: mdu32=true, tfpu=true",
+      "tfpuFloatEmit requires target feat.tfpu and mathLib != soft",
+      "Software sin/cos build both polynomials; tan calls sin and cos. These source algorithms are not measured performance or accuracy results."
+    ]
+  },
+  "diagnosticAssemblyStats": [
+    {
+      "member": "sincosf",
+      "source": "diagnostic rebuild assembly, not shipped binary",
+      "instructions": 203,
+      "mov": 89,
+      "pushPop": 68,
+      "callSites": {
+        "___m251r4_mcs251_math_mul_bits": 8,
+        "___m251r4_mcs251_math_add_bits": 6,
+        "___m251r4_mcs251_math_sub_bits": 2,
+        "___m251r4_bits_f2s": 1,
+        "___m251r4_bits_s2f": 1,
+        "___m251r4_mcs251_sincos_reduce": 1,
+        "___m251r4_mcs251_sincos_polynomial": 1
+      }
+    },
+    {
+      "member": "expf",
+      "source": "diagnostic rebuild assembly, not shipped binary",
+      "instructions": 473,
+      "mov": 212,
+      "pushPop": 162,
+      "callSites": {
+        "___fsle": 3,
+        "___fslt": 2,
+        "___m251r4___fsmul": 7,
+        "___fs2sint": 1,
+        "___sint2fs": 2,
+        "___m251r4___fssub": 4,
+        "___m251r4___fsadd": 3,
+        "___m251r4___fsdiv": 2,
+        "_ldexpf": 2
+      }
+    },
+    {
+      "member": "ldexpf",
+      "source": "diagnostic rebuild assembly, not shipped binary",
+      "instructions": 361,
+      "mov": 213,
+      "pushPop": 6,
+      "callSites": {}
+    },
+    {
+      "member": "frexpf",
+      "source": "diagnostic rebuild assembly, not shipped binary",
+      "instructions": 188,
+      "mov": 124,
+      "pushPop": 16,
+      "callSites": {
+        "__gptrput": 4
+      }
+    },
+    {
+      "member": "asincosf",
+      "source": "diagnostic rebuild assembly, not shipped binary",
+      "instructions": 432,
+      "mov": 201,
+      "pushPop": 112,
+      "callSites": {
+        "___m251r4_fabsf": 1,
+        "___fslt": 5,
+        "___m251r4___fssub": 2,
+        "_ldexpf": 1,
+        "___m251r4_sqrtf": 1,
+        "___m251r4___fsadd": 9,
+        "___m251r4___fsmul": 5,
+        "___m251r4___fsdiv": 1
+      }
+    }
+  ],
+  "closures": {
+    "sinf": {
+      "members": [
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "errno.rel",
+        "sincosf.rel",
+        "sinf.rel"
+      ],
+      "codeBytes": 1807,
+      "externalSymbols": []
+    },
+    "cosf": {
+      "members": [
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "cosf.rel",
+        "errno.rel",
+        "sincosf.rel"
+      ],
+      "codeBytes": 1813,
+      "externalSymbols": []
+    },
+    "tanf": {
+      "members": [
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsmul.rel",
+        "errno.rel",
+        "tancotf.rel",
+        "tanf.rel"
+      ],
+      "codeBytes": 2338,
+      "externalSymbols": []
+    },
+    "atanf": {
+      "members": [
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "atanf.rel"
+      ],
+      "codeBytes": 1646,
+      "externalSymbols": []
+    },
+    "sqrtf": {
+      "members": [
+        "errno.rel",
+        "sqrt_domain.rel",
+        "sqrtf.rel"
+      ],
+      "codeBytes": 241,
+      "externalSymbols": []
+    },
+    "expf": {
+      "members": [
+        "_fs2sint.rel",
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_sint2fs.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "errno.rel",
+        "expf.rel",
+        "ldexpf.rel"
+      ],
+      "codeBytes": 4170,
+      "externalSymbols": []
+    },
+    "logf": {
+      "members": [
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_sint2fs.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "errno.rel",
+        "frexpf.rel",
+        "logf.rel"
+      ],
+      "codeBytes": 2817,
+      "externalSymbols": [
+        "__gptrput"
+      ]
+    },
+    "powf": {
+      "members": [
+        "_fs2sint.rel",
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fseq.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_sint2fs.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "errno.rel",
+        "expf.rel",
+        "frexpf.rel",
+        "ldexpf.rel",
+        "logf.rel",
+        "powf.rel"
+      ],
+      "codeBytes": 5492,
+      "externalSymbols": [
+        "__gptrput"
+      ]
+    },
+    "atan2f": {
+      "members": [
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "atan2f.rel",
+        "atanf.rel",
+        "errno.rel",
+        "fabsf.rel"
+      ],
+      "codeBytes": 2470,
+      "externalSymbols": []
+    },
+    "asinf": {
+      "members": [
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fseq.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "asincosf.rel",
+        "asinf.rel",
+        "errno.rel",
+        "fabsf.rel",
+        "ldexpf.rel",
+        "sqrt_domain.rel",
+        "sqrtf.rel"
+      ],
+      "codeBytes": 4083,
+      "externalSymbols": []
+    },
+    "acosf": {
+      "members": [
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fseq.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "acosf.rel",
+        "asincosf.rel",
+        "errno.rel",
+        "fabsf.rel",
+        "ldexpf.rel",
+        "sqrt_domain.rel",
+        "sqrtf.rel"
+      ],
+      "codeBytes": 4084,
+      "externalSymbols": []
+    },
+    "sinhf": {
+      "members": [
+        "_fs2sint.rel",
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_sint2fs.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "errno.rel",
+        "expf.rel",
+        "ldexpf.rel",
+        "sincoshf.rel",
+        "sinhf.rel"
+      ],
+      "codeBytes": 5141,
+      "externalSymbols": []
+    },
+    "coshf": {
+      "members": [
+        "_fs2sint.rel",
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_sint2fs.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "coshf.rel",
+        "errno.rel",
+        "expf.rel",
+        "ldexpf.rel",
+        "sincoshf.rel"
+      ],
+      "codeBytes": 5142,
+      "externalSymbols": []
+    },
+    "tanhf": {
+      "members": [
+        "_fs2sint.rel",
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fsle.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_sint2fs.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "errno.rel",
+        "expf.rel",
+        "fabsf.rel",
+        "ldexpf.rel",
+        "tanhf.rel"
+      ],
+      "codeBytes": 4795,
+      "externalSymbols": []
+    },
+    "floorf": {
+      "members": [
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fslt.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "floorf.rel"
+      ],
+      "codeBytes": 665,
+      "externalSymbols": []
+    },
+    "ceilf": {
+      "members": [
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fslt.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "ceilf.rel"
+      ],
+      "codeBytes": 637,
+      "externalSymbols": []
+    },
+    "modff": {
+      "members": [
+        "_fs2slong.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fssub.rel",
+        "_slong2fs.rel",
+        "_ulong2fs.rel",
+        "modff.rel"
+      ],
+      "codeBytes": 971,
+      "externalSymbols": [
+        "__gptrput"
+      ]
+    }
+  },
+  "primaryWebReferences": [
+    "https://www.keil.com/support/man/docs/uv4cl/uv4cl_dg_c251.htm",
+    "https://www.keil.com/support/docs/531.htm"
+  ],
+  "analysisScript": {
+    "path": "E:\\STVAPP\\MX251-baseline\\research\\math-library-20261113\\summarize.py",
+    "sha256": "2255fd9f91ea7df456b596b7041f69371a51ceb2d38dc3acbcbd6e65565368d0"
+  },
+  "fullInventory": {
+    "path": "E:\\STVAPP\\MX251-baseline\\research\\math-library-20261113\\inventory.json",
+    "sha256": "db7943d61288484ae66e4d08f45364131c414621b5fd8d4391eed915f1183aae"
+  }
+}
