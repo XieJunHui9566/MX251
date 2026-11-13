@@ -33,7 +33,7 @@ static inline int mx251DpxLowByte(const char *text)
   return text[0] == 'a' && text[1] == 'r' && text[2] >= '0' && text[2] <= '7' && !text[3];
 }
 
-/* 1=建立 DPXL 常量，0=确定不改变 DPXL，-1=不能证明。 */
+/* 1=建立 DPXL 常量，2=平面写（须非零 bank），0=不改 DPXL，-1=未知。 */
 static inline int mx251DpxHighEffect(const char *line, unsigned *value)
 {
   char op[16], args[128], *right;
@@ -62,8 +62,8 @@ static inline int mx251DpxHighEffect(const char *line, unsigned *value)
       return mx251DpxLiteral(right, 255, value) ? 1 : -1;
     if (!strcmp(args, "dptr") && mx251DpxLiteral(right, 65535, &ignored)) return 0;
     if (!strcmp(args, "a") && (!strcmp(right, "@dpx") || mx251DpxLiteral(right, 255, &ignored))) return 0;
-    if (mx251DpxLowByte(args) && (mx251DpxLowByte(right) || mx251DpxLiteral(right, 255, &ignored))) return 0;
-    if (!strcmp(args, "@dpx") && !strcmp(right, "a")) return 0;
+    if (mx251DpxLowByte(args) && (mx251DpxLowByte(right) || (*right == '#' && right[1]))) return 0;
+    if (!strcmp(args, "@dpx") && !strcmp(right, "a")) return 2;
   }
   if (!strcmp(op, "clr") && !strcmp(args, "a") && !right) return 0;
   if ((!strcmp(op, "anl") || !strcmp(op, "orl") || !strcmp(op, "xrl")) &&

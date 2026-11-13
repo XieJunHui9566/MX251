@@ -8,6 +8,7 @@
 #include "instruction_effects.h"
 #include "wide.h"
 #include "wide_ordered_contract.h"
+extern unsigned mcs251CallDpxWrites(symbol *callee);
 enum { LI_LINES=2048, LI_TEXT=512, LI_SAVES=64 };
 typedef struct {lineNode *node;char op[24],arg[3][LI_TEXT];unsigned nargs,bytes;bool label,empty;} li_line;
 typedef struct {uint32_t gpr;unsigned special;bool flags,memory,bit,unknown,indirect;} li_operand;
@@ -48,7 +49,7 @@ static li_operand li_direct_bits(unsigned address,unsigned mask,bool bit)
   if(address==0xe0)r.gpr=UINT32_C(1)<<MCS251_BYTE_A;
   else if(address==0xf0)r.gpr=UINT32_C(1)<<MCS251_BYTE_B;
   else if(!bit && (address==0x82 || address==0x83))r.special=MX251_SPECIAL_DPTR;
-  else if(!bit && address==0x84)r.special=MX251_SPECIAL_DPX;
+  else if(!bit && address==0x84)r.special=MX251_SPECIAL_DPXL;
   else if(address==0xd0 || address==0xd1 || address==0x81 || address==0xbe)r.unknown=true;
   else if(address==0x80 || address==0x90 || address==0xa0 || address==0xb0)r.memory=true;
   else if(address>=0x80 && !wide_asm_core_bits(address,mask))r.memory=true;
@@ -117,7 +118,7 @@ static li_operand li_operand_info(const char *text)
   if(!strncmp(text,"acc.",4) && text[4]>='0' && text[4]<='7' && !text[5]){
     r.gpr=UINT32_C(1)<<MCS251_BYTE_A;r.bit=true;return r;
   }
-  if(!strcmp(text,"dpxl")){r.special=MX251_SPECIAL_DPX;return r;}
+  if(!strcmp(text,"dpxl")){r.special=MX251_SPECIAL_DPXL;return r;}
   if(mx251EffectRegister(text,&reg)){
     r.gpr=reg.gpr;r.special=reg.special;r.unknown=(reg.special&MX251_SPECIAL_SPX)!=0;return r;
   }
@@ -219,6 +220,14 @@ static bool li_indirect_store(li_line *l,li_line *lines,unsigned begin,unsigned 
        !strcmp(p->op,"jz") || !strcmp(p->op,"jnz"))continue;
     /* Only simple operations on GPRs/direct objects can be crossed. */
     li_operand dest=li_operand_info(p->arg[0]);
+    /* The body is checked in execution-text order. Earlier indirect stores
+     * have already been proved to target C objects or non-core addresses,
+     * so they cannot change DPXL retained by literal-address reuse. */
+    if(!strcmp(p->op,"mov") && dest.indirect && !dest.unknown)continue;
+    /* A newer low-half assignment hides earlier DPTR writes without
+     * hiding the high byte that is still being searched for. */
+    if(haveLow && dest.special==MX251_SPECIAL_DPTR &&
+       (!strcmp(p->op,"mov") || !strcmp(p->op,"inc") || !strcmp(p->op,"dec")))continue;
     if(dest.unknown || dest.indirect || dest.special ||
        (strcmp(p->op,"mov") && strcmp(p->op,"clr") &&
         strcmp(p->op,"anl") && strcmp(p->op,"orl") && strcmp(p->op,"xrl") &&
@@ -242,8 +251,8 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
     symbol *callee=OP_SYMBOL(IC_LEFT(ic));
     if(strcmp(l->arg[0],callee->rname) || !mcs251CallClobberWrites(callee,&writes))return false;
     all->writes|=(uint32_t)writes;all->reads=UINT32_MAX;
-    /* Feedback describes GPRs only. Keep flags, bit bank and DPX saves. */
-    all->specialWrites|=MX251_SPECIAL_DPX;all->flags=true;++all->calls;return true;
+    all->specialWrites|=mcs251CallDpxWrites(callee);
+    all->flags=true;++all->calls;return true;
   }
   /* Reuse the emitter's effects for word arguments and relative stack
    * cleanup. These change the argument stack, not the private saved values;
@@ -346,7 +355,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
     else ok=false;
   }
   if(npush!=npop || !npush)ok=false;
-  bool remove[LI_SAVES]={false};unsigned saved=0,bytes=0;uint32_t omitted=0;
+  bool remove[LI_SAVES]={false};unsigned saved=0,bytes=0,omittedDpx=0;uint32_t omitted=0;
   bool dropBank=bank>=0 && !((effects.reads|effects.writes)&0xffu);
   for(unsigned i=0;ok && i<npush;++i) {
     li_line *a=&lines[pushes[i]],*b=&lines[pops[npop-1-i]];const char *name=a->arg[0];
@@ -355,7 +364,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
     if(!strcmp(name,"acc"))dead=!(effects.writes&(UINT32_C(1)<<MCS251_BYTE_A));
     else if(!strcmp(name,"b"))dead=!(effects.writes&(UINT32_C(1)<<MCS251_BYTE_B));
     else if(!strcmp(name,"dpl") || !strcmp(name,"dph"))dead=!(effects.specialWrites&MX251_SPECIAL_DPTR);
-    else if(!strcmp(name,"dpxl"))dead=!(effects.specialWrites&MX251_SPECIAL_DPX);
+    else if(!strcmp(name,"dpxl"))dead=!(effects.specialWrites&MX251_SPECIAL_DPXL);
     else if(!strcmp(name,"psw"))dead=bank>=0 && !effects.flags && !((effects.reads|effects.writes)&0xffu);
     else {
       mx251_effect_operand reg;
@@ -368,13 +377,16 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
       unsigned bc=wide_instruction_bytes_context(b->node->line,strlen(b->node->line),li_cost_symbol,NULL);
       if(!ac || !bc){ok=false;break;}remove[i]=true;saved+=width;bytes+=ac+bc;
       omitted|=li_operand_info(name).gpr;
+      omittedDpx|=li_operand_info(name).special&MX251_SPECIAL_DPX;
     }
   }
   if(dropBank)bytes+=3;
   if(ok && (saved || dropBank)) {
     for(unsigned i=begin;effects.calls && i<end;++i)
-      if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall"))
+      if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall")) {
         dbuf_printf(codeOutBuf,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
+        if(omittedDpx)dbuf_printf(codeOutBuf,"; mx251-isr-dpx-call callee=%s omitted=%u\n",lines[i].arg[0],omittedDpx);
+      }
     for(unsigned i=0;i<npush;++i)if(remove[i]) {
       lines[pushes[i]].node->line=Safe_strdup("; mx251 leaf ISR: unused private save removed");
       lines[pops[npop-1-i]].node->line=Safe_strdup("; mx251 leaf ISR: paired restore removed");

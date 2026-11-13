@@ -11,7 +11,7 @@
 /* v1 是 may-read/may-write 上界，不是净破坏集合或寄存器分配承诺。
  * 未描述的形式置 top，不能把解析失败解释为没有副作用。
  * flags 暂按整体保守处理；内存写除已知 SPX 槽外不推断无寄存器别名。 */
-enum { MX251_EFFECTS_SCHEMA=1, MX251_SPECIAL_DPTR=1, MX251_SPECIAL_DPX=3,
+enum { MX251_EFFECTS_SCHEMA=1, MX251_SPECIAL_DPTR=1, MX251_SPECIAL_DPXL=2, MX251_SPECIAL_DPX=3,
        MX251_SPECIAL_SPX=4, MX251_MEMORY_READ=1, MX251_MEMORY_WRITE=2 };
 typedef struct {
   uint32_t reads,writes,specialReads,specialWrites,flagsReads,flagsWrites;

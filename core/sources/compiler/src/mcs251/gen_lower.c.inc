@@ -2380,7 +2380,7 @@ mcs251CanReuseLiteralDpxl (const char *literal)
   const char *enabled = getenv ("MX251_LITERAL_DPX_HIGH");
   unsigned expected, found, count = 0;
   if ((enabled && strcmp (enabled, "1")) || !currFunc ||
-      IFFUNC_ISNAKED (currFunc->type) || IFFUNC_ISISR (currFunc->type) ||
+      IFFUNC_ISNAKED (currFunc->type) ||
       !mx251DpxLiteral (literal, 255, &expected)) return false;
   for (lineNode *p = genLine.lineCurr; p && count++ < 128; p = p->prev)
     {
@@ -2388,6 +2388,10 @@ mcs251CanReuseLiteralDpxl (const char *literal)
       if (p->isComment || p->isDebug) continue;
       if (!p->line) return false;
       int effect = mx251DpxHighEffect (p->line, &found);
+      /* A flat store in bank zero can itself address DPXL at S:84H.
+       * Nonzero literal banks cannot alias the core register window. */
+      if (!expected && effect == 2) return false;
+      if (effect == 2) effect = 0;
       if (effect < 0) return false;
       if (effect > 0) return expected == found;
     }
