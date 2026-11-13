@@ -1,0 +1,506 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "branch": "codex/edata-scalar-backend",
+  "compilerSourceCommit": "6fd6cb4",
+  "integrationCommit": "31c16a7",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\core-next\\toolchain\\bin\\sdcc.exe",
+    "sha256": "2ff90a3ca2306325c4f6bd2b273487d9c3953b7e16c2dbd6602cc504d54bb07c"
+  },
+  "assembler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\core-next\\toolchain\\bin\\sdas251.exe",
+    "sha256": "c1a1f5004609c64cde3c38354e662deec3e8d0fa41c5f405cae8a46a601c1815"
+  },
+  "summary": {
+    "projects": 17,
+    "improved": 13,
+    "unchanged": 4,
+    "increased": 0,
+    "parentTotalBytes": 212529,
+    "candidateTotalBytes": 202059,
+    "atMost120": 1,
+    "atMost110": 0
+  },
+  "rows": [
+    {
+      "id": "p022",
+      "name": "10-串口1中断模式与电脑收发测试/C语言 - P36P37",
+      "parentBytes": 534,
+      "candidateBytes": 510,
+      "savedBytes": 24,
+      "keilBytes": 364,
+      "ratioPercent": 140.1098901098901,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p022\\mx251\\result.json",
+        "sha256": "43876d745b8a0143eb50e74831aacfd43ac363da4f72c0e12fb6e7f7e44eafaf"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p022\\mx251\\result.json",
+        "sha256": "a13cffff9bf7692fa2c717df04c60cf37a8bbe59754e2dd2183cb5ad676163d1"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p022\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b1a5cc21f3c91b74fb42e4b92e98e685d7b1f40a2eba79786149170ff4b3d154"
+      },
+      "removedFunctions": 0,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p070",
+      "name": "34-硬件QSPI访问FLASH-串口监控",
+      "parentBytes": 6160,
+      "candidateBytes": 6160,
+      "savedBytes": 0,
+      "keilBytes": 4913,
+      "ratioPercent": 125.38164054549155,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p070\\mx251\\result.json",
+        "sha256": "ccd717f581cee6c27379d0066dd24dde73a941be87d27628b28c7035ee140115"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\final-matrix\\projects\\p070\\mx251\\result.json",
+        "sha256": "f6179c311dfbaedaa4f31f29b20f3fdc38c85393f209783ce96fc93098001b8f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\final-matrix\\projects\\p070\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7b3da7328b7a76fd476ab405cabe15b8c91c64e872c1e5d3f9ce08775882d064"
+      },
+      "removedFunctions": 144,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": true
+    },
+    {
+      "id": "p083",
+      "name": "40-MDU32–乘法和除法单元",
+      "parentBytes": 2994,
+      "candidateBytes": 1969,
+      "savedBytes": 1025,
+      "keilBytes": 1459,
+      "ratioPercent": 134.95544893762852,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format\\final-matrix\\projects\\p083\\mx251\\result.json",
+        "sha256": "31fdacc3dbf880e33f214e515629bf7328a8213feefe59cc882a8c9093e094be"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p083\\mx251\\result.json",
+        "sha256": "6775dc587415db167f8efa79bf597397b26a8a2b3febf7febaf7bc9786477c80"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "a7ae9037e808c424be0d21d1bfd26d1f37bfc57369a5b0d01ff0fb5ad04cf46d"
+      },
+      "removedFunctions": 1,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p092",
+      "name": "48-通过USB-HID发送命令读取ADC测试程序",
+      "parentBytes": 2955,
+      "candidateBytes": 2861,
+      "savedBytes": 94,
+      "keilBytes": 1667,
+      "ratioPercent": 171.625674865027,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p092\\mx251\\result.json",
+        "sha256": "ad62e4b5d2cd85c293173136a6f9d93107724b6f0ca2f1d5287fa17717bf3a8f"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p092\\mx251\\result.json",
+        "sha256": "806c6f5888b6775c1a9baf27acf957bdf93acdf6523edf4cc215b84ab105ddb3"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p092\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "f0be708ca0c1f4bbf431bcfd36682de4413ecf5d0fcc44b73d77d7e69cfd909e"
+      },
+      "removedFunctions": 0,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p105",
+      "name": "62-DMA-SPI与存储器数据自动收发",
+      "parentBytes": 4852,
+      "candidateBytes": 4319,
+      "savedBytes": 533,
+      "keilBytes": 3297,
+      "ratioPercent": 130.99787685774947,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p105\\mx251\\result.json",
+        "sha256": "cf8c2d9d48176b55dc2963889ca52347ce83711fd93210e3ac4479f3b93ac4c0"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p105\\mx251\\result.json",
+        "sha256": "7183fdf56964c6c7033e5dda8e47c2f4930ae7ea679bd691094fe5b0d38c322b"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p105\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "f85c24e319b7759053a12f801aad4bfa0e22e8ebdd6fb89f9ba67b622635f4fe"
+      },
+      "removedFunctions": 0,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p106",
+      "name": "63-DMA-QSPI-P2P访问QSPI Flash",
+      "parentBytes": 8676,
+      "candidateBytes": 8676,
+      "savedBytes": 0,
+      "keilBytes": 6649,
+      "ratioPercent": 130.48578733644155,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p106\\mx251\\result.json",
+        "sha256": "b35ee29c4b5f46d5558a96c42d163aca290fed34b573b0653f4d2af36e2d0bfb"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\final-matrix\\projects\\p106\\mx251\\result.json",
+        "sha256": "72be2eea1ef6ac4c1a25bf9dc430c17db561800465512a6c0c6515002f6bfe6a"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\final-matrix\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "917a7fb6a31f612a7779572b03214cea7e9731ee31d9a21a8c97ed981947e7c4"
+      },
+      "removedFunctions": 135,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": true
+    },
+    {
+      "id": "p115",
+      "name": "66-DMA-I2C主机模式读写AT24C02-串口监控",
+      "parentBytes": 3303,
+      "candidateBytes": 3034,
+      "savedBytes": 269,
+      "keilBytes": 2519,
+      "ratioPercent": 120.4446208813021,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p115\\mx251\\result.json",
+        "sha256": "f8d8d44b4e6927df4e4d967c5e1fc3b38daee9935b5ce2455216e146efbc5074"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p115\\mx251\\result.json",
+        "sha256": "1b03a3fe3e7788312e946c723bc8b199c61fa6eb3f0463f27feb0db1352c1c96"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p115\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "dbb0a72a95c0d9d37ad7880a3d304f51df8037f43ba153727abab49147e32f01"
+      },
+      "removedFunctions": 0,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p120",
+      "name": "71.1-电脑通过UART发送图片数据写入到DMA SPI Flash，SPI-TFT_DMA_双缓冲区交替显示图片，不占CPU时间程序-ILI9341",
+      "parentBytes": 7601,
+      "candidateBytes": 5971,
+      "savedBytes": 1630,
+      "keilBytes": 4654,
+      "ratioPercent": 128.2982380747744,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p120\\mx251\\result.json",
+        "sha256": "7f03c0baad1d24f40d27457983b7f41463ea29adff4062d0f319ce76efe948fe"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p120\\mx251\\result.json",
+        "sha256": "2ad8c18db0bd6795f20ed0c6479fb0ad3a12331ac7d9961b3709f9fbf87ffb3f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p120\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "e493e3436d6aca7393e0d72ae3d9c9ac899b2da332a97a26b7ac329c4c4cbe6f"
+      },
+      "removedFunctions": 0,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p121",
+      "name": "71.2-电脑通过UART发送图片数据写入到DMA SPI Flash，SPI-TFT_DMA_双缓冲区交替显示图片，不占CPU时间程序-ILI9325",
+      "parentBytes": 7514,
+      "candidateBytes": 5884,
+      "savedBytes": 1630,
+      "keilBytes": 4569,
+      "ratioPercent": 128.78091486101994,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p121\\mx251\\result.json",
+        "sha256": "b73e8b0831f413073917fbf97f0f44610efce5016a859313e7e62ffae96f9cce"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p121\\mx251\\result.json",
+        "sha256": "83c72398b7b34da323793b3212cdd369251feccb9e718af78f44db28a4d077e9"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p121\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "e6be20535f88d6ac35c14bba990d05ef892599e6ff2e57f306ff5867ff034d66"
+      },
+      "removedFunctions": 0,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p123",
+      "name": "72.2-QSPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "parentBytes": 7079,
+      "candidateBytes": 6143,
+      "savedBytes": 936,
+      "keilBytes": 4839,
+      "ratioPercent": 126.94771647034511,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p123\\mx251\\result.json",
+        "sha256": "948dd0884593ce795f69099b4b21c78a9de4dc61eb31b66c18aec71641efa372"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p123\\mx251\\result.json",
+        "sha256": "93c28f87e415a3b843e9c2ff59edcc7d1e02dd649ff242b501d9da26b2922f34"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5dc95bf2725c7a0ab341e54e3fe687a523fb452088520a230496caff5f36dc48"
+      },
+      "removedFunctions": 158,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p127",
+      "name": "73-频谱分析256点FFT-USB-CDC送电脑ISP软件调试接口FFT绘图显示",
+      "parentBytes": 10519,
+      "candidateBytes": 10203,
+      "savedBytes": 316,
+      "keilBytes": 6998,
+      "ratioPercent": 145.79879965704487,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p127\\mx251\\result.json",
+        "sha256": "063417874584a5fb98b28c23d114f50981d53b529c89f30d111ababaa06794e5"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p127\\mx251\\result.json",
+        "sha256": "3883092fb89dcb78596ee188f4daa44e0eff93b07e69f52e9897ff9a46b3af92"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b7a4911e0e8a9b5614eec315fb7ec9fed105fe1c8091d36f3859975d0a75bfd7"
+      },
+      "removedFunctions": 3,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p130",
+      "name": "76-ST7789驱动1.3寸TFT240x240显示屏实验程序-SPI-DMA刷屏",
+      "parentBytes": 31174,
+      "candidateBytes": 31164,
+      "savedBytes": 10,
+      "keilBytes": 27478,
+      "ratioPercent": 113.4143678579227,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p130\\mx251\\result.json",
+        "sha256": "936c308bc8462ff9fe6cc85e7b95bc17926a3509740fb3b773035162f268bd50"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p130\\mx251\\result.json",
+        "sha256": "b89a60845273cd1cbb07d80f13d215633a1e2ab9755b4d3034678bdfe2546d88"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p130\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "de142de830a6b67ed81855cfb5c13c12eddee0c9cb024fb62234c2aecf8b3c69"
+      },
+      "removedFunctions": 3,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p135",
+      "name": "81-I2S-播放下载在FLASH中的立体声ADPCM音乐-TLV320AIC23B",
+      "parentBytes": 15406,
+      "candidateBytes": 13637,
+      "savedBytes": 1769,
+      "keilBytes": 7944,
+      "ratioPercent": 171.66414904330313,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p135\\mx251\\result.json",
+        "sha256": "9c7fe897b2f14b2dec88f102ced2953a42a175271498af294d0210ab9ddb3d7b"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p135\\mx251\\result.json",
+        "sha256": "a19189c2bd8a37df0b94488a39baeda2d3f94f716043ace07af034a74096c1e5"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p135\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "f996ff61a148019e542e1e3edc10cf196405579954a1772a3b0ad889fb3785f8"
+      },
+      "removedFunctions": 2,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p140",
+      "name": "84-USB录放音声卡-TLV320AIC23B-内部36.864M-外接32768Hz晶振",
+      "parentBytes": 9328,
+      "candidateBytes": 8476,
+      "savedBytes": 852,
+      "keilBytes": 5059,
+      "ratioPercent": 167.54299268630163,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p140\\mx251\\result.json",
+        "sha256": "cb144bbaec998cd780c86f9c107d7445fb4191d266345d63fdb7559248618d11"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p140\\mx251\\result.json",
+        "sha256": "ae53208953c0fec5240247e52253539c8ec3323c39edf0c971fe948f0e6774cd"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "1d7c1cf4db1f3e44251d40f5421c12381d36d208ba7194451fc853afad4d3f73"
+      },
+      "removedFunctions": 5,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p141",
+      "name": "85-示波器-CDC虚拟显示",
+      "parentBytes": 11543,
+      "candidateBytes": 10161,
+      "savedBytes": 1382,
+      "keilBytes": 6957,
+      "ratioPercent": 146.0543337645537,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p141\\mx251\\result.json",
+        "sha256": "0181b64c3bdb0fbfe85ed932e3af9e35989bed20ac9a3d4f217a45a3db063a60"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p141\\mx251\\result.json",
+        "sha256": "5079ea3a8349d3a1b27f2a5bcffad8b28aae2ba86626d890947513f525bc615f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p141\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "92b0b49ff4d32241d827138f6576d8c7b6cfb588fc23176bfc0418165cf09118"
+      },
+      "removedFunctions": 2,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p144",
+      "name": "87-U8G2_DMA_OLED/1-U8G2_I2C_DMA_OLED",
+      "parentBytes": 42007,
+      "candidateBytes": 42007,
+      "savedBytes": 0,
+      "keilBytes": 25221,
+      "ratioPercent": 166.5556480710519,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p144\\mx251\\result.json",
+        "sha256": "97e6b274d5d3b3629b0c0669a289ff9b1408a02eeec7e0f5b0343d98045fc141"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p144\\mx251\\result.json",
+        "sha256": "79bf0fa3d6d116deb8db4219e80f616f1fd9c41b7755bea516042728b09858e9"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p144\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "9c7f1001fb8a1a0c8be71ab6a5f96bd6c9a253799421e8a9ebf226066e94e1f3"
+      },
+      "removedFunctions": 274,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    },
+    {
+      "id": "p145",
+      "name": "87-U8G2_DMA_OLED/2-U8G2_SPI_DMA_OLED",
+      "parentBytes": 40884,
+      "candidateBytes": 40884,
+      "savedBytes": 0,
+      "keilBytes": 24968,
+      "ratioPercent": 163.7455943607818,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\parent-matrix\\projects\\p145\\mx251\\result.json",
+        "sha256": "1d66d9decf881573b9b1d3e94e302d81c615a6e17d93fe818384868bc12b8a55"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p145\\mx251\\result.json",
+        "sha256": "83665d080a8204de750454882fb7a3640127072bd32fa6ff65db00e7c9e55d4b"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-matrix\\projects\\p145\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "47e50d99af8966b547d9d028ad8cb5c0c3002a4e0af87721746276fc9b7d3963"
+      },
+      "removedFunctions": 288,
+      "inputFilesIdentical": true,
+      "reusedBeforeGcFix": false
+    }
+  ],
+  "reusedEvidenceReason": "p070/p106 have no E: operands and produce identical HEX to parent; the later GC change only strips MOV E: qualifiers.",
+  "tests": {
+    "edata": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\check-v2\\result.json",
+      "sha256": "040fe46b6e6677420a5df13fe15d9c9538130330ff6054c9824651dae2a43e60"
+    },
+    "dataUnchanged": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\data-unchanged\\result.json",
+      "sha256": "6de74508ab658a5c428dc6df7a0f6999b593f4de5609b2ee49fd41fa32d36d18"
+    },
+    "typedCosts": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\typed-cost\\operand-results.json",
+      "sha256": "5efbce83fcd07fe6fdd46830ca41878cc178e0d2f7dceb95d80538f3bde59ac4"
+    },
+    "assemblerCompatibility": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\assembler-compatibility\\result.json",
+      "sha256": "0f701b5e54003e4cfbb39e8b40934cffdddf4b88b5bd80eecf9ae8125f49f4a2"
+    },
+    "functionGc": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\gc-test-v2\\result.json",
+      "sha256": "b1a90f892cad53a7a1b685353b7004d054068b873451d5e4f353536bd27fde2a"
+    }
+  },
+  "hardware": {
+    "cases": 128,
+    "parent": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\hardware-parent\\result.json",
+      "sha256": "c579ee880d0fd3568568073570fd54af2588e383c26f5920da77d560cb736470"
+    },
+    "candidate": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\hardware-final\\result.json",
+      "sha256": "d934fb8e9135a3afc858e962de136db24fdfcf58ab661b0c073b8cb5fbdc1fd4"
+    },
+    "parentBytes": 3713,
+    "candidateBytes": 2519,
+    "timing": {
+      "0": {
+        "parent": 7775.5,
+        "candidate": 5873.0,
+        "reductionPercent": 24.467879879107457
+      },
+      "1": {
+        "parent": 10016,
+        "candidate": 4328,
+        "reductionPercent": 56.78913738019169
+      }
+    },
+    "p083": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars\\p083-hardware-repeat\\result.json",
+      "sha256": "c04c0ed33162ba7badf0dba8f30ad90190e88a7357da25a83ccd535dc8d7ceab"
+    },
+    "p083Adaptations": [
+      "UART clock 40 MHz",
+      "Repeat original six calculations to capture after flashing"
+    ],
+    "p083UnmodifiedBenchmarkFlashed": false,
+    "keilRuntimeCompared": false
+  },
+  "p083": {
+    "parentBytes": 2994,
+    "candidateBytes": 1969,
+    "parentMainBytes": 1998,
+    "candidateMainBytes": 973,
+    "keilBytes": 1459,
+    "application": 1032,
+    "formatter": 681,
+    "arithmetic": 107,
+    "constants": 114,
+    "startup": 35
+  },
+  "coverage": "17 compatibility projects, not a fresh full 114-project acceptance run; USB work unchanged"
+}

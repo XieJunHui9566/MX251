@@ -1,6 +1,6 @@
 # 未覆盖 C 工程兼容性与 USB OMF 接入研究
 
-后续进展见 [USB OMF 与 p083](USB-OMF-P083.md)：p083 同输入为 MX251 2994 B / Keil 1459 B，USB 小对象已完成可重定位导入和 L251 字节对照。下文保留本轮原始对照快照。
+后续进展见 [EDATA 标量后端](EDATA-SCALAR-BACKEND.md)：p083 同输入为 MX251 1969 B / Keil 1459 B；[USB OMF](USB-OMF-P083.md) 小对象已完成可重定位导入和 L251 字节对照。下文保留本轮原始对照快照。
 
 2026-11-14。分支 `codex/sdk-coverage-runtime`；实现提交 `5ece893`、`622acb2`，对照工具提交 `fd884dc`。开发包：`E:/STVAPP/MX251-baseline/development/sdk-compatibility/core-next`。
 

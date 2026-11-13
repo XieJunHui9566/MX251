@@ -1,5 +1,7 @@
 # USB OMF 小对象接入与 p083 体积拆分
 
+后续 [EDATA 标量后端](EDATA-SCALAR-BACKEND.md) 已将同输入 p083 从 2994 B 降至 1969 B；下文保留本阶段证据。
+
 2026-11-14；分支 `codex/usb-omf-format-runtime`。原始产物位于
 `E:/STVAPP/MX251-baseline/development/usb-omf-format`，开发包为其下 `core-next`。
 本轮没有更改编译器二进制，也没有替换冻结基线。
