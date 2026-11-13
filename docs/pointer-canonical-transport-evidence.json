@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "2cef5601e7eb41f8a05eab6edba192c8e04a728c",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\core-01\\core.json",
+    "sha256": "6f09aacec6fb3ba11e99a677afffbb34e9a7fc9014038c7501a69594d9b55c21"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "411d16749b5663c407f1c82c2a4c0926a8b5f711a5b2b96753f9c12b1e56ceee"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\Build-Optimized-01.ps1",
+    "sha256": "b35e72e3e3d5a81071451bd3954f89006dab69aa443832da58c2b3fd4c90fe4e"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\candidate-01.json",
+    "sha256": "983293372902ebb3f109c7656936ded9c7ce7f18f5cb5e3fb6c4ed616182792d"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\comparison.json",
+    "sha256": "04d7c1ac67fa0bcc7e9a0d44fb64ab73c8408b5911b51ee3cf6efa21d6b1c8e1"
+  },
+  "finalComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\comparison.json",
+    "sha256": "0a4ed13c1f402d1a6dfc57cf180ff6ca72f83f67273773baa60e3c83d292e8ca"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 32,
+    "unchanged": 43,
+    "larger": 0,
+    "savedBytes": 369,
+    "mxTotalBytes": 191247,
+    "keilTotalBytes": 192049,
+    "within110": 66,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 0.9958239824211529
+  },
+  "remaining110": [
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mx251Bytes": 4668,
+      "keilBytes": 4128,
+      "keilRatio": 1.130813953488372,
+      "gap110Bytes": 128
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mx251Bytes": 974,
+      "keilBytes": 832,
+      "keilRatio": 1.1706730769230769,
+      "gap110Bytes": 59
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mx251Bytes": 1160,
+      "keilBytes": 1002,
+      "keilRatio": 1.157684630738523,
+      "gap110Bytes": 58
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "mx251Bytes": 1257,
+      "keilBytes": 1105,
+      "keilRatio": 1.1375565610859728,
+      "gap110Bytes": 42
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mx251Bytes": 468,
+      "keilBytes": 404,
+      "keilRatio": 1.1584158415841583,
+      "gap110Bytes": 24
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mx251Bytes": 485,
+      "keilBytes": 423,
+      "keilRatio": 1.1465721040189125,
+      "gap110Bytes": 20
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mx251Bytes": 192,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mx251Bytes": 785,
+      "keilBytes": 704,
+      "keilRatio": 1.1150568181818181,
+      "gap110Bytes": 11
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "mx251Bytes": 306,
+      "keilBytes": 272,
+      "keilRatio": 1.125,
+      "gap110Bytes": 7
+    }
+  ],
+  "gap110Bytes": 365,
+  "checks": {
+    "parameters": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\checks-parameters\\result.json",
+      "sha256": "4d48dd7e5795dac527d7c93e464b4c8ae24a94660f5b3cf5315763383878aef4"
+    },
+    "cursors": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\checks-cursors\\result.json",
+      "sha256": "a01fbe6c787bba7d0ba876835c8727add649d50a7ebe777df929f2db590549bf"
+    },
+    "cursorMasks": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\checks-cursor-masks.json",
+      "sha256": "707a6d7ad5e169f0eacb76c29c10660fbbc57ea242da1c63e63c9ce2ae4930d6"
+    },
+    "receipts": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\receipt-audit.json",
+      "sha256": "29ce4b62de72fa5afaa2a181aacfdc0599014ef5fff576309d8b7bb6d0a27090"
+    }
+  },
+  "functionAttribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\function-attribution.json",
+    "sha256": "41501febc8240d3bd9e5cce255187fcd2b54daac83bb9f9999d2dc8318c99d79"
+  },
+  "coverage": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\coverage.json",
+    "sha256": "05504ddbfc0bf9fe95f3cc2098f7520e1b70f227ee12b55c67cbe44329d56bc5"
+  },
+  "regressionAudit": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\regression-audit.json",
+    "sha256": "fb2989323b717f2e869a06272d8ee4b35b4e516d6a555f4ce3d19f9ee3606ff0"
+  },
+  "hardware": {
+    "parent": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\hardware-parent\\result.json",
+        "sha256": "14c8416e4a8b599b326d0fa453612138967b0d6cf51cba266b2510da4fa8f849"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\fixture-parent\\source.json",
+        "sha256": "a37411385625422d75d664b110a70a0cf675855ad3426580b384c0091423d76a"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\fixture-parent\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "976bdf45c9b836d7178a18d76d2a59d099b1c42f3cd2c8b81fc10a02567187d1"
+      },
+      "bytes": 4025,
+      "cases": 128,
+      "frames": 575,
+      "aggregateTicks": {
+        "0": 11624.5,
+        "1": 80456.5
+      }
+    },
+    "new": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\hardware-new\\result.json",
+        "sha256": "b58d3c0ee41ac6bfce83572d15262d2467a394558d2da8786df1db277f8913eb"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\fixture-new\\source.json",
+        "sha256": "a37411385625422d75d664b110a70a0cf675855ad3426580b384c0091423d76a"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\fixture-new\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "679b9a7fd3d5c6c8e9d2abd6f472e7c1a5a20b73c94af1b1726f92a5de5f4ae4"
+      },
+      "bytes": 3963,
+      "cases": 128,
+      "frames": 597,
+      "aggregateTicks": {
+        "0": 11569,
+        "1": 78751.5
+      }
+    },
+    "timingReduction": {
+      "0": 0.004774398898877319,
+      "1": 0.021191575571892884
+    },
+    "groups": {
+      "0": "Existing ABI2/ABI4 parameter suite, mixed physical widths, pointer values and accesses",
+      "1": "Known object cursors: four-stream CODE copy and 260-byte ordered RAM fill"
+    },
+    "clock": "40 MHz, Timer0 /12T; sum of per-input median ticks",
+    "comparison": "Same sources, parent and new MX251 compiler; not Keil or complete SDK applications",
+    "oracle": "Existing independent parameter_values_fixture.py and loop_cursors_fixture.py calculations"
+  },
+  "inheritedQualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\qualification.json",
+    "sha256": "c8350719963fab9d7ff5409ba9a66fa4a02bba4becc1a4f83606c4c6804e5215"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "scope": "Three-byte pointer canonicalization/direct loads and object-bounded cursor increments; SDK inputs unchanged.",
+  "buildReuse": "Four pilot projects plus 71 remaining projects, same compiler/configuration; no duplicate matrix builds."
+}

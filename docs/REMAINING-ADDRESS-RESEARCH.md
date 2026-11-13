@@ -107,3 +107,5 @@ Keil 的相应片段为 46 B，使用直接地址及较短的宽值拼接；它�
 研究目录：`E:/STVAPP/MX251-mainline-20261113/remaining-address-research`。`remaining10.json` 为完整镜像分区和 Keil 函数差额；`focus.json` 固定 20 个函数的双边列表；`candidates.json`、`parameter-destinations.json`、`address-reuse.json`、`sketches.json` 保存计数、原指令和估算口径。研究脚本同目录保存，均未调用编译器、汇编器或下载工具。
 
 [结构化证据](remaining-address-research-evidence.json)；[当前统一编译器与名单](ACTIVE-SDK-COHORT.md)。本轮没有生成新的编译器版本，以上空间也未加到达线统计中。
+
+第一优先项已实施，后续结果见 [三字节指针与游标](POINTER-CANONICAL-TRANSPORT.md)。上文保留实施前研究数字。

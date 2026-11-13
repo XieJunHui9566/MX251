@@ -82,13 +82,13 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 3,
-    "unchanged": 71,
-    "larger": 1,
-    "savedBytes": 106,
-    "mxTotalBytes": 191616,
+    "improved": 32,
+    "unchanged": 43,
+    "larger": 0,
+    "savedBytes": 369,
+    "mxTotalBytes": 191247,
     "keilTotalBytes": 192049,
-    "within110": 65,
+    "within110": 66,
     "within120": 75,
     "stcStatuses": {
       "BUILT": 59,
@@ -96,58 +96,58 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 0.9977453670677796
+    "weightedKeilRatio": 0.9958239824211529
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\core-01\\core.json",
-    "sha256": "adecba8c5eaf4f488d1cfb06e257b4754497fcb466aca6e2cef671d991f15005"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\core-01\\core.json",
+    "sha256": "6f09aacec6fb3ba11e99a677afffbb34e9a7fc9014038c7501a69594d9b55c21"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\core-01\\toolchain\\bin\\sdcc.exe",
-    "sha256": "d12d412488fa377ec6498edd55b649e2500dcb00e3850617b4a247b6d1392022"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "411d16749b5663c407f1c82c2a4c0926a8b5f711a5b2b96753f9c12b1e56ceee"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\candidate-01.json",
-    "sha256": "f0396eb0177f5a897622d2add33a297d2b81a4aac830ac14abb6be06e763e1ca"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\candidate-01.json",
+    "sha256": "983293372902ebb3f109c7656936ded9c7ce7f18f5cb5e3fb6c4ed616182792d"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\comparison.json",
-    "sha256": "04d7c1ac67fa0bcc7e9a0d44fb64ab73c8408b5911b51ee3cf6efa21d6b1c8e1"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\comparison.json",
+    "sha256": "0a4ed13c1f402d1a6dfc57cf180ff6ca72f83f67273773baa60e3c83d292e8ca"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\qualification.json",
-    "sha256": "c8350719963fab9d7ff5409ba9a66fa4a02bba4becc1a4f83606c4c6804e5215"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\qualification.json",
+    "sha256": "6178d75521bbd9c7901c9479f032694679ddde74c5d63433561b07fb12ef8ebc"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\matrix-01\\projects\\p108\\input-overrides.json",
-      "sha256": "8b8bbf38c0a4ee00230f0d200fb8a1ea7c98a8a289dad6eff3532152f601d3bf"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\matrix-01\\projects\\p108\\input-overrides.json",
+      "sha256": "ce0071c2176b0820558494264015fede1daa0278cc1961eaa80c2a93f3c9d896"
     }
   },
   "remaining110": [
     {
       "id": "p136",
       "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4690,
+      "mx251Bytes": 4668,
       "keilBytes": 4128,
-      "keilRatio": 1.136143410852713,
-      "gap110Bytes": 150
+      "keilRatio": 1.130813953488372,
+      "gap110Bytes": 128
     },
     {
       "id": "p045",
       "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
-      "mx251Bytes": 986,
+      "mx251Bytes": 974,
       "keilBytes": 832,
-      "keilRatio": 1.1850961538461537,
-      "gap110Bytes": 71
+      "keilRatio": 1.1706730769230769,
+      "gap110Bytes": 59
     },
     {
       "id": "p049",
       "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
-      "mx251Bytes": 1172,
+      "mx251Bytes": 1160,
       "keilBytes": 1002,
-      "keilRatio": 1.1696606786427146,
-      "gap110Bytes": 70
+      "keilRatio": 1.157684630738523,
+      "gap110Bytes": 58
     },
     {
       "id": "p039",
@@ -182,14 +182,6 @@
       "gap110Bytes": 16
     },
     {
-      "id": "p074",
-      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
-      "mx251Bytes": 1015,
-      "keilBytes": 909,
-      "keilRatio": 1.1166116611661165,
-      "gap110Bytes": 16
-    },
-    {
       "id": "p032",
       "name": "14.2-串口1与串口2通信测试程序",
       "mx251Bytes": 785,
@@ -206,7 +198,7 @@
       "gap110Bytes": 7
     }
   ],
-  "gap110Bytes": 427,
+  "gap110Bytes": 365,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -217,7 +209,7 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\indexed-address-generation\\comparison.json",
-    "sha256": "922f4b625d395e9a057f8747f0385081d1527f1a46694d5d1a2486a7e7911372"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\comparison.json",
+    "sha256": "04d7c1ac67fa0bcc7e9a0d44fb64ab73c8408b5911b51ee3cf6efa21d6b1c8e1"
   }
 }
