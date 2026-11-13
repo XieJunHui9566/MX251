@@ -82,11 +82,11 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 32,
-    "unchanged": 43,
+    "improved": 15,
+    "unchanged": 60,
     "larger": 0,
-    "savedBytes": 369,
-    "mxTotalBytes": 191247,
+    "savedBytes": 175,
+    "mxTotalBytes": 191072,
     "keilTotalBytes": 192049,
     "within110": 66,
     "within120": 75,
@@ -96,42 +96,42 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 0.9958239824211529
+    "weightedKeilRatio": 0.9949127566402325
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\core-01\\core.json",
-    "sha256": "6f09aacec6fb3ba11e99a677afffbb34e9a7fc9014038c7501a69594d9b55c21"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\core-03\\core.json",
+    "sha256": "45ea9e3c0ab24d1dbd2445abad4f6ac469f013b7c14cfbc5dfe336947acb5f01"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\core-01\\toolchain\\bin\\sdcc.exe",
-    "sha256": "411d16749b5663c407f1c82c2a4c0926a8b5f711a5b2b96753f9c12b1e56ceee"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "40aec85085c86cbc4d6b6cd9e44c0879412609561c803bc0807229f58707feb2"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\candidate-01.json",
-    "sha256": "983293372902ebb3f109c7656936ded9c7ce7f18f5cb5e3fb6c4ed616182792d"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\candidate-03.json",
+    "sha256": "b966fe6093598ff0732812ea264891a094a44783b45b92516fe3377a4250a3c9"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\comparison.json",
-    "sha256": "0a4ed13c1f402d1a6dfc57cf180ff6ca72f83f67273773baa60e3c83d292e8ca"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\comparison.json",
+    "sha256": "023fea1f9f04c4ca6aee73080051311d4496a6397ff8b27a78b102d0439a668f"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\qualification.json",
-    "sha256": "6178d75521bbd9c7901c9479f032694679ddde74c5d63433561b07fb12ef8ebc"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\qualification.json",
+    "sha256": "2a4b35d8500cb4fd3e63f4e84dd4bdf4ac903cfb520b422e3413f1b3a184753f"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\matrix-01\\projects\\p108\\input-overrides.json",
-      "sha256": "ce0071c2176b0820558494264015fede1daa0278cc1961eaa80c2a93f3c9d896"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\matrix-03\\projects\\p108\\input-overrides.json",
+      "sha256": "0b5566a40b792e303d26620698a36bcff26c017396f59cf0f6509793545c8a50"
     }
   },
   "remaining110": [
     {
       "id": "p136",
       "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4668,
+      "mx251Bytes": 4635,
       "keilBytes": 4128,
-      "keilRatio": 1.130813953488372,
-      "gap110Bytes": 128
+      "keilRatio": 1.1228197674418605,
+      "gap110Bytes": 95
     },
     {
       "id": "p045",
@@ -144,18 +144,18 @@
     {
       "id": "p049",
       "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
-      "mx251Bytes": 1160,
+      "mx251Bytes": 1153,
       "keilBytes": 1002,
-      "keilRatio": 1.157684630738523,
-      "gap110Bytes": 58
+      "keilRatio": 1.1506986027944113,
+      "gap110Bytes": 51
     },
     {
       "id": "p039",
       "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
-      "mx251Bytes": 1257,
+      "mx251Bytes": 1252,
       "keilBytes": 1105,
-      "keilRatio": 1.1375565610859728,
-      "gap110Bytes": 42
+      "keilRatio": 1.1330316742081448,
+      "gap110Bytes": 37
     },
     {
       "id": "p133",
@@ -198,7 +198,7 @@
       "gap110Bytes": 7
     }
   ],
-  "gap110Bytes": 365,
+  "gap110Bytes": 320,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -209,7 +209,7 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\comparison.json",
-    "sha256": "04d7c1ac67fa0bcc7e9a0d44fb64ab73c8408b5911b51ee3cf6efa21d6b1c8e1"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\comparison.json",
+    "sha256": "0a4ed13c1f402d1a6dfc57cf180ff6ca72f83f67273773baa60e3c83d292e8ca"
   }
 }

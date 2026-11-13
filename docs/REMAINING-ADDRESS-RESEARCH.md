@@ -109,3 +109,5 @@ Keil 的相应片段为 46 B，使用直接地址及较短的宽值拼接；它�
 [结构化证据](remaining-address-research-evidence.json)；[当前统一编译器与名单](ACTIVE-SDK-COHORT.md)。本轮没有生成新的编译器版本，以上空间也未加到达线统计中。
 
 第一优先项已实施，后续结果见 [三字节指针与游标](POINTER-CANONICAL-TRANSPORT.md)。上文保留实施前研究数字。
+
+字节拼接也已实施，结果见 [通用字节拼接](BYTE-ASSEMBLY.md)；连续地址复用仍待处理。
