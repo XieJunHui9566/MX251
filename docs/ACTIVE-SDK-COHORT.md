@@ -35,3 +35,7 @@
 配置：`E:/STVAPP/MX251-baseline/sdk-baseline.json`，保留全部 75 项与 p108 显式输入替换。完整产物位于基线目录 `evidence/bundled-final-nine/matrix-07`；后续配置默认写入 `work/next-sdk-matrix`，以基线根目录 `comparison.json` 为对照。历史证据中的原路径按 `archive/locations.json` 查找。
 
 [结构化名单](active-sdk-cohort.json) 与 [本轮证据](bundled-final-nine-evidence.json) 绑定编译器、配置、报告及测试。体积目标已完成，运行时间目标继续保留。
+
+## 官方例程补充覆盖
+
+2026-11-13 已补跑此前未纳入这 75 项的全部 39 个 C 工程，并清点、尝试 35 个纯汇编工程。新增 14 个 MX251 HEX（含 large 模型与公共头文件补齐），11 个 C 工程受 Keil OMF 库阻碍，14 个仍有其它错误。它们没有混入本页 75/75 的同模型体积验收；完整名单、数学九项和三方结果见 [SDK 数学与覆盖补跑](SDK-MATH-COVERAGE.md)。

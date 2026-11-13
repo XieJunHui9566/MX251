@@ -170,7 +170,7 @@ def build_mx(config, project, out):
     assert receipt['compilerSha256'] == read(core/'core.json')['compiler']['sha256']
     stats, _ = image(latest/'firmware.hex')
     return dict(status='BUILT', **stats, receipt=pin(latest/'receipt.json'),
-                coreBuild=pin(out/'.build/cmake-mx251-core/core-build.json'), model='small',
+                coreBuild=pin(out/'.build/cmake-mx251-core/core-build.json'), model=receipt['model'],
                 selectiveLeafAbi=receipt.get('selectiveLeafAbi'))
 
 
@@ -202,7 +202,11 @@ def build_keil(config, project, out):
         if adapter:
             run(out, f'preprocess-{i}', [kit/'BIN/C251.EXE', name] + flags +
                 [f'PREPRINTONLY(unit{i}.i)', f'PRINT(preprocess{i}.lst)'], config, keil=True)
-            changed, found = adapter.translate((out/f'unit{i}.i').read_bytes().decode('latin1'))
+            preprocessed = (out/f'unit{i}.i').read_bytes().decode('latin1')
+            if re.search(r'\binterrupt\b', adapter.mask(preprocessed)):
+                changed, found = adapter.translate(preprocessed)
+            else:
+                changed, found = preprocessed, []
             if found:
                 shutil.copy2(out/name, out/(name+'.original'))
                 (out/name).write_bytes(changed.encode('latin1'))
@@ -223,14 +227,14 @@ def build_keil(config, project, out):
         for e in entries:
             asm += ['EXTRN CODE ('+e['symbol']+')', 'CSEG AT 0%04XH' % (3+8*e['number']), 'LJMP '+e['symbol']]
         (out/'vectors.asm').write_text('\n'.join(asm+['END', '']), encoding='ascii')
-        run(out, 'vectors', [kit/'BIN/A251.EXE', 'vectors.asm', 'MODSRC', 'OBJECT(vectors.obj)'] +
+        run(out, 'vectors', [kit/'BIN/A251.EXE', 'vectors.asm', 'MODSRC', 'CASE', 'OBJECT(vectors.obj)'] +
             (['INTR2'] if intr2 else []), config, keil=True)
         objects.append('vectors.obj')
     linkflags = ['CASE', 'CLASSES(EDATA(0-0x7FF),HDATA(0-0x7FF))']
     misc = opts.findtext('Lx51/MiscControls') or ''
     if misc and not misc.startswith('//'):
         linkflags.append(misc)
-    run(out, 'link', [kit/'BIN/L251.EXE', ','.join(objects), 'TO', 'firmware'] + linkflags, config, keil=True)
+    run(out, 'link', [kit/'BIN/L251.EXE', ','.join(objects + meta.get('libraries', [])), 'TO', 'firmware'] + linkflags, config, keil=True)
     run(out, 'hex', [kit/'BIN/OH251.EXE', 'firmware', 'HEXFILE(firmware.hex)'], config, keil=True)
     stats, memory = image(out/'firmware.hex')
     if entries:
