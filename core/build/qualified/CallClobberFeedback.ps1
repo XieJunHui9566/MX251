@@ -240,7 +240,7 @@ function Get-Mx251ObjectReference([string]$Text,$Objects,[int]$Depth=0) {
   if(-not $outer){break};$t=$t.Substring(1,$t.Length-2).Trim()
  }
  if($Objects.ContainsKey($t)){
-  $o=$Objects[$t];return @{space=$o.space;size=$o.size;offset=0}
+  $o=$Objects[$t].Clone();$o.offset=0;return $o
  }
  $m=[regex]::Match($t,'^(.+?)\s*([+-])\s*(0x[0-9a-fA-F]+|[0-9]+)$')
  if(-not $m.Success){return $null}
@@ -250,7 +250,7 @@ function Get-Mx251ObjectReference([string]$Text,$Objects,[int]$Depth=0) {
  if($m.Groups[2].Value -ceq '-'){$delta=-$delta}
  $o.offset+=$delta;return $o
 }
-function Get-Mx251BankObjects([string]$Root,$Config) {
+function Get-Mx251BankObjects([string]$Root,$Config,$MemoryLayout=$null) {
  $units=New-Mx251OrdinalMap;$owners=New-Mx251OrdinalMap;$exports=New-Mx251OrdinalMap;$bank0=$false
  foreach($u in $Config.units){
   $rel=[IO.File]::ReadAllText((Join-Path $Root ($u.name+'.rel')))
@@ -267,12 +267,16 @@ function Get-Mx251BankObjects([string]$Root,$Config) {
   $area=''
   foreach($line in $asm.Split("`n")){
    if($line -cmatch '^\s*\.area\s+([^\s]+)'){$area=$Matches[1]}
-   if($line -cnotmatch '^; mx251-object schema=1 symbol=([^\s]+) space=(data|bit) size=([0-9]+)\s*$'){continue}
+   if($line -cnotmatch '^; mx251-object schema=1 symbol=([^\s]+) space=(data|bit|xdata) size=([0-9]+)\s*$'){continue}
    $s=$Matches[1];$space=$Matches[2];$size=[int]$Matches[3]
-   if(($space -ceq 'data' -and $area -cne 'DSEG') -or ($space -ceq 'bit' -and $area -cne 'BSEG')){continue}
+   if(($space -ceq 'data' -and $area -cne 'DSEG') -or ($space -ceq 'bit' -and $area -cne 'BSEG') -or ($space -ceq 'xdata' -and $area -cne 'XSEG')){continue}
    if(-not [regex]::IsMatch($asm,'(?m)^'+[regex]::Escape($s)+':{1,2}\s*\r?\n\s*\.ds\s+'+$size+'\s*\r?\n; mx251-object schema=1 symbol='+[regex]::Escape($s)+' ')){continue}
    $exported=[regex]::IsMatch($asm,'(?m)^\s*\.globl\s+'+[regex]::Escape($s)+'\s*$')
    $o=@{space=$space;size=$size;unit=$u.name;exported=$exported}
+   if($space -ceq 'xdata'){
+    if($null -eq $MemoryLayout -or $size -gt $MemoryLayout.xramBytes -or $MemoryLayout.xramBase -lt 256 -or $MemoryLayout.xramBase+$MemoryLayout.xramBytes -gt 16777216){continue}
+    $o.addressLow=[long]$MemoryLayout.xramBase;$o.addressHigh=[long]$MemoryLayout.xramBase+$MemoryLayout.xramBytes-$size
+   }
    $units[$u.name][$s]=$o
    if($exported){if(-not $exports.ContainsKey($s)){$exports[$s]=@()};$exports[$s]+=@($o)}
   }
@@ -291,8 +295,8 @@ function Get-Mx251BankObjects([string]$Root,$Config) {
  }
  return ,$units
 }
-function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
- $unitObjects=Get-Mx251BankObjects $Root $Config
+function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@(),$MemoryLayout=$null) {
+ $unitObjects=Get-Mx251BankObjects $Root $Config $MemoryLayout
  $symbols=New-Mx251OrdinalMap;$all=@()
  foreach($unit in $Config.units) {
   if([IO.Path]::GetExtension($unit.file) -cne '.c'){continue}
@@ -375,7 +379,7 @@ function Get-Mx251BindingKey($Bindings,[string]$Unit,[string]$Symbol) {
  return $null
 }
 
-function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha,[switch]$ScopedLocals,$LibraryFunctions=@(),[switch]$CalleePreservation) {
+function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha,[switch]$ScopedLocals,$LibraryFunctions=@(),[switch]$CalleePreservation,$MemoryLayout=$null) {
  $record=[ordered]@{schema=1;status='NO_ELIGIBLE_CLOSURE';compilerSha256=$CompilerSha;profileLockSha256=$ProfileSha;inputs=$Inputs;bindings=@();recompiledUnits=@();finalValidated=$false;fallback=$false}
  if(@($Config.archives).Count){$record.status='FALLBACK_PROJECT_ARCHIVE_BINDING_UNPROVEN';return $record}
  # 绑定实际对象定义，而非仅凭源函数名；同名或未定义目标不进入反馈。
@@ -390,7 +394,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
  # assembly definitions for which the compiler has no function metadata.
  $LibraryFunctions=@($LibraryFunctions|Where-Object{-not $owners.ContainsKey($_.symbol)})
  foreach($f in $LibraryFunctions){$owners[$f.symbol]=@($f.unit)}
- $scan=Get-Mx251BankFunctions $Root $Config $LibraryFunctions
+ $scan=Get-Mx251BankFunctions $Root $Config $LibraryFunctions $MemoryLayout
  $preservation=@{selected=@();files=(New-Mx251OrdinalMap)}
  if($CalleePreservation) {
   $preservation=Select-Mx251CalleePreservation $Root $scan $owners $Config
@@ -402,7 +406,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
    $args=@(Flags $u.backend $u.stackAuto $u.defines)+@('--mcs251-callee-preserve',$preserveFile,'-c',$u.file,'-o',($u.name+'.rel'))
    Run-Tool ('preserve-'+$u.name) $compilerExe $args;Check-Assembly (Join-Path $Root ($u.name+'.asm'))
   }
-  if($preservation.files.Count){$scan=Get-Mx251BankFunctions $Root $Config $LibraryFunctions}
+  if($preservation.files.Count){$scan=Get-Mx251BankFunctions $Root $Config $LibraryFunctions $MemoryLayout}
  }
  $bindings=@()
  foreach($key in ($scan.symbols.Keys|Sort-Object -CaseSensitive)) {
@@ -468,7 +472,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   if((Hash-File $compilerExe) -cne $CompilerSha -or (Hash-File $lockPath) -cne $ProfileSha -or (Hash-File $path) -cne $record.feedbackSha256){throw 'clobber-feedback-identity-changed'}
   foreach($f in $record.feedbackFiles){if((Hash-File $f.path) -cne $f.sha256){throw 'clobber-unit-feedback-changed'}}
   foreach($entry in $Inputs.GetEnumerator()){if((Hash-File (Join-Path $Root $entry.Key)) -cne $entry.Value.sha256){throw 'clobber-feedback-source-changed'}}
-  $final=Get-Mx251BankFunctions $Root $Config $LibraryFunctions
+  $final=Get-Mx251BankFunctions $Root $Config $LibraryFunctions $MemoryLayout
   $expanded=@()
   foreach($b in $bindings){
    if(-not $final.symbols.ContainsKey($b.symbol)){throw 'clobber-final-definition-missing'}

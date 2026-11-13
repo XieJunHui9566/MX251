@@ -342,7 +342,7 @@ try {
    . (Join-Path $PSScriptRoot 'RuntimeCallEffects.ps1')
    $runtimeCallRecord=Get-Mx251RuntimeCallEffects $ProfileRoot @('runtime/libnativeint.lib')
   }
-  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr -LibraryFunctions $runtimeCallRecord.functions -CalleePreservation:$CalleePreservation
+  $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr -LibraryFunctions $runtimeCallRecord.functions -CalleePreservation:$CalleePreservation -MemoryLayout $layout
   $callClobberRecord.runtimeLibraries=$runtimeCallRecord.libraries
   $callClobberRecord.runtimeContractSha256=$runtimeCallRecord.contractSha256
   Write-Json (Join-Path $outputRoot 'call-clobber-feedback.json') $callClobberRecord

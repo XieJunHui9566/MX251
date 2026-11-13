@@ -1,5 +1,42 @@
 # Byte constants on the instruction CFG. A join keeps only bytes that agree
 # on every incoming path; unknown bytes form an inclusive address interval.
+# A byte fact is an exact 0..255, unknown -1, or 256+(low<<8)+high.
+# Intervals keep carries from dynamic indices without inventing an exact address.
+function Get-Mx251FactLow([int]$Fact) {
+ if($Fact -lt 0){return 0};if($Fact -le 255){return $Fact};return (($Fact-256) -shr 8)
+}
+function Get-Mx251FactHigh([int]$Fact) {
+ if($Fact -lt 0){return 255};if($Fact -le 255){return $Fact};return (($Fact-256) -band 255)
+}
+function Get-Mx251RangeBytes([long]$Low,[long]$High,[int]$Width) {
+ [int[]]$bytes=@(-1)*$Width
+ for($i=0;$i -lt $Width;$i++){
+  $shift=8*($Width-1-$i)
+  if(($Low -shr ($shift+8)) -ne ($High -shr ($shift+8))){continue}
+  $a=($Low -shr $shift) -band 255;$b=($High -shr $shift) -band 255
+  if($a -eq $b){$bytes[$i]=$a}elseif($a -ne 0 -or $b -ne 255){$bytes[$i]=256+($a -shl 8)+$b}
+ }
+ return ,$bytes
+}
+function Get-Mx251FactRange([int[]]$Bytes) {
+ [long]$low=0;[long]$high=0
+ foreach($b in $Bytes){$low=($low -shl 8) -bor (Get-Mx251FactLow $b);$high=($high -shl 8) -bor (Get-Mx251FactHigh $b)}
+ return @($low,$high)
+}
+function Get-Mx251SymbolFactBytes([string]$Text,[int]$Width,$Objects) {
+ if($null -eq $Objects){return $null}
+ $part=0;$expr=$Text.Substring(1)
+ if($expr -cmatch '^\(\(([^()]+)\)>>16\)$'){$part=16;$expr=$Matches[1]}
+ $object=Get-Mx251ObjectReference $expr $Objects
+ if($null -eq $object -or -not $object.ContainsKey('addressLow')){return $null}
+ $low=[long]$object.addressLow+$object.offset;$high=[long]$object.addressHigh+$object.offset
+ if($low -lt 256 -or $high -ge 16777216){return $null}
+ # Encoded immediates select low bytes (or an explicit high-address byte).
+ $low=$low -shr $part;$high=$high -shr $part
+ $mod=[long]1 -shl (8*$Width)
+ if([Math]::Floor($low/[double]$mod) -ne [Math]::Floor($high/[double]$mod)){return ,([int[]](@(-1)*$Width))}
+ return ,(Get-Mx251RangeBytes ($low%$mod) ($high%$mod) $Width)
+}
 function Get-Mx251FactRegister([string]$Text,$Aliases) {
  $r=Get-Mx251BankRegister $Text
  if($r.known -and $r.mask){return @{first=$r.first;width=$r.width}}
@@ -21,9 +58,11 @@ function Get-Mx251FactRegister([string]$Text,$Aliases) {
  }
  return $null
 }
-function Get-Mx251FactBytes([string]$Text,[int]$Width,[int[]]$Facts,$Aliases) {
+function Get-Mx251FactBytes([string]$Text,[int]$Width,[int[]]$Facts,$Aliases,$Objects=$null) {
  [int[]]$bytes=@(-1)*$Width
  if($Text.StartsWith('#')) {
+  $symbol=Get-Mx251SymbolFactBytes $Text $Width $Objects
+  if($null -ne $symbol){return ,$symbol}
   $v=Get-Mx251Numeric $Text.Substring(1)
   if($null -ne $v -and $v -lt ([long]1 -shl (8*$Width))) {
    for($i=0;$i -lt $Width;$i++){$bytes[$i]=($v -shr (8*($Width-1-$i))) -band 255}
@@ -47,7 +86,7 @@ function Test-Mx251FactStore([string]$Text,[int]$Width,[int[]]$Facts) {
  [long]$low=0;[long]$high=0
  for($i=$first;$i -lt $first+$count;$i++) {
   $low=$low -shl 8;$high=$high -shl 8
-  if($Facts[$i] -ge 0){$low=$low -bor $Facts[$i];$high=$high -bor $Facts[$i]}else{$high=$high -bor 255}
+  $low=$low -bor (Get-Mx251FactLow $Facts[$i]);$high=$high -bor (Get-Mx251FactHigh $Facts[$i])
  }
  return $low+$offset -ge 256 -and $high+$offset+$Width -le 16777216
 }
@@ -64,9 +103,9 @@ function Invoke-Mx251FactInstruction($Node,[int[]]$Before,$Aliases,$Objects,[int
  }
  if($op -notin @('mov','movx','movc','movz','movs','anl','orl','xrl','add','addc','sub','subb','pop','inc','dec','djnz','jbc','cpl','clr','setb','sll','srl','sra','rl','rr','rlc','rrc','swap','xch')){return ,([int[]](@(-1)*36))}
  $state=@{low=$null;high=$null;constants=@{};objects=$Objects;addressFacts=$Before;sph=$Sph}
- for($i=0;$i -lt 32;$i++){if($Before[$i] -ge 0){$state.constants[$i]=$Before[$i]}}
- if($Before[34] -ge 0 -and $Before[35] -ge 0){$state.low=($Before[34] -shl 8) -bor $Before[35]}
- if($Before[33] -ge 0){$state.high=$Before[33]}
+ for($i=0;$i -lt 32;$i++){if($Before[$i] -ge 0 -and $Before[$i] -le 255){$state.constants[$i]=$Before[$i]}}
+ if($Before[34] -ge 0 -and $Before[34] -le 255 -and $Before[35] -ge 0 -and $Before[35] -le 255){$state.low=($Before[34] -shl 8) -bor $Before[35]}
+ if($Before[33] -ge 0 -and $Before[33] -le 255){$state.high=$Before[33]}
  $bit=$op -in @('setb','jbc') -or ($op -in @('clr','cpl') -and $args[0].ToLowerInvariant() -notin @('a','acc')) -or ($op -eq 'mov' -and ($args[0].ToLowerInvariant() -eq 'c' -or $args[1].ToLowerInvariant() -eq 'c'))
  $width=1
  if($args.Count -gt 1){$source=Get-Mx251BankRegister $args[1];if($source.known){$width=$source.width}}
@@ -82,23 +121,37 @@ function Invoke-Mx251FactInstruction($Node,[int[]]$Before,$Aliases,$Objects,[int
  if($null -eq $dest){return ,$after}
  $first=$dest.first;$width=$dest.width
  [int[]]$value=@(-1)*$width
- if($op -eq 'mov'){$value=Get-Mx251FactBytes $args[1] $width $Before $Aliases}
+ if($op -eq 'mov'){$value=Get-Mx251FactBytes $args[1] $width $Before $Aliases $Objects}
  elseif($op -in @('movz','movs')) {
   $src=Get-Mx251FactRegister $args[1] $Aliases
   if($null -ne $src -and $src.width -lt $width) {
-   $extension=if($op -eq 'movz'){0}elseif($Before[$src.first] -ge 0){if($Before[$src.first] -band 128){255}else{0}}else{-1}
+   $extension=if($op -eq 'movz'){0}elseif($Before[$src.first] -ge 0 -and $Before[$src.first] -le 255){if($Before[$src.first] -band 128){255}else{0}}else{-1}
    for($i=0;$i -lt $width-$src.width;$i++){$value[$i]=$extension}
    for($i=0;$i -lt $src.width;$i++){$value[$width-$src.width+$i]=$Before[$src.first+$i]}
   }
  } elseif($op -eq 'clr' -or ($op -in @('sub','xrl') -and $args[0] -ceq $args[1])){$value=[int[]](@(0)*$width)}
  elseif($op -in @('anl','orl','xrl')) {
-  $rhs=Get-Mx251FactBytes $args[1] $width $Before $Aliases
+  $rhs=Get-Mx251FactBytes $args[1] $width $Before $Aliases $Objects
   for($i=0;$i -lt $width;$i++) {
    $x=$Before[$first+$i];$y=$rhs[$i]
    if($op -eq 'anl' -and ($x -eq 0 -or $y -eq 0)){$value[$i]=0}
    elseif($op -eq 'orl' -and ($x -eq 255 -or $y -eq 255)){$value[$i]=255}
-   elseif($x -ge 0 -and $y -ge 0){$value[$i]=switch($op){'anl'{$x -band $y};'orl'{$x -bor $y};'xrl'{$x -bxor $y}}}
+   elseif($op -eq 'anl' -and $y -eq 255){$value[$i]=$x}
+   elseif($op -eq 'anl' -and $x -eq 255){$value[$i]=$y}
+   elseif($op -eq 'orl' -and $y -eq 0){$value[$i]=$x}
+   elseif($op -eq 'orl' -and $x -eq 0){$value[$i]=$y}
+   elseif($x -ge 0 -and $x -le 255 -and $y -ge 0 -and $y -le 255){$value[$i]=switch($op){'anl'{$x -band $y};'orl'{$x -bor $y};'xrl'{$x -bxor $y}}}
   }
+ }
+ if($op -in @('add','sub','inc','dec')) {
+  [int[]]$lhs=$Before[$first..($first+$width-1)]
+  [int[]]$rhs=if($args.Count -eq 2){Get-Mx251FactBytes $args[1] $width $Before $Aliases $Objects}else{Get-Mx251RangeBytes 1 1 $width}
+  $a=Get-Mx251FactRange $lhs;$b=Get-Mx251FactRange $rhs
+  if($op -in @('add','inc')){$low=$a[0]+$b[0];$high=$a[1]+$b[1]}else{$low=$a[0]-$b[1];$high=$a[1]-$b[0]}
+  $mod=[long]1 -shl (8*$width)
+  # Preserve modulo arithmetic only when the whole interval has one wrap count.
+  $wrap=[long][Math]::Floor($low/[double]$mod)
+  if($wrap -eq [long][Math]::Floor($high/[double]$mod)){$value=Get-Mx251RangeBytes ($low-$wrap*$mod) ($high-$wrap*$mod) $width}
  }
  for($i=0;$i -lt $width;$i++){$after[$first+$i]=$value[$i]}
  if($op -eq 'xch') {
