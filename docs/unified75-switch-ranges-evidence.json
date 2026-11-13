@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "f291259dc807c4a5bb358cd503e1a89e576c618f",
+  "integrationCommit": "79ea41cb20e078709111c88637528cd39480f8f7",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\core-switch-02\\core.json",
+    "sha256": "a916bf938ce00205e4af67fc0df336ea4ac17504bdbe36d22667f75c4d60ea51"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\core-switch-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "f921390c926963eb48933ed67f632c0e62d37b48150ea25a796eb3c38475cf3d"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\Build-Optimized.ps1",
+    "sha256": "848ef7318f0c34835062b9a25028d426ec6bd81401c3b21fc2d9f1ad8df265a7"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\switch-final.json",
+    "sha256": "97175f2ebadacd76fb4007d21a97964ea79dcb23f17946fa868963f2ec22c205"
+  },
+  "consolidation": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-current.json",
+    "sha256": "4dca1404bca0abc37df8de64e0a159d01c268d09ecb86c9ffb47eff099faf9c5"
+  },
+  "finalComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-final.json",
+    "sha256": "4e6f72f83211178fe9b12f76f714be621a739e66bf6dab0afe4497a5f59e82c1"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 2,
+    "unchanged": 73,
+    "larger": 0,
+    "savedBytes": 94,
+    "mxTotalBytes": 192384,
+    "keilTotalBytes": 192049,
+    "within110": 63,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.001744346494905
+  },
+  "remaining110": [
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mx251Bytes": 4747,
+      "keilBytes": 4128,
+      "keilRatio": 1.149951550387597,
+      "gap110Bytes": 207
+    },
+    {
+      "id": "p122",
+      "name": "72.1-UART-SPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "mx251Bytes": 4785,
+      "keilBytes": 4283,
+      "keilRatio": 1.1172075647910342,
+      "gap110Bytes": 74
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mx251Bytes": 986,
+      "keilBytes": 832,
+      "keilRatio": 1.1850961538461537,
+      "gap110Bytes": 71
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mx251Bytes": 1172,
+      "keilBytes": 1002,
+      "keilRatio": 1.1696606786427146,
+      "gap110Bytes": 70
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "mx251Bytes": 1279,
+      "keilBytes": 1105,
+      "keilRatio": 1.1574660633484164,
+      "gap110Bytes": 64
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mx251Bytes": 1039,
+      "keilBytes": 909,
+      "keilRatio": 1.143014301430143,
+      "gap110Bytes": 40
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mx251Bytes": 471,
+      "keilBytes": 404,
+      "keilRatio": 1.1658415841584158,
+      "gap110Bytes": 27
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mx251Bytes": 485,
+      "keilBytes": 423,
+      "keilRatio": 1.1465721040189125,
+      "gap110Bytes": 20
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mx251Bytes": 192,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mx251Bytes": 785,
+      "keilBytes": 704,
+      "keilRatio": 1.1150568181818181,
+      "gap110Bytes": 11
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "mx251Bytes": 306,
+      "keilBytes": 272,
+      "keilRatio": 1.125,
+      "gap110Bytes": 7
+    },
+    {
+      "id": "p146",
+      "name": "A01-如发现P32按键接地用户程序就软复位到系统区不停电下载",
+      "mx251Bytes": 307,
+      "keilBytes": 277,
+      "keilRatio": 1.108303249097473,
+      "gap110Bytes": 3
+    }
+  ],
+  "gap110Bytes": 610,
+  "inputVariants": {
+    "p108": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\matrix-switch-final\\projects\\p108\\input-overrides.json",
+      "sha256": "663ecb1810e1717a5cc3ba3552a34ce9a1d7dd4143a883ea17ec5afe83b9540f"
+    }
+  },
+  "tests": [
+    {
+      "kind": "switch-ranges",
+      "configurations": 16,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\check-ranges-final-04\\result.json",
+        "sha256": "20c71b2271e46e643b443fb21f9cda2080c56cb5d8ef68ba8b1be6d9671806f1"
+      }
+    },
+    {
+      "kind": "existing-wide-switch",
+      "configurations": 4,
+      "record": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\check-wide-switch-final\\results.json",
+        "sha256": "e0a2ae2f763fe715db3db9374ea62ff844ba5b2f538511ee154149d165c69a25"
+      }
+    }
+  ],
+  "hardwareTiming": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\runtime-comparison.json",
+    "sha256": "a70accfbf60b05297a086ad45f94ca8061731d6a5b0959e87253832f9c849f5c"
+  },
+  "sourceManifest": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\switch-fixture\\source.json",
+    "sha256": "3dc764ff02ce394c4751c6758fcd25aad4d353bbe0a51bbdaaacbde46ab529d2"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "defaultChanged": false,
+  "installed": false,
+  "boardLeftWith": "MX251 switch ranges and p095 function timing fixture",
+  "sourceChanges": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_emit.c.inc",
+      "sha256": "22d357cbfdec9dd7958bb935c8dc70e30d3a03a957b3c6085c361411f5445b3d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_switch_ranges.c.inc",
+      "sha256": "6f8612276c1fa192e93845567c5da6df177a7ab5b3e6ea522bef375e5a73a935"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-switch-ranges.py",
+      "sha256": "6cf63d71d095c0a881ec9e588ab92e2c62607126a433b919d9cd97248edd6edb"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\switch_ranges_fixture.py",
+      "sha256": "142db1170033005475c4e097eb63484f619e79136f8d381896df8b490f9104a4"
+    }
+  ]
+}

@@ -1,46 +1,8 @@
 {
-  "status": "ACTIVE_COHORT_SCOPE_ONLY",
+  "schema": 2,
   "date": "2026-11-13",
-  "excludedIds": [
-    "p108"
-  ],
-  "reason": "User explicitly requested temporary exclusion of p108; absolute assembly entry contract is deferred.",
-  "historical75": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\comparison.json",
-    "sha256": "25ed42bf4c980d837c1522dfa26287f3d8b57f15e4c4fb00273dedfe226268ea"
-  },
-  "activeComparison": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\optimization-research\\active74\\comparison.json",
-    "sha256": "4b9840f46178fce4ca563ac7547406a596809def4745d4e730413e6104504aca"
-  },
-  "nextBuildConfig": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\optimization-research\\active74\\core-02.json",
-    "sha256": "2b51b47623c374514280bfe629728355503ca1e4be51a7a516525f935d2162eb"
-  },
-  "compiler": {
-    "path": "toolchain/bin/sdcc.exe",
-    "sha256": "cddad2e1e1c46f115aeb774b0be34376f61c1a356df8228b0791c6c7799b8049",
-    "versionBanner": "Underlying driver reports SDCC 4.6.0 #0; MX251 build identity is this manifest."
-  },
-  "summary": {
-    "projects": 74,
-    "improved": 0,
-    "unchanged": 74,
-    "larger": 0,
-    "savedBytes": 0,
-    "mxTotalBytes": 191347,
-    "keilTotalBytes": 190617,
-    "within110": 61,
-    "within120": 72,
-    "stcStatuses": {
-      "BUILT": 59,
-      "UNSUPPORTED_ASSEMBLY_INPUT": 12,
-      "FAILED": 3
-    },
-    "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 1.003829668917253
-  },
-  "activeIds": [
+  "projectCount": 75,
+  "ids": [
     "p001",
     "p003",
     "p005",
@@ -93,6 +55,7 @@
     "p103",
     "p104",
     "p107",
+    "p108",
     "p109",
     "p110",
     "p111",
@@ -116,131 +79,157 @@
     "p146",
     "p149"
   ],
-  "remainingAbove110": [
-    {
-      "id": "p015",
-      "mx251Bytes": 306,
-      "keilBytes": 272,
-      "bytesTo110": 7
+  "excludedIds": [],
+  "summary": {
+    "projects": 75,
+    "improved": 2,
+    "unchanged": 73,
+    "larger": 0,
+    "savedBytes": 94,
+    "mxTotalBytes": 192384,
+    "keilTotalBytes": 192049,
+    "within110": 63,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
     },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.001744346494905
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\core-switch-02\\core.json",
+    "sha256": "a916bf938ce00205e4af67fc0df336ea4ac17504bdbe36d22667f75c4d60ea51"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\core-switch-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "f921390c926963eb48933ed67f632c0e62d37b48150ea25a796eb3c38475cf3d"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\switch-final.json",
+    "sha256": "97175f2ebadacd76fb4007d21a97964ea79dcb23f17946fa868963f2ec22c205"
+  },
+  "report": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-final.json",
+    "sha256": "4e6f72f83211178fe9b12f76f714be621a739e66bf6dab0afe4497a5f59e82c1"
+  },
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\qualification.json",
+    "sha256": "bb50233cb59d52d992e6445700a54d3b3dae5aeb9f39a0aafe039d4dfb92117b"
+  },
+  "inputVariants": {
+    "p108": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\matrix-switch-final\\projects\\p108\\input-overrides.json",
+      "sha256": "663ecb1810e1717a5cc3ba3552a34ce9a1d7dd4143a883ea17ec5afe83b9540f"
+    }
+  },
+  "remaining110": [
     {
-      "id": "p032",
-      "mx251Bytes": 787,
-      "keilBytes": 704,
-      "bytesTo110": 13
-    },
-    {
-      "id": "p039",
-      "mx251Bytes": 1279,
-      "keilBytes": 1105,
-      "bytesTo110": 64
-    },
-    {
-      "id": "p045",
-      "mx251Bytes": 1034,
-      "keilBytes": 832,
-      "bytesTo110": 119
-    },
-    {
-      "id": "p047",
-      "mx251Bytes": 194,
-      "keilBytes": 160,
-      "bytesTo110": 18
-    },
-    {
-      "id": "p049",
-      "mx251Bytes": 1174,
-      "keilBytes": 1002,
-      "bytesTo110": 72
-    },
-    {
-      "id": "p074",
-      "mx251Bytes": 1039,
-      "keilBytes": 909,
-      "bytesTo110": 40
-    },
-    {
-      "id": "p095",
-      "mx251Bytes": 5380,
-      "keilBytes": 4830,
-      "bytesTo110": 67
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mx251Bytes": 4747,
+      "keilBytes": 4128,
+      "keilRatio": 1.149951550387597,
+      "gap110Bytes": 207
     },
     {
       "id": "p122",
+      "name": "72.1-UART-SPI-TFT_DMA_P2P外设到外设_显示图片程序",
       "mx251Bytes": 4785,
       "keilBytes": 4283,
-      "bytesTo110": 74
+      "keilRatio": 1.1172075647910342,
+      "gap110Bytes": 74
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mx251Bytes": 986,
+      "keilBytes": 832,
+      "keilRatio": 1.1850961538461537,
+      "gap110Bytes": 71
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mx251Bytes": 1172,
+      "keilBytes": 1002,
+      "keilRatio": 1.1696606786427146,
+      "gap110Bytes": 70
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "mx251Bytes": 1279,
+      "keilBytes": 1105,
+      "keilRatio": 1.1574660633484164,
+      "gap110Bytes": 64
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mx251Bytes": 1039,
+      "keilBytes": 909,
+      "keilRatio": 1.143014301430143,
+      "gap110Bytes": 40
     },
     {
       "id": "p133",
-      "mx251Bytes": 473,
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mx251Bytes": 471,
       "keilBytes": 404,
-      "bytesTo110": 29
-    },
-    {
-      "id": "p136",
-      "mx251Bytes": 4753,
-      "keilBytes": 4128,
-      "bytesTo110": 213
-    },
-    {
-      "id": "p146",
-      "mx251Bytes": 307,
-      "keilBytes": 277,
-      "bytesTo110": 3
+      "keilRatio": 1.1658415841584158,
+      "gap110Bytes": 27
     },
     {
       "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
       "mx251Bytes": 485,
       "keilBytes": 423,
-      "bytesTo110": 20
-    }
-  ],
-  "bytesTo110": 739,
-  "excludedHistoricalResults": [
+      "keilRatio": 1.1465721040189125,
+      "gap110Bytes": 20
+    },
     {
-      "id": "p108",
-      "name": "64-DMA-UART串口与存储器数据自动收发/串口1使用DMA中断模式与电脑收发测试-超时中断",
-      "keilBytes": 1434,
-      "stcBytes": null,
-      "stcStatus": "UNSUPPORTED_ASSEMBLY_INPUT",
-      "semanticNotes": [],
-      "originalSourceIssue": {
-        "status": "ORIGINAL_VENDOR_RAW_VECTOR_TARGET_NOT_AN_ISR",
-        "evidence": {
-          "path": "E:\\STVAPP\\MCU-StdioX\\.artifacts\\ai8051u-sdcc251-20261023\\compiler-optimization\\mx251-printf-runtime-20261101\\generic-rollout\\p108-vector-gap-v1\\reference-review.json",
-          "sha256": "df2a98b46d59746c47b307dfaa23a0ed5a2a1c704edba7b4e1a2068172b7d272"
-        },
-        "scope": "The Keil original also targets the interior of main. Fixed source and reference kept unchanged; no correctness pass or closure exception."
-      },
-      "parentBytes": 7752,
-      "mx251Bytes": 7752,
-      "savedBytes": 0,
-      "sourceInputsIdentical": true,
-      "evidence": {
-        "parent": {
-          "path": "E:\\STVAPP\\MX251-mainline-20261113\\tail-call-groups\\matrix-core-04\\projects\\p108\\mx251\\result.json",
-          "sha256": "88fefd2e6a07108613931fd2c3c5a310ab9a6d519aee8e6fa32aa612e1183bd2"
-        },
-        "candidate": {
-          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p108\\mx251\\result.json",
-          "sha256": "3f717a6e32c51957506b9ccf04298dcbba11b96a62055f4923f4c660b359ed39"
-        },
-        "keil": {
-          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p108\\keil\\result.json",
-          "sha256": "4a8c66450baa20e801e65678e16ce3ded7d142e5274a31bc2730507db0a57775"
-        },
-        "stc": {
-          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p108\\stc\\result.json",
-          "sha256": "272c9f5ed1639947d3a0b35485f3988ca92dbdecf336923fdcdb60233ba2c143"
-        }
-      },
-      "keilRatio": 5.405857740585774,
-      "within110": false,
-      "within120": false
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mx251Bytes": 192,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mx251Bytes": 785,
+      "keilBytes": 704,
+      "keilRatio": 1.1150568181818181,
+      "gap110Bytes": 11
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "mx251Bytes": 306,
+      "keilBytes": 272,
+      "keilRatio": 1.125,
+      "gap110Bytes": 7
+    },
+    {
+      "id": "p146",
+      "name": "A01-如发现P32按键接地用户程序就软复位到系统区不停电下载",
+      "mx251Bytes": 307,
+      "keilBytes": 277,
+      "keilRatio": 1.108303249097473,
+      "gap110Bytes": 3
     }
   ],
-  "compilerChanged": false,
-  "newBuildsRun": false,
-  "fullProjectRuntimeMeasured": false
+  "gap110Bytes": 610,
+  "fullProjectRuntimeMeasured": false,
+  "historicalScope": {
+    "projectCount": 74,
+    "excludedIds": [
+      "p108"
+    ],
+    "gitRevision": "e74e33f",
+    "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
+  }
 }
