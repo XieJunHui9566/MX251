@@ -1,0 +1,211 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "f5e41f5133ea33a0411dcdda9f42ff5f1e5d93c1",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03\\core.json",
+    "sha256": "63f962b7c2e352dbd553f244c04f00593cecd99b0da5dc3b29db7ba162aa3198"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "e7535e05441c305d51d59e4ae9576a3603ff10fcede3d5f60e4a1383686b5910"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\Build-Optimized.ps1",
+    "sha256": "f01a0ab93e5c24de538d367e903fe7078fea3d7e6fe6500bf06d779f12a53f78"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\candidate-03.json",
+    "sha256": "f2274065dc5e9e7957ca921751f453d77af9af02fd7dfc9ca27e151117a41c21"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-final.json",
+    "sha256": "4e6f72f83211178fe9b12f76f714be621a739e66bf6dab0afe4497a5f59e82c1"
+  },
+  "finalComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\comparison.json",
+    "sha256": "729ba5c0a219edb6855f142c1dee88f21c7216c5da146302f9d64729c6bd88f4"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 22,
+    "unchanged": 53,
+    "larger": 0,
+    "savedBytes": 320,
+    "mxTotalBytes": 192064,
+    "keilTotalBytes": 192049,
+    "within110": 64,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.000078105066936
+  },
+  "remaining110": [
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mx251Bytes": 4741,
+      "keilBytes": 4128,
+      "keilRatio": 1.1484980620155039,
+      "gap110Bytes": 201
+    },
+    {
+      "id": "p122",
+      "name": "72.1-UART-SPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "mx251Bytes": 4785,
+      "keilBytes": 4283,
+      "keilRatio": 1.1172075647910342,
+      "gap110Bytes": 74
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mx251Bytes": 986,
+      "keilBytes": 832,
+      "keilRatio": 1.1850961538461537,
+      "gap110Bytes": 71
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mx251Bytes": 1172,
+      "keilBytes": 1002,
+      "keilRatio": 1.1696606786427146,
+      "gap110Bytes": 70
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "mx251Bytes": 1279,
+      "keilBytes": 1105,
+      "keilRatio": 1.1574660633484164,
+      "gap110Bytes": 64
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mx251Bytes": 468,
+      "keilBytes": 404,
+      "keilRatio": 1.1584158415841583,
+      "gap110Bytes": 24
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mx251Bytes": 485,
+      "keilBytes": 423,
+      "keilRatio": 1.1465721040189125,
+      "gap110Bytes": 20
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mx251Bytes": 192,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mx251Bytes": 1015,
+      "keilBytes": 909,
+      "keilRatio": 1.1166116611661165,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mx251Bytes": 785,
+      "keilBytes": 704,
+      "keilRatio": 1.1150568181818181,
+      "gap110Bytes": 11
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "mx251Bytes": 306,
+      "keilBytes": 272,
+      "keilRatio": 1.125,
+      "gap110Bytes": 7
+    }
+  ],
+  "gap110Bytes": 574,
+  "fullProjectRuntimeMeasured": false,
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\check-compiler-final\\result.json",
+      "sha256": "8af9826e9b0c49cfdf3ebc757944181ae76db0c69805a0b4bad849085491bc07"
+    },
+    "instructionsAndClosure": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\check-feedback-01\\result.json",
+      "sha256": "22b9d02f4cd5ce2d14fc3e7932a79340ae2b223c0aa6b6d8d875782f1ba54000"
+    },
+    "feedbackRepair": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\check-repair\\result.json",
+      "sha256": "0d3695dc3eaa4131b33ca56ace2cdbfe9d05a30fd63093de4e3b7aac1e06c909"
+    },
+    "cfgAddresses": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\check-cfg\\result.json",
+      "sha256": "2873356bc39b700cd32775ca64beb2760eb6f011cc52f01c85ad99df7607d3fc"
+    },
+    "runtimeEffects": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\check-runtime\\result.json",
+      "sha256": "8738c9c2a98db8dbfefcde178e5858fac560dae6a067dfca4220e5c5b960e32f"
+    },
+    "actualDpxUses": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\dpx-use-audit.json",
+      "sha256": "468b79e64816b0e085a254a41766ce926c60bf5d3feee6a27393adbc2c71b9da"
+    }
+  },
+  "hardware": [
+    {
+      "variant": "full",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\hardware-full\\result.json",
+        "sha256": "dc9cb8dd522ead7c309735ce89a8e77081678b24c54764c94ede3cb2570f348b"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\fixture-full\\source.json",
+        "sha256": "0bfd02dc148743f5c9720ecc77f8c928604a176c3232f48557be4779d436d79a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\fixture-full\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "0a565ba0b4195051fb7350d9751b75816093a39de0c9f323e8f46e9c56a842e5"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\fixture-full\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "89c93a02bd9dc1f1429b3b23694c40e3ec8ef0c53db29ad8f3d2bcda2ed740ac"
+      },
+      "cases": 128,
+      "frames": 256,
+      "performanceTiming": false
+    },
+    {
+      "variant": "split",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\hardware-split\\result.json",
+        "sha256": "392bcb5f6b8a0d758151da7d40f0756ddaf91624cd92f484a73f63c4845dba37"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\fixture-split\\source.json",
+        "sha256": "39a9ab38d1de1be4a3ec7780a00288ddf9ca52a6fe38ba180e79d1e9f22b84e4"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\fixture-split\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "611acb9f13f88232f2b6d27cca78597f08524ffd2085bfa4e47a5407b4801fc7"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\fixture-split\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "143e2ff8c91d37d184a030e7a848687472a04562f55f0f5b34d800ce3033a5d0"
+      },
+      "cases": 128,
+      "frames": 223,
+      "performanceTiming": false
+    }
+  ]
+}

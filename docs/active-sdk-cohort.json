@@ -82,13 +82,13 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 2,
-    "unchanged": 73,
+    "improved": 22,
+    "unchanged": 53,
     "larger": 0,
-    "savedBytes": 94,
-    "mxTotalBytes": 192384,
+    "savedBytes": 320,
+    "mxTotalBytes": 192064,
     "keilTotalBytes": 192049,
-    "within110": 63,
+    "within110": 64,
     "within120": 75,
     "stcStatuses": {
       "BUILT": 59,
@@ -96,42 +96,42 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 1.001744346494905
+    "weightedKeilRatio": 1.000078105066936
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\core-switch-02\\core.json",
-    "sha256": "a916bf938ce00205e4af67fc0df336ea4ac17504bdbe36d22667f75c4d60ea51"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03\\core.json",
+    "sha256": "63f962b7c2e352dbd553f244c04f00593cecd99b0da5dc3b29db7ba162aa3198"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\core-switch-02\\toolchain\\bin\\sdcc.exe",
-    "sha256": "f921390c926963eb48933ed67f632c0e62d37b48150ea25a796eb3c38475cf3d"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "e7535e05441c305d51d59e4ae9576a3603ff10fcede3d5f60e4a1383686b5910"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\switch-final.json",
-    "sha256": "97175f2ebadacd76fb4007d21a97964ea79dcb23f17946fa868963f2ec22c205"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\candidate-03.json",
+    "sha256": "f2274065dc5e9e7957ca921751f453d77af9af02fd7dfc9ca27e151117a41c21"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-final.json",
-    "sha256": "4e6f72f83211178fe9b12f76f714be621a739e66bf6dab0afe4497a5f59e82c1"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\comparison.json",
+    "sha256": "729ba5c0a219edb6855f142c1dee88f21c7216c5da146302f9d64729c6bd88f4"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\qualification.json",
-    "sha256": "bb50233cb59d52d992e6445700a54d3b3dae5aeb9f39a0aafe039d4dfb92117b"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\qualification.json",
+    "sha256": "baa23dae7c7bdb85390e8d1a62052c74dd35f417441c7b57e27841b22e40984c"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\matrix-switch-final\\projects\\p108\\input-overrides.json",
-      "sha256": "663ecb1810e1717a5cc3ba3552a34ce9a1d7dd4143a883ea17ec5afe83b9540f"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\matrix-03\\projects\\p108\\input-overrides.json",
+      "sha256": "7ea5a4cb4b14be8f5368df394c1d6f53b692090bc939db25d8aa91e1c9def922"
     }
   },
   "remaining110": [
     {
       "id": "p136",
       "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4747,
+      "mx251Bytes": 4741,
       "keilBytes": 4128,
-      "keilRatio": 1.149951550387597,
-      "gap110Bytes": 207
+      "keilRatio": 1.1484980620155039,
+      "gap110Bytes": 201
     },
     {
       "id": "p122",
@@ -166,20 +166,12 @@
       "gap110Bytes": 64
     },
     {
-      "id": "p074",
-      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
-      "mx251Bytes": 1039,
-      "keilBytes": 909,
-      "keilRatio": 1.143014301430143,
-      "gap110Bytes": 40
-    },
-    {
       "id": "p133",
       "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
-      "mx251Bytes": 471,
+      "mx251Bytes": 468,
       "keilBytes": 404,
-      "keilRatio": 1.1658415841584158,
-      "gap110Bytes": 27
+      "keilRatio": 1.1584158415841583,
+      "gap110Bytes": 24
     },
     {
       "id": "p149",
@@ -198,6 +190,14 @@
       "gap110Bytes": 16
     },
     {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mx251Bytes": 1015,
+      "keilBytes": 909,
+      "keilRatio": 1.1166116611661165,
+      "gap110Bytes": 16
+    },
+    {
       "id": "p032",
       "name": "14.2-串口1与串口2通信测试程序",
       "mx251Bytes": 785,
@@ -212,17 +212,9 @@
       "keilBytes": 272,
       "keilRatio": 1.125,
       "gap110Bytes": 7
-    },
-    {
-      "id": "p146",
-      "name": "A01-如发现P32按键接地用户程序就软复位到系统区不停电下载",
-      "mx251Bytes": 307,
-      "keilBytes": 277,
-      "keilRatio": 1.108303249097473,
-      "gap110Bytes": 3
     }
   ],
-  "gap110Bytes": 610,
+  "gap110Bytes": 574,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -231,5 +223,9 @@
     ],
     "gitRevision": "e74e33f",
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
+  },
+  "previousUniformReport": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\unified75-closure\\comparison-final.json",
+    "sha256": "4e6f72f83211178fe9b12f76f714be621a739e66bf6dab0afe4497a5f59e82c1"
   }
 }
