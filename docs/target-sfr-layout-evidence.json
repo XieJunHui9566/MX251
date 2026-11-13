@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "9b2f8876a6785daa66f14dea703ccd5bbddd2a41",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "31f9ee10b54e41e03f7d35a439dad5d9304c8b4317bbc7a5b3ace24c7ef73b5d"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\core-01\\core.json",
+    "sha256": "45f5172f8c2d3b829b2f81af424982c7b0ae8cd3f69cb3eceec8545ecbc3f6c3"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\Build-Optimized.ps1",
+    "sha256": "f277dcbb4aff78e195be4a4496e282a0b859c801715250eefaba15293dc52edb"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\candidate-final.json",
+    "sha256": "89b04fc071d3f347a129cda76ea2e2573fd8f5f0cdef8d3d2f8c227088116ccd"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\comparison-targeted.json",
+    "sha256": "cafaf3f8f17f3d61502c433e20eb6b05cea0ace4ea33a6d5f716351f12074d20"
+  },
+  "vendorEvidence": {
+    "source": "Frozen official AI8051U experiment-box header",
+    "header": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\matrix-final\\projects\\p136\\native\\AI8051U.h",
+      "sha256": "a781e698228834e325cd6f4ce43677f8e3e7fbedf1b71dfdc26794ceb40baae3"
+    },
+    "sph": 133,
+    "adcResl": 190,
+    "productPage": "https://stcai.com/cp_ai8051uxl"
+  },
+  "checks": {
+    "compiler": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\tests-compiler\\result.json",
+      "sha256": "8fda8d526fbf8e05a0f08cdc7f980c40e8852dee022bd5b14eb2a716accd9664"
+    },
+    "feedback": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\tests-feedback-02\\result.json",
+      "sha256": "ef94c7bf79f210ff43b6178f58dc3b2d1050fbce3a8752d25527fc8bd213185c"
+    },
+    "cfg": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\tests-cfg\\result.json",
+      "sha256": "77bfe5e47c562c96647fe74afd717ca4cb63f66713e69c3e7e1581ee8939c40e"
+    },
+    "dpx": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\tests-dpx\\result.json",
+      "sha256": "27892c856ad1ef687901d60e70ed1ce6c5a166de8142df5884bb28b543f2c47c"
+    },
+    "machineIr": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\tests-machine-ir\\result.json",
+      "sha256": "da8c4a1acc78da61e295c14f73285f6eae0c7e29ecf7f9feacc0dd03f65afd60"
+    }
+  },
+  "hardware": {
+    "status": "PASS",
+    "cases": 128,
+    "frames": 252,
+    "result": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\hardware-sfr\\result.json",
+      "sha256": "32435d32447ca37bf82778c559b59c83989880f76cae40316d884e3eb1043cd2"
+    },
+    "source": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\fixture-sfr\\source.json",
+      "sha256": "a631fe981210658238524745ea74a1606a8e8be52452990df5ef699f901abcc9"
+    },
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\fixture-sfr\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "39afbb350ec07d8923e09684c337be9c9c5376862f631fd024730f71a8658a7e"
+    },
+    "isrSaveRecords": [
+      "; mx251-leaf-isr-saves schema=2 symbol=_context_irq removed-bytes=36 stack-saved=27 core-reads=ffffffff core-writes=00f000f0 special-reads=0 special-writes=0 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects",
+      "; mx251-leaf-isr-saves schema=2 symbol=_context_leaf_irq removed-bytes=39 stack-saved=21 core-reads=00000000 core-writes=00000000 special-reads=0 special-writes=0 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+    ],
+    "fullProjectRuntimeMeasured": false
+  },
+  "nextResearch": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\target-sfr-layout\\next-address-candidates.json",
+    "sha256": "8a46d986e0bae5f23ad60efd9c220cb831b76f198890981b07fa35c31519d66f"
+  },
+  "baselineUnchanged": {
+    "projects": 75,
+    "within120": 75,
+    "within110": 64,
+    "core": "E:\\STVAPP\\MX251-mainline-20261113\\isr-dpx-effects\\core-03"
+  }
+}

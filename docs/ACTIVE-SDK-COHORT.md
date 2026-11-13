@@ -39,3 +39,7 @@ Keil/STC-IDE 复用同源参考。STC-IDE 为 59 项 HEX、13 项不支持汇编
 配置：同目录 `candidate-03.json`，保留全部 75 项与 p108 显式输入替换。后续使用新输出目录；对比以 `comparison.json` 为 baseline。完整产物为 `matrix-03`。
 
 [结构化名单](active-sdk-cohort.json) 与 [本轮证据](isr-dpx-effects-evidence.json) 绑定编译器、配置、报告及验证记录。
+
+## 最近研究进展
+
+目标 SFR 布局已修正，11 项定向复编均未改变体积，统一基线保持上述版本。128/128 组真板上下文检查通过；下一处共性问题为符号数组地址与动态偏移的调用效果分析，见 [研究记录](TARGET-SFR-LAYOUT.md)。
