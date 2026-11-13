@@ -3790,19 +3790,29 @@ mcs251IndirectVoid0(const iCode *ic)
 
 #include "scalar_metadata.c.inc"
 
+static bool mcs251GcOpen;
+
 static void
 mcs251GcBegin (ebbIndex *ebbi)
 {
+  mcs251GcOpen = false;
   if (!mcs251FunctionMetadataEnabled || !currFunc) return;
   bool opaque = IFFUNC_ISNAKED (currFunc->type), void0 = true;
-  unsigned indirect=0;
+  unsigned indirect=0, entries=0, ends=0;
   for (int b = 0; b < ebbi->count; ++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for (iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next) {
+      if(ic->op==FUNCTION || ic->op==ENDFUNCTION) {
+        if(!IS_SYMOP(IC_LEFT(ic)) || OP_SYMBOL(IC_LEFT(ic))!=currFunc)return;
+        if(ic->op==FUNCTION)++entries;else ++ends;
+      }
       if(ic->op==PCALL){++indirect;if(!mcs251IndirectVoid0(ic))void0=false;}
       if(ic->op==INLINEASM && !mcs251GcTransparentAsm(IC_INLINE(ic)))opaque=true;
     }
   }
+  /* Local static initializers retain currFunc but are GSINIT fragments. */
+  if(entries!=1 || ends!=1)return;
+  mcs251GcOpen = true;
   dbuf_printf(codeOutBuf,"; mx251-function begin schema=1 symbol=%s isr=%u addressTaken=%u opaque=%u indirect=%u\n",
     currFunc->rname,!!IFFUNC_ISISR(currFunc->type),!!currFunc->addrtaken,opaque,!!indirect);
   if(indirect)dbuf_printf(codeOutBuf,"; mx251-indirect-signature schema=1 owner=%s calls=%u abi2_void0=%u\n",
@@ -3813,7 +3823,7 @@ mcs251GcBegin (ebbIndex *ebbi)
 static void
 mcs251GcEnd (void)
 {
-  if (mcs251FunctionMetadataEnabled && currFunc)
+  if (mcs251GcOpen)
     dbuf_printf (codeOutBuf, "; mx251-function end schema=1 symbol=%s\n", currFunc->rname);
 }
 

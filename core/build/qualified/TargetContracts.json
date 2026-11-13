@@ -70,8 +70,8 @@
     },
     "AI8051U-34K64-32": {
       "id": "AI8051U-34K64-32",
-      "revision": 7,
-      "displayName": "AI8051U-34K64-32Bit（STC80251）",
+      "revision": 8,
+      "displayName": "AI8051U-34K64-32Bit\uff08STC80251\uff09",
       "instructionMode": "32-bit",
       "startup": {
         "sha256": "b13e2b892cd04dcb9059af6e6e475de4c8a32dfd9764ecd88dceecc46afb7cdb",
@@ -99,7 +99,8 @@
         "native-int",
         "native-math-wide",
         "native-int-mdu32",
-        "native-math-wide-mdu32"
+        "native-math-wide-mdu32",
+        "native-math"
       ],
       "qualifiedMemory": {
         "codeBase": 16711680,

@@ -5,6 +5,16 @@ function Get-Mx251ExtendedFormatPlan([string]$Format) {
  for($i=0;$i -lt $Format.Length;) {
   if($Format[$i] -ne '%'){$maximum++;$i++;continue}
   if($i+1 -lt $Format.Length -and $Format[$i+1] -eq '%'){$maximum++;$i+=2;continue}
+  $f=[regex]::Match($Format.Substring($i),'^%(0?)([1-9][0-9]*)?(?:\.([0-9]*))?([fF])')
+  if($f.Success){
+   $width=if($f.Groups[2].Success){[int]$f.Groups[2].Value}else{0}
+   $precision=if($f.Groups[3].Success){if($f.Groups[3].Value){[int]$f.Groups[3].Value}else{0}}else{6}
+   if($width -gt 255 -or $precision -gt 9){throw 'format-float-width-or-precision-outside-contract'}
+   $flags=if($f.Groups[1].Value){4}else{0};if($f.Groups[4].Value -ceq 'F'){$flags=$flags -bor 2}
+   $maximum+=[Math]::Max($width,40+$precision+[int]($precision -ne 0))
+   $tokens+=@{offset=$i;raw=$f.Value;radix=1;width=$width;flags=$flags;signed=$true;kind='float';bits=32;precision=$precision;byteConversion=$false;argumentBytes=4}
+   $i+=$f.Length;continue
+  }
   $m=[regex]::Match($Format.Substring($i),'^%(0?)([1-9][0-9]*)?([lb]?)([diuoxXc])')
   if(-not $m.Success){throw 'format-conversion-outside-fixed-integer-contract'}
   $width=if($m.Groups[2].Success){[int]$m.Groups[2].Value}else{0}
@@ -26,7 +36,8 @@ function Write-Mx251ExtendedFormatDecision($Tree,[int]$Depth=2) {
  $indent='    '*$Depth
  if($Tree.ContainsKey('leaf')){
   $t=$Tree.leaf
-  return ($indent+'cursor+='+($t.raw.Length-1)+"u;`n"+$indent+'bits='+$t.bits+'u; radix='+$t.radix+'u; width='+$t.width+'u; flags='+$t.flags+"u;`n")
+  $precision=if($t.kind -ceq 'float'){$t.precision}else{0}
+  return ($indent+'cursor+='+($t.raw.Length-1)+"u;`n"+$indent+'bits='+$t.bits+'u; precision='+$precision+'u; radix='+$t.radix+'u; width='+$t.width+'u; flags='+$t.flags+"u;`n")
  }
  $source=''
  for($i=0;$i -lt $Tree.branches.Count;$i++){
@@ -65,16 +76,38 @@ function New-Mx251ExtendedFormatSource($Demand,[string]$Kernel) {
    if($constants){$first=$body.IndexOf('{')+1;$body=$body.Substring(0,$first)+"`n"+$constants+$body.Substring($first)}
    $result+=$body+"`n";$functions[$bits]=@{name=$prefix;extra=$extra}
   }
+  $floating=@($ops|Where-Object{$_.kind -ceq 'float'})
+  $floatArgs=@()
+  if($floating.Count){
+   $body=[IO.File]::ReadAllText((Join-Path $PSScriptRoot 'FloatFormatKernel.c.template')).Replace('mx_float',('mx_'+$api+'_float'))
+   if($buffer){
+    $body=$body.Replace('uint32_t raw,','char *destination, uint32_t raw,')
+    $body=$body.Replace("putchar(' ')","*destination++=' '").Replace("putchar('-')","*destination++='-'").Replace("putchar('0')","*destination++='0'").Replace("putchar('.')","*destination++='.'").Replace('putchar(digits[--n])','*destination++=(char)digits[--n]')
+   }
+   $constants=''
+   foreach($field in @('precision','width','flags')){
+    $values=@($floating|ForEach-Object{$_[$field]}|Sort-Object -Unique)
+    if($values.Count -eq 1){$body=[regex]::Replace($body,',\s*unsigned char '+$field+'\b','');$constants+='    unsigned char '+$field+'='+$values[0]+"u;`n"}else{$floatArgs+=@($field)}
+   }
+   $first=$body.IndexOf('{')+1;$body=$body.Substring(0,$first)+"`n"+$constants+$body.Substring($first)
+   $result+=$body+"`n"
+  }
   $signature=if($buffer){'char *buffer, const char *format, ...'}else{'const char *format, ...'}
   $result+='int '+$api+'('+$signature+")`n{`n"
   if($buffer){$result+="    char *destination=buffer;`n"}
-  $result+="    const unsigned char __code *cursor=(const unsigned char __code *)format;`n    unsigned char c, width, flags, radix, bits, emitted, pad;`n    uint16_t value16;`n    uint32_t value32;`n    int count=0;`n    va_list ap;`n    va_start(ap,format);`n    while ((c=*cursor++)!=0) {`n"
+  $result+="    const unsigned char __code *cursor=(const unsigned char __code *)format;`n    unsigned char c, width, flags, radix, bits, emitted, pad, precision;`n    uint16_t value16;`n    uint32_t value32;`n    union { float f; uint32_t u; } floating;`n    int count=0;`n    va_list ap;`n    va_start(ap,format);`n    while ((c=*cursor++)!=0) {`n"
   $sink=if($buffer){'*destination++=(char)c;'}else{'putchar(c);'}
   $space=if($buffer){"*destination++=' ';"}else{"putchar(' ');"}
   if($ops.Count){
    $tree=New-Mx251FormatDecision $ops;$Demand['decisions_'+$api]=$tree
    $result+="        if(c!='%') { $sink ++count; continue; }`n        if(*cursor=='%') { ++cursor; $sink ++count; continue; }`n"
    $result+=Write-Mx251ExtendedFormatDecision $tree
+   if($floating.Count){
+    $args=if($buffer){'destination,floating.u'}else{'floating.u'};foreach($field in $floatArgs){$args+=','+$field}
+    $result+="        if(radix==1u) {`n            floating.f=(float)va_arg(ap,double);`n            emitted=mx_"+$api+'_float('+$args+");`n"
+    if($buffer){$result+="            destination+=emitted;`n"}
+    $result+="            count+=emitted; continue;`n        }`n"
+   }
    if(@($ops|Where-Object{$_.kind -ceq 'character'}).Count){
     # NUL 是一次真实字符输出，不能与格式串终止或缓冲终止混淆。
     $result+="        if(radix==0u) {`n            c=(unsigned char)va_arg(ap,int);`n            pad=width>1u?(unsigned char)(width-1u):0;`n            emitted=width?width:1u;`n            while(pad) { $space --pad; }`n            $sink count+=emitted; continue;`n        }`n"

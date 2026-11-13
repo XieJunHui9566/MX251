@@ -48,5 +48,14 @@ foreach($change in @(@('abi=2 bank=0','abi=4 bank=0'),@('pushw #0x1234','push dr
  if($accepted){throw 'mismatched ABI, width or literal accepted'}
 }
 [IO.File]::WriteAllText((Join-Path $Output 'u0.asm'),$body)
+ $initializer=@('.module constants','.area DSEG (DATA)','_value::','.ds 2','.area GSINIT (CODE)','mov (_value + 1),#0x12','mov _value,#0x34')
+ if(-not (Test-Mx251FormatInitializerUnit $initializer)){throw 'initializer-only unit rejected'}
+ foreach($instruction in @('ecall _helper','.db 0x12,0,0','ejmp _elsewhere','mov _value,r7')){
+  if(Test-Mx251FormatInitializerUnit ($initializer+@($instruction))){throw 'nonliteral initializer accepted'}
+ }
+ [IO.File]::WriteAllText((Join-Path $Output 'u1.asm'),($initializer -join "`n"))
+ [IO.File]::WriteAllBytes((Join-Path $Output 'u1.rel'),[byte[]]@(0))
+ $config.units+=@(@{file='u1.c';name='u1';stackAuto=$true;backend='ordinary-wide'})
+ if((Get-Mx251FormatDemand $Output $config).calls.Count -ne 1){throw 'initializer-only unit changed format demand'}
 @{status='PASS';argumentEncodings=2;lateBankContract=$true;rejected=$rejected}|ConvertTo-Json -Depth 4|Set-Content -LiteralPath (Join-Path $Output 'result.json') -Encoding utf8
 Write-Output 'PASS: legacy/wide symbolic arguments, late bank contract, and format slot matching'

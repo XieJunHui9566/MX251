@@ -144,6 +144,8 @@ emitRegularMap (memmap *map, bool addPublics, bool arFlag)
 {
   symbol *sym;
   ast *ival = NULL;
+  const char *edataGroupFirst = NULL;
+  unsigned edataGroupSize = 0;
 
   if (!map)
     return;
@@ -226,6 +228,13 @@ emitRegularMap (memmap *map, bool addPublics, bool arFlag)
           unsigned size = getSize (sym->type) + sym->flexArrayLength;
           if (size > 0xffff)
             werrorfl (sym->fileDef, sym->lineDef, E_BAD_INT_ARGUMENT, "EDATA object exceeds region-00 capacity");
+          else if (size && map == edata && port->mem.default_globl_map == edata)
+            {
+              /* This unit's ESEG objects are emitted consecutively. One clear
+                 covers their implicit zeros before any explicit initializer. */
+              if (!edataGroupFirst) edataGroupFirst = sym->rname;
+              edataGroupSize += size;
+            }
           else if (size)
             {
               dbuf_printf (&statsg->oBuf,
@@ -418,6 +427,16 @@ emitRegularMap (memmap *map, bool addPublics, bool arFlag)
 
       sym->ival = NULL;
     }
+  if (edataGroupSize)
+    dbuf_printf (&statsg->oBuf,
+      "\t.area GSINIT3 (CODE)\n"
+      "; EDATA unit clear: %u bytes before explicit initializers\n"
+      "\tmov\tdptr,#%s\n\tmov\tdpxl,#0\n"
+      "\tmov\tdr12,#%u\n\tclr\ta\n"
+      "__mcs251_edata_group_clear:\n"
+      "\tmov\t@dpx,a\n\tinc\tdpx\n\tdec\tdr12\n"
+      "\tjne\t__mcs251_edata_group_clear\n\t.area GSINIT (CODE)\n",
+      edataGroupSize, edataGroupFirst, edataGroupSize);
 }
 
 /*-----------------------------------------------------------------*/

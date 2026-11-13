@@ -620,7 +620,12 @@ allocGlobal (symbol *sym)
       (TARGET_IS_PIC16 && (SPEC_SCLS (sym->etype) == S_REGISTER) && (sym->level == 0)) ||
       SPEC_SCLS (sym->etype) == S_AUTO)
     {
-      if (port->mem.default_globl_map != xdata)
+      if (TARGET_IS_MCS251 && port->mem.default_globl_map == edata)
+        {
+          SPEC_SCLS_IMPLICITINTRINSIC (sym->etype) = true;
+          SPEC_SCLS (sym->etype) = S_EDATA;
+        }
+      else if (port->mem.default_globl_map != xdata)
         {
           if (sym->ival && SPEC_ABSA (sym->etype))
             {

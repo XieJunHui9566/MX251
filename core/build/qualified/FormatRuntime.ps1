@@ -109,8 +109,25 @@ function Assert-Mx251FormatRawVectorImages($RawVectors,$ParentImage,$CandidateIm
  }
 }
 
+function Test-Mx251FormatInitializerUnit([string[]]$Lines) {
+ # Function GC can leave a C unit with only storage and literal byte stores.
+ # Accept that emitted form; executable data and other instructions do not
+ # establish the same absence of calls or transfers into formatting code.
+ $area=''
+ foreach($line in $Lines){
+  $code=($line -split ';',2)[0].Trim();if(-not $code){continue}
+  if($code -cmatch '^\.area\s+(\w+)\b'){$area=$Matches[1];continue}
+  if($code -cmatch '^\.(module|optsdcc|globl)\s+'){continue}
+  if($code -cmatch '^[A-Za-z_.$][\w.$]*:{1,2}$' -or $code -cmatch '^[A-Za-z_.$][\w.$]*\s*=\s*(0x[0-9a-fA-F]+|[0-9]+)$'){continue}
+  if($code -cmatch '^\.(db|dw|ascii|asciz|ds|org)\s+' -and $area -cnotmatch '^(GSINIT[0-9]*|GSFINAL|HOME|CSEG)$'){continue}
+  if($area -cmatch '^GSINIT[0-9]*$' -and $code -cmatch '^mov\s+(?:_[\w.$]+|\(_[\w.$]+\s*\+\s*[0-9]+\s*\)),\s*#(?:0x[0-9a-fA-F]+|[0-9]+)$'){continue}
+  return $false
+ }
+ return $true
+}
+
 function Get-Mx251FormatDemand([string]$Root,$Config) {
- if($Config.runtime -cne 'standard' -or $Config.explicitAbi -or @($Config.archives).Count){throw 'nonstandard-runtime-or-project-archive'}
+ if($Config.runtime -cnotin @('standard','native-int','native-math') -or $Config.explicitAbi -or @($Config.archives).Count){throw 'unsupported-format-runtime-or-project-archive'}
  $calls=@();$fingerprints=@();$rawVectors=@();$indirectEvidence=@();$apiPattern='(?<![A-Za-z0-9_.$])_+(?:printf|vprintf|sprintf|vsprintf|snprintf|vsnprintf|fprintf|vfprintf|print_format)(?![A-Za-z0-9_.$])'
  $formatHome=Get-Mx251FormatHome (Join-Path $Root 'linked.partial.map')
  $slots=[Collections.Generic.HashSet[int]]::new()
@@ -135,7 +152,7 @@ function Get-Mx251FormatDemand([string]$Root,$Config) {
    if([regex]::IsMatch($code,$apiPattern) -and $code -cnotmatch '^ecall\s+_(printf|sprintf)$'){throw 'format-address-escape-or-unknown-entry'}
   }
   $metadata=[regex]::Matches($text,'(?m)^; mx251-function begin schema=1 symbol=(\S+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])\s*$')
-  if(-not $metadata.Count -or @($metadata|Where-Object{$_.Groups[4].Value -ne '0'}).Count){throw 'format-opaque-unit'}
+  if(((-not $metadata.Count) -and -not (Test-Mx251FormatInitializerUnit $lines)) -or @($metadata|Where-Object{$_.Groups[4].Value -ne '0'}).Count){throw 'format-opaque-unit'}
   $indirectEvidence+=@(Get-Mx251FormatIndirectEvidence $text | ForEach-Object{$_['unit']=$u.name;$_})
   # Wide functions emit their bank contract after the body. Resolve the
   # contract by owner before scanning calls; argument bytes still come from
@@ -335,8 +352,9 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   }
   $record.additionalArchives=$AdditionalArchives
   $kernelPath=Join-Path $PSScriptRoot 'IntegerFormatKernel.c.template'
-  if($contract.schema -ne 1 -or $contract.contract -cne 'mx251.ordinary-fixed-integer-format.v2' -or (Hash-File $kernelPath) -cne $contract.kernelSha256){throw 'format-runtime-contract-mismatch'}
+  if($contract.schema -ne 1 -or $contract.contract -cne 'mx251.ordinary-fixed-format.v3' -or (Hash-File $kernelPath) -cne $contract.kernelSha256){throw 'format-runtime-contract-mismatch'}
   if((Hash-File (Join-Path $PSScriptRoot 'ExtendedFormat.ps1')) -cne $contract.extendedGeneratorSha256){throw 'format-generator-contract-mismatch'}
+  if((Hash-File (Join-Path $PSScriptRoot 'FloatFormatKernel.c.template')) -cne $contract.floatKernelSha256){throw 'format-float-kernel-contract-mismatch'}
   $record.contractSha256=Hash-File $contractPath
   $demand=Get-Mx251FormatDemand $Root $Config;$record.demand=$demand
   $record.parentLibraries=@(Get-Mx251FormatLibraries (Join-Path $Root 'linked.partial.map') $ToolRoot $contract)
@@ -376,7 +394,7 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   if((Hash-File $contractPath) -cne $record.contractSha256 -or (Hash-File $sourcePath) -cne $record.sourceSha256){throw 'format-input-drift'}
   $baselineCommand.label='format-baseline-link';$trialCommand.label='link';$trialCommand.actualLogLabel='format-link'
   Write-Json (Join-Path $Root 'commands.json') @($commands.ToArray())
-  $record.status='APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME';$record.applied=$true;$record.savedBytes=$record.parentBytes-$record.candidateBytes
+  $record.status=if(@($demand.calls|ForEach-Object{$_.plan.tokens}|Where-Object{$_.kind -ceq 'float'}).Count){'APPLIED_CLOSED_FIXED_FORMAT_RUNTIME'}else{'APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME'};$record.applied=$true;$record.savedBytes=$record.parentBytes-$record.candidateBytes
   $record.providerSha256=Hash-File (Join-Path $Root 'format-runtime.rel');$accepted=$true
  } catch {
   if($_.Exception.Message -match 'PAUSE_REQUESTED'){throw}

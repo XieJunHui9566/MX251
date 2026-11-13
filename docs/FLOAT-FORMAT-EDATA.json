@@ -1,0 +1,421 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "parentCommit": "ccea05d",
+  "branch": "codex/float-format-edata",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "aeb060b15cc36bbaaa712b935da0f6ceef15d1ce00979075c269ae0aba6ed7ca"
+  },
+  "developmentCore": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\core",
+  "previousCoverage": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\coverage-summary.json",
+    "sha256": "7beb02a9a12cade9184c6a9ce92951605d27fdb2eee59ca5225c3648d952560f"
+  },
+  "math": [
+    {
+      "id": "p041",
+      "name": "18-P1.3做ADC3-使用ADC15测量内部1.19V信号源，计算外部电压VCC/C语言",
+      "before": 10289,
+      "previousNative": 8446,
+      "after": 2844,
+      "runtime": "mx251-native",
+      "keil": 2582,
+      "keilPercent": 110.14717273431448,
+      "stcSoftware": 6003,
+      "stcMdu32": 3008,
+      "variants": {
+        "mx251-standard": {
+          "bytes": 4687,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p041\\mx251-standard\\result.json",
+            "sha256": "23324535133412f6408c762e3f89638bc575ecb25f3270abf713e854a7cfddb2"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p041\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "97292be6957b336779d379d6ddf54ef0645624d4d804a76792c9a8c0282a0c18"
+          }
+        },
+        "mx251-native": {
+          "bytes": 2844,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p041\\mx251-native\\result.json",
+            "sha256": "8ff8fe72ca70fc1aa4ca2e88819e2d7750139308f2d2faca5ea61001e36fc409"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "80b98a8bed685db9e9c10385a6fd3e6ea2a3324c8b9102e09bbaa7842ab11f0a"
+          }
+        }
+      },
+      "savedBytes": 7445
+    },
+    {
+      "id": "p076",
+      "name": "37.1-2.4寸ILI9341驱动TFT显示屏实验程序-带触摸功能，IO模拟I8080接口程序/Project",
+      "before": 25715,
+      "previousNative": 25870,
+      "after": 19323,
+      "runtime": "mx251-standard",
+      "keil": 19918,
+      "keilPercent": 97.0127522843659,
+      "stcSoftware": 31033,
+      "stcMdu32": 31033,
+      "variants": {
+        "mx251-standard": {
+          "bytes": 19323,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\initializer-matrix\\projects\\p076\\mx251-standard\\result.json",
+            "sha256": "acdf463ed8942107d732180a04a326d99c0fc571cd4037c4f243f74cc73f60b8"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\initializer-matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "5b10a40d9807ebb79a6dbe1e30888fa4fb2fa8f84a25f277007b08877e7cc7d1"
+          }
+        },
+        "mx251-native": {
+          "bytes": 19478,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\initializer-matrix\\projects\\p076\\mx251-native\\result.json",
+            "sha256": "8358702cc899c10eea5bb0096a50d47c52578ef77353fb3ce3055408220f089b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\initializer-matrix\\projects\\p076\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "a0507abd0b4d588104b92b1e52c520149a5b1aa1f3aeca17b2cee45ccfcb0b4f"
+          }
+        }
+      },
+      "savedBytes": 6392
+    },
+    {
+      "id": "p077",
+      "name": "37.2-2.4寸ILI9341驱动TFT显示屏实验程序-带触摸功能，硬件I8080接口程序/Project",
+      "before": 33587,
+      "previousNative": 33473,
+      "after": 27081,
+      "runtime": "mx251-native",
+      "keil": 19921,
+      "keilPercent": 135.94197078459916,
+      "stcSoftware": null,
+      "stcMdu32": null,
+      "variants": {
+        "mx251-standard": {
+          "bytes": 33587,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p077\\mx251-standard\\result.json",
+            "sha256": "aa96a2ef20a99ae390ea37c917a2a5e283f8f824c3fd108052452275b449a677"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "5ccf5350da052ef97e1a0fc1e7dc980065e9ff64f678546bbf6bba1cc6bdbd0d"
+          }
+        },
+        "mx251-native": {
+          "bytes": 27081,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p077\\mx251-native\\result.json",
+            "sha256": "1390efe890d9c12d5bef8b271ae6699a552aacc0de6ba6079f78d7573bc02559"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p077\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "d784ddc79474d24f62e7330f7ccdf9dd9278a230cf400ffc91fcaa699e9f99b1"
+          }
+        }
+      },
+      "savedBytes": 6506
+    },
+    {
+      "id": "p079",
+      "name": "37.4-2.4寸TFT320240彩屏，ILI9325驱动IC，硬件I8080接口程序/Project",
+      "before": 33215,
+      "previousNative": 33440,
+      "after": 27048,
+      "runtime": "mx251-native",
+      "keil": 19556,
+      "keilPercent": 138.31049294334218,
+      "stcSoftware": null,
+      "stcMdu32": null,
+      "variants": {
+        "mx251-standard": {
+          "bytes": 33215,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p079\\mx251-standard\\result.json",
+            "sha256": "b4ed64e897130756b5f8c8da4fb1e05981f45c7a8a52d6349120234a80e610ca"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "ba2fca9d30c52d2ca452506bae35ed27853901cdfae23a9a6642ea7648f3ac33"
+          }
+        },
+        "mx251-native": {
+          "bytes": 27048,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p079\\mx251-native\\result.json",
+            "sha256": "ff2b6bceef90544efe0f3ac048057069e0c04dfa8c81232470c4dafb758946dd"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p079\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "d52f845bbb8c9000d86c2902eedc70819933b7b9202938d26ec36f8ae8c36c69"
+          }
+        }
+      },
+      "savedBytes": 6167
+    },
+    {
+      "id": "p081",
+      "name": "39-一线制温度传感器 DS18B20 测温-IO模拟/C语言",
+      "before": 13702,
+      "previousNative": 9106,
+      "after": 3505,
+      "runtime": "mx251-native",
+      "keil": 2806,
+      "keilPercent": 124.91090520313614,
+      "stcSoftware": 6399,
+      "stcMdu32": 3297,
+      "variants": {
+        "mx251-standard": {
+          "bytes": 8101,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p081\\mx251-standard\\result.json",
+            "sha256": "09380aec195858399e711bc54f09c09ca3b3c54bed9111b8c372d07aa061eec0"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p081\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "1536f9682860647b80313acdfb0856e4682a8ba787b3ff68ee8a349083842681"
+          }
+        },
+        "mx251-native": {
+          "bytes": 3505,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p081\\mx251-native\\result.json",
+            "sha256": "d1e3eb19751383d015f565190ad462cc98ce2da51ff448704cd333ca6624e4a8"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "6e5d9d9369b12e6aa6c59dd9bfa566fdd981e6d4d9562de7ee01bc65ea0a374a"
+          }
+        }
+      },
+      "savedBytes": 10197
+    }
+  ],
+  "edata": [
+    {
+      "id": "p021",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 518,
+      "afterEdata": 511,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p021\\mx251-edata\\result.json",
+        "sha256": "c9433b24c4456a9dbf12443b04421a65912ce3f9782c4ca5c99da23bd09d60f4"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p021\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "74f1b57b271981b86900e78057288358f17ebf3a0e852a0e1d5ce0e3ba19b262"
+      }
+    },
+    {
+      "id": "p024",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 534,
+      "afterEdata": 527,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p024\\mx251-edata\\result.json",
+        "sha256": "5863d19017ba06dc65a81f95076a8e4e92459e637af44f2e9b0da791614e7034"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p024\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6b5eeab4a02e94e2cbb3c3dd4d1fa7ff49ab43df9dbedabcd037436c375540a1"
+      }
+    },
+    {
+      "id": "p030",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 926,
+      "afterEdata": 919,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p030\\mx251-edata\\result.json",
+        "sha256": "796d1d24d213ebe8b56ea7b01c51e947ca5fc086fa40f340791d37911b8cebc7"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p030\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "4575edcb1b6b37eb52300c0979f1304f901ddb46c809b21b9fae89e35af60712"
+      }
+    },
+    {
+      "id": "p043",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 1965,
+      "afterEdata": 1958,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p043\\mx251-edata\\result.json",
+        "sha256": "55825b63bcc9b7158223765ec2b49ce6b41df3665ea5355c0b4ec26c23e105e6"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p043\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d3fcebb6c0d94b109d494fecb332be70175cf9d40a714900576f91c3934cf732"
+      }
+    },
+    {
+      "id": "p068",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 4111,
+      "afterEdata": 4104,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p068\\mx251-edata\\result.json",
+        "sha256": "52ea4d9d041e041a729b36e74235b110444cf882421d58b386398074443b7af8"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p068\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "55bd104663b67e40256aae3e9d0ac7e52a135efdb58f87f7f6940849fe3f48f4"
+      }
+    },
+    {
+      "id": "p069",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 4144,
+      "afterEdata": 4137,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p069\\mx251-edata\\result.json",
+        "sha256": "6b7dc22edc0f06c9840b38b81047b2fe1e00528b668fb0b47b7375c8ae5fd61d"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p069\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "e81708941df236d95983623b6636d6f0582c685450a9b7fa7a3f6688802c8704"
+      }
+    },
+    {
+      "id": "p116",
+      "beforeSmallStatus": "FAILED",
+      "beforeLarge": 4157,
+      "afterEdata": 4150,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p116\\mx251-edata\\result.json",
+        "sha256": "6c9718bbf0b0e325f3284607694e131f192f04018fe776b2335f74a88ce1f95b"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\final-matrix\\projects\\p116\\mx251-edata\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5402b405ef64e7c6153a5d5f1d978b6434ccdb9e95eda250574c9c22ddf2cadb"
+      }
+    }
+  ],
+  "tests": {
+    "host": {
+      "status": "PASS",
+      "cases": 80720,
+      "precision": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "allExponents": true,
+      "bothSigns": true,
+      "hardwareExecuted": false
+    },
+    "defaultEdata": {
+      "status": "PASS",
+      "checks": [
+        {
+          "case": "legacy",
+          "step": "edata",
+          "exitCode": 0
+        },
+        {
+          "case": "legacy",
+          "step": "edata-other",
+          "exitCode": 0
+        },
+        {
+          "case": "legacy",
+          "step": "link",
+          "exitCode": 0
+        },
+        {
+          "case": "ordinary-wide",
+          "step": "edata",
+          "exitCode": 0
+        },
+        {
+          "case": "ordinary-wide",
+          "step": "edata-other",
+          "exitCode": 0
+        },
+        {
+          "case": "ordinary-wide",
+          "step": "link",
+          "exitCode": 0
+        },
+        {
+          "case": "capacity-768",
+          "step": "compile",
+          "exitCode": 0
+        },
+        {
+          "case": "capacity-768",
+          "step": "link",
+          "exitCode": 0
+        },
+        {
+          "case": "capacity-769",
+          "step": "compile",
+          "exitCode": 0
+        },
+        {
+          "case": "capacity-769",
+          "step": "link",
+          "exitCode": 1
+        },
+        {
+          "case": "model",
+          "step": "model-large",
+          "exitCode": 1
+        },
+        {
+          "case": "model",
+          "step": "model-small",
+          "exitCode": 1
+        }
+      ]
+    },
+    "explicitEdata": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\explicit-edata\\results.json",
+      "sha256": "e3b8adce2390a03b562c07b91c996848ead397df668526bc23948e5572ccee06"
+    },
+    "variadic": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\variadic-initializer\\result.json",
+      "sha256": "7dd37e6965f65376d0ef62062b58c1caa819d5f18451689361f6082a97df32fa"
+    },
+    "hardware": {
+      "status": "PASS",
+      "cases": 128,
+      "frames": 543,
+      "firmwareSha256": "6beca22e0fc196f8478253e015b76add110a19366cb53ed1a4e963105923cbf9"
+    },
+    "hardwareCapture": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\hardware\\uart.bin",
+      "sha256": "8c2bed68d8089c3950d79a3fac3303f7d0198d43589a4b4f864f41c32736f4a9"
+    },
+    "boardReceipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata\\board\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "ebe4113aa10d6243bd7df96dd0a42e5e31532857e31bcd1cce050f64d0dda3bd"
+    }
+  },
+  "summary": {
+    "mathBefore": 116508,
+    "mathAfter": 79801,
+    "mathSaved": 36707,
+    "mathAt120": 2,
+    "mathAt110": 1,
+    "edataBuilds": 7
+  },
+  "sdkSourceChanged": false,
+  "full75Rerun": false,
+  "keilRuntimeCompared": false
+}

@@ -3625,6 +3625,9 @@ compareTypeExact (sym_link *dest, sym_link *src, long level, bool check_top_std_
     {
       srcScls = S_XDATA;
     }
+  if (TARGET_IS_MCS251 && (srcScls == S_FIXED || srcScls == S_AUTO) &&
+      port->mem.default_globl_map == edata && destScls == S_EDATA && level <= 0)
+    srcScls = S_EDATA;
 
   if ((level > 0) && !SPEC_STAT (dest))
     {

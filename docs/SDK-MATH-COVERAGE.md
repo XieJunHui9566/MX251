@@ -92,6 +92,8 @@ MX 列优先保留成功的已记录配置，large 与头文件补齐明确标�
 2. 对齐 Keil XSMALL 的默认 EDATA 布局能力。7 个工程切到 large 就能生成 HEX，说明共同差距来自数据布局和地址模型；这里比继续逐条缩减算术指令更值得做。
 3. 分别处理上述源码兼容、链接与二进制库入口；保持所有 114 个 C 工程在总账中。
 
+2026-11-14：前两项已实现，见 [软件浮点打印与默认 EDATA](FLOAT-FORMAT-EDATA.md)。五个可编译数学工程的较优配置合计缩小 31.51%，7 个 DATA 溢出工程可用默认 EDATA 编译；本页保留此次全量调查的原始数据。
+
 ## 复现与证据
 
 完整输出：`E:/STVAPP/MX251-baseline/development/sdk-math-coverage`。入口为 `sdk_coverage_matrix.py --config .../config.json --jobs 6`，补测脚本支持 native、large、headers、edata、braces、keil、assembly、extended-vectors、vector-case。每次尝试保留独立目录、命令、输入摘要和结果。

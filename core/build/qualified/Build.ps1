@@ -120,6 +120,7 @@ function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  if($Backend -in @('ordinary-wide','explicit-wide')){$f+=@($orderedAsmRecord.compilerArguments)}
  if($Backend -in @('ordinary-wide','explicit-wide')){$f+=@($codeReadRecord.compilerArguments)}
  if($C251BitComplement){$f+='--mcs251-c251-bit-complement'}
+ if($config.ContainsKey('defaultDataSpace') -and $config.defaultDataSpace -ceq 'edata'){$f+='--mcs251-default-edata'}
  $f+='--mcs251-function-metadata'
  if($FunctionSharing){$f+='--mcs251-share-functions'}
  if($MachineIr){$f+='--mcs251-machine-ir'}
@@ -219,7 +220,7 @@ try {
   if(-not $config.ContainsKey('nativeMath') -or $config.nativeMath -isnot [bool]){throw 'nativeMath must be boolean in schema 1'}
   $runtime=if($config.nativeMath){'native-math'}else{'standard'}
  } elseif($config.schema -eq 2){
-  Keys-Only $config ($commonKeys+@('runtime')) 'project'
+  Keys-Only $config ($commonKeys+@('runtime','defaultDataSpace')) 'project'
   if(-not $config.ContainsKey('runtime')){throw 'Missing project property: runtime'}
   Choice $config.runtime @('standard','native-int','native-math','native-math-wide','native-int-mdu32','native-math-mdu32','native-math-wide-mdu32') 'runtime'
   $runtime=$config.runtime
@@ -243,6 +244,10 @@ try {
     $objectAddressRecord.enabled=$true;$objectAddressRecord.reason='explicit-capability-and-bounded-layout'
    }
   }
+ }
+ if($config.ContainsKey('defaultDataSpace')){
+  Choice $config.defaultDataSpace @('data','edata') 'default data space'
+  if($config.defaultDataSpace -ceq 'edata' -and $config.model -cne 'small'){throw 'EDATA defaults require the small stack-auto model'}
  }
  Choice $config.model @('small','large') 'model'
  Choice $config.optimization @('speed','size') 'optimization'
@@ -422,7 +427,11 @@ try {
  if($runtimeCallRecord.libraries.Count){Assert-Mx251RuntimeCallEffects $runtimeCallRecord}
  . (Join-Path $PSScriptRoot 'FormatRuntime.ps1')
  $formatArchives=@{}
- if($NativeIntegerRuntime){$formatArchives[(Join-Path $ProfileRoot 'runtime/libnativeint.lib')]=@($lock.profile|Where-Object{$_.path -ceq 'runtime/libnativeint.lib'})[0].sha256}
+ foreach($library in $libs){
+  $relative=[IO.Path]::GetRelativePath($ProfileRoot,$library).Replace('\','/')
+  $entry=@($lock.profile|Where-Object{$_.path -ceq $relative})
+  if($entry.Count -eq 1){$formatArchives[$library]=$entry[0].sha256}
+ }
  $formatRuntimeRecord=Invoke-Mx251FormatRuntime $outputRoot $config $toolRoot $args $formatArchives -MachineIr:$MachineIr
  Write-Json (Join-Path $outputRoot 'format-runtime.json') $formatRuntimeRecord
  . (Join-Path $PSScriptRoot 'StartupRuntime.ps1')

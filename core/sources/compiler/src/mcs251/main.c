@@ -85,6 +85,7 @@ static void validateSfrLayout(void)
 }
 
 static char *extendedStackSpec;
+static int defaultEdataEnabled;
 static unsigned long extendedStackBase, extendedStackSize, edataSize;
 
 /* 栈区域是显式目标配置；不把某颗芯片的容量写死在通用后端里。 */
@@ -195,6 +196,7 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-vector-count", &interruptVectorCountSpec, "<1..256> reserve target interrupt slots; unused slots disable EA and stop", CLAT_STRING },
     { 0, "--mcs251-sfr-layout", &sfrLayoutSpec, "<legacy-v1|sph85-v1> select target SPH mapping; default legacy-v1", CLAT_STRING },
     { 0, "--mcs251-stack", &extendedStackSpec, "<base,size,edata-size> reserve extended stack and define __mcs251_stack_initial", CLAT_STRING },
+    { 0, "--mcs251-default-edata", &defaultEdataEnabled, "place unqualified globals and statics in EDATA (small stack-auto)" },
     { 0, OPTION_SMALL_MODEL, NULL, "internal data space is used (default)"},
     { 0, OPTION_MEDIUM_MODEL, NULL, "external paged data space is used"},
     { 0, OPTION_LARGE_MODEL, NULL, "external data space is used"},
@@ -474,6 +476,17 @@ _mcs251_finaliseOptions (void)
       port->mem.default_local_map = data;
       port->mem.default_globl_map = data;
       break;
+    }
+
+  if (defaultEdataEnabled)
+    {
+      if (options.model != MODEL_SMALL || !options.stackAuto)
+        {
+          werror (E_BAD_INT_ARGUMENT, "--mcs251-default-edata requires --model-small --stack-auto");
+          exit (EXIT_FAILURE);
+        }
+      port->mem.default_globl_map = edata;
+      addSet (&preArgvSet, Safe_strdup ("-D__SDCC_MCS251_DEFAULT_EDATA=1"));
     }
 
   if (options.omitFramePtr)
