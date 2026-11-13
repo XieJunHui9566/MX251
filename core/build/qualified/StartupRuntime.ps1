@@ -275,10 +275,7 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   $image=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.candidateBytes=$image.Count
   $delta=0;foreach($change in $changes){$delta+=$change.beforeBytes-$change.afterBytes}
   if($delta -le 0 -or $record.parentBytes-$record.candidateBytes -ne $delta){throw 'startup-whole-image-cost-mismatch'}
-  foreach($raw in $demand.rawVectors){foreach($jump in $raw.jumps){
-   for($i=0;$i -lt 3;$i++){if(-not $image.ContainsKey($jump.source+$i) -or $image[$jump.source+$i] -ne $parentImage[$jump.source+$i]){throw 'startup-raw-vector-bytes-changed'}}
-   if($image[$jump.target] -ne 138 -or $parentImage[$jump.target] -ne 138){throw 'startup-raw-target-changed'}
-  }}
+  Assert-Mx251FormatRawVectorImages $demand.rawVectors $parentImage $image 'startup'
   foreach($p in $demand.inputs){if($p.path -cne 'startup.rel' -and (Hash-File (Join-Path $Root $p.path)) -cne $p.sha256){throw 'startup-input-drift'}}
   $trial=@($commands|Where-Object{$_.label -ceq 'startup-link'})[-1]
   $prior.label='startup-baseline-link';$trial.label='link';$trial.actualLogLabel='startup-link';Write-Json (Join-Path $Root 'commands.json') @($commands.ToArray())

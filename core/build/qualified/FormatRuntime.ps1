@@ -47,7 +47,7 @@ function Get-Mx251FormatHome([string]$Map) {
 function Get-Mx251FormatRawVectors([string]$Root,$Unit,$formatHome,$Slots) {
  $path=Join-Path $Root $Unit.file;$rel=Read-Mx251GcRel ([IO.File]::ReadAllBytes((Join-Path $Root ($Unit.name+'.rel')))) $Unit.name
  if(@($rel.Definitions|Where-Object{$_ -cne '.__.ABS.'}).Count -or $rel.References.Count){throw 'format-raw-symbol-entrance'}
- $area='';$at=$null;$jumps=@();$reserved=0
+ $area='';$at=$null;$jumps=@();$returns=@();$reserved=0
  foreach($raw in [IO.File]::ReadAllLines($path)){
   $code=($raw -split ';',2)[0].Trim();if(-not $code){continue}
   if($code -cmatch '^\.module\s+[A-Za-z_.$][A-Za-z_.$0-9]*$'){continue}
@@ -56,6 +56,10 @@ function Get-Mx251FormatRawVectors([string]$Root,$Unit,$formatHome,$Slots) {
   if($code -cmatch '^\.area\s+HOME\s+\(CODE\)$'){$area='home';$at=$null;continue}
   if($area -ceq 'absolute' -and $code -cmatch '^\.org\s+(0x[0-9a-fA-F]+|[0-9]+)$'){$at=if($Matches[1].StartsWith('0x')){[Convert]::ToInt64($Matches[1].Substring(2),16)}else{[long]$Matches[1]};continue}
   if($area -ceq 'home' -and $code -cmatch '^\.ds\s+(0x[0-9a-fA-F]+|[0-9]+)$'){$reserved+=if($Matches[1].StartsWith('0x')){[Convert]::ToInt64($Matches[1].Substring(2),16)}else{[long]$Matches[1]};continue}
+  if($area -ceq 'absolute' -and $null -ne $at -and $code -ceq 'reti'){
+   if($at -lt $formatHome.base -or $at -ge $formatHome.base+$formatHome.size){throw 'format-raw-return-outside-home'}
+   $returns+=@($at);$at++;continue
+  }
   if($area -ceq 'absolute' -and $null -ne $at -and $code -cmatch '^ljmp\s+(0x[0-9a-fA-F]+|[0-9]+)$'){
    $target=if($Matches[1].StartsWith('0x')){[Convert]::ToInt64($Matches[1].Substring(2),16)}else{[long]$Matches[1]}
    if($at -lt $formatHome.base -or $at+3 -gt $formatHome.base+$formatHome.size -or ($at -shr 16) -ne ($target -shr 16)){throw 'format-raw-jump-outside-registered-vector'}
@@ -63,22 +67,46 @@ function Get-Mx251FormatRawVectors([string]$Root,$Unit,$formatHome,$Slots) {
   }
   throw 'format-unknown-raw-instruction'
  }
- # Numeric vector stubs may share a trampoline before reaching a registered C ISR.
- # Retain every original jump byte; the terminal target is used for post-link checks.
- $edges=@{}
- foreach($jump in $jumps){if($edges.ContainsKey($jump.source)){throw 'format-raw-overlapping-jump'};$edges[$jump.source]=$jump.encodedTarget}
+ # Numeric vector stubs terminate at a registered C vector or an explicit RETI.
+ # Keep all raw instruction bytes, including shared and standalone returns.
+ $edges=@{};$occupied=[Collections.Generic.HashSet[long]]::new();$terminals=[Collections.Generic.HashSet[long]]::new()
+ foreach($jump in $jumps){
+  for($i=0;$i -lt 3;$i++){if(-not $occupied.Add($jump.source+$i)){throw 'format-raw-overlapping-jump'}}
+  $edges[$jump.source]=$jump.encodedTarget
+ }
+ foreach($address in $returns){
+  if(-not $occupied.Add($address)){throw 'format-raw-overlapping-return'}
+  $null=$terminals.Add($address)
+ }
  foreach($jump in $jumps){
   $target=$jump.encodedTarget;$seen=[Collections.Generic.HashSet[long]]::new()
   while($edges.ContainsKey($target)){
    if(-not $seen.Add($target)){throw 'format-raw-vector-cycle'}
    $target=$edges[$target]
   }
+  if($terminals.Contains($target)){$jump.target=$target;$jump.terminalKind='reti';$jump.slot=$null;continue}
   $offset=$target-$formatHome.base-3
   if($offset -lt 0 -or $offset%8 -or -not $Slots.Contains([int]($offset/8))){throw 'format-raw-jump-outside-registered-vector'}
-  $jump.target=$target;$jump.slot=[int]($offset/8)
+  $jump.target=$target;$jump.slot=[int]($offset/8);$jump.terminalKind='c-vector'
  }
- if(-not $jumps.Count -or $reserved -gt $formatHome.size){throw 'format-raw-reservation-unproved'}
- return @{unit=$Unit.name;assembly=$Unit.file;sha256=(Hash-File $path);jumps=$jumps;reserved=$reserved}
+ if(-not ($jumps.Count+$returns.Count) -or $reserved -gt $formatHome.size){throw 'format-raw-reservation-unproved'}
+ return @{unit=$Unit.name;assembly=$Unit.file;sha256=(Hash-File $path);jumps=$jumps;returns=$returns;reserved=$reserved}
+}
+
+function Assert-Mx251FormatRawVectorImages($RawVectors,$ParentImage,$CandidateImage,[string]$Prefix='format') {
+ foreach($raw in $RawVectors){
+  foreach($jump in $raw.jumps){
+   $expected=@(2,(($jump.encodedTarget -shr 8) -band 255),($jump.encodedTarget -band 255))
+   for($i=0;$i -lt 3;$i++){
+    $at=$jump.source+$i
+    if(-not $ParentImage.ContainsKey($at) -or -not $CandidateImage.ContainsKey($at) -or $ParentImage[$at] -ne $expected[$i] -or $CandidateImage[$at] -ne $expected[$i]){throw "$Prefix-raw-jump-bytes-changed"}
+   }
+   if($jump.terminalKind -ceq 'c-vector' -and (-not $ParentImage.ContainsKey($jump.target) -or -not $CandidateImage.ContainsKey($jump.target) -or $ParentImage[$jump.target] -ne 138 -or $CandidateImage[$jump.target] -ne 138)){throw "$Prefix-raw-target-not-c-vector"}
+  }
+  foreach($at in $raw.returns){
+   if(-not $ParentImage.ContainsKey($at) -or -not $CandidateImage.ContainsKey($at) -or $ParentImage[$at] -ne 50 -or $CandidateImage[$at] -ne 50){throw "$Prefix-raw-reti-bytes-changed"}
+  }
+ }
 }
 
 function Get-Mx251FormatDemand([string]$Root,$Config) {
@@ -340,14 +368,7 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   if($demand.rawVectors.Count){
    $formatHome=Get-Mx251FormatHome (Join-Path $Root 'linked.partial.map')
    if($formatHome.base -ne $demand.home.base -or $formatHome.size -ne $demand.home.size){throw 'format-raw-home-layout-changed'}
-   foreach($raw in $demand.rawVectors){foreach($jump in $raw.jumps){
-    $expected=@(2,(($jump.encodedTarget -shr 8) -band 255),($jump.encodedTarget -band 255))
-    for($i=0;$i -lt 3;$i++){
-     $at=$jump.source+$i
-     if(-not $parentImage.ContainsKey($at) -or -not $candidateImage.ContainsKey($at) -or $parentImage[$at] -ne $expected[$i] -or $candidateImage[$at] -ne $expected[$i]){throw 'format-raw-jump-bytes-changed'}
-    }
-    if(-not $parentImage.ContainsKey($jump.target) -or -not $candidateImage.ContainsKey($jump.target) -or $parentImage[$jump.target] -ne 138 -or $candidateImage[$jump.target] -ne 138){throw 'format-raw-target-not-c-vector'}
-   }}
+   Assert-Mx251FormatRawVectorImages $demand.rawVectors $parentImage $candidateImage
    $record.rawVectorLayoutVerified=$true
   }
   if($record.candidateBytes -ge $record.parentBytes){throw 'format-not-profitable'}
