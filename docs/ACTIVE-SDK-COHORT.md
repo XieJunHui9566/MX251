@@ -11,11 +11,13 @@
 
 本次仅改变统计与验证范围，未改编译器、SDK 或固件，未重新编译。报告相对当前已验收版本为 74 项相同、0 B 新收益；完整工程运行时间仍未测。
 
+后续进展：`ebf7f31` 已将 p045/p047 分别降至 **986 B（118.51%）/192 B（120.00%）**。本轮仅重编这两项，上述统计保留为上一轮完整基线；新版核心、验证与两项结果见 [外设位保存布局与活跃性](PERIPHERAL-FRAME-LIVENESS.md)。
+
 ## 后续使用
 
 当前逐项报告：`E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json`，同目录有 Markdown 和 HTML。
 
-后续构建以同目录 `core-02.json` 为配置模板，保留 `"excludeIds": ["p108"]`，按候选版本更新 `core`、`output` 和相应工具路径。`unified_sdk_matrix.py --ids all` 将只准备和构建这 74 项。原 75 项配置未修改，仍可复现历史结果。
+后续构建采用 `E:/STVAPP/MX251-mainline-20261113/peripheral-frame-liveness/core-01.json` 为配置模板，保留 `"excludeIds": ["p108"]`，按候选版本更新 `core`、`output` 和相应工具路径。`unified_sdk_matrix.py --ids all` 将只准备和构建这 74 项。原 75 项配置未修改，仍可复现历史结果。
 
 后续比较以当前 74 项 `comparison.json` 为 baseline。`report_compiler_delta.py` 自动沿用 baseline 与候选配置的排除项，分母按实际名单计算；对历史 75 项结果生成当前视图时使用 `--exclude-ids p108`。
 

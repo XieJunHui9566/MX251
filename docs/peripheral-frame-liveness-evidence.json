@@ -1,0 +1,170 @@
+{
+  "status": "QUALIFIED_TARGETED_TWO_PROJECTS",
+  "implementationCommit": "ebf7f3106f43b4eab4d3090ef1e8ceee12a70bbe",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "41a6a0b6225b7fa7342d5ed99f7fb66abcbc87442e3dcea9d9b95ce7ba9e2443"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\core-01\\core.json",
+    "sha256": "6331d57b5a9ba89c0cac1511a33b05e51cd1965f59771b3131b642d5d811135c"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\Build-Optimized-01.ps1",
+    "sha256": "b35e72e3e3d5a81071451bd3954f89006dab69aa443832da58c2b3fd4c90fe4e"
+  },
+  "nextBuildConfig": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\core-01.json",
+    "sha256": "279067d4ea0e6cb995bf20abf886f9cc5f30dcd2a94d44d3afdcc38b10f5bc24"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\comparison.json",
+    "sha256": "25ed42bf4c980d837c1522dfa26287f3d8b57f15e4c4fb00273dedfe226268ea"
+  },
+  "rows": [
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "parentBytes": 1034,
+      "mx251Bytes": 986,
+      "savedBytes": 48,
+      "keilBytes": 832,
+      "keilRatio": 1.1850961538461537,
+      "stcBytes": 1763,
+      "sourceInputsIdentical": true,
+      "evidence": {
+        "parent": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p045\\mx251\\result.json",
+          "sha256": "ab649f953f14d6d2df6113f8069787561053500c91868860e0fa8f479cd73023"
+        },
+        "candidate": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\matrix-core-01\\projects\\p045\\mx251\\result.json",
+          "sha256": "874387c2abdc4bb9402ddf358140ddb016ba284bb8258f72be18ea8aa1f650ee"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p045\\keil\\result.json",
+          "sha256": "42d6d4be9d93153430e6cda7494397e2081f601810fe8020cbc7e535f83432b1"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p045\\stc\\result.json",
+          "sha256": "6e8bc524c00bcbe17c209e135eb50c5f64fde050c9d2629858bf775c1ca1dea6"
+        }
+      }
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "parentBytes": 194,
+      "mx251Bytes": 192,
+      "savedBytes": 2,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "stcBytes": 755,
+      "sourceInputsIdentical": true,
+      "evidence": {
+        "parent": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\matrix-core-02\\projects\\p047\\mx251\\result.json",
+          "sha256": "7419c7777066e8e45351f8533301cee27c41c43b8944e1488d753a07b8d90975"
+        },
+        "candidate": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\matrix-core-01\\projects\\p047\\mx251\\result.json",
+          "sha256": "ec03c73a262acd1ba3955f664ea9f85326809d57c3b11e2a386d8d5304ac1d8f"
+        },
+        "keil": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p047\\keil\\result.json",
+          "sha256": "e918ea2578e185f7cb0ef9ef609d1466a11fd921d4fe2ea435467021d0d0b374"
+        },
+        "stc": {
+          "path": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects\\p047\\stc\\result.json",
+          "sha256": "f22b783d0801c669da3e90bb782b51be114c2d2ad5b9ea84c629fc39921ee34c"
+        }
+      }
+    }
+  ],
+  "savedBytes": 50,
+  "builtProjects": [
+    "p045",
+    "p047"
+  ],
+  "excludedIds": [
+    "p108"
+  ],
+  "full74Rebuilt": false,
+  "hardware": [
+    {
+      "variant": "parent",
+      "cases": 128,
+      "codeBytes": 4494,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\hardware-parent\\result.json",
+        "sha256": "6b76b9b22c37ee499bd46136c8746df1bb8292f592f417af1f6896b4fb698957"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\board-parent\\receipt.json",
+        "sha256": "2f449e4999b754ddd58f0bea2f0e2f82c50a4bacd8e1234d06f05c4d68eabb83"
+      }
+    },
+    {
+      "variant": "candidate",
+      "cases": 128,
+      "codeBytes": 4392,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\hardware-candidate\\result.json",
+        "sha256": "29bcd930deb526c32780a2131de486a4aab2365d61f34cb95adf0c6fb7ac4f68"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\board-candidate\\receipt.json",
+        "sha256": "31229aafb0abd362be821a1f89b5fef221e87c1210cd45348949a4e09feb0467"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\isr-checks-01\\results.json",
+      "sha256": "10fcbc2d71792b27a42065d862a6815daac724ee2c05e73c446d06306b168e4e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\liveness-checks-01\\results.json",
+      "sha256": "48f5166e2830acc77504755c85b65984e6d3053e2f392a9174f2573955ea3f74"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\ordinary-checks-01\\results.json",
+      "sha256": "a281de31251e962b1dc93d095f18e8951177f0571b00a9bae271c381c80d8d52"
+    }
+  ],
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "4e0d16cc538138574c93151aeecde7707c0c4c49557bc0b7a7aa58a57b3f525f"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen_leaf_isr.c.inc",
+      "sha256": "6189624d59eeba3d265dff05acce95abc7bf61af73806e9e430a8016e2a50df5"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\peep.c",
+      "sha256": "e5448243a684db2625c5f3191bf010a43e3833e2e343b579e0b52785e1a51d40"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-isr-saves.py",
+      "sha256": "a97c0f6cafb72eb8d1e09034291b8e4315c9fd52e8abd9fa33c10979068a626a"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-peripheral-liveness.py",
+      "sha256": "9eea016cb49f280b87a1935555b16e081c2fb93bab2dfa047b76debc6402352c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_ordered_contract.h",
+      "sha256": "8d9d14ea97999c821667a01941b1bbf2f314b731589d2671466e83565eec38bf"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\peripheral_frame_fixture.py",
+      "sha256": "b713f09201baa5d9d50eac379b2a31274582f18537e10eac92924c8425b7ada1"
+    }
+  ],
+  "fullProjectRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\peripheral-frame-liveness\\qualification.json",
+    "sha256": "d91073152cdb6605b8017a40de64c0cf68e505376faa4e7e18ada1226beca69e"
+  }
+}
