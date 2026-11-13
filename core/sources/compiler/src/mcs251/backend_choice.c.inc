@@ -6,6 +6,7 @@
 #include "wide_cost.h"
 #include "backend_encoding.h"
 #include "instruction_effects.h"
+#include "carry_observation.h"
 
 typedef struct {
   unsigned bytes,instructions,stackRead,stackWrite,peak,unknown,calls;
@@ -87,11 +88,13 @@ mcs251BackendBodyEligible(ebbIndex *ebbi)
   /* Newly admitted ordered functions often contain byte-oriented I/O loops.
    * Compare complete bodies as well: retain the byte backend when it has
    * fewer bytes and no more static instructions. This is a profitability
-   * heuristic, not a bound on execution time for every loop trip count. */
+   * heuristic, not a bound on execution time for every loop trip count.
+   * Explicit CY writes also use this comparison: shift-carry lowering can
+   * expose a compact byte-loop implementation with a different branch shape. */
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
-      if(ic->op==INLINEASM)return true;
+      if(ic->op==INLINEASM || (ic->op=='=' && mcs251_carry_operand(IC_RESULT(ic))))return true;
   }
   unsigned *degree=Safe_calloc(ebbi->count,sizeof *degree);
   unsigned remaining=0;bool valid=true;

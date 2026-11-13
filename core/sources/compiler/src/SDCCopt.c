@@ -3801,6 +3801,8 @@ fixParamPassing (iCode *ic)
 /* eBBlockFromiCode - creates extended basic blocks from iCode     */
 /*                    will return an array of eBBlock pointers     */
 /*-----------------------------------------------------------------*/
+#include "mcs251/carry_observation.c.inc"
+
 eBBlock **
 eBBlockFromiCode (iCode *ic)
 {
@@ -3820,6 +3822,8 @@ eBBlockFromiCode (iCode *ic)
      this will eliminate redundant labels and
      will change jump to jumps by jumps */
   ic = iCodeLabelOptimize (ic);
+  if (TARGET_IS_MCS251)
+    mcs251_observed_shift_carry (ic);
   fixParamPassing (ic);
 
   /* break it down into basic blocks */

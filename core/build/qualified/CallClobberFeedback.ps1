@@ -101,11 +101,13 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
   $m=[regex]::Match($t,'^(.+)\.([0-7])$')
   if($m.Success){
    $base=Get-Mx251DirectAddress $m.Groups[1].Value $Aliases
+   if($base -eq 208 -and $m.Groups[2].Value -eq '7'){return 0} # CY does not select a register bank.
    if($null -eq $base -or $base -lt 128 -or $base -gt 255 -or $base -in @(208,209)){throw 'unresolved-or-bank-changing-bit-write'}
    return (Get-Mx251DirectGprMask $base 1 $State)
   }
   $address=Get-Mx251Numeric $t
   if($null -eq $address -and $Aliases.ContainsKey($t)){$address=$Aliases[$t]}
+  if($address -eq 215){return 0} # Numeric or declared bit alias of PSW.CY.
   if($null -eq $address -or $address -lt 0 -or $address -gt 255 -or $address -in @(211,212)){throw 'unresolved-or-bank-changing-bit-write'}
   if($address -ge 128){return (Get-Mx251DirectGprMask ($address -band 248) 1 $State)}
   return 0
