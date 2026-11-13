@@ -1,0 +1,3155 @@
+{
+  "status": "17_C_PROJECTS_BUILT_USB_IMPORT_RESEARCHED",
+  "date": "2026-11-14",
+  "sourceCommit": "fd884dc9c6087605c7fda7122a3df5081ba7a499",
+  "baseCommit": "40bc62fce9b8d344cc31ed0db3f0c1b0d562f4ac",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\core-next\\toolchain\\bin\\sdcc.exe",
+    "sha256": "37a9307dc71054060f72218da481417bb3a834f5198b6acdc1e840f9cc3b35c0"
+  },
+  "coreManifest": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\core-next\\core.json",
+    "sha256": "7850ef1c4360760fc6e914efed77d4d059c28d54548e244a89aa07fa56183911"
+  },
+  "rows": [
+    {
+      "id": "p022",
+      "name": "10-串口1中断模式与电脑收发测试/C语言 - P36P37",
+      "mx251Bytes": 534,
+      "keilBytes": 364,
+      "mxOverKeilPercent": 146.7032967032967,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 534,
+        "spanBytes": 562,
+        "holesBytes": 28,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p022\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "ba5b792962dda85f7200253cf069d060866c1fab6740d8485cf71b1e2aa3115e"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p022\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "b1489bb15fc0ed34690e53ecccfda204a1020df465297e9101183209734a09fd"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p022\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "b20248ae1790cf30631567fc9581c77595421ec74effa494edcb845e8c14014f"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "mode": "AUTO",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "savedBytes": 0,
+          "status": "NO_CANDIDATE",
+          "applied": false,
+          "recordSha256": "d6511e9ae8cbf683ce0f34b50985336bf5272061c00d8b35c1381e9da435c829"
+        },
+        "id": "p022",
+        "suite": "mx251",
+        "wallSeconds": 14.825783399999636,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p022\\original-inputs.json",
+          "sha256": "bbbb76919dae32ec782310d04b72625bc8f3bd8c8376f9224bdad4dd943daa38"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 364,
+          "spanBytes": 372,
+          "holesBytes": 8,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p022\\keil\\firmware.hex",
+            "sha256": "143bd794c90aacc504a6b841239c6821a7df49587cdaab235547dd13e1c51982"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p022",
+          "suite": "keil",
+          "wallSeconds": 1.3896723999996539,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p022\\original-inputs.json",
+            "sha256": "bbbb76919dae32ec782310d04b72625bc8f3bd8c8376f9224bdad4dd943daa38"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "payloadBytes": 1052,
+          "spanBytes": 1056,
+          "holesBytes": 4,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p022\\stc-soft\\firmware.hex",
+            "sha256": "72c702294e39eacc61d2cfe89e81dda55f039aeb9464c5287e89054fda612b1c"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 131,
+            "xdata": 0,
+            "data": 5,
+            "code": 1020,
+            "flashConst": 32,
+            "flashMax": 32,
+            "rom": 1052,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 24,
+              "avail": 1660,
+              "stackTop": 387,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 6,
+                "isr": 18,
+                "total": 24,
+                "irNeed": 24,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "中断共享变量分析：全部安全方向，无需保护"
+            ],
+            "warnings": [
+              "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。"
+            ],
+            "warningItems": [
+              {
+                "line": null,
+                "column": null,
+                "message": "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 702.4516000000001,
+          "mathLib": "soft",
+          "id": "p022",
+          "suite": "stc-soft",
+          "wallSeconds": 0.9491699999998673,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p022\\original-inputs.json",
+            "sha256": "bbbb76919dae32ec782310d04b72625bc8f3bd8c8376f9224bdad4dd943daa38"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "payloadBytes": 1052,
+          "spanBytes": 1056,
+          "holesBytes": 4,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p022\\stc-mdu32\\firmware.hex",
+            "sha256": "72c702294e39eacc61d2cfe89e81dda55f039aeb9464c5287e89054fda612b1c"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 131,
+            "xdata": 0,
+            "data": 5,
+            "code": 1020,
+            "flashConst": 32,
+            "flashMax": 32,
+            "rom": 1052,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 24,
+              "avail": 1660,
+              "stackTop": 387,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 6,
+                "isr": 18,
+                "total": 24,
+                "irNeed": 24,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "中断共享变量分析：全部安全方向，无需保护"
+            ],
+            "warnings": [],
+            "warningItems": []
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 717.0923,
+          "mathLib": "mdu32",
+          "id": "p022",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.9847294999999576,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p022\\original-inputs.json",
+            "sha256": "bbbb76919dae32ec782310d04b72625bc8f3bd8c8376f9224bdad4dd943daa38"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p022\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b1489bb15fc0ed34690e53ecccfda204a1020df465297e9101183209734a09fd"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p070",
+      "name": "34-硬件QSPI访问FLASH-串口监控",
+      "mx251Bytes": 6160,
+      "keilBytes": 4913,
+      "mxOverKeilPercent": 125.38164054549155,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 6160,
+        "spanBytes": 6160,
+        "holesBytes": 0,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "7b3da7328b7a76fd476ab405cabe15b8c91c64e872c1e5d3f9ce08775882d064"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "573e0898fcb280494437e01534e8b7fc3671599744e0d417bb3d7d24162f9d27"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "a3d6302582a289030344b9b8fcf0edb52cabfd82836f5d823d970186de4d0ad6"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "savedBytes": 0,
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "recordSha256": "7a81c1a09ecd332fb6d1b6567cd91c132f4dabf048cdd065ecb32bb35807cd04",
+          "applied": false,
+          "mode": "AUTO",
+          "status": "NO_CANDIDATE"
+        },
+        "id": "p070",
+        "suite": "mx251",
+        "wallSeconds": 215.61187579999932,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\original-inputs.json",
+          "sha256": "dbcd08e39c915be3cf2c6719a775e997dcc78a4184aee6306029c18639df48a8"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 4913,
+          "spanBytes": 4913,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\keil\\firmware.hex",
+            "sha256": "5dd07ccc8e44a43ac48012545de45dc8fe421c18be61b62e2b1a85bad56a9290"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p070",
+          "suite": "keil",
+          "wallSeconds": 1.7600973000007798,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\original-inputs.json",
+            "sha256": "dbcd08e39c915be3cf2c6719a775e997dcc78a4184aee6306029c18639df48a8"
+          }
+        },
+        "stc-soft": {
+          "status": "FAILED",
+          "error": "printf 需要用户实现 `char putchar(char c)`：在任意 .c 文件里加上 `char putchar(char c) { return c; }`（要输出到串口就把它写进 UART 发送）——本实现不内置 putchar，避免替你选串口。★ **不需要 `#include <stdio.h>`**：本实现自带 printf 的声明，缺的只有 putchar 这一个函数。★ **要输出到串口**（★ 先 `#include <STC32G.H>`，否则 `SBUF`/`TI` 也没有定义）★，把 putchar 写成：`char putchar(char c) { SBUF = c; while (!TI) { } TI = 0; return c; }`（★ `SBUF` 是发送寄存器，`TI` 是“发完了”标志；★ 前提：UART 已初始化、`TI` 已使能）★。（★ 本条**只报一次**，即使 printf 输出多个字符。）",
+          "id": "p070",
+          "suite": "stc-soft",
+          "wallSeconds": 5.0571837999996205,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\original-inputs.json",
+            "sha256": "dbcd08e39c915be3cf2c6719a775e997dcc78a4184aee6306029c18639df48a8"
+          }
+        },
+        "stc-mdu32": {
+          "status": "FAILED",
+          "error": "printf 需要用户实现 `char putchar(char c)`：在任意 .c 文件里加上 `char putchar(char c) { return c; }`（要输出到串口就把它写进 UART 发送）——本实现不内置 putchar，避免替你选串口。★ **不需要 `#include <stdio.h>`**：本实现自带 printf 的声明，缺的只有 putchar 这一个函数。★ **要输出到串口**（★ 先 `#include <STC32G.H>`，否则 `SBUF`/`TI` 也没有定义）★，把 putchar 写成：`char putchar(char c) { SBUF = c; while (!TI) { } TI = 0; return c; }`（★ `SBUF` 是发送寄存器，`TI` 是“发完了”标志；★ 前提：UART 已初始化、`TI` 已使能）★。（★ 本条**只报一次**，即使 printf 输出多个字符。）",
+          "id": "p070",
+          "suite": "stc-mdu32",
+          "wallSeconds": 4.698135300001013,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\original-inputs.json",
+            "sha256": "dbcd08e39c915be3cf2c6719a775e997dcc78a4184aee6306029c18639df48a8"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "573e0898fcb280494437e01534e8b7fc3671599744e0d417bb3d7d24162f9d27"
+      },
+      "errata": {
+        "files": [
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\native\\qspi.h",
+              "sha256": "ad3bb1ac4eec7d09b56b02f72a7630e39184334c25e4e78043e5a43610d8d981"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\native\\qspi.h",
+              "sha256": "a5d2ea63cc54ffcd08211f007ac24ed065019804108a2e67e9f30beb85ac625a"
+            }
+          },
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\native\\Test.c",
+              "sha256": "572209664a8c0fc7b3cc61ca531cc84a19942764b71d3970a65e0b582f941c54"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p070\\native\\Test.c",
+              "sha256": "d678f62d99acb9f65bbb3a6e51a55c8a547cc786c050c89813f749958c18e535"
+            }
+          }
+        ],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p083",
+      "name": "40-MDU32–乘法和除法单元",
+      "mx251Bytes": 9331,
+      "keilBytes": 1457,
+      "mxOverKeilPercent": 640.4255319148937,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 9331,
+        "spanBytes": 9331,
+        "holesBytes": 0,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "f8518b6393d0bb3da876635866b270fad00b8319049d19374f8e8baed7d30b62"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "6b117528a9d8645d25cd7f1db9252cc74ba2d5b9791474995a7d6f8e351bc02e"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p083\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "86f2ee4180a3a6d32abf95cc44a3c2c761e22cd59e12b5fbeb8780a71a5d761e"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "savedBytes": 0,
+          "status": "NO_CANDIDATE",
+          "recordSha256": "ae91926c7a16f72790bfdd6a0975a27d0c26d006f484a7a5ebd4c33e66fa9407",
+          "applied": false,
+          "mode": "AUTO",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b"
+        },
+        "id": "p083",
+        "suite": "mx251",
+        "wallSeconds": 12.772101799999291,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p083\\original-inputs.json",
+          "sha256": "f38d07486505845ac0b8dd93bbe02cd2661139078c1b584be2248890f208883a"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "native-math",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 1457,
+          "spanBytes": 1457,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p083\\keil\\firmware.hex",
+            "sha256": "a81138224afc1cc5bd6c8c9f619479bfb0ad83db45aadcb1f1a76198234f48ca"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p083",
+          "suite": "keil",
+          "wallSeconds": 0.2566297000003033,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p083\\original-inputs.json",
+            "sha256": "f38d07486505845ac0b8dd93bbe02cd2661139078c1b584be2248890f208883a"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "reason": "STC32_MDU32_V1.1.LIB",
+          "id": "p083",
+          "suite": "stc-soft",
+          "wallSeconds": 1.1000000085914508e-05,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p083\\original-inputs.json",
+            "sha256": "f38d07486505845ac0b8dd93bbe02cd2661139078c1b584be2248890f208883a"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "reason": "STC32_MDU32_V1.1.LIB",
+          "id": "p083",
+          "suite": "stc-mdu32",
+          "wallSeconds": 6.400000529538374e-06,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p083\\original-inputs.json",
+            "sha256": "f38d07486505845ac0b8dd93bbe02cd2661139078c1b584be2248890f208883a"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "6b117528a9d8645d25cd7f1db9252cc74ba2d5b9791474995a7d6f8e351bc02e"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p092",
+      "name": "48-通过USB-HID发送命令读取ADC测试程序",
+      "mx251Bytes": 2955,
+      "keilBytes": 1667,
+      "mxOverKeilPercent": 177.26454709058189,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 2955,
+        "spanBytes": 3127,
+        "holesBytes": 172,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p092\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "9c4f6e28bf6886828e3f67d3141ed241dfdafe1ba3dd0165b82a24e7ee2856b8"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p092\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "981970baa58133d4721026c3b83be0209c138753cfb48406757395cae4f493c6"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p092\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "0a32a79ebec426f8e86b5e2ec9cf770f32870ec27995b459f129a39d06c7b9dc"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "recordSha256": "9957c4a9a12bb0d62ea35470546e164375a1f4dffd17a26e6be4fb75e75fe7e4",
+          "applied": false,
+          "status": "KEEP_BASELINE",
+          "savedBytes": 0,
+          "mode": "AUTO"
+        },
+        "id": "p092",
+        "suite": "mx251",
+        "wallSeconds": 34.672591000000466,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p092\\original-inputs.json",
+          "sha256": "9477989608ce6eda361840c8403bd83eb8650d41875b6cfa34d940bff03c1253"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 1667,
+          "spanBytes": 1673,
+          "holesBytes": 6,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p092\\keil\\firmware.hex",
+            "sha256": "228d71c3720e37944804a2407e668eba73a965c0c53f722130e11941b7a1098f"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p092",
+          "suite": "keil",
+          "wallSeconds": 0.37539060000017344,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p092\\original-inputs.json",
+            "sha256": "9477989608ce6eda361840c8403bd83eb8650d41875b6cfa34d940bff03c1253"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "payloadBytes": 3064,
+          "spanBytes": 3200,
+          "holesBytes": 136,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p092\\stc-soft\\firmware.hex",
+            "sha256": "ea19d2ae7c3cd5976e566f44be9f088e252656f6732ff8e9bcfe6501b0213608"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 37,
+            "xdata": 192,
+            "data": 14,
+            "code": 2936,
+            "flashConst": 128,
+            "flashMax": 128,
+            "rom": 3064,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 47,
+              "avail": 1754,
+              "stackTop": 293,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 4,
+                "isr": 43,
+                "total": 47,
+                "irNeed": 38,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "DEVICEDESC[8] 的初始化值 191 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "DEVICEDESC[11] 的初始化值 240 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "变量 DEVICEDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "CONFIGDESC[7] 的初始化值 128 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[29] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "变量 CONFIGDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "HIDREPORTDESC[4] 的初始化值 161 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[9] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[12] 的初始化值 149 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[16] 的初始化值 177 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[20] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[24] 的初始化值 145 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[26] 的初始化值 192 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "变量 HIDREPORTDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "变量 LANGIDDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "变量 MANUFACTDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "变量 PRODUCTDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "⚠️ 本次编译**剥离了 3 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。",
+              "main.c 第 329 行: 此语句无法到达（位于死循环/return/goto 等无条件跳转之后）",
+              "main.c 第 340 行: case 值 -1 会按无符号回绕成 255 再比较（判断变量的取值范围是 0 ~ 255）。如果这就是你想要的值，可以忽略本警告；否则请把 case 改成范围内的正数。",
+              "共享变量 Ep0Stage 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+            ],
+            "warningItems": [
+              {
+                "line": null,
+                "column": null,
+                "message": "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。"
+              },
+              {
+                "line": 329,
+                "column": 1,
+                "message": "此语句无法到达（位于死循环/return/goto 等无条件跳转之后）",
+                "file": "main.c"
+              },
+              {
+                "line": 340,
+                "column": 1,
+                "message": "case 值 -1 会按无符号回绕成 255 再比较（判断变量的取值范围是 0 ~ 255）。如果这就是你想要的值，可以忽略本警告；否则请把 case 改成范围内的正数。",
+                "file": "main.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 Ep0Stage 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 1485.8428999999999,
+          "mathLib": "soft",
+          "id": "p092",
+          "suite": "stc-soft",
+          "wallSeconds": 1.9001533000000563,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p092\\original-inputs.json",
+            "sha256": "9477989608ce6eda361840c8403bd83eb8650d41875b6cfa34d940bff03c1253"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "payloadBytes": 3064,
+          "spanBytes": 3200,
+          "holesBytes": 136,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p092\\stc-mdu32\\firmware.hex",
+            "sha256": "ea19d2ae7c3cd5976e566f44be9f088e252656f6732ff8e9bcfe6501b0213608"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 37,
+            "xdata": 192,
+            "data": 14,
+            "code": 2936,
+            "flashConst": 128,
+            "flashMax": 128,
+            "rom": 3064,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 47,
+              "avail": 1754,
+              "stackTop": 293,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 4,
+                "isr": 43,
+                "total": 47,
+                "irNeed": 38,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "DEVICEDESC[8] 的初始化值 191 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "DEVICEDESC[11] 的初始化值 240 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "变量 DEVICEDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "CONFIGDESC[7] 的初始化值 128 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[29] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "变量 CONFIGDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "HIDREPORTDESC[4] 的初始化值 161 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[9] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[12] 的初始化值 149 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[16] 的初始化值 177 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[20] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[24] 的初始化值 145 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "HIDREPORTDESC[26] 的初始化值 192 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "变量 HIDREPORTDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "变量 LANGIDDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "变量 MANUFACTDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "变量 PRODUCTDESC 声明了两次且都带初值：编译按【后一次】的初值",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "⚠️ 本次编译**剥离了 3 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "main.c 第 329 行: 此语句无法到达（位于死循环/return/goto 等无条件跳转之后）",
+              "main.c 第 340 行: case 值 -1 会按无符号回绕成 255 再比较（判断变量的取值范围是 0 ~ 255）。如果这就是你想要的值，可以忽略本警告；否则请把 case 改成范围内的正数。",
+              "共享变量 Ep0Stage 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+            ],
+            "warningItems": [
+              {
+                "line": 329,
+                "column": 1,
+                "message": "此语句无法到达（位于死循环/return/goto 等无条件跳转之后）",
+                "file": "main.c"
+              },
+              {
+                "line": 340,
+                "column": 1,
+                "message": "case 值 -1 会按无符号回绕成 255 再比较（判断变量的取值范围是 0 ~ 255）。如果这就是你想要的值，可以忽略本警告；否则请把 case 改成范围内的正数。",
+                "file": "main.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 Ep0Stage 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 1725.9482,
+          "mathLib": "mdu32",
+          "id": "p092",
+          "suite": "stc-mdu32",
+          "wallSeconds": 2.092403700000432,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p092\\original-inputs.json",
+            "sha256": "9477989608ce6eda361840c8403bd83eb8650d41875b6cfa34d940bff03c1253"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p092\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "981970baa58133d4721026c3b83be0209c138753cfb48406757395cae4f493c6"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p105",
+      "name": "62-DMA-SPI与存储器数据自动收发",
+      "mx251Bytes": 4698,
+      "keilBytes": 3297,
+      "mxOverKeilPercent": 142.4931756141947,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 4698,
+        "spanBytes": 5486,
+        "holesBytes": 788,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p105\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "6d4a2d9a6734cc39a14a3b027a74a6e579d687e41a1621d311a9a4f1c858a53a"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p105\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "a55d9f8daae9392585acadeb135de831ea6085667524662adb7f68c8faeda978"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p105\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "00fcb06c74553c44d8fc2c92384d17deba46e21bfb87f264bf161a2f2853b421"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "applied": false,
+          "status": "NO_CANDIDATE",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "mode": "AUTO",
+          "recordSha256": "5ac79859e0aa1217334066f860d460ffeb829c2bec2e0991fd31f5eb0e4cb284",
+          "savedBytes": 0
+        },
+        "id": "p105",
+        "suite": "mx251",
+        "wallSeconds": 18.1066363000009,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p105\\original-inputs.json",
+          "sha256": "15bfb736ad23ccb683c18a8f899c97de39d4c6b7c27c47118345af3057064ede"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 3297,
+          "spanBytes": 3301,
+          "holesBytes": 4,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p105\\keil\\firmware.hex",
+            "sha256": "7556f18029b0f4f09da120ff187b14c1babbca976192ed7aa2e94f7ebadd9d63"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p105",
+          "suite": "keil",
+          "wallSeconds": 0.3779375000003711,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p105\\original-inputs.json",
+            "sha256": "15bfb736ad23ccb683c18a8f899c97de39d4c6b7c27c47118345af3057064ede"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p105",
+          "suite": "stc-soft",
+          "wallSeconds": 0.0002054999995380058,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p105\\original-inputs.json",
+            "sha256": "15bfb736ad23ccb683c18a8f899c97de39d4c6b7c27c47118345af3057064ede"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p105",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.00028949999978067353,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p105\\original-inputs.json",
+            "sha256": "15bfb736ad23ccb683c18a8f899c97de39d4c6b7c27c47118345af3057064ede"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p105\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a55d9f8daae9392585acadeb135de831ea6085667524662adb7f68c8faeda978"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p106",
+      "name": "63-DMA-QSPI-P2P访问QSPI Flash",
+      "mx251Bytes": 8676,
+      "keilBytes": 6649,
+      "mxOverKeilPercent": 130.48578733644158,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 8676,
+        "spanBytes": 8676,
+        "holesBytes": 0,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "917a7fb6a31f612a7779572b03214cea7e9731ee31d9a21a8c97ed981947e7c4"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "1634a87a49e5adaaf6493565c5adddfbe9d98c132374309b7d8f019a9c95b86d"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "1ac7a3308ca2a0ee4a1a746d8ed482fb98e96a444dedc174089a977d341ed19c"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "mode": "AUTO",
+          "recordSha256": "a7f87b9a93261be1b4b39b797a87f43a5f024fc4b2009e489b8b56961084568a",
+          "applied": false,
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "savedBytes": 0,
+          "status": "NO_CANDIDATE"
+        },
+        "id": "p106",
+        "suite": "mx251",
+        "wallSeconds": 253.09800739999991,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\original-inputs.json",
+          "sha256": "1503b09802432e64aee289f2aed7dbb4c3007e65b442ec9f70efdb21382f2baa"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 6649,
+          "spanBytes": 6649,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\keil\\firmware.hex",
+            "sha256": "e3c1fa2a9790bbfc4192757163f6932fe13093ce383a47dd3b9edb12c071df1c"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p106",
+          "suite": "keil",
+          "wallSeconds": 0.5859504000000015,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\original-inputs.json",
+            "sha256": "1503b09802432e64aee289f2aed7dbb4c3007e65b442ec9f70efdb21382f2baa"
+          }
+        },
+        "stc-soft": {
+          "status": "FAILED",
+          "error": "Test.c 第 178 行: 未声明的函数: _getkey()\nTest.c 第 178 行第 4 列: 未定义的标识符: _getkey（可能缺少 #define _getkey，或变量/函数名拼写错误）\nTest.c 第 178 行: 表达式语句无法解析: _getkey();",
+          "id": "p106",
+          "suite": "stc-soft",
+          "wallSeconds": 3.0554148000010173,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\original-inputs.json",
+            "sha256": "1503b09802432e64aee289f2aed7dbb4c3007e65b442ec9f70efdb21382f2baa"
+          }
+        },
+        "stc-mdu32": {
+          "status": "FAILED",
+          "error": "Test.c 第 178 行: 未声明的函数: _getkey()\nTest.c 第 178 行第 4 列: 未定义的标识符: _getkey（可能缺少 #define _getkey，或变量/函数名拼写错误）\nTest.c 第 178 行: 表达式语句无法解析: _getkey();",
+          "id": "p106",
+          "suite": "stc-mdu32",
+          "wallSeconds": 2.962885000000824,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\original-inputs.json",
+            "sha256": "1503b09802432e64aee289f2aed7dbb4c3007e65b442ec9f70efdb21382f2baa"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "1634a87a49e5adaaf6493565c5adddfbe9d98c132374309b7d8f019a9c95b86d"
+      },
+      "errata": {
+        "files": [
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\native\\qspi.h",
+              "sha256": "ad3bb1ac4eec7d09b56b02f72a7630e39184334c25e4e78043e5a43610d8d981"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\native\\qspi.h",
+              "sha256": "a5d2ea63cc54ffcd08211f007ac24ed065019804108a2e67e9f30beb85ac625a"
+            }
+          },
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\native\\Test.c",
+              "sha256": "f636ad5b4bb75c1cf8db8a27a8fd86280948b7f6a660ee0a543cecfae1946b36"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p106\\native\\Test.c",
+              "sha256": "3f770c7395d89426ab0c1f704dfb4adc24547a3043719221aeb5d44a250a654d"
+            }
+          }
+        ],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p115",
+      "name": "66-DMA-I2C主机模式读写AT24C02-串口监控",
+      "mx251Bytes": 3157,
+      "keilBytes": 2519,
+      "mxOverKeilPercent": 125.32751091703057,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 3157,
+        "spanBytes": 4112,
+        "holesBytes": 955,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p115\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "0d589596b0296e666ed696e4c7497530968068bc55bc1cb391b1d6747f64798a"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p115\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "03d34d569a057170ef5cea23474dcf306417ee8660ea934d55dcb8e4aad0d1f1"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p115\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "3cd0af3b09e0cb8b1dab698e0e1e2a125a8af56f304eff0efdad1b998e23f99d"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "savedBytes": 0,
+          "mode": "AUTO",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "applied": false,
+          "recordSha256": "9a860d943ad7cf00d12ed0bd2b08234743a0d7dd0566be5d1022379839d7a0c4",
+          "status": "NO_CANDIDATE"
+        },
+        "id": "p115",
+        "suite": "mx251",
+        "wallSeconds": 16.872808500000247,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p115\\original-inputs.json",
+          "sha256": "4d12d4626f1a0086b2701bb1eabc1d9ad02b2964fe1f9ad06d1121cd34bdaf9b"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 2519,
+          "spanBytes": 2525,
+          "holesBytes": 6,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p115\\keil\\firmware.hex",
+            "sha256": "d006d8aa218e6eb030d08e0a507239ae0bdb51505d500cb2e2d2eb08b26f7a4c"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p115",
+          "suite": "keil",
+          "wallSeconds": 0.333252899999934,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p115\\original-inputs.json",
+            "sha256": "4d12d4626f1a0086b2701bb1eabc1d9ad02b2964fe1f9ad06d1121cd34bdaf9b"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p115",
+          "suite": "stc-soft",
+          "wallSeconds": 0.00019599999995989492,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p115\\original-inputs.json",
+            "sha256": "4d12d4626f1a0086b2701bb1eabc1d9ad02b2964fe1f9ad06d1121cd34bdaf9b"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p115",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.00014690000080008758,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p115\\original-inputs.json",
+            "sha256": "4d12d4626f1a0086b2701bb1eabc1d9ad02b2964fe1f9ad06d1121cd34bdaf9b"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p115\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "03d34d569a057170ef5cea23474dcf306417ee8660ea934d55dcb8e4aad0d1f1"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p120",
+      "name": "71.1-电脑通过UART发送图片数据写入到DMA SPI Flash，SPI-TFT_DMA_双缓冲区交替显示图片，不占CPU时间程序-ILI9341",
+      "mx251Bytes": 7484,
+      "keilBytes": 4654,
+      "mxOverKeilPercent": 160.80790717662225,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 7484,
+        "spanBytes": 8395,
+        "holesBytes": 911,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p120\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "a6c9c2e0f3b88f8ab068ac4ab6b27220a48521238133865af8cbdb09eb469964"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p120\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "d3321cf097716b2867d0550608784d538e1e80628fcdd3e6f370a20314b8f5bc"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p120\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "25787fa73f8b4ed12673316d4f9c8c8fe9845d8244de1346a5fc1c7202c09868"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "status": "NO_CANDIDATE",
+          "applied": false,
+          "savedBytes": 0,
+          "recordSha256": "86f27f7411a59d0791bdc40421e834bf3994293d1090ce204e730c248a295793",
+          "mode": "AUTO",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b"
+        },
+        "id": "p120",
+        "suite": "mx251",
+        "wallSeconds": 20.09267589999945,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p120\\original-inputs.json",
+          "sha256": "6584459e841e760d20a141881aa6f687d1351fd166569382492cdf3582c78896"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 4654,
+          "spanBytes": 4670,
+          "holesBytes": 16,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p120\\keil\\firmware.hex",
+            "sha256": "5fb3587e24a483795aa2e2b3214e1a8f7c580f432efebce8a39af674128af463"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p120",
+          "suite": "keil",
+          "wallSeconds": 1.0654977999993207,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p120\\original-inputs.json",
+            "sha256": "6584459e841e760d20a141881aa6f687d1351fd166569382492cdf3582c78896"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p120",
+          "suite": "stc-soft",
+          "wallSeconds": 0.0004442999997991137,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p120\\original-inputs.json",
+            "sha256": "6584459e841e760d20a141881aa6f687d1351fd166569382492cdf3582c78896"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p120",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.00031850000050326344,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p120\\original-inputs.json",
+            "sha256": "6584459e841e760d20a141881aa6f687d1351fd166569382492cdf3582c78896"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p120\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "d3321cf097716b2867d0550608784d538e1e80628fcdd3e6f370a20314b8f5bc"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p121",
+      "name": "71.2-电脑通过UART发送图片数据写入到DMA SPI Flash，SPI-TFT_DMA_双缓冲区交替显示图片，不占CPU时间程序-ILI9325",
+      "mx251Bytes": 7153,
+      "keilBytes": 4569,
+      "mxOverKeilPercent": 156.5550448675859,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 7153,
+        "spanBytes": 8064,
+        "holesBytes": 911,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p121\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "41216701eef4508ee40f1bf42de51841b5193abcf4f9ca290c92a686f677904c"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p121\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "b7f452da66548d21c817ff720610169c8e3fb6416714e642076d12f9c253965d"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p121\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "1a2df77f706f0284102adc377b22b2473b9f51d01ea546386672c9587a46b5f3"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "applied": true,
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "recordSha256": "ba9b0204901cb1073f80bbcbd5f17ba290ef49f1729e097f1fb7e9d347dd9b3e",
+          "savedBytes": 151,
+          "status": "SMALLER_IMAGE",
+          "mode": "AUTO"
+        },
+        "id": "p121",
+        "suite": "mx251",
+        "wallSeconds": 42.240502199998446,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p121\\original-inputs.json",
+          "sha256": "36edda0e01302a43661542727cf093fe840d8dd404c251ad56a9cc0693a4a64f"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 4569,
+          "spanBytes": 4592,
+          "holesBytes": 23,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p121\\keil\\firmware.hex",
+            "sha256": "3177eace832fd25a2f53d871c47682d8b037b380b6dbbf56e8b89fc553adb515"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p121",
+          "suite": "keil",
+          "wallSeconds": 2.6959890999996787,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p121\\original-inputs.json",
+            "sha256": "36edda0e01302a43661542727cf093fe840d8dd404c251ad56a9cc0693a4a64f"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p121",
+          "suite": "stc-soft",
+          "wallSeconds": 0.0007620999995197053,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p121\\original-inputs.json",
+            "sha256": "36edda0e01302a43661542727cf093fe840d8dd404c251ad56a9cc0693a4a64f"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p121",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.0005553000000872998,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p121\\original-inputs.json",
+            "sha256": "36edda0e01302a43661542727cf093fe840d8dd404c251ad56a9cc0693a4a64f"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p121\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b7f452da66548d21c817ff720610169c8e3fb6416714e642076d12f9c253965d"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p123",
+      "name": "72.2-QSPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "mx251Bytes": 7079,
+      "keilBytes": 4839,
+      "mxOverKeilPercent": 146.29055589997932,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 7079,
+        "spanBytes": 7513,
+        "holesBytes": 434,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "adccc863b44359546c3a708897d2b2dd32d4ea801c583842e35e4c39c05f628d"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "b4fef40de0821de28dea9aec2936e16980e3b5c4b74678456c3c13a888da7a0d"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "f51a6645379937ae7c80c30bced114883b43877484eef072c9dff6bf24209b47"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "savedBytes": 0,
+          "recordSha256": "d913978734b563d1509a8a419cbc11f1e597f8e4d7f95e68502f5d41bb22fbb6",
+          "status": "NO_CANDIDATE",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "mode": "AUTO",
+          "applied": false
+        },
+        "id": "p123",
+        "suite": "mx251",
+        "wallSeconds": 52.28989500000171,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\original-inputs.json",
+          "sha256": "ec07741f47493f4ec90c7d99999af85302ac3a0552d95a8e6b9f505a1c1a9e0f"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 4839,
+          "spanBytes": 4847,
+          "holesBytes": 8,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-05\\projects\\p123\\keil\\firmware.hex",
+            "sha256": "53878dcd7cbd7ae1b86d32964686899c41b5c62579668334ffec3994cee422d1"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p123",
+          "suite": "keil",
+          "wallSeconds": 1.2706666999984009,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-05\\projects\\p123\\original-inputs.json",
+            "sha256": "ec07741f47493f4ec90c7d99999af85302ac3a0552d95a8e6b9f505a1c1a9e0f"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p123",
+          "suite": "stc-soft",
+          "wallSeconds": 0.0005088999987492571,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-04\\projects\\p123\\original-inputs.json",
+            "sha256": "ec07741f47493f4ec90c7d99999af85302ac3a0552d95a8e6b9f505a1c1a9e0f"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p123",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.00041290000081062317,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-04\\projects\\p123\\original-inputs.json",
+            "sha256": "ec07741f47493f4ec90c7d99999af85302ac3a0552d95a8e6b9f505a1c1a9e0f"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b4fef40de0821de28dea9aec2936e16980e3b5c4b74678456c3c13a888da7a0d"
+      },
+      "errata": {
+        "files": [
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\native\\qspi.h",
+              "sha256": "39acbe3b0111aedaab3648a36ab10cea0256108d6ee8246cd2c349a9eafa39e7"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\native\\qspi.h",
+              "sha256": "1f2efe052b764e25773a8b95f8b024b33c19421be372c1a51414d1a74a0ba9c1"
+            }
+          },
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\native\\SPI_Flash.c",
+              "sha256": "017ac905fc41c5ca92c865520614c31f4163de69a1f7ca6a19ba3a285d3c9f0c"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-06\\projects\\p123\\native\\SPI_Flash.c",
+              "sha256": "fc7a1f4a2a6b3a5bf5540dc8cb65ddceb1a057c1d5576a6ec60d21eeed56df92"
+            }
+          }
+        ],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p127",
+      "name": "73-频谱分析256点FFT-USB-CDC送电脑ISP软件调试接口FFT绘图显示",
+      "mx251Bytes": 10519,
+      "keilBytes": 6998,
+      "mxOverKeilPercent": 150.31437553586738,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 10519,
+        "spanBytes": 10691,
+        "holesBytes": 172,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "96daaf27c54d69cff2d6fd0a1f18f2b859412a0a29b9a6a7d7958a1d32e25e91"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "521a244f58d5ffe8dc5f3e6e2e5efed03e32364922fd0303183749efc843a521"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p127\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "90cca7a39a6862d4c9fd345b4bfe45837ed53b0de2cb35b87510e5cd7b0e3f7e"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "status": "NO_CANDIDATE",
+          "savedBytes": 0,
+          "mode": "AUTO",
+          "applied": false,
+          "recordSha256": "33e1cf09440eb52e6ada4a9eaceaf792975ddc459eafb75ba9d5a980e503f253",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b"
+        },
+        "id": "p127",
+        "suite": "mx251",
+        "wallSeconds": 24.2834526000006,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p127\\original-inputs.json",
+          "sha256": "b7c7994318a9a40d72dd0d38aa10318ead2dc3410b8aeec5f228577046c70998"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "native-math",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 6998,
+          "spanBytes": 6998,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p127\\keil\\firmware.hex",
+            "sha256": "0d0f05dab73909e53b969c3b3742229f38240736669a87815774ddee9735e257"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p127",
+          "suite": "keil",
+          "wallSeconds": 8.12086460000046,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p127\\original-inputs.json",
+            "sha256": "b7c7994318a9a40d72dd0d38aa10318ead2dc3410b8aeec5f228577046c70998"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "reason": "STC32_MDU32_LARGE_V1.1.LIB, STC32_FPMU_LARGE_V1.0.LIB",
+          "id": "p127",
+          "suite": "stc-soft",
+          "wallSeconds": 7.800000275892671e-06,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p127\\original-inputs.json",
+            "sha256": "b7c7994318a9a40d72dd0d38aa10318ead2dc3410b8aeec5f228577046c70998"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "reason": "STC32_MDU32_LARGE_V1.1.LIB, STC32_FPMU_LARGE_V1.0.LIB",
+          "id": "p127",
+          "suite": "stc-mdu32",
+          "wallSeconds": 4.70000031782547e-06,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p127\\original-inputs.json",
+            "sha256": "b7c7994318a9a40d72dd0d38aa10318ead2dc3410b8aeec5f228577046c70998"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "521a244f58d5ffe8dc5f3e6e2e5efed03e32364922fd0303183749efc843a521"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p130",
+      "name": "76-ST7789驱动1.3寸TFT240x240显示屏实验程序-SPI-DMA刷屏",
+      "mx251Bytes": 31174,
+      "keilBytes": 27478,
+      "mxOverKeilPercent": 113.45076060848679,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 31174,
+        "spanBytes": 31517,
+        "holesBytes": 343,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p130\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "84266ec64e43a1e9969ded163c6ba1837de61d93d1ea9a69cc38a75e9f3916bc"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p130\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "8e7147452624560a3c2e89bf874910acab24d2450d3435c8a2632e040c8a2445"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p130\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "bf805658defb4540f8a17d3331aab399c83fc908dde5107cc05df953df69ead8"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "savedBytes": 0,
+          "mode": "AUTO",
+          "recordSha256": "1baea55dba059ec4c6d6d8a91ffaa53ddba7d8d7c1e01027838f6f17756b70d2",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "status": "NO_CANDIDATE",
+          "applied": false
+        },
+        "id": "p130",
+        "suite": "mx251",
+        "wallSeconds": 111.1292515999994,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p130\\original-inputs.json",
+          "sha256": "322f1e2bac1625d3800060bac81dfeaa4a74d1750f815f3f1722f8d7095b3ea9"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 27478,
+          "spanBytes": 27482,
+          "holesBytes": 4,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p130\\keil\\firmware.hex",
+            "sha256": "e12764d68b66e05ede56fba87388ad36006f701b7e8078832b3e3a5a0387da26"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p130",
+          "suite": "keil",
+          "wallSeconds": 0.7219741999997495,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p130\\original-inputs.json",
+            "sha256": "322f1e2bac1625d3800060bac81dfeaa4a74d1750f815f3f1722f8d7095b3ea9"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "payloadBytes": 36552,
+          "spanBytes": 36708,
+          "holesBytes": 156,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p130\\stc-soft\\firmware.hex",
+            "sha256": "23bb7018796f8bdde93ef388fa263a2861f4974d1e1fb9442c438750fba129f7"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 416,
+            "xdata": 3200,
+            "data": 46,
+            "code": 14692,
+            "flashConst": 21860,
+            "flashMax": 21860,
+            "rom": 36552,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 56,
+              "avail": 1379,
+              "stackTop": 668,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 22,
+                "isr": 17,
+                "total": 39,
+                "irNeed": 56,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr TH4（0xD2）与内置寄存器 T4H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL4（0xD3）与内置寄存器 T4L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH3（0xD4）与内置寄存器 T3H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL3（0xD5）与内置寄存器 T3L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH2（0xD6）与内置寄存器 T2H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL2（0xD7）与内置寄存器 T2L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "中断共享变量分析：全部安全方向，无需保护",
+              "⚠️ 本次编译**剥离了 29 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。",
+              "TFT240x240-ST7789-SPI-DMA-V10.c 第 713 行: 隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "TFT240x240-ST7789-SPI-DMA-V10.c 第 743 行: 隐式窄化赋值: num1（unsigned int）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned int) 转换（可在「自动改写」处撤销）",
+              "TFT240x240-ST7789-SPI-DMA-V10.c 第 746 行: 隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "外部符号 SPI_TxCnt, B_TxCmd, CmdTmp **没有找到定义**：编译器给它**另外分配了一份内存**，它**不会**与其它源文件里的同名变量共享（读写互不影响）。若这是有意的（单文件自带一份）可忽略；若要共享，请把定义写到某一个 .c 里、其余文件只留 extern 声明，并把它们**一起编译**。"
+            ],
+            "warningItems": [
+              {
+                "line": null,
+                "column": null,
+                "message": "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。"
+              },
+              {
+                "line": 713,
+                "column": 1,
+                "message": "隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "TFT240x240-ST7789-SPI-DMA-V10.c"
+              },
+              {
+                "line": 743,
+                "column": 1,
+                "message": "隐式窄化赋值: num1（unsigned int）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned int) 转换（可在「自动改写」处撤销）",
+                "file": "TFT240x240-ST7789-SPI-DMA-V10.c"
+              },
+              {
+                "line": 746,
+                "column": 1,
+                "message": "隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "TFT240x240-ST7789-SPI-DMA-V10.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "外部符号 SPI_TxCnt, B_TxCmd, CmdTmp **没有找到定义**：编译器给它**另外分配了一份内存**，它**不会**与其它源文件里的同名变量共享（读写互不影响）。若这是有意的（单文件自带一份）可忽略；若要共享，请把定义写到某一个 .c 里、其余文件只留 extern 声明，并把它们**一起编译**。"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 12447.6343,
+          "mathLib": "soft",
+          "id": "p130",
+          "suite": "stc-soft",
+          "wallSeconds": 13.684407800000372,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p130\\original-inputs.json",
+            "sha256": "322f1e2bac1625d3800060bac81dfeaa4a74d1750f815f3f1722f8d7095b3ea9"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "payloadBytes": 32551,
+          "spanBytes": 32612,
+          "holesBytes": 61,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p130\\stc-mdu32\\firmware.hex",
+            "sha256": "ce156641136a6b6cf736d4687e29ead21193ebd3f38008ed2d427bf85caf2537"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 416,
+            "xdata": 3200,
+            "data": 46,
+            "code": 10691,
+            "flashConst": 21860,
+            "flashMax": 21860,
+            "rom": 32551,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 56,
+              "avail": 1379,
+              "stackTop": 668,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 16,
+                "isr": 17,
+                "total": 33,
+                "irNeed": 56,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr TH4（0xD2）与内置寄存器 T4H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL4（0xD3）与内置寄存器 T4L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH3（0xD4）与内置寄存器 T3H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL3（0xD5）与内置寄存器 T3L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH2（0xD6）与内置寄存器 T2H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL2（0xD7）与内置寄存器 T2L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "中断共享变量分析：全部安全方向，无需保护",
+              "⚠️ 本次编译**剥离了 29 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "TFT240x240-ST7789-SPI-DMA-V10.c 第 713 行: 隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "TFT240x240-ST7789-SPI-DMA-V10.c 第 743 行: 隐式窄化赋值: num1（unsigned int）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned int) 转换（可在「自动改写」处撤销）",
+              "TFT240x240-ST7789-SPI-DMA-V10.c 第 746 行: 隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "外部符号 SPI_TxCnt, B_TxCmd, CmdTmp **没有找到定义**：编译器给它**另外分配了一份内存**，它**不会**与其它源文件里的同名变量共享（读写互不影响）。若这是有意的（单文件自带一份）可忽略；若要共享，请把定义写到某一个 .c 里、其余文件只留 extern 声明，并把它们**一起编译**。"
+            ],
+            "warningItems": [
+              {
+                "line": 713,
+                "column": 1,
+                "message": "隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "TFT240x240-ST7789-SPI-DMA-V10.c"
+              },
+              {
+                "line": 743,
+                "column": 1,
+                "message": "隐式窄化赋值: num1（unsigned int）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned int) 转换（可在「自动改写」处撤销）",
+                "file": "TFT240x240-ST7789-SPI-DMA-V10.c"
+              },
+              {
+                "line": 746,
+                "column": 1,
+                "message": "隐式窄化赋值: temp（unsigned char）← 4 字节值（32 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "TFT240x240-ST7789-SPI-DMA-V10.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "外部符号 SPI_TxCnt, B_TxCmd, CmdTmp **没有找到定义**：编译器给它**另外分配了一份内存**，它**不会**与其它源文件里的同名变量共享（读写互不影响）。若这是有意的（单文件自带一份）可忽略；若要共享，请把定义写到某一个 .c 里、其余文件只留 extern 声明，并把它们**一起编译**。"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 11133.6324,
+          "mathLib": "mdu32",
+          "id": "p130",
+          "suite": "stc-mdu32",
+          "wallSeconds": 11.774096799999825,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p130\\original-inputs.json",
+            "sha256": "322f1e2bac1625d3800060bac81dfeaa4a74d1750f815f3f1722f8d7095b3ea9"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p130\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "8e7147452624560a3c2e89bf874910acab24d2450d3435c8a2632e040c8a2445"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p135",
+      "name": "81-I2S-播放下载在FLASH中的立体声ADPCM音乐-TLV320AIC23B",
+      "mx251Bytes": 15406,
+      "keilBytes": 7944,
+      "mxOverKeilPercent": 193.932527693857,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 15406,
+        "spanBytes": 15834,
+        "holesBytes": 428,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p135\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "94fbc21b6b625f1e1bdb8ba1dac8bac704cbe8bb16d3799ba66802732d9896a4"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p135\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "8b6606336c60dd1a2981187b91ae51be2a3149046ee50be2e0ab5ea227c25a5b"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p135\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "ca83689b033e97528fe97a5b307773460eda3c739605e310db4edf2592932873"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "status": "SMALLER_IMAGE",
+          "mode": "AUTO",
+          "applied": true,
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "recordSha256": "2517ed9ddfe84cd928a38da697ae3f4dec01de2aca7489fd3685e0aca0c2d237",
+          "savedBytes": 117
+        },
+        "id": "p135",
+        "suite": "mx251",
+        "wallSeconds": 72.9404427999998,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p135\\original-inputs.json",
+          "sha256": "514a9d0ed123b522c2f22a23dedf1fc829dcec35db8499390650fcf46f79bd43"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 7944,
+          "spanBytes": 7944,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p135\\keil\\firmware.hex",
+            "sha256": "f644d05490f31006c098908ceac1f0f4f305f352acda0c59e546123abb482f6d"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p135",
+          "suite": "keil",
+          "wallSeconds": 2.344229300000734,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p135\\original-inputs.json",
+            "sha256": "514a9d0ed123b522c2f22a23dedf1fc829dcec35db8499390650fcf46f79bd43"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "payloadBytes": 12611,
+          "spanBytes": 12762,
+          "holesBytes": 151,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p135\\stc-soft\\firmware.hex",
+            "sha256": "69984efaee3f8024225c0e71ed1638a810a06b8f216cb4fa6510c5bc5005470d"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 185,
+            "xdata": 17496,
+            "data": 48,
+            "code": 12139,
+            "flashConst": 472,
+            "flashMax": 474,
+            "rom": 12611,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 105,
+              "avail": 1606,
+              "stackTop": 441,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 10,
+                "isr": 95,
+                "total": 105,
+                "irNeed": 82,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr TH4（0xD2）与内置寄存器 T4H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL4（0xD3）与内置寄存器 T4L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH3（0xD4）与内置寄存器 T3H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL3（0xD5）与内置寄存器 T3L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH2（0xD6）与内置寄存器 T2H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL2（0xD7）与内置寄存器 T2L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "变量 B_high_nibble 声明了两次（都没有初始化）：按正常处理，不影响结果",
+              "DEVICEDESC[8] 的初始化值 191 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "DEVICEDESC[11] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[7] 的初始化值 128 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[39] 的初始化值 130 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[43] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[55] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法",
+              "⚠️ 本次编译**剥离了 47 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。",
+              "uart.c 第 33 行: 隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "main.c 第 33 行: 变量 MusicType 已定义但从未使用",
+              "main.c 第 66 行: 变量 de_index 已定义但从未使用",
+              "main.c 第 67 行: 变量 pre_sample 已定义但从未使用",
+              "main.c 第 69 行: 变量 adpcm_data 已定义但从未使用",
+              "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "⚠️ 存储类 `data/idata/pdata` 已归一为 **edata** 分配（本编译器无这三种地址空间）：本编译单元 idata×1。值语义一致（自洽），但**体积会大于 Keil**（Keil 的 `data` 用 2 字节 dir8 访问，我们走 4 字节 dir16），且不支持与位寻址区/`sbit` 互操作。要精确控址请用 24 位 `_at_` 或 volatile 指针。",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法"
+            ],
+            "warningItems": [
+              {
+                "line": null,
+                "column": null,
+                "message": "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。"
+              },
+              {
+                "line": 33,
+                "column": 1,
+                "message": "隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "uart.c"
+              },
+              {
+                "line": 33,
+                "column": 1,
+                "message": "变量 MusicType 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": 66,
+                "column": 1,
+                "message": "变量 de_index 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": 67,
+                "column": 1,
+                "message": "变量 pre_sample 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": 69,
+                "column": 1,
+                "message": "变量 adpcm_data 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "⚠️ 存储类 `data/idata/pdata` 已归一为 **edata** 分配（本编译器无这三种地址空间）：本编译单元 idata×1。值语义一致（自洽），但**体积会大于 Keil**（Keil 的 `data` 用 2 字节 dir8 访问，我们走 4 字节 dir16），且不支持与位寻址区/`sbit` 互操作。要精确控址请用 24 位 `_at_` 或 volatile 指针。"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 10179.7302,
+          "mathLib": "soft",
+          "id": "p135",
+          "suite": "stc-soft",
+          "wallSeconds": 11.295600100000229,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p135\\original-inputs.json",
+            "sha256": "514a9d0ed123b522c2f22a23dedf1fc829dcec35db8499390650fcf46f79bd43"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "payloadBytes": 12611,
+          "spanBytes": 12762,
+          "holesBytes": 151,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p135\\stc-mdu32\\firmware.hex",
+            "sha256": "69984efaee3f8024225c0e71ed1638a810a06b8f216cb4fa6510c5bc5005470d"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 185,
+            "xdata": 17496,
+            "data": 48,
+            "code": 12139,
+            "flashConst": 472,
+            "flashMax": 474,
+            "rom": 12611,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 105,
+              "avail": 1606,
+              "stackTop": 441,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 10,
+                "isr": 95,
+                "total": 105,
+                "irNeed": 82,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr TH4（0xD2）与内置寄存器 T4H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL4（0xD3）与内置寄存器 T4L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH3（0xD4）与内置寄存器 T3H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL3（0xD5）与内置寄存器 T3L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH2（0xD6）与内置寄存器 T2H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL2（0xD7）与内置寄存器 T2L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "变量 B_high_nibble 声明了两次（都没有初始化）：按正常处理，不影响结果",
+              "DEVICEDESC[8] 的初始化值 191 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "DEVICEDESC[11] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[7] 的初始化值 128 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[39] 的初始化值 130 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[43] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[55] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法",
+              "⚠️ 本次编译**剥离了 47 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "uart.c 第 33 行: 隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "main.c 第 33 行: 变量 MusicType 已定义但从未使用",
+              "main.c 第 66 行: 变量 de_index 已定义但从未使用",
+              "main.c 第 67 行: 变量 pre_sample 已定义但从未使用",
+              "main.c 第 69 行: 变量 adpcm_data 已定义但从未使用",
+              "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "⚠️ 存储类 `data/idata/pdata` 已归一为 **edata** 分配（本编译器无这三种地址空间）：本编译单元 idata×1。值语义一致（自洽），但**体积会大于 Keil**（Keil 的 `data` 用 2 字节 dir8 访问，我们走 4 字节 dir16），且不支持与位寻址区/`sbit` 互操作。要精确控址请用 24 位 `_at_` 或 volatile 指针。",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法"
+            ],
+            "warningItems": [
+              {
+                "line": 33,
+                "column": 1,
+                "message": "隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "uart.c"
+              },
+              {
+                "line": 33,
+                "column": 1,
+                "message": "变量 MusicType 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": 66,
+                "column": 1,
+                "message": "变量 de_index 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": 67,
+                "column": 1,
+                "message": "变量 pre_sample 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": 69,
+                "column": 1,
+                "message": "变量 adpcm_data 已定义但从未使用",
+                "file": "main.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "⚠️ 存储类 `data/idata/pdata` 已归一为 **edata** 分配（本编译器无这三种地址空间）：本编译单元 idata×1。值语义一致（自洽），但**体积会大于 Keil**（Keil 的 `data` 用 2 字节 dir8 访问，我们走 4 字节 dir16），且不支持与位寻址区/`sbit` 互操作。要精确控址请用 24 位 `_at_` 或 volatile 指针。"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 10433.6322,
+          "mathLib": "mdu32",
+          "id": "p135",
+          "suite": "stc-mdu32",
+          "wallSeconds": 11.905146399999467,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p135\\original-inputs.json",
+            "sha256": "514a9d0ed123b522c2f22a23dedf1fc829dcec35db8499390650fcf46f79bd43"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p135\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "8b6606336c60dd1a2981187b91ae51be2a3149046ee50be2e0ab5ea227c25a5b"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p140",
+      "name": "84-USB录放音声卡-TLV320AIC23B-内部36.864M-外接32768Hz晶振",
+      "mx251Bytes": 9503,
+      "keilBytes": 5059,
+      "mxOverKeilPercent": 187.84344732160505,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 9503,
+        "spanBytes": 9931,
+        "holesBytes": 428,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "574a9e8766b10ced6c6450f145569635c26f6bc7a99d0bf22e540f64f2646519"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p140\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "ebe3e3b804629c102205133667cae2462459390383e3ad582cf5f2ebb7a259f3"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p140\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "f392117c43ac1c5502e4ff020c199c08b1245bfc6dd09b7a897bd27d3fa144d7"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "recordSha256": "49bf9289ce7afc09b856540cec65e46576ae52b7299c756e10cb34a407b92755",
+          "applied": false,
+          "mode": "AUTO",
+          "status": "NO_CANDIDATE",
+          "savedBytes": 0,
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b"
+        },
+        "id": "p140",
+        "suite": "mx251",
+        "wallSeconds": 26.165481,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p140\\original-inputs.json",
+          "sha256": "144c71ae377aeb13fb79a4cbda44ad57a45e89971586a60c84b68236df8245a0"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "native-math",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 5059,
+          "spanBytes": 5059,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p140\\keil\\firmware.hex",
+            "sha256": "1babb22c2a3e0f68a2ed2d54d615c4fd4d5fa1dc57679ae470811f50f8de189a"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p140",
+          "suite": "keil",
+          "wallSeconds": 3.171617800000604,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p140\\original-inputs.json",
+            "sha256": "144c71ae377aeb13fb79a4cbda44ad57a45e89971586a60c84b68236df8245a0"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "reason": "STC32_MDU32_LARGE_V1.1.LIB",
+          "id": "p140",
+          "suite": "stc-soft",
+          "wallSeconds": 4.599999556376133e-06,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p140\\original-inputs.json",
+            "sha256": "144c71ae377aeb13fb79a4cbda44ad57a45e89971586a60c84b68236df8245a0"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "reason": "STC32_MDU32_LARGE_V1.1.LIB",
+          "id": "p140",
+          "suite": "stc-mdu32",
+          "wallSeconds": 6.199999916134402e-06,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p140\\original-inputs.json",
+            "sha256": "144c71ae377aeb13fb79a4cbda44ad57a45e89971586a60c84b68236df8245a0"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p140\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ebe3e3b804629c102205133667cae2462459390383e3ad582cf5f2ebb7a259f3"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p141",
+      "name": "85-示波器-CDC虚拟显示",
+      "mx251Bytes": 11543,
+      "keilBytes": 6957,
+      "mxOverKeilPercent": 165.9192180537588,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 11543,
+        "spanBytes": 11723,
+        "holesBytes": 180,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p141\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "81e88374f50319c85b3ee1b49eb2f44e48c9951ede0f78db13138798dd7651b0"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p141\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "90f03837e11896e872b3fa7405cfdfa364b86e70c68ec8283655389f3b647c14"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p141\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "076d19e3794ca6e2df7687340804a336253cf2f4708a84fade3c925136be0db7"
+        },
+        "model": "small",
+        "selectiveLeafAbi": {
+          "status": "SMALLER_IMAGE",
+          "recordSha256": "d8d181d08a2f1e2b0a7eebeaef385e0b6b41dee8cebc9013b98aa7d56f22c998",
+          "savedBytes": 119,
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "mode": "AUTO",
+          "applied": true
+        },
+        "id": "p141",
+        "suite": "mx251",
+        "wallSeconds": 83.35116129999915,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p141\\original-inputs.json",
+          "sha256": "553b58dd55c3cda2fb3d1f41711ff531926a17a2aebf255980637017c30440c8"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": [],
+        "defaultDataSpace": "edata"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 6957,
+          "spanBytes": 6957,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p141\\keil\\firmware.hex",
+            "sha256": "5c1518ca6629a21e85f1c9e4fdf4d644fb10ef3e5ec7fb2c5b6359d44fed1209"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 7,
+          "vectorAdapter": true,
+          "historicalBytesMatch": true,
+          "id": "p141",
+          "suite": "keil",
+          "wallSeconds": 3.3931119999997463,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p141\\original-inputs.json",
+            "sha256": "553b58dd55c3cda2fb3d1f41711ff531926a17a2aebf255980637017c30440c8"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "payloadBytes": 9494,
+          "spanBytes": 9577,
+          "holesBytes": 83,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p141\\stc-soft\\firmware.hex",
+            "sha256": "372ecb2fa109fe5c5feaa05472f094005915ac38b3866f8d1ed630ae61d67105"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 566,
+            "xdata": 5120,
+            "data": 33,
+            "code": 9135,
+            "flashConst": 359,
+            "flashMax": 361,
+            "rom": 9494,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 103,
+              "avail": 1225,
+              "stackTop": 822,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 10,
+                "isr": 93,
+                "total": 103,
+                "irNeed": 100,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr TH4（0xD2）与内置寄存器 T4H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL4（0xD3）与内置寄存器 T4L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH3（0xD4）与内置寄存器 T3H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL3（0xD5）与内置寄存器 T3L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH2（0xD6）与内置寄存器 T2H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL2（0xD7）与内置寄存器 T2L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "DEVICEDESC[8] 的初始化值 191 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "DEVICEDESC[11] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[7] 的初始化值 128 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[39] 的初始化值 130 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[43] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[55] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "已剔除 1 个未调用函数: reverse4（想全部保留：把编译选项 `keepUnusedFunctions` 设为 true）",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法",
+              "⚠️ 本次编译**剥离了 50 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。",
+              "uart.c 第 33 行: 隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "OSCOPE-V2-8bit-CDC.c 第 88 行: 变量 LastDot 已定义但从未使用",
+              "共享变量 adc_rd 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "共享变量 AutoTimeCnt 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "共享变量 adc_wr 被 3 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法"
+            ],
+            "warningItems": [
+              {
+                "line": null,
+                "column": null,
+                "message": "型号 AI8051U 带硬件乘除（MDU32）：已自动使用硬件乘除，忽略请求的 mathLib=soft。本编译器不再让用户选择数学库（有硬件就用硬件）。"
+              },
+              {
+                "line": 33,
+                "column": 1,
+                "message": "隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "uart.c"
+              },
+              {
+                "line": 88,
+                "column": 1,
+                "message": "变量 LastDot 已定义但从未使用",
+                "file": "OSCOPE-V2-8bit-CDC.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 adc_rd 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 AutoTimeCnt 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 adc_wr 被 3 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 10301.859799999998,
+          "mathLib": "soft",
+          "id": "p141",
+          "suite": "stc-soft",
+          "wallSeconds": 12.138457500000186,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p141\\original-inputs.json",
+            "sha256": "553b58dd55c3cda2fb3d1f41711ff531926a17a2aebf255980637017c30440c8"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "payloadBytes": 9494,
+          "spanBytes": 9577,
+          "holesBytes": 83,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p141\\stc-mdu32\\firmware.hex",
+            "sha256": "372ecb2fa109fe5c5feaa05472f094005915ac38b3866f8d1ed630ae61d67105"
+          },
+          "buildVer": "stc-ide-ff7d2e83",
+          "memory": {
+            "edata": 566,
+            "xdata": 5120,
+            "data": 33,
+            "code": 9135,
+            "flashConst": 359,
+            "flashMax": 361,
+            "rom": 9494,
+            "targetName": "AI8051U",
+            "capacity": null,
+            "stack": {
+              "need": 103,
+              "avail": 1225,
+              "stackTop": 822,
+              "lowerBound": false,
+              "unbounded": [],
+              "unknownEdges": 0,
+              "unknownEdgeBytes": 0,
+              "verdict": {
+                "kind": "proved",
+                "reasons": []
+              },
+              "asmPeak": {
+                "main": 10,
+                "isr": 93,
+                "total": 103,
+                "irNeed": 100,
+                "uncertain": [],
+                "unknownEdges": [],
+                "unknownEdgeBytes": 0,
+                "caveats": [
+                  "中断优先级未接入：1 处（首个站点：ISR 优先级未接入本模块（来源 atomicPriority.isrPriorities 对整寄存器写失真：IP = 0x08 ⇒ 两个 ISR 都读到 8） ⇒ isrPeak 只给 Σ(2+chainPeak(isr)) 的保守上界，不按优先级取 max）"
+                ]
+              }
+            }
+          },
+          "diagnostics": {
+            "notes": [
+              "sfr TH4（0xD2）与内置寄存器 T4H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL4（0xD3）与内置寄存器 T4L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH3（0xD4）与内置寄存器 T3H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL3（0xD5）与内置寄存器 T3L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TH2（0xD6）与内置寄存器 T2H 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr TL2（0xD7）与内置寄存器 T2L 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "sfr T4T3M（0xDD）与内置寄存器 T3T4M 是同一个地址（只是名字不同）：按你的定义处理，两者会互相影响",
+              "DEVICEDESC[8] 的初始化值 191 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "DEVICEDESC[11] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[7] 的初始化值 128 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[39] 的初始化值 130 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[43] 的初始化值 255 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "CONFIGDESC[55] 的初始化值 129 超出该元素类型的范围：已按位模式（保留低位）存储，与 Keil 行为一致；如需原值请把元素类型改宽",
+              "通过裸指针访问的变量不会自动加原子保护（按名字访问的全局变量/数组/结构体成员已自动保护）：如果指针指向的变量会在中断和主程序里共享，请自己加临界区（关中断）保护",
+              "已剔除 1 个未调用函数: reverse4（想全部保留：把编译选项 `keepUnusedFunctions` 设为 true）",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法",
+              "⚠️ 本次编译**剥离了 50 处 `far` 限定符**：本编译器只有一个 64K 数据空间，**`far` 没有语义**，这些变量按普通（near/edata）变量分配 —— 如果你依赖 Keil 的 far 大对象放置，请改用显式地址（`_at_`）或分块访问"
+            ],
+            "warnings": [
+              "uart.c 第 33 行: 隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+              "OSCOPE-V2-8bit-CDC.c 第 88 行: 变量 LastDot 已定义但从未使用",
+              "共享变量 adc_rd 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "共享变量 AutoTimeCnt 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "共享变量 adc_wr 被 3 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写",
+              "⚠️ 本次编译**剥离了 7 处 `reentrant` 修饰符**：本编译器**没有实现可重入**，这些函数按**非重入**编译（形参与局部仍落在固定暂存区）—— 若确有「主循环与中断同时调用同一个函数」的用法，请**手工加互斥/关中断**，或把该函数改为**只读全局状态**的写法"
+            ],
+            "warningItems": [
+              {
+                "line": 33,
+                "column": 1,
+                "message": "隐式窄化赋值: cnt（unsigned char）← 2 字节值（16 位），可能截断——已自动改写为显式 (unsigned char) 转换（可在「自动改写」处撤销）",
+                "file": "uart.c"
+              },
+              {
+                "line": 88,
+                "column": 1,
+                "message": "变量 LastDot 已定义但从未使用",
+                "file": "OSCOPE-V2-8bit-CDC.c"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 adc_rd 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 AutoTimeCnt 被 2 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 Ep0State 被 2 个上下文同时写；该变量占多个字节，写入可能被中断打断、从而被读出只改了一半的中间值（也可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              },
+              {
+                "line": null,
+                "column": null,
+                "message": "共享变量 adc_wr 被 3 个上下文同时写，且中断和主程序之间会「先读、再改、后写」（可能丢失更新）；编译器不自动保护——请自行在该变量两侧加临时关中断的临界区，或开启「中断共享变量串行化保护」让编译器自动串行化这些写"
+              }
+            ]
+          },
+          "equivalence": "NOT_ESTABLISHED",
+          "model": "vendor-24-bit-pointer",
+          "fullMs": 10879.0285,
+          "mathLib": "mdu32",
+          "id": "p141",
+          "suite": "stc-mdu32",
+          "wallSeconds": 11.622330600000168,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage\\projects\\p141\\original-inputs.json",
+            "sha256": "553b58dd55c3cda2fb3d1f41711ff531926a17a2aebf255980637017c30440c8"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-03\\projects\\p141\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "90f03837e11896e872b3fa7405cfdfa364b86e70c68ec8283655389f3b647c14"
+      },
+      "errata": {
+        "files": [],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p144",
+      "name": "87-U8G2_DMA_OLED/1-U8G2_I2C_DMA_OLED",
+      "mx251Bytes": 42007,
+      "keilBytes": 25221,
+      "mxOverKeilPercent": 166.5556480710519,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 42007,
+        "spanBytes": 42428,
+        "holesBytes": 421,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "9c7f1001fb8a1a0c8be71ab6a5f96bd6c9a253799421e8a9ebf226066e94e1f3"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "41af5641efd3bbfbeea21562117c4715c4359ae3bbc7bd77452a10b57f5ddbd2"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "936cb8b40d03b80363dd25d650eacc4b24e1e6b5a94811b5a4e1e78b6d540809"
+        },
+        "model": "large",
+        "selectiveLeafAbi": {
+          "recordSha256": "251d8b4eb6e98583b3d3a68929d9302607a1299d6271d6393a35d10423798b81",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "savedBytes": 0,
+          "applied": false,
+          "mode": "AUTO",
+          "status": "NO_CANDIDATE"
+        },
+        "id": "p144",
+        "suite": "mx251",
+        "wallSeconds": 173.51610660000006,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\original-inputs.json",
+          "sha256": "8fec2a2b7265709dc3aaf93e6fe0804dd2a5a6780f5300798bfd878836237687"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": []
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 25221,
+          "spanBytes": 25221,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-05\\projects\\p144\\keil\\firmware.hex",
+            "sha256": "807e315fc9fd87135cb145bd84bae7d503b2355a2ffa7d7e39b814985746d97a"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 9,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p144",
+          "suite": "keil",
+          "wallSeconds": 8.068705800000316,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-05\\projects\\p144\\original-inputs.json",
+            "sha256": "8fec2a2b7265709dc3aaf93e6fe0804dd2a5a6780f5300798bfd878836237687"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p144",
+          "suite": "stc-soft",
+          "wallSeconds": 0.0006216999991011107,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-04\\projects\\p144\\original-inputs.json",
+            "sha256": "8fec2a2b7265709dc3aaf93e6fe0804dd2a5a6780f5300798bfd878836237687"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p144",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.00047710000035294797,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-04\\projects\\p144\\original-inputs.json",
+            "sha256": "8fec2a2b7265709dc3aaf93e6fe0804dd2a5a6780f5300798bfd878836237687"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "41af5641efd3bbfbeea21562117c4715c4359ae3bbc7bd77452a10b57f5ddbd2"
+      },
+      "errata": {
+        "files": [
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\native\\u8g2_porting.c",
+              "sha256": "42695e8f5cdd572d846a0284bea35bfbfb068ba0bd5801016356665a689d16b1"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\native\\u8g2_porting.c",
+              "sha256": "b1e69f09982210bfe9b5d15e17035ac337658251cbd24e83e080ffd809a6a661"
+            }
+          },
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\native\\u8g2_test.c",
+              "sha256": "5d2eaf66afd5f43724736505d53594ca0dbc87af5c63820e30c48ee5b5d1d3ec"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p144\\native\\u8g2_test.c",
+              "sha256": "c4abaced7d425ea75f901d53c0fd0a71a949ae83abb4ae99c5dd5c18b500f29b"
+            }
+          }
+        ],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    },
+    {
+      "id": "p145",
+      "name": "87-U8G2_DMA_OLED/2-U8G2_SPI_DMA_OLED",
+      "mx251Bytes": 40884,
+      "keilBytes": 24968,
+      "mxOverKeilPercent": 163.7455943607818,
+      "mx251": {
+        "status": "BUILT",
+        "payloadBytes": 40884,
+        "spanBytes": 41299,
+        "holesBytes": 415,
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "47e50d99af8966b547d9d028ad8cb5c0c3002a4e0af87721746276fc9b7d3963"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "2b815757d641c36e8d9cf930013c4d7388ff9cb85c7ce77cbcb46d2746b02261"
+        },
+        "coreBuild": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\mx251\\.build\\cmake-mx251-core\\core-build.json",
+          "sha256": "3b4e0be69853be473f05ea0828e22a0e2f40b913d9a31c4882532d3cb76ae988"
+        },
+        "model": "large",
+        "selectiveLeafAbi": {
+          "mode": "AUTO",
+          "status": "NO_CANDIDATE",
+          "recordSha256": "85e84383120b29721e58d1b7971b3f830f22985b118aa7ced59615636124399d",
+          "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+          "savedBytes": 0,
+          "applied": false
+        },
+        "id": "p145",
+        "suite": "mx251",
+        "wallSeconds": 174.49009569999907,
+        "hardwareExecuted": false,
+        "firmwareExecutionTime": null,
+        "inputManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\original-inputs.json",
+          "sha256": "68515597efc8bdf90b0efed0fa5ed28ceeaf0e8e60076af23d96634d606d171a"
+        }
+      },
+      "settings": {
+        "schema": 2,
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "speed",
+        "backend": "ordinary-wide",
+        "explicitAbi": false,
+        "standard": "sdcc11",
+        "runtime": "standard",
+        "defines": []
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "payloadBytes": 24968,
+          "spanBytes": 24968,
+          "holesBytes": 0,
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-05\\projects\\p145\\keil\\firmware.hex",
+            "sha256": "48b54238672ad3ea4e7e962ea2f80966c4fd3bec7c5b028f56a7bac46e8db0f9"
+          },
+          "model": "XSMALL",
+          "optimization": "SPEED",
+          "optLevel": 9,
+          "vectorAdapter": true,
+          "historicalBytesMatch": false,
+          "id": "p145",
+          "suite": "keil",
+          "wallSeconds": 7.949470899999142,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-05\\projects\\p145\\original-inputs.json",
+            "sha256": "68515597efc8bdf90b0efed0fa5ed28ceeaf0e8e60076af23d96634d606d171a"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "soft",
+          "id": "p145",
+          "suite": "stc-soft",
+          "wallSeconds": 0.0008111000006465474,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-04\\projects\\p145\\original-inputs.json",
+            "sha256": "68515597efc8bdf90b0efed0fa5ed28ceeaf0e8e60076af23d96634d606d171a"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "reason": "Official worker accepts C/header inputs; original absolute vector assembly is required.",
+          "assembly": [
+            "ISR.asm"
+          ],
+          "mathLib": "mdu32",
+          "id": "p145",
+          "suite": "stc-mdu32",
+          "wallSeconds": 0.00030390000029001385,
+          "hardwareExecuted": false,
+          "firmwareExecutionTime": null,
+          "inputManifest": {
+            "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-04\\projects\\p145\\original-inputs.json",
+            "sha256": "68515597efc8bdf90b0efed0fa5ed28ceeaf0e8e60076af23d96634d606d171a"
+          }
+        }
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2b815757d641c36e8d9cf930013c4d7388ff9cb85c7ce77cbcb46d2746b02261"
+      },
+      "errata": {
+        "files": [
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\native\\u8g2_porting.c",
+              "sha256": "73ed2503b4050e89d613850fac2d4f13727255ee5fbf6437bd78552f42b27142"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\native\\u8g2_porting.c",
+              "sha256": "a585328d71d556aa9276e61c52681c754df677764edb50327511ed1035c301fa"
+            }
+          },
+          {
+            "before": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\native\\u8g2_test.c",
+              "sha256": "5d2eaf66afd5f43724736505d53594ca0dbc87af5c63820e30c48ee5b5d1d3ec"
+            },
+            "after": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\matrix-07\\projects\\p145\\native\\u8g2_test.c",
+              "sha256": "c4abaced7d425ea75f901d53c0fd0a71a949ae83abb4ae99c5dd5c18b500f29b"
+            }
+          }
+        ],
+        "reason": "Correct symbol case, pointer indirection and missing arguments in vendor examples"
+      }
+    }
+  ],
+  "summary": {
+    "newBuilt": 17,
+    "newAt110": 0,
+    "newAt120": 1,
+    "cProjectCoverageBefore": 89,
+    "cProjectCoverageAfter": 106,
+    "cProjects": 114,
+    "usbOmfRemaining": [
+      "p093",
+      "p094",
+      "p118",
+      "p124",
+      "p125",
+      "p126",
+      "p147",
+      "p148"
+    ]
+  },
+  "validation": {
+    "declarations": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\checks-declarations-02\\result.json",
+      "sha256": "4adeb299f712779142f73a048c2dc5bf08d237d48506b019e2a4599c02450f4c"
+    },
+    "vectorCollection": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\checks-vector-gc-03\\result.json",
+      "sha256": "ad05bbc1bde1afe8238bee31e136d95dd945c2bbfc773037abbb0751f2a92190"
+    },
+    "hardware": {
+      "memoryDeclarationsMath": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\hardware\\result.json",
+        "sha256": "844dfc04d5f4b4ac3922d46ff49519fbf6345dade7e922974b7cd7b39473f57b"
+      },
+      "vectorRedirects": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\vector-hardware-03\\result.json",
+        "sha256": "1cd63ecc15d44af053e2ec9a63b6e4b7d696c1815ffc0960d3206252160b7bde"
+      },
+      "callbacks": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\callback-hardware\\result.json",
+        "sha256": "a46e5fa66f0323fe9da933c1b51bc2d4a076927e7c1414daff98a5147b4ea207"
+      }
+    }
+  },
+  "usbInventory": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility\\omf-repro\\inventory.json",
+    "sha256": "6255f2c38489210c2cdd412970eac7b01fc4edab9833921d29bf5cecb65b1df7"
+  },
+  "scope": "Artifact coverage uses prior accepted results plus this incremental cohort. Build scripts evolved during this run; all new images use the pinned compiler binary. This is not one-version full-SDK release qualification. Hardware fixtures do not establish complete-example behavior or Keil runtime ratios."
+}
