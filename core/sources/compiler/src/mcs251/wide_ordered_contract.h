@@ -3,6 +3,7 @@
 #define MCS251_WIDE_ORDERED_CONTRACT_H
 #include <string.h>
 #include <ctype.h>
+#include "target_sfr.h"
 typedef struct { unsigned char operation,address,bit; } wide_asm_instruction;
 static inline int wide_asm_core_address(unsigned address);
 
@@ -47,7 +48,7 @@ wide_asm_core_address(unsigned address)
    * 其余地址也不是默认安全：仍须逐位命中独立核验的目标能力掩码。
    */
   return address<0x80 || (address>=0x81 && address<=0x86) ||
-    address==0xa2 || address==0xbe || address==0xd0 || address==0xd1 ||
+    address==0xa2 || mcs251StackSfrAddress(address) || address==0xd0 || address==0xd1 ||
     address==0xe0 || address==0xe3 || address==0xf0;
 }
 

@@ -51,7 +51,7 @@ function Test-Mx251FactStore([string]$Text,[int]$Width,[int[]]$Facts) {
  }
  return $low+$offset -ge 256 -and $high+$offset+$Width -le 16777216
 }
-function Invoke-Mx251FactInstruction($Node,[int[]]$Before,$Aliases,$Objects) {
+function Invoke-Mx251FactInstruction($Node,[int[]]$Before,$Aliases,$Objects,[int]$Sph=190) {
  [int[]]$after=$Before.Clone();$op=$Node.op;$args=$Node.args
  if(-not $op -or $op -in @('nop','ret','eret','push','pushw','cmp','sjmp','ljmp','ejmp','jz','jnz','jc','jnc','je','jne','jslt','jsle','jsgt','jsge','jsl','jsg','jg','jle','jb','jnb','cjne')){return ,$after}
  if($op -in @('ecall','lcall','acall')){return ,([int[]](@(-1)*36))}
@@ -63,7 +63,7 @@ function Invoke-Mx251FactInstruction($Node,[int[]]$Before,$Aliases,$Objects) {
   for($i=$first;$i -lt $first+$width;$i++){$after[$i]=-1};return ,$after
  }
  if($op -notin @('mov','movx','movc','movz','movs','anl','orl','xrl','add','addc','sub','subb','pop','inc','dec','djnz','jbc','cpl','clr','setb','sll','srl','sra','rl','rr','rlc','rrc','swap','xch')){return ,([int[]](@(-1)*36))}
- $state=@{low=$null;high=$null;constants=@{};objects=$Objects;addressFacts=$Before}
+ $state=@{low=$null;high=$null;constants=@{};objects=$Objects;addressFacts=$Before;sph=$Sph}
  for($i=0;$i -lt 32;$i++){if($Before[$i] -ge 0){$state.constants[$i]=$Before[$i]}}
  if($Before[34] -ge 0 -and $Before[35] -ge 0){$state.low=($Before[34] -shl 8) -bor $Before[35]}
  if($Before[33] -ge 0){$state.high=$Before[33]}
@@ -107,7 +107,7 @@ function Invoke-Mx251FactInstruction($Node,[int[]]$Before,$Aliases,$Objects) {
  }
  return ,$after
 }
-function Get-Mx251CfgAddressFacts([string]$Body,$Aliases,$Objects) {
+function Get-Mx251CfgAddressFacts([string]$Body,$Aliases,$Objects,[int]$Sph=190) {
  $lines=$Body.Split("`n");$count=$lines.Count
  if($count -gt 16384){return @{}}
  $labels=New-Mx251OrdinalMap;$nodes=[object[]]::new($count)
@@ -138,7 +138,7 @@ function Get-Mx251CfgAddressFacts([string]$Body,$Aliases,$Objects) {
  while($queue.Count) {
   if(++$steps -gt $count*40){return @{}}
   $i=$queue.Dequeue();$queued[$i]=$false
-  $after=Invoke-Mx251FactInstruction $nodes[$i] $incoming[$i] $Aliases $Objects
+  $after=Invoke-Mx251FactInstruction $nodes[$i] $incoming[$i] $Aliases $Objects $Sph
   foreach($to in $nodes[$i].successors) {
    $changed=$false
    if($null -eq $incoming[$to]){$incoming[$to]=$after.Clone();$changed=$true}

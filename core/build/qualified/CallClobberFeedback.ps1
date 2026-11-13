@@ -47,7 +47,7 @@ function Get-Mx251DirectGprMask([long]$Address,[int]$Width,$State) {
  if($Address -lt 0 -or $Address+$Width -gt 256 -or $Width -notin @(1,2,4)){throw 'unresolved-direct-width'}
  [long]$mask=0
  for($i=$Address;$i -lt $Address+$Width;$i++){
-  if($i -in @(129,208,209)){throw 'stack-or-register-bank-write'}
+  if($i -in @(129,208,209) -or $i -eq $State.sph){throw 'stack-or-register-bank-write'}
   if($i -in @(130,131,132,133)){$State.low=$null;$State.high=$null}
   if($i -in @(130,131)){$State.dpxWrites=1 -bor [long]$State['dpxWrites']}
   if($i -in @(132,133)){$State.dpxWrites=2 -bor [long]$State['dpxWrites']}
@@ -134,7 +134,7 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
  if($null -eq $address){throw 'unresolved-direct-write'}
  return (Get-Mx251DirectGprMask $address $Width $State)
 }
-function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAddressFacts) {
+function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAddressFacts,[ValidateSet('legacy-v1','sph85-v1')][string]$SfrLayout='legacy-v1') {
  $labels=New-Mx251OrdinalMap;$calls=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
  foreach($m in [regex]::Matches($Body,'(?m)^\s*([A-Za-z_.$0-9]+):{1,2}\s*$')){$labels[$m.Groups[1].Value]=$true}
  # Call discovery is independent of the caller's own write summary. An
@@ -145,9 +145,9 @@ function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAd
   $m=[regex]::Match($line,'^(ecall|lcall|acall|ljmp|ejmp)\s+([A-Za-z_.$][A-Za-z_.$0-9]*)$')
   if($m.Success -and ($m.Groups[1].Value -in @('ecall','lcall','acall') -or -not $labels.ContainsKey($m.Groups[2].Value))){$null=$calls.Add($m.Groups[2].Value)}
  }
- $facts=if($WithAddressFacts){Get-Mx251CfgAddressFacts $Body $Aliases $Objects}else{@{}}
+ $facts=if($WithAddressFacts){Get-Mx251CfgAddressFacts $Body $Aliases $Objects $(if($SfrLayout -ceq 'sph85-v1'){133}else{190})}else{@{}}
  $lineIndex=-1
- $mask=0;$count=0;$state=@{low=$null;high=$null;dpxWrites=0;constants=@{};objects=$Objects};$reason=$null
+ $mask=0;$count=0;$state=@{low=$null;high=$null;dpxWrites=0;sph=$(if($SfrLayout -ceq 'sph85-v1'){133}else{190});constants=@{};objects=$Objects};$reason=$null
  try {
   foreach($raw in $Body.Split("`n")) {
    ++$lineIndex;$state.addressFacts=$facts[$lineIndex]
@@ -223,7 +223,7 @@ function Get-Mx251BankBody([string]$Body,$Aliases,$Objects=$null,[switch]$WithAd
    throw ('unknown-instruction:'+ $op)
   }
  } catch {$reason=$_.Exception.Message;$mask=4294967295L;$state.dpxWrites=3}
- if($reason -eq 'unknown-indirect-write' -and -not $WithAddressFacts -and $env:MX251_CFG_ADDRESS_EFFECTS -ne '0'){return (Get-Mx251BankBody $Body $Aliases $Objects -WithAddressFacts)}
+ if($reason -eq 'unknown-indirect-write' -and -not $WithAddressFacts -and $env:MX251_CFG_ADDRESS_EFFECTS -ne '0'){return (Get-Mx251BankBody $Body $Aliases $Objects -WithAddressFacts -SfrLayout $SfrLayout)}
  return @{writes=$mask;dpxWrites=$state.dpxWrites;calls=@($calls);reason=$reason;instructions=$count;failureLine=$(if($reason){$line}else{$null})}
 }
 # Object references retain an extent instead of receiving a made-up numeric
@@ -297,6 +297,11 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
  foreach($unit in $Config.units) {
   if([IO.Path]::GetExtension($unit.file) -cne '.c'){continue}
   $path=Join-Path $Root ($unit.name+'.asm');$text=[IO.File]::ReadAllText($path);$aliases=New-Mx251OrdinalMap
+  $layoutMatches=[regex]::Matches($text,'(?m)^; mx251-sfr-layout schema=1 contract=([^\s]+)\s*$')
+  $sfrLayout='legacy-v1'
+  if($layoutMatches.Count -gt 1){throw 'Multiple SFR layout records'}
+  if($layoutMatches.Count -eq 1){$sfrLayout=$layoutMatches[0].Groups[1].Value}
+  if($sfrLayout -cnotin @('legacy-v1','sph85-v1')){throw 'Unknown emitted SFR layout'}
   foreach($m in [regex]::Matches($text,'(?m)^\s*([A-Za-z_.$][A-Za-z_.$0-9]*)\s*=\s*(0x[0-9a-fA-F]+|[0-9]+)\s*$')){
    $key=$m.Groups[1].Value;$value=Get-Mx251Numeric $m.Groups[2].Value
    if($aliases.ContainsKey($key) -and $aliases[$key] -ne $value){$aliases[$key]=$null}else{$aliases[$key]=$value}
@@ -312,7 +317,7 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
    elseif($contract[0].Groups[2].Value -ne '0' -or $contract[0].Groups[3].Value -ne '0'){$reason='special-function-abi'}
    else{$abi=[int]$contract[0].Groups[1].Value}
    $objects=$unitObjects[$unit.name]
-   $analysis=if($reason){@{writes=4294967295L;dpxWrites=3;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects}
+   $analysis=if($reason){@{writes=4294967295L;dpxWrites=3;calls=@();reason=$reason;instructions=0;failureLine=$null}}else{Get-Mx251BankBody $body $aliases $objects -SfrLayout $sfrLayout}
    # An ISR is never a normal callable definition. Its direct C calls can
    # still consume callee summaries, including when the unit only has ISRs.
    # Inline assembly does not hide direct calls. The compiler decides whether
@@ -320,10 +325,10 @@ function Get-Mx251BankFunctions([string]$Root,$Config,$LibraryFunctions=@()) {
    if($m.Groups[2].Value -eq '1' -and $m.Groups[5].Value -eq '0' -and
       $contract.Count -eq 1 -and $contract[0].Groups[1].Value -eq '2' -and
       $contract[0].Groups[2].Value -eq '0' -and $contract[0].Groups[3].Value -eq '0') {
-    $isrCalls=Get-Mx251BankBody $body $aliases $objects
+    $isrCalls=Get-Mx251BankBody $body $aliases $objects -SfrLayout $sfrLayout
     $analysis.calls=@($isrCalls.calls)
    }
-   $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases;objects=$objects}
+   $row=@{symbol=$symbol;unit=$unit.name;abi=$abi;exported=$exported;localWrites=$analysis.writes;writes=$analysis.writes;calls=@($analysis.calls);reason=$analysis.reason;failureLine=$analysis.failureLine;instructions=$analysis.instructions;body=$body;aliases=$aliases;objects=$objects;sfrLayout=$sfrLayout}
    $row.localDpxWrites=$analysis.dpxWrites;$row.dpxWrites=$analysis.dpxWrites
    $row.preserved=if($abi -in @(2,4)){Get-Mx251CalleePreservation $body $symbol}else{0L}
    $row.writes=$row.localWrites -band (4294967295L -bxor $row.preserved)
@@ -484,7 +489,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
     }
     if($null -eq $pending -or $pending.Groups[2].Value -cne $m.Groups[2].Value -or $pending.Groups[3].Value -cne $m.Groups[3].Value){throw 'clobber-unpaired-ordinary-save'}
     $start=$pending.Index+$pending.Length
-    $boundary=Get-Mx251BankBody $f.body.Substring($start,$m.Index-$start) $f.aliases $f.objects
+    $boundary=Get-Mx251BankBody $f.body.Substring($start,$m.Index-$start) $f.aliases $f.objects -SfrLayout $f.sfrLayout
     if($boundary.calls.Count -ne 1 -or $boundary.calls[0] -cne $m.Groups[2].Value){$boundary.writes=4294967295L;$boundary.reason='unexpected-call-boundary'}
     $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[2].Value;removed=[Convert]::ToInt32($m.Groups[3].Value,16);kind='ordinary';boundaryWrites=$boundary.writes;boundaryReason=$boundary.reason}
     $pending=$null

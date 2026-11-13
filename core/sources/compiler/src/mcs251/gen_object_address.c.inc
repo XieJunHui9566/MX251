@@ -56,8 +56,8 @@ static bool m251ObjectCoreObserver(operand *p)
   /* 任意绝对 RAM 对象可能观察寄存器银行或当前栈，不能用声明名排除别名。 */
   if(SPEC_SCLS(s)!=S_SFR && SPEC_SCLS(s)!=S_SBIT)return TRUE;
   unsigned a=SPEC_ADDR(s);if(SPEC_SCLS(s)==S_SBIT)a&=0xf8;
-  /* 与目标无关的架构状态；包含已有 SPH 别名约束。 */
-  return (a>=0x81 && a<=0x86) || a==0xbe || a==0xd0 || a==0xd1 ||
+  /* Core state plus the selected target SPH mapping; names do not identify aliases. */
+  return (a>=0x81 && a<=0x86) || mcs251StackSfrAddress(a) || a==0xd0 || a==0xd1 ||
     a==0xe0 || a==0xf0;
 }
 static bool m251ObjectFunction(iCode *lic)

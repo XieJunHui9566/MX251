@@ -1,3 +1,4 @@
+#include "target_sfr.h"
 /* Stack-aware exact-region outlining. GPL-2.0-or-later. */
 #include "outline_region.h"
 typedef struct {
@@ -22,7 +23,7 @@ static bool m251OutlineReadSfr (operand *op, const char **name, int *bit)
   *bit=SPEC_SCLS(spec)==S_SBIT;
   if (address<0x80 || address>0xff || (!*bit && getSize(operandType(op))!=1)) return FALSE;
   if (*bit) address &= 0xf8;
-  if (address==0x81 || address==0xbe || address==0xd0 || address==0xd1) return FALSE;
+  if (mcs251StackSfrAddress(address) || address==0xd0 || address==0xd1) return FALSE;
   *name=OP_SYMBOL(op)->rname;
   return *name && **name;
 }

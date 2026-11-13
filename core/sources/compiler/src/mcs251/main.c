@@ -73,6 +73,17 @@ invalid:
   exit (EXIT_FAILURE);
 }
 
+unsigned mcs251SphAddress=0xbe;
+static char *sfrLayoutSpec;
+
+static void validateSfrLayout(void)
+{
+  if(!sfrLayoutSpec || !strcmp(sfrLayoutSpec,"legacy-v1"))return;
+  if(!strcmp(sfrLayoutSpec,"sph85-v1")){mcs251SphAddress=0x85;return;}
+  werror(E_BAD_INT_ARGUMENT,"--mcs251-sfr-layout (expected legacy-v1 or sph85-v1)");
+  exit(EXIT_FAILURE);
+}
+
 static char *extendedStackSpec;
 static unsigned long extendedStackBase, extendedStackSize, edataSize;
 
@@ -182,6 +193,7 @@ validateOrderedAsm (void)
 static OPTION _mcs251_options[] =
   {
     { 0, "--mcs251-vector-count", &interruptVectorCountSpec, "<1..256> reserve target interrupt slots; unused slots disable EA and stop", CLAT_STRING },
+    { 0, "--mcs251-sfr-layout", &sfrLayoutSpec, "<legacy-v1|sph85-v1> select target SPH mapping; default legacy-v1", CLAT_STRING },
     { 0, "--mcs251-stack", &extendedStackSpec, "<base,size,edata-size> reserve extended stack and define __mcs251_stack_initial", CLAT_STRING },
     { 0, OPTION_SMALL_MODEL, NULL, "internal data space is used (default)"},
     { 0, OPTION_MEDIUM_MODEL, NULL, "external paged data space is used"},
@@ -401,6 +413,7 @@ _mcs251_finaliseOptions (void)
     }
   validateExtendedStack ();
   validateInterruptVectorCount ();
+  validateSfrLayout ();
   validateOrderedAsm ();
   if(wordCompareImmediateDisabled)mcs251WordCompareImmediateEnabled=0;
   if(mcs251ConstantRotateFusionEnabled && !mcs251WideEnabled && !mcs251WideOrdinaryEnabled) {
@@ -491,13 +504,13 @@ mcs251SharingStackOperand (const char *operand)
   if (!*operand || *operand == '#' || *operand == '@') return 0;
   char *end;
   unsigned long address = strtoul (operand, &end, 0);
-  if (end != operand && !*end && (address == 0x81 || address == 0xbe)) return 1;
+  if (end != operand && !*end && mcs251StackSfrAddress(address)) return 1;
   if (sfr) for (const set *node = sfr->syms; node; node = node->next)
     {
       const symbol *sym = node->item;
       if (!sym || !sym->rname[0] || !SPEC_ABSA (sym->etype)) continue;
       int offset = wide_cost_symbol_offset (operand, sym->rname, (unsigned) getSize (sym->type));
-      if (offset >= 0 && (SPEC_ADDR (sym->etype) + offset == 0x81 || SPEC_ADDR (sym->etype) + offset == 0xbe)) return 1;
+      if (offset >= 0 && mcs251StackSfrAddress(SPEC_ADDR (sym->etype) + offset)) return 1;
     }
   return 0;
 }
@@ -536,6 +549,7 @@ _mcs251_getRegName (const struct reg_info *reg)
 static void
 _mcs251_genAssemblerStart (FILE * of)
 {
+  fprintf(of,"; mx251-sfr-layout schema=1 contract=%s\n",mcs251SphAddress==0x85?"sph85-v1":"legacy-v1");
   if (!options.noOptsdccInAsm)
     {
       fprintf (of, "\t.optsdcc -m%s", port->target);

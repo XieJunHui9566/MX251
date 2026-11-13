@@ -70,7 +70,7 @@
     },
     "AI8051U-34K64-32": {
       "id": "AI8051U-34K64-32",
-      "revision": 6,
+      "revision": 7,
       "displayName": "AI8051U-34K64-32Bit（STC80251）",
       "instructionMode": "32-bit",
       "startup": {
@@ -113,6 +113,10 @@
       },
       "qualification": "AI-specific 0x7000 XDATA window from sealed R89/V0.0100; fixed complete projects and direct helper/ISR boundary qualification only. Startup, stack and vectors unchanged. Large native math remains rejected.",
       "compilerCapabilities": {
+        "sfrLayout": {
+          "schema": 1,
+          "contract": "sph85-v1"
+        },
         "nativeCodeReads": {
           "schema": 1,
           "contract": "flat24-code-reads-v1"

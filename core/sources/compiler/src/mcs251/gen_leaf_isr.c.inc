@@ -50,7 +50,7 @@ static li_operand li_direct_bits(unsigned address,unsigned mask,bool bit)
   else if(address==0xf0)r.gpr=UINT32_C(1)<<MCS251_BYTE_B;
   else if(!bit && (address==0x82 || address==0x83))r.special=MX251_SPECIAL_DPTR;
   else if(!bit && address==0x84)r.special=MX251_SPECIAL_DPXL;
-  else if(address==0xd0 || address==0xd1 || address==0x81 || address==0xbe)r.unknown=true;
+  else if(address==0xd0 || address==0xd1 || mcs251StackSfrAddress(address))r.unknown=true;
   else if(address==0x80 || address==0x90 || address==0xa0 || address==0xb0)r.memory=true;
   else if(address>=0x80 && !wide_asm_core_bits(address,mask))r.memory=true;
   else r.unknown=true;

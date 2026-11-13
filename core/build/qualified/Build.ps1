@@ -110,6 +110,7 @@ function Run-Tool([string]$Label,[string]$Exe,[string[]]$Arguments,[switch]$Allo
 }
 function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  $f=@('-mmcs251',('--model-'+$config.model),('--opt-code-'+$config.optimization))
+ $f+=@($sfrLayoutRecord.compilerArguments)
  if($vectorCount -gt 0){$f+=@('--mcs251-vector-count',([string]$vectorCount))}
  if($config.standard -ne 'default'){$f+=('--std-'+$config.standard)}
  if($config.explicitAbi){$f+='--mcs251-native-abi'}
@@ -227,6 +228,7 @@ try {
  $targetContract=Get-Mx251TargetContract $config.target
  $orderedAsmRecord=Get-Mx251OrderedAsm $targetContract $OrderedAsm
  $codeReadRecord=Get-Mx251CodeReads $targetContract
+ $sfrLayoutRecord=Get-Mx251SfrLayout $targetContract
  $layout=$targetContract.qualifiedMemory
  $objectAddressRecord=[ordered]@{enabled=$false;requested=($env:MX251_OBJECT_ADDRESS_NATIVE -ceq '1');reason='disabled';contract='mcs251-flat24-codeff-spx-v1';finalClosureRequired=$true;hardwareQualified=$false}
  if($objectAddressRecord.requested){
@@ -465,6 +467,7 @@ try {
  $receipt.c251BitComplement=[bool]$C251BitComplement
  $receipt.orderedAsm=$orderedAsmRecord
  $receipt.nativeCodeReads=$codeReadRecord
+ $receipt.sfrLayout=$sfrLayoutRecord
  $receipt.wideCapacity=[ordered]@{schema=1;valueLimit=[int]$WideValueLimit;nodeLimit=[int]$WideNodeLimit;overflow='whole-function-fallback-with-reason';selection='explicit-build-option'}
  $receipt.wordCompareImmediate=[bool]$WordCompareImmediate
  $receipt.rangeNarrowMultiply=[bool]$RangeNarrowMultiply
@@ -485,6 +488,7 @@ try {
   nativeIntegerRuntime=[bool]$NativeIntegerRuntime
   c251BitComplement=[bool]$C251BitComplement
   orderedAsm=$orderedAsmRecord
+  sfrLayout=$sfrLayoutRecord
   wideCapacity=$receipt.wideCapacity
   wordCompareImmediate=$receipt.wordCompareImmediate
   rangeNarrowMultiply=$receipt.rangeNarrowMultiply

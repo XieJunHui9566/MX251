@@ -28,6 +28,11 @@ def create(output,variant):
         helper.write_text(helper.read_text().replace('void context_step(void) {',
             '__sfr __at(0x82) context_low;\n__sfr __at(0x83) context_mid;\n'
             'void context_step(void) { context_low=0x12; context_mid=0x34;'),newline='\n')
+    if variant=='sfr':
+        source=source.replace('__sfr __at(0x84) context_high;', '__sfr __at(0xbe) context_high;')
+        source=source.replace('context_high = 0x35;', 'context_high = 0x35; context_high ^= 0x55;')
+        helper=output/'isr-helper.c'
+        helper.write_text(helper.read_text().replace('__at(0x82)', '__at(0xbd)').replace('__at(0x83)', '__at(0xbe)'),newline='\n')
     path.write_text(source,newline='\n')
     config=json.loads((output/'mx251.json').read_text())
     board.write(output/'source.json',dict(variant=variant,files={name:board.sha(output/name) for name in config['files']}))
@@ -35,7 +40,7 @@ def create(output,variant):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='command',required=True)
-    c=sub.add_parser('create');c.add_argument('--output',type=Path,required=True);c.add_argument('--variant',choices=['full','split'],required=True)
+    c=sub.add_parser('create');c.add_argument('--output',type=Path,required=True);c.add_argument('--variant',choices=['full','split','sfr'],required=True)
     c=sub.add_parser('capture');c.add_argument('--hex',type=Path,required=True);c.add_argument('--output',type=Path,required=True)
     a=p.parse_args()
     if a.command=='create':create(a.output,a.variant)

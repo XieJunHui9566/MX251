@@ -73,3 +73,14 @@ function Assert-Mx251TargetProfile($Lock,$Contract,[string]$ProfileRoot,[string]
  }
  foreach($library in $libraries){if(@($Lock.profile|Where-Object{$_.path -ceq $library}).Count -ne 1){throw "Runtime library must be pinned exactly once: $library"}}
 }
+
+function Get-Mx251SfrLayout($Contract) {
+ $record=[ordered]@{schema=1;contract='legacy-v1';compilerArguments=@()}
+ if($Contract.compilerCapabilities.ContainsKey('sfrLayout')){
+  $cap=$Contract.compilerCapabilities.sfrLayout
+  Keys-Only $cap @('schema','contract') 'SFR layout'
+  if($cap.schema -ne 1 -or $cap.contract -cne 'sph85-v1' -or $Contract.instructionMode -cne '32-bit'){throw 'Invalid SFR layout'}
+  $record.contract=$cap.contract;$record.compilerArguments=@('--mcs251-sfr-layout',$cap.contract)
+ }
+ return $record
+}

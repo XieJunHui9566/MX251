@@ -39,6 +39,7 @@ for model in ('small','large'):
 driver=r'''#include <assert.h>
 #include "wide_cost.h"
 #include "instruction_effects.h"
+unsigned mcs251SphAddress=0xbe;
 int main(void) {
  const char *good[]={"pushw #(_table+0)","pushw #(_Case.2-3) ; note","pushw #(external)","pushw #0x1234"};
  const char *bad[]={"pushw #(_a +0)","pushw #(_a+)","pushw #(_a+0),r1","pushw #(_a+0)garbage","pushw #(_a*2)"};

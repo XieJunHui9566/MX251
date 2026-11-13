@@ -1,5 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later */
 #include "machine_ir.h"
+unsigned mcs251SphAddress=0xbe;
 static int memory(const char *name,void *context) {
   (void)context;
   return !strcmp(name,"_data")?1:0;

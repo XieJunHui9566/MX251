@@ -70,6 +70,7 @@ driver = r'''
 #include <assert.h>
 #include <stdio.h>
 #include "instruction_effects.h"
+unsigned mcs251SphAddress=0xbe;
 int main(void) {
   const char *body="__wm_target:\n";
   for(int bit=0;bit<8;++bit)for(int invert=0;invert<2;++invert) {
