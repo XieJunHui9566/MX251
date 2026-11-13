@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "status": "RESEARCH_ONLY_NO_NEW_COMPILER",
+  "baseCommit": "d77038585e81c0e92ed5a518d324bb641d5622fd",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "d12d412488fa377ec6498edd55b649e2500dcb00e3850617b4a247b6d1392022"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\comparison.json",
+    "sha256": "04d7c1ac67fa0bcc7e9a0d44fb64ab73c8408b5911b51ee3cf6efa21d6b1c8e1"
+  },
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\callee-preservation-choice\\qualification.json",
+    "sha256": "c8350719963fab9d7ff5409ba9a66fa4a02bba4becc1a4f83606c4c6804e5215"
+  },
+  "unchangedSizeStatus": {
+    "projects": 75,
+    "improved": 3,
+    "unchanged": 71,
+    "larger": 1,
+    "savedBytes": 106,
+    "mxTotalBytes": 191616,
+    "keilTotalBytes": 192049,
+    "within110": 65,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 0.9977453670677796
+  },
+  "gap110Bytes": 427,
+  "noCompilationOrHardware": true,
+  "estimatesOnly": true,
+  "summary": {
+    "canonicalPointerMasks": {
+      "sites": 54,
+      "projects": 25,
+      "grossSketchSaving": 216,
+      "remainingSites": 7,
+      "remainingGrossSketchSaving": 28,
+      "remainingProjects": {
+        "p045": 8,
+        "p049": 8,
+        "p136": 12
+      }
+    },
+    "directParameterDestinationSites": 52,
+    "directParameterCopyBytes": 104,
+    "cursorMasks": {
+      "sites": 12,
+      "projects": 4,
+      "bytes": 48,
+      "obligation": "Retain object extent and loop-private one-past-dead proof through lowering; object allocation must fit the target 24-bit address domain. Arbitrary parameter arithmetic still normalizes."
+    },
+    "byteAssembly": {
+      "id": "p136",
+      "unit": "u1",
+      "function": "_PlayProcess",
+      "firstLine": 2034,
+      "lastLine": 2077,
+      "currentBytes": 92,
+      "byteLanesOnlyBytes": 53,
+      "byteLanesOnlySaving": 39,
+      "byteLanesAndAddressReuseBytes": 41,
+      "combinedSaving": 51,
+      "scope": "Algebraic and static encoding sketch, not emitted compiler code. Four original byte reads retain their order and width; all address masks remain. The 12-byte address reuse is included in address-reuse.json and must not be counted twice."
+    },
+    "carryShift": {
+      "sites": 12,
+      "projects": 12,
+      "grossSketchSaving": 72,
+      "obligation": "Recover the proven shift-and-CY relation at instruction selection without weakening the earlier C-level dependency repair; retain explicit CY read."
+    },
+    "secondaryPatterns": {
+      "immediateStoreReload": {
+        "sites": 26,
+        "projects": 9,
+        "grossSketchSaving": 78,
+        "remainingSites": 14,
+        "remainingGrossSketchSaving": 42,
+        "remainingProjects": {
+          "p039": 3,
+          "p049": 12,
+          "p136": 27
+        }
+      },
+      "materializedBranch": {
+        "sites": 2,
+        "projects": 2,
+        "grossSketchSaving": 24,
+        "remainingSites": 1,
+        "remainingGrossSketchSaving": 12,
+        "remainingProjects": {
+          "p039": 12
+        }
+      },
+      "ordinaryCodeByteLoad": {
+        "sites": 27,
+        "projects": 9,
+        "grossSketchSaving": 81,
+        "remainingSites": 3,
+        "remainingGrossSketchSaving": 9,
+        "remainingProjects": {
+          "p136": 9
+        }
+      }
+    },
+    "scratchAddressReuse": {
+      "sites": 7,
+      "projects": 2,
+      "grossSketchSaving": 26,
+      "remainingProjects": {
+        "p136": 24
+      }
+    }
+  },
+  "researchFiles": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\remaining10.json",
+      "sha256": "ea04e8ba6ea43a4af1fab6af04c803e96ec5fa9b9d81913cc2121f1054c049a2"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\focus.json",
+      "sha256": "f6958ee51fcb061b6f8061029e96ae4bdd1b9103bb7094b6c2be1fa527387f9e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\inventory.json",
+      "sha256": "0ca24e6e104f0955c7dfbac57fc51f5a84d10084cb6206f7abd14a4a1196ed2a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\candidates.json",
+      "sha256": "65219746210a918c9c1fd356a30f1902517a21efc6efafc32840249057cbff7a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\parameter-destinations.json",
+      "sha256": "1172ce8faa603579cd7b01649d512bb929307a6f95b8fc1c89c6fb4bdc9a2413"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\address-reuse.json",
+      "sha256": "d3c4ca4c9f402665f2a839f9bcf17fdad3d62b63e9b7bd3a0677305266707091"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\sketches.json",
+      "sha256": "e299fd2c3af833568ac3b2fcdb68f6ea5d0e1634512996a5d7b126365a3c4e89"
+    }
+  ],
+  "scripts": [
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\extract.py",
+      "sha256": "450357fd1910dff5621fff922c8560d29e21df8d8030d4442d2f0e7230072002"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\analyze.py",
+      "sha256": "87b0e7845e9c848b9181101c9932a4128f9fc71ff50f37ee9803534200f35ae3"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\address_shapes.py",
+      "sha256": "e76f5a2d0dd3d49cc485e825db7fbcfe1fd4bd59684dd4370826b1a927a8e174"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\remaining-address-research\\sketches.py",
+      "sha256": "3e8f2ca1f19bcac6b8a8f89b455b058014d374a7444ad11ee9c432f6af79d171"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\remaining_eleven.py",
+      "sha256": "1dc44d000337f68a68671e164ab0e7abb633f1f7ee9e35ac43004ee45f674dad"
+    }
+  ],
+  "implementationInputs": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_emit.c.inc",
+      "sha256": "d6a8f0592c8319d8dbf77d02a08b0bb3f012fc5a14407423f6abeb7afbc18e88"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_loop_cursor.c.inc",
+      "sha256": "a1af340bea1047130804d900464a94507d7cad5ec0bfadb64dbf1c61a52b968e"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\TargetContracts.json",
+      "sha256": "ccb3c0c9333159025f507758474f7fda463c412308d5f99bdb70a588f04c6049"
+    }
+  ],
+  "priority": [
+    "Canonical three-byte pointer transport and bounded object cursor normalization",
+    "Disjoint byte-lane assembly with address reuse",
+    "Native byte shift selection retaining observed CY dependence"
+  ],
+  "scope": "Static estimates from final encoded instruction bytes; not a transformed compiler, new firmware result or measured runtime. The packing sketch already includes 12 bytes counted by scratch address reuse."
+}

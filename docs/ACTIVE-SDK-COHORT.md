@@ -36,3 +36,5 @@
 配置：同目录 `candidate-01.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-01`；后续使用新输出目录，以 `comparison.json` 为对比基线。
 
 [结构化名单](active-sdk-cohort.json) 与 [本轮证据](callee-preservation-choice-evidence.json) 绑定编译器、配置、报告及测试。
+
+后续只读研究见 [指针信息与字节拼接](REMAINING-ADDRESS-RESEARCH.md)：按最新 75 项产物估算下一批通用优化空间，尚未生成新编译器或改变以上统计。
