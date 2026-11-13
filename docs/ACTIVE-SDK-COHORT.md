@@ -30,8 +30,8 @@
 
 ## 后续使用
 
-入口：`E:/STVAPP/MX251-mainline-20261113/bundled-final-nine/Build-Optimized-07.ps1`。
+入口：`E:/STVAPP/MX251-baseline/Build.ps1`。
 
-配置：同目录 `candidate-07.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-07`；后续使用新输出目录，以 `comparison.json` 为基线。
+配置：`E:/STVAPP/MX251-baseline/sdk-baseline.json`，保留全部 75 项与 p108 显式输入替换。完整产物位于基线目录 `evidence/bundled-final-nine/matrix-07`；后续配置默认写入 `work/next-sdk-matrix`，以基线根目录 `comparison.json` 为对照。历史证据中的原路径按 `archive/locations.json` 查找。
 
 [结构化名单](active-sdk-cohort.json) 与 [本轮证据](bundled-final-nine-evidence.json) 绑定编译器、配置、报告及测试。体积目标已完成，运行时间目标继续保留。

@@ -1,5 +1,7 @@
 # 构建与使用
 
+当前开发默认使用 [2026-11-13 基线](BASELINE.md)及根目录 `Build-Baseline.ps1`。下述 Release ZIP / `Build.cmd` 说明保留给已有公开发行包；该旧包不是当前开发基线。
+
 ## 使用预编译工具链
 
 Release 的 Windows x64 ZIP 是完整可运行包，包含源码及宿主工具。优先使用根目录 `Build.cmd -ProjectPath <工程绝对路径>`。PowerShell 入口 `Build.ps1` 使用包内工具，不修改系统 PATH。

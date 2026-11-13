@@ -99,28 +99,28 @@
     "weightedKeilRatio": 0.98459247379575
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07\\core.json",
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\core.json",
     "sha256": "7ec1c2ec7873f1f12dfe18e49cafa7ce298bfadf0a6a6d894a48260dec5425a6"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07\\toolchain\\bin\\sdcc.exe",
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\toolchain\\bin\\sdcc.exe",
     "sha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\candidate-07.json",
-    "sha256": "0104d4bddaedae92d80dc4977c2d0dac1801d81771483a87d62b88b56f532b71"
+    "path": "E:\\STVAPP\\MX251-baseline\\sdk-baseline.json",
+    "sha256": "938b8e784ed888ef8fa4cd2c007075556dc4904afd7fb0f481a89693e060a797"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\comparison.json",
-    "sha256": "f60c4c6fcf1bc1b3f58dd0d73b2e0c9c0d2aad72c9b6c41f629360b4af75d3fa"
+    "path": "E:\\STVAPP\\MX251-baseline\\comparison.json",
+    "sha256": "8097b7e8d5388747fbbf1a04de1b8de901070512687f749724204763836e09e2"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\qualification.json",
+    "path": "E:\\STVAPP\\MX251-baseline\\evidence\\bundled-final-nine\\qualification.json",
     "sha256": "afb840e371d93b4756ad6ada44da20c4a2f6192428bdc7ac9e3b4d6079cb23ea"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\matrix-07\\projects\\p108\\input-overrides.json",
+      "path": "E:/STVAPP/MX251-baseline/evidence/bundled-final-nine/matrix-07/projects/p108/input-overrides.json",
       "sha256": "084ae3888f115717bc1c6a997c839364a3b2bdb9e8b5cca790b786e543598199"
     }
   },
@@ -136,7 +136,13 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
+    "path": "E:\\STVAPP\\MX251-baseline\\reference\\previous75\\comparison.json",
     "sha256": "46564957c66e38e2429462df6995426f4b2801aedb630a1f5f8c9249557708e6"
+  },
+  "developmentBaseline": "../baseline.json",
+  "baselineTag": "baseline-20261113",
+  "evidenceLocations": {
+    "path": "E:\\STVAPP\\MX251-baseline\\archive\\locations.json",
+    "sha256": "0bfbe815c73441fb3ea53f31dc2fdc39d8303fdcf6bd5beb8e961f9b295afba2"
   }
 }

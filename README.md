@@ -1,5 +1,7 @@
 # MX251 0.0170（测试）
 
+当前开发基线已切换为 **2026-11-13 / bundled-final-nine-07**：75/75 工程体积均在 Keil 110% 内，768/768 定向实板用例通过。后续开发使用根目录 `Build-Baseline.ps1`；本机固定入口为 `E:/STVAPP/MX251-baseline/Build.ps1`。身份与使用说明见 [开发基线](docs/BASELINE.md)。下文 0.0170 下载包属于已有公开发行版。
+
 **面向 MCS-251 MCU 的开源 C 编译工具链，集成通用代码生成优化、原生整数/浮点运行库与独立 CMake + Ninja 工程入口。**
 
 MX251 builds on SDCC and the existing `sdcc-c251` MCS-251 port. This experimental Windows x64 distribution combines the optimized compiler and native math runtime, and works without MCU StudioX.

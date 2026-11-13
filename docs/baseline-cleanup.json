@@ -1,0 +1,141 @@
+{
+  "schema": 2,
+  "date": "2026-11-13",
+  "status": "COMPLETED",
+  "removedRoots": [
+    "E:\\STVAPP\\MX251 release check",
+    "E:\\STVAPP\\MX251-edata-build",
+    "E:\\STVAPP\\MX251-edata-dev",
+    "E:\\STVAPP\\MX251-handoff-20261109",
+    "E:\\STVAPP\\MX251-mainline-20261109",
+    "E:\\STVAPP\\MX251-mainline-20261110",
+    "E:\\STVAPP\\MX251-mainline-20261111",
+    "E:\\STVAPP\\MX251-mainline-20261113"
+  ],
+  "originalFiles": 1246571,
+  "originalBytesApprox": 38188089344,
+  "retainedMoves": [
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07",
+      "destination": "E:\\STVAPP\\MX251-baseline\\core",
+      "files": 291,
+      "bytes": 55359974
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-edata-dev\\host\\cmake",
+      "destination": "E:\\STVAPP\\MX251-baseline\\host\\cmake",
+      "files": 8818,
+      "bytes": 143234583
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-edata-dev\\host\\ninja",
+      "destination": "E:\\STVAPP\\MX251-baseline\\host\\ninja",
+      "files": 1,
+      "bytes": 451584
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine",
+      "destination": "E:\\STVAPP\\MX251-baseline\\evidence\\bundled-final-nine",
+      "files": 29527,
+      "bytes": 675324978
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\projects",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects",
+      "files": 15589,
+      "bytes": 340489745
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\keil-adapter",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\keil-adapter",
+      "files": 4,
+      "bytes": 116184
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261110\\unified75\\stc-official",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\stc-official",
+      "files": 8,
+      "bytes": 2396331
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\p108-repair\\paired-final",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\p108\\paired-final",
+      "files": 244,
+      "bytes": 2953892
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\matrix-02",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\previous75\\matrix-02",
+      "files": 22961,
+      "bytes": 564241096
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261109\\copy-affinity\\host\\generated",
+      "destination": "E:\\STVAPP\\MX251-baseline\\development\\compiler\\generated",
+      "files": 5,
+      "bytes": 2499007
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261109\\copy-affinity\\host\\CMakeLists.txt",
+      "destination": "E:\\STVAPP\\MX251-baseline\\development\\compiler\\CMakeLists.txt",
+      "files": 1,
+      "bytes": 11723
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\previous75\\comparison.json",
+      "files": 1,
+      "bytes": 129880
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.md",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\previous75\\comparison.md",
+      "files": 1,
+      "bytes": 10016
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.html",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\previous75\\comparison.html",
+      "files": 1,
+      "bytes": 18991
+    },
+    {
+      "source": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\qualification.json",
+      "destination": "E:\\STVAPP\\MX251-baseline\\reference\\previous75\\qualification.json",
+      "files": 1,
+      "bytes": 24360
+    }
+  ],
+  "historicalRecords": 26166,
+  "historicalArchive": {
+    "path": "E:\\STVAPP\\MX251-baseline\\archive\\research-records.zip",
+    "sha256": "d7fcc1e4bbfe0e86e8e9bfd1d7c14b54c154bbf01b6f40246b4d2ea5b3fd4e10"
+  },
+  "archiveCrcVerified": true,
+  "retainedBytes": 1787262344,
+  "powershellCopyBytes": 256666658,
+  "oldPilotArchiveBytes": 157931195,
+  "trackedRemovals": [
+    "core/profiles/AI8051U-34K64-32/profile.lock.before-dpx-v2.json",
+    "core/profiles/AI8051U-34K64-32/profile.lock.before-dpx.json",
+    "core/profiles/AI8051U-34K64-32/profile.lock.parent.json",
+    "core/profiles/STC32G12K128/profile.lock.before-dpx-v2.json",
+    "core/profiles/STC32G12K128/profile.lock.before-dpx.json",
+    "core/profiles/STC32G12K128/profile.lock.parent.json"
+  ],
+  "netBytesFreedApprox": 36249948817,
+  "initialPilotCleanupBytes": 375412093,
+  "totalNetBytesFreedApprox": 36625360910,
+  "discardedFilesApprox": 1169118,
+  "validation": {
+    "baselinePins": 6,
+    "comparisonRecords": 300,
+    "relocatedEntry": "PASS",
+    "sample": "examples/edata",
+    "codeBytes": 317,
+    "compilerSha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc",
+    "sourceBuildConfigured": true,
+    "fullMatrixRerun": false,
+    "hardwareDownloaded": false
+  }
+}
