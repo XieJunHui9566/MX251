@@ -197,10 +197,20 @@ def build_keil(config, project, out):
         adapter = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(adapter)
     objects, entries = [], []
+    # uVision permits per-file reentrancy overrides (for example putchar).
+    project_xml = ET.parse(meta['project']['path'])
+    file_reentrancy = {Path(f.findtext('FilePath').replace('\\', '/')).name.lower():
+                      f.findtext('FileOption/File251/C251/uRentF')
+                      for f in project_xml.findall('.//File') if f.findtext('FilePath')}
     for i, name in enumerate(meta['sources']):
-        extra = []
+        extra, found = [], []
+        unit_flags = list(flags)
+        reentrancy = file_reentrancy.get(name.lower())
+        if reentrancy in ('0', '1'):
+            unit_flags = [f for f in flags if not f.startswith('FUNCTIONS(')]
+            if reentrancy == '1': unit_flags.append('FUNCTIONS(REENTRANT)')
         if adapter:
-            run(out, f'preprocess-{i}', [kit/'BIN/C251.EXE', name] + flags +
+            run(out, f'preprocess-{i}', [kit/'BIN/C251.EXE', name] + unit_flags +
                 [f'PREPRINTONLY(unit{i}.i)', f'PRINT(preprocess{i}.lst)'], config, keil=True)
             preprocessed = (out/f'unit{i}.i').read_bytes().decode('latin1')
             if re.search(r'\binterrupt\b', adapter.mask(preprocessed)):
@@ -211,11 +221,18 @@ def build_keil(config, project, out):
                 shutil.copy2(out/name, out/(name+'.original'))
                 (out/name).write_bytes(changed.encode('latin1'))
                 extra.append('NOINTVECTOR')
-                entries.extend(found)
         obj = f'unit{i}.obj'
         objects.append(obj)
-        run(out, f'compile-{i}', [kit/'BIN/C251.EXE', name] + flags + extra +
+        run(out, f'compile-{i}', [kit/'BIN/C251.EXE', name] + unit_flags + extra +
             [f'OBJECT({obj})', f'PRINT(unit{i}.lst)'], config, keil=True)
+        listing = (out/f'unit{i}.lst').read_text('latin1')
+        for entry in found:
+            # C251 decorates reentrant definitions with ?_; use its listing.
+            pattern = r'FUNCTION\s+('+re.escape(entry['symbol'])+r'(?:\?_)?)\s+\(BEGIN\)'
+            symbols = set(re.findall(pattern, listing))
+            assert len(symbols) == 1, entry
+            entry['symbol'] = symbols.pop()
+        entries.extend(found)
     for i, name in enumerate(meta['assembly']):
         obj = f'asmunit{i}.obj'
         objects.append(obj)
