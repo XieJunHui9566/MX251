@@ -66,3 +66,5 @@ AI8051U 实板上父版、新版各 **128/128** 项通过，固件 **2751 → 22
 下一处可把字节装配与连续地址生成结合：进一步减少逐字节读取前重建同一基址的开销，再检查分配器能否让读取直接落入结果字节位置。本轮未实现这两项，不能把此前地址复用草案的 12 B 重复计入收益。
 
 [当前名单](ACTIVE-SDK-COHORT.md)；[结构化证据](byte-assembly-evidence.json)；[父版结果](POINTER-CANONICAL-TRANSPORT.md)。
+
+连续地址复用已实施，最终结果见 [相邻内存地址复用](RELATIVE-MEMORY-ADDRESS.md)。

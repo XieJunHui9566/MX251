@@ -111,3 +111,5 @@ Keil 的相应片段为 46 B，使用直接地址及较短的宽值拼接；它�
 第一优先项已实施，后续结果见 [三字节指针与游标](POINTER-CANONICAL-TRANSPORT.md)。上文保留实施前研究数字。
 
 字节拼接也已实施，结果见 [通用字节拼接](BYTE-ASSEMBLY.md)；连续地址复用仍待处理。
+
+连续地址复用已实施，最终结果见 [相邻内存地址复用](RELATIVE-MEMORY-ADDRESS.md)。

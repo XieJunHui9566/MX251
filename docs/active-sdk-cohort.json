@@ -82,11 +82,11 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 15,
-    "unchanged": 60,
+    "improved": 2,
+    "unchanged": 73,
     "larger": 0,
-    "savedBytes": 175,
-    "mxTotalBytes": 191072,
+    "savedBytes": 26,
+    "mxTotalBytes": 191046,
     "keilTotalBytes": 192049,
     "within110": 66,
     "within120": 75,
@@ -96,42 +96,42 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 0.9949127566402325
+    "weightedKeilRatio": 0.99477737452421
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\core-03\\core.json",
-    "sha256": "45ea9e3c0ab24d1dbd2445abad4f6ac469f013b7c14cfbc5dfe336947acb5f01"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\core-02\\core.json",
+    "sha256": "caa2ee2a230e72345ad71364f81a62f788f156b11d9fde3f7a16fa04b18e477d"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\core-03\\toolchain\\bin\\sdcc.exe",
-    "sha256": "40aec85085c86cbc4d6b6cd9e44c0879412609561c803bc0807229f58707feb2"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "b28eb786451de65e87926b7173dd81bdee0f6fc4f07324a656d357f810ab2812"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\candidate-03.json",
-    "sha256": "b966fe6093598ff0732812ea264891a094a44783b45b92516fe3377a4250a3c9"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\candidate-02.json",
+    "sha256": "bbbfad55664f56e8dd7f4219a5cffe528799163eb40623720dbcfc1f9cf1e203"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\comparison.json",
-    "sha256": "023fea1f9f04c4ca6aee73080051311d4496a6397ff8b27a78b102d0439a668f"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
+    "sha256": "46564957c66e38e2429462df6995426f4b2801aedb630a1f5f8c9249557708e6"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\qualification.json",
-    "sha256": "2a4b35d8500cb4fd3e63f4e84dd4bdf4ac903cfb520b422e3413f1b3a184753f"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\qualification.json",
+    "sha256": "fc33fb319b85db82629d8690bcacd456a15a5903ff8ab0d8112f8138c53f566d"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\matrix-03\\projects\\p108\\input-overrides.json",
-      "sha256": "0b5566a40b792e303d26620698a36bcff26c017396f59cf0f6509793545c8a50"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\matrix-02\\projects\\p108\\input-overrides.json",
+      "sha256": "7df7658bb3570cbe28474fb06a472a49ffe0019aee432252a1e0e6f3734c0ff0"
     }
   },
   "remaining110": [
     {
       "id": "p136",
       "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4635,
+      "mx251Bytes": 4611,
       "keilBytes": 4128,
-      "keilRatio": 1.1228197674418605,
-      "gap110Bytes": 95
+      "keilRatio": 1.1170058139534884,
+      "gap110Bytes": 71
     },
     {
       "id": "p045",
@@ -198,7 +198,7 @@
       "gap110Bytes": 7
     }
   ],
-  "gap110Bytes": 320,
+  "gap110Bytes": 296,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -209,7 +209,7 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\pointer-canonical-transport\\comparison.json",
-    "sha256": "0a4ed13c1f402d1a6dfc57cf180ff6ca72f83f67273773baa60e3c83d292e8ca"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\comparison.json",
+    "sha256": "023fea1f9f04c4ca6aee73080051311d4496a6397ff8b27a78b102d0439a668f"
   }
 }
