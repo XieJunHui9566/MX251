@@ -382,7 +382,9 @@ try {
   $profileLibs=Join-Path $ProfileRoot 'runtime'
   if(Test-Path -LiteralPath $profileLibs){$gcLibs+=@(Get-ChildItem -LiteralPath $profileLibs -File -Filter '*.lib' | ForEach-Object {$_.FullName})}
   $keep=@();if($FunctionGcKeep){$keep=@($FunctionGcKeep.Split(','));foreach($s in $keep){if($s -cnotmatch '^[A-Za-z_.$][A-Za-z0-9_.$]*$'){throw 'Invalid explicit function GC root'}}}
-  $gcResult=Invoke-Mx251FunctionGc -Root $outputRoot -Units $gcUnits -ExtraAssembly @((Join-Path $outputRoot 'startup.asm')) -LibraryPaths $gcLibs -KeepSymbols $keep
+  . (Join-Path $PSScriptRoot 'InterruptVectors.ps1')
+  $gcInterruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount
+  $gcResult=Invoke-Mx251FunctionGc -Root $outputRoot -Units $gcUnits -ExtraAssembly @((Join-Path $outputRoot 'startup.asm')) -LibraryPaths $gcLibs -KeepSymbols $keep -InterruptPlan $gcInterruptPlan -CodeBase $layout.codeBase
   foreach($changed in $gcResult.ChangedUnits) {
    [IO.File]::Copy($changed.candidateAssembly,$changed.assembly,$true)
    Check-Assembly $changed.assembly

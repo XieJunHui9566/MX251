@@ -1,0 +1,1067 @@
+{
+  "status": "COMPLETE",
+  "date": "2026-11-14",
+  "baseCommit": "6f311ddb5ceda30a83e64922576ba0d2745332c9",
+  "compilerSha256": "aeb060b15cc36bbaaa712b935da0f6ceef15d1ce00979075c269ae0aba6ed7ca",
+  "summary": {
+    "before": 79801,
+    "after": 63721,
+    "savedBytes": 16080,
+    "at120": 4,
+    "at110": 3,
+    "reductionPercent": 20.150123432037194
+  },
+  "rows": [
+    {
+      "id": "p041",
+      "before": 2844,
+      "after": 2844,
+      "savedBytes": 0,
+      "keil": 2582,
+      "keilPercent": 110.14717273431448,
+      "selectedSuite": "mx251-native",
+      "variants": {
+        "mx251-native": 2844,
+        "mx251-standard": 4687
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "80b98a8bed685db9e9c10385a6fd3e6ea2a3324c8b9102e09bbaa7842ab11f0a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "859fcbcbe39f0a5160cea1be00352263fa79abd4622a5c421207fb14ad6b5c82"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p041\\mx251-native\\src\\ai8051u.h",
+          "sha256": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p041\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p041\\mx251-native\\src\\main.c",
+          "sha256": "e70ad9562fec027b40be84439919d4774211da48ebb5dd06a9b3db907f8ce0df"
+        }
+      ]
+    },
+    {
+      "id": "p076",
+      "before": 19323,
+      "after": 19323,
+      "savedBytes": 0,
+      "keil": 19918,
+      "keilPercent": 97.0127522843659,
+      "selectedSuite": "mx251-standard",
+      "variants": {
+        "mx251-native": 19478,
+        "mx251-standard": 19323
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5b10a40d9807ebb79a6dbe1e30888fa4fb2fa8f84a25f277007b08877e7cc7d1"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e2900b442ff611a7da6d35b185c7ed7ea9354fe96880066d8f18c280d20d680f"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\font.h",
+          "sha256": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\gui.c",
+          "sha256": "a1e1da47ad5f12fc5461e74e07e43020d20b3004e46281183e575c69ae13ca8b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\lcd.c",
+          "sha256": "ec747872bda87285cb2837c2cbe61b86c907bd522aacd706c10ddd906c3341f9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\lcd.h",
+          "sha256": "8f37e0eef67302a9afa63b5119854db7e72e01e3014e6df754136dd11aea82dc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\main.c",
+          "sha256": "7cc4b845a59bfe2359d91090a561c24971dc6755bc46f8d42ec4b491bfd7011e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\sys.c",
+          "sha256": "86b854283e9f9aba924535fd9f3b57ee87710e17680531fcccb478d7792863b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\sys.h",
+          "sha256": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\test.c",
+          "sha256": "46d3d55d2f1059170b1adfd74a172ccc08f136573e3de46f22073d898eb38903"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\touch.c",
+          "sha256": "392f6ff9cea1d62b131558475cafaef1d8163523f45efc6a13a26a0827700921"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p076\\mx251-standard\\src\\touch.h",
+          "sha256": "a49e5b33a9c4a21398eb3073265373ef29decd5546121656c4481ca65eacbfd5"
+        }
+      ]
+    },
+    {
+      "id": "p077",
+      "before": 27081,
+      "after": 19285,
+      "savedBytes": 7796,
+      "keil": 19921,
+      "keilPercent": 96.8073891872898,
+      "selectedSuite": "mx251-standard",
+      "variants": {
+        "mx251-native": 19424,
+        "mx251-standard": 19285
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b1f23c406bee18fbd6e764931f7dfd4ff69c5e0baad686c38f746568bd4c1a6f"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "82df5a7e74039cc2975dd2ab4c08d916ec587b702ce2d216f7a0aee5316e6628"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\font.h",
+          "sha256": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\gui.c",
+          "sha256": "a1e1da47ad5f12fc5461e74e07e43020d20b3004e46281183e575c69ae13ca8b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\isr.asm",
+          "sha256": "35adeb531d5bfbdda1ec0c2bd03c25de19b8a5de78b048cc41f55003bd22f1dd"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\lcd.c",
+          "sha256": "e80d971e3d990fe5725086d44138ceb78f3bed45cef5697904f3f72f3e9950f0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\lcd.h",
+          "sha256": "8f37e0eef67302a9afa63b5119854db7e72e01e3014e6df754136dd11aea82dc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\main.c",
+          "sha256": "7cc4b845a59bfe2359d91090a561c24971dc6755bc46f8d42ec4b491bfd7011e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\sys.c",
+          "sha256": "86b854283e9f9aba924535fd9f3b57ee87710e17680531fcccb478d7792863b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\sys.h",
+          "sha256": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\test.c",
+          "sha256": "46d3d55d2f1059170b1adfd74a172ccc08f136573e3de46f22073d898eb38903"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\touch.c",
+          "sha256": "392f6ff9cea1d62b131558475cafaef1d8163523f45efc6a13a26a0827700921"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p077\\mx251-standard\\src\\touch.h",
+          "sha256": "a49e5b33a9c4a21398eb3073265373ef29decd5546121656c4481ca65eacbfd5"
+        }
+      ]
+    },
+    {
+      "id": "p079",
+      "before": 27048,
+      "after": 18764,
+      "savedBytes": 8284,
+      "keil": 19556,
+      "keilPercent": 95.95009204336264,
+      "selectedSuite": "mx251-standard",
+      "variants": {
+        "mx251-native": 19198,
+        "mx251-standard": 18764
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "64c8ec4c94ae8aef7145dc232ba09a2dff4e3c5c7ce5b32a2de1cff4c69be95b"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a12a62948201d77ad8b9de94404fda9c48831ec1c06df74ad180570b74494489"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\font.h",
+          "sha256": "91def5cdc97587e27953c164ffc549deef87b37480de2ee956d80812e3ae0df5"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\gui.c",
+          "sha256": "25da1cd793976de533d7e006ec9d64bd26f96d403616d2ef4a5b87f849391742"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\isr.asm",
+          "sha256": "5d409310f86bac13e742de65ec36b7da01f9843cf9cb57115c07e02b32261c15"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\lcd.c",
+          "sha256": "caa8ed27b68426954a748abdaa206e7d679046a852a19c478bfe9ff516f40c53"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\lcd.h",
+          "sha256": "4a03c27a5f4e961611aedab28be35081a0ab2a4416d5eda39ed57933c57c166e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\main.c",
+          "sha256": "3087dbc50bebce3b3ba8a0cdeef082d5671df5e0616db7a8e39e44e11764e9c4"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\sys.c",
+          "sha256": "5a7be8af43dcdd1d3b1beb2c88c129affd9fbd00e840dbb94193bec94fbf923d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\sys.h",
+          "sha256": "45d028662a9530d9ecc4a3cccd821cdc77123e02b185a6dca942b7f8b8a5cb6b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\test.c",
+          "sha256": "c29b5ab08693d3d73ccfc48bcf67f401d91759fccbe1699f2f93f868e30eea74"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\touch.c",
+          "sha256": "ee4a6347e8d97cb1a13a8f322123685239aecbd07b0ab469fbd1b3bac13de956"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p079\\mx251-standard\\src\\touch.h",
+          "sha256": "da4e95f89e59f4de0a6ad8364a0bc7f956ae1e7208587bcbe84004eb6c0c9c70"
+        }
+      ]
+    },
+    {
+      "id": "p081",
+      "before": 3505,
+      "after": 3505,
+      "savedBytes": 0,
+      "keil": 2806,
+      "keilPercent": 124.91090520313614,
+      "selectedSuite": "mx251-native",
+      "variants": {
+        "mx251-native": 3505,
+        "mx251-standard": 8101
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6e5d9d9369b12e6aa6c59dd9bfa566fdd981e6d4d9562de7ee01bc65ea0a374a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "f35bc6d233cd8457789442fead3236aa1ae17845bb98aeddc068744ec38c5093"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\src\\ai8051u.h",
+          "sha256": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\matrix\\projects\\p081\\mx251-native\\src\\main.c",
+          "sha256": "646bd651a69366750a262cd47617bc86e74e014d6356f267fbd858c0c9ed9cc2"
+        }
+      ]
+    }
+  ],
+  "focus": [
+    {
+      "id": "p077",
+      "beforePartition": {
+        "applicationInstructions": 14275,
+        "otherCseg": 2821,
+        "constants": 9700,
+        "startupVectorsAndOther": 285
+      },
+      "afterPartition": {
+        "applicationInstructions": 8359,
+        "otherCseg": 1072,
+        "constants": 9700,
+        "startupVectorsAndOther": 154
+      },
+      "keilPartition": {
+        "startupVectors": 75,
+        "functionSegments": 7585,
+        "constants": 9827,
+        "libraries": 2434
+      },
+      "removedFunctions": [
+        {
+          "unit": "u5",
+          "symbol": "_Touch_Adjust",
+          "bytes": 3805
+        },
+        {
+          "unit": "u2",
+          "symbol": "_Touch_Test",
+          "bytes": 442
+        },
+        {
+          "unit": "u0",
+          "symbol": "_LCD_ShowNum",
+          "bytes": 259
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Read_ADS2",
+          "bytes": 235
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Convert_Pos",
+          "bytes": 222
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Read_TP_Once",
+          "bytes": 191
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Drow_Touch_Point",
+          "bytes": 188
+        },
+        {
+          "unit": "u5",
+          "symbol": "_ADS_Read_XY",
+          "bytes": 177
+        },
+        {
+          "unit": "u5",
+          "symbol": "_TP_Draw_Big_Point",
+          "bytes": 82
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Read_ADS",
+          "bytes": 79
+        },
+        {
+          "unit": "u0",
+          "symbol": "_mypow",
+          "bytes": 45
+        },
+        {
+          "unit": "u5",
+          "symbol": "_ADS_Read_AD",
+          "bytes": 39
+        },
+        {
+          "unit": "u5",
+          "symbol": "_ReadFromCharFrom7843",
+          "bytes": 38
+        },
+        {
+          "unit": "u0",
+          "symbol": "__swap",
+          "bytes": 35
+        },
+        {
+          "unit": "u5",
+          "symbol": "_WriteCharTo7843",
+          "bytes": 33
+        },
+        {
+          "unit": "u3",
+          "symbol": "_delay_us",
+          "bytes": 17
+        },
+        {
+          "unit": "u5",
+          "symbol": "_spistar",
+          "bytes": 9
+        },
+        {
+          "unit": "u5",
+          "symbol": "_tpstate",
+          "bytes": 7
+        }
+      ],
+      "removedFunctionInstructionBytes": 5903,
+      "removedLibraryMembers": [
+        "_fs2uint.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_modulong.rel",
+        "_mullong.rel",
+        "_startup.rel",
+        "_ulong2fs.rel"
+      ],
+      "gc": {
+        "status": "CLOSED_GRAPH_CANDIDATE",
+        "issues": [],
+        "removedFunctions": [
+          {
+            "unit": "u0",
+            "symbol": "__swap"
+          },
+          {
+            "unit": "u0",
+            "symbol": "_mypow"
+          },
+          {
+            "unit": "u0",
+            "symbol": "_LCD_ShowNum"
+          },
+          {
+            "unit": "u2",
+            "symbol": "_Touch_Test"
+          },
+          {
+            "unit": "u3",
+            "symbol": "_delay_us"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_tpstate"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_spistar"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_WriteCharTo7843"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_ReadFromCharFrom7843"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_ADS_Read_AD"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_ADS_Read_XY"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Read_ADS"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Read_ADS2"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Read_TP_Once"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Drow_Touch_Point"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_TP_Draw_Big_Point"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Convert_Pos"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Touch_Adjust"
+          }
+        ],
+        "resolvedAbsoluteTargets": [
+          {
+            "slot": 13,
+            "symbol": "_LCM_Interrupt",
+            "address": 16711787,
+            "targetUnit": "u4",
+            "line": 4,
+            "kind": "interrupt-vector",
+            "unit": "u6"
+          },
+          {
+            "slot": 13,
+            "symbol": "_LCM_Interrupt",
+            "address": 16711787,
+            "targetUnit": "u4",
+            "line": 6,
+            "kind": "interrupt-vector",
+            "unit": "u6"
+          }
+        ]
+      },
+      "remainingFunctionPairs": [
+        {
+          "name": "GUI_DRAWFONT16",
+          "mx": 698,
+          "keil": 357,
+          "delta": 341
+        },
+        {
+          "name": "TEST_READ",
+          "mx": 406,
+          "keil": 277,
+          "delta": 129
+        },
+        {
+          "name": "ROTATE_TEST",
+          "mx": 251,
+          "keil": 128,
+          "delta": 123
+        },
+        {
+          "name": "SHOW_STR",
+          "mx": 463,
+          "keil": 390,
+          "delta": 73
+        },
+        {
+          "name": "LCD_SHOWCHAR",
+          "mx": 488,
+          "keil": 417,
+          "delta": 71
+        },
+        {
+          "name": "TEST_FILLREC",
+          "mx": 286,
+          "keil": 218,
+          "delta": 68
+        },
+        {
+          "name": "LCD_SETWINDOWS",
+          "mx": 159,
+          "keil": 92,
+          "delta": 67
+        },
+        {
+          "name": "TEST_TRIANGLE",
+          "mx": 355,
+          "keil": 292,
+          "delta": 63
+        },
+        {
+          "name": "TEST_CIRCLE",
+          "mx": 266,
+          "keil": 208,
+          "delta": 58
+        },
+        {
+          "name": "GUI_DRAWBMP16",
+          "mx": 140,
+          "keil": 91,
+          "delta": 49
+        }
+      ]
+    },
+    {
+      "id": "p079",
+      "beforePartition": {
+        "applicationInstructions": 14166,
+        "otherCseg": 2821,
+        "constants": 9779,
+        "startupVectorsAndOther": 282
+      },
+      "afterPartition": {
+        "applicationInstructions": 7762,
+        "otherCseg": 1072,
+        "constants": 9779,
+        "startupVectorsAndOther": 151
+      },
+      "keilPartition": {
+        "startupVectors": 72,
+        "functionSegments": 7155,
+        "constants": 9895,
+        "libraries": 2434
+      },
+      "removedFunctions": [
+        {
+          "unit": "u5",
+          "symbol": "_Touch_Adjust",
+          "bytes": 3798
+        },
+        {
+          "unit": "u2",
+          "symbol": "_Touch_Test",
+          "bytes": 444
+        },
+        {
+          "unit": "u0",
+          "symbol": "_LCD_ShowNum",
+          "bytes": 259
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Read_ADS2",
+          "bytes": 235
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Convert_Pos",
+          "bytes": 217
+        },
+        {
+          "unit": "u2",
+          "symbol": "_Rotate_Test",
+          "bytes": 213
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Read_TP_Once",
+          "bytes": 191
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Drow_Touch_Point",
+          "bytes": 184
+        },
+        {
+          "unit": "u5",
+          "symbol": "_ADS_Read_XY",
+          "bytes": 177
+        },
+        {
+          "unit": "u5",
+          "symbol": "_TP_Draw_Big_Point",
+          "bytes": 80
+        },
+        {
+          "unit": "u5",
+          "symbol": "_Read_ADS",
+          "bytes": 79
+        },
+        {
+          "unit": "u0",
+          "symbol": "_mypow",
+          "bytes": 45
+        },
+        {
+          "unit": "u5",
+          "symbol": "_ADS_Read_AD",
+          "bytes": 39
+        },
+        {
+          "unit": "u5",
+          "symbol": "_ReadFromCharFrom7843",
+          "bytes": 38
+        },
+        {
+          "unit": "u0",
+          "symbol": "__swap",
+          "bytes": 35
+        },
+        {
+          "unit": "u5",
+          "symbol": "_WriteCharTo7843",
+          "bytes": 33
+        },
+        {
+          "unit": "u3",
+          "symbol": "_delay_us",
+          "bytes": 17
+        },
+        {
+          "unit": "u5",
+          "symbol": "_spistar",
+          "bytes": 9
+        },
+        {
+          "unit": "u4",
+          "symbol": "_LCD_WriteRAM_Prepare",
+          "bytes": 7
+        },
+        {
+          "unit": "u5",
+          "symbol": "_tpstate",
+          "bytes": 7
+        }
+      ],
+      "removedFunctionInstructionBytes": 6107,
+      "removedLibraryMembers": [
+        "_fs2uint.rel",
+        "_fs2ulong.rel",
+        "_fsadd.rel",
+        "_fsdiv.rel",
+        "_fslt.rel",
+        "_fsmul.rel",
+        "_fssub.rel",
+        "_modulong.rel",
+        "_mullong.rel",
+        "_startup.rel",
+        "_ulong2fs.rel"
+      ],
+      "gc": {
+        "status": "CLOSED_GRAPH_CANDIDATE",
+        "issues": [],
+        "removedFunctions": [
+          {
+            "unit": "u0",
+            "symbol": "__swap"
+          },
+          {
+            "unit": "u0",
+            "symbol": "_mypow"
+          },
+          {
+            "unit": "u0",
+            "symbol": "_LCD_ShowNum"
+          },
+          {
+            "unit": "u2",
+            "symbol": "_Rotate_Test"
+          },
+          {
+            "unit": "u2",
+            "symbol": "_Touch_Test"
+          },
+          {
+            "unit": "u3",
+            "symbol": "_delay_us"
+          },
+          {
+            "unit": "u4",
+            "symbol": "_LCD_WriteRAM_Prepare"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_tpstate"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_spistar"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_WriteCharTo7843"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_ReadFromCharFrom7843"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_ADS_Read_AD"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_ADS_Read_XY"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Read_ADS"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Read_ADS2"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Read_TP_Once"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Drow_Touch_Point"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_TP_Draw_Big_Point"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Convert_Pos"
+          },
+          {
+            "unit": "u5",
+            "symbol": "_Touch_Adjust"
+          }
+        ],
+        "resolvedAbsoluteTargets": [
+          {
+            "slot": 13,
+            "line": 4,
+            "address": 16711787,
+            "symbol": "_LCM_Interrupt",
+            "unit": "u6",
+            "kind": "interrupt-vector",
+            "targetUnit": "u4"
+          }
+        ]
+      },
+      "remainingFunctionPairs": [
+        {
+          "name": "GUI_DRAWFONT16",
+          "mx": 686,
+          "keil": 357,
+          "delta": 329
+        },
+        {
+          "name": "TEST_READ",
+          "mx": 406,
+          "keil": 277,
+          "delta": 129
+        },
+        {
+          "name": "LCD_SHOWCHAR",
+          "mx": 506,
+          "keil": 417,
+          "delta": 89
+        },
+        {
+          "name": "SHOW_STR",
+          "mx": 463,
+          "keil": 390,
+          "delta": 73
+        },
+        {
+          "name": "TEST_FILLREC",
+          "mx": 286,
+          "keil": 218,
+          "delta": 68
+        },
+        {
+          "name": "TEST_TRIANGLE",
+          "mx": 355,
+          "keil": 292,
+          "delta": 63
+        },
+        {
+          "name": "TEST_CIRCLE",
+          "mx": 266,
+          "keil": 208,
+          "delta": 58
+        },
+        {
+          "name": "_DRAW_CIRCLE_8",
+          "mx": 220,
+          "keil": 169,
+          "delta": 51
+        },
+        {
+          "name": "GUI_DRAWBMP16",
+          "mx": 140,
+          "keil": 91,
+          "delta": 49
+        },
+        {
+          "name": "LCD_DRAWPOINT",
+          "mx": 56,
+          "keil": 14,
+          "delta": 42
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "baseCommit": "6f311ddb5ceda30a83e64922576ba0d2745332c9",
+    "sourceFiles": [
+      {
+        "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Build.ps1",
+        "sha256": "d46a3e3c24b0b32278d1986c7c87b66a371c1bd2444ae8043e3e329e02ce8266"
+      },
+      {
+        "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\FunctionGc.ps1",
+        "sha256": "83160aa623ba1df41ccf3e0a6e3f20954beb82f92e53378dac32119ab6e0526a"
+      },
+      {
+        "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\float_format_edata_matrix.py",
+        "sha256": "0989480b09813f84e132f5754a2db4f376b07b836465c9a5a562d1a7fb8672a5"
+      },
+      {
+        "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\check-vector-function-gc.ps1",
+        "sha256": "42826a1ebc1b3e2419ef9d81c4f0349aeec963558087a2214aa46abd8a648d54"
+      },
+      {
+        "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\vector_gc_attribution.py",
+        "sha256": "2ea863cef79ab6a20f6e7092cf394cbc3be29ccdd52e8ebb549e9e2f033bf6bd"
+      },
+      {
+        "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\vector_gc_fixture.py",
+        "sha256": "e5121349e3e0d9f896bf14bd5851a6404c4dc76b4fb03c874d5a03e38c483378"
+      }
+    ],
+    "checks": {
+      "cases": [
+        {
+          "status": "PASS",
+          "resolved": true,
+          "removed": [
+            "_dead",
+            "_dead_helper"
+          ],
+          "case": "registered-vector"
+        },
+        {
+          "status": "PASS",
+          "resolved": true,
+          "removed": [
+            "_dead",
+            "_dead_helper"
+          ],
+          "case": "decimal-vector"
+        },
+        {
+          "status": "PASS",
+          "resolved": true,
+          "removed": [
+            "_dead",
+            "_dead_helper"
+          ],
+          "case": "relocated-code-base"
+        },
+        {
+          "status": "PASS",
+          "resolved": false,
+          "removed": [],
+          "case": "vector-interior"
+        },
+        {
+          "status": "PASS",
+          "resolved": false,
+          "removed": [],
+          "case": "unregistered-slot"
+        },
+        {
+          "status": "PASS",
+          "resolved": false,
+          "removed": [],
+          "case": "missing-plan"
+        },
+        {
+          "status": "PASS",
+          "resolved": false,
+          "removed": [],
+          "case": "archive-selection-pending"
+        },
+        {
+          "status": "PASS",
+          "resolved": false,
+          "removed": [],
+          "case": "wrong-code-base"
+        },
+        {
+          "status": "PASS",
+          "resolved": false,
+          "removed": [],
+          "case": "not-an-isr"
+        }
+      ],
+      "status": "PASS"
+    },
+    "hardware": {
+      "status": "PASS",
+      "cases": 128,
+      "frames": 550,
+      "firmwareSha256": "ea37f78fa8998bcd3048f17ae8e912c23b39f2ff3a596f5c2f21d652b2da727f"
+    },
+    "hardwareMethod": "Actual Timer3/4 interrupts at 0xff009b/0xff00a3, raw LJMP to compiler ISR vectors 0xff006b/0xff0073, helper calls and RETI.",
+    "hardwareEvidence": [
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\timer-hardware\\uart.bin",
+        "sha256": "4a484e7f2c39a1edf2ededf18982b8f871609fa083d12d430455f7ef6df5db10"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\timer-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ea37f78fa8998bcd3048f17ae8e912c23b39f2ff3a596f5c2f21d652b2da727f"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\timer-board\\.build\\mx251\\latest\\interrupt-vectors.json",
+        "sha256": "52f4093c9bd53898ffe1a6cd33f1d83c405f198f991a0bcb06bf4d220aa6c2cb"
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\timer-board\\.build\\mx251\\latest\\function-gc\\manifest.json",
+        "sha256": "1b611f694c3036d3102243dcf0f42d027487628075cfb60d2441665693735378"
+      }
+    ],
+    "deviceDefinitions": {
+      "path": "E:\\MCU\\MX251-STC-SDK\\research\\official-box-comparison-20261101\\projects\\p059\\native\\AI8051U.H",
+      "sha256": "f616196b4cb5265a75b3d29da96845540746ea1223f5c4fafbe6be429b9f2b07"
+    },
+    "compilerChanged": false,
+    "sdkSourcesChanged": false,
+    "keilTimingCompared": false,
+    "full75Rerun": false
+  },
+  "fullAttribution": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc\\attribution.json",
+    "sha256": "365f16d2be0129a99eeaff0e6f7c3319f4f6e98c7c69128964dc620a40a042fa"
+  },
+  "previousReport": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\FLOAT-FORMAT-EDATA.json",
+    "sha256": "325867645ae37fe75651acc5e73308da3dd08bcde59c60470d709c6c02a07e1e"
+  },
+  "comparisonScope": "MX251 rebuilt in both standard and native-math with one compiler. Keil/STC references reused from identical prior inputs; no new Keil runtime comparison or full-75 qualification."
+}

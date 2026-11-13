@@ -122,10 +122,12 @@ function Read-Mx251GcArchive([string]$Path) {
 function Invoke-Mx251FunctionGc {
  [CmdletBinding()]
  param([Parameter(Mandatory)][string]$Root,[Parameter(Mandatory)][object[]]$Units,
-       [string[]]$ExtraAssembly=@(),[string[]]$LibraryPaths=@(),[string[]]$KeepSymbols=@())
+       [string[]]$ExtraAssembly=@(),[string[]]$LibraryPaths=@(),[string[]]$KeepSymbols=@(),
+       $InterruptPlan=$null,[long]$CodeBase=-1)
  $ErrorActionPreference='Stop'
  $issues=[Collections.Generic.List[object]]::new();$functions=[Collections.Generic.List[object]]::new()
  $documents=[Collections.Generic.List[object]]::new();$libraries=[Collections.Generic.List[object]]::new()
+ $absoluteTargets=[Collections.Generic.List[object]]::new()
  $nodes=[Collections.Hashtable]::new([StringComparer]::Ordinal);$defs=[Collections.Hashtable]::new([StringComparer]::Ordinal);$globalDefs=[Collections.Hashtable]::new([StringComparer]::Ordinal);$globalFunctions=[Collections.Hashtable]::new([StringComparer]::Ordinal);$unitNames=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
  $librarySymbols=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
  $libraryRefs=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
@@ -212,7 +214,7 @@ function Invoke-Mx251FunctionGc {
     $instruction=$Matches[1].ToLowerInvariant();$operand=if($Matches.ContainsKey(2)){$Matches[2]}else{''}
     if($instruction -notin $instructions){&$addIssue 'UNKNOWN_INSTRUCTION' "${name}:$($i+1) $instruction"}
     if($language -eq 'c' -and -not $active -and $area -match '^(CSEG|_CODE)$'){$codeOutside=$true}
-    if($instruction -in @('ljmp','ejmp','ajmp','sjmp','lcall','ecall','acall','call') -and @(Get-Mx251GcTokens $operand).Count -eq 0){&$addIssue 'ABSOLUTE_CONTROL_TARGET' "${name}:$($i+1) $operand"}
+    $absoluteControl=$instruction -in @('ljmp','ejmp','ajmp','sjmp','lcall','ecall','acall','call') -and @(Get-Mx251GcTokens $operand).Count -eq 0
     if($instruction -eq 'jmp' -and $operand -match '@' -and (-not $active -or $active.opaque -or $language -ne 'c')){&$addIssue 'OPAQUE_INDIRECT_JUMP' "${name}:$($i+1)"}
     # 原生有符号分支来自 as251 的四个 S_BR 指令；目标须是可证明的
     # 元数据函数代码标签。数字、算术、别名或外部未知位置继续保留全体。
@@ -220,7 +222,7 @@ function Invoke-Mx251FunctionGc {
     if($signedBranch -and $operand -cnotmatch '^(?:[A-Za-z_][A-Za-z0-9_.$]*|[0-9]+\$)$'){&$addIssue 'SIGNED_BRANCH_TARGET_UNPROVEN' "${name}:$($i+1) $operand"}
     $bitOperands=Get-Mx251GcBitOperands $instruction $operand
     foreach($invalidBit in $bitOperands.invalidConstants){&$addIssue 'BIT_OPERAND_UNPROVEN' "${name}:$($i+1) $invalidBit"}
-    $doc.records.Add(@{owner=$owner;line=$i;kind='instruction';expression=$operand;tokens=@(Get-Mx251GcTokens $operand);bitBuiltinTokens=$bitOperands.knownTokens;signedBranch=$signedBranch})
+    $doc.records.Add(@{owner=$owner;line=$i;kind='instruction';expression=$operand;tokens=@(Get-Mx251GcTokens $operand);bitBuiltinTokens=$bitOperands.knownTokens;signedBranch=$signedBranch;absoluteControl=$absoluteControl})
    }
   }
   if($active){&$addIssue 'UNCLOSED_FUNCTION' $active.id}
@@ -234,6 +236,27 @@ function Invoke-Mx251FunctionGc {
  foreach($doc in $documents) {
   $observed=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
   foreach($record in $doc.records) {
+   if($record.kind -eq 'instruction' -and $record.absoluteControl){
+    # A compiler-owned vector has a fixed address even when function bodies move.
+    # Bind it to the ISR from the same selection plan used to build and verify
+    # the final vector table. Other numeric destinations still retain all code.
+    $entry=$null;$address=[long]-1
+    if($InterruptPlan -and -not $InterruptPlan.needsDiscovery -and $CodeBase -ge 0){
+     $literal=$record.expression
+     try {
+      if($literal -match '^0x[0-9a-f]+$'){$address=[Convert]::ToInt64($literal.Substring(2),16)}
+      elseif($literal -match '^[0-9]+$'){$address=[Convert]::ToInt64($literal,10)}
+     } catch {$address=-1}
+     $matches=@($InterruptPlan.definitions|Where-Object{[long]($CodeBase+3+8*$_.slot) -eq $address})
+     if($address -ge 0 -and $matches.Count -eq 1){
+      $candidate=$matches[0];$id="fn:$($candidate.unit):$($candidate.symbol)"
+      $owned=@($functions|Where-Object{$_.id -ceq $id -and $_.isr})
+      if($owned.Count -eq 1){$entry=$candidate;$null=$nodes[$record.owner].Add($id)}
+     }
+    }
+    if($entry){$absoluteTargets.Add(@{unit=$doc.name;line=$record.line+1;address=$address;slot=$entry.slot;targetUnit=$entry.unit;symbol=$entry.symbol;kind='interrupt-vector'})}
+    else{&$addIssue 'ABSOLUTE_CONTROL_TARGET' "$($doc.name):$($record.line+1) $($record.expression)"}
+   }
    foreach($token in $record.tokens) {
     $null=$observed.Add($token)
     # Generated C exports alone are not roots. Handwritten assembly is retained
@@ -319,7 +342,7 @@ function Invoke-Mx251FunctionGc {
   else{[IO.File]::Copy($doc.path,$candidate,$false)}
   $artifactRows.Add(@{name=$doc.name;assembly=$doc.path;inputSha256=$doc.sha256;original=$original;candidate=$candidate;candidateSha256=(Get-Mx251GcHash $candidate);changed=$wasChanged;removedSourceLines=$drop.Count;removedGlobalDeclarations=@($declarationsRemoved);removedUnusedExternalDeclarations=@();object=$doc.object;objectSha256=$doc.objectSha256})
  }
- $manifest=[ordered]@{schema='mx251.function-gc.v1';status=$(if($fallback){'CONSERVATIVE_KEEP_ALL'}else{'CLOSED_GRAPH_CANDIDATE'});fallback=$fallback;issues=@($issues);roots=@($roots|Sort-Object);functions=@($functions|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol;startLine=$_.start+1;endLine=$(if($null -eq $_.end){$null}else{$_.end+1});kept=$live.Contains($_.id);isr=$_.isr;addressTaken=$_.addressTaken;opaque=$_.opaque;indirect=$_.indirect;edges=@($nodes[$_.id]|Sort-Object)}});removedFunctions=@($removed|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol}});units=@($artifactRows);extraAssembly=@($documents|Where-Object{$_.extra}|ForEach-Object{@{path=$_.path;sha256=$_.sha256}});libraries=@($libraries);libraryReferencePolicy='All archive members conservatively root referenced application functions; no library rewriting.';hardwareAccess=$false;assemblerInvoked=$false;linkerInvoked=$false;limits=@('Function text ownership and conservative symbol graph only; final assembler/linker/relocation verification required.','Data/CONST/startup retained; no variable, pool or archive-member trimming.','Unknown metadata, instructions, references, opaque code or indirect calls retain all functions.','No cycle or correctness claim; no SDK source or public API changes.')}
+ $manifest=[ordered]@{schema='mx251.function-gc.v1';status=$(if($fallback){'CONSERVATIVE_KEEP_ALL'}else{'CLOSED_GRAPH_CANDIDATE'});fallback=$fallback;issues=@($issues);resolvedAbsoluteTargets=@($absoluteTargets);roots=@($roots|Sort-Object);functions=@($functions|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol;startLine=$_.start+1;endLine=$(if($null -eq $_.end){$null}else{$_.end+1});kept=$live.Contains($_.id);isr=$_.isr;addressTaken=$_.addressTaken;opaque=$_.opaque;indirect=$_.indirect;edges=@($nodes[$_.id]|Sort-Object)}});removedFunctions=@($removed|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol}});units=@($artifactRows);extraAssembly=@($documents|Where-Object{$_.extra}|ForEach-Object{@{path=$_.path;sha256=$_.sha256}});libraries=@($libraries);libraryReferencePolicy='All archive members conservatively root referenced application functions; no library rewriting.';hardwareAccess=$false;assemblerInvoked=$false;linkerInvoked=$false;limits=@('Function text ownership and conservative symbol graph only; final assembler/linker/relocation verification required.','Data/CONST/startup retained; no variable, pool or archive-member trimming.','Unknown metadata, instructions, references, opaque code or indirect calls retain all functions.','No cycle or correctness claim; no SDK source or public API changes.')}
  $manifestPath=Join-Path $outPath 'manifest.json';[IO.File]::WriteAllText($manifestPath,($manifest|ConvertTo-Json -Depth 60)+"`n",[Text.UTF8Encoding]::new($false))
  return @{Manifest=$manifestPath;ChangedUnits=@($changed.ToArray());Status=$manifest.status;Fallback=$fallback;RemovedFunctions=@($removed|ForEach-Object{$_.symbol})}
 }

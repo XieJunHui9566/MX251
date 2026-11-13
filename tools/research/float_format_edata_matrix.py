@@ -9,6 +9,7 @@ p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--coverage',type=Path,required=True)
 p.add_argument('--output',type=Path,required=True)
 p.add_argument('--core',type=Path,required=True)
+p.add_argument('--ids',help='Comma-separated project IDs; default: all math and EDATA cases')
 a=p.parse_args()
 config=matrix.read(a.coverage/'config.json')
 config.update(output=str(a.output.resolve()),core=str(a.core.resolve()))
@@ -18,6 +19,7 @@ tasks=[]
 math_ids=('p041','p076','p077','p079','p081')
 edata_ids=('p021','p024','p030','p043','p068','p069','p116')
 for project in matrix.read(a.coverage/'inputs.json')['projects']:
+    if a.ids and project['id'] not in a.ids.split(','): continue
     variants=[]
     if project['id'] in math_ids:
         variants=[('mx251-native',dict(runtime='native-math')),
