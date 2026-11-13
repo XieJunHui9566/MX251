@@ -1495,9 +1495,11 @@ wjump_tail_target(wide_function *f,int next)
   return -1;
 }
 
+#include "wide_switch_ranges.c.inc"
 static void
 wjump_table(wide_function *f,wide_node *n)
 {
+  if(wjump_ranges(f,n))return;
   int table=wt(f);
   /* 每项固定为四字节 EJMP。完整宽度缩放/地址相加，不让超过 64 项的
    * 偏移在 A 中回绕；只用保留的 DR16/DR20/A，不破坏任一后继的活跃值。
