@@ -1,5 +1,6 @@
 """Real Timer3/4 interrupts through fixed vector aliases after collection."""
 import argparse
+import importlib.util
 from pathlib import Path
 import machine_pipeline_fixture as board
 
@@ -8,7 +9,7 @@ def expected(kind, seed):
     return (0x12345678 + (seed + 1) * (17 if kind else 7)) & 0xffffffff
 
 
-def create(output):
+def create(output, c251_aliases=False):
     output.mkdir(parents=True, exist_ok=False)
     driver = (board.REPO/'core/sources/compiler/src/mcs251/tests/machine-board.c').read_text()
     start = driver.index('        x0 =')
@@ -76,13 +77,23 @@ add_library(app INTERFACE)
 target_sources(app INTERFACE machine-board.c vectors.c vectors.asm machine-board.h)
 mx251_firmware(app)
 ''')
+    if c251_aliases:
+        path = board.REPO/'core/compat/keil/vector_aliases.py'
+        spec = importlib.util.spec_from_file_location('vector_aliases', path)
+        adapter = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(adapter)
+        source = 'CSEG AT 009BH\nLJMP 006BH\nCSEG AT 00A3H\nLJMP 0073H\nEND\n'
+        (output/'aliases.c').write_text(adapter.translate(source))
+        cmake = output/'CMakeLists.txt'
+        cmake.write_text(cmake.read_text().replace('vectors.asm', 'aliases.c'))
 
 
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     sub=p.add_subparsers(dest='command',required=True)
     c=sub.add_parser('create');c.add_argument('--output',type=Path,required=True)
+    c.add_argument('--c251-aliases',action='store_true')
     c=sub.add_parser('capture');c.add_argument('--hex',type=Path,required=True);c.add_argument('--output',type=Path,required=True)
     a=p.parse_args()
-    if a.command=='create':create(a.output)
+    if a.command=='create':create(a.output,a.c251_aliases)
     else:board.capture(a.hex,a.output,lambda data:board.check(data,expected))

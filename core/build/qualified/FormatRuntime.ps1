@@ -1,4 +1,5 @@
 # 普通 ABI 的闭合整数格式运行库。原应用对象不改；未知条件保留完整库。
+. (Join-Path $PSScriptRoot 'VectorRedirects.ps1')
 function Get-Mx251FormatPlan([string]$Format) { return (Get-Mx251ExtendedFormatPlan $Format) }
 
 function Read-Mx251FormatConstants([string[]]$Lines) {
@@ -134,6 +135,11 @@ function Get-Mx251FormatDemand([string]$Root,$Config) {
  foreach($u in $Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'}){
   foreach($m in [regex]::Matches([IO.File]::ReadAllText((Join-Path $Root ($u.name+'.asm'))),'(?m)^; mx251-irq-definition schema=2 symbol=\S+ slot=([0-9]+) private=[01]\s*$')){$null=$slots.Add([int]$m.Groups[1].Value)}
  }
+ $planPath=Join-Path $Root 'interrupt-vectors.plan.json'
+ if([IO.File]::Exists($planPath)){
+  $plan=[IO.File]::ReadAllText($planPath)|ConvertFrom-Json -AsHashtable
+  if(-not $plan.needsDiscovery -and $plan.vectorCount -eq 0){Add-Mx251SparseVectorSlots $slots}
+ }
  foreach($u in $Config.units){
   if([IO.Path]::GetExtension($u.file) -cne '.c'){
    $rawVectors+=@(Get-Mx251FormatRawVectors $Root $u $formatHome $slots)
@@ -152,7 +158,8 @@ function Get-Mx251FormatDemand([string]$Root,$Config) {
    if([regex]::IsMatch($code,$apiPattern) -and $code -cnotmatch '^ecall\s+_(printf|sprintf)$'){throw 'format-address-escape-or-unknown-entry'}
   }
   $metadata=[regex]::Matches($text,'(?m)^; mx251-function begin schema=1 symbol=(\S+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])\s*$')
-  if(((-not $metadata.Count) -and -not (Test-Mx251FormatInitializerUnit $lines)) -or @($metadata|Where-Object{$_.Groups[4].Value -ne '0'}).Count){throw 'format-opaque-unit'}
+  $redirects=Get-Mx251VectorRedirects $text $formatHome.base $slots
+  if(((-not $metadata.Count) -and -not (Test-Mx251FormatInitializerUnit $lines)) -or @($metadata|Where-Object{$_.Groups[4].Value -ne '0' -and -not $redirects.ContainsKey($_.Groups[1].Value)}).Count){throw 'format-opaque-unit'}
   $indirectEvidence+=@(Get-Mx251FormatIndirectEvidence $text | ForEach-Object{$_['unit']=$u.name;$_})
   # Wide functions emit their bank contract after the body. Resolve the
   # contract by owner before scanning calls; argument bytes still come from

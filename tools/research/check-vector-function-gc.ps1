@@ -54,7 +54,11 @@ $cases=@(
  @{name='missing-plan';operand='0xff006b';base=[long]0xff0000;resolved=$false},
  @{name='archive-selection-pending';operand='0xff006b';base=[long]0xff0000;resolved=$false},
  @{name='wrong-code-base';operand='0xff006b';base=[long]0xfe0000;resolved=$false},
- @{name='not-an-isr';operand='0xff006b';base=[long]0xff0000;resolved=$false}
+ @{name='not-an-isr';operand='0xff006b';base=[long]0xff0000;resolved=$false},
+ @{name='naked-vector';operand='0xff006b';base=[long]0xff0000;resolved=$true},
+ @{name='naked-empty-slot';operand='0xff0063';base=[long]0xff0000;resolved=$true},
+ @{name='naked-extra-instruction';operand='0xff006b';base=[long]0xff0000;resolved=$false},
+ @{name='naked-unregistered-slot';operand='0xff0073';base=[long]0xff0000;resolved=$false}
 )
 $results=@()
 foreach($case in $cases){
@@ -62,11 +66,16 @@ foreach($case in $cases){
  $asm=Join-Path $root 'u0.asm';$obj=Join-Path $root 'u0.rel'
  $text=$source
  if($case.name -eq 'not-an-isr'){$text=$text.Replace('symbol=_irq isr=1','symbol=_irq isr=0')}
+ if($case.name.StartsWith('naked-')){
+  $extra=if($case.name -eq 'naked-extra-instruction'){"nop`n"}else{''}
+  $text+="`n; mx251-function begin schema=1 symbol=_alias isr=1 addressTaken=0 opaque=1 indirect=0`n_alias:`n; mx251-bank-contract schema=1 symbol=_alias abi=2 bank=0 naked=1`n${extra}ejmp $($case.operand)`n; mx251-function end schema=1 symbol=_alias`n"
+ }
  [IO.File]::WriteAllText($asm,$text)
  & (Join-Path $Core 'toolchain/bin/sdas251.exe') -plosgff $obj $asm
  if($LASTEXITCODE){throw 'Fixture assembly failed'}
  $raw=Join-Path $root 'vectors.asm'
- [IO.File]::WriteAllText($raw,".module vectors`n.area VECT (ABS,CODE)`n.org 0xff01d3`nljmp $($case.operand)`n")
+ $rawText=if($case.name.StartsWith('naked-')){".module vectors`n.area VECT (ABS,CODE)`n"}else{".module vectors`n.area VECT (ABS,CODE)`n.org 0xff01d3`nljmp $($case.operand)`n"}
+ [IO.File]::WriteAllText($raw,$rawText)
  $plan=Get-Mx251InterruptSelection $root $config 0
  if($case.name -eq 'missing-plan'){$plan=$null}
  if($case.name -eq 'archive-selection-pending'){$plan=@{needsDiscovery=$true}}
@@ -75,8 +84,9 @@ foreach($case in $cases){
  if($result.Fallback -eq $case.resolved){throw "$($case.name): unexpected GC status"}
  if($case.resolved){
   if(($result.RemovedFunctions|Sort-Object) -join ',' -cne '_dead,_dead_helper'){throw 'Wrong functions removed'}
-  if($manifest.resolvedAbsoluteTargets.Count -ne 1 -or $manifest.resolvedAbsoluteTargets[0].symbol -cne '_irq'){throw 'Missing absolute vector binding'}
- }elseif($result.RemovedFunctions.Count -or 'ABSOLUTE_CONTROL_TARGET' -notin $manifest.issues.code){throw 'Unresolved target changed collection'}
+  $expected=if($case.name -eq 'naked-empty-slot'){'reti'}else{'_irq'}
+  if($manifest.resolvedAbsoluteTargets.Count -ne 1 -or $manifest.resolvedAbsoluteTargets[0].symbol -cne $expected){throw 'Missing absolute vector binding'}
+ }elseif($result.RemovedFunctions.Count -or (-not @($manifest.issues|Where-Object{$_.code -in @('ABSOLUTE_CONTROL_TARGET','OPAQUE_FUNCTION')}).Count)){throw 'Unresolved target changed collection'}
  $results+=@{case=$case.name;status='PASS';resolved=$case.resolved;removed=@($result.RemovedFunctions)}
 }
 [IO.File]::WriteAllText((Join-Path $Output 'result.json'),(ConvertTo-Json @{status='PASS';cases=$results} -Depth 10))

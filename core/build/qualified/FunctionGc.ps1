@@ -1,6 +1,7 @@
 #requires -Version 7.0
 # Conservative whole-function collection. Firmware is always reassembled by the caller.
 # No SDK source rewriting, object surgery, linker invocation, or hardware access.
+. (Join-Path $PSScriptRoot 'VectorRedirects.ps1')
 
 function Get-Mx251GcField($Object,[string[]]$Names,$Default=$null) {
  foreach($name in $Names) {
@@ -161,6 +162,10 @@ function Invoke-Mx251FunctionGc {
   $path=[string](Get-Mx251GcField $u @('assembly','asm','Assembly'))
   if(-not $path -or -not [IO.Path]::IsPathRooted($path)){throw "GC assembly path must be absolute: $name"}
   $path=[IO.Path]::GetFullPath($path);$lines=[IO.File]::ReadAllLines($path)
+  $vectorSlots=[Collections.Generic.HashSet[int]]::new()
+  if($InterruptPlan -and -not $InterruptPlan.needsDiscovery){foreach($e in $InterruptPlan.definitions){$null=$vectorSlots.Add([int]$e.slot)}}
+  if($InterruptPlan -and -not $InterruptPlan.needsDiscovery -and $InterruptPlan.vectorCount -eq 0){Add-Mx251SparseVectorSlots $vectorSlots}
+  $redirects=Get-Mx251VectorRedirects ($lines -join "`n") $CodeBase $vectorSlots
   $relPath=[string](Get-Mx251GcField $u @('object','rel','Object'))
   $language=[string](Get-Mx251GcField $u @('language','Language') 'c')
   if($language -notin @('c','asm')){throw "Unknown unit language: $name"}
@@ -177,7 +182,10 @@ function Invoke-Mx251FunctionGc {
     $id="fn:$name`:$sym";if($nodes.ContainsKey($id)){&$addIssue 'DUPLICATE_FUNCTION_MARKER' $id;continue}
     $active=@{id=$id;symbol=$sym;unit=$name;start=$i;end=$null;isr=$metadata[2] -eq '1';addressTaken=$metadata[3] -eq '1';opaque=$metadata[4] -eq '1';indirect=$metadata[5] -eq '1';labels=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal);beginArea=$area}
     $nodes[$id]=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal);$functions.Add($active);$doc.functions.Add($active);$owner=$id;$markers++
-    if($active.opaque){&$addIssue 'OPAQUE_FUNCTION' $id};if($active.indirect){&$addIssue 'INDIRECT_CALL' $id}
+    if($active.opaque -and -not $redirects.ContainsKey($sym)){&$addIssue 'OPAQUE_FUNCTION' $id}
+    # Indirect calls use symbol addresses already represented by data/immediate
+    # relocations below. Taking an address keeps its owner through the same graph
+    # as a direct call; it does not make unrelated exported functions reachable.
     if(-not $globalFunctions.ContainsKey($sym)){$globalFunctions[$sym]=[Collections.Generic.List[object]]::new()};$globalFunctions[$sym].Add($active)
     $doc.lineOwners[$i]=$owner;continue
    }
@@ -252,9 +260,16 @@ function Invoke-Mx251FunctionGc {
       $candidate=$matches[0];$id="fn:$($candidate.unit):$($candidate.symbol)"
       $owned=@($functions|Where-Object{$_.id -ceq $id -and $_.isr})
       if($owned.Count -eq 1){$entry=$candidate;$null=$nodes[$record.owner].Add($id)}
+     } elseif($matches.Count -eq 0 -and $InterruptPlan.vectorCount -eq 0){
+      $offset=$address-$CodeBase-3
+      $last=if($InterruptPlan.definitions.Count){[int](($InterruptPlan.definitions.slot|Measure-Object -Maximum).Maximum)}else{-1}
+      if($offset -ge 0 -and $offset%8 -eq 0 -and $offset/8 -le $last){
+       # Sparse compiler tables emit RETI in every unregistered slot.
+       $entry=@{slot=[int]($offset/8);unit='@vectors';symbol='reti'}
+      }
      }
     }
-    if($entry){$absoluteTargets.Add(@{unit=$doc.name;line=$record.line+1;address=$address;slot=$entry.slot;targetUnit=$entry.unit;symbol=$entry.symbol;kind='interrupt-vector'})}
+    if($entry){$absoluteTargets.Add(@{unit=$doc.name;line=$record.line+1;address=$address;slot=$entry.slot;targetUnit=$entry.unit;symbol=$entry.symbol;kind=$(if($entry.unit -eq '@vectors'){'interrupt-return'}else{'interrupt-vector'})})}
     else{&$addIssue 'ABSOLUTE_CONTROL_TARGET' "$($doc.name):$($record.line+1) $($record.expression)"}
    }
    foreach($token in $record.tokens) {
@@ -342,7 +357,7 @@ function Invoke-Mx251FunctionGc {
   else{[IO.File]::Copy($doc.path,$candidate,$false)}
   $artifactRows.Add(@{name=$doc.name;assembly=$doc.path;inputSha256=$doc.sha256;original=$original;candidate=$candidate;candidateSha256=(Get-Mx251GcHash $candidate);changed=$wasChanged;removedSourceLines=$drop.Count;removedGlobalDeclarations=@($declarationsRemoved);removedUnusedExternalDeclarations=@();object=$doc.object;objectSha256=$doc.objectSha256})
  }
- $manifest=[ordered]@{schema='mx251.function-gc.v1';status=$(if($fallback){'CONSERVATIVE_KEEP_ALL'}else{'CLOSED_GRAPH_CANDIDATE'});fallback=$fallback;issues=@($issues);resolvedAbsoluteTargets=@($absoluteTargets);roots=@($roots|Sort-Object);functions=@($functions|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol;startLine=$_.start+1;endLine=$(if($null -eq $_.end){$null}else{$_.end+1});kept=$live.Contains($_.id);isr=$_.isr;addressTaken=$_.addressTaken;opaque=$_.opaque;indirect=$_.indirect;edges=@($nodes[$_.id]|Sort-Object)}});removedFunctions=@($removed|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol}});units=@($artifactRows);extraAssembly=@($documents|Where-Object{$_.extra}|ForEach-Object{@{path=$_.path;sha256=$_.sha256}});libraries=@($libraries);libraryReferencePolicy='All archive members conservatively root referenced application functions; no library rewriting.';hardwareAccess=$false;assemblerInvoked=$false;linkerInvoked=$false;limits=@('Function text ownership and conservative symbol graph only; final assembler/linker/relocation verification required.','Data/CONST/startup retained; no variable, pool or archive-member trimming.','Unknown metadata, instructions, references, opaque code or indirect calls retain all functions.','No cycle or correctness claim; no SDK source or public API changes.')}
+ $manifest=[ordered]@{schema='mx251.function-gc.v1';status=$(if($fallback){'CONSERVATIVE_KEEP_ALL'}else{'CLOSED_GRAPH_CANDIDATE'});fallback=$fallback;issues=@($issues);resolvedAbsoluteTargets=@($absoluteTargets);roots=@($roots|Sort-Object);functions=@($functions|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol;startLine=$_.start+1;endLine=$(if($null -eq $_.end){$null}else{$_.end+1});kept=$live.Contains($_.id);isr=$_.isr;addressTaken=$_.addressTaken;opaque=$_.opaque;indirect=$_.indirect;edges=@($nodes[$_.id]|Sort-Object)}});removedFunctions=@($removed|ForEach-Object{@{unit=$_.unit;symbol=$_.symbol}});units=@($artifactRows);extraAssembly=@($documents|Where-Object{$_.extra}|ForEach-Object{@{path=$_.path;sha256=$_.sha256}});libraries=@($libraries);libraryReferencePolicy='All archive members conservatively root referenced application functions; no library rewriting.';hardwareAccess=$false;assemblerInvoked=$false;linkerInvoked=$false;limits=@('Function text ownership and conservative symbol graph only; final assembler/linker/relocation verification required.','Data/CONST/startup retained; no variable, pool or archive-member trimming.','Unknown metadata, instructions, references or opaque code retain all functions. Indirect targets follow symbol relocations; fixed numeric entry points require KeepSymbols.','No cycle or correctness claim; no SDK source or public API changes.')}
  $manifestPath=Join-Path $outPath 'manifest.json';[IO.File]::WriteAllText($manifestPath,($manifest|ConvertTo-Json -Depth 60)+"`n",[Text.UTF8Encoding]::new($false))
  return @{Manifest=$manifestPath;ChangedUnits=@($changed.ToArray());Status=$manifest.status;Fallback=$fallback;RemovedFunctions=@($removed|ForEach-Object{$_.symbol})}
 }
