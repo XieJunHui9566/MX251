@@ -1,18 +1,18 @@
 # 当前 SDK 对照范围：75 项
 
-2026-11-13，统一编译器 `indexed-address-generation/core-03`，实现 `482d089`。
+2026-11-13，统一编译器 `callee-preservation-choice/core-01`，实现 `68fa8be`。
 
 - 体积 ≤Keil 120%：**75/75**。
 - 体积 ≤Keil 110%：**65/75**。
-- MX251 / Keil 合计 **191722 / 192049 B（99.83%）**。
-- 相对上一统一版，22 项缩小、52 项相同、1 项变大，减少 **106 B**。
+- MX251 / Keil 合计 **191616 / 192049 B（99.77%）**。
+- 相对上一统一版，3 项缩小、71 项相同、1 项变大，净减少 **106 B**。
 - 剩余 10 项到 110% 的逐项整数缺口合计 **427 B**。
 
-本轮改进通用下标扩展、缩放与地址相加，详见 [地址生成结果](INDEXED-ADDRESS-GENERATION.md)。父版和新版各 128/128 组实板测试通过；这些达线数字仍是体积统计，完整工程运行时间尚未验收。
+本轮让后端选择保留已输出的被调者寄存器保存方案，详见 [调用链结果](CALLEE-PRESERVATION-CHOICE.md)。父版和新版各 128/128 组实板测试通过；这些达线数字仍是体积统计，完整工程运行时间尚未验收。
 
 ## 输入与参考
 
-74 项保持原冻结输入。p108 使用双方一致的单行汇编修复：共享未使用扩展向量出口改为 RETI，C 文件未改，见 [p108 记录](P108-VECTOR-REPAIR.md)。Keil/STC-IDE 复用同源参考。STC 为 59 项 HEX、13 项不支持汇编输入、3 项失败，只作原始体积参考。上一轮 [CY 兼容性修复](CARRY-OBSERVATION.md) 继续包含于本版。
+74 项保持原冻结输入。p108 使用双方一致的单行汇编修复：共享未使用扩展向量出口改为 RETI，C 文件未改，见 [p108 记录](P108-VECTOR-REPAIR.md)。Keil/STC-IDE 复用同源参考。STC 为 59 项 HEX、13 项不支持汇编输入、3 项失败，只作原始体积参考。此前的 [CY 兼容性修复](CARRY-OBSERVATION.md) 和 [通用下标地址优化](INDEXED-ADDRESS-GENERATION.md) 继续包含于本版。
 
 ## 剩余 110% 项目
 
@@ -31,8 +31,8 @@
 
 ## 后续使用
 
-入口：`E:/STVAPP/MX251-mainline-20261113/indexed-address-generation/Build-Optimized-03.ps1`。
+入口：`E:/STVAPP/MX251-mainline-20261113/callee-preservation-choice/Build-Optimized-01.ps1`。
 
-配置：同目录 `candidate-03.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-03`；后续使用新输出目录，以 `comparison.json` 为对比基线。
+配置：同目录 `candidate-01.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-01`；后续使用新输出目录，以 `comparison.json` 为对比基线。
 
-[结构化名单](active-sdk-cohort.json) 与 [本轮证据](indexed-address-evidence.json) 绑定编译器、配置、报告及测试。
+[结构化名单](active-sdk-cohort.json) 与 [本轮证据](callee-preservation-choice-evidence.json) 绑定编译器、配置、报告及测试。
