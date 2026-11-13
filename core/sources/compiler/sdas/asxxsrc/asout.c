@@ -1816,7 +1816,7 @@ outrwm(struct expr *esp, int r, a_uint v)
                         n = (n << 8) | (esp->e_addr & 0xFF);
                         out_lw(n,r|R_RELOC);
 			if (oflag) {
-                                outchk(3, 4);
+                                outchk(3, (is_sdas() && is_sdas_target_mcs251()) ? 5 : 4);
                                 out_txb(2, esp->e_addr);
                                 *txtp++ = v;
 

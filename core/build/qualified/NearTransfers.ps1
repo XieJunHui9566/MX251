@@ -84,6 +84,30 @@ function Get-Mx251NearPlan($Units,[string[]]$Excluded) {
  return @{functions=$selected;changes=$changes;calls=@($changes|Where-Object{$_.from -ceq 'ecall'}).Count;jumps=@($changes|Where-Object{$_.from -ceq 'ejmp'}).Count}
 }
 
+function Get-Mx251PagePlan($Bindings) {
+ # Start with all eligible transfers short, then permanently remove those
+ # whose relocated source/target no longer share a page. Removing a choice
+ # changes later addresses, so recompute until the remaining set is stable.
+ $candidates=@($Bindings|Where-Object{$_.op -cin @('lcall','ljmp')})
+ $selected=$candidates;$rounds=0
+ do {
+  $rounds++;$addresses=[long[]]@($selected|ForEach-Object{$_.address}|Sort-Object)
+  $next=@()
+  foreach($b in $selected){
+   $sourceShift=[Array]::BinarySearch($addresses,[long]$b.address)
+   $targetShift=[Array]::BinarySearch($addresses,[long]$b.encodedTarget)
+   if($sourceShift -lt 0){$sourceShift=-bnot $sourceShift}
+   if($targetShift -lt 0){$targetShift=-bnot $targetShift}
+   $source=$b.address-$sourceShift;$target=$b.encodedTarget-$targetShift
+   if((($source+2) -shr 11) -eq ($target -shr 11)){
+    $next+=@{unit=$b.unit;line=$b.line;from=$b.op;to=$(if($b.op -ceq 'lcall'){'acall'}else{'ajmp'});address=$b.address;encodedTarget=$b.encodedTarget;finalAddress=$source;finalTarget=$target;owner=$b.owner;target=$b.target;op=$b.op}
+   }
+  }
+  $stable=$next.Count -eq $selected.Count;$selected=$next
+ }while(-not $stable)
+ return @{candidates=$candidates.Count;rounds=$rounds;changes=$selected;calls=@($selected|Where-Object{$_.from -ceq 'lcall'}).Count;jumps=@($selected|Where-Object{$_.from -ceq 'ljmp'}).Count;savedBytes=$selected.Count}
+}
+
 function Assert-Mx251NearImage([string]$Root,$Plan,$Image,[long]$CodeBase,[long]$CodeBytes) {
  $region=$CodeBase -shr 16;$bindings=@();$labels=[hashtable]::new([StringComparer]::Ordinal)
  foreach($group in $Plan.changes|Group-Object unit){
@@ -99,18 +123,20 @@ function Assert-Mx251NearImage([string]$Root,$Plan,$Image,[long]$CodeBase,[long]
    $c=$wanted[$number]
    if($source.Groups[2].Value.TrimEnd() -cne $lines[$number-1].TrimEnd()){throw 'near-listing-source-mismatch'}
    $bytes=[Convert]::FromHexString($raw.Substring(13,15).Replace(' ',''))
-   $opcode=switch($c.to){'ljmp'{2};'lcall'{18};'ret'{34}}
-   $length=if($c.to -ceq 'ret'){1}else{3}
-   if($bytes.Length -ne $length -or $bytes[0] -ne $opcode -or (($address+$length) -shr 16) -ne $region){throw 'near-transfer-encoding-or-region'}
+   $opcode=switch($c.to){'ljmp'{2};'lcall'{18};'ret'{34};'ajmp'{1};'acall'{17}}
+   $paged=$c.to -cin @('acall','ajmp');$mask=if($paged){31}else{255}
+   $length=if($c.to -ceq 'ret'){1}elseif($paged){2}else{3}
+   if($bytes.Length -ne $length -or ($bytes[0] -band $mask) -ne $opcode -or (($address+$length) -shr 16) -ne $region){throw 'near-transfer-encoding-or-region'}
    for($i=0;$i -lt $bytes.Length;$i++){if($Image[$address+$i] -ne $bytes[$i]){throw 'near-listing-image-mismatch'}}
-   $bindings+=@{unit=$group.Name;line=$number;op=$c.to;owner=$c.owner;target=$c.target;address=$address;encodedTarget=$(if($length -eq 3){($region -shl 16)+[int]$bytes[1]*256+$bytes[2]}else{$null})}
+   $target=if($paged){(($address+2) -band -2048)+(([int]$bytes[0] -band 224) -shl 3)+[int]$bytes[1]}elseif($length -eq 3){($region -shl 16)+[int]$bytes[1]*256+$bytes[2]}else{$null}
+   $bindings+=@{unit=$group.Name;line=$number;op=$c.to;owner=$c.owner;target=$c.target;address=$address;encodedTarget=$target}
    $wanted.Remove($number)
   }
   if($wanted.Count){throw 'near-transfer-missing-listing'}
  }
  foreach($b in $bindings|Where-Object{$_.op -cne 'ret'}){
   $unit=$b.unit
-  if($b.op -ceq 'lcall'){$unit=@($Plan.functions|Where-Object{$_.symbol -ceq $b.target})[0].unit}
+  if($b.op -cin @('lcall','acall')){$unit=@($Plan.functions|Where-Object{$_.symbol -ceq $b.target})[0].unit}
   if(-not $labels.ContainsKey($unit+':'+$b.target) -or $b.encodedTarget -ne $labels[$unit+':'+$b.target]){throw 'near-transfer-target-mismatch'}
  }
  foreach($address in $Image.Keys){if($address -lt $CodeBase -or $address -ge $CodeBase+$CodeBytes){throw 'near-image-outside-code-region'}}
@@ -118,7 +144,7 @@ function Assert-Mx251NearImage([string]$Root,$Plan,$Image,[long]$CodeBase,[long]
 }
 
 function Invoke-Mx251NearTransfers([string]$Root,$Config,$Receipt,[string]$ToolRoot,[string]$ProfileRoot,[string]$Mode) {
- $record=@{schema=1;status='OFF';applied=$false;savedBytes=0;functions=@();calls=0;jumps=0;returnAddressBytes=2;baselineCodeBytes=$Receipt.codeBytes}
+ $record=@{schema=2;status='OFF';applied=$false;savedBytes=0;functions=@();calls=0;jumps=0;returnAddressBytes=2;baselineCodeBytes=$Receipt.codeBytes;pageTransfers=@{status='NOT_RUN';calls=0;jumps=0;savedBytes=0}}
  if($Mode -ceq 'OFF'){return $record}
  if($env:MX251_DEFER_NEAR_TRANSFERS -ceq '1'){$record.status='DEFERRED_TO_OUTER_BUILD';return $record}
  $record.status='NO_CANDIDATE'
@@ -160,9 +186,40 @@ function Invoke-Mx251NearTransfers([string]$Root,$Config,$Receipt,[string]$ToolR
  Run-Tool 'near-link' $compilerExe @($prior.arguments)
  $image=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex')
  $record.bindings=@(Assert-Mx251NearImage $Root $plan $image $layout.codeBase $layout.codeBytes)
- # All replacements save one byte except the one-byte ERET -> RET pair.
  $saving=$plan.calls+$plan.jumps
  if($Receipt.codeBytes-$image.Count -ne $saving){throw 'near-whole-image-size-mismatch'}
+ # All selected instructions live in the concatenated CSEG. Its only layout
+ # change is deleting one byte at each selected site; linker relocation keeps
+ # references from other sections and unmodified units current.
+ $map=[IO.File]::ReadAllText((Join-Path $Root 'linked.partial.map'))
+ $segment=[regex]::Match($map,'(?m)^CSEG\s+([0-9A-F]+)\s+([0-9A-F]+)\s+=.*\(REL,CON,CODE\)')
+ $pages=Get-Mx251PagePlan $record.bindings
+ $pages.status='NO_CANDIDATE';$pages.baselineCodeBytes=$image.Count
+ if($pages.savedBytes){
+  if(-not $segment.Success){throw 'page-transfer-CSEG-layout'}
+  $start=[Convert]::ToInt64($segment.Groups[1].Value,16);$end=$start+[Convert]::ToInt64($segment.Groups[2].Value,16)
+  foreach($b in $pages.changes){if($b.address -lt $start -or $b.address+3 -gt $end -or $b.encodedTarget -lt $start -or $b.encodedTarget -ge $end){throw 'page-transfer-outside-CSEG'}}
+  $pageBackup=Join-Path $Root 'page-baseline';$null=[IO.Directory]::CreateDirectory($pageBackup)
+  foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Extension -cin @('.asm','.rel','.rst','.lst','.sym')}){[IO.File]::Copy($p.FullName,(Join-Path $pageBackup $p.Name),$false)}
+  foreach($group in $pages.changes|Group-Object unit){
+   $unit=@($units|Where-Object{$_.name -ceq $group.Name})[0]
+   foreach($b in $group.Group){
+    $line=$b.line-1;$unit.lines[$line]=[regex]::Replace($unit.lines[$line],('^(\s*)'+$b.from+'\b'),('${1}'+$b.to))
+    $change=@($plan.changes|Where-Object{$_.unit -ceq $b.unit -and $_.line -eq $line})[0];$change.to=$b.to
+   }
+   [IO.File]::WriteAllLines((Join-Path $Root ($group.Name+'.asm')),$unit.lines,[Text.UTF8Encoding]::new($false))
+   Run-Tool ('page-assemble-'+$group.Name) (Join-Path $ToolRoot 'bin/sdas251.exe') @('-plosgff',($group.Name+'.rel'),($group.Name+'.asm'))
+  }
+  Run-Tool 'page-link' $compilerExe @($prior.arguments)
+  $image=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex')
+  $record.bindings=@(Assert-Mx251NearImage $Root $plan $image $layout.codeBase $layout.codeBytes)
+  $bound=@{};foreach($b in $record.bindings){$bound[$b.unit+':'+$b.line]=$b}
+  foreach($b in $pages.changes){$actual=$bound[$b.unit+':'+$b.line];if($actual.address -ne $b.finalAddress -or $actual.encodedTarget -ne $b.finalTarget){throw 'page-transfer-layout-mismatch'}}
+  $saving+=$pages.savedBytes
+  if($Receipt.codeBytes-$image.Count -ne $saving){throw 'page-whole-image-size-mismatch'}
+  $pages.status='APPLIED'
+ }
+ $record.pageTransfers=$pages
  $record.savedBytes=$saving;$record.codeBytes=$image.Count;$record.status='APPLIED';$record.applied=$true
  [IO.File]::Copy((Join-Path $Root 'linked.partial.hex'),(Join-Path $Root 'firmware.hex'),$true)
  $last=($image.Keys|Measure-Object -Maximum).Maximum
@@ -171,7 +228,8 @@ function Invoke-Mx251NearTransfers([string]$Root,$Config,$Receipt,[string]$ToolR
  [IO.File]::WriteAllBytes((Join-Path $Root 'firmware.bin'),$binary)
  $Receipt.codeBytes=$image.Count;$Receipt.firmwareSha256=Hash-File (Join-Path $Root 'firmware.hex')
  $Receipt.binary.sha256=Hash-File (Join-Path $Root 'firmware.bin');$Receipt.binary.length=$binary.Length
- $prior.label='near-baseline-link';$trial=@($commands|Where-Object{$_.label -ceq 'near-link'})[-1];$trial.label='link';$trial.actualLogLabel='near-link'
+ $finalLabel=if($pages.savedBytes){'page-link'}else{'near-link'}
+ $prior.label='near-baseline-link';$trial=@($commands|Where-Object{$_.label -ceq $finalLabel})[-1];$trial.label='link';$trial.actualLogLabel=$finalLabel
  Write-Json (Join-Path $Root 'commands.json') @($commands.ToArray())
  $effects=New-Mx251CallEffects $Root $Config $Receipt
  Write-Json (Join-Path $Root 'call-effects.json') $effects

@@ -522,6 +522,7 @@ try {
  $near=Invoke-Mx251NearTransfers $outputRoot $config $receipt $toolRoot $ProfileRoot $NearTransfers
  Write-Json (Join-Path $outputRoot 'near-transfers.json') $near
  $receipt.nearTransfers=@{mode=$NearTransfers;status=$near.status;applied=$near.applied;savedBytes=$near.savedBytes;calls=$near.calls;jumps=$near.jumps;recordSha256=(Hash-File (Join-Path $outputRoot 'near-transfers.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'NearTransfers.ps1'))}
+ $receipt.nearTransfers.pageTransfers=@{status=$near.pageTransfers.status;calls=$near.pageTransfers.calls;jumps=$near.pageTransfers.jumps;savedBytes=$near.pageTransfers.savedBytes}
  $receipt.buildIdentity.nearTransfers=$receipt.nearTransfers
  if($near.applied){
   $memory=Get-Mx251FormatHex (Join-Path $outputRoot 'firmware.hex')

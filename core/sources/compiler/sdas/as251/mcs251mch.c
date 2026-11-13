@@ -260,7 +260,8 @@ out_control11(struct expr *target, a_uint opcode)
 {
 	a_uint next = dot.s_addr + 2;
 
-	if (pass == 2 &&
+	/* A relocatable area's final page is only known by the linker. */
+	if (pass == 2 && (dot.s_area->a_flag & A_ABS) &&
 	    (is_abs(target) || target->e_base.e_ap == dot.s_area) &&
 	    ((target->e_addr ^ next) & ~((a_uint) 0x07FF)))
 		xerr('a', "ACALL/AJMP target is outside the current 2K page.");
