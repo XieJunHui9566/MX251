@@ -5,19 +5,19 @@ function Get-Mx251NearUnits([string]$Root,$Config) {
  $units=@()
  foreach($u in $Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'}){
   $lines=[IO.File]::ReadAllLines((Join-Path $Root ($u.name+'.asm')))
-  $owners=@{};$functions=[hashtable]::new([StringComparer]::Ordinal);$labels=[hashtable]::new([StringComparer]::Ordinal);$references=[hashtable]::new([StringComparer]::Ordinal);$owner=''
+  $owners=@{};$functions=[hashtable]::new([StringComparer]::Ordinal);$labels=[hashtable]::new([StringComparer]::Ordinal);$references=[hashtable]::new([StringComparer]::Ordinal);$owner='';$tables=@()
   for($i=0;$i -lt $lines.Count;$i++){
    $raw=$lines[$i];$code=Get-Mx251GcText $raw
    if($raw -cmatch '^; mx251-function begin schema=1 symbol=(\S+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])$'){
     $owner=$Matches[1]
-    $functions[$owner]=@{symbol=$owner;unit=$u.name;isr=[int]$Matches[2];addressTaken=[int]$Matches[3];opaque=[int]$Matches[4];indirect=[int]$Matches[5];begin=$i;end=$i;signature='';abi=0;bank=-1;naked=1;returns=@();calls=@();branches=@();indirectJump=$false;directives=$false}
+    $functions[$owner]=@{symbol=$owner;unit=$u.name;isr=[int]$Matches[2];addressTaken=[int]$Matches[3];opaque=[int]$Matches[4];indirect=[int]$Matches[5];begin=$i;end=$i;signature='';abi=0;bank=-1;naked=1;returns=@();calls=@();branches=@();indirectJump=$false;indirectSites=@();fixedJumps=[Collections.Generic.HashSet[int]]::new();directives=$false}
    }
    $owners[$i]=$owner
    foreach($token in @(Get-Mx251GcTokens $code)){
     if(-not $references.ContainsKey($token)){$references[$token]=[Collections.Generic.List[object]]::new()}
     $references[$token].Add(@{line=$i;code=$code;owner=$owner})
    }
-   if($code -cmatch '^([A-Za-z_.$0-9]+):{1,2}$'){$labels[$Matches[1]]=@{owner=$owner;line=$i}}
+   if($code -cmatch '^([A-Za-z_.$0-9]+):{1,2}$'){$labels[$owner+':'+$Matches[1]]=@{owner=$owner;line=$i}}
    if($owner){
     $f=$functions[$owner];$f.end=$i
     if($raw -cmatch '^; mx251-(?:scalar|near)-definition schema=1 symbol=(\S+) signature=(\S+)$'){
@@ -27,7 +27,10 @@ function Get-Mx251NearUnits([string]$Root,$Config) {
      if($Matches[1] -ceq $owner){$f.abi=[int]$Matches[2];$f.bank=[int]$Matches[3];$f.naked=[int]$Matches[4]}
     }
     if($code -ceq 'eret'){$f.returns+=@($i)}
-    if($code -cmatch '^(?:e|l|s|a)?jmp\s+@'){$f.indirectJump=$true}
+    if($code -cmatch '^(?:e|l|s|a)?jmp\s+@'){$f.indirectJump=$true;$f.indirectSites+=@($i)}
+    if($raw -cmatch '^; mx251-jump-table schema=1 owner=(\S+) label=(\S+) entries=([1-9][0-9]*) stride=4$'){
+     if($Matches[1] -ceq $owner){$tables+=@{owner=$owner;line=$i;label=$Matches[2];entries=[int]$Matches[3]}}
+    }
     if($code.StartsWith('.') -and $code -cnotmatch '^\.globl\s+'){$f.directives=$true}
     if($code -cmatch '(?:^|[,\s])(?:\.|\$)\s*[+-]\s*\d'){$f.directives=$true}
     if($code -cmatch '^(ejmp|ljmp|sjmp|ajmp)\s+(\S+)$'){$f.branches+=@{line=$i;op=$Matches[1];target=$Matches[2]}}
@@ -35,6 +38,28 @@ function Get-Mx251NearUnits([string]$Root,$Config) {
    }
    if($raw -cmatch '^; mx251-function end schema=1 '){$owner=''}
   }
+  # Only compiler-described four-byte tables make an indirect jump known.
+  # Their symbolic base relocates normally, but each EJMP slot stays four bytes.
+  $known=[Collections.Generic.HashSet[int]]::new()
+  foreach($t in $tables){
+   $f=$functions[$t.owner];$before=@()
+   for($i=$t.line-1;$i -ge $f.begin -and $before.Count -lt 5;$i--){$code=Get-Mx251GcText $lines[$i];if($code){$before+=@{line=$i;code=$code}}}
+   $label=[regex]::Escape($t.label)
+   if($before.Count -ne 5 -or $before[0].code -cnotmatch '^ejmp\s+@dr16$' -or
+      $before[1].code -cnotmatch '^add\s+dr16,dr20$' -or $before[2].code -cnotmatch ('^mov\s+wr18,#'+$label+'$') -or
+      $before[3].code -cnotmatch '^movz\s+wr16,a$' -or $before[4].code -cnotmatch ('^mov\s+a,#\('+ $label+'>>16\)$')){continue}
+   $i=$t.line+1;while($i -le $f.end -and -not (Get-Mx251GcText $lines[$i])){$i++}
+   if($i -gt $f.end -or (Get-Mx251GcText $lines[$i]) -cne ($t.label+':')){continue}
+   $slots=@();$i++
+   while($i -le $f.end -and $slots.Count -lt $t.entries){
+    $code=Get-Mx251GcText $lines[$i]
+    if($code){if($code -cnotmatch '^ejmp\s+[A-Za-z_.$0-9]+$'){break};$slots+=@($i)}
+    $i++
+   }
+   if($slots.Count -ne $t.entries){continue}
+   $null=$known.Add($before[0].line);foreach($slot in $slots){$null=$f.fixedJumps.Add($slot)}
+  }
+  foreach($f in $functions.Values){$f.indirectJump=@($f.indirectSites|Where-Object{-not $known.Contains($_)}).Count -ne 0}
   $units+=@{name=$u.name;lines=$lines;owners=$owners;functions=$functions;labels=$labels;references=$references}
  }
  return $units
@@ -46,22 +71,35 @@ function Get-Mx251NearPlan($Units,[string[]]$Excluded) {
  foreach($u in $Units){foreach($name in $u.functions.Keys){
   if(-not $definitions.ContainsKey($name)){$definitions[$name]=@()};$definitions[$name]+=@($u.functions[$name])
  }}
- $selected=@();$changes=@()
+ $selected=@();$changes=@();$nodes=[hashtable]::new([StringComparer]::Ordinal)
  foreach($u in $Units){foreach($f in $u.functions.Values){
   # Fixed-width jump tables and inline assembly retain their original layout.
   if(-not $f.opaque -and -not $f.indirectJump -and -not $f.directives){
-   foreach($b in $f.branches){if($b.op -ceq 'ejmp' -and $u.labels.ContainsKey($b.target) -and $u.labels[$b.target].owner -ceq $f.symbol){
+   foreach($b in $f.branches){if($b.op -ceq 'ejmp' -and -not $f.fixedJumps.Contains($b.line) -and $b.target -cne $f.symbol -and $u.labels.ContainsKey($f.symbol+':'+$b.target)){
     $changes+=@{unit=$u.name;line=$b.line;from='ejmp';to='ljmp';target=$b.target;owner=$f.symbol}
    }}
   }
-  if($definitions[$f.symbol].Count -ne 1 -or $excludedSet.Contains($f.symbol) -or
+  if($definitions[$f.symbol].Count -ne 1){continue}
+  $node=@{function=$f;unit=$u;eligible=$true;calls=@();tails=@();neighbors=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)};$nodes[$f.symbol]=$node
+  if($excludedSet.Contains($f.symbol) -or
      $f.isr -or $f.addressTaken -or $f.opaque -or $f.indirect -or $f.indirectJump -or $f.directives -or
-     $f.abi -notin @(2,4) -or $f.bank -ne 0 -or $f.naked -or -not $f.returns.Count){continue}
+     $f.abi -notin @(2,4) -or $f.bank -ne 0 -or $f.naked){$node.eligible=$false}
   $sig=[regex]::Match($f.signature,'^(?:v|[iu](?:8|16|32)|f32|p3_\d+)\((?<args>(?:(?:[iu](?:8|16|32)|f32|p3_\d+)(?:,(?:[iu](?:8|16|32)|f32|p3_\d+))*)?)\)$')
-  if(-not $sig.Success){continue}
+  if(-not $sig.Success){$node.eligible=$false;continue}
   $arity=if($sig.Groups['args'].Value){$sig.Groups['args'].Value.Split(',').Count}else{0}
-  if($arity -gt $(if($f.abi -eq 2){1}else{2})){continue}
-  if(@($f.branches|Where-Object{-not $u.labels.ContainsKey($_.target) -or $u.labels[$_.target].owner -cne $f.symbol}).Count){continue}
+  if($arity -gt $(if($f.abi -eq 2){1}else{2})){$node.eligible=$false}
+ }}
+ foreach($node in $nodes.Values){
+  $f=$node.function;$u=$node.unit
+  foreach($b in $f.branches){
+   if($b.target.StartsWith('@')){continue}
+   if($b.target -cne $f.symbol -and $u.labels.ContainsKey($f.symbol+':'+$b.target)){continue}
+   if($b.op -cne 'ejmp' -or -not $nodes.ContainsKey($b.target)){$node.eligible=$false;continue}
+   $edge=@{unit=$u.name;line=$b.line;from='ejmp';to='ljmp';target=$b.target;owner=$f.symbol;fixed=$f.fixedJumps.Contains($b.line)}
+   $node.tails+=@($edge)
+   $null=$node.neighbors.Add($b.target);$null=$nodes[$b.target].neighbors.Add($f.symbol)
+  }
+  if(-not $f.returns.Count -and -not $node.tails.Count){$node.eligible=$false}
   $calls=@();$bad=$false;$name=[regex]::Escape($f.symbol)
   foreach($other in $Units){
    if(-not $other.references.ContainsKey($f.symbol)){continue}
@@ -69,19 +107,42 @@ function Get-Mx251NearPlan($Units,[string[]]$Excluded) {
     $i=$reference.line;$code=$reference.code
     if($code -cmatch ('^(?:'+$name+':{1,2}|\.globl\s+'+$name+')$')){continue}
     $owner=$reference.owner
-    if($code -cnotmatch ('^ecall\s+'+$name+'$') -or -not $owner -or $other.functions[$owner].opaque -or $other.functions[$owner].directives){$bad=$true;break}
+    $call=$code -cmatch ('^ecall\s+'+$name+'$');$tail=$code -cmatch ('^ejmp\s+'+$name+'$')
+    if(( -not $call -and -not $tail) -or -not $owner -or $other.functions[$owner].opaque -or $other.functions[$owner].directives){
+     $bad=$true
+     if($owner -and $nodes.ContainsKey($owner) -and $code -cmatch '^(?:j\w+|[elsa]jmp|djnz|cjne)\b'){$nodes[$owner].eligible=$false}
+     continue
+    }
     $typed=@($other.functions[$owner].calls|Where-Object{$_.target -ceq $f.symbol})
-    if(-not $typed.Count -or @($typed|Where-Object{$_.signature -cne $f.signature}).Count){$bad=$true;break}
-    $calls+=@{unit=$other.name;line=$i;from='ecall';to='lcall';target=$f.symbol;owner=$owner}
+    if(-not $typed.Count -or @($typed|Where-Object{$_.signature -cne $f.signature}).Count){$bad=$true;continue}
+    if($call){$calls+=@{unit=$other.name;line=$i;from='ecall';to='lcall';target=$f.symbol;owner=$owner}}
+    elseif(-not $nodes.ContainsKey($owner)){$bad=$true}
    }
-   if($bad){break}
   }
-  if($bad -or -not $calls.Count){continue}
-  $selected+=@{symbol=$f.symbol;unit=$u.name;signature=$f.signature;abi=$f.abi;calls=$calls.Count;returns=$f.returns.Count}
-  $changes+=$calls
-  foreach($line in $f.returns){$changes+=@{unit=$u.name;line=$line;from='eret';to='ret';target='';owner=$f.symbol}}
- }}
- return @{functions=$selected;changes=$changes;calls=@($changes|Where-Object{$_.from -ceq 'ecall'}).Count;jumps=@($changes|Where-Object{$_.from -ceq 'ejmp'}).Count}
+  $node.calls=$calls;if($bad){$node.eligible=$false}
+ }
+ # Tail edges preserve the existing return address. Their connected component
+ # must use one width, including members reached only through a tail jump.
+ $visited=[Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal);$groups=@();$tailJumps=0;$fixedTailJumps=0
+ foreach($name in @($nodes.Keys|Sort-Object)){
+  if(-not $visited.Add($name)){continue}
+  $queue=[Collections.Generic.Queue[string]]::new();$queue.Enqueue($name);$members=@();$eligible=$true;$callCount=0
+  while($queue.Count){
+   $node=$nodes[$queue.Dequeue()];$members+=@($node);$eligible=$eligible -and $node.eligible;$callCount+=$node.calls.Count
+   foreach($next in $node.neighbors){if($visited.Add($next)){$queue.Enqueue($next)}}
+  }
+  if(-not $eligible -or -not $callCount){continue}
+  $groupTails=@($members|ForEach-Object{$_.tails});$groupId=$groups.Count
+  $groups+=@{id=$groupId;members=@($members|ForEach-Object{$_.function.symbol}|Sort-Object);calls=$callCount;tailJumps=@($groupTails|Where-Object{-not $_.fixed}).Count;fixedTailJumps=@($groupTails|Where-Object{$_.fixed}).Count}
+  foreach($node in $members){
+   $f=$node.function
+   $selected+=@{symbol=$f.symbol;unit=$f.unit;signature=$f.signature;abi=$f.abi;calls=$node.calls.Count;returns=$f.returns.Count;group=$groupId}
+   $changes+=$node.calls
+   foreach($line in $f.returns){$changes+=@{unit=$f.unit;line=$line;from='eret';to='ret';target='';owner=$f.symbol}}
+   foreach($tail in $node.tails){if($tail.fixed){$fixedTailJumps++}else{$changes+=@($tail);$tailJumps++}}
+  }
+ }
+ return @{functions=$selected;groups=$groups;tailJumps=$tailJumps;fixedTailJumps=$fixedTailJumps;changes=$changes;calls=@($changes|Where-Object{$_.from -ceq 'ecall'}).Count;jumps=@($changes|Where-Object{$_.from -ceq 'ejmp'}).Count}
 }
 
 function Get-Mx251PagePlan($Bindings) {
@@ -110,15 +171,21 @@ function Get-Mx251PagePlan($Bindings) {
 
 function Assert-Mx251NearImage([string]$Root,$Plan,$Image,[long]$CodeBase,[long]$CodeBytes) {
  $region=$CodeBase -shr 16;$bindings=@();$labels=[hashtable]::new([StringComparer]::Ordinal)
- foreach($group in $Plan.changes|Group-Object unit){
-  $lines=[IO.File]::ReadAllLines((Join-Path $Root ($group.Name+'.asm')))
-  $wanted=@{};foreach($c in $group.Group){$wanted[$c.line+1]=$c}
-  foreach($raw in [IO.File]::ReadAllLines((Join-Path $Root ($group.Name+'.rst')))){
+ foreach($unit in @(@($Plan.changes.unit)+@($Plan.functions.unit)|Sort-Object -Unique)){
+  $lines=[IO.File]::ReadAllLines((Join-Path $Root ($unit+'.asm')))
+  $owners=@{};$owner=''
+  for($i=0;$i -lt $lines.Count;$i++){
+   if($lines[$i] -cmatch '^; mx251-function begin schema=1 symbol=(\S+) '){$owner=$Matches[1]}
+   $owners[$i+1]=$owner
+   if($lines[$i] -cmatch '^; mx251-function end schema=1 '){$owner=''}
+  }
+  $wanted=@{};foreach($c in $Plan.changes|Where-Object{$_.unit -ceq $unit}){$wanted[$c.line+1]=$c}
+  foreach($raw in [IO.File]::ReadAllLines((Join-Path $Root ($unit+'.rst')))){
    if($raw.Length -lt 35 -or $raw.Substring(6,6) -cnotmatch '^[0-9A-F]{6}$'){continue}
    $source=[regex]::Match($raw.Substring(34),'^\s*(\d+) (.*)$');if(-not $source.Success){continue}
    $number=[int]$source.Groups[1].Value;$code=Get-Mx251GcText $source.Groups[2].Value
    $address=[Convert]::ToInt64($raw.Substring(6,6),16)
-   if($code -cmatch '^([A-Za-z_.$0-9]+):{1,2}$'){$labels[$group.Name+':'+$Matches[1]]=$address}
+   if($code -cmatch '^([A-Za-z_.$0-9]+):{1,2}$'){$labels[$unit+':'+$owners[$number]+':'+$Matches[1]]=$address}
    if(-not $wanted.ContainsKey($number)){continue}
    $c=$wanted[$number]
    if($source.Groups[2].Value.TrimEnd() -cne $lines[$number-1].TrimEnd()){throw 'near-listing-source-mismatch'}
@@ -129,22 +196,23 @@ function Assert-Mx251NearImage([string]$Root,$Plan,$Image,[long]$CodeBase,[long]
    if($bytes.Length -ne $length -or ($bytes[0] -band $mask) -ne $opcode -or (($address+$length) -shr 16) -ne $region){throw 'near-transfer-encoding-or-region'}
    for($i=0;$i -lt $bytes.Length;$i++){if($Image[$address+$i] -ne $bytes[$i]){throw 'near-listing-image-mismatch'}}
    $target=if($paged){(($address+2) -band -2048)+(([int]$bytes[0] -band 224) -shl 3)+[int]$bytes[1]}elseif($length -eq 3){($region -shl 16)+[int]$bytes[1]*256+$bytes[2]}else{$null}
-   $bindings+=@{unit=$group.Name;line=$number;op=$c.to;owner=$c.owner;target=$c.target;address=$address;encodedTarget=$target}
+   $bindings+=@{unit=$unit;line=$number;op=$c.to;owner=$c.owner;target=$c.target;address=$address;encodedTarget=$target}
    $wanted.Remove($number)
   }
   if($wanted.Count){throw 'near-transfer-missing-listing'}
  }
  foreach($b in $bindings|Where-Object{$_.op -cne 'ret'}){
-  $unit=$b.unit
-  if($b.op -cin @('lcall','acall')){$unit=@($Plan.functions|Where-Object{$_.symbol -ceq $b.target})[0].unit}
-  if(-not $labels.ContainsKey($unit+':'+$b.target) -or $b.encodedTarget -ne $labels[$unit+':'+$b.target]){throw 'near-transfer-target-mismatch'}
+  $unit=$b.unit;$owner=$b.owner
+  $entry=@($Plan.functions|Where-Object{$_.symbol -ceq $b.target});if($entry.Count){$unit=$entry[0].unit;$owner=$b.target}
+  $key=$unit+':'+$owner+':'+$b.target
+  if(-not $labels.ContainsKey($key) -or $b.encodedTarget -ne $labels[$key]){throw 'near-transfer-target-mismatch'}
  }
  foreach($address in $Image.Keys){if($address -lt $CodeBase -or $address -ge $CodeBase+$CodeBytes){throw 'near-image-outside-code-region'}}
  return $bindings
 }
 
 function Invoke-Mx251NearTransfers([string]$Root,$Config,$Receipt,[string]$ToolRoot,[string]$ProfileRoot,[string]$Mode) {
- $record=@{schema=2;status='OFF';applied=$false;savedBytes=0;functions=@();calls=0;jumps=0;returnAddressBytes=2;baselineCodeBytes=$Receipt.codeBytes;pageTransfers=@{status='NOT_RUN';calls=0;jumps=0;savedBytes=0}}
+ $record=@{schema=3;status='OFF';applied=$false;savedBytes=0;functions=@();groups=@();tailJumps=0;fixedTailJumps=0;calls=0;jumps=0;returnAddressBytes=2;baselineCodeBytes=$Receipt.codeBytes;pageTransfers=@{status='NOT_RUN';calls=0;jumps=0;savedBytes=0}}
  if($Mode -ceq 'OFF'){return $record}
  if($env:MX251_DEFER_NEAR_TRANSFERS -ceq '1'){$record.status='DEFERRED_TO_OUTER_BUILD';return $record}
  $record.status='NO_CANDIDATE'
@@ -170,7 +238,7 @@ function Invoke-Mx251NearTransfers([string]$Root,$Config,$Receipt,[string]$ToolR
   foreach($u in $Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -cne '.c'}){$null=Get-Mx251FormatRawVectors $Root $u $nearHome $slots}
  }catch{$record.status='RAW_ASSEMBLY_LAYOUT';$record.reason=$_.Exception.Message;return $record}
  $plan=Get-Mx251NearPlan $units @($excluded)
- $record.functions=$plan.functions;$record.calls=$plan.calls;$record.jumps=$plan.jumps
+ $record.functions=$plan.functions;$record.calls=$plan.calls;$record.jumps=$plan.jumps;$record.groups=$plan.groups;$record.tailJumps=$plan.tailJumps;$record.fixedTailJumps=$plan.fixedTailJumps
  if(-not $plan.changes.Count){return $record}
  $backup=Join-Path $Root 'near-baseline';$null=[IO.Directory]::CreateDirectory($backup)
  foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Name -in @('firmware.hex','firmware.bin','receipt.json','commands.json','call-effects.json','selective-leaf-abi.json') -or $_.Extension -cin @('.asm','.rel','.rst','.lst','.sym')}){

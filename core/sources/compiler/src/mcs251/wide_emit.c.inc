@@ -1508,6 +1508,8 @@ wjump_table(wide_function *f,wide_node *n)
   we(f,"\tmov\ta,#(__wm_%s_%d>>16)\n\tmovz\twr16,a\n\tmov\twr18,#__wm_%s_%d\n",currFunc->rname,table,currFunc->rname,table);
   we(f,"\tadd\tdr16,dr20\n\tejmp\t@dr16\n");
   if(f->domainCount>1)we(f,"; mx251-domain-table\n");
+  we(f,"; mx251-jump-table schema=1 owner=%s label=__wm_%s_%d entries=%d stride=4\n",
+    currFunc->rname,currFunc->rname,table,n->jumpCount);
   wl(f,table);
   for(int k=0;k<n->jumpCount;++k) {
     int tail=wjump_tail_target(f,f->jumpSuccessors[n->jumpStart+k]);
