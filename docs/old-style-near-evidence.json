@@ -1,0 +1,175 @@
+{
+  "status": "QUALIFIED_UNIFORM_75",
+  "implementationCommit": "3340b1ba7400e70c0c2e6ea8c25c40275454c913",
+  "baselineCommit": "587d922",
+  "summary": {
+    "projects": 75,
+    "improved": 15,
+    "unchanged": 60,
+    "larger": 0,
+    "savedBytes": 197,
+    "mxTotalBytes": 200049,
+    "keilTotalBytes": 192051,
+    "within110": 59,
+    "within120": 72,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.0416451879969384
+  },
+  "newWithin110": [],
+  "newWithin120": [],
+  "transferDelta": {
+    "calls": 104,
+    "jumps": 0,
+    "savedBytes": 197,
+    "pageCalls": 92,
+    "pageJumps": 1,
+    "newFunctions": 103
+  },
+  "addedCallsBySymbol": {
+    "_usb_suspend": 9,
+    "_usb_init": 9,
+    "_usb_resume": 9,
+    "_usb_reset": 9,
+    "_usb_setup_out": 8,
+    "_usb_in_ep1": 7,
+    "_sys_init": 4,
+    "_usb_out_ep1": 3,
+    "_usb_in_ep2": 3,
+    "_uart_init": 3,
+    "_usb_class_in": 3,
+    "_timer_init": 3,
+    "_LinInit": 3,
+    "_scan_key": 2,
+    "_flash_write_enable": 2,
+    "_usb_out_ep5": 2,
+    "_RecvData": 1,
+    "_usb_uart_settings": 1,
+    "_usb_vendor_polling": 1,
+    "_scsi_start_stop_unit": 1,
+    "_scsi_format_capacity": 1,
+    "_scsi_write10": 1,
+    "_scsi_inquiry": 1,
+    "_scsi_request_sense": 1,
+    "_scsi_mode_sense10": 1,
+    "_scsi_verify10": 1,
+    "_scsi_media_removal": 1,
+    "_scsi_read_capacity10": 1,
+    "_scsi_mode_sense6": 1,
+    "_scsi_read10": 1,
+    "_usb_in_ep3": 1,
+    "_usb_in_ep5": 1,
+    "_usb_in_ep4": 1,
+    "_usb_out_ep4": 1,
+    "_scan_mouse": 1,
+    "_usart2_spi_init": 1,
+    "_usart1_spi_init": 1,
+    "_usb_sof": 1,
+    "_i2s_init": 1,
+    "_clock_init": 1,
+    "_clock_trim": 1
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\core-01\\toolchain\\bin\\sdcc.exe",
+    "sha256": "9e436a3aff74822a6d31cafa5c8a300531aef6d98ab115394083326f21826f16"
+  },
+  "assembler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\core-01\\toolchain\\bin\\sdas251.exe",
+    "sha256": "bec84c23d4dff57d7d7d618bce23c9368d422c10de2dae99e7daae385cb82ecc"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\core-01\\core.json",
+    "sha256": "2edf94bf916ce37d5746c5f9cd194216b5dd6f81de90969a04a147e50a9040ed"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\Build-Optimized-01.ps1",
+    "sha256": "b35e72e3e3d5a81071451bd3954f89006dab69aa443832da58c2b3fd4c90fe4e"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\comparison.json",
+    "sha256": "fd3068884af8b91ee8c3f9d5dbf337432329c495f8ac1b169ee47a54da55de08"
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\SDCCicode.c",
+      "sha256": "d2cfce9d79dc79096750cc33851c88cee944aae678521b23f4b924c4b1f979ea"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\SDCCicode.h",
+      "sha256": "a20eb9e0fe75d03a84443a4c0bf3b5c92ee09cf355bfc135ad3c56666488ef7c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\scalar_metadata.c.inc",
+      "sha256": "d54152892645b601a80d49904372a63e8764664a4c294795a1b9756bfc8aaa30"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-near-transfers.ps1",
+      "sha256": "75b3fe2d0792aff0fa676e2b97c9b271173fcf08e64a06f8117d846913edc813"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-old-style-near.py",
+      "sha256": "f64e2828948562817b88974d6fe6aa175b8c82c057982c7d98e7dd24e8bf4448"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\old-style-near-cases.c",
+      "sha256": "eaf709df6378b69068aa9ef97877fd6b9876d471d9bf806fccc107ef68ae23da"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\old_style_near_fixture.py",
+      "sha256": "354e1f0e1a9e93a4915fed0662c5517adcd74d88a7f4fa21ab068edeab311b46"
+    }
+  ],
+  "hardware": [
+    {
+      "variant": "parent",
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\board-parent\\receipt.json",
+        "sha256": "2943cd3763c6f673ce48085747ee0bcc1a44017a52f11ed0223ed2bf27cfd597"
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\hardware-parent\\result.json",
+        "sha256": "7f985ef4cf73ecfe8776d1351d7b2977d2e15ef7499d748b879fc0edb30af01b"
+      },
+      "codeBytes": 1255,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 11392.0,
+        "1": 8832
+      }
+    },
+    {
+      "variant": "candidate",
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\board-candidate\\receipt.json",
+        "sha256": "aa20586c87df28f817bc57832c60b96bcf4bca395cf7315df5fbee9f7527a890"
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\hardware-candidate\\result.json",
+        "sha256": "21707b10afee33d8d66a579d913fe3781f9b74ccdc22c7ee332d5a7002f6c18d"
+      },
+      "codeBytes": 1243,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 11392.0,
+        "1": 8832.0
+      }
+    }
+  ],
+  "metadataChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\metadata-checks\\result.json",
+    "sha256": "83bbe8c2f4cbc7f225aafe7ab6cc453bbb839768e7faa220ab5ec25cead01dc4"
+  },
+  "selectionChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\selection-tests\\result.json",
+    "sha256": "7b86aeabcdccf6398f8c7b5b5f2d1e5876bc2c88b3738e4ac0652052cf49cf1f"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\old-style-near\\qualification.json",
+    "sha256": "f5c30d61c85afcdb5225167350500f9dd82739ee0659166b07698d26e51d372d"
+  }
+}
