@@ -1,0 +1,145 @@
+{
+  "status": "QUALIFIED_UNIFORM_75",
+  "implementationCommit": "e259285c7dc1d9f1135f514d899627cb993b0a01",
+  "baselineCommit": "2c411da",
+  "summary": {
+    "projects": 75,
+    "improved": 71,
+    "unchanged": 4,
+    "larger": 0,
+    "savedBytes": 1268,
+    "mxTotalBytes": 200246,
+    "keilTotalBytes": 192051,
+    "within110": 59,
+    "within120": 72,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.042670957193662
+  },
+  "newWithin110": [],
+  "newWithin120": [],
+  "pageTransfers": {
+    "calls": 1090,
+    "jumps": 178,
+    "savedBytes": 1268
+  },
+  "statuses": {
+    "APPLIED": 71,
+    "NOT_RUN": 4
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\core-03\\toolchain\\bin\\sdcc.exe",
+    "sha256": "5931ace8038303b595defa6c6b9e41fa4ca3209ae6840566f8e343d46f7238e0"
+  },
+  "assembler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\core-03\\toolchain\\bin\\sdas251.exe",
+    "sha256": "bec84c23d4dff57d7d7d618bce23c9368d422c10de2dae99e7daae385cb82ecc"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\core-03\\core.json",
+    "sha256": "82d3714d2f91ea098111e3e4d23cbebc6287df49fffd3042e03cd143e3fbf298"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\Build-Optimized-03.ps1",
+    "sha256": "56620c9c8058b991dc7ce571588e6e600f4735bbe55bea10250eeda2a02d1069"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\comparison.json",
+    "sha256": "7a4e9ca33c083aa3f61ef838f521ff8761b8589675cb7c1d0100dbd1ec8150ab"
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Build.ps1",
+      "sha256": "ade3392574d5ca19e90011ab7f4837f211c2a88d1b50e1af0bef5a070324053d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\NearTransfers.ps1",
+      "sha256": "6de4eceb065367eaf6066e29330892729d88fd3798f5c1a927aed630676e3e42"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\StartupRuntimeContract.json",
+      "sha256": "50c2e91fffd617ee63b6d813233f55c231e9aa64ed2c054c4a6893e2ae8262a1"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\sdas\\as251\\mcs251mch.c",
+      "sha256": "bb5e4d477b5a5524d893bf02f092a3b2b5d4987fb822611a9a58f4fd0b75e20c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\sdas\\asxxsrc\\asout.c",
+      "sha256": "fa54535506deb66804f0a24d0b1a242d2a3d0cea6d9c5fd7dadd90c569d2645c"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-page-relocation.py",
+      "sha256": "9fa5286998de6ee43f33f1f109fdb3f0516a1f00eb76f63352691ba5f7fc6e9d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-page-transfers.ps1",
+      "sha256": "8a74e90a9acc0a0cec31ad2c9c5e79771636cb62306ee604bb131ebf463124e2"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\page_transfer_fixture.py",
+      "sha256": "013d53a4d5c44ac7ab3c253f7793bcae93e43fa8b8a29cf525847f5d68df0f8a"
+    }
+  ],
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\hardware-parent\\result.json",
+        "sha256": "a60627a5a11d22d33e1ff4d4e662d78d7cc716acd5cab97c3acfa9a15756c184"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\board-parent\\receipt.json",
+        "sha256": "c3afe17bfdab2c399703c5446e4ab876350633f59dd727f2cd0f6053dbff6a24"
+      },
+      "codeBytes": 3012,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 16025.0,
+        "1": 8320
+      }
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\hardware-candidate\\result.json",
+        "sha256": "2ada39c45c2969ffe8149fb7c66a1762c1338d5593459eac356292b0e5ccc0ea"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\board-candidate\\receipt.json",
+        "sha256": "8508a4d331081c296faf29277291509e09e3c8b3f035f2129c62624d9088ee7e"
+      },
+      "codeBytes": 2985,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 16024.5,
+        "1": 8320
+      }
+    }
+  ],
+  "layoutChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\layout-checks\\result.json",
+    "sha256": "283a1720fa75015bec4634b174486513c08764067a0e13b2a5a5267d4eb1cd23"
+  },
+  "encodingChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\encoding-final-new\\result.json",
+    "sha256": "25c83402d7b4fd64b0a5aff17e5f05638427bbcdef13d872ebdab6e0ff483c9f"
+  },
+  "assemblerRegression": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\assembler-regression.json",
+    "sha256": "a775f88b4e8da879621a415556343514b33b7198e6e44f269cca22fa151b5069"
+  },
+  "optOut": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\opt-out-check.json",
+    "sha256": "467a0370a4efb6d69a1f711794db322237bf5e7aaafb627908ad2590faabe316"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\page-transfers\\qualification.json",
+    "sha256": "bb8e222601ee19c57eae24e1a6502d1c600d9d5c89c3e1326afafaf2cc9b4c61"
+  }
+}
