@@ -82,13 +82,13 @@
   "excludedIds": [],
   "summary": {
     "projects": 75,
-    "improved": 2,
-    "unchanged": 73,
-    "larger": 0,
-    "savedBytes": 26,
-    "mxTotalBytes": 191046,
+    "improved": 73,
+    "unchanged": 0,
+    "larger": 2,
+    "savedBytes": 1956,
+    "mxTotalBytes": 189090,
     "keilTotalBytes": 192049,
-    "within110": 66,
+    "within110": 75,
     "within120": 75,
     "stcStatuses": {
       "BUILT": 59,
@@ -96,109 +96,36 @@
       "FAILED": 3
     },
     "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 0.99477737452421
+    "weightedKeilRatio": 0.98459247379575
   },
   "core": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\core-02\\core.json",
-    "sha256": "caa2ee2a230e72345ad71364f81a62f788f156b11d9fde3f7a16fa04b18e477d"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07\\core.json",
+    "sha256": "7ec1c2ec7873f1f12dfe18e49cafa7ce298bfadf0a6a6d894a48260dec5425a6"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\core-02\\toolchain\\bin\\sdcc.exe",
-    "sha256": "b28eb786451de65e87926b7173dd81bdee0f6fc4f07324a656d357f810ab2812"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07\\toolchain\\bin\\sdcc.exe",
+    "sha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc"
   },
   "configuration": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\candidate-02.json",
-    "sha256": "bbbfad55664f56e8dd7f4219a5cffe528799163eb40623720dbcfc1f9cf1e203"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\candidate-07.json",
+    "sha256": "0104d4bddaedae92d80dc4977c2d0dac1801d81771483a87d62b88b56f532b71"
   },
   "report": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
-    "sha256": "46564957c66e38e2429462df6995426f4b2801aedb630a1f5f8c9249557708e6"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\comparison.json",
+    "sha256": "f60c4c6fcf1bc1b3f58dd0d73b2e0c9c0d2aad72c9b6c41f629360b4af75d3fa"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\qualification.json",
-    "sha256": "fc33fb319b85db82629d8690bcacd456a15a5903ff8ab0d8112f8138c53f566d"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\qualification.json",
+    "sha256": "afb840e371d93b4756ad6ada44da20c4a2f6192428bdc7ac9e3b4d6079cb23ea"
   },
   "inputVariants": {
     "p108": {
-      "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\matrix-02\\projects\\p108\\input-overrides.json",
-      "sha256": "7df7658bb3570cbe28474fb06a472a49ffe0019aee432252a1e0e6f3734c0ff0"
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\matrix-07\\projects\\p108\\input-overrides.json",
+      "sha256": "084ae3888f115717bc1c6a997c839364a3b2bdb9e8b5cca790b786e543598199"
     }
   },
-  "remaining110": [
-    {
-      "id": "p136",
-      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
-      "mx251Bytes": 4611,
-      "keilBytes": 4128,
-      "keilRatio": 1.1170058139534884,
-      "gap110Bytes": 71
-    },
-    {
-      "id": "p045",
-      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
-      "mx251Bytes": 974,
-      "keilBytes": 832,
-      "keilRatio": 1.1706730769230769,
-      "gap110Bytes": 59
-    },
-    {
-      "id": "p049",
-      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
-      "mx251Bytes": 1153,
-      "keilBytes": 1002,
-      "keilRatio": 1.1506986027944113,
-      "gap110Bytes": 51
-    },
-    {
-      "id": "p039",
-      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
-      "mx251Bytes": 1252,
-      "keilBytes": 1105,
-      "keilRatio": 1.1330316742081448,
-      "gap110Bytes": 37
-    },
-    {
-      "id": "p133",
-      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
-      "mx251Bytes": 468,
-      "keilBytes": 404,
-      "keilRatio": 1.1584158415841583,
-      "gap110Bytes": 24
-    },
-    {
-      "id": "p149",
-      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
-      "mx251Bytes": 485,
-      "keilBytes": 423,
-      "keilRatio": 1.1465721040189125,
-      "gap110Bytes": 20
-    },
-    {
-      "id": "p047",
-      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
-      "mx251Bytes": 192,
-      "keilBytes": 160,
-      "keilRatio": 1.2,
-      "gap110Bytes": 16
-    },
-    {
-      "id": "p032",
-      "name": "14.2-串口1与串口2通信测试程序",
-      "mx251Bytes": 785,
-      "keilBytes": 704,
-      "keilRatio": 1.1150568181818181,
-      "gap110Bytes": 11
-    },
-    {
-      "id": "p015",
-      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
-      "mx251Bytes": 306,
-      "keilBytes": 272,
-      "keilRatio": 1.125,
-      "gap110Bytes": 7
-    }
-  ],
-  "gap110Bytes": 296,
+  "remaining110": [],
+  "gap110Bytes": 0,
   "fullProjectRuntimeMeasured": false,
   "historicalScope": {
     "projectCount": 74,
@@ -209,7 +136,7 @@
     "report": "E:/STVAPP/MX251-mainline-20261113/optimization-research/active74/comparison.json"
   },
   "previousUniformReport": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\byte-assembly\\comparison.json",
-    "sha256": "023fea1f9f04c4ca6aee73080051311d4496a6397ff8b27a78b102d0439a668f"
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
+    "sha256": "46564957c66e38e2429462df6995426f4b2801aedb630a1f5f8c9249557708e6"
   }
 }

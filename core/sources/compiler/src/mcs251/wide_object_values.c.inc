@@ -70,4 +70,3 @@ wide_object_values(wide_function *f)
   }
   return changes;
 }
-

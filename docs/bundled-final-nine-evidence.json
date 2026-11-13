@@ -1,0 +1,222 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "172cb90e22aa9b99c5097ef6141f42251b7b0c69",
+  "startupCommit": "86ae728",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07\\core.json",
+    "sha256": "7ec1c2ec7873f1f12dfe18e49cafa7ce298bfadf0a6a6d894a48260dec5425a6"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\core-07\\toolchain\\bin\\sdcc.exe",
+    "sha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\Build-Optimized-07.ps1",
+    "sha256": "fbb329beddf56ace71ae085932f7cf1188df1c6653dc9d5164d32399eede4969"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\candidate-07.json",
+    "sha256": "0104d4bddaedae92d80dc4977c2d0dac1801d81771483a87d62b88b56f532b71"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\comparison.json",
+    "sha256": "46564957c66e38e2429462df6995426f4b2801aedb630a1f5f8c9249557708e6"
+  },
+  "finalComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\comparison.json",
+    "sha256": "f60c4c6fcf1bc1b3f58dd0d73b2e0c9c0d2aad72c9b6c41f629360b4af75d3fa"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 73,
+    "unchanged": 0,
+    "larger": 2,
+    "savedBytes": 1956,
+    "mxTotalBytes": 189090,
+    "keilTotalBytes": 192049,
+    "within110": 75,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 0.98459247379575
+  },
+  "remaining110": [],
+  "gap110Bytes": 0,
+  "checks": {
+    "lowering": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\lowering-check-final\\result.json",
+      "sha256": "c6cb364c137a0741113ae0a55c9cf59051dbbfe038322786aba8a7e0a64360f6"
+    },
+    "bitEffects": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\bits-effects-check\\result.json",
+      "sha256": "d4e1fe563a6d4cf7100aeeb315fbe167fa0eebcd73fa25fb58b94b623d3bd662"
+    },
+    "startupBoundaries": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\startup-layout-check\\result.json",
+      "sha256": "f9be561941dd2d1f6d0a2acbeb7c5d0a19b3261a1707844d3ebeb6cbd727b34a"
+    },
+    "volatile": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\volatile-check\\results.json",
+      "sha256": "3eb01d09eaba24e4f50dcda446c9e7c5eb9509c538e3f648984474a9fb93d5d5"
+    },
+    "typedCosts": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\cost-check-05\\operand-results.json",
+      "sha256": "c9b16410fda691b3510f7e5dd4e4ee6e5fb62d757254cb0747549e22b436c9d3"
+    },
+    "typedCostFrontend": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\cost-check-05\\frontend-results.json",
+      "sha256": "341321778e3a3bdc127d36e62afac47cca77e5d1a821ba7fc1a7770c8341b56b"
+    },
+    "startup": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\startup-check-04\\result.json",
+      "sha256": "e947677e7d94fbb6416cf5302078dd1e14c4dee4b6502e61b12aa79693e7cac5"
+    },
+    "isr": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\isr-check-04\\results.json",
+      "sha256": "cccaf58e82ab8950ee24c760c826bcb75e1fd1cc61b900a36062d8f35eb7275c"
+    },
+    "divmod": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\divmod-check-04\\result.json",
+      "sha256": "e89b669582c21990776738fef8176e3422b59c1d389aaf56af51780f0cba2835"
+    }
+  },
+  "coverage": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\coverage.json",
+    "sha256": "82d63a1be4e5bd1bcf0d974e21b7a6a89a5eada5be7261ffe87056520a4a07d5"
+  },
+  "coverageTotals": {
+    "startupLayouts": 75,
+    "emptyInternalRamClears": 9,
+    "isrEffects": 84,
+    "objectReuses": 32,
+    "privateBitCalls": 20,
+    "castStores": 197,
+    "objectAddresses": 94,
+    "isrGroups": 33,
+    "byteAdds": 5
+  },
+  "receipts": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\receipt-audit.json",
+    "sha256": "4945738dc7769f847915125f0ae73062a48d5ae6da1411a3ff5287419ca7c6dd"
+  },
+  "functionAttribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\function-attribution.json",
+    "sha256": "2525c6800e6ba06eee56b11eff9b44843eb1ed9991c2a8dfa043ff3be116b9f2"
+  },
+  "regressionAudit": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\regression-audit.json",
+    "sha256": "2d9d33a8d7805d8e62714ecb63e53cd271fd113fa6ad7a7162d7ebdc6114c432"
+  },
+  "hardware": {
+    "values": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\hardware-values\\result.json",
+        "sha256": "b412ab5ff5a9e2f4537ded8ed3a431721d4d6a9d8694d9c9e963e10b2d613e11"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-values\\source.json",
+        "sha256": "9e6d505d1a0ee5343007f8de5544641b70e8b686ddac1db26e84575205d66bbb"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-values\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "cca2bf13c41f0f3c8d3e67a78dfab8f7fd207d82823d1347a19d0c72934ac945"
+      },
+      "cases": 128,
+      "frames": 542
+    },
+    "carry": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\hardware-carry\\result.json",
+        "sha256": "8d1b23e2507ab570b91e7b9d41ad7c652fd4df0eb81a98015535031e03fc56a5"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-carry\\source.json",
+        "sha256": "37ec7a1fdbdac723c282b7d77130b47668fc190ced453e0ae2b2dc068b6701e4"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-carry\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "9e8dc8f58b5b8d80daac04d8bad1b8b2512a15b33e105c3589ba605323f60b09"
+      },
+      "cases": 128,
+      "frames": 532
+    },
+    "packed": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\hardware-packed\\result.json",
+        "sha256": "a2bb69b22314e157b1917443f9993288e6b7841549d19cb0b69dff83c56ff0e3"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-packed\\source.json",
+        "sha256": "de51a82500acaa9a2c0f2d0dd57d90cdf28ff306f02fb35f7090d571ab44bbbe"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-packed\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "dbc1a60ec58fc1b5d14c55794b09156364a9ce04c705d2eb962e0f89028cbd07"
+      },
+      "cases": 128,
+      "frames": 227
+    },
+    "dpx": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\hardware-dpx\\result.json",
+        "sha256": "c1a19d3157ab6e37afe1eab1cb167c8265e5eea9f160864bf6a6089f24b97136"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-dpx\\source.json",
+        "sha256": "39a9ab38d1de1be4a3ec7780a00288ddf9ca52a6fe38ba180e79d1e9f22b84e4"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-dpx\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "53d98f75ddf95bc8ea18fa5895d81749ad2842574faa77e86cdc55dbfcd39c0c"
+      },
+      "cases": 128,
+      "frames": 228
+    },
+    "startup": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\hardware-startup\\result.json",
+        "sha256": "6abeb7ffabbd34c904ec45ddb95071bcae97149a51a56c1b44f59083c264abb3"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-startup\\source.json",
+        "sha256": "8298dc068b26af6dffe2bc4ac03996127f762b5949a06ebb8ca80b0c6e31dec4"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-startup\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "87fbfde8e42e744d4280001b9c6d0acc77e66e31c26ec0c371d0c902436cd588"
+      },
+      "cases": 128,
+      "frames": 526
+    },
+    "groups": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\hardware-groups\\result.json",
+        "sha256": "ccf83f09119797212d65b50f085004db44142a9b6d9be24538e879b3d1309f15"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-groups\\source.json",
+        "sha256": "0bfd02dc148743f5c9720ecc77f8c928604a176c3232f48557be4779d436d79a"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\fixture-groups\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d68827c74c69fb00c2c25f6bc7229983f9b8a28ea60a3e63a67f57ed4bb3f44b"
+      },
+      "cases": 128,
+      "frames": 228
+    }
+  },
+  "fullProjectRuntimeMeasured": false,
+  "inheritedQualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\relative-memory-address\\qualification.json",
+    "sha256": "fc33fb319b85db82629d8690bcacd456a15a5903ff8ab0d8112f8138c53f566d"
+  },
+  "checkReuse": "Startup, ISR base, division and typed-cost checks reuse unchanged mechanisms from pilots 04/05. Final compiler: volatile, lowering, call-bit tests and all six hardware suites.",
+  "buildReuse": "One final core-07 full matrix; all earlier core versions tested only representative projects.",
+  "scope": "Generic startup, ISR save groups and call effects, ordinary object reuse, allocated-object addresses, byte lowering; no SDK edits or project/function-name special cases.",
+  "deferred": "Conditional pointer-parameter write summaries were unnecessary to cross the size line and remain unimplemented; arbitrary indirect stores keep unknown effects."
+}
