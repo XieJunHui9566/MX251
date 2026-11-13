@@ -12004,6 +12004,8 @@ genJumpTab (iCode * ic)
       emitcode ("mov", "dptr,#!tlabel", labelKey2num (jtab->key));
       emitcode ("mov", "dpxl,#(!tlabel >> 16)", labelKey2num (jtab->key));
       emitcode ("jmp", "@a+dptr");
+      emitcode (";", "mx251-jump-table schema=1 owner=%s label=!tlabel entries=%u stride=4 dispatch=a-dptr",
+                currFunc->rname, labelKey2num (jtab->key), count);
       emitLabel (jtab);
       /* now generate the jump labels */
       for (jtab = setFirstItem (IC_JTLABELS (ic)); jtab; jtab = setNextItem (IC_JTLABELS (ic)))
@@ -12047,6 +12049,10 @@ genJumpTab (iCode * ic)
       emitpop ("dpl");
       emitcode ("mov", "dr28,dpx");
       emitcode ("ejmp", "@dr28");
+
+      emitcode (";", "mx251-address-table schema=1 owner=%s low=!tlabel high=!tlabel ext=!tlabel entries=%u",
+                currFunc->rname, labelKey2num (jtablo->key), labelKey2num (jtabhi->key),
+                labelKey2num (jtabext->key), count);
 
       emitLabel (jtablo);
       for (jtab = setFirstItem (IC_JTLABELS (ic)); jtab; jtab = setNextItem (IC_JTLABELS (ic)))

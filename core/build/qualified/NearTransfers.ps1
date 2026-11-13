@@ -10,7 +10,7 @@ function Get-Mx251NearUnits([string]$Root,$Config) {
    $raw=$lines[$i];$code=Get-Mx251GcText $raw
    if($raw -cmatch '^; mx251-function begin schema=1 symbol=(\S+) isr=([01]) addressTaken=([01]) opaque=([01]) indirect=([01])$'){
     $owner=$Matches[1]
-    $functions[$owner]=@{symbol=$owner;unit=$u.name;isr=[int]$Matches[2];addressTaken=[int]$Matches[3];opaque=[int]$Matches[4];indirect=[int]$Matches[5];begin=$i;end=$i;signature='';abi=0;bank=-1;naked=1;returns=@();calls=@();branches=@();indirectJump=$false;indirectSites=@();fixedJumps=[Collections.Generic.HashSet[int]]::new();directives=$false}
+    $functions[$owner]=@{symbol=$owner;unit=$u.name;isr=[int]$Matches[2];addressTaken=[int]$Matches[3];opaque=[int]$Matches[4];indirect=[int]$Matches[5];begin=$i;end=$i;signature='';abi=0;bank=-1;naked=1;returns=@();calls=@();branches=@();indirectJump=$false;indirectSites=@();fixedJumps=[Collections.Generic.HashSet[int]]::new();directives=$false;directiveSites=@()}
    }
    $owners[$i]=$owner
    foreach($token in @(Get-Mx251GcTokens $code)){
@@ -28,24 +28,62 @@ function Get-Mx251NearUnits([string]$Root,$Config) {
     }
     if($code -ceq 'eret'){$f.returns+=@($i)}
     if($code -cmatch '^(?:e|l|s|a)?jmp\s+@'){$f.indirectJump=$true;$f.indirectSites+=@($i)}
-    if($raw -cmatch '^; mx251-jump-table schema=1 owner=(\S+) label=(\S+) entries=([1-9][0-9]*) stride=4$'){
-     if($Matches[1] -ceq $owner){$tables+=@{owner=$owner;line=$i;label=$Matches[2];entries=[int]$Matches[3]}}
+    if($raw -cmatch '^;\s*mx251-jump-table schema=1 owner=(\S+) label=(\S+) entries=([1-9][0-9]*) stride=4(?: dispatch=(a-dptr))?$'){
+     if($Matches[1] -ceq $owner){$tables+=@{owner=$owner;line=$i;label=$Matches[2];entries=[int]$Matches[3];kind=$(if($Matches[4]){'a-dptr'}else{'dr16'})}}
     }
-    if($code.StartsWith('.') -and $code -cnotmatch '^\.globl\s+'){$f.directives=$true}
+    if($raw -cmatch '^;\s*mx251-address-table schema=1 owner=(\S+) low=(\S+) high=(\S+) ext=(\S+) entries=([1-9][0-9]*)$'){
+     if($Matches[1] -ceq $owner){$tables+=@{owner=$owner;line=$i;labels=@($Matches[2],$Matches[3],$Matches[4]);entries=[int]$Matches[5];kind='bytes'}}
+    }
+    if($code.StartsWith('.') -and $code -cnotmatch '^\.globl\s+'){$f.directiveSites+=@($i)}
     if($code -cmatch '(?:^|[,\s])(?:\.|\$)\s*[+-]\s*\d'){$f.directives=$true}
     if($code -cmatch '^(ejmp|ljmp|sjmp|ajmp)\s+(\S+)$'){$f.branches+=@{line=$i;op=$Matches[1];target=$Matches[2]}}
     if($raw -cmatch '^; mx251-(?:scalar|near)-call schema=1 owner=(\S+) target=(\S+) signature=(\S+)(?: |$)'){$f.calls+=@{target=$Matches[2];signature=$Matches[3]}}
    }
    if($raw -cmatch '^; mx251-function end schema=1 '){$owner=''}
   }
-  # Only compiler-described four-byte tables make an indirect jump known.
-  # Their symbolic base relocates normally, but each EJMP slot stays four bytes.
-  $known=[Collections.Generic.HashSet[int]]::new()
+  # Describe both register dispatches and legacy DPX dispatches. EJMP slots
+  # stay four bytes; split address bytes continue to relocate to local labels.
+  $known=[Collections.Generic.HashSet[int]]::new();$knownData=[Collections.Generic.HashSet[int]]::new()
   foreach($t in $tables){
    $f=$functions[$t.owner];$before=@()
-   for($i=$t.line-1;$i -ge $f.begin -and $before.Count -lt 5;$i--){$code=Get-Mx251GcText $lines[$i];if($code){$before+=@{line=$i;code=$code}}}
+   $length=switch($t.kind){'dr16'{5};'a-dptr'{3};'bytes'{18}}
+   for($i=$t.line-1;$i -ge $f.begin -and $before.Count -lt $length;$i--){$code=Get-Mx251GcText $lines[$i];if($code){$before+=@{line=$i;code=$code}}}
+   if($before.Count -ne $length){continue}
+   if($t.kind -ceq 'bytes'){
+    $patterns=@()
+    for($part=0;$part -lt 3;$part++){
+     $label=[regex]::Escape($t.labels[$part])
+     if($part){$patterns+=@('^mov\s+a,b$')}
+     $patterns+=@(('^mov\s+dptr,#'+$label+'$'),('^mov\s+dpxl,#\('+ $label+'\s*>>\s*16\)$'),'^movc\s+a,@a\+dptr$')
+     if($part -lt 2){$patterns+=@('^push\s+acc$')}
+    }
+    $patterns+=@('^mov\s+dpxl,a$','^pop\s+dph$','^pop\s+dpl$','^mov\s+dr28,dpx$','^ejmp\s+@dr28$')
+    $valid=$true
+    for($j=0;$j -lt $length;$j++){if($before[$length-1-$j].code -cnotmatch $patterns[$j]){$valid=$false;break}}
+    if(-not $valid){continue}
+    $i=$t.line+1;$data=@();$targets=@()
+    for($part=0;$part -lt 3 -and $valid;$part++){
+     while($i -le $f.end -and -not (Get-Mx251GcText $lines[$i])){$i++}
+     if($i -gt $f.end -or (Get-Mx251GcText $lines[$i]) -cne ($t.labels[$part]+':')){$valid=$false;break}
+     $i++;$shift=if($part){'\s*>>\s*'+(8*$part)}else{''}
+     for($entry=0;$entry -lt $t.entries;$entry++){
+      while($i -le $f.end -and -not (Get-Mx251GcText $lines[$i])){$i++}
+      if($i -gt $f.end -or (Get-Mx251GcText $lines[$i]) -cnotmatch ('^\.db\s+([A-Za-z_.$0-9]+)'+$shift+'$')){$valid=$false;break}
+      $target=$Matches[1]
+      if(-not $labels.ContainsKey($t.owner+':'+$target) -or $target -ceq $t.owner -or $target -cin $t.labels){$valid=$false;break}
+      if($part -eq 0){$targets+=@($target)}elseif($targets[$entry] -cne $target){$valid=$false;break}
+      $data+=@($i);$i++
+     }
+    }
+    if($valid){$null=$known.Add($before[0].line);foreach($line in $data){$null=$knownData.Add($line)}}
+    continue
+   }
    $label=[regex]::Escape($t.label)
-   if($before.Count -ne 5 -or $before[0].code -cnotmatch '^ejmp\s+@dr16$' -or
+   if($t.kind -ceq 'a-dptr'){
+    if($before[0].code -cnotmatch '^jmp\s+@a\+dptr$' -or
+       $before[1].code -cnotmatch ('^mov\s+dpxl,#\('+ $label+'\s*>>\s*16\)$') -or
+       $before[2].code -cnotmatch ('^mov\s+dptr,#'+$label+'$')){continue}
+   }elseif($before[0].code -cnotmatch '^ejmp\s+@dr16$' -or
       $before[1].code -cnotmatch '^add\s+dr16,dr20$' -or $before[2].code -cnotmatch ('^mov\s+wr18,#'+$label+'$') -or
       $before[3].code -cnotmatch '^movz\s+wr16,a$' -or $before[4].code -cnotmatch ('^mov\s+a,#\('+ $label+'>>16\)$')){continue}
    $i=$t.line+1;while($i -le $f.end -and -not (Get-Mx251GcText $lines[$i])){$i++}
@@ -59,7 +97,10 @@ function Get-Mx251NearUnits([string]$Root,$Config) {
    if($slots.Count -ne $t.entries){continue}
    $null=$known.Add($before[0].line);foreach($slot in $slots){$null=$f.fixedJumps.Add($slot)}
   }
-  foreach($f in $functions.Values){$f.indirectJump=@($f.indirectSites|Where-Object{-not $known.Contains($_)}).Count -ne 0}
+  foreach($f in $functions.Values){
+   $f.indirectJump=@($f.indirectSites|Where-Object{-not $known.Contains($_)}).Count -ne 0
+   $f.directives=$f.directives -or @($f.directiveSites|Where-Object{-not $knownData.Contains($_)}).Count -ne 0
+  }
   $units+=@{name=$u.name;lines=$lines;owners=$owners;functions=$functions;labels=$labels;references=$references}
  }
  return $units

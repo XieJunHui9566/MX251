@@ -24,6 +24,37 @@ ejmp _middle
 ejmp _last
 '@
 $tableFront=F '_front' $table @('_middle','_last')
+# Here-strings may have CRLF when checked out on Windows.
+$legacy=$table -replace '(?s)^.*?; mx251-jump-table',"mov dptr,#table`nmov dpxl,#(table >> 16)`njmp @a+dptr`n; mx251-jump-table"
+$legacy=$legacy.Replace('stride=4','stride=4 dispatch=a-dptr')
+$legacyFront=F '_front' $legacy @('_middle','_last')
+$bytes=''
+foreach($base in @('lo','hi','ext')){
+ $bytes+="mov a,b`nmov dptr,#$base`nmov dpxl,#($base >> 16)`nmovc a,@a+dptr`n"
+ if($base -cne 'ext'){$bytes+="push acc`n"}
+}
+$bytes+=@'
+mov dpxl,a
+pop dph
+pop dpl
+mov dr28,dpx
+ejmp @dr28
+; mx251-address-table schema=1 owner=_front low=lo high=hi ext=ext entries=2
+lo:
+.db case0
+.db case1
+hi:
+.db case0>>8
+.db case1>>8
+ext:
+.db case0>>16
+.db case1>>16
+case0:
+ejmp _middle
+case1:
+ejmp _last
+'@
+$bytesFront=F '_front' $bytes @('_middle','_last')
 $cases=@(
  @{name='cross-unit-chain';front=$front;middle=$middle;last=$last;calls=1;tails=2;fixed=0;members=3},
  @{name='repeated-local-labels';front=$front;middle=(F '_middle' "ejmp 00101`$`nnop`n00101`$:`nejmp _last" @('_last'));last=(F '_last' "ejmp 00101`$`nnop`n00101`$:`neret");sameUnit=$true;calls=1;tails=2;fixed=0;members=3},
@@ -39,7 +70,15 @@ $cases=@(
  @{name='table-missing-entry';front=$tableFront.Replace('entries=2','entries=3');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
  @{name='table-wrong-base';front=$tableFront.Replace('wr18,#table','wr18,#elsewhere');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
  @{name='table-short-slot';front=$tableFront.Replace('ejmp _last','ljmp _last');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
- @{name='conditional-external';front=$front.Replace('ejmp _middle','je _middle');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0}
+ @{name='conditional-external';front=$front.Replace('ejmp _middle','je _middle');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
+ @{name='legacy-fixed-table';front=$legacyFront;middle=$middle;last=$last;calls=1;tails=1;fixed=2;members=3},
+ @{name='legacy-wrong-extension';front=$legacyFront.Replace('(table >> 16)','(elsewhere >> 16)');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
+ @{name='legacy-short-slot';front=$legacyFront.Replace('ejmp _last','sjmp _last');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
+ @{name='legacy-address-bytes';front=$bytesFront;middle=$middle;last=$last;calls=1;tails=3;fixed=0;members=3},
+ @{name='legacy-mismatched-byte';front=$bytesFront.Replace('.db case0>>8','.db case1>>8');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
+ @{name='legacy-external-byte';front=$bytesFront.Replace('.db case0','.db _middle');middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
+ @{name='legacy-extra-directive';front=$bytesFront.Replace('case0:',".db 0`ncase0:");middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0},
+ @{name='legacy-unknown-jump';front=$bytesFront.Replace('case0:',"ejmp @dr16`ncase0:");middle=$middle;last=$last;calls=0;tails=0;fixed=0;members=0}
 )
 $results=@()
 foreach($c in $cases){
