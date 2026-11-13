@@ -3869,6 +3869,15 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   }
 #endif
   if(wideResult!=MCS251_WIDE_FALLBACK) {
+    /* The builder prices caller savings against this preserved-group body.
+     * The byte backend does not implement that contract; comparing its bare
+     * body would discard those savings from every caller. */
+    const char *preservedBackend=getenv("MX251_PRESERVED_BACKEND");
+    if(wideResult==MCS251_WIDE_ACCEPTED && (!preservedBackend || strcmp(preservedBackend,"0")) &&
+       strstr(dbuf_get_buf(codeOutBuf)+backendStart,"; mx251-callee-preserved schema=1 ")) {
+      compareBackend=false;
+      dbuf_printf(codeOutBuf,"; mx251-preserved-backend function=%s selected=wide\n",currFunc->rname);
+    }
     if(wideResult!=MCS251_WIDE_ACCEPTED || !compareBackend){mcs251GcEnd();return;}
     wideLength=dbuf_get_length(codeOutBuf)-backendStart;
     wideText=Safe_alloc(wideLength+1);
