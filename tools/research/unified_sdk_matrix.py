@@ -102,6 +102,8 @@ def prepare(config):
     excluded = set(config.get('excludeIds', []))
     assert excluded <= {r['id'] for r in rows}, excluded
     rows = [r for r in rows if r['id'] not in excluded]
+    overrides = config.get('inputOverrides', {})
+    assert set(overrides) <= {r['id'] for r in rows}
     manifest = root/'inputs.json'
     if manifest.exists():
         assert read(manifest)['configuration'] == config
@@ -127,8 +129,23 @@ def prepare(config):
         shutil.copytree(adapted/'src', mx/'src')
         for name in ('CMakeLists.txt', 'mx251.json', 'dialect.json'):
             shutil.copy2(adapted/name, mx/name)
+        changes = []
+        if key in overrides:
+            files = {p.relative_to(dest).as_posix(): p for folder in (native, mx)
+                     for p in folder.rglob('*') if p.is_file()}
+            for item in overrides[key]['files']:
+                target = files[item['relativePath']]
+                replacement = pin(item['path'])
+                assert replacement['sha256'] == item['sha256'], item
+                before = pin(target)
+                shutil.copy2(item['path'], target)
+                changes.append(dict(relativePath=item['relativePath'], before=before, after=pin(target),
+                                    replacement=replacement))
+            save(dest/'input-overrides.json', dict(description=overrides[key]['description'], changes=changes))
+            originals = [pin(native/Path(p['path']).name) for p in originals]
         projects.append(dict(id=key, name=row['name'], sourceManifest=pin(dest/'original-inputs.json'),
                              originalFiles=originals, mxInputOrigin=str(adapted),
+                             inputOverrides=pin(dest/'input-overrides.json') if changes else None,
                              mxInputs=[pin(p) for p in sorted(mx.rglob('*')) if p.is_file()],
                              historicalKeilBytes=row.get('keilBytes'),
                              historicalCandidateBytes=row.get('candidateBytes'),
@@ -136,7 +153,8 @@ def prepare(config):
     save(manifest, dict(configuration=config, projects=projects, ledger=pin(config['ledger']),
                         toolPins=[pin(p) for p in config['toolFiles']],
                         compiler=read(Path(config['core'])/'core.json')['compiler'],
-                        hardwareExecuted=False, sourceAlgorithmsChanged=False))
+                        hardwareExecuted=False, sourceAlgorithmsChanged=bool(overrides),
+                        sourceInputsChanged=bool(overrides)))
     return projects
 
 

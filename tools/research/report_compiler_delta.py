@@ -18,6 +18,7 @@ def main():
     args = p.parse_args()
     baseline = read(args.baseline)
     manifest = read(args.candidate / 'inputs.json')
+    declared = {p['id']: p['inputOverrides'] for p in manifest['projects'] if p.get('inputOverrides')}
     assert manifest['configuration']['mxSwitches'] == baseline['configuration']['mxSwitches']
     excluded = (set(filter(None, args.exclude_ids.split(',')))
                 | set(manifest['configuration'].get('excludeIds', []))
@@ -46,6 +47,7 @@ def main():
         row = {k: old[k] for k in ('id', 'name', 'keilBytes', 'stcBytes', 'stcStatus', 'semanticNotes', 'originalSourceIssue')}
         row.update(parentBytes=old['mx251Bytes'], mx251Bytes=result['payloadBytes'],
                    savedBytes=old['mx251Bytes']-result['payloadBytes'], sourceInputsIdentical=True,
+                   declaredInputOverride=declared.get(old['id']),
                    evidence=dict(parent=pin(Path(old_evidence['path'])), candidate=pin(resultfile),
                                  keil=old['evidence']['keil'], stc=old['evidence']['stc']))
         row['keilRatio'] = row['mx251Bytes'] / row['keilBytes']
@@ -64,6 +66,7 @@ def main():
     summary['weightedKeilRatio'] = summary['mxTotalBytes'] / summary['keilTotalBytes']
     record = dict(status='COMPLETE_UNIFORM_COMPILER_DELTA', summary=summary, rows=rows,
                   excludedIds=sorted(excluded),
+                  declaredInputOverrides=declared,
                   baseline=pin(args.baseline), candidateManifest=pin(args.candidate / 'inputs.json'),
                   compiler=manifest['compiler'], configuration=manifest['configuration'],
                   measurement='Unique Intel HEX payload bytes, excluding address gaps.',
@@ -74,6 +77,8 @@ def main():
     intro = f"{len(rows)}/{len(rows)} 项构建结果可比；{summary['improved']} 项缩小、{summary['unchanged']} 项相同、{summary['larger']} 项变大，共减少 {summary['savedBytes']} B。"
     counts = f"体积 ≤Keil 120%：{summary['within120']} 项，其中 ≤110%：{summary['within110']} 项；合计 {summary['mxTotalBytes']}/{summary['keilTotalBytes']} B（{summary['weightedKeilRatio']:.2%}）。"
     scope = '全部工程采用同一编译器和配置。Keil/STC 复用上一轮相同源输入的结果；STC 仅作原始 HEX 数值参考。完整工程运行时间未测。'
+    if declared:
+        scope += ' 已声明输入修正：' + ', '.join(sorted(declared)) + '；双方使用对应修正输入，原始冻结报告另存。'
     if excluded:
         scope += ' 本表排除：' + ', '.join(sorted(excluded)) + '；排除项目不计入分母或节省字节。'
     headings = ['ID', '工程', '父版/B', '本轮/B', '减少/B', 'Keil/B', 'MX/Keil', 'STC/B']
