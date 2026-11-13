@@ -1,0 +1,494 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "branch": "codex/format-call-transport",
+  "implementationCommit": "4a50c7915b9d4d99bcea2fb6e8a05bec6fcbf833",
+  "developmentCore": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\core-next\\core.json",
+    "sha256": "9fd33f725aa1e4f06494217e66ba82b6854fe8b11a6dbcb68e5fa8b5fcf963a9"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\core-next\\toolchain\\bin\\sdcc.exe",
+    "sha256": "a7f9a5376ea12d6225fa569b4ee5133f21f5c2045f378362f664a0748bd16d63"
+  },
+  "summary": {
+    "projects": 8,
+    "improved": 7,
+    "unchanged": 1,
+    "increased": 0,
+    "savedBytes": 416,
+    "atMost120": 2,
+    "atMost110": 0
+  },
+  "rows": [
+    {
+      "id": "p070",
+      "name": "34-硬件QSPI访问FLASH-串口监控",
+      "parentBytes": 6005,
+      "candidateBytes": 5938,
+      "savedBytes": 67,
+      "keilBytes": 4913,
+      "ratioPercent": 120.86301648687156,
+      "bytesTo120": 43,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p070\\mx251\\result.json",
+        "sha256": "d3d662f3006518b7c4fe532eb4a975782e07bb5e4e120e7c5a6a9e530afee430"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p070\\mx251\\result.json",
+        "sha256": "0f522b30290530df259015be53d480ae9f0f2c9ca4d7c2af624a30380deccb41"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p070\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d16a8700077941bc2c36ac62d4a8765f75e884f816e89b65040a5c314937fbef"
+      },
+      "formatChoice": {
+        "candidates": [
+          {
+            "codeBytes": 750,
+            "name": "abi2"
+          },
+          {
+            "codeBytes": 718,
+            "name": "body4"
+          },
+          {
+            "codeBytes": 683,
+            "name": "abi4"
+          }
+        ],
+        "selected": "abi4"
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p083",
+      "name": "40-MDU32–乘法和除法单元",
+      "parentBytes": 1809,
+      "candidateBytes": 1755,
+      "savedBytes": 54,
+      "keilBytes": 1459,
+      "ratioPercent": 120.28786840301576,
+      "bytesTo120": 5,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p083\\mx251\\result.json",
+        "sha256": "924e42f9d86f4a901586ab6c9840e021c2cfb232f4955c43d096b2311fa298e5"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p083\\mx251\\result.json",
+        "sha256": "286d2112ecdb0d41f634453d618b8b321be19069494a029b0799ae556cd652b8"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5a805dc3fb602c2749b8dcd19ff7492102dae4f36c3a38c25a7b4a0e20fe09d8"
+      },
+      "formatChoice": {
+        "selected": "abi4",
+        "candidates": [
+          {
+            "name": "abi2",
+            "codeBytes": 521
+          },
+          {
+            "name": "body4",
+            "codeBytes": 495
+          },
+          {
+            "name": "abi4",
+            "codeBytes": 467
+          }
+        ]
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p105",
+      "name": "62-DMA-SPI与存储器数据自动收发",
+      "parentBytes": 4140,
+      "candidateBytes": 4082,
+      "savedBytes": 58,
+      "keilBytes": 3297,
+      "ratioPercent": 123.80952380952381,
+      "bytesTo120": 126,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p105\\mx251\\result.json",
+        "sha256": "4199510056237df0e347ac5fb95b091cb719fe4ebe662a410408445ed56c0505"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p105\\mx251\\result.json",
+        "sha256": "1f75a75306d85f030f4b6ee3df0c80d6d40560c078a2fe7e3043e5e9cfd7244e"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p105\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "dbbc60e62c5e599cbbd485ef738e48357ad5519c26add38d55748d5b18176ac1"
+      },
+      "formatChoice": {
+        "candidates": [
+          {
+            "codeBytes": 794,
+            "name": "abi2"
+          },
+          {
+            "codeBytes": 736,
+            "name": "body4"
+          },
+          {
+            "codeBytes": 930,
+            "name": "abi4"
+          }
+        ],
+        "selected": "body4"
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p106",
+      "name": "63-DMA-QSPI-P2P访问QSPI Flash",
+      "parentBytes": 8521,
+      "candidateBytes": 8454,
+      "savedBytes": 67,
+      "keilBytes": 6649,
+      "ratioPercent": 127.14693938938186,
+      "bytesTo120": 476,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p106\\mx251\\result.json",
+        "sha256": "ca2a7444fc58be3ee43dc10c45b749f75883db7719b36c144d53a925ec4050c0"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p106\\mx251\\result.json",
+        "sha256": "edf94d35172c05ad538d0465cf793281977d7f3900fb2921c7cde148cafdb6fb"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "90761931e3c946a08cbe84a27c08089b8649b1ab77836bb3b53c1e4cf9d9cec5"
+      },
+      "formatChoice": {
+        "selected": "abi4",
+        "candidates": [
+          {
+            "name": "abi2",
+            "codeBytes": 750
+          },
+          {
+            "name": "body4",
+            "codeBytes": 718
+          },
+          {
+            "name": "abi4",
+            "codeBytes": 683
+          }
+        ]
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p115",
+      "name": "66-DMA-I2C主机模式读写AT24C02-串口监控",
+      "parentBytes": 2887,
+      "candidateBytes": 2851,
+      "savedBytes": 36,
+      "keilBytes": 2519,
+      "ratioPercent": 113.17983326716951,
+      "bytesTo120": 0,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p115\\mx251\\result.json",
+        "sha256": "60a952d937b3ddfd4330af72e84fd1baa35e84f686715c712173ba77ba8330db"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p115\\mx251\\result.json",
+        "sha256": "b19d9569dd775c73e5bb1177218e819da639fc244fdfe04e78c5d831544e4f01"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p115\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6a70bd44e85be998e7403e8e0c2b9828b1aca4c9e6e19b0d7c64785430e4fa0a"
+      },
+      "formatChoice": {
+        "candidates": [
+          {
+            "codeBytes": 481,
+            "name": "abi2"
+          },
+          {
+            "codeBytes": 445,
+            "name": "body4"
+          },
+          {
+            "codeBytes": 541,
+            "name": "abi4"
+          }
+        ],
+        "selected": "body4"
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p120",
+      "name": "71.1-电脑通过UART发送图片数据写入到DMA SPI Flash，SPI-TFT_DMA_双缓冲区交替显示图片，不占CPU时间程序-ILI9341",
+      "parentBytes": 5830,
+      "candidateBytes": 5763,
+      "savedBytes": 67,
+      "keilBytes": 4654,
+      "ratioPercent": 123.82896433175763,
+      "bytesTo120": 179,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p120\\mx251\\result.json",
+        "sha256": "3451ce310c121a464a8d1609def6a7f4208ceb25c800dfe50db4df4a3f18bab6"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p120\\mx251\\result.json",
+        "sha256": "53864b04c7456958b65533a320066f0e64fe735962d2df7fdcd52f70ac6d40ab"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p120\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7c908633539a464b0f802477d12ceeb5ac51b018de9109d92a1dcc90d4044437"
+      },
+      "formatChoice": {
+        "candidates": [
+          {
+            "name": "abi2",
+            "codeBytes": 660
+          },
+          {
+            "name": "body4",
+            "codeBytes": 628
+          },
+          {
+            "name": "abi4",
+            "codeBytes": 593
+          }
+        ],
+        "selected": "abi4"
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p123",
+      "name": "72.2-QSPI-TFT_DMA_P2P外设到外设_显示图片程序",
+      "parentBytes": 6002,
+      "candidateBytes": 5935,
+      "savedBytes": 67,
+      "keilBytes": 4839,
+      "ratioPercent": 122.64930770820418,
+      "bytesTo120": 129,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p123\\mx251\\result.json",
+        "sha256": "f719415d5753cd0047e530157ee446069b7ae34849e0e0c8d9e25018e6e75a89"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p123\\mx251\\result.json",
+        "sha256": "d255e5acb2debd3f797efb256049ce0c357a9e04f99524584db05933bf999907"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\qualified-matrix\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7d0d3548397354d6ff72440a6b5a06e52fe990139d7b63f8f90d79caeaa314bc"
+      },
+      "formatChoice": {
+        "candidates": [
+          {
+            "name": "abi2",
+            "codeBytes": 660
+          },
+          {
+            "name": "body4",
+            "codeBytes": 628
+          },
+          {
+            "name": "abi4",
+            "codeBytes": 593
+          }
+        ],
+        "selected": "abi4"
+      },
+      "formatApplied": true
+    },
+    {
+      "id": "p130",
+      "name": "76-ST7789驱动1.3寸TFT240x240显示屏实验程序-SPI-DMA刷屏",
+      "parentBytes": 31164,
+      "candidateBytes": 31164,
+      "savedBytes": 0,
+      "keilBytes": 27478,
+      "ratioPercent": 113.4143678579227,
+      "bytesTo120": 0,
+      "inputFilesIdentical": true,
+      "parent": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod\\third\\projects\\p130\\mx251\\result.json",
+        "sha256": "de07b44c02514b92e1cd3e5fd3a44c19694fdedc79ed8227608dbc02491de729"
+      },
+      "candidate": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\matrix\\projects\\p130\\mx251\\result.json",
+        "sha256": "e53568da08be53af17ac69ebbea7ada260b08c02ed2a63b37ed23bf64fcb8c66"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\matrix\\projects\\p130\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "de142de830a6b67ed81855cfb5c13c12eddee0c9cb024fb62234c2aecf8b3c69"
+      },
+      "formatChoice": null,
+      "formatApplied": false
+    }
+  ],
+  "hardware": {
+    "format": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\hardware-format\\result.json",
+        "sha256": "85f4cb735cdab183282aa1a50ba8a9002c78e5f9b3a397af0d900297c5e01bca"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\board-format-qualified\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "c6b4de798098ea8fe76f05aebed0c847af72c953c904ed1e444d0ccedd7a8403"
+      },
+      "parentBytes": 4409,
+      "candidateBytes": 4323,
+      "cases": 128,
+      "choice": {
+        "candidates": [
+          {
+            "codeBytes": 3228,
+            "name": "abi2"
+          },
+          {
+            "codeBytes": 3142,
+            "name": "body4"
+          },
+          {
+            "codeBytes": 3941,
+            "name": "abi4"
+          }
+        ],
+        "selected": "body4"
+      },
+      "parentTicks": {
+        "0": 38465,
+        "1": 43632.0
+      },
+      "candidateTicks": {
+        "0": 38222,
+        "1": 43412.0
+      },
+      "aggregateReductionPercent": 0.563967014629041,
+      "groups": {
+        "0": 0.631743143117125,
+        "1": 0.5042170883755026
+      }
+    },
+    "float": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\hardware-float\\result.json",
+        "sha256": "a3f85cd0514eb5398ada0455a9fae6ae35df8ec20a399ec5a424d0c5655cd96d"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\board-float-qualified\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "21cdf4619999c47c07a1493a13e9dfe05df8e6a09c343818b756370e475d130d"
+      },
+      "parentBytes": 9139,
+      "candidateBytes": 8510,
+      "cases": 128,
+      "choice": {
+        "selected": "abi4",
+        "candidates": [
+          {
+            "codeBytes": 6792,
+            "name": "abi2"
+          },
+          {
+            "codeBytes": 6929,
+            "name": "body4"
+          },
+          {
+            "codeBytes": 6163,
+            "name": "abi4"
+          }
+        ]
+      },
+      "parentTicks": {
+        "0": 264592.0,
+        "1": 168659.0
+      },
+      "candidateTicks": {
+        "0": 164813.0,
+        "1": 173016.0
+      },
+      "aggregateReductionPercent": 22.02464622124357,
+      "groups": {
+        "0": 37.710512789502324,
+        "1": -2.5833190046187893
+      }
+    },
+    "16": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\hardware-16\\result.json",
+        "sha256": "599bdc3573da68e513f7d46866eaadacbaadcae541bbb3decf2226b78083326c"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\board-16-qualified\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "e8c0d5e2bb5f3093a0fdac515f69ccfcde0ca3489c7dc8f268fdc74122c7c45b"
+      },
+      "parentBytes": 2737,
+      "candidateBytes": 2656,
+      "cases": 128,
+      "choice": {
+        "candidates": [
+          {
+            "name": "abi2",
+            "codeBytes": 1464
+          },
+          {
+            "name": "body4",
+            "codeBytes": 1383
+          },
+          {
+            "name": "abi4",
+            "codeBytes": 2223
+          }
+        ],
+        "selected": "body4"
+      },
+      "parentTicks": {
+        "0": 31993,
+        "1": 21893.5
+      },
+      "candidateTicks": {
+        "0": 31609,
+        "1": 21583.5
+      },
+      "aggregateReductionPercent": 1.2878921436723534,
+      "groups": {
+        "0": 1.2002625574344394,
+        "1": 1.4159453719140402
+      }
+    },
+    "codeAbi": {
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\hardware-abi\\result.json",
+        "sha256": "65254d61e3376b5085f1a54c781535dc969384744e33cdb30cabe05d3dba5570"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\board-abi\\build\\firmware.hex",
+        "sha256": "983ca7898cef76f4e977e01c8ec9ee1b4236ae273694f3bb9d4d1d77c2762dcf"
+      },
+      "cases": 128
+    }
+  },
+  "checks": {
+    "code-abi-check": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\code-abi-check\\result.json",
+      "sha256": "649f6aad5ea7d3b611a02b6c52c03100038f0e8ae327ce22076b966d2bfbaca9"
+    },
+    "abi-check": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\abi-check\\results.json",
+      "sha256": "72964d026cf20267006732ec0bab4cc3479c05b58323e7942148c66f1a1490f5"
+    },
+    "code-load-check": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport\\code-load-check\\results.json",
+      "sha256": "16e90739c44ffcba1a340fea9b5ecae5db0d3e6109e7b4fd610ad66947e7e8a1"
+    }
+  },
+  "comparisonScope": "8 projects rebuilt: 7 format projects with final three-way choice, p130 without format calls from the same compiler; Keil sizes from identical inputs; other projects and STC-IDE not rerun; timing against preceding MX251 package only"
+}
