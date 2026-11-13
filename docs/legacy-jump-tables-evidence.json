@@ -1,0 +1,169 @@
+{
+  "status": "QUALIFIED_UNIFORM_75",
+  "implementationCommit": "b4492e2118279da2416de8588f8bc4613fa307ed",
+  "verificationCommit": "b4492e2118279da2416de8588f8bc4613fa307ed",
+  "baselineCommit": "8f01ccb",
+  "summary": {
+    "projects": 75,
+    "improved": 4,
+    "unchanged": 71,
+    "larger": 0,
+    "savedBytes": 99,
+    "mxTotalBytes": 199099,
+    "keilTotalBytes": 192051,
+    "within110": 61,
+    "within120": 72,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.0366985852716206
+  },
+  "newWithin110": [
+    "p091"
+  ],
+  "newWithin120": [],
+  "transferDelta": {
+    "calls": 15,
+    "jumps": 41,
+    "savedBytes": 99,
+    "tailJumps": 26,
+    "fixedTailJumps": 13,
+    "pageCalls": 9,
+    "pageJumps": 34,
+    "newFunctions": 24
+  },
+  "p091": {
+    "parentBytes": 4887,
+    "codeBytes": 4810,
+    "keilBytes": 4401,
+    "ratio": 1.0929334242217679,
+    "group": {
+      "fixedTailJumps": 13,
+      "id": 18,
+      "members": [
+        "_usb_clear_feature",
+        "_usb_ctrl_in",
+        "_usb_ctrl_out",
+        "_usb_device_reset",
+        "_usb_get_configuration",
+        "_usb_get_descriptor",
+        "_usb_get_interface",
+        "_usb_get_maxlun",
+        "_usb_get_status",
+        "_usb_req_class",
+        "_usb_req_std",
+        "_usb_req_vendor",
+        "_usb_set_address",
+        "_usb_set_configuration",
+        "_usb_set_descriptor",
+        "_usb_set_feature",
+        "_usb_set_interface",
+        "_usb_setup",
+        "_usb_setup_in",
+        "_usb_setup_stall",
+        "_usb_setup_status",
+        "_usb_synch_frame"
+      ],
+      "tailJumps": 26,
+      "calls": 13
+    }
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "cddad2e1e1c46f115aeb774b0be34376f61c1a356df8228b0791c6c7799b8049"
+  },
+  "assembler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\core-02\\toolchain\\bin\\sdas251.exe",
+    "sha256": "bec84c23d4dff57d7d7d618bce23c9368d422c10de2dae99e7daae385cb82ecc"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\core-02\\core.json",
+    "sha256": "bae0c5e752c099da88940c2e1bc11dc6a141873956505c92d3aea3d3f538f74c"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\Build-Optimized-02.ps1",
+    "sha256": "f75f11635296f8b2cbf2a316f92831e9646ab7869eddfdedc65c70d55fbe0d20"
+  },
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\comparison.json",
+    "sha256": "25ed42bf4c980d837c1522dfa26287f3d8b57f15e4c4fb00273dedfe226268ea"
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\NearTransfers.ps1",
+      "sha256": "79a758778a9bc34f7da038f833b01a0dbd6d95fdc5a7a06e6676e0c88e3b4dda"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\gen.c",
+      "sha256": "02130d84a69b1b3e843aae71b6ac97c830c228b4c3e043b377809c84cd4cd6d0"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-tail-call-groups.ps1",
+      "sha256": "f7900cab09c9dd7137e83e0c0022321290ee2f0d34c48fd973c38ac31bf275e5"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\legacy_table_fixture.py",
+      "sha256": "8f8e99643c9d3198ceb6f3b72115de65cdeff5c8237a85d7c8f727ea99aaba53"
+    }
+  ],
+  "hardware": [
+    {
+      "variant": "parent",
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\board-parent\\receipt.json",
+        "sha256": "71aaee4f6740b2be3606dc689ca8d5e391c6fc7698a97c3c844c967451495319"
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\hardware-parent\\result.json",
+        "sha256": "155d376364a336e1929681d68f9c6b2f7058b17f331e1622be8a67d33d1b2b47"
+      },
+      "codeBytes": 1324,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 13952,
+        "1": 16482.5
+      }
+    },
+    {
+      "variant": "candidate",
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\board-candidate-final\\receipt.json",
+        "sha256": "1be84b47de09308a34c6ab3c83f7e0e669e4dd814488c2db98515154bccaad3d"
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\hardware-candidate\\result.json",
+        "sha256": "b7925ad6e46e441bf6e17f17045c4be68b7590cf9ee28a0b78a5c73e4495700d"
+      },
+      "codeBytes": 1282,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 13949.5,
+        "1": 16483
+      }
+    }
+  ],
+  "groupChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\group-tests-final\\result.json",
+    "sha256": "a6166694d716263c86c7f607132181d2bf66d6a818aba3b01c702494c35d63ff"
+  },
+  "selectionChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\selection-final\\result.json",
+    "sha256": "cd6d42187a297eec2103d0b6a6ba888b3f64bec82676ca3728cfd2ea4f529aa3"
+  },
+  "pageChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\page-final\\result.json",
+    "sha256": "99dfc1be1c0ef3e1fef75c2745e08e1939e8e5a0a94bb74d321a5423a8182e5f"
+  },
+  "fixtureLayout": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\fixture-layout.json",
+    "sha256": "1feb0d46de070b5364c516400bcc8dd0336f29a2c570110f03e83fe3fbd2aa07"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\legacy-jump-tables\\qualification.json",
+    "sha256": "e755079f8d3b31b1a6640f128149e356cfbf8d41ee1aeec835486cc3a9e9fc52"
+  }
+}

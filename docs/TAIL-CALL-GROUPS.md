@@ -18,4 +18,4 @@
 
 推荐核心：`E:/STVAPP/MX251-mainline-20261113/tail-call-groups/core-04`；入口：`E:/STVAPP/MX251-mainline-20261113/tail-call-groups/Build-Optimized-04.ps1`。完整逐项表为同目录 `comparison.html/.md/.json`；[结构化证据](tail-call-groups-evidence.json)绑定源码、工具与结果。
 
-后续扩展点：legacy 后端 `genJumpTab` 尚未发出上述表项描述。p091 的 `usb_get_descriptor` 含 `jmp @a+dptr` 和四个 EJMP 槽位，使相连的 22 个函数仍保留远返回约定。可以给该后端补充同类定宽表信息，继续使用本次的组选择算法；需要同时覆盖它的大索引 DR28 分发表。这是下一处具体的通用收益来源。
+上述 legacy 遗留项已在后续 [遗留后端跳转表优化](LEGACY-JUMP-TABLES.md) 中完成，覆盖 DPTR 四字节表和 DR28 三段地址表；新基线与 p091 的 22 成员组结果见该文。
