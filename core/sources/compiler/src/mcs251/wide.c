@@ -1326,9 +1326,9 @@ wide_remove_dead_addresses(wide_function *f)
   } while(changed);
 }
 
-/* 只给私有、完整标量 union 选择物理字事务。前端人工 volatile 和
- * MIR byteAccess 都不清除，因此别名屏障、访问次数与访问顺序仍由旧规则
- * 保守保护；这不是 union SROA，也不允许把真 volatile/MMIO 合并成字。 */
+/* Prove complete local union accesses before choosing word transactions or
+ * scalar storage. Actual volatile, partial and escaping objects keep their
+ * memory accesses; only the frontend's artificial union guard is removable. */
 static bool
 wide_union_guard_only(sym_link *t)
 {
@@ -1392,8 +1392,6 @@ wide_union_address_copy(wide_function *f,wide_node *n,int *source)
 static void
 wide_private_union_prepare(wide_function *f)
 {
-  const char *enabled=getenv("MX251_PRIVATE_UNION_WORD");
-  if(!enabled || strcmp(enabled,"1"))return;
   if(!currFunc || currFunc->mcs251UnionQualifiedCast) {
     dbuf_printf(f->diagnostics,"; wide private-union reject reason=source-qualified-pointer-cast\n");
     return;

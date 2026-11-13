@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "branch": "codex/math-native-transport",
+  "parentCommit": "b185c1d8113e184c4ee858860a36c20f222b9170",
+  "baselineCompiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "162f64caeb818651aabe44c9f6d0cd82c3d1ccbdb0643927879fa458c5f8b0ed"
+  },
+  "library": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\library-v2\\libnativefloat.lib",
+    "sha256": "4427da13ad4961129036ae7f5fde667e2a8d76297d6c19be9a65f70424ee8e31"
+  },
+  "libraryReceipt": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\library-v2\\receipt.json",
+    "sha256": "9a2f8d1d72bab014f512ab594b5c110d5bb6001f08dba1b5eac86735b58c317f"
+  },
+  "callEffects": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\library-v2\\libnativefloat.effects.json",
+    "sha256": "d6ddf1b7ddcb718b3464a7b0d4a58b9aeeb78225c9423976e0d04b4687f11cab"
+  },
+  "basicMath": [
+    {
+      "function": "fabsf",
+      "beforeBytes": 100,
+      "afterBytes": 5,
+      "beforeClosure": null,
+      "afterImports": []
+    },
+    {
+      "function": "frexpf",
+      "beforeBytes": 480,
+      "afterBytes": 254,
+      "beforeClosure": null,
+      "afterImports": []
+    },
+    {
+      "function": "ldexpf",
+      "beforeBytes": 1002,
+      "afterBytes": 448,
+      "beforeClosure": null,
+      "afterImports": [
+        "_errno"
+      ]
+    },
+    {
+      "function": "floorf",
+      "beforeBytes": 186,
+      "afterBytes": 288,
+      "beforeClosure": {
+        "members": [
+          "_fs2slong.rel",
+          "_fs2ulong.rel",
+          "_fslt.rel",
+          "_slong2fs.rel",
+          "_ulong2fs.rel",
+          "floorf.rel"
+        ],
+        "codeBytes": 665,
+        "externalSymbols": []
+      },
+      "afterImports": []
+    },
+    {
+      "function": "ceilf",
+      "beforeBytes": 158,
+      "afterBytes": 294,
+      "beforeClosure": {
+        "members": [
+          "_fs2slong.rel",
+          "_fs2ulong.rel",
+          "_fslt.rel",
+          "_slong2fs.rel",
+          "_ulong2fs.rel",
+          "ceilf.rel"
+        ],
+        "codeBytes": 637,
+        "externalSymbols": []
+      },
+      "afterImports": []
+    },
+    {
+      "function": "modff",
+      "beforeBytes": 128,
+      "afterBytes": 463,
+      "beforeClosure": {
+        "members": [
+          "_fs2slong.rel",
+          "_fs2ulong.rel",
+          "_fsadd.rel",
+          "_fssub.rel",
+          "_slong2fs.rel",
+          "_ulong2fs.rel",
+          "modff.rel"
+        ],
+        "codeBytes": 971,
+        "externalSymbols": [
+          "__gptrput"
+        ]
+      },
+      "afterImports": []
+    }
+  ],
+  "archiveCodeConst": {
+    "before": 15795,
+    "after": 15394
+  },
+  "math123": {
+    "sameSources": true,
+    "beforeBytes": 11139,
+    "afterBytes": 10339,
+    "savedBytes": 800,
+    "beforeReceipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\research\\math-library-20261113\\math123-current\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "6a4c96f656d8addeff1f5401f7b2456d6621da4b7f6e8a06d37fb00105187387"
+    },
+    "afterReceipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\math123-effects\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "2bab553ddf13f73cf9f0c423aa3d46572b63f29e5ee625322e031eeac8cba68d"
+    },
+    "hardwareExecuted": false,
+    "newKeilComparison": false
+  },
+  "wrapperCode": {
+    "beforeBytes": 1049,
+    "afterBytes": 291,
+    "binaryWrapper": {
+      "beforeBytes": 141,
+      "afterBytes": 39,
+      "frameBefore": 12,
+      "frameAfter": 0
+    },
+    "unaryWrapper": {
+      "beforeBytes": 97,
+      "afterBytes": 27,
+      "frameBefore": 8,
+      "frameAfter": 0
+    },
+    "scope": "nine wrapper bodies before link sharing and near transfer passes"
+  },
+  "checks": {
+    "hostBasic": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\host-basic-v2\\result.json",
+      "sha256": "236bf145ce7743288974590b3a2fd65afe0dcd6567fa774e05643b465faf6a88"
+    },
+    "valueStorage": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\value-storage\\result.json",
+      "sha256": "942e4f39efaaf9663095ca1a5df162eb7e1ed1fd1aa3605b52452e334a35707b"
+    },
+    "ordinaryFloatStack": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\ordinary-float-stack-v3\\results.json",
+      "sha256": "b91b2cb67b90d0a226bcb9e6bd97de811b2032c341fb1265cffe8908a820ba63"
+    },
+    "boardBuild": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\board-effects\\build.json",
+      "sha256": "c406c777af519bb1a74b097296da9ce411224797539fd3052ff7718d582ec39c"
+    },
+    "hardware": {
+      "status": "PASS",
+      "cases": 128,
+      "frames": 518,
+      "aggregateTicks": {
+        "0": 3670.5,
+        "1": 6320.5
+      },
+      "firmwareSha256": "a1048934f3207876e3ceb7b4472ec706645a70c68600fb76e49e3c9b573335e5"
+    },
+    "uart": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport\\hardware-effects\\uart.bin",
+      "sha256": "46f0193df7b44c34151e415db96ba613feddee57dde5e3755d2a9144d5aa0165"
+    },
+    "clobberFeedback": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED"
+  },
+  "boundaries": [
+    "75-project frozen baseline unchanged; no new 75-project claim",
+    "no new comparable Keil timing run",
+    "frexpf/ldexpf/modff effect summaries remain incomplete; no register-preservation inference from these summaries",
+    "current NaN payload and HUGE_VALF overflow policies retained; no IEC 60559 floating exception support added"
+  ]
+}

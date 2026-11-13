@@ -2141,7 +2141,7 @@ wide_emit(wide_function *f)
        * signed zero 和所有32位表示原样传递；不触发浮点规范化。 */
       wide_value *v=&f->values[n->result];
       wassert(n->width==4 && v->width==4 && n->right.width==4 &&
-              n->right.value>=0 && !v->pointer && !f->values[n->right.value].pointer);
+              !v->pointer && (n->right.value<0 || !f->values[n->right.value].pointer));
       int work=v->reg>=0?v->reg:16;
       we(f,"; wide raw32 copy source=%d destination=%d\n",n->right.value,n->result);
       wload(f,n->right,work,4);wstore_known(f,n->result,work,false);break;

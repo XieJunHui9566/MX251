@@ -338,9 +338,12 @@ try {
  $runtimeCallRecord=@{functions=@();libraries=@();contractSha256=$null}
  if(-not $LeafCallFeedback) {
   . (Join-Path $PSScriptRoot 'CallClobberFeedback.ps1')
-  if($MachineIr -and ($NativeIntegerRuntime -or $runtime -eq 'native-int')){
+  $effectArchives=@()
+  if($NativeIntegerRuntime -or $runtime -in @('native-int','native-math','native-math-wide')){$effectArchives+='runtime/libnativeint.lib'}
+  if($runtime -like 'native-math*'){$effectArchives+='runtime/libnativefloat.lib'}
+  if($MachineIr -and $effectArchives.Count){
    . (Join-Path $PSScriptRoot 'RuntimeCallEffects.ps1')
-   $runtimeCallRecord=Get-Mx251RuntimeCallEffects $ProfileRoot @('runtime/libnativeint.lib')
+   $runtimeCallRecord=Get-Mx251RuntimeCallEffects $ProfileRoot $effectArchives
   }
   $callClobberRecord=Invoke-Mx251CallClobberFeedback $outputRoot $config $inputs (Hash-File $compilerExe) (Hash-File $lockPath) -ScopedLocals:$MachineIr -LibraryFunctions $runtimeCallRecord.functions -CalleePreservation:$CalleePreservation -MemoryLayout $layout
   $callClobberRecord.runtimeLibraries=$runtimeCallRecord.libraries

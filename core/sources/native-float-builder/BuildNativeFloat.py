@@ -25,6 +25,7 @@ CONVERSIONS = {'_fseq': 'eq', '_fsneq': 'ne', '_fslt': 'lt', '_fsle': 'le',
                '_ulong2fs': 'u2f', '_slong2fs': 's2f', '_fs2ulong': 'f2u', '_fs2slong': 'f2s'}
 CORES = {'_fsadd': 'fsadd_bits', '_fssub': 'fssub_bits', '_fsdiv': 'fsdiv_bits',
          '_fsmul': 'fsmul_bits', 'sqrtf': 'sqrt_bits'}
+BASIC_MATH = ('fabsf', 'frexpf', 'ldexpf', 'floorf', 'ceilf', 'modff')
 BASE_FLAGS = ['-mmcs251', '--model-small', '--stack-auto', '--opt-code-size',
               '--nostdinc', '--std-c23']
 
@@ -54,6 +55,8 @@ def recipe(name):
     flags = ['--mcs251-native-runtime', '--mcs251-native-int-runtime']
     if name in ('sincosf', 'tancotf', 'atanf', 'sinf', 'cosf', 'tanf'):
         flags += ['--mcs251-wide-backend']
+    if name in BASIC_MATH:
+        flags += ['--mcs251-wide-ordinary']
     return name, 'device/lib/' + name + '.c', flags
 
 
@@ -287,7 +290,7 @@ def compile_member(config, name):
             for line in assembly.splitlines():
                 match = re.match(r'^\s+([a-z][a-z0-9]*)\s*(.*?)\s*$', line.split(';', 1)[0])
                 if match:
-                    instructions.append((match[1], re.sub(r'\s+', '', match[2])))
+                    instructions.append((match[1], re.sub(r'\s+', '', match[2]).replace('(_errno+0)', '(_errno)')))
             if instructions != [('mov', 'wr20,#0x0021'), ('mov', '(_errno),wr20'), ('sub', 'dr4,dr4'), ('eret', '')]:
                 raise ValueError('sqrt_domain errno/zero-return/zero-stack leaf contract changed')
             if not re.search(r'wide-mir accepted: __sqrt_domain;[^\n]*frame=0', assembly):
@@ -387,6 +390,31 @@ def archive_members(path):
     return result
 
 
+def basic_effects(config, archive, records):
+    """Bind final, unpatched basic-math bodies to this exact archive.
+
+    Keep incomplete effects visible in the audit. Only complete leaf summaries
+    can supply register-preservation facts to the existing call analysis.
+    """
+    rows = {row['member']: row for row in records}
+    functions, audit = [], []
+    for name in BASIC_MATH:
+        assembly = Path(config['output']) / 'objects' / (name + '.asm')
+        lines = re.findall(r'^; mx251-effects (.*)$', assembly.read_text(encoding='utf8'), re.M)
+        for line in lines:
+            effect = dict(field.split('=', 1) for field in line.split())
+            row = dict(member=name + '.rel', objectSha256=rows[name + '.rel']['sha256'],
+                       assemblySha256=digest(assembly), effects=effect)
+            audit.append(row)
+            if effect['complete'] != '1' or effect['unknown'] != '0' or effect['calls'] != '0':
+                continue
+            functions.append(dict(symbol=effect['function'], member=row['member'],
+                abi=int(effect['abi']), localWrites=effect['writes'], calls=[],
+                instructions=int(effect['instructions']), objectSha256=row['objectSha256']))
+    return dict(schema=1, archives=[dict(path='runtime/libnativefloat.lib',
+                sha256=digest(archive), functions=functions)], audit=audit)
+
+
 def input_inventory(config):
     source = Path(config['source']); paths = {Path(__file__).resolve(), Path(sys.executable).resolve()}
     paths.update(source / recipe(name)[1] for name in MEMBERS)
@@ -453,13 +481,16 @@ def build(args):
                    'buildChain': ['CMake', 'Ninja', 'MX251'], 'inputLockSha256': digest(output / 'input-lock.json'),
                    'compilerSha256': digest(Path(config['compiler'])), 'archiveSha256': digest(pending),
                    'members': records, 'hardwareExecuted': False, 'qualificationGranted': False}
+        effects_path = output / 'libnativefloat.effects.json'
+        write(effects_path, basic_effects(config, pending, records))
+        receipt['callEffectsSha256'] = digest(effects_path)
         write(output / 'receipt.pending.json', receipt)
         pending.replace(output / 'libnativefloat.lib')
         (output / 'receipt.pending.json').replace(output / 'receipt.json')
         print(json.dumps({'archive': str(output / 'libnativefloat.lib'), 'sha256': receipt['archiveSha256'], 'members': len(MEMBERS)}))
     except BaseException as error:
         # 目录由本次排他创建；失败不保留可被误用的最终库或成功凭据。
-        for name in ('libnativefloat.lib', 'receipt.json', 'receipt.pending.json'):
+        for name in ('libnativefloat.lib', 'libnativefloat.effects.json', 'receipt.json', 'receipt.pending.json'):
             (output / name).unlink(missing_ok=True)
         write(output / 'failure.json', {'status': 'failed', 'error': str(error), 'type': type(error).__name__})
         raise

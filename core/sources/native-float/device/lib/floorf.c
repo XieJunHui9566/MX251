@@ -30,12 +30,27 @@
 
 #include <math.h>
 
-float floorf (float x) _FLOAT_FUNC_REENTRANT
+float floorf(float x) _FLOAT_FUNC_REENTRANT
 {
-    long r;
-    r=x;
-    if (r<=0)
-        return (r+((r>x)?-1:0));
-    else
-        return r;
+    union { float f; unsigned long u; } value;
+    unsigned long magnitude, mask;
+    unsigned char exponent;
+
+    value.f = x;
+    magnitude = value.u & 0x7fffffffUL;
+    /* At 2^23 and above every finite binary32 value is integral.
+       Infinity and NaN retain their representation too. */
+    if (magnitude >= 0x4b000000UL || magnitude == 0)
+        return x;
+    if (magnitude < 0x3f800000UL)
+    {
+        value.u = (value.u & 0x80000000UL) ? 0xbf800000UL : 0;
+        return value.f;
+    }
+    exponent = (unsigned char)(value.u >> 23);
+    mask = (1UL << (150 - exponent)) - 1;
+    if (value.u & 0x80000000UL)
+        value.u += mask;
+    value.u &= ~mask;
+    return value.f;
 }

@@ -6,13 +6,17 @@
 static int
 wide_definition_copy(wide_function *f,wide_node *n)
 {
-  if((n->op!='=' && n->op!=CAST) || n->result<0 || n->right.value<0 ||
+  if((n->op!='=' && n->op!=CAST && n->op!=WM_RAW32_COPY) || n->result<0 || n->right.value<0 ||
      n->result==n->right.value || n->orderedReadCount || n->orderedAsmCount ||
      n->byteAccess || n->addressOp || n->addressSymbol || n->addressObject>=0)return -1;
   wide_value *a=&f->values[n->right.value],*b=&f->values[n->result];
-  if(a->width!=b->width || n->width!=b->width || n->right.width!=a->width ||
-     a->sign!=b->sign || a->pointer!=b->pointer || a->codePointer!=b->codePointer ||
-     a->floating!=b->floating || a->nearData!=b->nearData || b->pin>=0)return -1;
+  if(a->width!=b->width || n->width!=b->width || n->right.width!=a->width || b->pin>=0)return -1;
+  if(n->op==WM_RAW32_COPY) {
+    /* Operand types remain on each use. This identity concerns the 32 bits,
+     * not a conversion between the source and destination C types. */
+    if(a->width!=4 || a->pointer || b->pointer)return -1;
+  } else if(a->sign!=b->sign || a->pointer!=b->pointer || a->codePointer!=b->codePointer ||
+            a->floating!=b->floating || a->nearData!=b->nearData)return -1;
   if(a->pointer && (!IS_PTR(a->sym->type) || !IS_PTR(b->sym->type) ||
      DCL_TYPE(a->sym->type)!=DCL_TYPE(b->sym->type)))return -1;
   return n->right.value;

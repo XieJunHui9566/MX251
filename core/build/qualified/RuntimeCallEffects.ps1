@@ -7,7 +7,19 @@ function Get-Mx251RuntimeCallEffects([string]$ProfileRoot,[string[]]$SelectedArc
  $functions=@();$libraries=@()
  foreach($relative in $SelectedArchives) {
   $archive=Join-Path $ProfileRoot $relative;$digest=Hash-File $archive
-  $matches=@($contract.archives|Where-Object{$_.path -ceq $relative -and $_.sha256 -ceq $digest})
+  $archives=@($contract.archives)
+  $sidecarRelative=[IO.Path]::ChangeExtension($relative,'.effects.json')
+  $sidecar=Join-Path $ProfileRoot $sidecarRelative
+  if(Test-Path -LiteralPath $sidecar -PathType Leaf){
+   $lock=Get-Content -LiteralPath (Join-Path $ProfileRoot 'profile.lock.json') -Raw | ConvertFrom-Json -AsHashtable
+   $pins=@($lock.profile|Where-Object{$_.path -ceq $sidecarRelative -and $_.sha256 -ceq (Hash-File $sidecar)})
+   if($pins.Count -ne 1){throw 'runtime-call-effects-sidecar-not-pinned'}
+   $extra=Get-Content -LiteralPath $sidecar -Raw | ConvertFrom-Json -AsHashtable
+   if($extra.schema -ne 1){throw 'runtime-call-effects-sidecar-schema'}
+   $archives+=@($extra.archives)
+   $libraries+=@{path=$sidecar;sha256=(Hash-File $sidecar)}
+  }
+  $matches=@($archives|Where-Object{$_.path -ceq $relative -and $_.sha256 -ceq $digest})
   if($matches.Count -ne 1){continue}
   $library=$matches[0];$libraries+=@{path=$archive;sha256=$digest}
   foreach($f in $library.functions) {

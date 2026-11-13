@@ -20,19 +20,21 @@ for model in ['small','large']:
   if 'wide-mir accepted:' in old:
    assert re.findall(r'wide-mir accepted: (\w+)',old)==accepted
    assert 'wide ordinary argument direct' in asm
-   if 'wide ordinary argument direct' in old:
-    assert obj==oldobj, 'This non-forwarding corpus must remain byte-identical to R82'
+   size=lambda rel: int(re.search(rb'^A CSEG size ([0-9A-F]+) ',rel,re.M)[1],16)
+   assert size(obj)<=size(oldobj), 'Complete private unions should reduce or retain code size'
+   assert 'wide private-values choice function=select_bits ' in asm
   for fn in accepted:
    body=asm.split('wide-mir accepted: '+fn+';',1)[1].split('; wide stack float call migration:',1)[0]
    assert body.count('; wide memory ')==body.count('; wide stack direct ')
   body=asm.split('wide-mir accepted: volatile_bits;',1)[1].split('; wide stack float call migration:',1)[0]
-  memories=re.findall(r'; wide memory (load|store) width=4 volatile-bytes=(\d)\n; wide stack direct object=(\d+) offset=(\d+)\n(.*?)(?=; wide |\tecall|\teret)',body,re.S)
+  memories=re.findall(r'; wide memory (load|store) width=4 volatile-bytes=(\d)\n; wide stack direct object=(\d+) offset=(\d+)\n(?:; wide stack byte direct[^\n]*\n)?(.*?)(?=; wide |\tecall|\teret)',body,re.S)
   assert len(memories)>=6
   for kind,volatile,ob,offset,code in memories:
    assert volatile=='1'
-   addresses=re.findall(r'(?:mov\ta,(@spx[^\n]*)|mov\t(@spx[^,]*),a)',code)
+   addresses=re.findall(r'(?:mov\t(?:a|r\d+),(@spx[^\n]*)|mov\t(@spx[^,]*),(?:a|r\d+))',code)
    assert len(addresses)==4,(kind,code)
-  assert '\tecall\t_mutate' in asm and 'reg=-1' in asm
+  assert '\tecall\t_mutate' in asm
+  assert re.search(r'wide-mir accepted: alias_bits;[^\n]*frame=[1-9]',asm)
   rows.append(dict(model=model,opt=opt,accepted=accepted,deterministic=True,optionOffIdentical=True,volatileFourByteTransactions=True))
 header='#include "wide-ordinary-calls.h"\n'
 negative={
