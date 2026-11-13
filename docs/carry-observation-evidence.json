@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "implementationCommit": "c4a9e4f3bdfa8551119030ca871c44f11bc9e71c",
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\core-02\\core.json",
+    "sha256": "2baf891591f33d781f169f31998f9329e9c4d3ecb275e0d94b41aab8319e2009"
+  },
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\core-02\\toolchain\\bin\\sdcc.exe",
+    "sha256": "7169532b3f92b2caec0fd56e81911c7ce055179bfec17a143753006ce1408895"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\Build-Optimized-02.ps1",
+    "sha256": "f75f11635296f8b2cbf2a316f92831e9646ab7869eddfdedc65c70d55fbe0d20"
+  },
+  "configuration": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\candidate-02.json",
+    "sha256": "a772a70d5f6c37a1e1438a48e6e696bd9c72f6d9181b4988cecf2bac0fae420b"
+  },
+  "baseline": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\comparison.json",
+    "sha256": "72dedd4e750aa4f8d7fdcfb4d59d096e7f89a620457c514aacbcc31e4547c6e9"
+  },
+  "finalComparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\comparison.json",
+    "sha256": "4447e1f28ee32993c1a9ff83b9d0855adbfc513f043da3212168b1bb2f21974f"
+  },
+  "summary": {
+    "projects": 75,
+    "improved": 0,
+    "unchanged": 73,
+    "larger": 2,
+    "savedBytes": -23,
+    "mxTotalBytes": 191828,
+    "keilTotalBytes": 192049,
+    "within110": 65,
+    "within120": 75,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 0.998849252013809
+  },
+  "remaining110": [
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "mx251Bytes": 4707,
+      "keilBytes": 4128,
+      "keilRatio": 1.1402616279069768,
+      "gap110Bytes": 167
+    },
+    {
+      "id": "p045",
+      "name": "20-使用LVD低压检测VCC中断保存EEPROM，反应时间太短建议使用比较器检测稳压管输入端/C语言",
+      "mx251Bytes": 986,
+      "keilBytes": 832,
+      "keilRatio": 1.1850961538461537,
+      "gap110Bytes": 71
+    },
+    {
+      "id": "p049",
+      "name": "22-使用比较器检测外部稳压管输入前端，掉电时及时保存数据到EEPROM/C语言",
+      "mx251Bytes": 1172,
+      "keilBytes": 1002,
+      "keilRatio": 1.1696606786427146,
+      "gap110Bytes": 70
+    },
+    {
+      "id": "p039",
+      "name": "17-ADC采集NTC热敏电阻测温度，数码管显示/C语言",
+      "mx251Bytes": 1279,
+      "keilBytes": 1105,
+      "keilRatio": 1.1574660633484164,
+      "gap110Bytes": 64
+    },
+    {
+      "id": "p133",
+      "name": "79-使用TFT彩屏8位数据口接R-2R电阻做DAC通过DMA输出波形",
+      "mx251Bytes": 468,
+      "keilBytes": 404,
+      "keilRatio": 1.1584158415841583,
+      "gap110Bytes": 24
+    },
+    {
+      "id": "p149",
+      "name": "A04-电脑端的ISP软件通过UART发送命令通知MCU软复位到系统区不停电下载",
+      "mx251Bytes": 485,
+      "keilBytes": 423,
+      "keilRatio": 1.1465721040189125,
+      "gap110Bytes": 20
+    },
+    {
+      "id": "p047",
+      "name": "21-利用P4.6做比较器正极输入源，内部1.19V做负极输入源/C语言",
+      "mx251Bytes": 192,
+      "keilBytes": 160,
+      "keilRatio": 1.2,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p074",
+      "name": "36.3-LCD1602显示程序-硬件M6800并行接口+DMA刷新",
+      "mx251Bytes": 1015,
+      "keilBytes": 909,
+      "keilRatio": 1.1166116611661165,
+      "gap110Bytes": 16
+    },
+    {
+      "id": "p032",
+      "name": "14.2-串口1与串口2通信测试程序",
+      "mx251Bytes": 785,
+      "keilBytes": 704,
+      "keilRatio": 1.1150568181818181,
+      "gap110Bytes": 11
+    },
+    {
+      "id": "p015",
+      "name": "07-主时钟停振低功耗模式-外部中断INT0-INT4唤醒/C语言",
+      "mx251Bytes": 306,
+      "keilBytes": 272,
+      "keilRatio": 1.125,
+      "gap110Bytes": 7
+    }
+  ],
+  "gap110Bytes": 466,
+  "checks": {
+    "carry": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\checks-01\\result.json",
+      "sha256": "8cd9e7a043b44bdb5c01258b5e0baa7505294d3f0c760db2140212e740265289"
+    },
+    "bodyChoice": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\checks-body\\result.json",
+      "sha256": "959c583df7ebcc1d625a882a5d0bc5bbcd683f9c12a0314544a2772889343650"
+    },
+    "carryEffects": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\checks-feedback\\result.json",
+      "sha256": "79dcfabb9660332a1a65ffeb9f624ffbfc56e87ffe38ed3f390c884808d3504d"
+    },
+    "receipts": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\receipt-audit.json",
+      "sha256": "d6b463bd86ad180bf6b40e2a3bedd762211db45b22fde9b0268b81ae2c951191"
+    }
+  },
+  "functionAttribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\carry-function-audit.json",
+    "sha256": "788a6bb93efedbd486a017c91691609176da34097bdf8efde122c974717ee809"
+  },
+  "hardware": {
+    "result": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\hardware-02\\result.json",
+      "sha256": "8a1bed3f669fa47958f752293ab785158dd824ba4ae858f5ba7bb8381a32baf5"
+    },
+    "source": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\fixture-03\\source.json",
+      "sha256": "37ec7a1fdbdac723c282b7d77130b47668fc190ced453e0ae2b2dc068b6701e4"
+    },
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-mainline-20261113\\carry-shift-compatibility\\fixture-03\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "7de892f3df804193276bd44baf79fe5a670c1a281ca99e34425bc059fcad00c1"
+    },
+    "bytes": 2440,
+    "cases": 128,
+    "frames": 655,
+    "groups": {
+      "0": "legacy ABI2",
+      "1": "wide ABI4"
+    },
+    "coverage": "256 byte inputs for each backend; 64 boundary/mixed inputs for each 16/32-bit shift direction; byte serial reconstruction",
+    "runtimeComparison": false
+  },
+  "inheritedQualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\argument-object-loads\\qualification.json",
+    "sha256": "7b980ecc9e576325d287532b418c0c732ddead61682ff08350bb3803ed22d73d"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "extensionScope": "MCS251 integral 8/16/32-bit one-bit shift immediately followed by explicit CY read; at most the result assignment intervenes",
+  "intermediateBuilds": "core-01/matrix-01 lacked numeric CY call effects; preserved as intermediate evidence only; core-02/matrix-02 is the final uniform build"
+}

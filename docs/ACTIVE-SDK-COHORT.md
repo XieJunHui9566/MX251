@@ -1,26 +1,24 @@
 # 当前 SDK 对照范围：75 项
 
-2026-11-13，统一编译器 `argument-object-loads/core-01`，实现 `ec7987e`。
+2026-11-13，统一编译器 `carry-shift-compatibility/core-02`，实现 `c4a9e4f`。
 
 - 体积 ≤Keil 120%：**75/75**。
-- 体积 ≤Keil 110%：**65/75**，新增 p122（4708/4283 B，109.92%）。
-- MX251 / Keil 合计 **191805 / 192049 B（99.87%）**。
-- 相对上一统一版本，10 项缩小、65 项相同、0 项变大，减少 **259 B**。
-- 剩余 10 项到 110% 的逐项整数缺口合计 **455 B**。
+- 体积 ≤Keil 110%：**65/75**。
+- MX251 / Keil 合计 **191828 / 192049 B（99.88%）**。
+- 相对上一统一版，0 项缩小、73 项相同、2 项变大，净增加 23 B。
+- 剩余 10 项到 110% 的逐项整数缺口合计 **466 B**。
 
-这些是体积成绩，完整工程运行时间尚未验收。实现、函数归因和实板前后对照见 [整对象参数读取](ARGUMENT-OBJECT-LOADS.md)。
-
-2026-11-13 后续只读研究发现：12 项的显式 CY 读取未保留其前面的数据移位，存在 Keil 兼容性缺口，包含剩余缺口最大的四项。当前体积数字保留，不能作为这些工程的功能通过数；影响范围与下一步见 [剩余十项统计研究](REMAINING-TEN-STATISTICS.md)。本轮未更换编译器。
+此前发现的十二项相邻移位/CY 读取缺口已修复，两个后端的独立实板检查 128/128 组通过。实现及限定范围见 [CY 兼容性修复](CARRY-OBSERVATION.md)。这些达线数字仍是体积统计，完整工程功能与运行时间不能由定向测试代替。
 
 ## 输入与参考
 
-74 项保持原冻结输入。p108 使用双方一致的单行汇编修复：共享未使用扩展向量出口改为 RETI，C 文件未改。修复范围见 [p108 记录](P108-VECTOR-REPAIR.md)。Keil/STC-IDE 复用同源参考。STC 为 59 项 HEX、13 项不支持汇编输入、3 项失败，只作原始体积参考。
+74 项保持原冻结输入。p108 使用双方一致的单行汇编修复：共享未使用扩展向量出口改为 RETI，C 文件未改，见 [p108 记录](P108-VECTOR-REPAIR.md)。Keil/STC-IDE 复用同源参考。STC 为 59 项 HEX、13 项不支持汇编输入、3 项失败，只作原始体积参考。
 
 ## 剩余 110% 项目
 
 | 工程 | MX251/B | Keil/B | 尚差/B |
 | --- | ---: | ---: | ---: |
-| p136 | 4696 | 4128 | 156 |
+| p136 | 4707 | 4128 | 167 |
 | p045 | 986 | 832 | 71 |
 | p049 | 1172 | 1002 | 70 |
 | p039 | 1279 | 1105 | 64 |
@@ -33,8 +31,8 @@
 
 ## 后续使用
 
-入口：`E:/STVAPP/MX251-mainline-20261113/argument-object-loads/Build-Optimized.ps1`。
+入口：`E:/STVAPP/MX251-mainline-20261113/carry-shift-compatibility/Build-Optimized-02.ps1`。
 
-配置：同目录 `candidate-01.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-01`；后续使用新输出目录，并以 `comparison.json` 为对比基线。
+配置：同目录 `candidate-02.json`，保留全部 75 项与 p108 显式输入替换。完整产物 `matrix-02`；后续使用新输出目录，并以 `comparison.json` 为对比基线。
 
-[结构化名单](active-sdk-cohort.json) 与 [本轮证据](argument-object-loads-evidence.json) 绑定编译器、配置、报告及测试。此前的 [SFR 布局](TARGET-SFR-LAYOUT.md) 和 [符号数组地址效果](SYMBOLIC-ADDRESS-CALL-EFFECTS.md) 已随本轮进入统一版本；旧报告继续保留。
+[结构化名单](active-sdk-cohort.json) 与 [本轮证据](carry-observation-evidence.json) 绑定编译器、配置、报告及测试。上一版 [整对象参数读取](ARGUMENT-OBJECT-LOADS.md) 的结果与研究报告继续保留。后续优化方向见 [剩余十项研究](REMAINING-TEN-STATISTICS.md)，其中 CY 问题已由本轮解决。
