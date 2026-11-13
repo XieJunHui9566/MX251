@@ -1,6 +1,7 @@
 """Check default-hook elimination, custom-hook equivalence and both profiles."""
 import argparse
 import concurrent.futures
+import re
 from pathlib import Path
 import subprocess
 from unified_sdk_matrix import read, save, pin, image
@@ -22,6 +23,15 @@ def case(config, parent, output, name, model, target, source, custom):
         if custom:
             if label=='candidate':assert r['reason']=='startup-custom-external-hook',r
         else:
+            assert r['layout']['savedBytes']==8,r
+            assert '__sdcc_mcs251_reset_trampoline::' in (build/'startup.asm').read_text()
+            owner=(build/r['demand']['mainOwner']).read_text()
+            assert not re.search(r'ejmp\s+__sdcc_(?:gsinit_startup|program_startup)',owner)
+            assert re.search(r'__sdcc_program_exit:\s*sjmp\s+\.',owner)
+            if name in ('stc-small','external-initialized'):
+                assert 'crtclear.rel' in r['demand']['replacements'],r['demand']['internalObjectBytes']
+            if name=='internal-initialized':
+                assert 'crtclear.rel' not in r['demand']['replacements']
             assert 'ecall   ___sdcc_external_startup' not in (build/'startup.asm').read_text()
             if name=='referenced-hook':
                 assert r['demand']['hookReferenced']
@@ -41,6 +51,8 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--config',type=Path,required=True);p.add_argument('--parent',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
     config=read(a.config); ai='AI8051U-34K64-32';stc='STC32G12K128'
     cases=[('stc-small','small',stc,'void main(void) { for (;;) {} }',False),
+           ('internal-initialized','small',ai,'volatile __data unsigned char x=0x51; void main(void) { for (;;) x++; }',False),
+           ('external-initialized','small',ai,'volatile __xdata unsigned char x[3]={1,2,3}; void main(void) { for (;;) x[0]++; }',False),
            ('stc-large','large',stc,'volatile __xdata unsigned char x[257]; void main(void) { for (;;) x[0]++; }',False),
            ('pdata-xdata','small',ai,'volatile __pdata unsigned char p[3]; volatile __xdata unsigned char x[257]; void main(void) { for (;;) x[0]=p[0]; }',False),
            ('referenced-hook','small',ai,'unsigned char __sdcc_external_startup(void); volatile unsigned char result; void main(void) { result=__sdcc_external_startup(); for (;;) {} }',False),

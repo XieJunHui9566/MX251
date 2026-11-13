@@ -35,7 +35,7 @@ function Read-Mx251StartupMap([string]$Path) {
   if($areas.ContainsKey($name) -and ($areas[$name].base -ne $value.base -or $areas[$name].size -ne $value.size)){throw 'startup-conflicting-map-area'}
   $areas[$name]=$value
  }
- foreach($m in [regex]::Matches($text,'(?m)^[CD]:\s+([0-9A-F]+)\s+(\S+)\s*$')){
+ foreach($m in [regex]::Matches($text,'(?m)^[CD]:[ \t]+([0-9A-F]+)[ \t]+(\S+)(?:[ \t]+\S+)?[ \t]*\r?$')){
   $name=$m.Groups[2].Value;$value=[Convert]::ToInt64($m.Groups[1].Value,16)
   if($symbols.ContainsKey($name) -and $symbols[$name] -ne $value){throw 'startup-ambiguous-map-symbol'}
   $symbols[$name]=$value
@@ -82,7 +82,7 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
  }
  if($sizes.XINIT -ne $sizes.XISEG){throw 'startup-copy-size-mismatch'}
  $replace=@('crtxclear.rel');if(-not $sizes.XINIT){$replace+=@('crtxinit.rel')}
- $objects=@();$inputs=@();$metadata=@{};$rawVectors=@();$mainCount=0
+ $objects=@();$inputs=@();$metadata=@{};$rawVectors=@();$mainCount=0;$mainOwner=''
  $slots=[Collections.Generic.HashSet[int]]::new()
  foreach($u in $Config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'}){
   $text=[IO.File]::ReadAllText((Join-Path $Root ($u.name+'.asm')))
@@ -111,7 +111,7 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
     $b=$begins[$i];$symbol=$b.Groups[1].Value
     if($symbol -cne $ends[$i].Groups[1].Value -or $b.Groups[4].Value -cne '0'){throw 'startup-opaque-or-incomplete-function'}
     $null=$names.Add($symbol)
-    if($symbol -ceq '_main'){if($b.Groups[2].Value -cne '0'){throw 'startup-main-is-isr'};$mainCount++}
+    if($symbol -ceq '_main'){if($b.Groups[2].Value -cne '0'){throw 'startup-main-is-isr'};$mainCount++;$mainOwner=$asm}
    }
    foreach($s in $ob.symbols|Where-Object{$_.binding -ceq 'Def' -and $_.area -ge 0 -and $_.name.StartsWith('_')}){
     if($ob.areas[$s.area].name -ceq 'CSEG' -and -not $names.Contains($s.name)){
@@ -133,9 +133,12 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
  }
  if($mainCount -ne 1){throw 'startup-main-not-unique'}
  $objects+=@($Selection.selected)
- $members=@{};$startCount=0;$hookReferenced=$false;$markerNames=@('__mcs51_genXINIT','__mcs51_genXRAMCLEAR')
+ $members=@{};$startCount=0;$hookReferenced=$false;$internalBytes=0;$markerNames=@('__mcs51_genXINIT','__mcs51_genXRAMCLEAR','__mcs51_genRAMCLEAR')
  foreach($item in $objects){
   $ob=$item.rel;$member=$item.member;$crt=$member -and $Contract.crtMembers.ContainsKey($member)
+  # Count allocation in every selected object, including libraries. Register
+  # banks and the stack are scratch at C entry; actual internal C storage is not.
+  foreach($a in $ob.areas){if($a.name -cmatch '^(DSEG|OSEG|ISEG|IABS|BSEG|BSEG_BYTES|BIT_BANK)$'){$internalBytes+=$a.size}}
   if($crt){if($ob.sha256 -cnotin @($Contract.crtMembers[$member]) -or $members.ContainsKey($member)){throw 'startup-nonstandard-crt'};$members[$member]=$item}
   $start=$ob.name -ceq 'startup.rel';if($start){$startCount++}
   foreach($a in $ob.areas){if($sizes.ContainsKey($a.name) -and $sizes[$a.name] -eq 0 -and $a.size){throw 'startup-rel-empty-extent-conflict'}}
@@ -168,9 +171,10 @@ function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$
   }
  }
  if($startCount -ne 1 -or $members.Count -ne $Contract.crtMembers.Count){throw 'startup-incomplete-canonical-closure'}
+ if(-not $internalBytes){$replace+=@('crtclear.rel')}
  $archive=@($replace|ForEach-Object{$members[$_].path}|Sort-Object -Unique)
  if($archive.Count -ne 1){throw 'startup-ambiguous-crt-archive'}
- return @{replacements=$replace;archive=$archive[0];map=$map;inputs=$inputs;rawVectors=$rawVectors;sectionBytes=$sizes;selectedObjectCount=$objects.Count;hookReferenced=$hookReferenced;hook=$members['_startup.rel']}
+ return @{replacements=$replace;archive=$archive[0];map=$map;inputs=$inputs;rawVectors=$rawVectors;sectionBytes=$sizes;internalObjectBytes=$internalBytes;mainOwner=$mainOwner;selectedObjectCount=$objects.Count;hookReferenced=$hookReferenced;hook=$members['_startup.rel']}
 }
 
 function New-Mx251StartupAssembly([string]$Member,$Demand) {
@@ -178,6 +182,8 @@ function New-Mx251StartupAssembly([string]$Member,$Demand) {
  foreach($area in @('CSEG','GSINIT0','GSINIT1','GSINIT2','GSINIT3','GSINIT4','GSINIT5','GSINIT','GSFINAL')){$lines.Add(".area $area (CODE)")}
  if($Member -ceq 'crtxinit.rel'){
   $lines.Add('.area GSINIT3 (CODE)');$lines.Add('__mcs51_genXINIT::')
+ } elseif($Member -ceq 'crtclear.rel') {
+  $lines.Add('.area GSINIT4 (CODE)');$lines.Add('__mcs51_genRAMCLEAR::')
  } else {
   $lines.Add('.area GSINIT4 (CODE)');$lines.Add('__mcs51_genXRAMCLEAR::')
   foreach($name in @('PSEG','XSEG')){
@@ -197,12 +203,28 @@ function New-Mx251StartupAssembly([string]$Member,$Demand) {
  return ($lines -join "`n")+"`n"
 }
 
+function Get-Mx251StartupLayout([string]$Root,$Demand) {
+ $map=$Demand.map;$entry=$map.symbols['__sdcc_gsinit_startup'];$homeBase=$map.areas.HOME.base
+ # The reset slot contains a 16-bit LJMP. Keep its extended trampoline when
+ # initialization is outside that bank, including a possible downward crossing.
+ if(-not $entry -or ($entry -shr 16) -ne ($homeBase -shr 16) -or (($entry-10) -shr 16) -ne ($homeBase -shr 16)){return $null}
+ $path=Join-Path $Root $Demand.mainOwner;$text=[IO.File]::ReadAllText($path)
+ $trampoline='(?m)^__sdcc_mcs251_reset_trampoline::\r?\n[ \t]*ejmp[ \t]+__sdcc_gsinit_startup[ \t]*\r?\n'
+ $finish='(?m)^[ \t]*ejmp[ \t]+__sdcc_program_startup[ \t]*\r?\n'
+ $call='(?m)^__sdcc_program_startup:\r?\n[ \t]*ecall[ \t]+_main[ \t]*\r?\n__sdcc_program_exit:\r?\n[ \t]*sjmp[ \t]+\.[ \t]*\r?\n'
+ foreach($pattern in @($trampoline,$finish,$call)){if([regex]::Matches($text,$pattern).Count -ne 1){return $null}}
+ $text=[regex]::Replace($text,$trampoline,"`t.globl __sdcc_mcs251_reset_trampoline`n")
+ $text=[regex]::Replace($text,$finish,'')
+ $text=[regex]::Replace($text,$call,[System.Text.RegularExpressions.MatchEvaluator]{param($m)"`t.area GSFINAL (CODE)`n"+$m.Value+"`t.area HOME (CODE)`n"})
+ return @{owner=$Demand.mainOwner;rel=[IO.Path]::ChangeExtension($Demand.mainOwner,'.rel');text=$text;homeBytesRemoved=10;savedBytes=8}
+}
+
 function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$AdditionalArchives=@{}) {
  $record=[ordered]@{schema=1;status='FALLBACK_FULL_STARTUP';applied=$false;hardwareExecuted=$false};$saved=@();$accepted=$false
  try {
   . (Join-Path $PSScriptRoot 'StartupArchive.ps1')
   $contractPath=Join-Path $PSScriptRoot 'StartupRuntimeContract.json';$contract=Get-Content -LiteralPath $contractPath -Raw|ConvertFrom-Json -AsHashtable
-  if($contract.schema -ne 2 -or $contract.contract -cne 'mx251.linked-c-initialization.v2'){throw 'startup-contract-mismatch'}
+  if($contract.schema -ne 3 -or $contract.contract -cne 'mx251.linked-c-initialization.v3'){throw 'startup-contract-mismatch'}
   $record.contractSha256=Hash-File $contractPath
   $assemblers=@($contract.assemblerSha256)
   if($contract.ContainsKey('compatibleAssemblerSha256')){$assemblers+=@($contract.compatibleAssemblerSha256)}
@@ -219,6 +241,9 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   $linkArgs=@($prior.arguments);if($linkArgs[-2] -cne '-o' -or $linkArgs[-1] -cne 'linked.partial.hex'){throw 'startup-unexpected-link-output'}
   $selection=Get-Mx251StartupSelection (Join-Path $Root 'linked.partial.map') $ToolRoot $contract
   $demand=Get-Mx251StartupDemand $Root $Config $linkArgs $selection $contract;$record.demand=$demand
+  $layout=Get-Mx251StartupLayout $Root $demand
+  $mutatedInputs=@('startup.rel');$backupInputs=@('startup.asm','startup.rel')
+  if($layout){$mutatedInputs+=@($layout.owner,$layout.rel);$backupInputs+=@($layout.owner,$layout.rel)}
   $parentImage=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.parentBytes=$parentImage.Count
   $work=Join-Path $Root 'startup-runtime';$privateDir=Join-Path $Root 'startup-libraries';$null=[IO.Directory]::CreateDirectory($work);$null=[IO.Directory]::CreateDirectory($privateDir)
   $privateArchive=Join-Path $privateDir ([IO.Path]::GetFileName($demand.archive));$members=$selection.archives[$demand.archive];$hashes=@{};$arguments=@();$changes=@()
@@ -241,7 +266,7 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   if($newMembers.Count -ne $members.Count){throw 'startup-archive-count-changed'}
   for($i=0;$i -lt $members.Count;$i++){if($newMembers[$i].name -cne $members[$i].name -or $newMembers[$i].sha256 -cne $hashes[$members[$i].name]){throw 'startup-archive-order-content-changed'}}
   $backup=Join-Path $Root 'startup-baseline';$null=[IO.Directory]::CreateDirectory($backup)
-  foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Name -in @('startup.asm','startup.rel') -or $_.Extension -ceq '.rst'}){
+  foreach($p in Get-ChildItem -LiteralPath $Root -File|Where-Object{$_.Name -like 'linked.partial.*' -or $_.Name -in $backupInputs -or $_.Extension -ceq '.rst'}){
    [IO.File]::Copy($p.FullName,(Join-Path $backup $p.Name),$false);$saved+=@{name=$p.Name;sha256=(Hash-File $p.FullName)}
   }
   $record.baselineFiles=$saved
@@ -250,7 +275,18 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   $oldStartup=Read-Mx251StartupRel ([IO.File]::ReadAllBytes((Join-Path $Root 'startup.rel'))) 'startup.rel'
   $pattern='(?m)^\s*ecall\s+___sdcc_external_startup\s*\r?\n\s*mov\s+a,dpl\s*\r?\n\s*jz\s+__sdcc_init_data\s*\r?\n\s*ejmp\s+__sdcc_program_startup\s*\r?\n__sdcc_init_data:\s*'
   if([regex]::Matches($text,$pattern).Count -ne 1){throw 'startup-default-hook-sequence'}
-  [IO.File]::WriteAllText($startup,[regex]::Replace($text,$pattern,''),[Text.UTF8Encoding]::new($false))
+  $text=[regex]::Replace($text,$pattern,'')
+  if($layout){
+   $text=$text.Replace('__sdcc_gsinit_startup::',"__sdcc_mcs251_reset_trampoline::`n__sdcc_gsinit_startup::")
+   $owner=Join-Path $Root $layout.owner;$object=Join-Path $Root $layout.rel
+   $oldOwner=Read-Mx251StartupRel ([IO.File]::ReadAllBytes($object)) $layout.rel
+   [IO.File]::WriteAllText($owner,$layout.text,[Text.UTF8Encoding]::new($false))
+   Run-Tool 'startup-contiguous-entry' (Join-Path $ToolRoot 'bin/sdas251.exe') @('-plosgff',$layout.rel,$layout.owner)
+   $newOwner=Read-Mx251StartupRel ([IO.File]::ReadAllBytes($object)) $layout.rel
+   $changes+=@{member=$layout.rel;beforeBytes=($oldOwner.areas|Measure-Object -Property size -Sum).Sum;afterBytes=($newOwner.areas|Measure-Object -Property size -Sum).Sum;sourceSha256=(Hash-File $owner)}
+   $record.layout=@{owner=$layout.owner;savedBytes=$layout.savedBytes;reset='same-bank-ljmp';main='gsfinal-call-and-exit'}
+  }
+  [IO.File]::WriteAllText($startup,$text,[Text.UTF8Encoding]::new($false))
   Run-Tool 'startup-c-entry' (Join-Path $ToolRoot 'bin/sdas251.exe') @('-plosgff','startup.rel','startup.asm')
   $newStartup=Read-Mx251StartupRel ([IO.File]::ReadAllBytes((Join-Path $Root 'startup.rel'))) 'startup.rel'
   $changes+=@{member='startup.rel';beforeBytes=($oldStartup.areas|Measure-Object -Property size -Sum).Sum;afterBytes=($newStartup.areas|Measure-Object -Property size -Sum).Sum;sourceSha256=(Hash-File $startup)}
@@ -269,14 +305,20 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   }
   $map=Read-Mx251StartupMap (Join-Path $Root 'linked.partial.map')
   foreach($name in @('XISEG','PSEG','XSEG','HOME','SSEG')){
-   if($map.areas[$name].base -ne $demand.map.areas[$name].base -or $map.areas[$name].size -ne $demand.map.areas[$name].size){throw 'startup-data-or-vector-layout-changed'}
+   $removed=if($layout -and $name -ceq 'HOME'){$layout.homeBytesRemoved}else{0}
+   if($map.areas[$name].base -ne $demand.map.areas[$name].base -or $map.areas[$name].size -ne $demand.map.areas[$name].size-$removed){throw 'startup-data-or-vector-layout-changed'}
   }
   if($map.symbols.l_XINIT -ne $demand.sectionBytes.XINIT -or $map.symbols.l_XISEG -ne $demand.sectionBytes.XISEG){throw 'startup-copy-extent-changed'}
   $image=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.candidateBytes=$image.Count
+  if($layout){
+   $reset=$map.areas.HOME.base;$entry=$map.symbols['__sdcc_gsinit_startup']
+   if(($reset -shr 16) -ne ($entry -shr 16) -or $map.symbols['__sdcc_mcs251_reset_trampoline'] -ne $entry -or $image[$reset] -ne 2 -or ($image[$reset+1]*256+$image[$reset+2]) -ne ($entry -band 65535)){throw 'startup-reset-entry-mismatch'}
+   if($map.symbols['__sdcc_program_startup'] -ne $map.areas.GSFINAL.base -or $map.areas.GSFINAL.size -ne 6){throw 'startup-final-entry-mismatch'}
+  }
   $delta=0;foreach($change in $changes){$delta+=$change.beforeBytes-$change.afterBytes}
   if($delta -le 0 -or $record.parentBytes-$record.candidateBytes -ne $delta){throw 'startup-whole-image-cost-mismatch'}
   Assert-Mx251FormatRawVectorImages $demand.rawVectors $parentImage $image 'startup'
-  foreach($p in $demand.inputs){if($p.path -cne 'startup.rel' -and (Hash-File (Join-Path $Root $p.path)) -cne $p.sha256){throw 'startup-input-drift'}}
+  foreach($p in $demand.inputs){if($p.path -cnotin $mutatedInputs -and (Hash-File (Join-Path $Root $p.path)) -cne $p.sha256){throw 'startup-input-drift'}}
   $trial=@($commands|Where-Object{$_.label -ceq 'startup-link'})[-1]
   $prior.label='startup-baseline-link';$trial.label='link';$trial.actualLogLabel='startup-link';Write-Json (Join-Path $Root 'commands.json') @($commands.ToArray())
   $record.status='APPLIED_LINKED_C_INITIALIZATION';$record.applied=$true;$record.savedBytes=$delta;$record.changes=$changes;$record.librarySha256=Hash-File $privateArchive;$accepted=$true

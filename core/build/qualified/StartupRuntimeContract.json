@@ -1,10 +1,11 @@
 {
-  "schema": 2,
-  "contract": "mx251.linked-c-initialization.v2",
+  "schema": 3,
+  "contract": "mx251.linked-c-initialization.v3",
   "cEntry": {
     "preserved": ["C object initialization", "SPX", "interrupt state", "custom startup hooks"],
     "scratch": ["GPR", "DPX", "arithmetic flags"],
-    "emptyRanges": "Emit no instructions for an empty initialization range."
+    "emptyRanges": "Emit no instructions for an empty initialization range; internal demand includes every selected object's allocation.",
+    "layout": "Same-bank reset jumps directly to GSINIT0; GSFINAL calls main and retains its return loop."
   },
   "archives": {
     "lib/mcs251-large-stack-auto/libfloat.lib": {
