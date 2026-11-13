@@ -248,7 +248,7 @@ function New-Mx251FormatSource($Demand,[string]$Kernel) {
   $ops=@($calls|ForEach-Object{$_.plan.tokens}|ForEach-Object{$_})
   $prefix='mx_'+$api;$buffer=$api -ceq 'sprintf'
   if($ops.Count){
-   $body=$Kernel.Substring($Kernel.IndexOf('static unsigned char mx_number'))
+   $body=New-Mx251IntegerFormatKernel $Kernel $ops
    $body=$body.Replace('mx_number',$prefix+'_number')
    if($buffer){
     $body=$body.Replace('uint16_t value,','char *destination, uint16_t value,')
@@ -256,22 +256,23 @@ function New-Mx251FormatSource($Demand,[string]$Kernel) {
    }
    # 复用已评审的能力裁剪：不可能出现的符号/字母大小写/填充分支删除。
    foreach($pair in @(@(1,'(flags & 1u)'),@(2,'(flags&2u)'),@(4,'(flags&4u)'))){
-    $values=@($ops|ForEach-Object{[int](($_.flags -band $pair[0]) -ne 0)}|Sort-Object -Unique)
+    $values=@(Get-Mx251IntegerFormatFlagValues $ops $pair[0])
     if($values.Count -eq 1){$body=$body.Replace($pair[1],('('+[string]$values[0]+')'))}
    }
    # 与原生成器相同：单一能力化为常量，多种能力保留形参。
    $extra=@();$constants=''
    foreach($field in @('radix','width','flags')){
     $values=@($ops|ForEach-Object{$_[$field]}|Sort-Object -Unique)
+    if($field -ceq 'flags' -and [regex]::Matches($body,'\bflags\b').Count -eq 1){$values=@(0)}
     if($values.Count -eq 1){$body=[regex]::Replace($body,',\s*unsigned char '+$field+'\b','');$constants+='    const unsigned char '+$field+'='+$values[0]+"u;`n"}else{$extra+=@($field)}
    }
    if($constants){$first=$body.IndexOf('{')+1;$body=$body.Substring(0,$first)+"`n"+$constants+$body.Substring($first)}
    $result+=$body+"`n"
   } else {$extra=@()}
-  $signature=if($buffer){'char *buffer, const char *format, ...'}else{'const char *format, ...'}
-  $result+='int '+$api+'('+$signature+")`n{`n"
+  $signature=if($buffer){'char *buffer, const unsigned char __code *cursor, va_list ap'}else{'const unsigned char __code *cursor, va_list ap'}
+  $result+='static int mx_'+$api+'_body('+$signature+")`n{`n"
   if($buffer){$result+="    char *destination=buffer;`n"}
-  $result+="    const unsigned char __code *cursor=(const unsigned char __code *)format;`n    unsigned char c, width, flags, radix, emitted;`n    uint16_t value;`n    int count=0;`n    va_list ap;`n    va_start(ap,format);`n    while ((c=*cursor++)!=0) {`n"
+  $result+="    unsigned char c, width, flags, radix, emitted;`n    uint16_t value;`n    int count=0;`n    while ((c=*cursor++)!=0) {`n"
   $sink=if($buffer){'*destination++=(char)c;'}else{'putchar(c);'}
   if($ops.Count){
    $tree=New-Mx251FormatDecision $ops
@@ -293,7 +294,7 @@ function New-Mx251FormatSource($Demand,[string]$Kernel) {
   }
   $result+="    }`n"
   if($buffer){$result+="    *destination=0;`n"}
-  $result+="    va_end(ap);`n    return count;`n}`n"
+  $result+="    return count;`n}`n"+(Write-Mx251FormatEntry $api)
  }
  return $result
 }
@@ -363,6 +364,7 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   if((Hash-File (Join-Path $PSScriptRoot 'FloatFormatKernel.c.template')) -cne $contract.floatKernelSha256){throw 'format-float-kernel-contract-mismatch'}
   $record.contractSha256=Hash-File $contractPath
   $demand=Get-Mx251FormatDemand $Root $Config;$record.demand=$demand
+  $demand.nativeIntegerDivision=$Config.runtime -cin @('native-int-mdu32','native-math-mdu32')
   $record.parentLibraries=@(Get-Mx251FormatLibraries (Join-Path $Root 'linked.partial.map') $ToolRoot $contract)
   if(-not @($record.parentLibraries|Where-Object{$_.member -ceq 'printf_large.rel'}).Count){throw 'format-full-provider-not-selected'}
   $parentImage=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.parentBytes=$parentImage.Count
@@ -372,6 +374,7 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   # 库不继承项目宏或包含目录，避免同名头文件/宏改变公开运行库契约。
   $compileArgs=@('-mmcs251',('--model-'+$Config.model),'--stack-auto','--opt-code-size','--std-sdcc11','--nostdinc',('-I'+(Join-Path $ToolRoot 'include')),('-I'+(Join-Path $ToolRoot 'include/mcs51')),'--mcs251-wide-ordinary','--mcs251-function-metadata','-c','format-runtime.c','-o','format-runtime.rel')
   if($MachineIr){$compileArgs+='--mcs251-machine-ir'}
+  if($demand.nativeIntegerDivision){$compileArgs+='--mcs251-native-int-runtime'}
   $record.machineIr=[bool]$MachineIr
   Run-Tool 'format-runtime' $compilerExe $compileArgs
   Check-Assembly (Join-Path $Root 'format-runtime.asm')

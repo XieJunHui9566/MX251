@@ -23,7 +23,7 @@
     "lib/mcs251-small-stack-auto/libsdcc.lib": "70946fe7a06c07dfd29a636e89928cdaf961ec9c02348c447c81d79856eb5dd0",
     "lib/mcs251-small-stack-auto/mcs251.lib": "6f46d3cbf9a10279a7ad8f4bf48ea957a9f1a227f6e6e9311db7086df5fd7ee3"
   },
-  "extendedGeneratorSha256": "79ec0165d5e423d6cf64e490d0d43c1d1561cdafcce375452ca999d15e8bded4",
+  "extendedGeneratorSha256": "4c195dd106066caa54a9f42d67e167ac584e9a400bde9d5d85acbf10c43ee940",
   "byteConversionContract": "b narrows promoted int16 slot to low8; signed d/i sign extends after truncation; mismatched slots retain full runtime",
   "floatKernelSha256": "b2c768b8f9af796b54919fe88a2d3904b05356abc4d3a5ee794b3116680e5be3"
 }
