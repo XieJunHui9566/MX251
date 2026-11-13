@@ -171,6 +171,7 @@ value *valFromType (sym_link *);
 value *constFloatVal (const char *);
 value *constFixed16x16Val (const char *);
 int getNelements (sym_link *, initList *);
+void mcs251NormalizeInitializer (sym_link *, initList *);
 value *valForArray (struct ast *);
 value *valForStructElem (struct ast *, struct ast *);
 value *valForCastAggr (struct ast *, sym_link *, struct ast *, int);

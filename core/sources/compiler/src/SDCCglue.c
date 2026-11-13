@@ -1982,6 +1982,16 @@ emitStaticSeg (memmap *map, struct dbuf_s *oBuf)
             {
               werrorfl (sym->fileDef, sym->lineDef, E_UNKNOWN_SIZE, sym->name);
             }
+          /* A CODE tentative definition stays uninitialized in the symbol
+           * table until all declarations have been merged.  Synthesizing its
+           * zero value during allocation makes a later initializer look like
+           * a second definition.  String literals carry their bytes separately. */
+          if (TARGET_IS_MCS251 && !sym->ival && !sym->isstrlit &&
+              SPEC_SCLS (sym->etype) == S_CODE && !IS_FUNC (sym->type))
+            {
+              sym->ival = newiList (INIT_DEEP, newiList (INIT_NODE, newAst_VALUE (constIntVal ("0"))));
+              sym->ival->lineno = sym->lineDef;
+            }
           /* if it has an initial value */
           if (sym->ival)
             {//printf("ival.\n");

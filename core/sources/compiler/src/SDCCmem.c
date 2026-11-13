@@ -450,7 +450,7 @@ defaultOClass (symbol *sym)
         }
       else
         {
-          if (!sym->ival && !SPEC_ABSA (sym->etype) && !(IS_EXTERN (sym->etype) || IS_FUNC (sym->type)))
+          if (!TARGET_IS_MCS251 && !sym->ival && !SPEC_ABSA (sym->etype) && !(IS_EXTERN (sym->etype) || IS_FUNC (sym->type)))
             {
               sym->ival = newiList(INIT_DEEP, revinit(newiList(INIT_NODE, newAst_VALUE(constIntVal("0"))))); // Default initialization to 0.
               sym->ival->lineno = sym->lineDef;

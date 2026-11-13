@@ -33,6 +33,8 @@
 
 long cNestLevel;
 
+#include "mcs251/initializer.c.inc"
+
 
 /*-----------------------------------------------------------------*/
 /* newValue - allocates and returns a new value                    */

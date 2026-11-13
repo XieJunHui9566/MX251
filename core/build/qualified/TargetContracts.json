@@ -70,7 +70,7 @@
     },
     "AI8051U-34K64-32": {
       "id": "AI8051U-34K64-32",
-      "revision": 8,
+      "revision": 9,
       "displayName": "AI8051U-34K64-32Bit\uff08STC80251\uff09",
       "instructionMode": "32-bit",
       "startup": {
@@ -106,13 +106,13 @@
         "codeBase": 16711680,
         "codeBytes": 65536,
         "xramBase": 65536,
-        "xramBytes": 28672,
+        "xramBytes": 32768,
         "iramBytes": 256,
         "stackBase": 1024,
         "stackBytes": 1024,
-        "stackLimit": 4096
+        "stackLimit": 2048
       },
-      "qualification": "AI-specific 0x7000 XDATA window from sealed R89/V0.0100; fixed complete projects and direct helper/ISR boundary qualification only. Startup, stack and vectors unchanged. Large native math remains rejected.",
+      "qualification": "AI8051U-34K64 physical memory: 2 KiB EDATA and 32 KiB XDATA at 0x010000-0x017fff; manufacturer manual chapter 12, printed pages 620 and 627. Large native math remains rejected.",
       "compilerCapabilities": {
         "sfrLayout": {
           "schema": 1,

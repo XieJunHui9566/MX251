@@ -118,4 +118,30 @@ float modff(float x, float * y);
 
 int isnan(float f);
 int isinf(float f);
+/* MCS251 uses the same binary32 representation for double and float. */
+#if defined(__SDCC_mcs251)
+#define HUGE_VAL HUGE_VALF
+#define sin sinf
+#define cos cosf
+#define tan tanf
+#define asin asinf
+#define acos acosf
+#define atan atanf
+#define atan2 atan2f
+#define sinh sinhf
+#define cosh coshf
+#define tanh tanhf
+#define exp expf
+#define log logf
+#define log10 log10f
+#define pow powf
+#define sqrt sqrtf
+#define fabs fabsf
+#define frexp frexpf
+#define ldexp ldexpf
+#define ceil ceilf
+#define floor floorf
+#define modf modff
+#endif
+
 #endif  /* _INC_MATH */

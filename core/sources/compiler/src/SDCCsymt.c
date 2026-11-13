@@ -2402,7 +2402,9 @@ checkSClass (symbol *sym, bool isProto)
           if ((SPEC_SCLS (sym->etype) == S_AUTO     ||
                SPEC_SCLS (sym->etype) == S_FIXED    ||
                SPEC_SCLS (sym->etype) == S_STACK    ||
-               SPEC_SCLS (sym->etype) == S_XSTACK))
+               SPEC_SCLS (sym->etype) == S_XSTACK ||
+               /* MCS251's SPX stack is in the EDATA address space. */
+               (TARGET_IS_MCS251 && SPEC_SCLS (sym->etype) == S_EDATA)))
             {
               SPEC_SCLS (sym->etype) = S_AUTO;
             }
@@ -2527,6 +2529,7 @@ checkDecl (symbol * sym, int isProto)
   checkSClass (sym, isProto);   /* check the storage class     */
   changePointer (sym->type);    /* change pointers if required */
   arraySizes (sym->type, sym->name);
+  mcs251NormalizeInitializer (sym->type, sym->ival);
 
   // If no custom crt0 is used, the startup function is void main(void) or int main(void).
   if (!sym->level && IS_FUNC (sym->type) && !strcmp (sym->name, "main") && !options.no_std_crt0)
