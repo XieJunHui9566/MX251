@@ -10,9 +10,9 @@ static unsigned ordinaryScalarType(sym_link *t)
   unsigned n=getSize(t);
   return n==1 || n==2 || n==4?n:0;
 }
-static bool ordinaryScalarSignature(sym_link *ft,char *out,size_t size)
+static bool ordinaryScalarSignatureMode(sym_link *ft,char *out,size_t size,bool native)
 {
-  if(!ft || !IS_FUNC(ft) || FUNC_SDCCCALL(ft)!=2 || !options.stackAuto ||
+  if(!ft || !IS_FUNC(ft) || (FUNC_SDCCCALL(ft)!=2 && (!native || FUNC_SDCCCALL(ft)!=4)) || !options.stackAuto ||
      options.useXstack || options.noRegParams || FUNC_HASVARARGS(ft) ||
      FUNC_NOPROTOTYPE(ft) || ft->funcAttrs.oldStyle || IFFUNC_ISISR(ft) ||
      IFFUNC_ISBANKEDCALL(ft) || IFFUNC_ISNAKED(ft) || IFFUNC_ISCRITICAL(ft) ||
@@ -42,5 +42,9 @@ static bool ordinaryScalarSignature(sym_link *ft,char *out,size_t size)
   }
   if(used<0 || (size_t)used+2>size)return false;
   strcpy(out+used,")");return true;
+}
+static bool ordinaryScalarSignature(sym_link *ft,char *out,size_t size)
+{
+  return ordinaryScalarSignatureMode(ft,out,size,false);
 }
 #endif

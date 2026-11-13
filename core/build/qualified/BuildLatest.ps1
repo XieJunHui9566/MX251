@@ -21,6 +21,7 @@ param(
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
  [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
+ [ValidateSet('AUTO','OFF')][string]$NearTransfers='AUTO',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
  [ValidateSet('128','256','512')][string]$WideValueLimit='128',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='512'
@@ -90,6 +91,7 @@ try {
  if($FunctionGc){$start.ArgumentList.Add('-FunctionGc')}
  if($FunctionGcKeep){$start.ArgumentList.Add('-FunctionGcKeep');$start.ArgumentList.Add($FunctionGcKeep)}
  $start.ArgumentList.Add('-SelectiveLeafAbi');$start.ArgumentList.Add($SelectiveLeafAbi)
+ $start.ArgumentList.Add('-NearTransfers');$start.ArgumentList.Add($NearTransfers)
  $start.ArgumentList.Add('-OrderedAsm');$start.ArgumentList.Add($OrderedAsm)
  $start.ArgumentList.Add('-WideValueLimit');$start.ArgumentList.Add($WideValueLimit)
  $start.ArgumentList.Add('-WideNodeLimit');$start.ArgumentList.Add($WideNodeLimit)

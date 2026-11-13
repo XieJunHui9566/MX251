@@ -17,6 +17,7 @@ param(
  [switch]$CalleePreservation,
  [switch]$NativeIntegerRuntime,
  [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
+ [ValidateSet('AUTO','OFF')][string]$NearTransfers='AUTO',
  [switch]$WordCompareImmediate=$true
 )
 $ErrorActionPreference='Stop'
@@ -71,6 +72,7 @@ $arguments=@('-S',$project,'-B',$build,'-G','Ninja',('-DCMAKE_MAKE_PROGRAM='+[IO
  ('-DMX251_FUNCTION_SHARING='+(&$onoff $FunctionSharing)),
  ('-DMX251_MACHINE_IR='+(&$onoff $MachineIr)),
  ('-DMX251_SELECTIVE_LEAF_ABI='+$SelectiveLeafAbi),
+ ('-DMX251_NEAR_TRANSFERS='+$NearTransfers),
  ('-DMX251_CALLEE_PRESERVATION='+(&$onoff $CalleePreservation)),
  ('-DMX251_NATIVE_INTEGER_RUNTIME='+(&$onoff $NativeIntegerRuntime)),
  ('-DMX251_C251_BIT_COMPLEMENT='+(&$onoff $C251BitComplement)),

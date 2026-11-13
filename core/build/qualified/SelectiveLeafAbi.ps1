@@ -129,6 +129,7 @@ function Invoke-Mx251SelectiveLeafAbi([string]$Root,$Config,$Receipt,[string]$To
  $start=[Diagnostics.ProcessStartInfo]::new();$start.FileName=[Environment]::ProcessPath
  $start.UseShellExecute=$false;$start.CreateNoWindow=$true;$start.RedirectStandardOutput=$true;$start.RedirectStandardError=$true
  $start.Environment['MX251_INTERNAL_ABI4_CONTRACT']=$contract
+ $start.Environment['MX251_DEFER_NEAR_TRANSFERS']='1'
  foreach($arg in @('-NoProfile','-NonInteractive','-File',$BuildScript,'-OutputDirectory',$candidate,'-SelectiveLeafAbi','OFF')){$start.ArgumentList.Add($arg)}
  foreach($key in $BuildParameters.Keys){
   if($key -in @('OutputDirectory','ManagedOutput','SelectiveLeafAbi')){continue}

@@ -23,6 +23,7 @@ param(
  [ValidateSet('128','256','512')][string]$WideValueLimit='128',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='512',
  [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
+ [ValidateSet('AUTO','OFF')][string]$NearTransfers='AUTO',
  [switch]$ManagedOutput
 )
 $ErrorActionPreference='Stop'
@@ -513,7 +514,22 @@ try {
  $receipt=Get-Content -LiteralPath (Join-Path $outputRoot 'receipt.json') -Raw|ConvertFrom-Json -AsHashtable
  $receipt.selectiveLeafAbi=@{mode=$SelectiveLeafAbi;status=$selection.status;applied=$selection.applied;savedBytes=$selection.savedBytes;recordSha256=(Hash-File (Join-Path $outputRoot 'selective-leaf-abi.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'SelectiveLeafAbi.ps1'))}
  $receipt.buildIdentity.selectiveLeafAbi=$receipt.selectiveLeafAbi
+ # The selected ABI trial is complete. Apply one final whole-image transfer
+ # selection; nested trials deliberately leave this step to their caller.
+ $commands.Clear()
+ foreach($command in (Get-Content -LiteralPath (Join-Path $outputRoot 'commands.json') -Raw|ConvertFrom-Json -AsHashtable)){$commands.Add($command)}
+ . (Join-Path $PSScriptRoot 'NearTransfers.ps1')
+ $near=Invoke-Mx251NearTransfers $outputRoot $config $receipt $toolRoot $ProfileRoot $NearTransfers
+ Write-Json (Join-Path $outputRoot 'near-transfers.json') $near
+ $receipt.nearTransfers=@{mode=$NearTransfers;status=$near.status;applied=$near.applied;savedBytes=$near.savedBytes;calls=$near.calls;jumps=$near.jumps;recordSha256=(Hash-File (Join-Path $outputRoot 'near-transfers.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'NearTransfers.ps1'))}
+ $receipt.buildIdentity.nearTransfers=$receipt.nearTransfers
+ if($near.applied){
+  $memory=Get-Mx251FormatHex (Join-Path $outputRoot 'firmware.hex')
+  $finalPlan=Get-Content -LiteralPath (Join-Path $outputRoot 'interrupt-vectors.plan.json') -Raw|ConvertFrom-Json -AsHashtable
+  Assert-Mx251InterruptTable $outputRoot $config $finalPlan $memory ([IO.File]::ReadAllText((Join-Path $outputRoot 'linked.partial.map'))) ([long]$layout.codeBase)
+ }
  Write-Json (Join-Path $outputRoot 'receipt.json') $receipt
+ Write-Json (Join-Path $outputRoot 'build-state.json') @{status='complete';firmware='firmware.hex';firmwareSha256=$receipt.firmwareSha256}
  Write-Output "Build complete: $outputRoot\firmware.hex ($($receipt.codeBytes) code bytes; leaf ABI: $($selection.status))"
  exit 0
 } catch {

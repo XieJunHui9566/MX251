@@ -4,11 +4,15 @@ static void ordinaryScalarMetadata(ebbIndex *ebbi)
   char signature[128];
   if(ordinaryScalarSignature(currFunc->type,signature,sizeof signature))
     dbuf_printf(codeOutBuf,"; mx251-scalar-definition schema=1 symbol=%s signature=%s\n",currFunc->rname,signature);
+  else if(FUNC_SDCCCALL(currFunc->type)==4 && ordinaryScalarSignatureMode(currFunc->type,signature,sizeof signature,true))
+    dbuf_printf(codeOutBuf,"; mx251-near-definition schema=1 symbol=%s signature=%s\n",currFunc->rname,signature);
   for(int b=0;b<ebbi->count;++b) {
     eBBlock *bb=ebbi->bbOrder[b];
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next) {
       if(ic->op!=CALL || !IC_LEFT(ic) || IC_LEFT(ic)->type!=SYMBOL)continue;
       symbol *callee=OP_SYMBOL(IC_LEFT(ic));sym_link *ft=operandType(IC_LEFT(ic));
+      if(IS_FUNC(ft) && FUNC_SDCCCALL(ft)==4 && ordinaryScalarSignatureMode(ft,signature,sizeof signature,true))
+        dbuf_printf(codeOutBuf,"; mx251-near-call schema=1 owner=%s target=%s signature=%s\n",currFunc->rname,callee->rname,signature);
       if(!ordinaryScalarSignature(ft,signature,sizeof signature))continue;
       dbuf_printf(codeOutBuf,"; mx251-scalar-call schema=1 owner=%s target=%s signature=%s values=",currFunc->rname,callee->rname,signature);
       unsigned ordinal=0;
