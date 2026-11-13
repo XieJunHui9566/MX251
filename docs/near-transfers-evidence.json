@@ -1,0 +1,169 @@
+{
+  "status": "QUALIFIED_UNIFORM_75",
+  "implementationCommit": "ba57047b86af420ddfa87311ab907ff0fbb5507e",
+  "baselineCommit": "d58d0e4",
+  "date": "2026-11-13",
+  "summary": {
+    "projects": 75,
+    "improved": 71,
+    "unchanged": 4,
+    "larger": 0,
+    "savedBytes": 1624,
+    "mxTotalBytes": 201514,
+    "keilTotalBytes": 192051,
+    "within110": 59,
+    "within120": 72,
+    "stcStatuses": {
+      "BUILT": 59,
+      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
+      "FAILED": 3
+    },
+    "smallerThanStcRaw": 54,
+    "weightedKeilRatio": 1.049273370094402
+  },
+  "newWithin110": [
+    "p001",
+    "p003",
+    "p096"
+  ],
+  "newWithin120": [
+    "p149"
+  ],
+  "transfers": {
+    "calls": 1434,
+    "jumps": 190,
+    "functions": 327,
+    "statuses": {
+      "APPLIED": 71,
+      "NO_CANDIDATE": 3,
+      "RAW_ASSEMBLY_LAYOUT": 1
+    }
+  },
+  "compiler": {
+    "path": "toolchain/bin/sdcc.exe",
+    "sha256": "5931ace8038303b595defa6c6b9e41fa4ca3209ae6840566f8e343d46f7238e0",
+    "versionBanner": "Underlying driver reports SDCC 4.6.0 #0; MX251 build identity is this manifest."
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\Build-CMake.ps1",
+      "sha256": "9548b939e3c828d8f59289ccfafde923915607823c23c8553ae000074439b88d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Build.ps1",
+      "sha256": "e28c201ed95f284a70e00e5907eef8422825e3809e6b5b495344f65922a2c030"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\BuildLatest.ps1",
+      "sha256": "922aa212da6e5651a1c03be2afc689a94022e29ffa07e5b441b0f8cd814cdc1d"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\NearTransfers.ps1",
+      "sha256": "e7fd20dca6818c825d24927a0901bc7a609cbf34886dc7b88f735728612bff88"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\Project.cmake",
+      "sha256": "6804fd4aee1cea3956347f81f114cde71774765158673aa194e4ff3790c5a9ff"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\SelectiveLeafAbi.ps1",
+      "sha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\ordinary_scalar.h",
+      "sha256": "d0bd646539395ddfd4c9f1a010ce0d4674dfe692e607183ec46702322084a03b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\scalar_metadata.c.inc",
+      "sha256": "8372651865c1a929b15607033a3c3573d203226ab58bb863c03f36f26cfaf15b"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\check-near-transfers.ps1",
+      "sha256": "7a0d0c8c223212e5886d5174a0a7c6116de9e23522b221daba9ee479c824061f"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\tests\\near-transfers-cases.c",
+      "sha256": "122be4c61533b05dfb454cef7718d2d8e3b81fe1170ec6787e7f28a172dba7ea"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\near_transfer_fixture.py",
+      "sha256": "687fd597cb06d0e80d4f7abead5799a3241f084157e9920163ab3709f3a54a64"
+    }
+  ],
+  "comparison": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\comparison.json",
+    "sha256": "5860ad851a2fbb039d6589c106762fc0b4b5090c46ac0aafb8ed659afc94dc7f"
+  },
+  "hardware": [
+    {
+      "variant": "parent",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\hardware-parent\\result.json",
+        "sha256": "03d16ac498285cd4feff8280c05555fcc6f47bd58507454f3318ddb1519bfdab"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\board-parent\\receipt.json",
+        "sha256": "accbd161e515d34baf0dc98afc218721cb3fa24c6f5e9c81d48b1168048584eb"
+      },
+      "codeBytes": 1636,
+      "cases": 128,
+      "frames": 638,
+      "aggregateTicks": {
+        "0": 16016,
+        "1": 8320.0
+      }
+    },
+    {
+      "variant": "candidate",
+      "result": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\hardware-candidate\\result.json",
+        "sha256": "ab071f7db95633e6562f83c37f7619c0aa74dda973227a2bcb29019e055edc72"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\board-candidate\\receipt.json",
+        "sha256": "cc253b4b4a7b9dfee080ad8ed2fa9d585797b4b1fc4d24569dec0de4d57bca80"
+      },
+      "codeBytes": 1607,
+      "cases": 128,
+      "frames": 634,
+      "aggregateTicks": {
+        "0": 16016,
+        "1": 8320.0
+      }
+    }
+  ],
+  "extraChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\extra-checks.json",
+    "sha256": "d2dfd8acb0a44776c40221c2887534c35ec6b92a2b56798ce5506a95b8396713"
+  },
+  "selectionChecks": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\checks-03\\result.json",
+    "sha256": "5200ad2735fee79f6c73bfeaf7fa1d325933b0f24080b9410e8d524331014d30"
+  },
+  "optOut": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\opt-out-check.json",
+    "sha256": "917bb5c42093f9750ff5f8365a500e5280ef4ac0737012b288d6e3ec18c188ac"
+  },
+  "fullProjectRuntimeMeasured": false,
+  "sourceAlgorithmsChanged": false,
+  "qualification": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\qualification.json",
+    "sha256": "c948ae63f6e2b0fd4662ba9cc37abedea55f1911abb5801f996027b4df3147e2"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\core-04\\core.json",
+    "sha256": "8ebaf0e31c2d9fd63d468631543def2fdcc04261a9af4450121131c42099c337"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\Build-Optimized-04.ps1",
+    "sha256": "12fc4c5008378596f782a9cf800a8cbf1ce7983aa0e33f460838bd435026ddb6"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\attribution.json",
+    "sha256": "60e079011eb569f3a3f79c23720cd17bd6a9be7ef5e930c125da16d35c1efd01"
+  },
+  "researchInventory": {
+    "path": "E:\\STVAPP\\MX251-mainline-20261113\\near-transfers\\inventory.json",
+    "sha256": "606b148d3687164aac88e7d7be22f622786c4897fdd282f7320bb4c980d69ca3"
+  }
+}
