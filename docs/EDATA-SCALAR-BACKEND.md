@@ -1,5 +1,7 @@
 # EDATA 标量进入原生宽后端
 
+后续 [整数格式化优化](INTEGER-FORMAT-DIVMOD.md) 已将 p083 从 1969 B 降至 1809 B，并将 p115 推入 120% 线；下文保留本阶段对照结果。
+
 2026-11-14，分支 `codex/edata-scalar-backend`。编译器提交 `6fd6cb4`，函数裁剪接入提交 `31c16a7`。开发包位于 `E:/STVAPP/MX251-baseline/development/edata-scalars/core-next`，本轮没有替换冻结基线。
 
 EDATA 整数和 float 值传递现在使用独立的内存节点，普通 16/32 位对象使用原生宽 MOV；volatile 仍逐字节读写。支持跨文件符号、绝对地址、ABI2/ABI4 实参，以及读取后经别名或函数修改再读取。整数截断保留旧后端的低位访问范围，SEND 和 IPUSH 保留各自的字节顺序。
