@@ -109,9 +109,18 @@ void main(void)
 '''
 
 
-def create(output, mixed, model, hook):
+def create(output, mixed, model, hook, runtime='standard'):
     output.mkdir(parents=True, exist_ok=False)
-    (output/'storage.c').write_text(STORAGE, encoding='ascii', newline='\n')
+    storage=STORAGE
+    if runtime=='native-math':
+        storage=storage.replace('u32 storage_check(void)',
+            'volatile __edata float math_initial=1.25f, math_zero;\nu32 storage_check(void)')
+        storage=storage.replace('    return failed;',
+            '    if (math_initial!=1.25f || math_zero!=0.0f) failed |= 2048;\n'
+            '    if (math_initial/5.0f!=0.25f) failed |= 4096;\n    return failed;')
+        storage=storage.replace('    bzero = 1;',
+            '    bzero = 1;\n    math_initial=7.0f; math_zero=9.0f;')
+    (output/'storage.c').write_text(storage, encoding='ascii', newline='\n')
     (output/'board.c').write_text(MAIN, encoding='ascii', newline='\n')
     (output/'machine-board.h').write_text(
         'typedef unsigned char u8; typedef unsigned int u16; typedef unsigned long u32;\n'
@@ -122,16 +131,16 @@ def create(output, mixed, model, hook):
         (output/'hook.c').write_text('unsigned char __sdcc_external_startup(void) { return '+str(hook)+'; }\n', encoding='ascii')
         sources.append('hook.c')
     files=sources+['machine-board.h']
-    units=[dict(name='u'+str(i),file=f,backend='legacy' if f=='board.c' else 'ordinary-wide',stackAuto=True,defines=[]) for i,f in enumerate(sources)]
-    board.write(output/'mx251.json',dict(schema=2,target='AI8051U-34K64-32',model=model,optimization='speed',backend='ordinary-wide',explicitAbi=False,standard='sdcc11',runtime='standard',defines=['MIXED='+str(int(mixed))],files=files,units=units,archives=[],link=[u['name'] for u in units]+['@startup']))
+    units=[dict(name='u'+str(i),file=f,backend='legacy' if f=='board.c' and runtime=='standard' else 'ordinary-wide',stackAuto=True,defines=[]) for i,f in enumerate(sources)]
+    board.write(output/'mx251.json',dict(schema=2,target='AI8051U-34K64-32',model=model,optimization='speed',backend='ordinary-wide',explicitAbi=False,standard='sdcc11',runtime=runtime,defines=['MIXED='+str(int(mixed))],files=files,units=units,archives=[],link=[u['name'] for u in units]+['@startup']))
     (output/'CMakeLists.txt').write_text('cmake_minimum_required(VERSION 3.20)\nproject(linked_startup NONE)\ninclude("${MX251_PROJECT_MODULE}")\nadd_library(app INTERFACE)\ntarget_sources(app INTERFACE '+' '.join(files)+')\nmx251_firmware(app)\n',encoding='ascii')
-    board.write(output/'source.json',dict(mixed=mixed,model=model,customHook=hook,files={f:board.sha(output/f) for f in files}))
+    board.write(output/'source.json',dict(mixed=mixed,model=model,customHook=hook,runtime=runtime,files={f:board.sha(output/f) for f in files}))
 
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='command',required=True)
-    c=sub.add_parser('create');c.add_argument('--output',type=Path,required=True);c.add_argument('--mixed',action='store_true');c.add_argument('--model',choices=['small','large'],default='small');c.add_argument('--hook',type=int,choices=[0,1])
+    c=sub.add_parser('create');c.add_argument('--output',type=Path,required=True);c.add_argument('--mixed',action='store_true');c.add_argument('--model',choices=['small','large'],default='small');c.add_argument('--hook',type=int,choices=[0,1]);c.add_argument('--runtime',choices=['standard','native-math'],default='standard')
     c=sub.add_parser('capture');c.add_argument('--hex',type=Path,required=True);c.add_argument('--output',type=Path,required=True)
     a=p.parse_args()
-    if a.command=='create':create(a.output,a.mixed,a.model,a.hook)
+    if a.command=='create':create(a.output,a.mixed,a.model,a.hook,a.runtime)
     else:board.capture(a.hex,a.output,lambda data:board.check(data,lambda kind,seed:0))

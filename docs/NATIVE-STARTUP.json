@@ -1,0 +1,1788 @@
+{
+  "status": "COMPLETE",
+  "date": "2026-11-14",
+  "baseCommit": "d999a49fd1bbbc8e6719b79a670c019195b54b03",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "daaae529e4f5b54d16390d4d1446632cf373ca2a19257a39f45a3159461c7001"
+  },
+  "compilerBinaryChanged": false,
+  "summary": {
+    "before": 63109,
+    "after": 62839,
+    "at120": 5,
+    "at110": 5,
+    "nativeSavedBytes": 680,
+    "projectBuilds": 7,
+    "savedBytes": 270
+  },
+  "rows": [
+    {
+      "id": "p041",
+      "before": 2844,
+      "after": 2709,
+      "savedBytes": 135,
+      "keil": 2582,
+      "keilPercent": 104.91866769945779,
+      "selectedSuite": "mx251-native",
+      "nativeBefore": 2844,
+      "nativeAfter": 2709,
+      "nativeSaved": 135,
+      "standardBytes": 4687,
+      "standardRebuilt": true,
+      "nativeResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\result.json",
+        "sha256": "fc3a5508c036b960f66b97f6b0f8f4e3bb352f60a0fd34e4dd2e5095732ed3b3"
+      },
+      "standardResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-standard\\result.json",
+        "sha256": "db48d13f9b12005ff3bb331b276b132ee9384c963fa4c58bcc27495bc28fc81d"
+      },
+      "startup": {
+        "status": "APPLIED_LINKED_C_INITIALIZATION",
+        "savedBytes": 135.0,
+        "changes": [
+          {
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399",
+            "beforeBytes": 45.0,
+            "member": "crtxinit.rel",
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "afterBytes": 0.0,
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6"
+          },
+          {
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd",
+            "beforeBytes": 66.0,
+            "member": "crtxclear.rel",
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "afterBytes": 0.0,
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a"
+          },
+          {
+            "member": "u0.rel",
+            "sourceSha256": "17a177de2695e5846cbbeb4f31fa5e30276c6d38a3f0648bbc4c7dddbcc4a2fa",
+            "beforeBytes": 746.0,
+            "afterBytes": 738.0
+          },
+          {
+            "member": "startup.rel",
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "beforeBytes": 18.0,
+            "afterBytes": 6.0
+          },
+          {
+            "member": "_startup.rel",
+            "beforeBytes": 4.0,
+            "afterBytes": 0
+          }
+        ]
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "60c5fe239d11abd32a15a4eb9893624fbb7f5a305402f1c48c5c3a551e42a280"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7c9c8c8472cea72645ff1c5be7ec71a7fb892e324e0e6f635858e4305b99e9e9"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\src\\ai8051u.h",
+          "sha256": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\src\\main.c",
+          "sha256": "e70ad9562fec027b40be84439919d4774211da48ebb5dd06a9b3db907f8ce0df"
+        }
+      ]
+    },
+    {
+      "id": "p076",
+      "before": 19323,
+      "after": 19323,
+      "savedBytes": 0,
+      "keil": 19918,
+      "keilPercent": 97.0127522843659,
+      "selectedSuite": "mx251-standard",
+      "nativeBefore": 19478,
+      "nativeAfter": 19345,
+      "nativeSaved": 133,
+      "standardBytes": 19323,
+      "standardRebuilt": false,
+      "nativeResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\result.json",
+        "sha256": "349aba0ae8eebc5d79a8e6b32712e5570329f1ab29fa1bb9106bc0ea5aaed218"
+      },
+      "standardResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\result.json",
+        "sha256": "e06a12e14a4f4b34e73a6701e9cc27a2f2943e86414d16c8c36680855139c51e"
+      },
+      "startup": {
+        "status": "APPLIED_LINKED_C_INITIALIZATION",
+        "savedBytes": 135.0,
+        "changes": [
+          {
+            "beforeBytes": 45.0,
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6",
+            "afterBytes": 0.0,
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "member": "crtxinit.rel",
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399"
+          },
+          {
+            "beforeBytes": 66.0,
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a",
+            "afterBytes": 0.0,
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "member": "crtxclear.rel",
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd"
+          },
+          {
+            "member": "u1.rel",
+            "sourceSha256": "2e41f4d79fbe7e4af25064fea723b029f982f701352c3f34b704e27a7ec2ba65",
+            "beforeBytes": 81.0,
+            "afterBytes": 73.0
+          },
+          {
+            "member": "startup.rel",
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "beforeBytes": 18.0,
+            "afterBytes": 6.0
+          },
+          {
+            "member": "_startup.rel",
+            "beforeBytes": 4.0,
+            "afterBytes": 0
+          }
+        ]
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5b10a40d9807ebb79a6dbe1e30888fa4fb2fa8f84a25f277007b08877e7cc7d1"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p076\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "d253a2244c565314ef4d09761210566aa4604765fb49a58ebdc82cef386ee07b"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\font.h",
+          "sha256": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\gui.c",
+          "sha256": "a1e1da47ad5f12fc5461e74e07e43020d20b3004e46281183e575c69ae13ca8b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\lcd.c",
+          "sha256": "ec747872bda87285cb2837c2cbe61b86c907bd522aacd706c10ddd906c3341f9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\lcd.h",
+          "sha256": "8f37e0eef67302a9afa63b5119854db7e72e01e3014e6df754136dd11aea82dc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\main.c",
+          "sha256": "7cc4b845a59bfe2359d91090a561c24971dc6755bc46f8d42ec4b491bfd7011e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\sys.c",
+          "sha256": "86b854283e9f9aba924535fd9f3b57ee87710e17680531fcccb478d7792863b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\sys.h",
+          "sha256": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\test.c",
+          "sha256": "46d3d55d2f1059170b1adfd74a172ccc08f136573e3de46f22073d898eb38903"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\touch.c",
+          "sha256": "392f6ff9cea1d62b131558475cafaef1d8163523f45efc6a13a26a0827700921"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p076\\mx251-native\\src\\touch.h",
+          "sha256": "a49e5b33a9c4a21398eb3073265373ef29decd5546121656c4481ca65eacbfd5"
+        }
+      ]
+    },
+    {
+      "id": "p077",
+      "before": 19285,
+      "after": 19285,
+      "savedBytes": 0,
+      "keil": 19921,
+      "keilPercent": 96.8073891872898,
+      "selectedSuite": "mx251-standard",
+      "nativeBefore": 19424,
+      "nativeAfter": 19285,
+      "nativeSaved": 139,
+      "standardBytes": 19285,
+      "standardRebuilt": false,
+      "nativeResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\result.json",
+        "sha256": "2cc73693e7763899ebe60852ecc9ed4847717e1e79d30c272c8a57a19de245ee"
+      },
+      "standardResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\result.json",
+        "sha256": "246b064f9f495d219c83bbc076e1799270414ece20db8db6611b2b98863d27e7"
+      },
+      "startup": {
+        "status": "APPLIED_LINKED_C_INITIALIZATION",
+        "savedBytes": 135.0,
+        "changes": [
+          {
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399",
+            "member": "crtxinit.rel",
+            "afterBytes": 0.0,
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "beforeBytes": 45.0,
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6"
+          },
+          {
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd",
+            "member": "crtxclear.rel",
+            "afterBytes": 0.0,
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "beforeBytes": 66.0,
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a"
+          },
+          {
+            "afterBytes": 181.0,
+            "member": "u1.rel",
+            "sourceSha256": "2c0e99c63bd05c4ab08c09864bcb7b54529468f6d6d3867a243a137e1e40e87e",
+            "beforeBytes": 189.0
+          },
+          {
+            "afterBytes": 6.0,
+            "member": "startup.rel",
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "beforeBytes": 18.0
+          },
+          {
+            "afterBytes": 0,
+            "member": "_startup.rel",
+            "beforeBytes": 4.0
+          }
+        ]
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b1f23c406bee18fbd6e764931f7dfd4ff69c5e0baad686c38f746568bd4c1a6f"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p077\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a593ed41590cdbcc5c7ffecb54308382fc76cb4d85d4361feb4876434b92b672"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\font.h",
+          "sha256": "8e363698a0fe2fd3a4d099319448e20847a044c7391038a8a41485396a291943"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\gui.c",
+          "sha256": "a1e1da47ad5f12fc5461e74e07e43020d20b3004e46281183e575c69ae13ca8b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\isr.asm",
+          "sha256": "35adeb531d5bfbdda1ec0c2bd03c25de19b8a5de78b048cc41f55003bd22f1dd"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\lcd.c",
+          "sha256": "e80d971e3d990fe5725086d44138ceb78f3bed45cef5697904f3f72f3e9950f0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\lcd.h",
+          "sha256": "8f37e0eef67302a9afa63b5119854db7e72e01e3014e6df754136dd11aea82dc"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\main.c",
+          "sha256": "7cc4b845a59bfe2359d91090a561c24971dc6755bc46f8d42ec4b491bfd7011e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\sys.c",
+          "sha256": "86b854283e9f9aba924535fd9f3b57ee87710e17680531fcccb478d7792863b2"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\sys.h",
+          "sha256": "6d129dcddfa7f56f1af9b3e2ada9d2c3fe6db669308a6e439fd3a9088d217e02"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\test.c",
+          "sha256": "46d3d55d2f1059170b1adfd74a172ccc08f136573e3de46f22073d898eb38903"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\touch.c",
+          "sha256": "392f6ff9cea1d62b131558475cafaef1d8163523f45efc6a13a26a0827700921"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p077\\mx251-native\\src\\touch.h",
+          "sha256": "a49e5b33a9c4a21398eb3073265373ef29decd5546121656c4481ca65eacbfd5"
+        }
+      ]
+    },
+    {
+      "id": "p079",
+      "before": 18764,
+      "after": 18764,
+      "savedBytes": 0,
+      "keil": 19556,
+      "keilPercent": 95.95009204336264,
+      "selectedSuite": "mx251-standard",
+      "nativeBefore": 19198,
+      "nativeAfter": 19060,
+      "nativeSaved": 138,
+      "standardBytes": 18764,
+      "standardRebuilt": false,
+      "nativeResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\result.json",
+        "sha256": "04634c0273ba1f5add942369fd0b2e325c85330f14f5ae8df4af618dd21f922d"
+      },
+      "standardResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\result.json",
+        "sha256": "d0b702947c1589d348e4ae41386fac4d6fadfec50422697c0678953f1b4fc0eb"
+      },
+      "startup": {
+        "status": "APPLIED_LINKED_C_INITIALIZATION",
+        "savedBytes": 135.0,
+        "changes": [
+          {
+            "beforeBytes": 45.0,
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6",
+            "afterBytes": 0.0,
+            "member": "crtxinit.rel",
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399"
+          },
+          {
+            "beforeBytes": 66.0,
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a",
+            "afterBytes": 0.0,
+            "member": "crtxclear.rel",
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd"
+          },
+          {
+            "beforeBytes": 189.0,
+            "sourceSha256": "900ff5740248ad601b370295ce2cd4e1c40aec18e7262271d638fcf9c38fe23b",
+            "member": "u1.rel",
+            "afterBytes": 181.0
+          },
+          {
+            "beforeBytes": 18.0,
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "member": "startup.rel",
+            "afterBytes": 6.0
+          },
+          {
+            "beforeBytes": 4.0,
+            "member": "_startup.rel",
+            "afterBytes": 0
+          }
+        ]
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "64c8ec4c94ae8aef7145dc232ba09a2dff4e3c5c7ce5b32a2de1cff4c69be95b"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p079\\mx251-standard\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e6e12fb0057df01eb261d52499ae30a7385418d62ccc608521ccbef84bbb160f"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\ai8051u.h",
+          "sha256": "56dc5208f252916425deb9253f825c5cf06abeb6ebb5473fc050288c67190f1b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\font.h",
+          "sha256": "91def5cdc97587e27953c164ffc549deef87b37480de2ee956d80812e3ae0df5"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\gui.c",
+          "sha256": "25da1cd793976de533d7e006ec9d64bd26f96d403616d2ef4a5b87f849391742"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\gui.h",
+          "sha256": "e8dff3111774de48fe8878e520a3505b42e71b88751fcef6eb757193b5e76d63"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\isr.asm",
+          "sha256": "5d409310f86bac13e742de65ec36b7da01f9843cf9cb57115c07e02b32261c15"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\lcd.c",
+          "sha256": "caa8ed27b68426954a748abdaa206e7d679046a852a19c478bfe9ff516f40c53"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\lcd.h",
+          "sha256": "4a03c27a5f4e961611aedab28be35081a0ab2a4416d5eda39ed57933c57c166e"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\main.c",
+          "sha256": "3087dbc50bebce3b3ba8a0cdeef082d5671df5e0616db7a8e39e44e11764e9c4"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\pic.h",
+          "sha256": "feeab2ee59693903c833ccddca055f878a3df12406b770a43f6f871554963aa0"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\sys.c",
+          "sha256": "5a7be8af43dcdd1d3b1beb2c88c129affd9fbd00e840dbb94193bec94fbf923d"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\sys.h",
+          "sha256": "45d028662a9530d9ecc4a3cccd821cdc77123e02b185a6dca942b7f8b8a5cb6b"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\test.c",
+          "sha256": "c29b5ab08693d3d73ccfc48bcf67f401d91759fccbe1699f2f93f868e30eea74"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\test.h",
+          "sha256": "8fa180438237275f0d87b0fa728ca243adc55485c431ef4987fca2d4d48ed081"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\touch.c",
+          "sha256": "ee4a6347e8d97cb1a13a8f322123685239aecbd07b0ab469fbd1b3bac13de956"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p079\\mx251-native\\src\\touch.h",
+          "sha256": "da4e95f89e59f4de0a6ad8364a0bc7f956ae1e7208587bcbe84004eb6c0c9c70"
+        }
+      ]
+    },
+    {
+      "id": "p081",
+      "before": 2893,
+      "after": 2758,
+      "savedBytes": 135,
+      "keil": 2806,
+      "keilPercent": 98.28937990021383,
+      "selectedSuite": "mx251-native",
+      "nativeBefore": 2893,
+      "nativeAfter": 2758,
+      "nativeSaved": 135,
+      "standardBytes": 4736,
+      "standardRebuilt": true,
+      "nativeResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\result.json",
+        "sha256": "637b2d9e8a7cf3fc6cf3b87cfb14da586e05dfc1b3aae05338cb6f8b11edffe4"
+      },
+      "standardResult": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-standard\\result.json",
+        "sha256": "eed71be800cc5050afe4954a819736b94c36e027b0a957f0da9a05bc512db776"
+      },
+      "startup": {
+        "status": "APPLIED_LINKED_C_INITIALIZATION",
+        "savedBytes": 135.0,
+        "changes": [
+          {
+            "beforeBytes": 45.0,
+            "member": "crtxinit.rel",
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399",
+            "afterBytes": 0.0,
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6"
+          },
+          {
+            "beforeBytes": 66.0,
+            "member": "crtxclear.rel",
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd",
+            "afterBytes": 0.0,
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a"
+          },
+          {
+            "member": "u0.rel",
+            "sourceSha256": "c027dfd13043fae0e3cd638135a7ff8d74c6d7c2c9075e0dae44751ccf00cda8",
+            "afterBytes": 1032.0,
+            "beforeBytes": 1040.0
+          },
+          {
+            "member": "startup.rel",
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "afterBytes": 6.0,
+            "beforeBytes": 18.0
+          },
+          {
+            "member": "_startup.rel",
+            "afterBytes": 0,
+            "beforeBytes": 4.0
+          }
+        ]
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "35845bf458ecf19320d136f56260557a83ae22de4cab4bfac5175438ed9988c5"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2c5aa80ef723ad1f69be7ac7ec00e2b133da9b9397db114c18606f3a242a27fd"
+      },
+      "sourceInputs": [
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\src\\ai8051u.h",
+          "sha256": "09ba4677a915eaa185fe031e014b7d7cac367a210d1f8517547f0369bad6e4b9"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\src\\intrins.h",
+          "sha256": "d25f2bad6fe051fcce75ada0a54f9430596395846a1ac4d4fea4361f16ffd348"
+        },
+        {
+          "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\src\\main.c",
+          "sha256": "646bd651a69366750a262cd47617bc86e74e014d6356f267fbd858c0c9ed9cc2"
+        }
+      ]
+    }
+  ],
+  "hardware": {
+    "status": "PASS",
+    "cases": 128,
+    "frames": 515,
+    "firmwareSha256": "4dc8024179ce18a56e5098930be3b6b180f53cd12e8f417baa4006fc78c4266f",
+    "uart": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\hardware\\uart.bin",
+      "sha256": "a102781b9a01d1c9c167606592961cbc7a166d61cffc5cf4e8163f176aad5de6"
+    },
+    "receipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\board\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "bc18b2d98e8464ec4f36c5dce51588c96ca6951f77c2438238d9918602f7e6e4"
+    },
+    "fixture": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\board\\source.json",
+      "sha256": "fb1fb14063199b40bfc471fd0bd068db17213b11f154bdaf71fdc02d900139ab"
+    },
+    "startup": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\board\\.build\\mx251\\latest\\startup-runtime.json",
+      "sha256": "e25bc8918030a5c9e4dd813eb759c9c464556daebfe42c9041f819bccbcfaa5a"
+    },
+    "timingMeasured": false
+  },
+  "checks": {
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "native-empty",
+        "model": "small",
+        "target": "STC32G12K128",
+        "customHookUnchanged": false,
+        "results": [
+          {
+            "label": "candidate",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-empty\\candidate\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "22b4693ee0616fdfb7a8750acd4f41c62cb1490308248b6fa6f658afa45d3af7"
+            },
+            "payloadBytes": 874,
+            "spanBytes": 1122,
+            "holesBytes": 248,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-empty\\candidate\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "8bc1592be8da61b26bb0e87feb3463e4ca69c1788c58874f4f6d8bd945c83bfb"
+            }
+          }
+        ]
+      },
+      {
+        "name": "native-internal",
+        "model": "small",
+        "target": "AI8051U-34K64-32",
+        "customHookUnchanged": false,
+        "results": [
+          {
+            "label": "candidate",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-internal\\candidate\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "26a24b74f1a4fa8520c062054d0ce7cdbbdf1ea09ba2f90ac562a6dca7371123"
+            },
+            "payloadBytes": 630,
+            "spanBytes": 630,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-internal\\candidate\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "0d93a29bdca123465ed298ded016fc0cbe712cd84c342d29ac41cc669f92b4bd"
+            }
+          }
+        ]
+      },
+      {
+        "name": "native-copy",
+        "model": "small",
+        "target": "AI8051U-34K64-32",
+        "customHookUnchanged": false,
+        "results": [
+          {
+            "label": "candidate",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-copy\\candidate\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "c39d7c511ca059bc23e920b6b228cc71008c961fa0a887a25d065765bdae54bf"
+            },
+            "payloadBytes": 666,
+            "spanBytes": 666,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-copy\\candidate\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "fd7306e77142ef8054433c511277b326317c13c95d9bd8c8ca52665f491acb4d"
+            }
+          }
+        ]
+      },
+      {
+        "name": "native-clear",
+        "model": "small",
+        "target": "AI8051U-34K64-32",
+        "customHookUnchanged": false,
+        "results": [
+          {
+            "label": "candidate",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-clear\\candidate\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "5dd9d220518e76554cdd98d7da4ff7fabd6717ab77e7198024323a42e13cb637"
+            },
+            "payloadBytes": 672,
+            "spanBytes": 672,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-clear\\candidate\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "5a999890ad3fc4bde33b374dc719b7f7c1ed05fca9e200cd6a49c8807a4acb73"
+            }
+          }
+        ]
+      },
+      {
+        "name": "native-hook-zero",
+        "model": "small",
+        "target": "AI8051U-34K64-32",
+        "customHookUnchanged": true,
+        "results": [
+          {
+            "label": "candidate",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-zero\\candidate\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "e4a1e019852d452efa1374747c4a65ba231d84fa834a276b4a0bd7e422021056"
+            },
+            "payloadBytes": 804,
+            "spanBytes": 804,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-zero\\candidate\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "67bc3123d138bc229410de495d743a0157b1eab2de407f1a8d427fc7ca5c2c1d"
+            }
+          },
+          {
+            "label": "parent",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-zero\\parent\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "12e92ae8d3a0feb066c138d61e494ed85eab114edc5a471619b1d81fa2c30614"
+            },
+            "payloadBytes": 804,
+            "spanBytes": 804,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-zero\\parent\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "67bc3123d138bc229410de495d743a0157b1eab2de407f1a8d427fc7ca5c2c1d"
+            }
+          }
+        ]
+      },
+      {
+        "name": "native-hook-one",
+        "model": "small",
+        "target": "AI8051U-34K64-32",
+        "customHookUnchanged": true,
+        "results": [
+          {
+            "label": "candidate",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-one\\candidate\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "cc39bd93b1bae7226d2e1b4b378553d0370621602fd156fdefa29f5ce08fd69e"
+            },
+            "payloadBytes": 804,
+            "spanBytes": 804,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-one\\candidate\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "cdadd4d9817c18c66ed1f2908b4da4448bb1d32c5b8a83fa16ca8b0ef27a5082"
+            }
+          },
+          {
+            "label": "parent",
+            "record": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-one\\parent\\.build\\mx251\\latest\\startup-runtime.json",
+              "sha256": "12e92ae8d3a0feb066c138d61e494ed85eab114edc5a471619b1d81fa2c30614"
+            },
+            "payloadBytes": 804,
+            "spanBytes": 804,
+            "holesBytes": 0,
+            "hex": {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\checks\\native-hook-one\\parent\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "cdadd4d9817c18c66ed1f2908b4da4448bb1d32c5b8a83fa16ca8b0ef27a5082"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "attribution": {
+    "rows": [
+      {
+        "id": "p041",
+        "before": {
+          "bytes": 2844,
+          "functions": [
+            {
+              "name": "_main",
+              "unit": "u0",
+              "bytes": 356,
+              "isr": false,
+              "pushPopBytes": 50,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 9,
+              "wideRefusal": "call-abi-or-argument-contract",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: main",
+                "wide refusal function=main stage=import reason=call-abi-or-argument-contract source-line=875 icode=156 opcode=382 values=46 nodes=101 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_Get_ADC12bitResult",
+              "unit": "u0",
+              "bytes": 52,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: Get_ADC12bitResult; values=16 nodes=33 frame=0 folded-casts=1",
+                "mx251-body-choice function=_Get_ADC12bitResult selected=wide"
+              ]
+            },
+            {
+              "name": "_Send_595",
+              "unit": "u0",
+              "bytes": 25,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_Send_595 selected=legacy"
+              ]
+            },
+            {
+              "name": "_DisplayScan",
+              "unit": "u0",
+              "bytes": 81,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 2,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DisplayScan selected=legacy"
+              ]
+            },
+            {
+              "name": "_timer0",
+              "unit": "u0",
+              "bytes": 36,
+              "isr": true,
+              "pushPopBytes": 28,
+              "entryExitPushPopBytes": 28,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "entry-contract",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "wide admission function=timer0 skip=entry-contract",
+                "mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f08e2 special-reads=0 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+              ]
+            },
+            {
+              "name": "_UartInit",
+              "unit": "u0",
+              "bytes": 29,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": "ordered-asm-core-state-write",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: UartInit",
+                "wide refusal function=UartInit stage=import reason=ordered-asm-core-state-write source-line=32 icode=12 opcode=361 values=0 nodes=3 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_UartPutc",
+              "unit": "u0",
+              "bytes": 12,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: UartPutc; values=3 nodes=12 frame=0 folded-casts=0"
+              ]
+            },
+            {
+              "name": "_putchar",
+              "unit": "u0",
+              "bytes": 18,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: putchar; values=2 nodes=9 frame=0 folded-casts=0",
+                "mx251-body-choice function=_putchar selected=wide"
+              ]
+            }
+          ],
+          "partition": {
+            "applicationInstructions": 609,
+            "otherCseg": 2011,
+            "constants": 64,
+            "startupVectorsAndOther": 160
+          },
+          "libraryMembers": [
+            "_fsdiv.rel",
+            "crtclear.rel",
+            "crtxinit.rel",
+            "crtxclear.rel",
+            "_uint2fs.rel",
+            "_startup.rel",
+            "_divulong.rel",
+            "_ulong2fs.rel"
+          ],
+          "gc": {
+            "status": "CLOSED_GRAPH_CANDIDATE",
+            "issues": [],
+            "removedFunctions": [],
+            "resolvedAbsoluteTargets": []
+          },
+          "inputs": [
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\u0.asm",
+              "sha256": "135fabbf799923976374b390f8c8810e6356bd7a340508f906e95389d0a0a980"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\u0.rst",
+              "sha256": "cce3dae0ef87e802503a0fddfa235bbdb33f7f719a50af7b92d32a6672ab2c62"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "80b98a8bed685db9e9c10385a6fd3e6ea2a3324c8b9102e09bbaa7842ab11f0a"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\linked.partial.map",
+              "sha256": "0793efc0a045cb26010a725430a8133a23cb6a0ee5bf6f22c5f3ecfeb5d7cdcf"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\project.snapshot.json",
+              "sha256": "f782bb9d190591e973264ae91cd811a3f65f2ccf822f6011a7137241037159fa"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\function-gc\\manifest.json",
+              "sha256": "8150311d986c29e9c0364412b4d21422469120a2022ad786103f520761f9314c"
+            }
+          ]
+        },
+        "after": {
+          "bytes": 2709,
+          "functions": [
+            {
+              "name": "_main",
+              "unit": "u0",
+              "bytes": 356,
+              "isr": false,
+              "pushPopBytes": 50,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 9,
+              "wideRefusal": "call-abi-or-argument-contract",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: main",
+                "wide refusal function=main stage=import reason=call-abi-or-argument-contract source-line=875 icode=156 opcode=382 values=46 nodes=101 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_Get_ADC12bitResult",
+              "unit": "u0",
+              "bytes": 52,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: Get_ADC12bitResult; values=16 nodes=33 frame=0 folded-casts=1",
+                "mx251-body-choice function=_Get_ADC12bitResult selected=wide"
+              ]
+            },
+            {
+              "name": "_Send_595",
+              "unit": "u0",
+              "bytes": 25,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_Send_595 selected=legacy"
+              ]
+            },
+            {
+              "name": "_DisplayScan",
+              "unit": "u0",
+              "bytes": 81,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 2,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DisplayScan selected=legacy"
+              ]
+            },
+            {
+              "name": "_timer0",
+              "unit": "u0",
+              "bytes": 36,
+              "isr": true,
+              "pushPopBytes": 28,
+              "entryExitPushPopBytes": 28,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "entry-contract",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "wide admission function=timer0 skip=entry-contract",
+                "mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f08e2 special-reads=0 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+              ]
+            },
+            {
+              "name": "_UartInit",
+              "unit": "u0",
+              "bytes": 29,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": "ordered-asm-core-state-write",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: UartInit",
+                "wide refusal function=UartInit stage=import reason=ordered-asm-core-state-write source-line=32 icode=12 opcode=361 values=0 nodes=3 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_UartPutc",
+              "unit": "u0",
+              "bytes": 12,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: UartPutc; values=3 nodes=12 frame=0 folded-casts=0"
+              ]
+            },
+            {
+              "name": "_putchar",
+              "unit": "u0",
+              "bytes": 18,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: putchar; values=2 nodes=9 frame=0 folded-casts=0",
+                "mx251-body-choice function=_putchar selected=wide"
+              ]
+            }
+          ],
+          "partition": {
+            "applicationInstructions": 609,
+            "otherCseg": 2007,
+            "constants": 64,
+            "startupVectorsAndOther": 29
+          },
+          "libraryMembers": [
+            "_fsdiv.rel",
+            "crtclear.rel",
+            "crtxinit.rel",
+            "crtxclear.rel",
+            "_uint2fs.rel",
+            "_divulong.rel",
+            "_ulong2fs.rel"
+          ],
+          "gc": {
+            "status": "CLOSED_GRAPH_CANDIDATE",
+            "issues": [],
+            "removedFunctions": [],
+            "resolvedAbsoluteTargets": []
+          },
+          "inputs": [
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\u0.asm",
+              "sha256": "e07650411013134af90dedbf547398791b55c1bc96908a05573d078ae60fb451"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\u0.rst",
+              "sha256": "d72ab56dbe5b8e04934c6e2b91c43ac19becfa279f3a2ab726564e8b88232921"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "60c5fe239d11abd32a15a4eb9893624fbb7f5a305402f1c48c5c3a551e42a280"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\linked.partial.map",
+              "sha256": "a801f341c44f207fdd2cdae81236ef8ddd1834071c456a6c20ac0ea4aaa60276"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\project.snapshot.json",
+              "sha256": "151b04d6694a0fb789ccd943cc846631a23661a369df149a31cc1654bf35fbeb"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p041\\mx251-native\\.build\\mx251\\latest\\function-gc\\manifest.json",
+              "sha256": "c797a453a60bd06de8c0adbbb17cfd18bddcf7183f1e6bf457f61bb21c5c3bcf"
+            }
+          ]
+        },
+        "startupChanges": [
+          {
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399",
+            "beforeBytes": 45.0,
+            "member": "crtxinit.rel",
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "afterBytes": 0.0,
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6"
+          },
+          {
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd",
+            "beforeBytes": 66.0,
+            "member": "crtxclear.rel",
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "afterBytes": 0.0,
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a"
+          },
+          {
+            "member": "u0.rel",
+            "sourceSha256": "17a177de2695e5846cbbeb4f31fa5e30276c6d38a3f0648bbc4c7dddbcc4a2fa",
+            "beforeBytes": 746.0,
+            "afterBytes": 738.0
+          },
+          {
+            "member": "startup.rel",
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "beforeBytes": 18.0,
+            "afterBytes": 6.0
+          },
+          {
+            "member": "_startup.rel",
+            "beforeBytes": 4.0,
+            "afterBytes": 0
+          }
+        ]
+      },
+      {
+        "id": "p081",
+        "before": {
+          "bytes": 2893,
+          "functions": [
+            {
+              "name": "_main",
+              "unit": "u0",
+              "bytes": 228,
+              "isr": false,
+              "pushPopBytes": 26,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 7,
+              "wideRefusal": "call-abi-or-argument-contract",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: main",
+                "wide refusal function=main stage=import reason=call-abi-or-argument-contract source-line=875 icode=115 opcode=382 values=37 nodes=82 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_ReadTemperature",
+              "unit": "u0",
+              "bytes": 163,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 8,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: ReadTemperature; values=18 nodes=40 frame=0 folded-casts=0",
+                "mx251-body-choice function=_ReadTemperature selected=wide"
+              ]
+            },
+            {
+              "name": "_DisplayTemperature",
+              "unit": "u0",
+              "bytes": 109,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: DisplayTemperature; values=19 nodes=57 frame=0 folded-casts=0",
+                "mx251-body-choice function=_DisplayTemperature selected=wide"
+              ]
+            },
+            {
+              "name": "_delay_us",
+              "unit": "u0",
+              "bytes": 28,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_delay_us selected=legacy"
+              ]
+            },
+            {
+              "name": "_DS18B20_Reset",
+              "unit": "u0",
+              "bytes": 41,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 5,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DS18B20_Reset selected=legacy"
+              ]
+            },
+            {
+              "name": "_DS18B20_ReadByte",
+              "unit": "u0",
+              "bytes": 44,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 3,
+              "wideRefusal": null,
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: DS18B20_ReadByte; values=4 nodes=25 frame=0 folded-casts=0"
+              ]
+            },
+            {
+              "name": "_DS18B20_WriteByte",
+              "unit": "u0",
+              "bytes": 54,
+              "isr": false,
+              "pushPopBytes": 8,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 3,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DS18B20_WriteByte selected=legacy"
+              ]
+            },
+            {
+              "name": "_Send_595",
+              "unit": "u0",
+              "bytes": 25,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_Send_595 selected=legacy"
+              ]
+            },
+            {
+              "name": "_DisplayScan",
+              "unit": "u0",
+              "bytes": 81,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 2,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DisplayScan selected=legacy"
+              ]
+            },
+            {
+              "name": "_timer0",
+              "unit": "u0",
+              "bytes": 36,
+              "isr": true,
+              "pushPopBytes": 28,
+              "entryExitPushPopBytes": 28,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "entry-contract",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "wide admission function=timer0 skip=entry-contract",
+                "mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f08e2 special-reads=0 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+              ]
+            },
+            {
+              "name": "_UartInit",
+              "unit": "u0",
+              "bytes": 29,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": "ordered-asm-core-state-write",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: UartInit",
+                "wide refusal function=UartInit stage=import reason=ordered-asm-core-state-write source-line=32 icode=12 opcode=361 values=0 nodes=3 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_UartPutc",
+              "unit": "u0",
+              "bytes": 12,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: UartPutc; values=3 nodes=12 frame=0 folded-casts=0"
+              ]
+            },
+            {
+              "name": "_putchar",
+              "unit": "u0",
+              "bytes": 18,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: putchar; values=2 nodes=9 frame=0 folded-casts=0",
+                "mx251-body-choice function=_putchar selected=wide"
+              ]
+            }
+          ],
+          "partition": {
+            "applicationInstructions": 868,
+            "otherCseg": 1799,
+            "constants": 66,
+            "startupVectorsAndOther": 160
+          },
+          "libraryMembers": [
+            "_fsdiv.rel",
+            "crtclear.rel",
+            "crtxinit.rel",
+            "crtxclear.rel",
+            "_uint2fs.rel",
+            "_startup.rel",
+            "_ulong2fs.rel"
+          ],
+          "gc": {
+            "status": "CLOSED_GRAPH_CANDIDATE",
+            "issues": [],
+            "removedFunctions": [],
+            "resolvedAbsoluteTargets": []
+          },
+          "inputs": [
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.asm",
+              "sha256": "55c99b51f8306426431fab0a01f225c54da2c942621645cec4571a0b75e4567a"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.rst",
+              "sha256": "c3c174de8e680cf5c2e62727810087cf619a8d75c922c4d97339d76b93ba2a21"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "7dffd5f54012df403debbf174f3763a008edc825dfdc621ef721564dd91a17e4"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\linked.partial.map",
+              "sha256": "307822d9bd722cbcf7568a4312f9b72830442f22834f18cdcc406781350121ec"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\project.snapshot.json",
+              "sha256": "d0bf0eba4389eff6dadd05b2cfa2ede87ed863a57b9ef5d9977287cc32ab50ca"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\matrix\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\function-gc\\manifest.json",
+              "sha256": "b7cb7fa1a305babe8cbf3628433aa4dbd11729798265a253de25305371b1772c"
+            }
+          ]
+        },
+        "after": {
+          "bytes": 2758,
+          "functions": [
+            {
+              "name": "_main",
+              "unit": "u0",
+              "bytes": 228,
+              "isr": false,
+              "pushPopBytes": 26,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 7,
+              "wideRefusal": "call-abi-or-argument-contract",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: main",
+                "wide refusal function=main stage=import reason=call-abi-or-argument-contract source-line=875 icode=115 opcode=382 values=37 nodes=82 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_ReadTemperature",
+              "unit": "u0",
+              "bytes": 163,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 8,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: ReadTemperature; values=18 nodes=40 frame=0 folded-casts=0",
+                "mx251-body-choice function=_ReadTemperature selected=wide"
+              ]
+            },
+            {
+              "name": "_DisplayTemperature",
+              "unit": "u0",
+              "bytes": 109,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: DisplayTemperature; values=19 nodes=57 frame=0 folded-casts=0",
+                "mx251-body-choice function=_DisplayTemperature selected=wide"
+              ]
+            },
+            {
+              "name": "_delay_us",
+              "unit": "u0",
+              "bytes": 28,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_delay_us selected=legacy"
+              ]
+            },
+            {
+              "name": "_DS18B20_Reset",
+              "unit": "u0",
+              "bytes": 41,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 5,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DS18B20_Reset selected=legacy"
+              ]
+            },
+            {
+              "name": "_DS18B20_ReadByte",
+              "unit": "u0",
+              "bytes": 44,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 3,
+              "wideRefusal": null,
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: DS18B20_ReadByte; values=4 nodes=25 frame=0 folded-casts=0"
+              ]
+            },
+            {
+              "name": "_DS18B20_WriteByte",
+              "unit": "u0",
+              "bytes": 54,
+              "isr": false,
+              "pushPopBytes": 8,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 3,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DS18B20_WriteByte selected=legacy"
+              ]
+            },
+            {
+              "name": "_Send_595",
+              "unit": "u0",
+              "bytes": 25,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_Send_595 selected=legacy"
+              ]
+            },
+            {
+              "name": "_DisplayScan",
+              "unit": "u0",
+              "bytes": 81,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 2,
+              "wideRefusal": null,
+              "backend": "legacy",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mx251-body-choice function=_DisplayScan selected=legacy"
+              ]
+            },
+            {
+              "name": "_timer0",
+              "unit": "u0",
+              "bytes": 36,
+              "isr": true,
+              "pushPopBytes": 28,
+              "entryExitPushPopBytes": 28,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "entry-contract",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "wide admission function=timer0 skip=entry-contract",
+                "mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f08e2 special-reads=0 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+              ]
+            },
+            {
+              "name": "_UartInit",
+              "unit": "u0",
+              "bytes": 29,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": "ordered-asm-core-state-write",
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir fallback: UartInit",
+                "wide refusal function=UartInit stage=import reason=ordered-asm-core-state-write source-line=32 icode=12 opcode=361 values=0 nodes=3 value-limit=512 node-limit=2048 objects=0 frame=0"
+              ]
+            },
+            {
+              "name": "_UartPutc",
+              "unit": "u0",
+              "bytes": 12,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 0,
+              "wideRefusal": null,
+              "backend": "unreported",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: UartPutc; values=3 nodes=12 frame=0 folded-casts=0"
+              ]
+            },
+            {
+              "name": "_putchar",
+              "unit": "u0",
+              "bytes": 18,
+              "isr": false,
+              "pushPopBytes": 0,
+              "entryExitPushPopBytes": 0,
+              "directCallSites": 1,
+              "wideRefusal": null,
+              "backend": "wide",
+              "divisionDeferred": false,
+              "diagnostics": [
+                "mcs251 wide-mir accepted: putchar; values=2 nodes=9 frame=0 folded-casts=0",
+                "mx251-body-choice function=_putchar selected=wide"
+              ]
+            }
+          ],
+          "partition": {
+            "applicationInstructions": 868,
+            "otherCseg": 1795,
+            "constants": 66,
+            "startupVectorsAndOther": 29
+          },
+          "libraryMembers": [
+            "_fsdiv.rel",
+            "crtclear.rel",
+            "crtxinit.rel",
+            "crtxclear.rel",
+            "_uint2fs.rel",
+            "_ulong2fs.rel"
+          ],
+          "gc": {
+            "status": "CLOSED_GRAPH_CANDIDATE",
+            "issues": [],
+            "removedFunctions": [],
+            "resolvedAbsoluteTargets": []
+          },
+          "inputs": [
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.asm",
+              "sha256": "7810db070b7401d192296fd7fe51872bcf7e75254c2b6cbcc4767f8edbba89a9"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\u0.rst",
+              "sha256": "941cb8337b4bc2dc64f775eff6cb01358e7b4f99f026be491edc579454a5218a"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\firmware.hex",
+              "sha256": "35845bf458ecf19320d136f56260557a83ae22de4cab4bfac5175438ed9988c5"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\linked.partial.map",
+              "sha256": "3dffa8accc65cf60135cfa2dcf5689fc57b9973d207b3fc8b7e61823f27913d4"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\project.snapshot.json",
+              "sha256": "3d68a411b1682b9f89c1091ce377228ebfdca54212573d97a0f57e277993803d"
+            },
+            {
+              "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\projects\\p081\\mx251-native\\.build\\mx251\\latest\\function-gc\\manifest.json",
+              "sha256": "7d1e74e0e4258bf1fd20c48002d6619f21455ee603789f1416d1f96ff243f4e8"
+            }
+          ]
+        },
+        "startupChanges": [
+          {
+            "beforeBytes": 45.0,
+            "member": "crtxinit.rel",
+            "beforeSha256": "c93ec5c6b5d03775abb587516bf4ca34040dfb1df697f10851a8385795113089",
+            "afterSha256": "f4d1aa6c82f3fed26eae18b9a17ba7fc50f52367b2452cba5f1aacdd9a282399",
+            "afterBytes": 0.0,
+            "sourceSha256": "6b8896afd1133796edfff9fad71dfca1ad57dc9ddcc3b21658642208c1007bd6"
+          },
+          {
+            "beforeBytes": 66.0,
+            "member": "crtxclear.rel",
+            "beforeSha256": "6a53a954b3f61bd9064a33ce4e229de382b11507cf68b7ff023de3525d04fd18",
+            "afterSha256": "9ae9051087df9fb100427c6b4525d0766432c93a736bcc345cdbf8a1570fd4fd",
+            "afterBytes": 0.0,
+            "sourceSha256": "c58f271420827e4f0e3eb34fb6c67460142a9fc5443c288fdeb58a44dae1b98a"
+          },
+          {
+            "member": "u0.rel",
+            "sourceSha256": "c027dfd13043fae0e3cd638135a7ff8d74c6d7c2c9075e0dae44751ccf00cda8",
+            "afterBytes": 1032.0,
+            "beforeBytes": 1040.0
+          },
+          {
+            "member": "startup.rel",
+            "sourceSha256": "ab0a43095d3969f54b4ca884f903f12718ed61aef17d7231f0efffb0bef9624e",
+            "afterBytes": 6.0,
+            "beforeBytes": 18.0
+          },
+          {
+            "member": "_startup.rel",
+            "afterBytes": 0,
+            "beforeBytes": 4.0
+          }
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\build\\qualified\\StartupRuntime.ps1",
+      "sha256": "63c90c1ea412fb7a4a27e589cf11090c5b80c0483df05dbd1dd8588469f7a379"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\check_linked_startup.py",
+      "sha256": "085a9b9942aa89dd268afc91eab843724d40aba633ef9dfca7a6370558242d86"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\check_native_startup.py",
+      "sha256": "1af5944528edc3498319c16c33d351ad3a11e31a38c5552482f5678c767e0cf6"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\linked_startup_fixture.py",
+      "sha256": "43a2bea3d8531b5b2de86d45eec3a09f26e360648460341802cd77e73d625d42"
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\float_format_edata_matrix.py",
+      "sha256": "135edb392c509f3e47a9d5d136222d42cef17f091b913a5433b276e4d2badc2d"
+    }
+  ],
+  "artifacts": "E:\\STVAPP\\MX251-baseline\\development\\native-startup",
+  "sdkSourcesChanged": false,
+  "original75Rerun": false,
+  "keilRuntimeCompared": false,
+  "reproduction": {
+    "config": {
+      "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\config.json",
+      "sha256": "dbaf359c3d31ad658193ddf851e214be931543fc838124884e96ed750ba596b1"
+    },
+    "parent": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\core",
+    "nativeChecks": [
+      "check_native_startup.py",
+      "--config",
+      "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final\\config.json",
+      "--parent",
+      "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale\\core",
+      "--output",
+      "<fresh-directory>"
+    ],
+    "sdkMatrix": [
+      "float_format_edata_matrix.py",
+      "--coverage",
+      "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage",
+      "--output",
+      "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\matrix-final",
+      "--core",
+      "E:\\STVAPP\\MX251-baseline\\development\\native-startup\\core",
+      "--ids",
+      "p041,p076,p077,p079,p081",
+      "--suites",
+      "mx251-native"
+    ],
+    "boardCreate": [
+      "linked_startup_fixture.py",
+      "create",
+      "--output",
+      "<fresh-directory>",
+      "--mixed",
+      "--runtime",
+      "native-math"
+    ],
+    "boardBuildSwitches": [
+      "-FunctionSharing",
+      "-MachineIr",
+      "-CalleePreservation",
+      "-C251BitComplement",
+      "-SelectiveLeafAbi",
+      "AUTO"
+    ]
+  }
+}

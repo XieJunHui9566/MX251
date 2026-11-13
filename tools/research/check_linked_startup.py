@@ -7,12 +7,12 @@ import subprocess
 from unified_sdk_matrix import read, save, pin, image
 
 
-def case(config, parent, output, name, model, target, source, custom):
+def case(config, parent, output, name, model, target, source, custom, runtime='standard'):
     results=[]
     for label,core in [('candidate',Path(config['core']))]+([('parent',parent)] if custom else []):
         out=output/name/label;out.mkdir(parents=True,exist_ok=False)
         (out/'main.c').write_text(source,encoding='ascii')
-        save(out/'mx251.json',dict(schema=2,target=target,model=model,optimization='speed',backend='ordinary-wide',explicitAbi=False,standard='sdcc11',runtime='standard',defines=[],files=['main.c'],units=[dict(name='u0',file='main.c',backend='ordinary-wide',stackAuto=True,defines=[])],archives=[],link=['u0','@startup']))
+        save(out/'mx251.json',dict(schema=2,target=target,model=model,optimization='speed',backend='ordinary-wide',explicitAbi=False,standard='sdcc11',runtime=runtime,defines=[],files=['main.c'],units=[dict(name='u0',file='main.c',backend='ordinary-wide',stackAuto=True,defines=[])],archives=[],link=['u0','@startup']))
         (out/'CMakeLists.txt').write_text('cmake_minimum_required(VERSION 3.20)\nproject(startup_check NONE)\ninclude("${MX251_PROJECT_MODULE}")\nadd_library(app INTERFACE)\ntarget_sources(app INTERFACE main.c)\nmx251_firmware(app)\n',encoding='ascii')
         argv=[config['pwsh'],'-NoProfile','-File',str(core/'build/Build-CMake.ps1'),'-ProjectPath',str(out),'-CMake',config['cmake'],'-Ninja',config['ninja'],'-PowerShell',config['pwsh'],'-MachineIr']
         run=subprocess.run(argv,capture_output=True,timeout=180)

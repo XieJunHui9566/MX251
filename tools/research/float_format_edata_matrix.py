@@ -10,6 +10,7 @@ p.add_argument('--coverage',type=Path,required=True)
 p.add_argument('--output',type=Path,required=True)
 p.add_argument('--core',type=Path,required=True)
 p.add_argument('--ids',help='Comma-separated project IDs; default: all math and EDATA cases')
+p.add_argument('--suites',help='Optional comma-separated subset of runtime variants')
 a=p.parse_args()
 config=matrix.read(a.coverage/'config.json')
 config.update(output=str(a.output.resolve()),core=str(a.core.resolve()))
@@ -27,6 +28,7 @@ for project in matrix.read(a.coverage/'inputs.json')['projects']:
     if project['id'] in edata_ids:
         variants=[('mx251-edata',dict(defaultDataSpace='edata'))]
     for suite, settings in variants:
+        if a.suites and suite not in a.suites.split(','): continue
         source=a.coverage/'projects'/project['id']/'mx251'
         dest=a.output/'projects'/project['id']/suite
         clone_project(source,dest,**settings)

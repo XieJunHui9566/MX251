@@ -73,7 +73,9 @@ function Get-Mx251StartupSelection([string]$Map,[string]$ToolRoot,$Contract,[str
 }
 
 function Get-Mx251StartupDemand([string]$Root,$Config,[string[]]$LinkArguments,$Selection,$Contract) {
- if($Config.runtime -cne 'standard' -or $Config.explicitAbi -or @($Config.archives).Count){throw 'startup-nonstandard-link-contract'}
+ # Runtime mode does not change C initialization; selected library members
+ # and their storage/initializers are inspected below for every profile mode.
+ if($Config.explicitAbi -or @($Config.archives).Count){throw 'startup-nonstandard-link-contract'}
  if((Hash-File (Join-Path $Root 'startup.asm')) -cnotin $Contract.startupHashes){throw 'startup-unknown-startup'}
  $map=Read-Mx251StartupMap (Join-Path $Root 'linked.partial.map');$sizes=@{}
  foreach($name in @('XINIT','XISEG','PSEG','XSEG')){
@@ -293,7 +295,12 @@ function Invoke-Mx251StartupRuntime([string]$Root,$Config,[string]$ToolRoot,$Add
   if(-not $demand.hookReferenced){
    $changes+=@{member='_startup.rel';beforeBytes=($demand.hook.rel.areas|Where-Object{$_.flags -band 32}|Measure-Object -Property size -Sum).Sum;afterBytes=0}
   }
-  Run-Tool 'startup-link' $compilerExe (@('-L'+$privateDir)+$linkArgs)
+  # Native math names the CRT archive explicitly under --nostdlib, so the
+  # specialized archive must replace that operand as well as the search path.
+  $startupArgs=@($linkArgs|ForEach-Object{
+   if($_ -like '*.lib' -and [IO.Path]::GetFullPath($_) -eq $demand.archive){$privateArchive}else{$_}
+  })
+  Run-Tool 'startup-link' $compilerExe (@('-L'+$privateDir)+$startupArgs)
   $after=Get-Mx251StartupSelection (Join-Path $Root 'linked.partial.map') $ToolRoot $contract $privateArchive $hashes
   $expectedSelection=@($selection.selected|Where-Object{$demand.hookReferenced -or $_.member -cne '_startup.rel'})
   if($after.selected.Count -ne $expectedSelection.Count){throw 'startup-selected-closure-count-changed'}
