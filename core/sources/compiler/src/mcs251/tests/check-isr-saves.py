@@ -12,6 +12,8 @@ volatile __xdata u8 buffer[16];
 volatile __edata u8 count;
 volatile __edata u16 word;
 volatile __edata unsigned long total;
+const __code u8 byte_table[4]={0x00,0x7f,0x80,0xff};
+const __code u16 word_table[4]={0x0000,0x00ff,0x8000,0xffff};
 volatile __xdata u8 far_count;
 volatile __xdata u8 * __edata saved_pointer;
 __edata __at(0xe0) volatile u8 absolute_acc;
@@ -39,6 +41,13 @@ cases={
  'edata-branch':('if (++count >= 16) count=0; buffer[count]=value;',True,''),
  'edata-pointer-object':('saved_pointer=buffer;',True,''),
  'edata-pointer-indirect':('*saved_pointer=value;',False,''),
+ 'code-byte':('value=byte_table[index & 3];',True,''),
+ 'code-word':('word=word_table[index & 3];',True,''),
+ 'byte-quotient':('value=value/(index | 1);',True,''),
+ 'byte-remainder':('value=value%(index | 1);',True,''),
+ 'word-quotient':('word=word/(u16)(index | 1);',True,''),
+ 'word-remainder':('word=word%(u16)(index | 1);',True,''),
+ 'word-product':('total=(unsigned long)word * word;',True,''),
  'xdata-increment':('++far_count;',True,''),
  'mixed-unknown-store':('count=value; *pointer=value;',False,''),
  'edata-absolute-acc':('absolute_acc=value;',False,''),
@@ -99,7 +108,18 @@ for model in ('small','large'):
    def body_instructions(text):
     body=text.split('mx251-isr-body-begin',1)[1].split('mx251-isr-body-end',1)[0]
     return [s for line in body.splitlines() if (s:=line.split(';',1)[0].strip())]
-   assert body_instructions(asm)==body_instructions(oldasm),(root,'body instructions changed')
+   new_body,old_body=body_instructions(asm),body_instructions(oldasm)
+   if name in ('word-quotient','word-remainder'):
+    # The old divider omitted context scratch saves in leaf ISRs. Only the
+    # paired R8/R9/R12..R15 saves may be added to its existing instruction stream.
+    at=0;extra=[]
+    for line in new_body:
+     if at<len(old_body) and line==old_body[at]:at+=1
+     else:extra.append(line)
+    assert at==len(old_body) and extra and all(re.fullmatch(r'(push|pop)\s+r(8|9|1[2-5])',s) for s in extra),(root,extra)
+    assert sorted(s.split()[1] for s in extra if s.startswith('push'))==sorted(s.split()[1] for s in extra if s.startswith('pop')),(root,extra)
+   else:
+    assert new_body==old_body,(root,'body instructions changed')
    packed='gpr=ffffffff bank=0 packed=1' in asm
    match=re.search(r'mx251-leaf-isr-saves .*?removed-bytes=(\d+) .*?stack-saved=(\d+)',asm)
    assert bool(match)==optimized,(root,asm)
@@ -121,9 +141,9 @@ for model in ('small','large'):
     assert obj==old,(root,'excluded case changed')
    _,disabled=run(a.sdcc,{'MX251_LEAF_ISR_SAVES':'0'},'disabled')
    _,old_disabled=run(a.baseline,{'MX251_LEAF_ISR_SAVES':'0'},'old-disabled')
-   if not packed:
+   if not packed and name not in ('word-quotient','word-remainder'):
     assert disabled==old_disabled,(root,'opt-out changed')
-   else:
+   elif packed:
     disabled_asm=(root/'disabled.asm').read_text(encoding='latin1')
     assert 'mx251-leaf-isr-saves' not in disabled_asm,root
     assert 'gpr=ffffffff bank=0 packed=1' in disabled_asm,root

@@ -3732,7 +3732,7 @@ mcs251GenUnsignedWordMultiply (iCode *ic)
     {
       /* 活跃性仅描述本函数的值，不能代表被中断上下文或 callee-saves
          调用者的寄存器。特殊入口保留原保存策略，普通函数才省略死值。 */
-      preserve[scratch] = mcs251MultiplyPreservesByte (ic, result, scratchOffsets[scratch]);
+      preserve[scratch] = mcs251ArithmeticPreservesByte (ic, result, scratchOffsets[scratch]);
       if (preserve[scratch])
         emitpush (scratchNames[scratch]);
     }
@@ -5098,12 +5098,9 @@ mcs251GenUnsignedWordDivision (iCode *ic, bool remainder)
   for (i = 0; i < 4; ++i) scratch[count++] = base + i;
   for (i = 0; i < count; ++i)
     {
-      int idx = mcs251_regIdxForNumber (scratch[i]);
-      preserve[i] = mcs251RegisterSurvives (ic, idx);
-      if (AOP_TYPE (result) == AOP_REG)
-        for (j = 0; j < 2; ++j)
-          if (AOP (result)->aopu.aop_reg[j]->offset == scratch[i])
-            preserve[i] = false;
+      /* ISR/callee-saves scratch belongs to the interrupted/calling context,
+         even when no value is live in this function's iCode. */
+      preserve[i] = mcs251ArithmeticPreservesByte (ic, result, scratch[i]);
       if (preserve[i]) emitpush (byteNames[scratch[i]]);
     }
 

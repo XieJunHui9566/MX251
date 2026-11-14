@@ -276,8 +276,21 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
   if(l->empty || l->label)return true;
   const char *op=l->op;
   if(!strcmp(op,"nop"))return l->nargs==0;
-  if(!strcmp(op,"mul") && l->nargs==1 && !strcmp(l->arg[0],"ab")) {
-    all->reads|=MCS251_AB_BYTES;all->writes|=MCS251_AB_BYTES;all->flags=true;return true;
+  if(!strcmp(op,"mul") || !strcmp(op,"div")) {
+    /* Register MUL/DIV also write the implicit high half of the enclosing
+     * word/dword. Use the shared instruction description for both widths. */
+    mx251_effects e=mx251InstructionEffects(l->node->line,strlen(l->node->line),NULL,0);
+    if(e.unknown)return false;
+    all->reads|=e.reads;all->writes|=e.writes;
+    all->flags|=(e.flagsReads|e.flagsWrites)!=0;return true;
+  }
+  if(!strcmp(op,"movc")) {
+    if(l->nargs!=2 || strcmp(l->arg[0],"a") ||
+       (strcmp(l->arg[1],"@a+dptr") && strcmp(l->arg[1],"@a+pc")))return false;
+    all->reads|=UINT32_C(1)<<MCS251_BYTE_A;
+    all->writes|=UINT32_C(1)<<MCS251_BYTE_A;
+    if(!strcmp(l->arg[1],"@a+dptr"))all->specialReads|=MX251_SPECIAL_DPX;
+    all->flags=true;return true;
   }
   if(!strcmp(op,"jmp") && l->nargs==1 && !strcmp(l->arg[0],"@a+dptr")) {
     /* Only the emitter's adjacent, fully local jump table can dispatch into

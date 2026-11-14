@@ -44,7 +44,7 @@ mcs251GenLowWordMultiply (iCode *ic, operand *left, operand *right, operand *res
   emitcode (";", "mcs251 low-word multiply byte fallback");
   for (i = 0; i < 6; ++i)
     {
-      preserve[i] = mcs251MultiplyPreservesByte (ic, result, numbers[i]);
+      preserve[i] = mcs251ArithmeticPreservesByte (ic, result, numbers[i]);
       if (preserve[i]) emitpush (names[i]);
     }
   rightFirst = aopInReg (AOP (right), 0, A_IDX) || aopInReg (AOP (right), 1, A_IDX);

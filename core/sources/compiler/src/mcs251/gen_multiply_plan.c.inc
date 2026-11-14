@@ -1,7 +1,7 @@
 /* MCS251 乘法计划；GPL-2.0-or-later。
  * 复用标量位置和搬运描述，临时值只活到当前 iCode 结束，不改变 ABI2。 */
 static bool
-mcs251MultiplyPreservesByte (iCode *ic, operand *result, int offset)
+mcs251ArithmeticPreservesByte (iCode *ic, operand *result, int offset)
 {
   bool preserve = !_G.currentFunc || IFFUNC_ISISR (_G.currentFunc->type) ||
                   IFFUNC_CALLEESAVES (_G.currentFunc->type) ||
@@ -29,7 +29,7 @@ mcs251LegacyMultiplyInstructions (iCode *ic, operand *left, operand *right,
   const char *high = mcs251WordForNativePair (AOP (result), 2);
   unsigned count = 1;
   for (int i = 0; i < 6; ++i)
-    if (mcs251MultiplyPreservesByte (ic, result, scratch[i])) count += 2;
+    if (mcs251ArithmeticPreservesByte (ic, result, scratch[i])) count += 2;
   if (l && r && (strcmp (l, "wr8") || strcmp (r, "wr12")))
     {
       if (!strcmp (r, "wr12")) count += 1 + (strcmp (l, "wr12") != 0);
