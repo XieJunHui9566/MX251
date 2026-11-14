@@ -29,3 +29,13 @@ u32 live_registers(u32 x, u32 y) __reentrant
     chain_store((u8)x);
     return (a + b) ^ c;
 }
+
+extern volatile __edata u8 estate[8];
+static volatile __edata u8 elocal;
+void store_edata(u8 x) __reentrant;
+void chain_edata(u8 x) __reentrant
+{
+    store_edata(x);
+    estate[1] = x;
+    elocal = x;
+}

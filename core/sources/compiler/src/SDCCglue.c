@@ -418,11 +418,11 @@ emitRegularMap (memmap *map, bool addPublics, bool arFlag)
           /* Preserve the allocated object's space and extent for call effects.
              Absolute objects and custom DATA sections keep their own rules. */
           if (TARGET_IS_MCS251 && !SPEC_ABSA (sym->etype) && size > 0 &&
-              (map == bit || map == xdata || (map == data &&
+              (map == bit || map == xdata || map == edata || (map == data &&
                (!options.data_seg || !strcmp (DATA_NAME, options.data_seg)))))
             dbuf_printf (&map->oBuf,
               "; mx251-object schema=1 symbol=%s space=%s size=%u\n",
-              sym->rname, map == bit ? "bit" : map == xdata ? "xdata" : "data", (unsigned) size);
+              sym->rname, map == bit ? "bit" : map == xdata ? "xdata" : map == edata ? "edata" : "data", (unsigned) size);
         }
 
       sym->ival = NULL;

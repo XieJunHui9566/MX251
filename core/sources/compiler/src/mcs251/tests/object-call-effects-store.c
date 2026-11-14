@@ -16,3 +16,15 @@ void store_state(u8 x) __reentrant
 }
 
 void store_absolute(u8 x) __reentrant { absolute_byte = x; }
+
+volatile __edata u8 estate[8];
+static volatile __edata u8 elocal;
+__edata __at(0x100) volatile u8 eabsolute;
+__sbit __at(0xd5) flag_f0;
+void store_edata(u8 x) __reentrant
+{
+    estate[0] = x;
+    estate[7] = x + 1;
+    elocal = x;
+    flag_f0 = 1;
+}

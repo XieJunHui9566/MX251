@@ -92,6 +92,11 @@ function Get-Mx251BankDestination([string]$Text,$Aliases,$State,[switch]$Bit,[in
 }
 function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit,[int]$Width=1) {
  $t=$Text.Trim();$lower=$t.ToLowerInvariant()
+ if(-not $Bit -and $lower.StartsWith('e:')){
+  $object=Get-Mx251ObjectReference $t.Substring(2) $State.objects
+  if($null -ne $object -and $object.space -ceq 'edata' -and $object.offset -ge 0 -and $object.offset+$Width -le $object.size){return 0}
+  throw 'unproven-edata-write'
+ }
  $object=Get-Mx251ObjectReference $t $State.objects
  if($null -ne $object){
   if($Bit -and $object.space -ceq 'bit' -and $object.offset -eq 0){return 0}
@@ -103,13 +108,13 @@ function Get-Mx251BankDestinationCore([string]$Text,$Aliases,$State,[switch]$Bit
   $m=[regex]::Match($t,'^(.+)\.([0-7])$')
   if($m.Success){
    $base=Get-Mx251DirectAddress $m.Groups[1].Value $Aliases
-   if($base -eq 208 -and $m.Groups[2].Value -eq '7'){return 0} # CY does not select a register bank.
+   if($base -eq 208 -and $m.Groups[2].Value -notin @('3','4')){return 0} # PSW flags do not select a register bank.
    if($null -eq $base -or $base -lt 128 -or $base -gt 255 -or $base -in @(208,209)){throw 'unresolved-or-bank-changing-bit-write'}
    return (Get-Mx251DirectGprMask $base 1 $State)
   }
   $address=Get-Mx251Numeric $t
   if($null -eq $address -and $Aliases.ContainsKey($t)){$address=$Aliases[$t]}
-  if($address -eq 215){return 0} # Numeric or declared bit alias of PSW.CY.
+  if($address -in @(208,209,210,213,214,215)){return 0} # Numeric or declared PSW flag-bit alias.
   if($null -eq $address -or $address -lt 0 -or $address -gt 255 -or $address -in @(211,212)){throw 'unresolved-or-bank-changing-bit-write'}
   if($address -ge 128){return (Get-Mx251DirectGprMask ($address -band 248) 1 $State)}
   $State.bitsWrites=1;return 0
@@ -271,15 +276,21 @@ function Get-Mx251BankObjects([string]$Root,$Config,$MemoryLayout=$null) {
   $area=''
   foreach($line in $asm.Split("`n")){
    if($line -cmatch '^\s*\.area\s+([^\s]+)'){$area=$Matches[1]}
-   if($line -cnotmatch '^; mx251-object schema=1 symbol=([^\s]+) space=(data|bit|xdata) size=([0-9]+)\s*$'){continue}
+   if($line -cnotmatch '^; mx251-object schema=1 symbol=([^\s]+) space=(data|bit|xdata|edata) size=([0-9]+)\s*$'){continue}
    $s=$Matches[1];$space=$Matches[2];$size=[int]$Matches[3]
-   if(($space -ceq 'data' -and $area -cne 'DSEG') -or ($space -ceq 'bit' -and $area -cne 'BSEG') -or ($space -ceq 'xdata' -and $area -cne 'XSEG')){continue}
+   if(($space -ceq 'data' -and $area -cne 'DSEG') -or ($space -ceq 'bit' -and $area -cne 'BSEG') -or ($space -ceq 'xdata' -and $area -cne 'XSEG') -or ($space -ceq 'edata' -and $area -cne 'ESEG')){continue}
    if(-not [regex]::IsMatch($asm,'(?m)^'+[regex]::Escape($s)+':{1,2}\s*\r?\n\s*\.ds\s+'+$size+'\s*\r?\n; mx251-object schema=1 symbol='+[regex]::Escape($s)+' ')){continue}
    $exported=[regex]::IsMatch($asm,'(?m)^\s*\.globl\s+'+[regex]::Escape($s)+'\s*$')
    $o=@{space=$space;size=$size;unit=$u.name;exported=$exported}
    if($space -ceq 'xdata'){
     if($null -eq $MemoryLayout -or $size -gt $MemoryLayout.xramBytes -or $MemoryLayout.xramBase -lt 256 -or $MemoryLayout.xramBase+$MemoryLayout.xramBytes -gt 16777216){continue}
     $o.addressLow=[long]$MemoryLayout.xramBase;$o.addressHigh=[long]$MemoryLayout.xramBase+$MemoryLayout.xramBytes-$size
+   }
+   if($space -ceq 'edata'){
+    # The qualified linker places ESEG in [0x100, stackBase); its existing
+    # ESEG/EABS check rejects allocations outside this window.
+    if($null -eq $MemoryLayout -or $size -le 0 -or $MemoryLayout.stackBase -gt 65536 -or $MemoryLayout.stackBase-$size -lt 256){continue}
+    $o.addressLow=256L;$o.addressHigh=[long]$MemoryLayout.stackBase-$size
    }
    $units[$u.name][$s]=$o
    if($exported){if(-not $exports.ContainsKey($s)){$exports[$s]=@()};$exports[$s]+=@($o)}
