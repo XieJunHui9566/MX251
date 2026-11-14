@@ -2,6 +2,7 @@
 param(
  [Parameter(Mandatory=$true)][string]$ProjectPath,
  [switch]$C251Compatibility,
+ [ValidateSet('AUTO','ON','OFF')][string]$NativeIntegerRuntime='AUTO',
  [ValidateSet('AUTO','OFF')][string]$NearTransfers='AUTO',
  [string]$CMake,
  [string]$Ninja,
