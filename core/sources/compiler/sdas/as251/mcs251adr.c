@@ -190,8 +190,12 @@ addr(struct expr *esp)
 			xerr('a', "Invalid register-indirect operand.");
 		}
 
-		esp->e_flag = 0;
-		esp->e_base.e_ap = NULL;
+		/* Indexed operands contain a displacement expression. Keep its
+		 * area/external-symbol relocation for out_displacement(). */
+		if (esp->e_mode != S_IDX_WREG && esp->e_mode != S_IDX_DREG) {
+			esp->e_flag = 0;
+			esp->e_base.e_ap = NULL;
+		}
 	}
 	else if (c == '*') {
 		if ((c = getnb()) == '/') {

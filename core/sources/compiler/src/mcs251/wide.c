@@ -67,6 +67,7 @@ typedef struct {
   bool nativeCodeByte; /* Selected loop-local unified CODE byte load. */
   bool boundedCursorStep; /* Object-local cursor; final one-past result is unobserved. */
   bool nativeIndexed;
+  bool edataIndexed; /* Proven region-00 object plus a sampled integer index. */
   unsigned indexedExtent,indexedOrdinal;
   bool privateUnionWordAccess; /* transaction width only; byteAccess still guards aliases */
   unsigned args, stackArgs, stackBytes;
@@ -2290,6 +2291,25 @@ wide_fixed_object_addresses(wide_function *f)
        source<0 || n->left.width!=4 || !symbols[source] || !wide_address_dominates(f,d,source,i))continue;
     int o=object[source];int64_t position=offset[source],delta=0;
     symbol *s=symbols[source];int size=o>=0?f->objects[o].size:getSize(s->type);
+    const char *indexed=getenv("MX251_EDATA_INDEXED");
+    if(o<0 && n->addressIndex.value>=0 && (n->addressOp=='+' || n->addressOp=='-') &&
+       (!indexed || strcmp(indexed,"0")) && !n->byteAccess && !n->pointerAccess && !n->argumentReadReverse &&
+       (n->width==1 || n->width==2 || n->width==4) && position>=0 && position<=size-n->width &&
+       !n->addressIndex.floating && !n->addressIndex.codePointer &&
+       !f->values[n->addressIndex.value].pointer &&
+       (n->addressIndex.width==1 || n->addressIndex.width==2 || n->addressIndex.width==4)) {
+      /* EDATA objects lie wholly in region 00. For a defined access, the
+       * low 16 bits of the sampled offset plus the object address are the
+       * complete address, including signed offsets and subtraction.
+       * Preserve the memory node, its transaction width and its index use. */
+      n->edataIndexed=true;n->addressSymbol=s;n->addressOffset=(int)position;n->left.value=-1;
+      if(n->right.value!=source && n->addressIndex.value!=source) {
+        wide_bits removed={{0}};wb_set(&removed,source);n->use=wb_minus(n->use,removed);
+      }
+      dbuf_printf(f->diagnostics,"; wide edata-index folded node=%d symbol=%s offset=%d width=%d index-width=%d volatile=%u\n",
+        i,s->rname,n->addressOffset,n->width,n->addressIndex.width,n->byteAccess);
+      ++changedUses;continue;
+    }
     if(n->addressOp) {
       if((n->addressOp!='+' && n->addressOp!='-') ||
          !wide_fixed_address_delta(n->addressIndex,&delta))continue;
@@ -2464,6 +2484,10 @@ wide_resolve_cost_operand(const char *text,const void *context)
   wide_cost_operand unknown={WC_UNKNOWN,0,0};
   for(int i=0;i<f->nn;++i) {
     const wide_node *n=&f->nodes[i];symbol *s=n->addressSymbol;
+    if(s && n->edataIndexed && (n->op==WM_LOAD || n->op==WM_STORE)) {
+      wide_cost_operand indexed=wide_cost_symbol_index(text,s->rname,getSize(s->type));
+      if(indexed.kind!=WC_UNKNOWN)return indexed;
+    }
     if(n->op==WM_VOLATILE_READ)for(unsigned j=0;j<n->orderedReadCount;++j) {
       const wide_symbol_address *access=&n->orderedReads[j];symbol *read=access->symbol;
       if(!read || access->stack)continue;

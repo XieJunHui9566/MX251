@@ -25,6 +25,8 @@ driver=r'''
 #include "wide_cost.h"
 static wide_cost_operand resolve(const char *s,const void *unused) {
   (void)unused;
+  wide_cost_operand indexed=wide_cost_symbol_index(s,"_Extended",4);
+  if(indexed.kind!=WC_UNKNOWN)return indexed;
   if(!strncmp(s,"e:",2) && wide_cost_symbol_offset(s+2,"_Extended",4)>=0)
     return (wide_cost_operand){WC_EXT_DIRECT,0,0};
   if(wide_cost_symbol_offset(s,"_Case",4)>=0 || wide_cost_symbol_offset(s,"_Sfr",1)>=0)
@@ -49,6 +51,8 @@ for reg in ('a','r0','r9','wr6','dr4'):
 cases += [('sll r5',2),('sll wr6',2),('mov a,(_Case+0x1)',2)]
 cases += [('subb a,#0',2),('subb a,#1',2),('subb a,#255',2),('rlc a',1)]
 cases += [(f'mul r11,r{reg}',2) for reg in range(16)]
+for reg in range(0,32,2):
+    cases += [(f'mov r7,@wr{reg}+(_Extended+0)',4),(f'mov @wr{reg}+(_Extended+2),wr6',4)]
 for reg in ('a','r0','r9','wr6','dr4'):
     for expr in ('_Case','(_Case)','(_Case+0)'):
         size=2 if reg=='a' else 3
@@ -63,6 +67,10 @@ for address,move,branch in [('0x88',2,3),('0x89',3,4),('0xe6',3,4)]:
 unknown=['clr _Case','mov r7,_case','mov a,_CASE','mov a,(_Case+4)', 'mov a,(_Case-1)', 'mov a,(_Case+2147483648)', 'mov a,(_Case+4294967296)', 'mov a,(_Case+1+1)', 'mov a,((_Case))', 'mov a,(_Case+0x4)', 'mov a,_CaseSuffix','mov a,(_Sfr+1)', 'mov a,_external_xdata', 'setb _missing', 'mov c,_missing', 'mov dr4,@dr0', 'mov a,(0x1234)']
 unknown += ['mov c,0x89.8','jb 0x89.8,00100$','mov c,0x20.3']
 unknown += ['subb wr4,#0','subb r7,#0']
+unknown += ['mov r7,@wr31+(_Extended+0)','mov r7,@dr16+(_Extended+0)',
+            'mov r7,@wr16+(_Extended+4)','mov r7,@wr16+(_Extended-1)',
+            'mov r7,@wr16+(_extended+0)','mov r7,@wr16+(_Extended+1+1)',
+            'mov r7,@wr16+(_ExtendedOther+0)']
 cases += [(ins,None) for ins in unknown]
 input_text='\n'.join(x[0] for x in cases)+'\n'
 q=run('evaluate',[d/'driver.exe'],d,input_text.encode());assert q.returncode==0

@@ -92,6 +92,22 @@ wide_cost_arg(const char *s)
   return a;
 }
 
+/* Typed EDATA relocations are resolved by the caller, never by spelling
+ * alone. WR indexing wraps within region 00, so either displacement sign
+ * has the same low-16-bit address. DR indexing does not have that property. */
+static inline wide_cost_operand
+wide_cost_symbol_index(const char *text,const char *symbol,unsigned size)
+{
+  wide_cost_operand unknown={WC_UNKNOWN,0,0};
+  if(strncmp(text,"@wr",3))return unknown;
+  const char *end=strchr(text,'+');char reg[8];
+  if(!end || end-text<4 || (size_t)(end-text-1)>=sizeof reg)return unknown;
+  memcpy(reg,text+1,(size_t)(end-text-1));reg[end-text-1]=0;
+  wide_cost_operand index=wide_cost_arg(reg);
+  if(index.kind!=WC_REG || index.width!=2 || wide_cost_symbol_offset(end+1,symbol,size)<0)return unknown;
+  index.kind=WC_INDEXED;return index;
+}
+
 /* PUSHW 的立即数保持原始词法；不能把内部空白拼成合法数字。
  * 仅 Source 模式的十进制/十六进制有界字面量，不解释符号或重定位。 */
 static int

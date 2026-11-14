@@ -674,10 +674,12 @@ wmemory_symbol(wide_function *f,wide_node *n)
 #include "wide_single_byte.c.inc"
 #include "wide_byte_rmw.c.inc"
 #include "wide_indexed_address.c.inc"
+#include "wide_edata_index.c.inc"
 
 static void
 wmemory_emit(wide_function *f,wide_node *n,bool addressReady)
 {
+  if(n->edataIndexed) {wmemory_edata_index(f,n);return;}
   if(n->pointerAccess){wmemory_pointer(f,n);return;}
   /* Byte tables already have compact legacy indexed loads. Native word
    * reads remove byte assembly without changing that backend choice. */
@@ -1169,7 +1171,7 @@ wshift_boundary_right(wide_function *f,int work,unsigned count,bool sign)
 }
 
 static void
-wshift(wide_function *f,wide_node *n)
+wshift(wide_function *f,wide_node *n,int countMask)
 {
   wide_value *dest=&f->values[n->result];int width=n->width==1?2:n->width;
   int work=dest->reg>=0&&n->width>1?dest->reg:16;
@@ -1216,7 +1218,11 @@ wshift(wide_function *f,wide_node *n)
   bool loadClobbersA=n->left.value>=0 && n->left.width==1 && f->values[n->left.value].reg<0;
   if(n->right.value>=0) {
     /* B 不参与分配；溢出字节的装载会使用 A，故计数暂存 B。 */
-    wload(f,n->right,20,2);we(f,"\tmov\twr10,wr20\n");
+    const char *direct=getenv("MX251_BYTE_SHIFT_COUNT");
+    if(n->right.width==1 && (!direct || strcmp(direct,"0"))) {
+      we(f,"; wide byte shift count mask=%d\n",countMask);wload_byte(f,n->right,11);
+      if(countMask>=0)we(f,"\tanl\ta,#0x%02x\n",countMask);
+    } else {wload(f,n->right,20,2);we(f,"\tmov\twr10,wr20\n");}
     if(loadClobbersA)we(f,"\tmov\tb,a\n");
   }
   wload(f,n->left,work,width);
@@ -1922,8 +1928,8 @@ wrotate_proposal(wide_function *f,int i)
   }
   Safe_free(trial);
   we(f,"; rotate-original\n");
-  f->emitWeight=1+4*a->origin->depth;wshift(f,a);
-  f->emitWeight=1+4*b->origin->depth;wshift(f,b);
+  f->emitWeight=1+4*a->origin->depth;wshift(f,a,-1);
+  f->emitWeight=1+4*b->origin->depth;wshift(f,b,-1);
   f->emitWeight=1+4*o->origin->depth;wbinary(f,o);
   we(f,"; rotate-end\n");
 }
@@ -1984,6 +1990,19 @@ wide_emit(wide_function *f)
     if(predicate>i) {i=predicate;continue;}
     int masks=wbyte_masks(f,i);
     if(masks>i) {i=masks;continue;}
+    /* A single-use byte mask immediately feeding a variable shift can be
+     * evaluated in its reserved count register, after the original samples. */
+    const char *byteCount=getenv("MX251_BYTE_SHIFT_COUNT");
+    if((!byteCount || strcmp(byteCount,"0")) && n->op==BITWISEAND && n->result>=0 &&
+       n->width==1 && n->left.width==1 && n->right.value<0 && !n->left.floating &&
+       !n->left.codePointer && n->left.value>=0 && !f->values[n->left.value].pointer &&
+       f->values[n->result].reads==1 && i+1<f->nn && wide_call_plain(f,i+1,1) &&
+       (f->nodes[i+1].op==LEFT_OP || f->nodes[i+1].op==RIGHT_OP) &&
+       f->nodes[i+1].right.value==n->result && f->nodes[i+1].right.width==1 &&
+       f->nodes[i+1].left.value!=n->result && !wb_has(f->nodes[i+1].out,n->result)) {
+      wide_node shift=f->nodes[++i];shift.right=n->left;
+      wshift(f,&shift,(int)(n->right.literal&255));continue;
+    }
     if(n->rotateCandidate) {wrotate_proposal(f,i);i+=2;continue;}
     if(wide_call_plain(f,i+1,2) && wmemory_byte_rmw(f,i)) {i+=2;continue;}
     int indexed=windexed_scaled_memory(f,i);
@@ -2355,7 +2374,7 @@ wide_emit(wide_function *f)
       wload(f,n->right,work,width);wstore_known(f,n->result,work,wcanonical_pointer(f,n->right));break;
     }
     case WM_BYTE_PACK:wpack_bytes(f,n);break;
-    case LEFT_OP:case RIGHT_OP:wshift(f,n);break;
+    case LEFT_OP:case RIGHT_OP:wshift(f,n,-1);break;
     case WM_ROTATE_LEFT:wrotate(f,n);break;
     case '!': {
       wboolean_result(f,n,wtest_condition(f,n->left,false));break;
