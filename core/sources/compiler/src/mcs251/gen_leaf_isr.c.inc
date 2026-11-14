@@ -196,6 +196,32 @@ static bool li_object_pointer(operand *p,unsigned depth)
   return false;
 }
 
+/* A scalar result in far RAM is lowered through DPX too. It is still a
+ * write to the allocated object, not a store through an unknown pointer.
+ * Use the result's storage map (also valid for default EDATA), not its
+ * value type: a pointer-valued global is itself an ordinary RAM object. */
+static bool li_object_result(iCode *ic)
+{
+  if(!ic || POINTER_SET(ic) || !IS_TRUE_SYMOP(IC_RESULT(ic)))return false;
+  symbol *s=OP_SYMBOL(IC_RESULT(ic));sym_link *spec=getSpec(s->type);
+  return !SPEC_ABSA(spec) && !s->onStack &&
+    (SPEC_OCLS(spec)==edata || SPEC_OCLS(spec)==xdata);
+}
+
+/* Branch relaxation can put a label between a literal DPX setup and its
+ * store. The typed IR still describes the whole access, including every
+ * byte of a word/dword lowered as individual stores. */
+static bool li_literal_store(iCode *ic)
+{
+  if(!ic || !POINTER_SET(ic) || !IS_OP_LITERAL(IC_RESULT(ic)))return false;
+  operand *p=IC_RESULT(ic);sym_link *type=operandType(p);
+  if(!IS_PTR(type) || getSize(type)!=3 ||
+     (DCL_TYPE(type)!=FPOINTER && DCL_TYPE(type)!=GPOINTER))return false;
+  double address=operandLitValue(p);int width=getSize(type->next);
+  return width>0 && (unsigned)width<=0x1000000ul &&
+    address>=256 && address<=0x1000000ul-(unsigned)width;
+}
+
 static bool li_indirect_store(li_line *l,li_line *lines,unsigned begin,unsigned at)
 {
   mx251_effect_operand address;
@@ -204,6 +230,7 @@ static bool li_indirect_store(li_line *l,li_line *lines,unsigned begin,unsigned 
   if(address.special!=MX251_SPECIAL_DPX && (!address.gpr || address.width!=4))return false;
   iCode *ic=l->node->ic;
   if(ic && POINTER_SET(ic) && li_object_pointer(IC_RESULT(ic),0))return true;
+  if(li_object_result(ic) || li_literal_store(ic))return true;
   if(strcmp(l->arg[0],"@dpx"))return false;
   /* Match immediate DPX setup along a single-entry instruction sequence.
    * A conditional exit preserves DPX on its fallthrough path; an incoming

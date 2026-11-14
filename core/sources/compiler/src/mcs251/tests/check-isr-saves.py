@@ -9,6 +9,13 @@ env['SDCC_HOME']=str(a.toolchain.resolve());env['PATH']=str(a.toolchain.resolve(
 header='''typedef unsigned char u8; typedef unsigned int u16;
 volatile __data u8 index,value;
 volatile __xdata u8 buffer[16];
+volatile __edata u8 count;
+volatile __edata u16 word;
+volatile __edata unsigned long total;
+volatile __xdata u8 far_count;
+volatile __xdata u8 * __edata saved_pointer;
+__edata __at(0xe0) volatile u8 absolute_acc;
+__edata __at(0x84) volatile u8 absolute_dpxl;
 __sfr __at(0x98) status;
 __sbit __at(0x98) ready;
 __sfr __at(0xba) mapping;
@@ -24,10 +31,26 @@ cases={
  'unknown-call':('unknown();',False,''),
  'call-and-array':('helper(); buffer[index & 15] = value;',True,''),
  'indexed-array':('if (ready) {ready=0; buffer[index & 15]=value;}',True,''),
+ 'edata-increment':('++count;',True,''),
+ 'edata-assignment':('count=value;',True,''),
+ 'edata-copy':('count=far_count;',True,''),
+ 'edata-word':('++word;',True,''),
+ 'edata-dword':('total+=word;',True,''),
+ 'edata-branch':('if (++count >= 16) count=0; buffer[count]=value;',True,''),
+ 'edata-pointer-object':('saved_pointer=buffer;',True,''),
+ 'edata-pointer-indirect':('*saved_pointer=value;',False,''),
+ 'xdata-increment':('++far_count;',True,''),
+ 'mixed-unknown-store':('count=value; *pointer=value;',False,''),
+ 'edata-absolute-acc':('absolute_acc=value;',False,''),
+ 'edata-absolute-dpxl':('absolute_dpxl=value;',False,''),
  'constant-store':('*(volatile __xdata u8 *)0x7efa12UL=0;',True,''),
  'constant-load':('value=*(volatile __xdata u8 *)0x7efa12UL;',True,''),
  'acc-bit':('if (*(volatile __xdata u8 *)0x7efa12UL & 1) value=3;',True,''),
  'conditional-store':('if (*(volatile __xdata u8 *)0x7efa12UL & 1) *(volatile __xdata u8 *)0x7efa12UL &= 0xfe;',True,''),
+ 'literal-branch':('if (*(volatile __xdata u8 *)0x7efa12UL & 1) { *(volatile __xdata u8 *)0x7efa12UL &= 0xfe;'+60*'value++;'+'}',True,''),
+ 'literal-last-byte':('*(volatile __xdata u8 *)0xffffffUL=value;',True,''),
+ 'literal-wrap-word':('*(volatile __xdata u16 *)0xffffffUL=word;',False,''),
+ 'literal-core-word':('*(volatile __xdata u16 *)0xffUL=word;',False,''),
  'unknown-pointer':('*pointer=value;',False,''),
  'acc-alias':('*(volatile __xdata u8 *)0xe0UL=value;',False,''),
  'sp-alias':('*(volatile __xdata u8 *)0x81UL=value;',False,''),
@@ -72,17 +95,17 @@ for model in ('small','large'):
     (root/(suffix+'.log')).write_bytes(r.stdout+r.stderr);assert not r.returncode,(root,r.stderr)
     return (root/(suffix+'.asm')).read_text(encoding='latin1'),(root/(suffix+'.rel')).read_bytes()
    asm,obj=run(a.sdcc,{},'current')
+   oldasm,old=run(a.baseline,{},'baseline')
+   def body_instructions(text):
+    body=text.split('mx251-isr-body-begin',1)[1].split('mx251-isr-body-end',1)[0]
+    return [s for line in body.splitlines() if (s:=line.split(';',1)[0].strip())]
+   assert body_instructions(asm)==body_instructions(oldasm),(root,'body instructions changed')
    packed='gpr=ffffffff bank=0 packed=1' in asm
    match=re.search(r'mx251-leaf-isr-saves .*?removed-bytes=(\d+) .*?stack-saved=(\d+)',asm)
    assert bool(match)==optimized,(root,asm)
    assert re.search(r'push\s+0xd1',asm) and re.search(r'pop\s+0xd1',asm),root
    if name.startswith('peripheral-'):
     if optimized:assert re.search(r'inline-bits=[1-9]',asm),root
-    oldasm,_=run(a.baseline,{},'baseline')
-    def body_instructions(text):
-     body=text.split('mx251-isr-body-begin',1)[1].split('mx251-isr-body-end',1)[0]
-     return [s for line in body.splitlines() if (s:=line.split(';',1)[0].strip())]
-    assert body_instructions(asm)==body_instructions(oldasm),(root,'body instructions changed')
     if name in ('peripheral-clear','peripheral-block','peripheral-mapping-neighbor'):
      assert re.findall(r'^\s*push\s+(\S+)',asm,re.M)==['0xd1'],root
      assert re.findall(r'^\s*pop\s+(\S+)',asm,re.M)==['0xd1'],root
@@ -95,7 +118,7 @@ for model in ('small','large'):
    if name in packed_changes:
     assert 'gpr=ffffffff bank=0 packed=1' in asm,root
    if not optimized and not packed:
-    _,old=run(a.baseline,{},'baseline');assert obj==old,(root,'excluded case changed')
+    assert obj==old,(root,'excluded case changed')
    _,disabled=run(a.sdcc,{'MX251_LEAF_ISR_SAVES':'0'},'disabled')
    _,old_disabled=run(a.baseline,{'MX251_LEAF_ISR_SAVES':'0'},'old-disabled')
    if not packed:
