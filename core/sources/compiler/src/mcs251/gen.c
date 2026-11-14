@@ -10954,6 +10954,8 @@ mcs251GenStackPointerAccess (iCode *ic)
 /*-----------------------------------------------------------------*/
 /* genPointerGet - generate code for pointer get                   */
 /*-----------------------------------------------------------------*/
+#include "gen_edata_pointer.c.inc"
+
 static void
 genPointerGet (iCode * ic, iCode * pi, iCode * ifx)
 {
@@ -10963,6 +10965,8 @@ genPointerGet (iCode * ic, iCode * pi, iCode * ifx)
 
   D (emitcode (";", "genPointerGet"));
 
+  if (mcs251GenEdataPointerAccess (ic, pi, ifx))
+    return;
   if (mcs251GenStackPointerAccess (ic))
     return;
 
@@ -11686,6 +11690,8 @@ genPointerSet (iCode * ic, iCode * pi)
 
   D (emitcode (";", "genPointerSet"));
 
+  if (mcs251GenEdataPointerAccess (ic, pi, NULL))
+    return;
   if (mcs251GenStackPointerAccess (ic))
     return;
 
