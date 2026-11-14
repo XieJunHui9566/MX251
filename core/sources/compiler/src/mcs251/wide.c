@@ -1977,11 +1977,24 @@ wide_fixed_address_delta(wide_operand o,int64_t *delta)
   return true;
 }
 
-static unsigned
-wide_fixed_stack_addresses(wide_function *f)
+static bool
+wide_fixed_edata_object(symbol *s)
 {
-  if(!f->no)return 0;
+  if(!s || s->onStack || s->_isparm || getSize(s->type)<=0 || getSize(s->type)>65536)return false;
+  memmap *m=SPEC_OCLS(s->etype);
+  return (m==edata || m==e_abs) && (!SPEC_ABSA(s->etype) ||
+    (SPEC_ADDR(s->etype)>=0 && SPEC_ADDR(s->etype)<=65536-getSize(s->type)));
+}
+
+static unsigned
+wide_fixed_object_addresses(wide_function *f)
+{
+  bool hasObject=f->no!=0;
+  for(int i=0;i<f->nn && !hasObject;++i)
+    hasObject=f->nodes[i].op==WM_ADDRESS && wide_fixed_edata_object(f->nodes[i].addressSymbol);
+  if(!hasObject)return 0;
   wide_address_dominance *d=Safe_alloc(sizeof *d);memset(d,0,sizeof *d);d->entry=-1;
+  symbol *symbols[WV_MAX]={0};
   int object[WV_MAX],offset[WV_MAX]={0};unsigned changedUses=0;
   for(int v=0;v<f->nv;++v) {object[v]=-1;d->definition[v]=-1;}
   for(int i=0;i<f->nn;++i) {
@@ -1992,7 +2005,7 @@ wide_fixed_stack_addresses(wide_function *f)
   }
   if(d->entry<0) {Safe_free(d);return 0;}
   wide_address_reachable(f,d->entry,-1,d->reachable);
-  /* 只从本地完整对象生长身份，不推断 phi、动态偏移或循环携带值。
+  /* 栈对象和 EDATA 对象共用固定偏移传播，不推断动态偏移或循环携带值。
    * 派生值的来源定义必须支配派生点，不能以源码排列顺序代替。 */
   bool changed;
   do {
@@ -2000,10 +2013,13 @@ wide_fixed_stack_addresses(wide_function *f)
     for(int i=0;i<f->nn;++i) {
       wide_node *n=&f->nodes[i];int v=n->result,source=-1,o=-1;int64_t position=0;
       if(v<0 || !d->reachable[i] || d->definitions[v]!=1 || d->definition[v]!=i ||
-         object[v]>=0 || !wide_fixed_address_value(&f->values[v]))continue;
-      if(n->op==WM_ADDRESS && n->addressObject>=0 && !n->addressOp) {
+         symbols[v] || !wide_fixed_address_value(&f->values[v]))continue;
+      symbol *s=NULL;
+      if(n->op==WM_ADDRESS && !n->addressOp) {
         o=n->addressObject;position=n->addressOffset;
-        if(o>=f->no || n->addressSymbol!=f->objects[o].sym)continue;
+        s=n->addressSymbol;
+        if(o>=0) {if(o>=f->no || s!=f->objects[o].sym)continue;}
+        else if(!wide_fixed_edata_object(s))continue;
       } else {
         int64_t delta=0;
         if((n->op=='=' || n->op==CAST) && n->width==4 && n->right.width==4)
@@ -2012,37 +2028,39 @@ wide_fixed_stack_addresses(wide_function *f)
                 wide_fixed_address_delta(n->right,&delta)) {
           source=n->left.value;if(n->op=='-')delta=-delta;
         } else continue;
-        if(source<0 || source==v || object[source]<0 ||
+        if(source<0 || source==v || !symbols[source] ||
            !wide_fixed_address_value(&f->values[source]) ||
            DCL_TYPE(f->values[source].sym->type)!=DCL_TYPE(f->values[v].sym->type) ||
            !wide_address_dominates(f,d,source,i))continue;
-        o=object[source];position=offset[source]+delta;
+        o=object[source];s=symbols[source];position=offset[source]+delta;
       }
-      if(o>=0 && position>=0 && position<=f->objects[o].size) {
-        object[v]=o;offset[v]=(int)position;changed=true;
+      int size=o>=0?f->objects[o].size:getSize(s->type);
+      if(position>=0 && position<=size) {
+        symbols[v]=s;object[v]=o;offset[v]=(int)position;changed=true;
       }
     }
   } while(changed);
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];int source=n->left.value;
     if((n->op!=WM_LOAD && n->op!=WM_STORE) || n->addressObject>=0 || n->codeAccess ||
-       source<0 || n->left.width!=4 || object[source]<0 || !wide_address_dominates(f,d,source,i))continue;
+       source<0 || n->left.width!=4 || !symbols[source] || !wide_address_dominates(f,d,source,i))continue;
     int o=object[source];int64_t position=offset[source],delta=0;
+    symbol *s=symbols[source];int size=o>=0?f->objects[o].size:getSize(s->type);
     if(n->addressOp) {
       if((n->addressOp!='+' && n->addressOp!='-') ||
          !wide_fixed_address_delta(n->addressIndex,&delta))continue;
       position+=n->addressOp=='+'?delta:-delta;
     }
     int physical=n->pointerAccess?3:n->width;
-    if(physical<1 || position<0 || position>f->objects[o].size ||
-       physical>f->objects[o].size-position)continue;
+    if(physical<1 || position<0 || position>size || physical>size-position)continue;
     /* 留在原节点的字节/字/三字节指针事务保持原序、原宽度；不跨越
      * CALL 缓存内容。自存指针仍是右值，不能清除其真正的读取。 */
-    n->addressObject=o;n->addressOffset=(int)position;n->addressSymbol=f->objects[o].sym;
+    n->addressObject=o;n->addressOffset=(int)position;n->addressSymbol=s;
+    if(o<0)n->op=n->op==WM_STORE?WM_EDATA_STORE:WM_EDATA_LOAD;
     n->left.value=-1;n->addressOp=0;n->addressIndex=(wide_operand){.value=-1};
     if(n->right.value!=source) {wide_bits removed={{0}};wb_set(&removed,source);n->use=wb_minus(n->use,removed);}
-    dbuf_printf(f->diagnostics,"; wide stack-address folded function=%s node=%d source=%d definition=%d object=%d offset=%d physical=%d volatile-bytes=%d\n",
-      currFunc->name,i,source,d->definition[source],o,(int)position,physical,n->byteAccess);
+    dbuf_printf(f->diagnostics,"; wide %s-address folded function=%s node=%d source=%d definition=%d object=%d symbol=%s offset=%d physical=%d volatile-bytes=%d\n",
+      o>=0?"stack":"edata",currFunc->name,i,source,d->definition[source],o,s->rname,(int)position,physical,n->byteAccess);
     ++changedUses;
   }
   Safe_free(d);
@@ -2578,13 +2596,13 @@ wide_choose_pointer_copy(wide_function *f,wide_selection_cost *cost)
     "pointer-copy","copies",true,"original","trial",false,false);
 }
 
-/* 旧选择器的顺序和门槛不变：固定栈地址包住指针副本，后者仍只在
+/* 选择器的顺序不变：固定对象地址包住指针副本，后者仍只在
  * 旧分配候选存在 spill 时准入；向外提供完整候选成本供调度比较。 */
 static mcs251_wide_result
 wide_choose_stack_addresses(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_fixed_stack_addresses,wide_choose_pointer_copy,
-    "stack-address","accesses",false,"stack-original","stack-trial",false,false);
+  return wide_choose_transform(f,cost,wide_fixed_object_addresses,wide_choose_pointer_copy,
+    "object-address","accesses",false,"object-original","object-trial",false,true);
 }
 
 /* 新调度只与完整旧选择器的输出比较，不能提前消掉 spill 而使原有

@@ -427,9 +427,13 @@ wboolean_result(wide_function *f,wide_node *n,const char *condition)
 static void
 wmemory_pointer(wide_function *f,wide_node *n)
 {
-  bool store=n->op==WM_STORE;char a[3][32];
+  bool store=n->op==WM_STORE || n->op==WM_EDATA_STORE;
+  bool extended=n->op==WM_EDATA_LOAD || n->op==WM_EDATA_STORE;
+  char a[3][SDCC_NAME_MAX+32];
   wassert(n->pointerAccess && n->width==4 && !n->codeAccess && !n->addressOp);
-  if(n->addressObject>=0) {
+  if(extended) {
+    for(int k=0;k<3;++k)SNPRINTF(a[k],sizeof a[k],"e:(%s+%d)",n->addressSymbol->rname,n->addressOffset+k);
+  } else if(n->addressObject>=0) {
     int base=f->objects[n->addressObject].slot+n->addressOffset-f->frame-f->stackDepth+1;
     for(int k=0;k<3;++k)wa(a[k],base+k);
   } else {
@@ -524,6 +528,7 @@ wmemory_stack(wide_function *f,wide_node *n)
 static void
 wmemory_edata(wide_function *f,wide_node *n)
 {
+  if(n->pointerAccess){wmemory_pointer(f,n);return;}
   bool store=n->op==WM_EDATA_STORE;
   int value=store?n->right.value:n->result;
   int reg=value>=0?f->values[value].reg:-1;
