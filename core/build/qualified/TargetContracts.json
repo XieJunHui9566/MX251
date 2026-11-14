@@ -1,5 +1,5 @@
 {
-  "schema": 2,
+  "schema": 3,
   "architectures": {
     "mcs251-flat24-codeff": {
       "instructionMode": "32-bit",
@@ -15,6 +15,14 @@
         "objectAddressNative": {
           "schema": 1,
           "contract": "mcs251-flat24-codeff-spx-v1"
+        },
+        "orderedAsm": {
+          "schema": 1,
+          "nop": true,
+          "sfrBitMasks": "",
+          "preservesAllocatorContext": true,
+          "memoryBarrier": "full",
+          "motionBarrier": "full"
         }
       }
     }
@@ -22,7 +30,7 @@
   "targets": {
     "STC32G12K128": {
       "id": "STC32G12K128",
-      "revision": 3,
+      "revision": 4,
       "displayName": "STC32G12K128",
       "startup": {
         "sha256": "7225a696352a34eb5c32566c6783bf2018a65e9879d8adf4f53d6fbbf53fd876",
@@ -67,26 +75,23 @@
         "stackLimit": 4096
       },
       "qualification": "Existing fixed projects only; not a statement of all physical memory, all interrupts, or general runtime support.",
-      "compilerCapabilities": {
-        "orderedAsm": {
-          "schema": 1,
-          "nop": true,
-          "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:10,ac:d0,fd:d0",
-          "preservesAllocatorContext": true,
-          "memoryBarrier": "full",
-          "motionBarrier": "full"
-        },
+      "architecture": "mcs251-flat24-codeff",
+      "maximumInterruptSlots": 62,
+      "deviceEffects": {
         "sfrLayout": {
           "schema": 1,
           "contract": "sph85-v1"
+        },
+        "orderedBits": {
+          "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:10,ac:d0,fd:d0",
+          "memoryStateBits": "ba:80",
+          "preservesCompilerStorage": true
         }
-      },
-      "architecture": "mcs251-flat24-codeff",
-      "maximumInterruptSlots": 62
+      }
     },
     "AI8051U-34K64-32": {
       "id": "AI8051U-34K64-32",
-      "revision": 10,
+      "revision": 11,
       "displayName": "AI8051U-34K64-32Bit（STC80251）",
       "startup": {
         "sha256": "b13e2b892cd04dcb9059af6e6e475de4c8a32dfd9764ecd88dceecc46afb7cdb",
@@ -124,24 +129,19 @@
         "stackLimit": 2048
       },
       "qualification": "AI8051U-34K64 physical memory: 2 KiB EDATA and 32 KiB XDATA at 0x010000-0x017fff; manufacturer manual chapter 12, printed pages 620 and 627. Large native math remains rejected.",
-      "compilerCapabilities": {
+      "architecture": "mcs251-flat24-codeff",
+      "maximumInterruptSlots": 256,
+      "deviceEffects": {
         "sfrLayout": {
           "schema": 1,
           "contract": "sph85-v1"
         },
-        "orderedAsm": {
-          "schema": 1,
-          "nop": true,
+        "orderedBits": {
           "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:ff,ac:d0,fd:d0,af:ff,cd:c0,ce:ff",
-          "preservesAllocatorContext": true,
-          "memoryBarrier": "full",
-          "motionBarrier": "full",
           "memoryStateBits": "ba:80",
           "preservesCompilerStorage": true
         }
-      },
-      "architecture": "mcs251-flat24-codeff",
-      "maximumInterruptSlots": 256
+      }
     }
   }
 }

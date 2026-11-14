@@ -10,7 +10,7 @@ $registry=Get-Content -LiteralPath (Join-Path $repo 'core/build/qualified/Target
 # A new device can inherit code generation without edits to a compiler switch.
 $registry.targets['Independent251']=$registry.targets.STC32G12K128.Clone()
 $registry.targets.Independent251.id='Independent251'
-$registry.targets.Independent251.compilerCapabilities=@{}
+$registry.targets.Independent251.deviceEffects=@{}
 $registry|ConvertTo-Json -Depth 30|Set-Content -LiteralPath (Join-Path $Output 'TargetContracts.json')
 . (Join-Path $Output 'TargetProfile.ps1')
 foreach($name in @('AI8051U-34K64-32','STC32G12K128','Independent251')){
@@ -19,8 +19,30 @@ foreach($name in @('AI8051U-34K64-32','STC32G12K128','Independent251')){
  $reads=Get-Mx251CodeReads $target
  if(-not $reads.enabled -or $reads.compilerArguments[0] -cne '--mcs251-flat-code-reads'){throw 'CODE read policy not inherited'}
  if($target.compilerCapabilities.objectAddressNative.contract -cne 'mcs251-flat24-codeff-spx-v1'){throw 'Address policy not inherited'}
+ $ordered=Get-Mx251OrderedAsm $target 'AUTO'
+ if(-not $ordered.effective -or $ordered.compilerArguments[0] -cne '--mcs251-ordered-asm'){throw 'Ordered operation policy not inherited'}
 }
 if((Get-Mx251SfrLayout (Get-Mx251TargetContract 'Independent251')).contract -cne 'legacy-v1'){throw 'Device SFR layout leaked'}
+$independent=Get-Mx251OrderedAsm (Get-Mx251TargetContract 'Independent251') 'AUTO'
+if($independent.bitMasks -ne '' -or $independent.memoryStateBits -ne ''){throw 'Device bit effects leaked'}
+foreach($name in @('AI8051U-34K64-32','STC32G12K128')){
+ if((Get-Mx251OrderedAsm (Get-Mx251TargetContract $name) 'AUTO').memoryStateBits -cne 'ba:80'){throw 'Documented XFR control effect missing'}
+}
+if((Get-Mx251OrderedAsm (Get-Mx251TargetContract 'Independent251') 'OFF').effective){throw 'Explicit ordered operation opt-out lost'}
+# Device effects cannot replace architecture policy; names do not grant bits.
+$registry.targets.Independent251.deviceEffects=@{orderedBits=@{nop=$false}}
+$registry|ConvertTo-Json -Depth 30|Set-Content -LiteralPath (Join-Path $Output 'TargetContracts.json')
+$rejected=$false
+try{$null=Get-Mx251TargetContract 'Independent251'}catch{if($_.Exception.Message -notlike 'Unknown device ordered bits field'){throw};$rejected=$true}
+if(-not $rejected){throw 'Device overrode architecture policy'}
+$registry.targets.Independent251.deviceEffects=@{}
+$registry.targets.Independent251.compilerCapabilities=@{}
+$registry|ConvertTo-Json -Depth 30|Set-Content -LiteralPath (Join-Path $Output 'TargetContracts.json')
+$rejected=$false
+try{$null=Get-Mx251TargetContract 'Independent251'}catch{if($_.Exception.Message -ne 'Device compiler capabilities belong to the architecture'){throw};$rejected=$true}
+if(-not $rejected){throw 'Device optimization list accepted'}
+$registry.targets.Independent251.Remove('compilerCapabilities')
+$registry|ConvertTo-Json -Depth 30|Set-Content -LiteralPath (Join-Path $Output 'TargetContracts.json')
 . (Join-Path $repo 'core/build/qualified/InterruptVectors.ps1')
 $config=@{archives=@();link=@('@startup','main','irq');units=@(@{name='main';file='main.c'},@{name='irq';file='irq.c'})}
 [IO.File]::WriteAllText((Join-Path $Output 'main.asm'),"; mx251-irq-module schema=2 hasMain=1 vectorCount=0`n")
@@ -31,4 +53,4 @@ $rejected=$false
 try{$null=Get-Mx251InterruptSelection $Output $config 0 -MaximumSlots 61}catch{if($_.Exception.Message -notlike 'MX251-IRQ011:*'){throw};$rejected=$true}
 if(-not $rejected){throw 'Physical interrupt limit lost'}
 if((New-Mx251InterruptTable @() 0).Trim() -cne 'ljmp'+"`t"+'__sdcc_mcs251_reset_trampoline'){throw 'Empty program reserves unused vectors'}
-Write-Output 'PASS 3 device identities, independent SFR layout, cross-unit ISR discovery and physical slot limit'
+Write-Output 'PASS 3 device identities inherit CODE/address/ordered policies; device effects stay separate; cross-unit ISR discovery and physical slot limit'

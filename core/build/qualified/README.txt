@@ -7,6 +7,11 @@ Build.ps1；显式传入 MX251_PROFILE、MX251_TOOLCHAIN、MX251_PWSH。目标/�
 
 TargetContracts.json + TargetProfile.ps1 共用于 STC32G12K128 与 AI8051U-34K64-32，
 不再为AI复制一份改目标字符串的构建脚本。两者仍有各自 profile，不共用启动文件。
+目标注册表 schema 3：architectures 定义 CODE、寻址、有序操作等编译能力；
+targets.deviceEffects 只描述 SFR 布局和有序位操作的硬件作用，不能覆盖架构优化策略。
+未声明外设作用的新目标仍继承通用能力（包括 NOP），不继承其他器件的外设位表。
+STC32G 的 EAXFR 依据技术手册第 12.1 节接入 memoryStateBarrier：控制独立 XFR 区，
+不改变 EDATA/栈/内部 XDATA。指令保留原位，内存访问与移动屏障仍然生效。
 profile lock schema 2 必须引用本目录 TargetContracts.json 的确切哈希和精确target ID，
 锁定启动哈希、编译器overlay及实际使用的库。运行库准入独立于通用251指令支持。
 AI 准入 standard、native-int、native-math-wide、native-int-mdu32、
