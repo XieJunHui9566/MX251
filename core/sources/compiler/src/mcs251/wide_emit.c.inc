@@ -1878,6 +1878,8 @@ wrotate_proposal(wide_function *f,int i)
   we(f,"; rotate-end\n");
 }
 
+#include "wide_constant_table_emit.c.inc"
+
 static void
 wide_emit(wide_function *f)
 {
@@ -2170,6 +2172,7 @@ wide_emit(wide_function *f)
       }
       wstore_byte(f,n->result,11);break;
     }
+    case WM_CONSTANT_LOOKUP:wconstant_lookup(f,n);break;
     case WM_ADDRESS:
       if(n->addressObject>=0) {
         int displacement=f->objects[n->addressObject].slot+n->addressOffset-f->frame-f->stackDepth+1;

@@ -26,7 +26,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
 enum { WV_MAX = 1024, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
-enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE };
+enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE, WM_CONSTANT_LOOKUP };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
@@ -45,11 +45,15 @@ typedef struct {
  * 不复用旧后端尚未重新布局的 symbol.stack，也不缓存对象内容。 */
 typedef struct { symbol *sym; int slot, size; bool privateUnion; } wide_object;
 typedef struct { symbol *symbol; int offset,object; bool stack; } wide_symbol_address;
+enum { WTABLE_ENTRIES=8 };
+typedef struct { wide_operand literal;symbol *symbol;int offset; } wide_table_entry;
+typedef struct { unsigned count;wide_table_entry entries[WTABLE_ENTRIES]; } wide_constant_table;
 typedef struct {
   unsigned op;
   iCode *origin;
   wide_operand left, right, addressIndex;
   wide_operand byteLanes[4]; /* WM_BYTE_PACK, most significant byte first. */
+  unsigned constantTable;
   symbol *callee;
   symbol *addressSymbol;
   int addressOffset, addressObject;
@@ -101,6 +105,7 @@ typedef struct {
   bool relaxDisabled;
   wide_value values[WV_MAX]; wide_node nodes[WN_MAX];
   wide_object objects[WO_MAX];
+  wide_constant_table constantTables[WO_MAX];unsigned constantTableCount;
   /* 独立的有界边池保留表项次序和重复目标；整体复制分配候选时没有悬空指针。 */
   int jumpLabels[WJ_MAX], jumpSuccessors[WJ_MAX], nj;
   int nv, nn, no, frame, serial, received, stackDepth, foldedCasts, reusedParameterLoads;
@@ -3098,11 +3103,19 @@ wide_choose_parameter_addresses(wide_function *f,wide_selection_cost *cost)
 }
 
 #include "wide_private_values.c.inc"
+#include "wide_constant_tables.c.inc"
+
+static mcs251_wide_result
+wide_choose_constant_tables(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_constant_tables,wide_choose_parameter_addresses,
+    "constant-table","objects",false,"table-original","table-trial",false,true);
+}
 
 static mcs251_wide_result
 wide_choose_private_values(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform_frame(f,cost,wide_private_stack_values,wide_choose_parameter_addresses,
+  return wide_choose_transform_frame(f,cost,wide_private_stack_values,wide_choose_constant_tables,
     "private-values","objects",false,"private-original","private-trial",false,false,false);
 }
 
