@@ -59,6 +59,7 @@ def execute(text, case, seed):
     inputs=[rng.randrange(256) for _ in range(4)]
     cells={f'_input{i}':v for i,v in enumerate(inputs)};cells['_output']=0
     special={'dpl':0,'dph':0,'dpxl':0,'psw':0,'0xd1':0};mem={};sp=0x1000;calls_seen=[]
+    entry_regs=bytes(regs);entry_special=dict(special)
     def reg(s):
         s={'a':'r11','acc':'r11','b':'r10'}.get(s,s)
         if s.startswith('ar'):s=s[1:]
@@ -92,7 +93,11 @@ def execute(text, case, seed):
         else:special[key]=v&255
     for line in instructions(text):
         op,*tail=line.split(None,1);args=[x.strip() for x in tail[0].split(',')] if tail else []
-        if op in ('eret','ret','reti'):break
+        if op in ('eret','ret','reti'):
+            if op=='reti':
+                assert bytes(regs)==entry_regs,(case,seed,'interrupt registers')
+                assert special==entry_special,(case,seed,'interrupt special registers')
+            break
         if op in ('push','pushw'):
             n=2 if op=='pushw' else width(args[0]);v=read(args[0])
             for b in (v&((1<<(n*8))-1)).to_bytes(n,'big'):sp+=1;mem[sp]=b
