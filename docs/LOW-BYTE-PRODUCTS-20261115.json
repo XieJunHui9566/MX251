@@ -1,0 +1,218 @@
+{
+  "status": "PASS_LOW_BYTE_PRODUCTS_AND_HARDWARE",
+  "sourceCommit": "28d47d6a3da8c5a377f4507e47d6d5eb16fc02d1",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\final\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "2a1210e46ba62c207a8274c5a980e3a5288177ce4ccf448022ba2c48882a04a4"
+  },
+  "parentCandidate": "E:/STVAPP/MX251-baseline/work/wide-boundary-shifts-20261115/final",
+  "candidate": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\final",
+  "imageBytes": {
+    "mx251": 6616,
+    "keil": 6124
+  },
+  "sizeRatio": 1.0803396472893534,
+  "workloadTiming": [
+    {
+      "kind": 0,
+      "name": "fields_clean",
+      "mxTicks": 2688,
+      "keilTicks": 2177,
+      "aggregateRatio": 1.234726688102894,
+      "clockAdjustedRatio": 1.235171020864162,
+      "maxCaseRatio": 1.2357386546053677,
+      "casesAt110": 0
+    },
+    {
+      "kind": 1,
+      "name": "fields_messy",
+      "mxTicks": 2944,
+      "keilTicks": 2881,
+      "aggregateRatio": 1.0218674071502951,
+      "clockAdjustedRatio": 1.0222351396785085,
+      "maxCaseRatio": 1.0225900824353413,
+      "casesAt110": 64
+    },
+    {
+      "kind": 2,
+      "name": "parser_clean",
+      "mxTicks": 19647,
+      "keilTicks": 20008,
+      "aggregateRatio": 0.9819572171131548,
+      "clockAdjustedRatio": 0.982310587430595,
+      "maxCaseRatio": 0.9880855091016335,
+      "casesAt110": 64
+    },
+    {
+      "kind": 3,
+      "name": "parser_messy",
+      "mxTicks": 19833,
+      "keilTicks": 21075,
+      "aggregateRatio": 0.9410676156583629,
+      "clockAdjustedRatio": 0.9414062713108521,
+      "maxCaseRatio": 0.9483180206550413,
+      "casesAt110": 64
+    },
+    {
+      "kind": 4,
+      "name": "ring_clean",
+      "mxTicks": 15680,
+      "keilTicks": 32258.5,
+      "aggregateRatio": 0.4860734380085869,
+      "clockAdjustedRatio": 0.48624835797668214,
+      "maxCaseRatio": 0.48628604463637154,
+      "casesAt110": 64
+    },
+    {
+      "kind": 5,
+      "name": "ring_messy",
+      "mxTicks": 15040.0,
+      "keilTicks": 14859.5,
+      "aggregateRatio": 1.0121471112756149,
+      "clockAdjustedRatio": 1.012511345826545,
+      "maxCaseRatio": 1.0132955511388433,
+      "casesAt110": 64
+    },
+    {
+      "kind": 6,
+      "name": "bits_clean",
+      "mxTicks": 12480.0,
+      "keilTicks": 13697.0,
+      "aggregateRatio": 0.9111484266627728,
+      "clockAdjustedRatio": 0.911476315498614,
+      "maxCaseRatio": 0.9115428660473508,
+      "casesAt110": 64
+    },
+    {
+      "kind": 7,
+      "name": "bits_messy",
+      "mxTicks": 12480.0,
+      "keilTicks": 14528.0,
+      "aggregateRatio": 0.8590308370044053,
+      "clockAdjustedRatio": 0.8593399706349474,
+      "maxCaseRatio": 0.8593399706349474,
+      "casesAt110": 64
+    },
+    {
+      "kind": 8,
+      "name": "callback_clean",
+      "mxTicks": 8192.0,
+      "keilTicks": 8457.5,
+      "aggregateRatio": 0.9686077446053798,
+      "clockAdjustedRatio": 0.9689563109382313,
+      "maxCaseRatio": 0.9774508587500109,
+      "casesAt110": 64
+    },
+    {
+      "kind": 9,
+      "name": "callback_messy",
+      "mxTicks": 8320.0,
+      "keilTicks": 8860.5,
+      "aggregateRatio": 0.9389989278257435,
+      "clockAdjustedRatio": 0.9393368390335018,
+      "maxCaseRatio": 0.9492465855675574,
+      "casesAt110": 64
+    },
+    {
+      "kind": 10,
+      "name": "giant_clean",
+      "mxTicks": 18240.0,
+      "keilTicks": 47430.5,
+      "aggregateRatio": 0.3845626759152866,
+      "clockAdjustedRatio": 0.3847010658904256,
+      "maxCaseRatio": 0.3852737311173106,
+      "casesAt110": 64
+    },
+    {
+      "kind": 11,
+      "name": "giant_messy",
+      "mxTicks": 9984.0,
+      "keilTicks": 35596.0,
+      "aggregateRatio": 0.28048095291605796,
+      "clockAdjustedRatio": 0.28058188770388837,
+      "maxCaseRatio": 0.2811822318329846,
+      "casesAt110": 64
+    }
+  ],
+  "qualificationCorpus": {
+    "productConfigurations": 8,
+    "productHardwareAbis": [
+      2,
+      4
+    ],
+    "productHardwareKinds": 8,
+    "productHardwareCasesPerAbi": 512,
+    "inputEvaluationsPerAbi": 524288,
+    "inputsPerCase": 1024,
+    "instructionOperandCases": 129,
+    "callEffectChecks": 74,
+    "userTranslationUnits": 63,
+    "unchangedObjects": 45,
+    "targetDescriptions": 3,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3672,
+    "workloadTypesAt110Time": 11,
+    "totalWorkloadTypes": 12,
+    "fullOfficialMatrixRebuilt": false,
+    "fullEngineeringTimingQualified": false
+  },
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\contracts\\result.json",
+      "sha256": "a2d6c025ac07b9444759780986c204a307ebcf3057c8bd5b7465578ed7cab654"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\encoding-cost\\operand-results.json",
+      "sha256": "c921605c56a90b51df41860bf56b66a1bd85435a118a323dc4e2a6d9896e5a66"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\call-effects\\result.json",
+      "sha256": "9ac22e120f07b8c8bf9daa11b7b7eddc5fa903de1a4c771d8b200d0b8e9ec026"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\user-stress\\compilation.json",
+      "sha256": "b7716b6e420a2ddb12948935edf68675d1a9f019b274c3170addb69cda60e1b3"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\user-stress\\host-result.json",
+      "sha256": "c247fecdaede91af4751d063c3b5d95c70f2809666a4a2813ace1dfb735717bf"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\user-object-changes.json",
+      "sha256": "6a7bd68de8d49c480ced2015caa266541e7f903c6dc7c45b0ef25f50b937e1b9"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\function-costs.json",
+      "sha256": "29a7eb417c5955a4f44f7e4412ce2d25c88a6e51c51d568477bb01db6a4a3608"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\final\\timing-comparison.json",
+      "sha256": "25842efd4eef06b2780a3f7e554052d24e457b1075a8a9264cd36c0dbf90c0d4"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\products-abi2\\source.json",
+      "sha256": "199ca320a87ceb36fb3bb3d7cc9924dbd7bc3f56e5902c7957c8286fef40de2b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\products-abi2\\capture\\result.json",
+      "sha256": "1283490aeefd9579e8c62468814674652f081629514e4d8bc45db56067feab9c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\products-abi4\\source.json",
+      "sha256": "a53bc068585f154b62ea9a19092cca45348f8661cbed57a28966baa665d8ca8f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\products-abi4\\capture\\result.json",
+      "sha256": "5412f38ac2806252e037df24c5bf93d66d04dd740c445408a998591c7f4e8c57"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\final\\mx251-capture\\result.json",
+      "sha256": "92dc4a78b78fc88115b9f33b224612aadf88306124a42c87de777fbaa86bccc8"
+    }
+  ],
+  "nextWork": "Fixed EDATA object symbol plus dynamic index addressing; redundant variable shift-count extension",
+  "fullOfficialMatrixRebuilt": false,
+  "stcIdeTimingMeasured": false,
+  "installed": false,
+  "defaultChanged": false
+}
