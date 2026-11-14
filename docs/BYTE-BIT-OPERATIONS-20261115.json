@@ -1,0 +1,231 @@
+{
+  "status": "IMPLEMENTED_AND_HARDWARE_MEASURED",
+  "implementationCommit": "0e0419330ffbf4653e035f3efd2cd4ec8435b0a1",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\final\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "3697b1d9cf6173c40a64af721e5c4a4b53b239a34b5b8f7f23420f7d57ec450c"
+  },
+  "candidateEntry": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\final\\Build-Optimized.ps1",
+  "defaultCoreReplaced": false,
+  "sdkAlgorithmsChanged": false,
+  "fullEngineeringTimingQualified": false,
+  "fullOfficialMatrixRebuilt": false,
+  "images": {
+    "before": 7364,
+    "after": 7288,
+    "keil": 6124
+  },
+  "changes": [
+    {
+      "name": "BITS_CLEAN",
+      "before": {
+        "bytes": 324,
+        "instructionCount": 131,
+        "categoryBytes": {
+          "registerMove": 54,
+          "arithmeticAndBits": 174,
+          "memoryMove": 60,
+          "immediateMove": 6,
+          "stack": 18,
+          "call": 4,
+          "branch": 7,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "registerMove": 23,
+          "arithmeticAndBits": 78,
+          "memoryMove": 15,
+          "immediateMove": 2,
+          "stack": 8,
+          "call": 1,
+          "branch": 3,
+          "return": 1
+        }
+      },
+      "after": {
+        "bytes": 286,
+        "instructionCount": 117,
+        "categoryBytes": {
+          "registerMove": 72,
+          "arithmeticAndBits": 118,
+          "memoryMove": 60,
+          "immediateMove": 6,
+          "stack": 18,
+          "call": 4,
+          "branch": 7,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "registerMove": 32,
+          "arithmeticAndBits": 55,
+          "memoryMove": 15,
+          "immediateMove": 2,
+          "stack": 8,
+          "call": 1,
+          "branch": 3,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 229,
+        "instructionCount": 96,
+        "categoryBytes": {
+          "registerMove": 42,
+          "arithmeticAndBits": 114,
+          "memoryMove": 60,
+          "immediateMove": 4,
+          "branch": 8,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "registerMove": 21,
+          "arithmeticAndBits": 55,
+          "memoryMove": 15,
+          "immediateMove": 1,
+          "branch": 3,
+          "return": 1
+        }
+      },
+      "beforeTimeRatio": 1.584281455374696,
+      "afterTimeRatio": 1.4630363423131598,
+      "relativeSpeedup": 0.07653003363146771
+    },
+    {
+      "name": "BITS_MESSY",
+      "before": {
+        "bytes": 324,
+        "instructionCount": 131,
+        "categoryBytes": {
+          "registerMove": 54,
+          "arithmeticAndBits": 174,
+          "memoryMove": 60,
+          "immediateMove": 6,
+          "stack": 18,
+          "call": 4,
+          "branch": 7,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "registerMove": 23,
+          "arithmeticAndBits": 78,
+          "memoryMove": 15,
+          "immediateMove": 2,
+          "stack": 8,
+          "call": 1,
+          "branch": 3,
+          "return": 1
+        }
+      },
+      "after": {
+        "bytes": 286,
+        "instructionCount": 117,
+        "categoryBytes": {
+          "registerMove": 72,
+          "arithmeticAndBits": 118,
+          "memoryMove": 60,
+          "immediateMove": 6,
+          "stack": 18,
+          "call": 4,
+          "branch": 7,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "registerMove": 32,
+          "arithmeticAndBits": 55,
+          "memoryMove": 15,
+          "immediateMove": 2,
+          "stack": 8,
+          "call": 1,
+          "branch": 3,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 235,
+        "instructionCount": 105,
+        "categoryBytes": {
+          "registerMove": 54,
+          "immediateMove": 8,
+          "arithmeticAndBits": 114,
+          "memoryMove": 47,
+          "branch": 11,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "registerMove": 27,
+          "immediateMove": 2,
+          "arithmeticAndBits": 56,
+          "memoryMove": 15,
+          "branch": 4,
+          "return": 1
+        }
+      },
+      "beforeTimeRatio": 1.4936607306075997,
+      "afterTimeRatio": 1.3793508246601975,
+      "relativeSpeedup": 0.07653003363146771
+    }
+  ],
+  "allInputTimingClassesAt110": 7,
+  "evidence": {
+    "compileTests": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\byte-tests-final\\result.json",
+      "sha256": "8d4cb85758944c1883c4d0a0e01022337ee3eaa2ffda35a8c9c4334a58845945"
+    },
+    "stress": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\user-stress\\compilation.json",
+      "sha256": "eb1810f623c220fe2ca597c9d77129feebb6dc8c3501640f959b07551104daa5"
+    },
+    "objects": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\user-object-changes.json",
+      "sha256": "37387be13d37b3d56755120b648e6e90841e73e1667576aaea382721e071e2a4"
+    },
+    "byteHardware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\byte-board\\capture\\result.json",
+      "sha256": "62f1bd590299097611921d8919a8ab518d241912122dfcddc2f9753e5c435347"
+    },
+    "layoutHardware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\layout-capture\\result.json",
+      "sha256": "55f867f8ba787c29bf3fa76b7c23d507bdc0fd2545c50656f56ea3b4f8da06db"
+    },
+    "userHardware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\final\\mx251-capture\\result.json",
+      "sha256": "c20a50abc277b71630f97aa9faf85773bed30c2cd5b3e243acd8b2487a712919"
+    },
+    "timing": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\final\\timing-comparison.json",
+      "sha256": "e9dc435aaa21a067bd847e43a9a8f22747a16bd1a472e8dc491313d552e81c0c"
+    },
+    "functionCosts": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\function-costs.json",
+      "sha256": "505dae4d0911705a2d06165dfc4b974088560dc459ba0f373c584b5a453a1379"
+    },
+    "officialPilots": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\official-pilots.json",
+      "sha256": "7af449a880745f21ff7dac5571cc2ef29f0fbfc649bd6bd0071f819468116918"
+    },
+    "officialFunctionChanges": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\g133-function-changes.json",
+      "sha256": "f3e145802df7ab802727853ab1f2cfae59f94b8037784160009a2852880b4aba"
+    }
+  },
+  "officialPilots": [
+    {
+      "project": "g104",
+      "beforeBytes": 3643,
+      "afterBytes": 3643,
+      "imageIdentical": true,
+      "hexSha256": "28f32475431f65183b38b154721217c1b4481ad3ee16bf0ed4545c87ae7322aa"
+    },
+    {
+      "project": "g133",
+      "beforeBytes": 8591,
+      "afterBytes": 8589,
+      "imageIdentical": false,
+      "hexSha256": "1da429a179aaf75b7e264ce9e893f4516e719ea8c4954573c88cfa1b99d3853c"
+    }
+  ],
+  "candidateManifest": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\byte-bit-operations-20261115\\final\\candidate\\core\\core.json",
+    "sha256": "962a79f855937d6fc6df622cffa99d6fc3350941d736027920f0b440b886e225"
+  }
+}
