@@ -1,0 +1,72 @@
+{
+  "status": "MEASURED_LOCAL_CONSTANT_TABLES",
+  "sourceCommit": "fa6990d74fc637642da50ac3cad57f08a9eece75",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\final\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "86e4b0c1714b2d72de5e331b6a0964180fadd4d70689ca8c394bc8b687584358"
+  },
+  "imageBytes": {
+    "before": 7063,
+    "after": 6981,
+    "keil": 6124
+  },
+  "callbackMessy": {
+    "beforeBytes": 229,
+    "afterBytes": 146,
+    "keilBytes": 71,
+    "beforeTimeRatio": 1.528856899218882,
+    "afterTimeRatio": 1.3650837369792468
+  },
+  "layoutDelta": {
+    "function": "parser_clean",
+    "before": "AJMP",
+    "after": "LJMP",
+    "extraBytes": 1
+  },
+  "tests": {
+    "tableConfigurations": 8,
+    "tableElementLimit": 8,
+    "tableHardwareKinds": 18,
+    "tableHardwareCasesPerAbi": 1152,
+    "tableHardwareAbis": [
+      2,
+      4
+    ],
+    "userTranslationUnits": 63,
+    "unchangedObjects": 54,
+    "targetDescriptions": 3,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3678,
+    "workloadTypesAt110Time": 9,
+    "totalWorkloadTypes": 12,
+    "fullOfficialMatrixRebuilt": false,
+    "fullEngineeringTimingQualified": false
+  },
+  "capturedImageMatchesFinalCompiler": true,
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\contracts-verified\\result.json",
+      "sha256": "e032985fe1bb006e255e24721bc333c139094e776c022c5b67d5129eee2aa45b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\function-costs.json",
+      "sha256": "b3f0aab1a12aeb2c9d6b4faa8f6631b1630133c8bb40b934469d692a41f8521e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\user-object-changes.json",
+      "sha256": "091bf121de03458a14746f0935aae2980cd9f0a46891a081c0b8d0c2ed9ba6e4"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\tables-verified-abi2\\capture\\result.json",
+      "sha256": "49e774107f0463342877d657c18c8d79993b9c4809bc2d9c4113b39f1e8cc6b8"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\tables-verified-abi4\\capture\\result.json",
+      "sha256": "3696d7d250062fb64d6e7a0b11bc2eb4fe490afd30b93d310cf9783d63ad00b8"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\local-constant-tables-20261115\\final\\timing-comparison.json",
+      "sha256": "762c02ee71664a867c44b33ed3f317d87f8913bbd40e65de977c776628e1d90b"
+    }
+  ]
+}
