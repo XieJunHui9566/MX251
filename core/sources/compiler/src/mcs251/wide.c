@@ -2154,6 +2154,7 @@ wide_fixed_address_value(wide_value *v)
 {
   return v->pointer && !v->codePointer && v->width==4 && !v->floating && !v->sign &&
     !v->symbolSnapshot && IS_PTR(v->sym->type) && getSize(v->sym->type)==3 &&
+    (DCL_TYPE(v->sym->type)==FPOINTER || DCL_TYPE(v->sym->type)==GPOINTER) &&
     !isVolatile(v->sym->type) && !isAtomic(v->sym->type);
 }
 
@@ -2223,8 +2224,10 @@ wide_fixed_object_addresses(wide_function *f)
         } else continue;
         if(source<0 || source==v || !symbols[source] ||
            !wide_fixed_address_value(&f->values[source]) ||
-           DCL_TYPE(f->values[source].sym->type)!=DCL_TYPE(f->values[v].sym->type) ||
            !wide_address_dominates(f,d,source,i))continue;
+        /* Far and generic data pointers carry the same 24 address bits on
+         * MCS251. A cast between them preserves this proven object's origin;
+         * CODE, function, near/paged and integer casts are excluded above. */
         o=object[source];s=symbols[source];position=offset[source]+delta;
       }
       int size=o>=0?f->objects[o].size:getSize(s->type);
