@@ -1,0 +1,4715 @@
+{
+  "schema": 1,
+  "sourceCommit": "5bdb44ebadbb48869b9fab0f40d5f66a0f47623c",
+  "compilerSha256": "4e42d6a4ddcabd61ed67f8ee33a2d7140ca9e07e0bd617f72bacbc83debe1861",
+  "parent": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\common-c-semantics-20261115\\qualified\\comparison.json",
+    "sha256": "b004ab9b95e83b7233eb6fe365e843e3e45456e8098dce58d789c253948ec2db"
+  },
+  "matrix": {
+    "schema": 1,
+    "compilerSha256": "4e42d6a4ddcabd61ed67f8ee33a2d7140ca9e07e0bd617f72bacbc83debe1861",
+    "parentReport": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-c-semantics-20261115\\qualified\\comparison.json",
+      "sha256": "b004ab9b95e83b7233eb6fe365e843e3e45456e8098dce58d789c253948ec2db"
+    },
+    "sourceAlgorithmsChanged": false,
+    "hardwareExecuted": false,
+    "rows": [
+      {
+        "id": "g000",
+        "name": "00-端口模式设置\\C语言",
+        "status": "BUILT",
+        "before": 54,
+        "new": 54,
+        "keil": 60,
+        "stc": 35,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g000\\mx251\\result.json",
+          "sha256": "d5af184d2e66e0daddafcc794e75b6395ea1936acdfbdc7858191b9fc1b2f795"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g003",
+        "name": "01.1-用P6口做跑马灯-入门版\\C语言",
+        "status": "BUILT",
+        "before": 174,
+        "new": 174,
+        "keil": 180,
+        "stc": 164,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g003\\mx251\\result.json",
+          "sha256": "9b92f5bbc8c88ccca46c7cda2672cb3cb3c3fe1eb70552d9893ee1ad9ef8f3a7"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g005",
+        "name": "01.2-用P6口做跑马灯\\C语言",
+        "status": "BUILT",
+        "before": 193,
+        "new": 190,
+        "keil": 169,
+        "stc": 167,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g005\\mx251\\result.json",
+          "sha256": "7891c0507e6369444a3d3a52b2122460e0129714beef4705d73481ddafc0aca1"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g007",
+        "name": "02-Timer0-Timer1-Timer2-Timer3-Timer4测试程序\\C语言",
+        "status": "BUILT",
+        "before": 294,
+        "new": 294,
+        "keil": 286,
+        "stc": 828,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g007\\mx251\\result.json",
+          "sha256": "778c6a25be9924daac57bb5811f6c6595b85d54262e6b6572dc1bece1f2be194"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g009",
+        "name": "03-用P6，P7口驱动8个数码管\\C语言",
+        "status": "BUILT",
+        "before": 613,
+        "new": 613,
+        "keil": 536,
+        "stc": 1044,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g009\\mx251\\result.json",
+          "sha256": "fd2468ee48c5c4f69a061cea24ae44ff3ff25145f5bb4a51a5907b98138b0f8d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g011",
+        "name": "04-利用T0,T1做外部计数器\\C语言",
+        "status": "BUILT",
+        "before": 578,
+        "new": 560,
+        "keil": 524,
+        "stc": 1018,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g011\\mx251\\result.json",
+          "sha256": "56ebc4c73a984ea9276587233be6ea79f586395337d3390826d992d2b164467c"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g013",
+        "name": "05-利用定时器测量脉冲宽度\\C语言",
+        "status": "BUILT",
+        "before": 737,
+        "new": 695,
+        "keil": 514,
+        "stc": 1096,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g013\\mx251\\result.json",
+          "sha256": "272bafd7534ee15731130b1ba2e2dc25e3e83d3c61873cdbdd6f0ac8a6e7397d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g015",
+        "name": "06-外中断INT0-INT1-INT2-INT3- INT4测试\\C语言",
+        "status": "BUILT",
+        "before": 662,
+        "new": 620,
+        "keil": 542,
+        "stc": 1068,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g015\\mx251\\result.json",
+          "sha256": "b6da8cc0b4457c5cdb78078df51849978f31adda870b3a2ce2c1a8ef1b26c211"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g017",
+        "name": "07-睡眠-唤醒定时器唤醒\\C语言",
+        "status": "BUILT",
+        "before": 615,
+        "new": 539,
+        "keil": 562,
+        "stc": 1106,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g017\\mx251\\result.json",
+          "sha256": "d0626ddedb2c306325268b8baeb4889573d265203a49f98ea1a7e50ab47e1d04"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g019",
+        "name": "08-睡眠-外部中断唤醒\\C语言",
+        "status": "BUILT",
+        "before": 709,
+        "new": 628,
+        "keil": 518,
+        "stc": 1061,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g019\\mx251\\result.json",
+          "sha256": "96b828b50c5323e0b5e42cc6bfa4f41aec4015f0a1b0d1881f73e70ae2068b8d"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g021",
+        "name": "09-看门狗复位测试程序\\C语言",
+        "status": "BUILT",
+        "before": 410,
+        "new": 410,
+        "keil": 331,
+        "stc": 355,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g021\\mx251\\result.json",
+          "sha256": "43720367050e43a831286d400c398f2697f48c776fbf31c994d1e22dfb488ac9"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g023",
+        "name": "10-串口1中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 438,
+        "new": 409,
+        "keil": 346,
+        "stc": 951,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g023\\mx251\\result.json",
+          "sha256": "97e7cfd010cf1d671006e4b5c1deb393ea375ca3a0dc20a2b1d964d44cb46b79"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g025",
+        "name": "11-串口2中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 454,
+        "new": 425,
+        "keil": 335,
+        "stc": 938,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g025\\mx251\\result.json",
+          "sha256": "28e0f0e0a4df4da59e9365184d555f2ebfb17b73d147e5ede588fc263a739cf0"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g027",
+        "name": "12-串口3中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 421,
+        "new": 400,
+        "keil": 333,
+        "stc": 945,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g027\\mx251\\result.json",
+          "sha256": "34cdb9079272f3cca138c81de7ab53733af9d8b121536fb6b81b8bd690dd82c7"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g029",
+        "name": "13-串口4中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 422,
+        "new": 401,
+        "keil": 333,
+        "stc": 945,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g029\\mx251\\result.json",
+          "sha256": "6a408205253d4650f75488b4cfd8a93ae45c5b059ed054736a5bdf5adbc5734b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g031",
+        "name": "14.1-串口1串口2中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 770,
+        "new": 712,
+        "keil": 549,
+        "stc": 1242,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g031\\mx251\\result.json",
+          "sha256": "176e64672f269ecb92677001500ca47ad23d494842653791c2a84c238287fd9a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g033",
+        "name": "14.2-串口2与串口3通信测试程序",
+        "status": "BUILT",
+        "before": 869,
+        "new": 803,
+        "keil": 665,
+        "stc": 1345,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g033\\mx251\\result.json",
+          "sha256": "eaa4ec6183ec96258a99a9c8a4d10dec6301532f7563b91bd3d652f8abf06e66"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g034",
+        "name": "15-IO行列扫描键盘数码管显示键值和调整时间\\C语言",
+        "status": "BUILT",
+        "before": 1083,
+        "new": 1083,
+        "keil": 961,
+        "stc": 1483,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g034\\mx251\\result.json",
+          "sha256": "698777e3b85b2000803b453ed461e3015e7f02ffe0800afc0602ba2b1a245c77"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g036",
+        "name": "16-ADC键盘扫描数码管显示键值和调整时间\\C语言",
+        "status": "BUILT",
+        "before": 1160,
+        "new": 1160,
+        "keil": 1005,
+        "stc": 1620,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g036\\mx251\\result.json",
+          "sha256": "8d909e040014dbcbd255c9e2db58bbb1b5f7a95079e6f91637d5091fd07cb52b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g038",
+        "name": "17-NTC测温度数码管显示\\C语言",
+        "status": "BUILT",
+        "before": 1236,
+        "new": 1236,
+        "keil": 1075,
+        "stc": 2482,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g038\\mx251\\result.json",
+          "sha256": "205225984d50c28e4870486168b9a1738c8a616a87443d904f8887aa1a4ef4f8"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g040",
+        "name": "18-通过串口2发送命令读写EEPROM测试程序\\C语言",
+        "status": "BUILT",
+        "before": 1732,
+        "new": 1695,
+        "keil": 1596,
+        "stc": 3144,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g040\\mx251\\result.json",
+          "sha256": "ab03cb7efab60dd5e2211098ead7332216e3b06e00c60e45dba7b913e7e58a87"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g042",
+        "name": "19-使用LVD低压检测中断保存EEPROM\\C语言",
+        "status": "BUILT",
+        "before": 1232,
+        "new": 1108,
+        "keil": 793,
+        "stc": 1616,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g042\\mx251\\result.json",
+          "sha256": "bf00b23166861272922ac6bf296d212b5542bab556fad683231d31dd26311ba6"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g044",
+        "name": "20-使用比较器检测低电压时保存数据到EEPROM\\C语言",
+        "status": "BUILT",
+        "before": 1417,
+        "new": 1312,
+        "keil": 956,
+        "stc": 1979,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g044\\mx251\\result.json",
+          "sha256": "5e775ba177cba42d63cbd58eb0d1306e11c1ec106650f9c394f04a5afd230229"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g046",
+        "name": "23-利用P3.7做比较器正极输入源，内部1.19V或P3.6口做负极输入源\\C语言",
+        "status": "BUILT",
+        "before": 179,
+        "new": 179,
+        "keil": 160,
+        "stc": 698,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g046\\mx251\\result.json",
+          "sha256": "8fd13afe0290b6aa5dc8e7a6a82d17c1daa24c2e2c19157e906910d9d0b6c9e8"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g048",
+        "name": "25-高级PWM1-PWM2-PWM3-PWM4，驱动P6口呼吸灯实验程序\\C语言",
+        "status": "BUILT",
+        "before": 1177,
+        "new": 941,
+        "keil": 691,
+        "stc": 1046,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g048\\mx251\\result.json",
+          "sha256": "2bc7965ec501b6ee9d4c7b412b920346667f76e3cd28ec2035de151470b05761"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g050",
+        "name": "26-高级PWM5-PWM6-PWM7-PWM8输出测试程序\\C语言",
+        "status": "BUILT",
+        "before": 1135,
+        "new": 899,
+        "keil": 649,
+        "stc": 1043,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g050\\mx251\\result.json",
+          "sha256": "36aae51c448fa607768c00696d7284a9bfcf86cd335850c8e02a411ca509e66d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g052",
+        "name": "27-I2C从机中断模式与IO口模拟I2C主机进行自发自收\\C语言",
+        "status": "BUILT",
+        "before": 1153,
+        "new": 1129,
+        "keil": 896,
+        "stc": 1686,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g052\\mx251\\result.json",
+          "sha256": "1e2f6fc0fa6319d5c6bf5de56cc2db4a0063341086320f7c034b727f33de82e6"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g054",
+        "name": "28-I2C主机模式访问AT24C02程序\\C语言",
+        "status": "BUILT",
+        "before": 935,
+        "new": 935,
+        "keil": 742,
+        "stc": 1430,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g054\\mx251\\result.json",
+          "sha256": "2b17428ab80b2297ee252bb6b3812182384e13fb2735e2715b87fbc7ee8af65f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g056",
+        "name": "29-红外遥控接收程序(NEC码)-数码管显示用户地址和键值\\C语言",
+        "status": "BUILT",
+        "before": 747,
+        "new": 736,
+        "keil": 584,
+        "stc": 1240,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g056\\mx251\\result.json",
+          "sha256": "901d5ac7bc454f7ab4fd0a3c273c39e23eb0d91a1f8a45d9b06f2db6961f8cf1"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g058",
+        "name": "30-红外发射程序(NEC码)-使用PWM4产生38KHz载波\\C语言",
+        "status": "BUILT",
+        "before": 970,
+        "new": 928,
+        "keil": 872,
+        "stc": 1461,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g058\\mx251\\result.json",
+          "sha256": "d3683881fbb9c4f56262353f069119aef350492a3911e965600687c9dc81d842"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g060",
+        "name": "31-IO扫描键红外发射-同时接收数码管显示用户码键值程序\\C语言",
+        "status": "BUILT",
+        "before": 1497,
+        "new": 1454,
+        "keil": 1248,
+        "stc": 1941,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g060\\mx251\\result.json",
+          "sha256": "b4b72ca808a89e2fdbff3c3a42b0233c1abfb2852b39dbdc98bf1dfa17344685"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g062",
+        "name": "32-硬件SPI访问FLASH-PM25LV040-串口2监控",
+        "status": "BUILT",
+        "before": 3055,
+        "new": 2942,
+        "keil": 2710,
+        "stc": 5351,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g062\\mx251\\result.json",
+          "sha256": "b4a233cc6b4930585e2be0a682a41b12ce159b265e111a3fd22e9e3519fdfc3f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g063",
+        "name": "33-IO模拟SPI访问FLASH-PM25LV040-串口2监控",
+        "status": "BUILT",
+        "before": 3030,
+        "new": 2917,
+        "keil": 2705,
+        "stc": 5318,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g063\\mx251\\result.json",
+          "sha256": "76a4ebb73cf04a1159d3c422b123536233d6557e96da7cb88b556c752c2737da"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g064",
+        "name": "34-P1.3做ADC-使用内部基准计算外部电压\\C语言",
+        "status": "BUILT",
+        "before": 774,
+        "new": 774,
+        "keil": 509,
+        "stc": 1139,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g064\\mx251\\result.json",
+          "sha256": "6532fb81e83422e14b4ad65f84254af396f0c2b716348b1dc366f89311cc3aa5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g066",
+        "name": "35-板上的32K xdata测试程序",
+        "status": "BUILT",
+        "before": 34225,
+        "new": 34160,
+        "keil": 33903,
+        "stc": 35950,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g066\\mx251\\result.json",
+          "sha256": "edd2b4e5cc429b651bda7ef043c34128486aca0e4e163022274ea1267b6d02cb"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g067",
+        "name": "36.1-LCD1602显示程序",
+        "status": "BUILT",
+        "before": 787,
+        "new": 787,
+        "keil": 725,
+        "stc": 841,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g067\\mx251\\result.json",
+          "sha256": "114900f90d0460dcc27d2385323c96fe2afa7f68dccabe9215039754637ef9ca"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g068",
+        "name": "36.2-LCD128x64显示图形文字-ST7920",
+        "status": "BUILT",
+        "before": 1847,
+        "new": 1847,
+        "keil": 1791,
+        "stc": 2609,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g068\\mx251\\result.json",
+          "sha256": "d6021cd7a6cc6c5836ce5a824aa1468f401a67f982cacba554a48f86a5393034"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g069",
+        "name": "37-2.4寸ILI9341驱动TFT显示屏实验程序\\Project",
+        "status": "BUILT",
+        "before": 19591,
+        "new": 19571,
+        "keil": 18449,
+        "stc": 31210,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g069\\mx251\\result.json",
+          "sha256": "81bce564a411037fc06b66a5eab13263026095806902dd4a2a3d5cbdf467f0f6"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g070",
+        "name": "38-2.4寸ILI9325驱动TFT显示屏实验程序-带触摸功能\\Project",
+        "status": "BUILT",
+        "before": 19393,
+        "new": 19331,
+        "keil": 19536,
+        "stc": 30227,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g070\\mx251\\result.json",
+          "sha256": "b477695544dc6cf5fe61ebda3aae89759d0b7a0e1ff32a1a497dd63bb60f5927"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g071",
+        "name": "39-通过USB发送命令读取ADC测试程序",
+        "status": "BUILT",
+        "before": 2849,
+        "new": 2849,
+        "keil": 1655,
+        "stc": 2988,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g071\\mx251\\result.json",
+          "sha256": "591c2bcc07d89f834333cfff938546c900139eb449cd813647607cd46a129d84"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g073",
+        "name": "41-软件修改内部RC主频\\C语言",
+        "status": "BUILT",
+        "before": 490,
+        "new": 481,
+        "keil": 477,
+        "stc": 461,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g073\\mx251\\result.json",
+          "sha256": "020126a41d149652484c2d239691bc92c6b9d48948739330ac1085713bcb4cdd"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g075",
+        "name": "42-一线制温度传感器 DS18B20 测温\\C语言",
+        "status": "BUILT",
+        "before": 895,
+        "new": 895,
+        "keil": 1046,
+        "stc": 1579,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g075\\mx251\\result.json",
+          "sha256": "86d9205470d5728bbaa122b058e93bdbdfc879ec033f5cb2812af06f6bfbb5b5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g077",
+        "name": "43-IO口推挽输出驱动有源蜂鸣器实验程序\\C语言",
+        "status": "BUILT",
+        "before": 437,
+        "new": 437,
+        "keil": 410,
+        "stc": 999,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g077\\mx251\\result.json",
+          "sha256": "f20fef4df53dff11bf1180707a6c160664a871cdbd9364456b3e48e0e6f62ae7"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g079",
+        "name": "44-高级PWM输出两路互补SPWM\\C语言",
+        "status": "BUILT",
+        "before": 944,
+        "new": 880,
+        "keil": 762,
+        "stc": 1280,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g079\\mx251\\result.json",
+          "sha256": "652c12ef72108603a5b0adae3288ebd23b77f42368d7bf7f472f95828c18c74c"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g081",
+        "name": "45-内部RTC时钟程序\\C语言",
+        "status": "BUILT",
+        "before": 2151,
+        "new": 2151,
+        "keil": 2243,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g081\\mx251\\result.json",
+          "sha256": "e090bc374a9620d0ae8e2d432f6def12ee70ce6a3647c56a91d7603a51e5c36b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g083",
+        "name": "46-MDU32–乘法和除法单元",
+        "status": "BUILT",
+        "before": 8291,
+        "new": 8291,
+        "keil": 1551,
+        "stc": 4750,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g083\\mx251\\result.json",
+          "sha256": "57688fa0c8a974967050368bc48c43f83f8d81cf1a13a496af330adc243672a5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g084",
+        "name": "47-SPI互为主从-SS设置主从-串口透传",
+        "status": "BUILT",
+        "before": 825,
+        "new": 756,
+        "keil": 594,
+        "stc": 1292,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g084\\mx251\\result.json",
+          "sha256": "2ab2d6dc107eb61b23744da53b5a9021571037a8ad135fff9345985799b4ca83"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g085",
+        "name": "48-SPI互为主从-主模式忽略SS-串口透传",
+        "status": "BUILT",
+        "before": 834,
+        "new": 761,
+        "keil": 600,
+        "stc": 1300,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g085\\mx251\\result.json",
+          "sha256": "4378fdd21f13a5628cce5f0f7c8c2ab8c4125dad4200c8688f404d666e8fe4a2"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g086",
+        "name": "49-CAN总线标准帧收发测试\\C语言",
+        "status": "BUILT",
+        "before": 1795,
+        "new": 1795,
+        "keil": 1543,
+        "stc": 3150,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g086\\mx251\\result.json",
+          "sha256": "13b5511b303bac5ecc6995f6a26bf1eb91c96ff108db486ca0d03601b1a3eefd"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g088",
+        "name": "50-CAN总线扩展帧收发测试\\C语言",
+        "status": "BUILT",
+        "before": 1796,
+        "new": 1796,
+        "keil": 1545,
+        "stc": 3158,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g088\\mx251\\result.json",
+          "sha256": "de70fb0173dfc31cefe4edee15609cc309ba38a097c1229fa69ebedbfcc065d8"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g090",
+        "name": "51-CAN1-CAN2总线标准帧扩展帧同时使用收发测试",
+        "status": "BUILT",
+        "before": 4003,
+        "new": 4003,
+        "keil": 3325,
+        "stc": 7886,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g090\\mx251\\result.json",
+          "sha256": "47f4463975a0e6ab842cae9e0e551895273efd152dca7adb234981ab5cafa134"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g091",
+        "name": "52-CAN1-CAN2同时连接总线最多可用4组过滤器",
+        "status": "BUILT",
+        "before": 4214,
+        "new": 4214,
+        "keil": 3471,
+        "stc": 8129,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g091\\mx251\\result.json",
+          "sha256": "5396e458ffb25c0b628c0e691777ae36c3156d4b1688b484a91b5ae8952c159f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g092",
+        "name": "53-UART转LIN总线报文测试程序",
+        "status": "BUILT",
+        "before": 1149,
+        "new": 1077,
+        "keil": 920,
+        "stc": 2087,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g092\\mx251\\result.json",
+          "sha256": "df7618ade5207cab8c20f0110be44c38ac79d11d4a9b9109b9944babb05b1332"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g093",
+        "name": "54-LIN总线从机收发测试",
+        "status": "BUILT",
+        "before": 1429,
+        "new": 1386,
+        "keil": 1694,
+        "stc": 2608,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g093\\mx251\\result.json",
+          "sha256": "a5516ce302f83464992f4c927d29d0df6c2327a8c534540c7106b14a646650b2"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g094",
+        "name": "55-LIN总线主机收发测试",
+        "status": "BUILT",
+        "before": 1435,
+        "new": 1418,
+        "keil": 1706,
+        "stc": 2726,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g094\\mx251\\result.json",
+          "sha256": "79f5b5661913596bbaa201ad88f1252618f343612ea500701462c8925ffe03f8"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g095",
+        "name": "56-LIN总线从机收发测试-USART",
+        "status": "BUILT",
+        "before": 1699,
+        "new": 1592,
+        "keil": 1756,
+        "stc": 3046,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g095\\mx251\\result.json",
+          "sha256": "1d408b08b3270d15ae8a801df6fdf1081f356a0fad5dbbdd14f9ff5715ade1df"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g096",
+        "name": "57-LIN总线主机收发测试-USART",
+        "status": "BUILT",
+        "before": 1428,
+        "new": 1402,
+        "keil": 1718,
+        "stc": 2282,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g096\\mx251\\result.json",
+          "sha256": "ba9b4a8fff2a5452ccb239e1a0a30e90233978cbc370dfc94095e110446036bd"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g097",
+        "name": "58-LIN总线从机收发测试-USART2",
+        "status": "BUILT",
+        "before": 1714,
+        "new": 1602,
+        "keil": 1764,
+        "stc": 3053,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g097\\mx251\\result.json",
+          "sha256": "13c8e3074ef258cf17f486b8c408adcd5cc4a7eca3dbe603a508ce752d607204"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g098",
+        "name": "59-LIN总线主机收发测试-USART2",
+        "status": "BUILT",
+        "before": 1435,
+        "new": 1408,
+        "keil": 1720,
+        "stc": 2275,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g098\\mx251\\result.json",
+          "sha256": "63209bce4c7a53ae0a8b9aee4e1180a4018baf99bb411baf326a0900426a2c79"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g099",
+        "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换-串口返回结果",
+        "status": "BUILT",
+        "before": 916,
+        "new": 916,
+        "keil": 1198,
+        "stc": 1820,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g099\\mx251\\result.json",
+          "sha256": "daf35fb53eb19bd46b7e20922b2c54cc1734806f3d8335e98a062aad8584bfa5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g100",
+        "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果",
+        "status": "BUILT",
+        "before": 1146,
+        "new": 1146,
+        "keil": 1288,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g100\\mx251\\result.json",
+          "sha256": "1a2d37e55de5892566c3abe64e15675ffa05aa352acfdcfc647ef9e494c31e6f"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g101",
+        "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果-结构体存储结果",
+        "status": "BUILT",
+        "before": 1311,
+        "new": 1311,
+        "keil": 1285,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g101\\mx251\\result.json",
+          "sha256": "d1dc73edeeb163fe2a2245779705420e3b21f171832ffb8600942f56c330eefe"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g102",
+        "name": "61-DMA-M2M存储器与存储器之间读写",
+        "status": "BUILT",
+        "before": 1225,
+        "new": 1225,
+        "keil": 1279,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g102\\mx251\\result.json",
+          "sha256": "ef4d5c949e08f971968c5091966dc361b61bbe3b8ef372c5bd6ce17b2ff31502"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g103",
+        "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI使用DMA访问FLASH-串口2监控",
+        "status": "BUILT",
+        "before": 3989,
+        "new": 3930,
+        "keil": 3313,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g103\\mx251\\result.json",
+          "sha256": "6c7e51c4dc2fce1128c5e8249414b2ab44fe75e77dadaa24a522d27fb8fe0c7c"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g104",
+        "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI访问FLASH-串口2监控-2T",
+        "status": "BUILT",
+        "before": 3702,
+        "new": 3643,
+        "keil": 3194,
+        "stc": 9424,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g104\\mx251\\result.json",
+          "sha256": "31977e5f5fe81f1cbd279f11868e330352e96807ba3925de59a2b0478d724b8c"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g105",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口1使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1056,
+        "new": 1056,
+        "keil": 1371,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g105\\mx251\\result.json",
+          "sha256": "4ee06434d8382ba62332d59d5a73fb694d62de5b1f23137cc28a6b47cf0245da"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g106",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口2使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1037,
+        "new": 1037,
+        "keil": 1357,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g106\\mx251\\result.json",
+          "sha256": "f374df0560c26f2d42b349ef3e823e1712f8bcaa0c96500b0fc3fceab0736657"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g107",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口3使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1035,
+        "new": 1035,
+        "keil": 1352,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g107\\mx251\\result.json",
+          "sha256": "246d932453e50ebcdf04d0dc1eda0f4b6d1e2f4b5b67d0074bb79c970842dda7"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g108",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发不定长数据-软件超时",
+        "status": "BUILT",
+        "before": 1687,
+        "new": 1670,
+        "keil": 1699,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g108\\mx251\\result.json",
+          "sha256": "a8fd778cade271ec37c84a950b0fe87eba4600df5acb70fe4d610ab57c7b01a5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g109",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1034,
+        "new": 1034,
+        "keil": 1351,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g109\\mx251\\result.json",
+          "sha256": "2f340cff6151c46c065f7c1b99a89f3785c57c3a6ca9defe11325f3c80786c75"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g110",
+        "name": "64-DMA综合应用-SPI互为主从-M2M-串口透传",
+        "status": "BUILT",
+        "before": 1553,
+        "new": 1553,
+        "keil": 1848,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g110\\mx251\\result.json",
+          "sha256": "3787720ff2de97f710175960017a62611cc2e353023a45220fe70abe0350512f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g111",
+        "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_6800_DMA_8bit_ST7920",
+        "status": "BUILT",
+        "before": 2227,
+        "new": 2227,
+        "keil": 1990,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g111\\mx251\\result.json",
+          "sha256": "bdb4120aa93d6eaa4fbe56f0fa6974941adbaf922307d998e297af05e4a20de8"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g112",
+        "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_DMA_8bit_ILI9341",
+        "status": "BUILT",
+        "before": 5676,
+        "new": 5636,
+        "keil": 4976,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g112\\mx251\\result.json",
+          "sha256": "fc5b2cc7540ee70e422e5e4656f51fbfd64dbfc50d9d4d1f078710e97a7ac916"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g113",
+        "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_LCM_8bit_ILI9341",
+        "status": "BUILT",
+        "before": 5442,
+        "new": 5433,
+        "keil": 4838,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g113\\mx251\\result.json",
+          "sha256": "66c8cf855dc78e498c6c63a87b1fff9bf9a4888f750f15711128f820ed29e571"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g114",
+        "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C主机模式读写AT24C02-串口监控",
+        "status": "BUILT",
+        "before": 2775,
+        "new": 2729,
+        "keil": 2533,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g114\\mx251\\result.json",
+          "sha256": "eb8e6645119c106230ad83d8337ca9af03a5ddb0e75c00801182c7c55be687e1"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g115",
+        "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C从机中断模式与IO口模拟I2C主机进行自发自收",
+        "status": "BUILT",
+        "before": 1754,
+        "new": 1700,
+        "keil": 1484,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g115\\mx251\\result.json",
+          "sha256": "7c87cb0eb5d23d440cb5b6c277fe295f4e8db99eeae05002f94d4db11161361d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g116",
+        "name": "67-硬件高速HSSPI访问FLASH-PM25LV040-串口2监控",
+        "status": "BUILT",
+        "before": 3811,
+        "new": 3761,
+        "keil": 3340,
+        "stc": 9713,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g116\\mx251\\result.json",
+          "sha256": "21422b0afc4a0d375f25b28bccf05e77baa2073298e5ecd3c87c67319f74c46b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g117",
+        "name": "68-高速HSPWM1-HSPWM2-HSPWM3-HSPWM4，驱动P6口呼吸灯实验程序",
+        "status": "BUILT",
+        "before": 1260,
+        "new": 1035,
+        "keil": 826,
+        "stc": 1614,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g117\\mx251\\result.json",
+          "sha256": "c62d7a6e01e7215b0fff9e3f82f80b6eab5ee7c8e2f6ec728fff4adf6539b41b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g118",
+        "name": "69-HID(Human Interface Device)协议范例",
+        "status": "BUILT",
+        "before": 3140,
+        "new": 3123,
+        "keil": 2633,
+        "stc": 3747,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g118\\mx251\\result.json",
+          "sha256": "fc988917b029ff85443da55f03321ebbd834618b58581ca05476b89822c4246d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g119",
+        "name": "70-CDC(Communication Device Class)协议范例",
+        "status": "BUILT",
+        "before": 4396,
+        "new": 4344,
+        "keil": 3531,
+        "stc": 4677,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g119\\mx251\\result.json",
+          "sha256": "699cc033f7143bb26980391a2262eefab96a417363c5b11cdd954c69fa00ed67"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g120",
+        "name": "71-基于HID协议的USB键盘范例",
+        "status": "BUILT",
+        "before": 3562,
+        "new": 3539,
+        "keil": 3040,
+        "stc": 4313,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g120\\mx251\\result.json",
+          "sha256": "1adfb85bbe9279aa9c40e5e95a1d3cc1b2cbbddb085798e4346a68589a9fc7be"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g121",
+        "name": "72-基于HID协议的USB鼠标范例",
+        "status": "BUILT",
+        "before": 3210,
+        "new": 3186,
+        "keil": 2687,
+        "stc": 3809,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g121\\mx251\\result.json",
+          "sha256": "7fefae3b145ba4ad54309a7bfdf2e60c7b2a217fab770b24a0f8c62063cfc456"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g122",
+        "name": "73-基于WINUSB协议的范例",
+        "status": "BUILT",
+        "before": 3395,
+        "new": 3378,
+        "keil": 2951,
+        "stc": 4014,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g122\\mx251\\result.json",
+          "sha256": "8627e31744ad26277f07885699052aa8111bcc8daafa09137efaabfd3078bd89"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g123",
+        "name": "74-MSC(Mass Storage Class)协议范例",
+        "status": "BUILT",
+        "before": 4786,
+        "new": 4771,
+        "keil": 4061,
+        "stc": 6459,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g123\\mx251\\result.json",
+          "sha256": "55b746d0c7b547f09891067f9c2e73595b456b812cb5c60c1913c791ad0ad5b1"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g124",
+        "name": "75-通过定时器周期性调度任务综合例程",
+        "status": "BUILT",
+        "before": 2903,
+        "new": 2886,
+        "keil": 2174,
+        "stc": 4342,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g124\\mx251\\result.json",
+          "sha256": "04d056ca9f9ea4875731ad485889d6ca5b3cc09c042215a60677363a1f522913"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g126",
+        "name": "77-USART1复用SPI_使用DMA和寄存器方式访问Flash例程",
+        "status": "BUILT",
+        "before": 1665,
+        "new": 1665,
+        "keil": 1809,
+        "stc": 1613,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g126\\mx251\\result.json",
+          "sha256": "a54d918270925fb9e6dd1841372a03f3fd56b8959e77b28ca047c80fe6dbe011"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g127",
+        "name": "78-USART1复用SPI与USART2复用SPI相互通信例程",
+        "status": "BUILT",
+        "before": 553,
+        "new": 527,
+        "keil": 499,
+        "stc": 1186,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g127\\mx251\\result.json",
+          "sha256": "7bf5ddd10e13ecbff77136a0325c41522808234441d1a92afef6ea05c2c1501b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g128",
+        "name": "79-UART-SPI-LCM_DMA_交替使用下载显示图片例程",
+        "status": "BUILT",
+        "before": 5477,
+        "new": 5416,
+        "keil": 4616,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g128\\mx251\\result.json",
+          "sha256": "3d602f233a7ba62b8ce6664dc88ff8adfc8e60d75792e198c51e0f7d25bd0829"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g129",
+        "name": "80-高级PWM输出-周期可调-脉冲计数",
+        "status": "BUILT",
+        "before": 540,
+        "new": 462,
+        "keil": 395,
+        "stc": 924,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g129\\mx251\\result.json",
+          "sha256": "858653340f12f5b66b8e4a0189b785c3bf18a99698d096eee4b0097e99042b4b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g130",
+        "name": "81-内部RTC时钟低功耗休眠唤醒-比较器检测电压程序",
+        "status": "BUILT",
+        "before": 1306,
+        "new": 1299,
+        "keil": 1501,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g130\\mx251\\result.json",
+          "sha256": "6cdc94c577e0664c868c2b9979b89a063f7f12180d6f12a1525d59c74861f418"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g133",
+        "name": "83-老梁示波器-CDC虚拟显示",
+        "status": "BUILT",
+        "before": 8890,
+        "new": 8595,
+        "keil": 6979,
+        "stc": 9463,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g133\\mx251\\result.json",
+          "sha256": "b888d161430cb1176d0733a584ab5ad950d4001098ba2a2f5bebf2ab89e89b5d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g134",
+        "name": "84-USB鼠标-键盘复合设备例程",
+        "status": "BUILT",
+        "before": 4214,
+        "new": 4180,
+        "keil": 3523,
+        "stc": 5016,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g134\\mx251\\result.json",
+          "sha256": "aae4fcadab11d8e780ab3da3b1ce0418973aebb99942881a9733bcdb81810a91"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g135",
+        "name": "85-老梁示波器-信号发生器",
+        "status": "BUILT",
+        "before": 464,
+        "new": 445,
+        "keil": 416,
+        "stc": 872,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g135\\mx251\\result.json",
+          "sha256": "db9560e57c00619b098ec35dea7cf3697209cb9a8a125bad51e806f3b6b5a4a3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g136",
+        "name": "86.1-串口绘图-使用UART1接口",
+        "status": "BUILT",
+        "before": 502,
+        "new": 501,
+        "keil": 435,
+        "stc": 949,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g136\\mx251\\result.json",
+          "sha256": "9a4c87894219073fc91534d39a773e04d568aa9aa9d80bd3d6326e512ab7fced"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g138",
+        "name": "87.1-利用高级PWMA+PWMB溢出中断做2个定时器",
+        "status": "BUILT",
+        "before": 353,
+        "new": 353,
+        "keil": 379,
+        "stc": 1061,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g138\\mx251\\result.json",
+          "sha256": "63e35b648fce8f150bd926fb35119cef17246a108ef0547590992644183c6fc2"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g139",
+        "name": "87.2-利用高级PWMA+PWMB实现8个定时器",
+        "status": "BUILT",
+        "before": 1682,
+        "new": 1386,
+        "keil": 887,
+        "stc": 1477,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g139\\mx251\\result.json",
+          "sha256": "d0b1a29276df5fb95ab376e378213367d28ecdc35608a21182b89413f59af886"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g141",
+        "name": "89-USB CDC转双串口-做自动停电上电烧录器",
+        "status": "BUILT",
+        "before": 5818,
+        "new": 5768,
+        "keil": 4656,
+        "stc": 6499,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\projects\\g141\\mx251\\result.json",
+          "sha256": "8335bdde9cf7c9d973eb01f783f32d3b9e34a091ff4a3b2da50f55d94aca2715"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      }
+    ],
+    "summary": {
+      "rebuilt": 97,
+      "beforeBytes": 246073,
+      "afterBytes": 242146,
+      "smaller": 63,
+      "larger": 0,
+      "unchanged": 34,
+      "refusalReasons": {
+        "ordered-asm-core-state-write": 10
+      },
+      "formerlyBlockedMains": {
+        "refusal:ordered-asm-core-state-write": 7
+      },
+      "keil": {
+        "count": 97,
+        "at110": 40,
+        "at120": 69,
+        "new110": [
+          "g011",
+          "g058",
+          "g062",
+          "g063",
+          "g127",
+          "g135"
+        ],
+        "new120": [
+          "g015",
+          "g023",
+          "g079",
+          "g092",
+          "g103",
+          "g129"
+        ],
+        "lost110": [],
+        "lost120": []
+      },
+      "stc": {
+        "count": 79,
+        "at110": 75,
+        "at120": 77,
+        "new110": [
+          "g048",
+          "g139"
+        ],
+        "new120": [],
+        "lost110": [],
+        "lost120": []
+      }
+    }
+  },
+  "contracts": {
+    "status": "PASS",
+    "rows": [
+      {
+        "model": "small",
+        "optimization": "size",
+        "stackAuto": false,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "stackAuto": true,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "small",
+        "optimization": "speed",
+        "stackAuto": false,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "small",
+        "optimization": "speed",
+        "stackAuto": true,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "stackAuto": false,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "stackAuto": true,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "stackAuto": false,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "stackAuto": true,
+        "volatilePhysicalOrder": true,
+        "farAndCodeIdentical": true
+      }
+    ],
+    "compilerSha256": "4e42d6a4ddcabd61ed67f8ee33a2d7140ca9e07e0bd617f72bacbc83debe1861"
+  },
+  "costTests": {
+    "status": "PASS",
+    "compilerSha256": "4e42d6a4ddcabd61ed67f8ee33a2d7140ca9e07e0bd617f72bacbc83debe1861",
+    "baselineSha256": "7a76dd66e99474eb7da44d1b56a8a1c8b0e990b457598d868a9167cdfe45858c",
+    "sourceSha256": "550a99ce9206192890722e1cf70c6691c2f31363f15a58fa0e377844e248a99b",
+    "configurations": [
+      {
+        "abi": 2,
+        "model": "small",
+        "optimization": "size",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "108",
+              "wide-ins": "14",
+              "legacy-ins": "42",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "78",
+              "wide-ins": "14",
+              "legacy-ins": "30",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 2,
+        "model": "small",
+        "optimization": "speed",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "108",
+              "wide-ins": "14",
+              "legacy-ins": "42",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "78",
+              "wide-ins": "14",
+              "legacy-ins": "30",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 2,
+        "model": "large",
+        "optimization": "size",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "104",
+              "wide-ins": "14",
+              "legacy-ins": "39",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "74",
+              "wide-ins": "14",
+              "legacy-ins": "27",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 2,
+        "model": "large",
+        "optimization": "speed",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "104",
+              "wide-ins": "14",
+              "legacy-ins": "39",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "189",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "48",
+              "legacy-bytes": "74",
+              "wide-ins": "14",
+              "legacy-ins": "27",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 4,
+        "model": "small",
+        "optimization": "size",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "98",
+              "wide-ins": "12",
+              "legacy-ins": "37",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "68",
+              "wide-ins": "12",
+              "legacy-ins": "25",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 4,
+        "model": "small",
+        "optimization": "speed",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "98",
+              "wide-ins": "12",
+              "legacy-ins": "37",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "68",
+              "wide-ins": "12",
+              "legacy-ins": "25",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 4,
+        "model": "large",
+        "optimization": "size",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "98",
+              "wide-ins": "12",
+              "legacy-ins": "37",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "68",
+              "wide-ins": "12",
+              "legacy-ins": "25",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      },
+      {
+        "abi": 4,
+        "model": "large",
+        "optimization": "speed",
+        "costs": {
+          "parent": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "98",
+              "wide-ins": "12",
+              "legacy-ins": "37",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          },
+          "new": {
+            "apply_feature": {
+              "selected": "legacy",
+              "wide-bytes": "198",
+              "legacy-bytes": "186",
+              "wide-ins": "77",
+              "legacy-ins": "74",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "edata_spaces": {
+              "selected": "wide",
+              "wide-bytes": "42",
+              "legacy-bytes": "68",
+              "wide-ins": "12",
+              "legacy-ins": "25",
+              "wide-peak": "0",
+              "legacy-peak": "0",
+              "unknown": "0/0"
+            },
+            "assembledEdataMoves": 9
+          }
+        }
+      }
+    ]
+  },
+  "userStress": {
+    "status": "PASS",
+    "compilerSha256": "4e42d6a4ddcabd61ed67f8ee33a2d7140ca9e07e0bd617f72bacbc83debe1861",
+    "configurations": 9,
+    "translationUnits": 63,
+    "targets": [
+      "STC32G12K128",
+      "AI8051U-34K64-32",
+      "Independent251"
+    ],
+    "identicalPureCObjects": true,
+    "valueLimit": 128,
+    "nodeLimit": 512,
+    "source": "854b605847ebaec1675b8178db341f1201c4f1d127310391f2966f54c7545250",
+    "rows": [
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "callback",
+        "codeBytes": 370,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "giant",
+        "codeBytes": 7349,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "callback",
+        "codeBytes": 370,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "giant",
+        "codeBytes": 7349,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "callback",
+        "codeBytes": 370,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "giant",
+        "codeBytes": 7349,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      }
+    ]
+  },
+  "hostStress": {
+    "status": "PASS",
+    "evaluations": 3072,
+    "equivalentPairs": 1536,
+    "compiler": "E:\\MCU\\MINGW\\mingw64\\bin\\gcc.exe",
+    "unsignedWidths": [
+      8,
+      16,
+      32
+    ],
+    "seedRange": [
+      0,
+      255
+    ]
+  },
+  "identicalStressObjects": [
+    "AI8051U-34K64-32-large-size\\bits.rel",
+    "AI8051U-34K64-32-large-size\\callback.rel",
+    "AI8051U-34K64-32-large-size\\dispatch.rel",
+    "AI8051U-34K64-32-large-size\\fields.rel",
+    "AI8051U-34K64-32-large-size\\giant.rel",
+    "AI8051U-34K64-32-large-size\\parser.rel",
+    "AI8051U-34K64-32-large-size\\ring.rel",
+    "AI8051U-34K64-32-small-size\\bits.rel",
+    "AI8051U-34K64-32-small-size\\callback.rel",
+    "AI8051U-34K64-32-small-size\\dispatch.rel",
+    "AI8051U-34K64-32-small-size\\fields.rel",
+    "AI8051U-34K64-32-small-size\\giant.rel",
+    "AI8051U-34K64-32-small-size\\parser.rel",
+    "AI8051U-34K64-32-small-size\\ring.rel",
+    "AI8051U-34K64-32-small-speed\\bits.rel",
+    "AI8051U-34K64-32-small-speed\\callback.rel",
+    "AI8051U-34K64-32-small-speed\\dispatch.rel",
+    "AI8051U-34K64-32-small-speed\\fields.rel",
+    "AI8051U-34K64-32-small-speed\\giant.rel",
+    "AI8051U-34K64-32-small-speed\\parser.rel",
+    "AI8051U-34K64-32-small-speed\\ring.rel",
+    "Independent251-large-size\\bits.rel",
+    "Independent251-large-size\\callback.rel",
+    "Independent251-large-size\\dispatch.rel",
+    "Independent251-large-size\\fields.rel",
+    "Independent251-large-size\\giant.rel",
+    "Independent251-large-size\\parser.rel",
+    "Independent251-large-size\\ring.rel",
+    "Independent251-small-size\\bits.rel",
+    "Independent251-small-size\\callback.rel",
+    "Independent251-small-size\\dispatch.rel",
+    "Independent251-small-size\\fields.rel",
+    "Independent251-small-size\\giant.rel",
+    "Independent251-small-size\\parser.rel",
+    "Independent251-small-size\\ring.rel",
+    "Independent251-small-speed\\bits.rel",
+    "Independent251-small-speed\\callback.rel",
+    "Independent251-small-speed\\dispatch.rel",
+    "Independent251-small-speed\\fields.rel",
+    "Independent251-small-speed\\giant.rel",
+    "Independent251-small-speed\\parser.rel",
+    "Independent251-small-speed\\ring.rel",
+    "STC32G12K128-large-size\\bits.rel",
+    "STC32G12K128-large-size\\callback.rel",
+    "STC32G12K128-large-size\\dispatch.rel",
+    "STC32G12K128-large-size\\fields.rel",
+    "STC32G12K128-large-size\\giant.rel",
+    "STC32G12K128-large-size\\parser.rel",
+    "STC32G12K128-large-size\\ring.rel",
+    "STC32G12K128-small-size\\bits.rel",
+    "STC32G12K128-small-size\\callback.rel",
+    "STC32G12K128-small-size\\dispatch.rel",
+    "STC32G12K128-small-size\\fields.rel",
+    "STC32G12K128-small-size\\giant.rel",
+    "STC32G12K128-small-size\\parser.rel",
+    "STC32G12K128-small-size\\ring.rel",
+    "STC32G12K128-small-speed\\bits.rel",
+    "STC32G12K128-small-speed\\callback.rel",
+    "STC32G12K128-small-speed\\dispatch.rel",
+    "STC32G12K128-small-speed\\fields.rel",
+    "STC32G12K128-small-speed\\giant.rel",
+    "STC32G12K128-small-speed\\parser.rel",
+    "STC32G12K128-small-speed\\ring.rel"
+  ],
+  "hardware": {
+    "status": "NOT_RUN",
+    "reason": "STC-Link1D enumeration returned no devices; user will connect later",
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\board-isr\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "5dbfe86ebf0584f13c45c53af007260bf48ef40b56cc7cf19e2ca255dce7c73e"
+    },
+    "reference": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\host-isr\\reference.json",
+      "sha256": "ea9749685a12008f6bc6ed2b2f85e77a0ab4511c162e0dfc4f70f8f356955907"
+    },
+    "expectedCases": 256,
+    "expectedTimerInterruptsPerFullSet": 2048,
+    "timingQualified": false,
+    "inheritedScalarTest": {
+      "status": "NOT_RUN",
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\scalar-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6d5d51917f5d1e8300563b1f42828b38912a98e0362664429e63a9a9857c867c"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\scalar-board\\reference.json",
+        "sha256": "48db756c747145df8e86c9aca3dd43bc9a89fd580b71a16a480d3a8089714d6b"
+      },
+      "expectedCases": 1024,
+      "codeBytes": 4684
+    }
+  },
+  "boardReceipt": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\board-isr\\.build\\mx251\\latest\\receipt.json",
+    "sha256": "e3d96992375d7e3049f0ad22944fafb445e3d00b53b06a8e3da01ceeaba9aec6"
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\function-attribution.json",
+    "sha256": "a6bc65b4bc3c4367ccb463d4a6beb896ee53ff37f1bcea8c2c81db4c03aa43b6"
+  },
+  "functionChanges": [
+    {
+      "project": "g005",
+      "unit": "u0",
+      "name": "_main",
+      "before": 124,
+      "after": 121,
+      "delta": -3,
+      "isr": false
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "name": "_TM0_Isr",
+      "before": 33,
+      "after": 25,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "name": "_TM1_Isr",
+      "before": 33,
+      "after": 25,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "name": "_main",
+      "before": 161,
+      "after": 159,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g013",
+      "unit": "u0",
+      "name": "_timer1_int",
+      "before": 131,
+      "after": 89,
+      "delta": -42,
+      "isr": true
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_main",
+      "before": 134,
+      "after": 132,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_INT0_int",
+      "before": 31,
+      "after": 23,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_INT1_int",
+      "before": 31,
+      "after": 23,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_INT2_int",
+      "before": 31,
+      "after": 23,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_INT3_int",
+      "before": 31,
+      "after": 23,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_INT4_int",
+      "before": 31,
+      "after": 23,
+      "delta": -8,
+      "isr": true
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "name": "_main",
+      "before": 392,
+      "after": 316,
+      "delta": -76,
+      "isr": false
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "name": "_main",
+      "before": 419,
+      "after": 338,
+      "delta": -81,
+      "isr": false
+    },
+    {
+      "project": "g023",
+      "unit": "u0",
+      "name": "_UART1_config",
+      "before": 52,
+      "after": 42,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g023",
+      "unit": "u0",
+      "name": "_UART1_int",
+      "before": 116,
+      "after": 97,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g025",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 62,
+      "after": 52,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g025",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 118,
+      "after": 99,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g027",
+      "unit": "u0",
+      "name": "_UART3_config",
+      "before": 42,
+      "after": 40,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g027",
+      "unit": "u0",
+      "name": "_UART3_int",
+      "before": 118,
+      "after": 99,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g029",
+      "unit": "u0",
+      "name": "_UART4_config",
+      "before": 42,
+      "after": 40,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g029",
+      "unit": "u0",
+      "name": "_UART4_int",
+      "before": 118,
+      "after": 99,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g031",
+      "unit": "u0",
+      "name": "_UART1_config",
+      "before": 62,
+      "after": 52,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g031",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 62,
+      "after": 52,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g031",
+      "unit": "u0",
+      "name": "_UART1_int",
+      "before": 116,
+      "after": 97,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g031",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 118,
+      "after": 99,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g033",
+      "unit": "u0",
+      "name": "_UART3_config",
+      "before": 42,
+      "after": 40,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g033",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 62,
+      "after": 52,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g033",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g033",
+      "unit": "u0",
+      "name": "_UART3_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g040",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 64,
+      "after": 54,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g040",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "name": "_main",
+      "before": 488,
+      "after": 379,
+      "delta": -109,
+      "isr": false
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "name": "_LVD_Routine",
+      "before": 132,
+      "after": 117,
+      "delta": -15,
+      "isr": true
+    },
+    {
+      "project": "g044",
+      "unit": "u0",
+      "name": "_CMP_Isr",
+      "before": 470,
+      "after": 365,
+      "delta": -105,
+      "isr": true
+    },
+    {
+      "project": "g048",
+      "unit": "u0",
+      "name": "_main",
+      "before": 425,
+      "after": 385,
+      "delta": -40,
+      "isr": false
+    },
+    {
+      "project": "g048",
+      "unit": "u0",
+      "name": "_timer0",
+      "before": 598,
+      "after": 402,
+      "delta": -196,
+      "isr": true
+    },
+    {
+      "project": "g050",
+      "unit": "u0",
+      "name": "_main",
+      "before": 383,
+      "after": 343,
+      "delta": -40,
+      "isr": false
+    },
+    {
+      "project": "g050",
+      "unit": "u0",
+      "name": "_timer0",
+      "before": 598,
+      "after": 402,
+      "delta": -196,
+      "isr": true
+    },
+    {
+      "project": "g052",
+      "unit": "u0",
+      "name": "_I2C_Isr",
+      "before": 315,
+      "after": 291,
+      "delta": -24,
+      "isr": true
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "name": "_timer0",
+      "before": 70,
+      "after": 59,
+      "delta": -11,
+      "isr": true
+    },
+    {
+      "project": "g058",
+      "unit": "u0",
+      "name": "_main",
+      "before": 223,
+      "after": 213,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g058",
+      "unit": "u0",
+      "name": "_PWMA_ISR",
+      "before": 151,
+      "after": 119,
+      "delta": -32,
+      "isr": true
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "name": "_timer0",
+      "before": 70,
+      "after": 59,
+      "delta": -11,
+      "isr": true
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "name": "_PWMA_ISR",
+      "before": 151,
+      "after": 119,
+      "delta": -32,
+      "isr": true
+    },
+    {
+      "project": "g062",
+      "unit": "u0",
+      "name": "_main",
+      "before": 391,
+      "after": 332,
+      "delta": -59,
+      "isr": false
+    },
+    {
+      "project": "g062",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g062",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g062",
+      "unit": "u0",
+      "name": "_FlashCheckID",
+      "before": 107,
+      "after": 105,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g062",
+      "unit": "u0",
+      "name": "_FlashSectorErase",
+      "before": 78,
+      "after": 68,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g062",
+      "unit": "u0",
+      "name": "_SPI_Read_Nbytes",
+      "before": 130,
+      "after": 124,
+      "delta": -6,
+      "isr": false
+    },
+    {
+      "project": "g063",
+      "unit": "u0",
+      "name": "_main",
+      "before": 391,
+      "after": 332,
+      "delta": -59,
+      "isr": false
+    },
+    {
+      "project": "g063",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g063",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g063",
+      "unit": "u0",
+      "name": "_FlashCheckID",
+      "before": 107,
+      "after": 105,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g063",
+      "unit": "u0",
+      "name": "_FlashSectorErase",
+      "before": 78,
+      "after": 68,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g063",
+      "unit": "u0",
+      "name": "_SPI_Read_Nbytes",
+      "before": 130,
+      "after": 124,
+      "delta": -6,
+      "isr": false
+    },
+    {
+      "project": "g066",
+      "unit": "u0",
+      "name": "_main",
+      "before": 180,
+      "after": 151,
+      "delta": -29,
+      "isr": false
+    },
+    {
+      "project": "g066",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g066",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g070",
+      "unit": "u0",
+      "name": "_Fill_Triangel",
+      "before": 769,
+      "after": 767,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g073",
+      "unit": "u0",
+      "name": "_main",
+      "before": 127,
+      "after": 123,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g079",
+      "unit": "u0",
+      "name": "_main",
+      "before": 269,
+      "after": 244,
+      "delta": -25,
+      "isr": false
+    },
+    {
+      "project": "g079",
+      "unit": "u0",
+      "name": "_PWMA_ISR",
+      "before": 206,
+      "after": 167,
+      "delta": -39,
+      "isr": true
+    },
+    {
+      "project": "g084",
+      "unit": "u0",
+      "name": "_main",
+      "before": 262,
+      "after": 261,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g084",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g084",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g084",
+      "unit": "u0",
+      "name": "_SPI_Isr",
+      "before": 126,
+      "after": 102,
+      "delta": -24,
+      "isr": true
+    },
+    {
+      "project": "g084",
+      "unit": "u0",
+      "name": "_SPI_init",
+      "before": 56,
+      "after": 48,
+      "delta": -8,
+      "isr": false
+    },
+    {
+      "project": "g085",
+      "unit": "u0",
+      "name": "_main",
+      "before": 271,
+      "after": 266,
+      "delta": -5,
+      "isr": false
+    },
+    {
+      "project": "g085",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g085",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g085",
+      "unit": "u0",
+      "name": "_SPI_Isr",
+      "before": 126,
+      "after": 102,
+      "delta": -24,
+      "isr": true
+    },
+    {
+      "project": "g085",
+      "unit": "u0",
+      "name": "_SPI_init",
+      "before": 56,
+      "after": 48,
+      "delta": -8,
+      "isr": false
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "name": "_UART1_config",
+      "before": 62,
+      "after": 52,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "name": "_UART1_int",
+      "before": 129,
+      "after": 103,
+      "delta": -26,
+      "isr": true
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "name": "_main",
+      "before": 457,
+      "after": 414,
+      "delta": -43,
+      "isr": false
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "name": "_main",
+      "before": 431,
+      "after": 414,
+      "delta": -17,
+      "isr": false
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "name": "_main",
+      "before": 656,
+      "after": 579,
+      "delta": -77,
+      "isr": false
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "name": "_USART1_int",
+      "before": 171,
+      "after": 141,
+      "delta": -30,
+      "isr": true
+    },
+    {
+      "project": "g096",
+      "unit": "u0",
+      "name": "_USART1_int",
+      "before": 129,
+      "after": 103,
+      "delta": -26,
+      "isr": true
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "name": "_main",
+      "before": 656,
+      "after": 579,
+      "delta": -77,
+      "isr": false
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 185,
+      "after": 150,
+      "delta": -35,
+      "isr": true
+    },
+    {
+      "project": "g098",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g103",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 176,
+      "after": 130,
+      "delta": -46,
+      "isr": true
+    },
+    {
+      "project": "g103",
+      "unit": "u0",
+      "name": "_FlashCheckID",
+      "before": 119,
+      "after": 116,
+      "delta": -3,
+      "isr": false
+    },
+    {
+      "project": "g103",
+      "unit": "u0",
+      "name": "_FlashSectorErase",
+      "before": 78,
+      "after": 68,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g104",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 176,
+      "after": 130,
+      "delta": -46,
+      "isr": true
+    },
+    {
+      "project": "g104",
+      "unit": "u0",
+      "name": "_FlashCheckID",
+      "before": 107,
+      "after": 105,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g104",
+      "unit": "u0",
+      "name": "_FlashSectorErase",
+      "before": 78,
+      "after": 68,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g104",
+      "unit": "u0",
+      "name": "_SPI_Read_Nbytes",
+      "before": 125,
+      "after": 124,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g108",
+      "unit": "u0",
+      "name": "_UART4_int",
+      "before": 70,
+      "after": 53,
+      "delta": -17,
+      "isr": true
+    },
+    {
+      "project": "g112",
+      "unit": "u0",
+      "name": "_LCMIF_DMA_Interrupt",
+      "before": 180,
+      "after": 150,
+      "delta": -30,
+      "isr": true
+    },
+    {
+      "project": "g113",
+      "unit": "u0",
+      "name": "_LCD_Init",
+      "before": 644,
+      "after": 645,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g114",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 176,
+      "after": 130,
+      "delta": -46,
+      "isr": true
+    },
+    {
+      "project": "g115",
+      "unit": "u0",
+      "name": "_I2C_Isr",
+      "before": 469,
+      "after": 415,
+      "delta": -54,
+      "isr": true
+    },
+    {
+      "project": "g116",
+      "unit": "u0",
+      "name": "_UART2_config",
+      "before": 58,
+      "after": 49,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g116",
+      "unit": "u0",
+      "name": "_UART2_int",
+      "before": 132,
+      "after": 105,
+      "delta": -27,
+      "isr": true
+    },
+    {
+      "project": "g116",
+      "unit": "u0",
+      "name": "_FlashCheckID",
+      "before": 119,
+      "after": 116,
+      "delta": -3,
+      "isr": false
+    },
+    {
+      "project": "g116",
+      "unit": "u0",
+      "name": "_FlashSectorErase",
+      "before": 78,
+      "after": 68,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g116",
+      "unit": "u0",
+      "name": "_SPI_Read_Nbytes",
+      "before": 130,
+      "after": 129,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g117",
+      "unit": "u0",
+      "name": "_main",
+      "before": 212,
+      "after": 183,
+      "delta": -29,
+      "isr": false
+    },
+    {
+      "project": "g117",
+      "unit": "u0",
+      "name": "_timer0",
+      "before": 602,
+      "after": 406,
+      "delta": -196,
+      "isr": true
+    },
+    {
+      "project": "g118",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 126,
+      "after": 113,
+      "delta": -13,
+      "isr": false
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 220,
+      "after": 216,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g119",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 154,
+      "after": 137,
+      "delta": -17,
+      "isr": false
+    },
+    {
+      "project": "g119",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 257,
+      "after": 256,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "name": "_uart2_isr",
+      "before": 87,
+      "after": 77,
+      "delta": -10,
+      "isr": true
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "name": "_uart_polling",
+      "before": 369,
+      "after": 345,
+      "delta": -24,
+      "isr": false
+    },
+    {
+      "project": "g120",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 128,
+      "after": 115,
+      "delta": -13,
+      "isr": false
+    },
+    {
+      "project": "g121",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 128,
+      "after": 115,
+      "delta": -13,
+      "isr": false
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 205,
+      "after": 204,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g122",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 142,
+      "after": 127,
+      "delta": -15,
+      "isr": false
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "name": "_usb_set_feature",
+      "before": 139,
+      "after": 137,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g123",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 129,
+      "after": 115,
+      "delta": -14,
+      "isr": false
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "name": "_usb_clear_feature",
+      "before": 149,
+      "after": 148,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g124",
+      "unit": "u6",
+      "name": "_adcKey_init",
+      "before": 37,
+      "after": 31,
+      "delta": -6,
+      "isr": false
+    },
+    {
+      "project": "g124",
+      "unit": "u8",
+      "name": "_Sample_MatrixKey",
+      "before": 47,
+      "after": 45,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "name": "_RTC_init",
+      "before": 22,
+      "after": 20,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "name": "_Sample_RTC",
+      "before": 25,
+      "after": 23,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g127",
+      "unit": "u0",
+      "name": "_uart1_isr",
+      "before": 96,
+      "after": 86,
+      "delta": -10,
+      "isr": true
+    },
+    {
+      "project": "g127",
+      "unit": "u0",
+      "name": "_uart2_isr",
+      "before": 85,
+      "after": 75,
+      "delta": -10,
+      "isr": true
+    },
+    {
+      "project": "g127",
+      "unit": "u0",
+      "name": "_test",
+      "before": 34,
+      "after": 28,
+      "delta": -6,
+      "isr": false
+    },
+    {
+      "project": "g128",
+      "unit": "u1",
+      "name": "_FlashCheckID",
+      "before": 107,
+      "after": 105,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g128",
+      "unit": "u1",
+      "name": "_FlashChipErase",
+      "before": 21,
+      "after": 18,
+      "delta": -3,
+      "isr": false
+    },
+    {
+      "project": "g128",
+      "unit": "u2",
+      "name": "_UART1_config",
+      "before": 70,
+      "after": 65,
+      "delta": -5,
+      "isr": false
+    },
+    {
+      "project": "g128",
+      "unit": "u2",
+      "name": "_UART1_int",
+      "before": 33,
+      "after": 24,
+      "delta": -9,
+      "isr": true
+    },
+    {
+      "project": "g128",
+      "unit": "u3",
+      "name": "_LCMIF_DMA_Interrupt",
+      "before": 152,
+      "after": 120,
+      "delta": -32,
+      "isr": true
+    },
+    {
+      "project": "g129",
+      "unit": "u0",
+      "name": "_main",
+      "before": 231,
+      "after": 207,
+      "delta": -24,
+      "isr": false
+    },
+    {
+      "project": "g129",
+      "unit": "u0",
+      "name": "_timer0",
+      "before": 174,
+      "after": 120,
+      "delta": -54,
+      "isr": true
+    },
+    {
+      "project": "g130",
+      "unit": "u0",
+      "name": "_Ext_Vcc_Det",
+      "before": 91,
+      "after": 84,
+      "delta": -7,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u0",
+      "name": "_uart_init",
+      "before": 9,
+      "after": 8,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u2",
+      "name": "_CMP_ISR",
+      "before": 78,
+      "after": 49,
+      "delta": -29,
+      "isr": true
+    },
+    {
+      "project": "g133",
+      "unit": "u2",
+      "name": "_PWMB_ISR",
+      "before": 264,
+      "after": 198,
+      "delta": -66,
+      "isr": true
+    },
+    {
+      "project": "g133",
+      "unit": "u2",
+      "name": "_timer0_ISR",
+      "before": 451,
+      "after": 326,
+      "delta": -125,
+      "isr": true
+    },
+    {
+      "project": "g133",
+      "unit": "u2",
+      "name": "_SetSampleTime",
+      "before": 506,
+      "after": 452,
+      "delta": -54,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_init",
+      "before": 126,
+      "after": 113,
+      "delta": -13,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_setup",
+      "before": 172,
+      "after": 170,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_setup_stall",
+      "before": 16,
+      "after": 15,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_setup_in",
+      "before": 17,
+      "after": 16,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_setup_out",
+      "before": 16,
+      "after": 15,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_setup_status",
+      "before": 16,
+      "after": 15,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_ctrl_in",
+      "before": 152,
+      "after": 148,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_ctrl_out",
+      "before": 140,
+      "after": 138,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u5",
+      "name": "_usb_set_line_coding",
+      "before": 53,
+      "after": 54,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u5",
+      "name": "_usb_set_ctrl_line_state",
+      "before": 23,
+      "after": 24,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u6",
+      "name": "_usb_clear_feature",
+      "before": 177,
+      "after": 178,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u6",
+      "name": "_usb_set_feature",
+      "before": 169,
+      "after": 170,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u6",
+      "name": "_usb_set_address",
+      "before": 82,
+      "after": 83,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g134",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 130,
+      "after": 117,
+      "delta": -13,
+      "isr": false
+    },
+    {
+      "project": "g134",
+      "unit": "u3",
+      "name": "_usb_class_in",
+      "before": 405,
+      "after": 404,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g135",
+      "unit": "u0",
+      "name": "_PWMB_ISR",
+      "before": 133,
+      "after": 114,
+      "delta": -19,
+      "isr": true
+    },
+    {
+      "project": "g136",
+      "unit": "u0",
+      "name": "_main",
+      "before": 165,
+      "after": 164,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g139",
+      "unit": "u0",
+      "name": "_PWMA_ISR",
+      "before": 487,
+      "after": 339,
+      "delta": -148,
+      "isr": true
+    },
+    {
+      "project": "g139",
+      "unit": "u0",
+      "name": "_PWMB_ISR",
+      "before": 487,
+      "after": 339,
+      "delta": -148,
+      "isr": true
+    },
+    {
+      "project": "g141",
+      "unit": "u0",
+      "name": "_check_init",
+      "before": 32,
+      "after": 23,
+      "delta": -9,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u0",
+      "name": "_KeyResetScan",
+      "before": 66,
+      "after": 52,
+      "delta": -14,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 134,
+      "after": 121,
+      "delta": -13,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u1",
+      "name": "_usb_out_ep4",
+      "before": 131,
+      "after": 130,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "name": "_uart2_isr",
+      "before": 87,
+      "after": 77,
+      "delta": -10,
+      "isr": true
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "name": "_uart3_isr",
+      "before": 87,
+      "after": 77,
+      "delta": -10,
+      "isr": true
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "name": "_uart_set_baud",
+      "before": 126,
+      "after": 127,
+      "delta": 1,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "name": "_uart_polling",
+      "before": 630,
+      "after": 656,
+      "delta": 26,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u8",
+      "name": "_timer_init",
+      "before": 25,
+      "after": 20,
+      "delta": -5,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u8",
+      "name": "_tm0_isr",
+      "before": 53,
+      "after": 38,
+      "delta": -15,
+      "isr": true
+    }
+  ],
+  "sourceAlgorithmsChanged": false,
+  "timingQualified": false,
+  "buildSourceCommit": "0beb2e99a10a4c0a02776cff6dd45cc03cf32ea8",
+  "initializerClassification": {
+    "scriptSha256": "8c118623497b575fe9e42c3f481c8197fe55eec06ed55f73eb3a8f1fca6f3803",
+    "changed": [
+      {
+        "after": true,
+        "before": false,
+        "project": "g070",
+        "unit": "u5.asm"
+      }
+    ],
+    "units": 206
+  },
+  "initializerTests": {
+    "checks": 7,
+    "status": "PASS",
+    "scriptSha256": "8c118623497b575fe9e42c3f481c8197fe55eec06ed55f73eb3a8f1fca6f3803"
+  }
+}
