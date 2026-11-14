@@ -1,0 +1,111 @@
+{
+  "status": "PASS_EQUAL_BRANCH_CALLS_AND_HARDWARE",
+  "sourceCommit": "d50e7612d6fcdd53379b70bf166f192bcf761f61",
+  "compilerSha256": "dab8ab40430f45293d53c0982f2af709430ca55c7a07147f26e52970a2c9b4d3",
+  "scope": "General MIR transformation; no SDK, project, function-name or device matching",
+  "corpus": {
+    "branchConfigurations": 8,
+    "unchangedBoundaryFunctions": 9,
+    "sharedTailConfigurations": 4,
+    "branchHardwareKinds": 18,
+    "branchHardwareCasesPerAbi": 1152,
+    "branchHardwareAbis": [
+      2,
+      4
+    ],
+    "byteInputsPerKind": 256,
+    "userTranslationUnits": 63,
+    "unchangedObjects": 54,
+    "targetDescriptions": 3,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3683,
+    "workloadTypesAt110Time": 9,
+    "totalWorkloadTypes": 12,
+    "fullOfficialMatrixRebuilt": false,
+    "fullEngineeringTimingQualified": false
+  },
+  "firmwareBytes": {
+    "before": 6981,
+    "after": 6934,
+    "keil": 6124
+  },
+  "callbackMessy": {
+    "beforeBytes": 146,
+    "afterBytes": 99,
+    "keilBytes": 71,
+    "beforeTimeRatio": 1.3650837369792468,
+    "afterTimeRatio": 1.3003216522769596
+  },
+  "artifacts": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\contracts-final\\result.json",
+      "sha256": "ef3d32db3bd5f6b0e66e243c45fed056b5c3030a6a98ff5d7abde9b2f5822f89"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\shared-tails\\result.json",
+      "sha256": "a7d367531ef99aa8515d2c705560948b1cc1938f122144c30ddff07829a62dcb"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\user-stress\\compilation.json",
+      "sha256": "219857f604f2de045c2764af7bfa20212172c7db515f38868c8bb7f8a4919a40"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\user-stress\\host-result.json",
+      "sha256": "c247fecdaede91af4751d063c3b5d95c70f2809666a4a2813ace1dfb735717bf"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\user-object-changes.json",
+      "sha256": "6959db0be18c0b2023a7c044c04452da20075eb12248fb7688ae333e1ac0a8ba"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\function-costs.json",
+      "sha256": "e29dbe8cf5a82e43f4410820cd01a331935863130489fcf2749e4ac5b84abae8"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\final\\timing-comparison.json",
+      "sha256": "3d5e1b50c79ad82dd723168f215394d9719c732f728bfbde8557e02d6ac8035d"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\final\\mx251-capture\\result.json",
+      "sha256": "84e770c63d616df34ff2db39f034f3d339a415802ee50025ed6af40314e17a2a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi2\\source.json",
+      "sha256": "fbacbb11ea15e6fb40c20e102ceb12ea353d7b65780cf2b472a535052cab8cd2"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi2\\reference.json",
+      "sha256": "747812a4b2b6ad306ada669746dd2afb3d66ed85424c1a83014db4dc5890db2c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi2\\capture\\result.json",
+      "sha256": "3e2d9b082ad8b5d1312f8a4e72d21a0dbe088fecfb925f1234c562a817c78a53"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi4\\source.json",
+      "sha256": "6b61960f1155a18256f2806e7f149734868973fa2b7c480c30727c46f4decd4b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi4\\reference.json",
+      "sha256": "747812a4b2b6ad306ada669746dd2afb3d66ed85424c1a83014db4dc5890db2c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi4\\capture\\result.json",
+      "sha256": "a7da9d4e38faf4cf6a4ba0681f28305ceb51b58576e9551416f7dc89a96ad370"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\final\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "085d457667cf66775c90247954c8bb90973a298e33b0b119f7804bd4f4a7d044"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi2\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "e35f9d03bb617d2b5bc7a3c46c2b4c5d556c91cf789303be8e8444be9917b893"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\branches-abi4\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "abbfc8fe9a34ca53d6a6fb8d90626e56f2fb14fe97faf4ae7e4811e1c96e5c32"
+    }
+  ],
+  "candidateEntry": "E:\\STVAPP\\MX251-baseline\\work\\equal-branch-calls-20261115\\final\\Build-Optimized.ps1",
+  "fullEngineeringTimingQualified": false
+}
