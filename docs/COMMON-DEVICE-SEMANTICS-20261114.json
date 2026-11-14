@@ -1,0 +1,3744 @@
+{
+  "schema": 1,
+  "compilerSha256": "6e3b8b25910143dd7712ce9d83a2eab8b5e16a271aa00deb3bb53451f17a9e9f",
+  "parentReport": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-member-addresses-20261114\\comparison.json",
+    "sha256": "ca0bf40839ac571fe75c981486285f885e64349a85b59ebd04dd6dd8f7f90fe8"
+  },
+  "sourceAlgorithmsChanged": false,
+  "hardwareExecuted": false,
+  "rows": [
+    {
+      "id": "g000",
+      "name": "00-端口模式设置\\C语言",
+      "status": "BUILT",
+      "before": 55,
+      "new": 54,
+      "keil": 60,
+      "stc": 35,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g000\\mx251\\result.json",
+        "sha256": "deb12bae17a54f797b9ab0a91cdf1bb32da1b4a3c9489c9449e3934e16986eb7"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g003",
+      "name": "01.1-用P6口做跑马灯-入门版\\C语言",
+      "status": "BUILT",
+      "before": 175,
+      "new": 174,
+      "keil": 180,
+      "stc": 164,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g003\\mx251\\result.json",
+        "sha256": "0d972df113a32ae12f61eaafd10935290eb1eabe4c01ad52de052920e0d34d68"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0.scalar-all",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g005",
+      "name": "01.2-用P6口做跑马灯\\C语言",
+      "status": "BUILT",
+      "before": 204,
+      "new": 193,
+      "keil": 169,
+      "stc": 167,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g005\\mx251\\result.json",
+        "sha256": "3961285972bf2e212ed5186c34e07d5ff5efb89451b7390dba6738ff2066f18f"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0.scalar-all",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g007",
+      "name": "02-Timer0-Timer1-Timer2-Timer3-Timer4测试程序\\C语言",
+      "status": "BUILT",
+      "before": 295,
+      "new": 294,
+      "keil": 286,
+      "stc": 828,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g007\\mx251\\result.json",
+        "sha256": "be10fccd19d3a67a35c4ec5b7b3266d1ef3fba94dbdb9f902795b8f02740481c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "Timer2_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "Timer3_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "Timer4_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "Timer2_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "Timer3_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "Timer4_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g009",
+      "name": "03-用P6，P7口驱动8个数码管\\C语言",
+      "status": "BUILT",
+      "before": 687,
+      "new": 613,
+      "keil": 536,
+      "stc": 1044,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g009\\mx251\\result.json",
+        "sha256": "118c433aec3df3656b14b841ce98cd6e5961efe138054702c9d8b1cad2ab0644"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g011",
+      "name": "04-利用T0,T1做外部计数器\\C语言",
+      "status": "BUILT",
+      "before": 591,
+      "new": 578,
+      "keil": 524,
+      "stc": 1018,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g011\\mx251\\result.json",
+        "sha256": "1c726b6983418f1ed7c8133b0cdedda745dab46dc1393c1184698375a0d423b1"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g013",
+      "name": "05-利用定时器测量脉冲宽度\\C语言",
+      "status": "BUILT",
+      "before": 816,
+      "new": 737,
+      "keil": 514,
+      "stc": 1096,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g013\\mx251\\result.json",
+        "sha256": "47a72718f61cb8ead5de979d8f38873b028ab54be5f5a41bc394f0016a1b58fe"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g015",
+      "name": "06-外中断INT0-INT1-INT2-INT3- INT4测试\\C语言",
+      "status": "BUILT",
+      "before": 675,
+      "new": 675,
+      "keil": 542,
+      "stc": 1068,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g015\\mx251\\result.json",
+        "sha256": "c5931405a78e0b2ff358eda810f18a9184ae4131268394ba0725302ac2f6814d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g017",
+      "name": "07-睡眠-唤醒定时器唤醒\\C语言",
+      "status": "BUILT",
+      "before": 615,
+      "new": 615,
+      "keil": 562,
+      "stc": 1106,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g017\\mx251\\result.json",
+        "sha256": "03c65def7b16b4547903a220d967cb0c3fb90b972ffb2e04ae0e570ef08f47ab"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g019",
+      "name": "08-睡眠-外部中断唤醒\\C语言",
+      "status": "BUILT",
+      "before": 709,
+      "new": 709,
+      "keil": 518,
+      "stc": 1061,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g019\\mx251\\result.json",
+        "sha256": "f030230e33d40a21eb83d0ac56af25a915da3fb8b72c56fef6000684ec15ff44"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g021",
+      "name": "09-看门狗复位测试程序\\C语言",
+      "status": "BUILT",
+      "before": 504,
+      "new": 410,
+      "keil": 331,
+      "stc": 355,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g021\\mx251\\result.json",
+        "sha256": "26acaa712903bc5542d742f5ff0a34ed5d96de1df4101a47d10c34dba91bfa8a"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g023",
+      "name": "10-串口1中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 485,
+      "new": 447,
+      "keil": 346,
+      "stc": 951,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g023\\mx251\\result.json",
+        "sha256": "e88fa54b295fd2b52d94bff4197b9c2cc2922a2e8f5c9f4ba5c077c7c6cf3eaa"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g025",
+      "name": "11-串口2中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 494,
+      "new": 456,
+      "keil": 335,
+      "stc": 938,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g025\\mx251\\result.json",
+        "sha256": "7b92323f036eef67f7f5179c6b019b9823307872685ffc86d82d51b3922bb084"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g027",
+      "name": "12-串口3中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 469,
+      "new": 431,
+      "keil": 333,
+      "stc": 945,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g027\\mx251\\result.json",
+        "sha256": "dc51d61b2961fc0d779b51a430eeba7680feb1af43a300087fb3a435d67c4e1f"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UART3_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UART3_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g029",
+      "name": "13-串口4中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 470,
+      "new": 432,
+      "keil": 333,
+      "stc": 945,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g029\\mx251\\result.json",
+        "sha256": "bace54cbe53a02ef71cbe6153f921b4627a439ba9f5ad61d4c9ea739a934eba6"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UART4_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UART4_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g031",
+      "name": "14.1-串口1串口2中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 853,
+      "new": 784,
+      "keil": 549,
+      "stc": 1242,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g031\\mx251\\result.json",
+        "sha256": "4068237a18b656b41e8d7299439b8b37f61595e81dbea2e43908b8f3a489a49f"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g033",
+      "name": "14.2-串口2与串口3通信测试程序",
+      "status": "BUILT",
+      "before": 957,
+      "new": 879,
+      "keil": 665,
+      "stc": 1345,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g033\\mx251\\result.json",
+        "sha256": "3c7b1f3b5d58a946df7a9c70bc5375132d8fd5c2ef20a802797f9b5649d742be"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART3_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART3_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g034",
+      "name": "15-IO行列扫描键盘数码管显示键值和调整时间\\C语言",
+      "status": "BUILT",
+      "before": 1337,
+      "new": 1085,
+      "keil": 961,
+      "stc": 1483,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g034\\mx251\\result.json",
+        "sha256": "565b3870d4bc1ec9de2eb0917dee058ad82ab0dd7c421e3d4b671dea1e2522aa"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g036",
+      "name": "16-ADC键盘扫描数码管显示键值和调整时间\\C语言",
+      "status": "BUILT",
+      "before": 1416,
+      "new": 1162,
+      "keil": 1005,
+      "stc": 1620,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g036\\mx251\\result.json",
+        "sha256": "0770d81e8fa91ca436e654922f37f8e340ef410057bc395356012d64389988ff"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g038",
+      "name": "17-NTC测温度数码管显示\\C语言",
+      "status": "BUILT",
+      "before": 1379,
+      "new": 1236,
+      "keil": 1075,
+      "stc": 2482,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g038\\mx251\\result.json",
+        "sha256": "8c82c041fbb29db2eb7a6f84fb3c1e9bb31cb566b4842dabf4624e0e077cc1ab"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g040",
+      "name": "18-通过串口2发送命令读写EEPROM测试程序\\C语言",
+      "status": "BUILT",
+      "before": 1912,
+      "new": 1744,
+      "keil": 1596,
+      "stc": 3144,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g040\\mx251\\result.json",
+        "sha256": "ad9794300a1d186c076798d2df3991fd7a57fe4dd2491900b26d42115229aebb"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g042",
+      "name": "19-使用LVD低压检测中断保存EEPROM\\C语言",
+      "status": "BUILT",
+      "before": 1232,
+      "new": 1232,
+      "keil": 793,
+      "stc": 1616,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g042\\mx251\\result.json",
+        "sha256": "9baffce238c89cac1e3e16c5335de926b6d9edfc08dd3c7c91890eaccebb5b77"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g044",
+      "name": "20-使用比较器检测低电压时保存数据到EEPROM\\C语言",
+      "status": "BUILT",
+      "before": 1635,
+      "new": 1417,
+      "keil": 956,
+      "stc": 1979,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g044\\mx251\\result.json",
+        "sha256": "934bd7a34d51c97b490c25326141be290dc5deb2352f789abf43ac27e9f0ed3a"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "CMP_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "CMP_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g046",
+      "name": "23-利用P3.7做比较器正极输入源，内部1.19V或P3.6口做负极输入源\\C语言",
+      "status": "BUILT",
+      "before": 179,
+      "new": 179,
+      "keil": 160,
+      "stc": 698,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g046\\mx251\\result.json",
+        "sha256": "b2435545283b8afb7d435844ae9c6c714d8837757ea3531848849c6199eafb07"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g048",
+      "name": "25-高级PWM1-PWM2-PWM3-PWM4，驱动P6口呼吸灯实验程序\\C语言",
+      "status": "BUILT",
+      "before": 1177,
+      "new": 1324,
+      "keil": 691,
+      "stc": 1046,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g048\\mx251\\result.json",
+        "sha256": "2abbc1f5a20ade79eac0ba65d0a737f5d127a18b28bf32261e5ff55d1cd777f4"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g050",
+      "name": "26-高级PWM5-PWM6-PWM7-PWM8输出测试程序\\C语言",
+      "status": "BUILT",
+      "before": 1135,
+      "new": 1274,
+      "keil": 649,
+      "stc": 1043,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g050\\mx251\\result.json",
+        "sha256": "1504b066a3b5ba7558aa1d184995545084c4bf103731bbf0c1cf7879eebe57f9"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g052",
+      "name": "27-I2C从机中断模式与IO口模拟I2C主机进行自发自收\\C语言",
+      "status": "BUILT",
+      "before": 1496,
+      "new": 1496,
+      "keil": 896,
+      "stc": 1686,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g052\\mx251\\result.json",
+        "sha256": "251ce6f44d04dcbf85e6b9bde96186b7dc28d0b32714ba776173094de1f57890"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g054",
+      "name": "28-I2C主机模式访问AT24C02程序\\C语言",
+      "status": "BUILT",
+      "before": 1144,
+      "new": 1144,
+      "keil": 742,
+      "stc": 1430,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g054\\mx251\\result.json",
+        "sha256": "651f8b8e620f9a70113d0b6ebd7c47c76dbab3db522182c4765c09f57bc2dc5a"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g056",
+      "name": "29-红外遥控接收程序(NEC码)-数码管显示用户地址和键值\\C语言",
+      "status": "BUILT",
+      "before": 862,
+      "new": 747,
+      "keil": 584,
+      "stc": 1240,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g056\\mx251\\result.json",
+        "sha256": "c025967de2a32706165cd04516bf4f1252b03006dce70f631003f7ace4a62e18"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g058",
+      "name": "30-红外发射程序(NEC码)-使用PWM4产生38KHz载波\\C语言",
+      "status": "BUILT",
+      "before": 1003,
+      "new": 970,
+      "keil": 872,
+      "stc": 1461,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g058\\mx251\\result.json",
+        "sha256": "e6538ed75608bacee6f781577000f100f81a270c62bbe79c2098da7d42d61df2"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g060",
+      "name": "31-IO扫描键红外发射-同时接收数码管显示用户码键值程序\\C语言",
+      "status": "BUILT",
+      "before": 1638,
+      "new": 1499,
+      "keil": 1248,
+      "stc": 1941,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g060\\mx251\\result.json",
+        "sha256": "0e88f86fc427d3c922f10cfbeece07f061397e60d16ac66c685f6cd8642fe349"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g062",
+      "name": "32-硬件SPI访问FLASH-PM25LV040-串口2监控",
+      "status": "BUILT",
+      "before": 3072,
+      "new": 3076,
+      "keil": 2710,
+      "stc": 5351,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g062\\mx251\\result.json",
+        "sha256": "b1b3f7fc65ee618d47f696d1bf7f6421fb5c7dad8d677f7b787695fc761f97cd"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g063",
+      "name": "33-IO模拟SPI访问FLASH-PM25LV040-串口2监控",
+      "status": "BUILT",
+      "before": 3045,
+      "new": 3049,
+      "keil": 2705,
+      "stc": 5318,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g063\\mx251\\result.json",
+        "sha256": "5e144109a70287051f2686c5abcf10268acdab3f61a1f1c5e9a0ff598bdbebed"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g064",
+      "name": "34-P1.3做ADC-使用内部基准计算外部电压\\C语言",
+      "status": "BUILT",
+      "before": 915,
+      "new": 774,
+      "keil": 509,
+      "stc": 1139,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g064\\mx251\\result.json",
+        "sha256": "4fedc2fc9ecdfc4c3c02d17ee2dfa86b54172b8eab771ff16ccd25185fc6fd2e"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g066",
+      "name": "35-板上的32K xdata测试程序",
+      "status": "BUILT",
+      "before": 34224,
+      "new": 34224,
+      "keil": 33903,
+      "stc": 35950,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g066\\mx251\\result.json",
+        "sha256": "d9c635fa34d102f9e7d60ade8139db1c5c601e92c0095abebb2b250de705ab93"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g067",
+      "name": "36.1-LCD1602显示程序",
+      "status": "BUILT",
+      "before": 802,
+      "new": 787,
+      "keil": 725,
+      "stc": 841,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g067\\mx251\\result.json",
+        "sha256": "0f56417e0c1664270a96dd6f044f0f7c2f6b1e0a3adb8fedd4382a6e8c7c2a59"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g068",
+      "name": "36.2-LCD128x64显示图形文字-ST7920",
+      "status": "BUILT",
+      "before": 1856,
+      "new": 1847,
+      "keil": 1791,
+      "stc": 2609,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g068\\mx251\\result.json",
+        "sha256": "15772b3bab2821e510e008d06c327b6e642ae81c4e73ec8dde837ec7de7da85d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g069",
+      "name": "37-2.4寸ILI9341驱动TFT显示屏实验程序\\Project",
+      "status": "BUILT",
+      "before": 19618,
+      "new": 19617,
+      "keil": 18449,
+      "stc": 31210,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g069\\mx251\\result.json",
+        "sha256": "02413d6855a11a02c80a822c2472582ed5eccdea09af6cca050d7485d4860301"
+      },
+      "refusalsBefore": [
+        [
+          "u1",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u4",
+          "Lcd_RD_DATA_16Bit",
+          "unsupported-volatile-dummy-read-operand"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u4",
+          "Lcd_RD_DATA_16Bit",
+          "unsupported-volatile-dummy-read-operand"
+        ]
+      ]
+    },
+    {
+      "id": "g070",
+      "name": "38-2.4寸ILI9325驱动TFT显示屏实验程序-带触摸功能\\Project",
+      "status": "BUILT",
+      "before": 19403,
+      "new": 19402,
+      "keil": 19536,
+      "stc": 30227,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g070\\mx251\\result.json",
+        "sha256": "43cdba57097ff3f770aa7246a6c8fb08f05204167c8749ca5d17d6e4eab4aa12"
+      },
+      "refusalsBefore": [
+        [
+          "u1",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u4",
+          "Lcd_RD_DATA_16Bit",
+          "unsupported-volatile-dummy-read-operand"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u4",
+          "Lcd_RD_DATA_16Bit",
+          "unsupported-volatile-dummy-read-operand"
+        ]
+      ]
+    },
+    {
+      "id": "g071",
+      "name": "39-通过USB发送命令读取ADC测试程序",
+      "status": "BUILT",
+      "before": 2945,
+      "new": 2851,
+      "keil": 1655,
+      "stc": 2988,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g071\\mx251\\result.json",
+        "sha256": "12d41da1218d2f99048a49400cefab718d729b4bd1927ee3ebd28e6f0cb21f59"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UsbInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UsbInit",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g073",
+      "name": "41-软件修改内部RC主频\\C语言",
+      "status": "BUILT",
+      "before": 505,
+      "new": 490,
+      "keil": 477,
+      "stc": 461,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g073\\mx251\\result.json",
+        "sha256": "c7693678b3b6d94e813deab9a7c3a4b8c39d4455c9c4ad11dd73f42cc4943363"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g075",
+      "name": "42-一线制温度传感器 DS18B20 测温\\C语言",
+      "status": "BUILT",
+      "before": 937,
+      "new": 895,
+      "keil": 1046,
+      "stc": 1579,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g075\\mx251\\result.json",
+        "sha256": "0280819c34d7b6c853c182ce3f5d4753d87be1158f0d48b0821c1a3923d2590e"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g077",
+      "name": "43-IO口推挽输出驱动有源蜂鸣器实验程序\\C语言",
+      "status": "BUILT",
+      "before": 461,
+      "new": 437,
+      "keil": 410,
+      "stc": 999,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g077\\mx251\\result.json",
+        "sha256": "993f91b61b6d9a4d2783202c7f61383f074bad6dc798d6db6dc1ab89a634e3be"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0.scalar-all",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g079",
+      "name": "44-高级PWM输出两路互补SPWM\\C语言",
+      "status": "BUILT",
+      "before": 944,
+      "new": 1004,
+      "keil": 762,
+      "stc": 1280,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g079\\mx251\\result.json",
+        "sha256": "fdec49764f4f73795d2b0b65d834f9c93423a9c054166dae776cba639646ec0d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g081",
+      "name": "45-内部RTC时钟程序\\C语言",
+      "status": "BUILT",
+      "before": 2319,
+      "new": 2151,
+      "keil": 2243,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g081\\mx251\\result.json",
+        "sha256": "85df946f3cda68acebbab766b8044192feda5d4c3e816cf96f249fede7814904"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g083",
+      "name": "46-MDU32–乘法和除法单元",
+      "status": "BUILT",
+      "before": 9468,
+      "new": 8291,
+      "keil": 1551,
+      "stc": 4750,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g083\\mx251\\result.json",
+        "sha256": "73482faee095e568c93f02a62eef4e823b79759212ded2cdfa0978a27faf62b6"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g084",
+      "name": "47-SPI互为主从-SS设置主从-串口透传",
+      "status": "BUILT",
+      "before": 889,
+      "new": 836,
+      "keil": 594,
+      "stc": 1292,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g084\\mx251\\result.json",
+        "sha256": "f010d9657298c05d166f7d5a6fccf1482f4e6023a1a07052f02c06858f46a68c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g085",
+      "name": "48-SPI互为主从-主模式忽略SS-串口透传",
+      "status": "BUILT",
+      "before": 892,
+      "new": 843,
+      "keil": 600,
+      "stc": 1300,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g085\\mx251\\result.json",
+        "sha256": "563be5ed07e509fa3ce62568a9ff4c46aaa9c5112e3083f6d33cb9da3e57d85b"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g086",
+      "name": "49-CAN总线标准帧收发测试\\C语言",
+      "status": "BUILT",
+      "before": 2825,
+      "new": 2825,
+      "keil": 1543,
+      "stc": 3150,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g086\\mx251\\result.json",
+        "sha256": "1482b1ccf60e2c36c41513b7e085bde568f1d0fbdf15bc39cb09bb48d97af46a"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "memory-access-contract"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "memory-access-contract"
+        ],
+        [
+          "u0",
+          "main",
+          "assignment-cast-or-memory-contract"
+        ]
+      ]
+    },
+    {
+      "id": "g088",
+      "name": "50-CAN总线扩展帧收发测试\\C语言",
+      "status": "BUILT",
+      "before": 2827,
+      "new": 2827,
+      "keil": 1545,
+      "stc": 3158,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g088\\mx251\\result.json",
+        "sha256": "4dad8286dcb894ceb6c5a46f34b7c4310738cc1f2e8c0f6dbd5aed8b2f517a63"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "memory-access-contract"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "memory-access-contract"
+        ],
+        [
+          "u0",
+          "main",
+          "assignment-cast-or-memory-contract"
+        ]
+      ]
+    },
+    {
+      "id": "g090",
+      "name": "51-CAN1-CAN2总线标准帧扩展帧同时使用收发测试",
+      "status": "BUILT",
+      "before": 5665,
+      "new": 5661,
+      "keil": 3325,
+      "stc": 7886,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g090\\mx251\\result.json",
+        "sha256": "fb1a7f9a2c4578b3dfabdc1e36f0e329a57d083378ca165345f36c11da024ff8"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanReadMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanReadMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "assignment-cast-or-memory-contract"
+        ]
+      ]
+    },
+    {
+      "id": "g091",
+      "name": "52-CAN1-CAN2同时连接总线最多可用4组过滤器",
+      "status": "BUILT",
+      "before": 6238,
+      "new": 6234,
+      "keil": 3471,
+      "stc": 8129,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g091\\mx251\\result.json",
+        "sha256": "6c2109eeb02e906654504466e9a0e4c9370cdf14d006c214a13ed888bdea2ff9"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanReadMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "CANInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanReadFifo",
+          "assignment-cast-or-memory-contract"
+        ],
+        [
+          "u0",
+          "CanReadMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "CanSendMsg",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "assignment-cast-or-memory-contract"
+        ]
+      ]
+    },
+    {
+      "id": "g092",
+      "name": "53-UART转LIN总线报文测试程序",
+      "status": "BUILT",
+      "before": 1259,
+      "new": 1160,
+      "keil": 920,
+      "stc": 2087,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g092\\mx251\\result.json",
+        "sha256": "91d101271f6784b08334dc8afe0066c039e4d7e8a4f18df6f23cbaca2ec7e22c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g093",
+      "name": "54-LIN总线从机收发测试",
+      "status": "BUILT",
+      "before": 1429,
+      "new": 1429,
+      "keil": 1694,
+      "stc": 2608,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g093\\mx251\\result.json",
+        "sha256": "e5ff42ffca48868b45beb18f6ee6930fc6dbfb226a946b991b5d135d7bd87ae8"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g094",
+      "name": "55-LIN总线主机收发测试",
+      "status": "BUILT",
+      "before": 1470,
+      "new": 1437,
+      "keil": 1706,
+      "stc": 2726,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g094\\mx251\\result.json",
+        "sha256": "d6415489fbd01d0d6a834c2c19c0f0dcbd249b5bac58b1ebf474d30c9b656a57"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g095",
+      "name": "56-LIN总线从机收发测试-USART",
+      "status": "BUILT",
+      "before": 1699,
+      "new": 1699,
+      "keil": 1756,
+      "stc": 3046,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g095\\mx251\\result.json",
+        "sha256": "2e1cc5aa8912fea432f509133c53d62f124b788b8e22209f226ed6ad6aed6a7d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g096",
+      "name": "57-LIN总线主机收发测试-USART",
+      "status": "BUILT",
+      "before": 1540,
+      "new": 1432,
+      "keil": 1718,
+      "stc": 2282,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g096\\mx251\\result.json",
+        "sha256": "9727d8cd203e813549a8c99bcc59f1fb2da74c431ec71b30a639af0c34450895"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g097",
+      "name": "58-LIN总线从机收发测试-USART2",
+      "status": "BUILT",
+      "before": 1714,
+      "new": 1714,
+      "keil": 1764,
+      "stc": 3053,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g097\\mx251\\result.json",
+        "sha256": "7f9abe24d6beae0dabaf74a2d06bec6b5bd4b8fb086ce0e1361c331f98a113b9"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g098",
+      "name": "59-LIN总线主机收发测试-USART2",
+      "status": "BUILT",
+      "before": 1537,
+      "new": 1439,
+      "keil": 1720,
+      "stc": 2275,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g098\\mx251\\result.json",
+        "sha256": "5c430254693b096e62e0b12c3b95199605e7aabd7a60bf73da3b7f24ae18a34e"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "LinInit",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g099",
+      "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换-串口返回结果",
+      "status": "BUILT",
+      "before": 924,
+      "new": 916,
+      "keil": 1198,
+      "stc": 1820,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g099\\mx251\\result.json",
+        "sha256": "0b954d9d260769df7d5c0704f8245b9a1883c61ade75e93b8d2ef0250e6b976d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0.scalar-all",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0.scalar-all",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0.scalar-all",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0.scalar-all",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0.scalar-all",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g100",
+      "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果",
+      "status": "BUILT",
+      "before": 1158,
+      "new": 1146,
+      "keil": 1288,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g100\\mx251\\result.json",
+        "sha256": "dd501eda0e22a05820106b254ecfcab7211e11c4f8fdc74ac9828df1268c87fa"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g101",
+      "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果-结构体存储结果",
+      "status": "BUILT",
+      "before": 1402,
+      "new": 1311,
+      "keil": 1285,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g101\\mx251\\result.json",
+        "sha256": "28a46ccf2a186c6895030d6192dd523802b1a2f9bd5976a99eb521aad3fbafd3"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g102",
+      "name": "61-DMA-M2M存储器与存储器之间读写",
+      "status": "BUILT",
+      "before": 1249,
+      "new": 1225,
+      "keil": 1279,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g102\\mx251\\result.json",
+        "sha256": "e9f60b858d54f860b21d59cd52789ac49364379cc8f9bd6c6c27bd77a6c9a33c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-core-state-write"
+        ]
+      ]
+    },
+    {
+      "id": "g103",
+      "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI使用DMA访问FLASH-串口2监控",
+      "status": "BUILT",
+      "before": 4120,
+      "new": 4013,
+      "keil": 3313,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g103\\mx251\\result.json",
+        "sha256": "b8cd7ec574dbf1401ea88854f00601f19e339370fa7ab161575ed2841bfe71f5"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g104",
+      "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI访问FLASH-串口2监控-2T",
+      "status": "BUILT",
+      "before": 3829,
+      "new": 3729,
+      "keil": 3194,
+      "stc": 9424,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g104\\mx251\\result.json",
+        "sha256": "e7883aa4326f0056ccc0229722efc704431bc53b25e9d793c231edde0491d3d9"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g105",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口1使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1070,
+      "new": 1056,
+      "keil": 1371,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g105\\mx251\\result.json",
+        "sha256": "dcc705b9ed23825063abbdb60edc5d1dd17b1532e92da36dd1269f97779d5c7f"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g106",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口2使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1051,
+      "new": 1037,
+      "keil": 1357,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g106\\mx251\\result.json",
+        "sha256": "6e331a98d016751d28b218c856e1c43a443194577c6c3ba67f6b7ed856c57d5a"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g107",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口3使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1049,
+      "new": 1035,
+      "keil": 1352,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g107\\mx251\\result.json",
+        "sha256": "42459fb2b4861e799cc27c97d44fa3fde46d41458c959677cd396d0f23e98de7"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART3_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART3_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g108",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发不定长数据-软件超时",
+      "status": "BUILT",
+      "before": 1793,
+      "new": 1706,
+      "keil": 1699,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g108\\mx251\\result.json",
+        "sha256": "39e6276ff9e1fbd59a2b2b9fd6682e2e7e953ed65919b1536921e7e5c44e464d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART4_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART4_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g109",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1048,
+      "new": 1034,
+      "keil": 1351,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g109\\mx251\\result.json",
+        "sha256": "5c8e9286e534e8440b78e8f9a0c9da3db2f616dde039bb6999164253c2f18244"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART4_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART4_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g110",
+      "name": "64-DMA综合应用-SPI互为主从-M2M-串口透传",
+      "status": "BUILT",
+      "before": 1553,
+      "new": 1553,
+      "keil": 1848,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g110\\mx251\\result.json",
+        "sha256": "843023c6714acc44eeacbb9866e6816e8a27c88da0af6906b2316a316b486403"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g111",
+      "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_6800_DMA_8bit_ST7920",
+      "status": "BUILT",
+      "before": 2236,
+      "new": 2227,
+      "keil": 1990,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g111\\mx251\\result.json",
+        "sha256": "080044cf3b0deb8bfc8b5723aeac6a62efdbd78c271cef78b6f5c13d423aaf3c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g112",
+      "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_DMA_8bit_ILI9341",
+      "status": "BUILT",
+      "before": 5677,
+      "new": 5676,
+      "keil": 4976,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g112\\mx251\\result.json",
+        "sha256": "ebc8f2df6010fe6e14c0297c827ee6f97a997484c95c6c69702dd0657359dfbb"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GPIO_Init",
+          "unsupported-volatile-dummy-read-operand"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GPIO_Init",
+          "unsupported-volatile-dummy-read-operand"
+        ]
+      ]
+    },
+    {
+      "id": "g113",
+      "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_LCM_8bit_ILI9341",
+      "status": "BUILT",
+      "before": 5443,
+      "new": 5442,
+      "keil": 4838,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g113\\mx251\\result.json",
+        "sha256": "a605fee8dcfdc029391532a412a4aef1e4aa6aaa787c7119c9aa55faf8de5329"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GPIO_Init",
+          "unsupported-volatile-dummy-read-operand"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GPIO_Init",
+          "unsupported-volatile-dummy-read-operand"
+        ]
+      ]
+    },
+    {
+      "id": "g114",
+      "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C主机模式读写AT24C02-串口监控",
+      "status": "BUILT",
+      "before": 2843,
+      "new": 2794,
+      "keil": 2533,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g114\\mx251\\result.json",
+        "sha256": "8be6c98cbbbff2daa9a71899fca01e6fda4896168cafdca28c9c53a8dc37598c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g115",
+      "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C从机中断模式与IO口模拟I2C主机进行自发自收",
+      "status": "BUILT",
+      "before": 2097,
+      "new": 1756,
+      "keil": 1484,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g115\\mx251\\result.json",
+        "sha256": "d95f3ee28c00a98e3b9d1779f7274c1c8aea69145338fbec130c5a1e8afdb4db"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g116",
+      "name": "67-硬件高速HSSPI访问FLASH-PM25LV040-串口2监控",
+      "status": "BUILT",
+      "before": 3905,
+      "new": 3827,
+      "keil": 3340,
+      "stc": 9713,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g116\\mx251\\result.json",
+        "sha256": "00cccc7e1659653f82fd4de27833f01b8d1d7fcc0d617105fbb7f43a8ae3b665"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "GetDataLength",
+          "arithmetic-width-type-or-operand-contract"
+        ],
+        [
+          "u0",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UART2_config",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g117",
+      "name": "68-高速HSPWM1-HSPWM2-HSPWM3-HSPWM4，驱动P6口呼吸灯实验程序",
+      "status": "BUILT",
+      "before": 1271,
+      "new": 1260,
+      "keil": 826,
+      "stc": 1614,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g117\\mx251\\result.json",
+        "sha256": "93daea5de603330190a14296fd050dbb754b8b69cf12a733c1c048e130c87c3f"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g118",
+      "name": "69-HID(Human Interface Device)协议范例",
+      "status": "BUILT",
+      "before": 3146,
+      "new": 3145,
+      "keil": 2633,
+      "stc": 3747,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g118\\mx251\\result.json",
+        "sha256": "36576be48e21c2d72029e16ea7fb1940d6cd4cdb699db27119b00cac9ed0af8c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g119",
+      "name": "70-CDC(Communication Device Class)协议范例",
+      "status": "BUILT",
+      "before": 4468,
+      "new": 4467,
+      "keil": 3531,
+      "stc": 4677,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g119\\mx251\\result.json",
+        "sha256": "b7644b6a1a4c8ba6e2b93936bbe8503f2a0affdf3a204c100e8c8c6295074a88"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_polling",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_polling",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g120",
+      "name": "71-基于HID协议的USB键盘范例",
+      "status": "BUILT",
+      "before": 3669,
+      "new": 3668,
+      "keil": 3040,
+      "stc": 4313,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g120\\mx251\\result.json",
+        "sha256": "b0009b1c5f743598ee923ec169833f99f69abb46320e657ba67c426a2cfb3794"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_class_in",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_class_in",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g121",
+      "name": "72-基于HID协议的USB鼠标范例",
+      "status": "BUILT",
+      "before": 3291,
+      "new": 3290,
+      "keil": 2687,
+      "stc": 3809,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g121\\mx251\\result.json",
+        "sha256": "cc0d2409043335359c911aa21e8193dd9d814eced88c53bc9c0e88418856cf4c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_class_in",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_class_in",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g122",
+      "name": "73-基于WINUSB协议的范例",
+      "status": "BUILT",
+      "before": 3479,
+      "new": 3478,
+      "keil": 2951,
+      "stc": 4014,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g122\\mx251\\result.json",
+        "sha256": "cdbc661efa5973579c50f3817767dcc55adf8b1264896d4551d5c241198681f8"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u5",
+          "usb_vendor_polling",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u5",
+          "usb_vendor_polling",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g123",
+      "name": "74-MSC(Mass Storage Class)协议范例",
+      "status": "BUILT",
+      "before": 4799,
+      "new": 4799,
+      "keil": 4061,
+      "stc": 6459,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g123\\mx251\\result.json",
+        "sha256": "42eda595ffd5e49c62c4f64636ea9d78c76ef28aadd409916e9ade1b50257387"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "sys_init",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g124",
+      "name": "75-通过定时器周期性调度任务综合例程",
+      "status": "BUILT",
+      "before": 2975,
+      "new": 2974,
+      "keil": 2174,
+      "stc": 4342,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g124\\mx251\\result.json",
+        "sha256": "fcafa34c46319d198c9695132a0db12a62a44e241433a8e7c1aec15f9dc7f2b6"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "Task_Pro_Handler_Callback",
+          "memory-access-contract"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "Task_Pro_Handler_Callback",
+          "memory-access-contract"
+        ]
+      ]
+    },
+    {
+      "id": "g126",
+      "name": "77-USART1复用SPI_使用DMA和寄存器方式访问Flash例程",
+      "status": "BUILT",
+      "before": 1665,
+      "new": 1665,
+      "keil": 1809,
+      "stc": 1613,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g126\\mx251\\result.json",
+        "sha256": "76fb4ca038e56bfd5ae0c284f8f69ed9817b5cb364f0dfb74db3d88cce9370d8"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "putchar",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "sys_init",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0",
+          "usart1_spi_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "putchar",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "sys_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "usart1_spi_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g127",
+      "name": "78-USART1复用SPI与USART2复用SPI相互通信例程",
+      "status": "BUILT",
+      "before": 553,
+      "new": 553,
+      "keil": 499,
+      "stc": 1186,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g127\\mx251\\result.json",
+        "sha256": "942653404e85de6714198eb4c9cd0613017d7e3f907d39fc7f84b5d612f10ec3"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "sys_init",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u0",
+          "usart1_spi_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "usart2_spi_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "usart1_spi_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "usart2_spi_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g128",
+      "name": "79-UART-SPI-LCM_DMA_交替使用下载显示图片例程",
+      "status": "BUILT",
+      "before": 6670,
+      "new": 5534,
+      "keil": 4616,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g128\\mx251\\result.json",
+        "sha256": "d39a295258779100dbc31f2e2f2fc680eb4492e7de773c9c0a27a730c06b65ff"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u1",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u1",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u2",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "SPI_ReadByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u1",
+          "SPI_WriteByte",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u1",
+          "SPI_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u2",
+          "SetTimer2Baudraye",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g129",
+      "name": "80-高级PWM输出-周期可调-脉冲计数",
+      "status": "BUILT",
+      "before": 540,
+      "new": 561,
+      "keil": 395,
+      "stc": 924,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g129\\mx251\\result.json",
+        "sha256": "1cc452d624496509ca4f62b6ff80d1c222e0d0c49ee636e2ea35ea945c03da7d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g130",
+      "name": "81-内部RTC时钟低功耗休眠唤醒-比较器检测电压程序",
+      "status": "BUILT",
+      "before": 1336,
+      "new": 1313,
+      "keil": 1501,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g130\\mx251\\result.json",
+        "sha256": "213de1ea7615b9e54e739a2495bf252caca8e5af128d6fc710294b70c57a719d"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "CMP_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "Ext_Vcc_Det",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "CMP_config",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "Ext_Vcc_Det",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartInit",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "UartPutc",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g133",
+      "name": "83-老梁示波器-CDC虚拟显示",
+      "status": "BUILT",
+      "before": 10002,
+      "new": 8911,
+      "keil": 6979,
+      "stc": 9463,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g133\\mx251\\result.json",
+        "sha256": "66a38b6f92a7d83015eeaec4f2fc361be16a305c2487a2198226e42b606c3a8c"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "uart_recv_done",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "uart_send",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u2",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u3",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "uart_recv_done",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u0",
+          "uart_send",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g134",
+      "name": "84-USB鼠标-键盘复合设备例程",
+      "status": "BUILT",
+      "before": 4386,
+      "new": 4385,
+      "keil": 3523,
+      "stc": 5016,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g134\\mx251\\result.json",
+        "sha256": "f33b65c4b0c485b407135077752fc372f9274f3587e5600e8d0d45d039608e26"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_class_in",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u3",
+          "usb_class_in",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    },
+    {
+      "id": "g135",
+      "name": "85-老梁示波器-信号发生器",
+      "status": "BUILT",
+      "before": 465,
+      "new": 464,
+      "keil": 416,
+      "stc": 872,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g135\\mx251\\result.json",
+        "sha256": "605b0edbfa6af3170410906d0ccf4e5e32207c33e4e47339c7b16eeb60caac52"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g136",
+      "name": "86.1-串口绘图-使用UART1接口",
+      "status": "BUILT",
+      "before": 520,
+      "new": 502,
+      "keil": 435,
+      "stc": 949,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g136\\mx251\\result.json",
+        "sha256": "5fbcad5cd4cbe78b9a4c568125fe776ae9dcac1d26b7604c2ba6d94bb4c51edc"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g138",
+      "name": "87.1-利用高级PWMA+PWMB溢出中断做2个定时器",
+      "status": "BUILT",
+      "before": 353,
+      "new": 353,
+      "keil": 379,
+      "stc": 1061,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g138\\mx251\\result.json",
+        "sha256": "8d865a3cb211a13ea90071e1ca02dc41e6cd0a717135e505750f5cd78ab1a43a"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g139",
+      "name": "87.2-利用高级PWMA+PWMB实现8个定时器",
+      "status": "BUILT",
+      "before": 1683,
+      "new": 1682,
+      "keil": 887,
+      "stc": 1477,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g139\\mx251\\result.json",
+        "sha256": "156dd4c834c38ba24c3a01201c619fc5c52a945b12311b5359e889806bfc641f"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "main",
+          "ordered-asm-core-state-write"
+        ]
+      ],
+      "refusalsAfter": []
+    },
+    {
+      "id": "g141",
+      "name": "89-USB CDC转双串口-做自动停电上电烧录器",
+      "status": "BUILT",
+      "before": 6147,
+      "new": 6147,
+      "keil": 4656,
+      "stc": 6499,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\projects\\g141\\mx251\\result.json",
+        "sha256": "803230a05838f277f3366e78cec3138aefc2f9083339b0b9a3c71de839699364"
+      },
+      "refusalsBefore": [
+        [
+          "u0",
+          "sys_init",
+          "ordered-asm-core-state-write"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_polling",
+          "ordered-asm-bit-not-capable"
+        ]
+      ],
+      "refusalsAfter": [
+        [
+          "u0",
+          "sys_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u1",
+          "usb_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_init",
+          "ordered-asm-bit-not-capable"
+        ],
+        [
+          "u7",
+          "uart_polling",
+          "ordered-asm-bit-not-capable"
+        ]
+      ]
+    }
+  ],
+  "summary": {
+    "rebuilt": 97,
+    "beforeBytes": 260962,
+    "afterBytes": 254055,
+    "smaller": 72,
+    "larger": 6,
+    "unchanged": 19,
+    "refusalReasons": {
+      "ordered-asm-bit-not-capable": 124,
+      "ordered-asm-core-state-write": 10,
+      "arithmetic-width-type-or-operand-contract": 7,
+      "unsupported-volatile-dummy-read-operand": 4,
+      "assignment-cast-or-memory-contract": 8,
+      "memory-access-contract": 3
+    },
+    "formerlyBlockedMains": {
+      "wide": 73,
+      "refusal:ordered-asm-bit-not-capable": 4,
+      "refusal:ordered-asm-core-state-write": 7,
+      "no-body-choice-record": 3,
+      "refusal:assignment-cast-or-memory-contract": 4,
+      "legacy": 2
+    },
+    "keil": {
+      "count": 97,
+      "at110": 33,
+      "at120": 57,
+      "new110": [
+        "g040",
+        "g067",
+        "g077"
+      ],
+      "new120": [
+        "g005",
+        "g009",
+        "g034",
+        "g036",
+        "g038",
+        "g115",
+        "g128"
+      ],
+      "lost110": [],
+      "lost120": []
+    },
+    "stc": {
+      "count": 79,
+      "at110": 72,
+      "at120": 75,
+      "new110": [],
+      "new120": [
+        "g005",
+        "g021"
+      ],
+      "lost110": [
+        "g050"
+      ],
+      "lost120": [
+        "g048",
+        "g050"
+      ]
+    }
+  },
+  "evidence": {
+    "policy": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\candidate-policy-check.json",
+      "sha256": "d3f7ff93f4e9aa508af53528c07b8e8fd001000c80ea890050ff051b8f619e0c"
+    },
+    "device": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\stc32g-memory-state-evidence.json",
+      "sha256": "b9bdafe0cc847fd5b663fc40acf0fe53d468126169f8086b8199b2e27da77076"
+    },
+    "stressCompilation": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\user-stress\\compilation.json",
+      "sha256": "71d94e100e86a0b0606aa5c44484cde6ffe71101541762080767446630b7783f"
+    },
+    "hostReference": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\user-stress\\reference.json",
+      "sha256": "62768b918d5143b9faf8920b15801055deceb70180ccf07a190dbefdaa97d41d"
+    },
+    "stressSource": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\user-stress\\source.json",
+      "sha256": "90cff47a36845317151c536450fba573f03db11a0c3dd4c9648a9bb163cb6012"
+    },
+    "hardware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\user-stress-isolated-capture\\result.json",
+      "sha256": "035bec5a9a88b76622b301bebc3b656089df62d7d0c8f1ca09d6080209e83f34"
+    },
+    "baselineFailure": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\user-stress-diagnosis.json",
+      "sha256": "0a917085fd4743e4976ddb7f91d4586a989c52f47f8ef0b015d2661c1b1872fe"
+    }
+  },
+  "stress": {
+    "synthetic": true,
+    "sdkDerived": false,
+    "hostEvaluations": 3072,
+    "hostEquivalentPairs": 1536,
+    "compilationConfigurations": 9,
+    "translationUnits": 63,
+    "pureCObjectsIdenticalAcrossDescriptions": true,
+    "hardwareCases": 768,
+    "hardwareMatches": 704,
+    "hardwareFailures": 64,
+    "parentAndCandidateHexIdentical": true,
+    "firmwareSha256": "6454c63a9db9cc681ec411b40bdcc760346f097740fa5c0cefd28216874c6165",
+    "failingFunction": "bits_messy",
+    "functionBytes": {
+      "fields": {
+        "clean": 191,
+        "messy": 420
+      },
+      "parser": {
+        "clean": 221,
+        "messy": 223
+      },
+      "ring": {
+        "clean": 292,
+        "messy": 279
+      },
+      "bits": {
+        "clean": 491,
+        "messy": 649
+      },
+      "callback": {
+        "clean": 145,
+        "messy": 425
+      },
+      "giant": {
+        "clean": 106,
+        "messy": 7243
+      }
+    }
+  }
+}

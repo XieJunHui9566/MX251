@@ -61,6 +61,7 @@ def report(root, parent):
     rows = []
     compiler = read(root/'candidate/core/core.json')['compiler']['sha256']
     counts = Counter()
+    main_transitions = Counter()
     for old in previous['rows']:
         if old['status'] != 'BUILT':
             continue
@@ -79,16 +80,29 @@ def report(root, parent):
         reasons = refusals(latest)
         counts.update(r[2] for r in reasons)
         before_reasons = refusals(prior/'.build/mx251/latest')
-        rows.append(dict(id=old['id'], name=old['name'], before=old['new'], new=result['payloadBytes'],
+        if any(fn == 'main' and reason == 'ordered-asm-core-state-write' for _,fn,reason in before_reasons):
+            remaining = [reason for _,fn,reason in reasons if fn == 'main']
+            if remaining:
+                main_transitions['refusal:'+remaining[0]] += 1
+            else:
+                text = '\n'.join(p.read_text(errors='replace') for p in latest.glob('u*.asm'))
+                choice = re.search(r'; mx251-body-choice function=_main selected=(\S+)', text)
+                main_transitions[choice[1] if choice else 'no-body-choice-record'] += 1
+        rows.append(dict(id=old['id'], name=old['name'], status='BUILT', before=old['new'], new=result['payloadBytes'],
                          keil=old['keil'], stc=old['stc'], result=pin(project/'result.json'),
                          refusalsBefore=sorted(before_reasons), refusalsAfter=sorted(reasons)))
     summary = dict(rebuilt=len(rows), beforeBytes=sum(r['before'] for r in rows), afterBytes=sum(r['new'] for r in rows),
                    smaller=sum(r['new']<r['before'] for r in rows), larger=sum(r['new']>r['before'] for r in rows),
-                   unchanged=sum(r['new']==r['before'] for r in rows), refusalReasons=dict(counts))
+                   unchanged=sum(r['new']==r['before'] for r in rows), refusalReasons=dict(counts),
+                   formerlyBlockedMains=dict(main_transitions))
     for reference in ('keil','stc'):
         selected = [r for r in rows if r[reference]]
         summary[reference] = dict(count=len(selected), at110=sum(r['new']*100 <= r[reference]*110 for r in selected),
-                                  at120=sum(r['new']*100 <= r[reference]*120 for r in selected))
+                                  at120=sum(r['new']*100 <= r[reference]*120 for r in selected),
+                                  new110=[r['id'] for r in selected if r['new']*100 <= r[reference]*110 < r['before']*100],
+                                  new120=[r['id'] for r in selected if r['new']*100 <= r[reference]*120 < r['before']*100],
+                                  lost110=[r['id'] for r in selected if r['before']*100 <= r[reference]*110 < r['new']*100],
+                                  lost120=[r['id'] for r in selected if r['before']*100 <= r[reference]*120 < r['new']*100])
     save(root/'comparison.json', dict(schema=1, compilerSha256=compiler, parentReport=pin(parent/'comparison.json'),
                                      sourceAlgorithmsChanged=False, hardwareExecuted=False, rows=rows, summary=summary))
     print(summary, flush=True)
