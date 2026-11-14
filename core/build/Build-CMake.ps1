@@ -27,7 +27,8 @@ $project=[IO.Path]::GetFullPath($ProjectPath)
 $manifest=Get-Content -LiteralPath (Join-Path $core 'core.json') -Raw -Encoding UTF8|ConvertFrom-Json -AsHashtable
 if($null -eq $manifest.compiler){throw 'Core is PREPARING: no new compiler has been bound.'}
 $cfg=Get-Content -LiteralPath (Join-Path $project 'mx251.json') -Raw -Encoding UTF8|ConvertFrom-Json -AsHashtable
-if($cfg.target -cnotin @('AI8051U-34K64-32','STC32G12K128')){throw 'Unknown target profile; no inferred capability.'}
+$registry=Get-Content -LiteralPath (Join-Path $core 'build/qualified/TargetContracts.json') -Raw -Encoding UTF8|ConvertFrom-Json -AsHashtable
+if($cfg.target -cnotmatch '^[A-Za-z0-9][A-Za-z0-9_-]*$' -or -not $registry.targets.ContainsKey($cfg.target)){throw 'Unknown target profile'}
 foreach($file in @($CMake,$Ninja,$PowerShell,(Join-Path $project 'CMakeLists.txt'))){if(-not(Test-Path -LiteralPath $file -PathType Leaf)){throw "Missing explicit input: $file"}}
 $compiler=Join-Path $core $manifest.compiler.path
 if((Get-FileHash -LiteralPath $compiler -Algorithm SHA256).Hash.ToLowerInvariant() -cne $manifest.compiler.sha256){throw 'Core compiler hash mismatch'}

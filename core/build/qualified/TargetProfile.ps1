@@ -2,10 +2,20 @@
 function Get-Mx251TargetContract([string]$Target) {
  $registryPath=Join-Path $PSScriptRoot 'TargetContracts.json'
  $registry=Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8 | ConvertFrom-Json -AsHashtable
- if($registry.schema -ne 1){throw 'Unsupported target contract registry'}
+ if($registry.schema -ne 2){throw 'Unsupported target contract registry'}
  Choice $Target @($registry.targets.Keys) 'target'
  $contract=$registry.targets[$Target]
  if($contract.id -cne $Target){throw 'Target contract identity mismatch'}
+ # Code generation follows the architecture. A device supplies its memory,
+ # startup and peripheral effects; it does not need a private optimization list.
+ Choice $contract.architecture @($registry.architectures.Keys) 'architecture'
+ $architecture=$registry.architectures[$contract.architecture]
+ $capabilities=@{}
+ foreach($key in $architecture.compilerCapabilities.Keys){$capabilities[$key]=$architecture.compilerCapabilities[$key]}
+ foreach($key in $contract.compilerCapabilities.Keys){$capabilities[$key]=$contract.compilerCapabilities[$key]}
+ $contract.compilerCapabilities=$capabilities
+ $contract.instructionMode=$architecture.instructionMode
+ $contract.interruptVectors=$architecture.interruptVectors
  return $contract
 }
 

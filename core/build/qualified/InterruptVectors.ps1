@@ -1,5 +1,5 @@
 # 读取编译器语义符号清单和链接器选中的对象；不扫描用户 C 文本或按工程名特判。
-function Get-Mx251InterruptSelection([string]$Root,$Config,[int]$VectorCount,[string]$DiscoveryMap='') {
+function Get-Mx251InterruptSelection([string]$Root,$Config,[int]$VectorCount,[string]$DiscoveryMap='',[int]$MaximumSlots=256) {
  $all=@{};$archiveUnits=@{};$direct=@{}
  foreach($a in $Config.archives){foreach($name in $a.units){$archiveUnits[$name]=$a.name}}
  foreach($name in $Config.link){if($name -ne '@startup' -and -not $archiveUnits.ContainsKey($name)){$direct[$name]=$true}}
@@ -14,7 +14,7 @@ function Get-Mx251InterruptSelection([string]$Root,$Config,[int]$VectorCount,[st
    $pattern=if($kind -eq 'definition'){'(?m)^; mx251-irq-definition schema=2 symbol=([A-Za-z_.$][A-Za-z0-9_.$]*) slot=([0-9]+) private=([01])\r?$'}else{'(?m)^; mx251-irq-registration schema=1 symbol=([A-Za-z_.$][A-Za-z0-9_.$]*) slot=([0-9]+)\r?$'}
    foreach($entry in [regex]::Matches($text,$pattern)){
     $name=$entry.Groups[1].Value;$slot=[int]$entry.Groups[2].Value
-    if($slot -lt 0 -or $slot -gt 255 -or ($VectorCount -gt 0 -and $slot -ge $VectorCount) -or $seen.ContainsKey($name)){throw 'MX251-IRQ011: invalid or duplicate ISR metadata'}
+    if($slot -lt 0 -or $slot -ge $MaximumSlots -or ($VectorCount -gt 0 -and $slot -ge $VectorCount) -or $seen.ContainsKey($name)){throw 'MX251-IRQ011: invalid or duplicate ISR metadata'}
     $seen[$name]=$true;$record=[ordered]@{symbol=$name;slot=$slot;unit=$u.name}
     if($kind -eq 'definition'){$record['private']=($entry.Groups[3].Value -eq '1');$defs+=,$record}else{$regs+=,$record}
    }

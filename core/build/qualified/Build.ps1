@@ -383,7 +383,7 @@ try {
   if(Test-Path -LiteralPath $profileLibs){$gcLibs+=@(Get-ChildItem -LiteralPath $profileLibs -File -Filter '*.lib' | ForEach-Object {$_.FullName})}
   $keep=@();if($FunctionGcKeep){$keep=@($FunctionGcKeep.Split(','));foreach($s in $keep){if($s -cnotmatch '^[A-Za-z_.$][A-Za-z0-9_.$]*$'){throw 'Invalid explicit function GC root'}}}
   . (Join-Path $PSScriptRoot 'InterruptVectors.ps1')
-  $gcInterruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount
+  $gcInterruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount -MaximumSlots $targetContract.maximumInterruptSlots
   $gcResult=Invoke-Mx251FunctionGc -Root $outputRoot -Units $gcUnits -ExtraAssembly @((Join-Path $outputRoot 'startup.asm')) -LibraryPaths $gcLibs -KeepSymbols $keep -InterruptPlan $gcInterruptPlan -CodeBase $layout.codeBase
   foreach($changed in $gcResult.ChangedUnits) {
    [IO.File]::Copy($changed.candidateAssembly,$changed.assembly,$true)
@@ -408,12 +408,12 @@ try {
  }
  $args=$flags+@('--code-loc',('0x{0:x}' -f $layout.codeBase),'--code-size',('0x{0:x}' -f $layout.codeBytes),'--xram-loc',('0x{0:x}' -f $layout.xramBase),'--xram-size',('0x{0:x}' -f $layout.xramBytes),'--iram-size',('0x{0:x}' -f $layout.iramBytes),'--mcs251-stack',('0x{0:x},0x{1:x},0x{2:x}' -f $layout.stackBase,$layout.stackBytes,$layout.stackLimit))+$linkInputs+$libs+@('-o','linked.partial.hex')
  . (Join-Path $PSScriptRoot 'InterruptVectors.ps1')
- $interruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount
+ $interruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount -MaximumSlots $targetContract.maximumInterruptSlots
  if($interruptPlan.needsDiscovery){
   # 只有含 ISR 的归档需要先取得实际抽取成员；中间链接不发布 firmware。
   $discoveryArgs=@($args);$discoveryArgs[$discoveryArgs.Count-1]='irq-discovery.hex'
   Run-Tool 'irq-discovery' $compilerExe $discoveryArgs -AllowFailure
-  $interruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount (Join-Path $outputRoot 'irq-discovery.map')
+  $interruptPlan=Get-Mx251InterruptSelection $outputRoot $config $vectorCount (Join-Path $outputRoot 'irq-discovery.map') -MaximumSlots $targetContract.maximumInterruptSlots
  }
  Set-Mx251InterruptTable $outputRoot $interruptPlan
  if($interruptPlan.changed){
@@ -469,7 +469,7 @@ try {
  foreach($address in $memory.Keys){$binary[[int]($address-$layout.codeBase)]=$memory[$address]}
  [IO.File]::WriteAllBytes((Join-Path $outputRoot 'firmware.bin'),$binary)
  $receipt=[ordered]@{status='complete';schema=4;target=$config.target;model=$config.model;optimization=$config.optimization;runtime=$runtime;projectSnapshotSha256=(Hash-File (Join-Path $outputRoot 'project.snapshot.json'));profileLockSha256=(Hash-File $lockPath);compilerSha256=(Hash-File $compilerExe);interruptVectorCount=$vectorCount;firmwareSha256=(Hash-File (Join-Path $outputRoot 'firmware.hex'));codeBytes=$memory.Count;stackBase=$layout.stackBase;stackBytes=$layout.stackBytes;inputs=$inputs;hardwareExecuted=$false}
- $receipt.targetContract=[ordered]@{id=$targetContract.id;revision=$targetContract.revision;registrySha256=(Hash-File (Join-Path $PSScriptRoot 'TargetContracts.json'));startupSha256=$targetContract.startup.sha256;interruptVectors=$targetContract.interruptVectors;qualifiedMemory=$layout}
+ $receipt.targetContract=[ordered]@{id=$targetContract.id;revision=$targetContract.revision;architecture=$targetContract.architecture;maximumInterruptSlots=$targetContract.maximumInterruptSlots;registrySha256=(Hash-File (Join-Path $PSScriptRoot 'TargetContracts.json'));startupSha256=$targetContract.startup.sha256;interruptVectors=$targetContract.interruptVectors;qualifiedMemory=$layout}
  $receipt.binary=[ordered]@{file='firmware.bin';sha256=(Hash-File (Join-Path $outputRoot 'firmware.bin'));baseAddress=$layout.codeBase;length=$binary.Length;gapFill=255}
  $receipt.interruptClosure=[ordered]@{schema=1;finalVerified=$true;addedEntries=@($interruptPlan.added);manifestSha256=(Hash-File (Join-Path $outputRoot 'interrupt-vectors.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'InterruptVectors.ps1'))}
  $receipt.projectFileSha256=$projectFileSha256

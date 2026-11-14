@@ -212,7 +212,7 @@ function Get-Mx251PagePlan($Bindings) {
 
 function Assert-Mx251NearImage([string]$Root,$Plan,$Image,[long]$CodeBase,[long]$CodeBytes) {
  $region=$CodeBase -shr 16;$bindings=@();$labels=[hashtable]::new([StringComparer]::Ordinal)
- foreach($unit in @(@($Plan.changes.unit)+@($Plan.functions.unit)|Sort-Object -Unique)){
+ foreach($unit in @(@($Plan.changes)+@($Plan.functions)|ForEach-Object{$_.unit}|Sort-Object -Unique)){
   $lines=[IO.File]::ReadAllLines((Join-Path $Root ($unit+'.asm')))
   $owners=@{};$owner=''
   for($i=0;$i -lt $lines.Count;$i++){
