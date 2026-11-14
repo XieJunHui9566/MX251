@@ -868,6 +868,38 @@ wide_capture_multiply_range(wide_function *f,wide_node *n,iCode *ic,operand *a,o
 }
 
 static bool
+wide_nonnegative_division(wide_function *f,iCode *leftAt,operand *left,
+                          iCode *rightAt,operand *right,unsigned limit)
+{
+  if(!f->rangeAnalysis)f->rangeAnalysis=computeIsolatedValinfos(f->sourceBlocks,"_mx251_division");
+  struct valinfo a=getIsolatedOperandValinfo(f->rangeAnalysis,leftAt,left);
+  struct valinfo b=getIsolatedOperandValinfo(f->rangeAnalysis,rightAt,right);
+  return !a.nothing && !a.anything && a.min>=0 && a.max>=a.min && a.max<=limit &&
+    !b.nothing && !b.anything && b.min>0 && b.max>=b.min && b.max<=limit;
+}
+
+static bool
+wide_reduce_runtime_division(wide_function *f,wide_node *n,iCode *leftAt,operand *left,
+                             iCode *rightAt,operand *right,unsigned operation,
+                             unsigned width,unsigned signedness)
+{
+  const char *enabled=getenv("MX251_WIDE_UNSIGNED_DIVISION");
+  if((enabled && !strcmp(enabled,"0")) || operation<1 || operation>2 || width!=2 ||
+     !n->ordinaryCall || n->args!=2 || n->stackArgs!=1 || n->stackBytes!=2 ||
+     n->result<0 || n->width!=2 || n->left.width!=2 || n->stackOperands[0].width!=2)return false;
+  /* Query each argument where SEND/IPUSH sampled it. The signed runtime
+   * interprets bit 15 as the sign, even if an earlier cast was folded. */
+  if(!wide_nonnegative_division(f,leftAt,left,rightAt,right,signedness?32767:65535))return false;
+  n->op=operation==1?WM_UDIVW:WM_UMODW;
+  n->right=n->stackOperands[0];n->left.sign=n->right.sign=false;
+  n->use=(wide_bits){{0}};wb_set(&n->use,n->left.value);wb_set(&n->use,n->right.value);
+  n->callee=NULL;n->ordinaryCall=false;n->args=n->stackArgs=n->stackBytes=0;
+  dbuf_printf(f->diagnostics,"; wide runtime-native-division icode=%d width=2 signed=%u result=%s\n",
+    n->origin->key,signedness,operation==1?"quotient":"remainder");
+  return true;
+}
+
+static bool
 wide_reduce_runtime_power2(wide_function *f,wide_node *n,iCode *ic,operand *dividend,
                           unsigned operation,unsigned width,unsigned signedness)
 {
@@ -903,6 +935,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
   operand *pending[2]={NULL,NULL};
   unsigned pendingMask=0,pushedCount=0;
   operand *pushed[WA_MAX]={NULL};
+  iCode *pendingAt[2]={NULL,NULL},*pushedAt[WA_MAX]={NULL};
   wide_operand pendingSample[2],pushedSample[WA_MAX];
   bool pendingSampled[2]={false,false},pushedSampled[WA_MAX]={false};
   for (int b=0;b<ebbi->count;++b) {
@@ -962,6 +995,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
          * 内存节点，后续只运输其快照；现有内存类型/字节访问门槛不变。 */
         if(!ic->parmPush || pushedCount==WA_MAX)return wide_import_reject(f,ic,__LINE__);
         unsigned slot=pushedCount++;operand *input=IC_LEFT(ic);pushed[slot]=input;
+        pushedAt[slot]=ic;
         pushedSampled[slot]=input && IS_TRUE_SYMOP(input) && !IS_FUNC(operandType(input));
         if(pushedSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pushedSample[slot]))return wide_import_reject(f,ic,__LINE__);
@@ -980,6 +1014,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
       case SEND: {
         if(ic->argreg<1 || ic->argreg>2 || (pendingMask&(1u<<(ic->argreg-1)))) return wide_import_reject(f,ic,__LINE__);
         unsigned slot=ic->argreg-1;operand *input=IC_LEFT(ic);pending[slot]=input;
+        pendingAt[slot]=ic;
         pendingSampled[slot]=input && IS_TRUE_SYMOP(input) && !IS_FUNC(operandType(input));
         if(pendingSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pendingSample[slot]))return wide_import_reject(f,ic,__LINE__);
@@ -1081,8 +1116,10 @@ wide_import (wide_function *f, ebbIndex *ebbi)
            (!wide_result(f,n,IC_RESULT(ic)) || n->width!=wide_width(t->next) || n->floating!=IS_FLOAT(t->next))) return wide_import_reject(f,ic,__LINE__);
         if(!n->indirectCall && n->ordinaryCall && count==2 && pushedCount==1)
           wide_capture_multiply_range(f,n,ic,pending[0],pushed[0]);
-        if(compilerIntegerRuntime)
-          wide_reduce_runtime_power2(f,n,ic,pending[0],runtimeOperation,runtimeWidth,runtimeSigned);
+        if(compilerIntegerRuntime &&
+           !wide_reduce_runtime_power2(f,n,ic,pending[0],runtimeOperation,runtimeWidth,runtimeSigned))
+          wide_reduce_runtime_division(f,n,pendingAt[0],pending[0],pushedAt[0],pushed[0],
+                                       runtimeOperation,runtimeWidth,runtimeSigned);
         pending[0]=pending[1]=NULL;pendingMask=pushedCount=0;f->body=true;break;
       }
       case JUMPTABLE: {
@@ -1257,10 +1294,16 @@ wide_import (wide_function *f, ebbIndex *ebbi)
          * can differ after integer promotion or truncation; the emitter
          * zero-extends inputs and stores exactly the IR result width. */
         const char *division=getenv("MX251_WIDE_UNSIGNED_DIVISION");
+        bool nonnegative=!(n->sign || n->left.sign || n->right.sign);
+        if(!nonnegative && n->width<=2 && n->left.width<=2 && n->right.width<=2 &&
+           wide_nonnegative_division(f,ic,IC_LEFT(ic),ic,IC_RIGHT(ic),32767)) {
+          nonnegative=true;n->left.sign=n->right.sign=false;
+          dbuf_printf(f->diagnostics,"; wide nonnegative division icode=%d result=%s\n",ic->key,ic->op=='/'?"quotient":"remainder");
+        }
         if((division && !strcmp(division,"0")) ||
            n->width<1 || n->width>2 || n->left.width<1 || n->left.width>2 ||
            n->right.width<1 || n->right.width>2 ||
-           n->sign || n->left.sign || n->right.sign ||
+           !nonnegative ||
            (n->right.value<0 && !divisor)) {
           dbuf_printf(f->diagnostics,"; wide division deferred result=%d/%d left=%d/%d right=%d/%d literal=%lu value=%d\n",n->width,n->sign,n->left.width,n->left.sign,n->right.width,n->right.sign,(unsigned long)divisor,n->right.value);
           return wide_import_reject(f,ic,__LINE__);
