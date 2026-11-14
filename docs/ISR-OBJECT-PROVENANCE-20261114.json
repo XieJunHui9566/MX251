@@ -1,0 +1,2633 @@
+{
+  "schema": 1,
+  "compilerSha256": "8208a8ba051e4f996286a2e81bb42f41b70d0f91852ac8f40ac7beeb75c59070",
+  "implementationCommit": "0874502d349e7812260864d5fb0bfbf3be06c7c4",
+  "parentReport": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\common-architecture-20261114\\comparison.json",
+    "sha256": "3decbbd641f7ccd501c5d4ee5b72f751b17cb78df6599bb03b244430c9388bd9"
+  },
+  "sourceAlgorithmsChanged": false,
+  "summary": {
+    "projects": 103,
+    "statuses": {
+      "BUILT": 97,
+      "UNSUPPORTED_KEIL_OMF": 5,
+      "FAILED": 1
+    },
+    "beforeBytes": 279281,
+    "afterBytes": 277262,
+    "reduced": 40,
+    "unchanged": 57,
+    "increased": 0,
+    "keil": {
+      "count": 97,
+      "beforeMxBytes": 279281,
+      "mxBytes": 277262,
+      "referenceBytes": 217533,
+      "at110": 29,
+      "at120": 43,
+      "new110": [],
+      "new120": [
+        "g011",
+        "g127"
+      ],
+      "medianPercent": 128.08398950131235
+    },
+    "stc": {
+      "count": 79,
+      "beforeMxBytes": 234331,
+      "mxBytes": 232568,
+      "referenceBytes": 287863,
+      "at110": 71,
+      "at120": 75,
+      "new110": [
+        "g050"
+      ],
+      "new120": [
+        "g139"
+      ],
+      "medianPercent": 71.15241635687732
+    },
+    "resolvedIsrs": 55,
+    "remainingIsrs": 2,
+    "changedFinalIsrBodies": [
+      {
+        "id": "g115",
+        "symbol": "_timer0",
+        "layoutOnly": true,
+        "before": [
+          "lcall\t_DisplayScan",
+          "setb\t_B_1ms"
+        ],
+        "after": [
+          "acall\t_DisplayScan",
+          "setb\t_B_1ms"
+        ]
+      }
+    ]
+  },
+  "resolved": [
+    {
+      "id": "g011",
+      "symbol": "_TM0_Isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_TM0_Isr removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g011",
+      "symbol": "_TM1_Isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_TM1_Isr removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g013",
+      "symbol": "_timer1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_timer1_int removed-bytes=20 stack-saved=17 core-reads=000008c0 core-writes=000008c0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT0_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_INT0_int removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_INT1_int removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_INT2_int removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT3_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_INT3_int removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT4_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_INT4_int removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g023",
+      "symbol": "_UART1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART1_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g025",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g027",
+      "symbol": "_UART3_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART3_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g029",
+      "symbol": "_UART4_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART4_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g031",
+      "symbol": "_UART1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART1_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g031",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g033",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g033",
+      "symbol": "_UART3_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART3_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g040",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g048",
+      "symbol": "_timer0",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=24 stack-saved=21 core-reads=ffffffff core-writes=000f0ec0 special-reads=3 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g050",
+      "symbol": "_timer0",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=24 stack-saved=21 core-reads=ffffffff core-writes=000f0ec0 special-reads=3 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g052",
+      "symbol": "_I2C_Isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_I2C_Isr removed-bytes=16 stack-saved=13 core-reads=000f08f0 core-writes=000f08f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g058",
+      "symbol": "_PWMA_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_PWMA_ISR removed-bytes=16 stack-saved=16 core-reads=00000cc0 core-writes=00000cc0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g060",
+      "symbol": "_PWMA_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_PWMA_ISR removed-bytes=16 stack-saved=16 core-reads=00000cc0 core-writes=00000cc0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g062",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g063",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g066",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g084",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g084",
+      "symbol": "_SPI_Isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_SPI_Isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g085",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g085",
+      "symbol": "_SPI_Isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_SPI_Isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g092",
+      "symbol": "_UART1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART1_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g092",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g095",
+      "symbol": "_USART1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_USART1_int removed-bytes=28 stack-saved=19 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g096",
+      "symbol": "_USART1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_USART1_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g097",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g098",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g103",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g104",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g108",
+      "symbol": "_UART4_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART4_int removed-bytes=27 stack-saved=18 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g112",
+      "symbol": "_LCMIF_DMA_Interrupt",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_LCMIF_DMA_Interrupt removed-bytes=16 stack-saved=16 core-reads=00000cc0 core-writes=00000cc0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g114",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g115",
+      "symbol": "_I2C_Isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_I2C_Isr removed-bytes=32 stack-saved=17 core-reads=000f08c0 core-writes=000f08c0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g116",
+      "symbol": "_UART2_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART2_int removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g117",
+      "symbol": "_timer0",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=20 stack-saved=17 core-reads=ffffffff core-writes=000f8ec0 special-reads=3 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g119",
+      "symbol": "_uart2_isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_uart2_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g127",
+      "symbol": "_uart1_isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_uart1_isr removed-bytes=20 stack-saved=17 core-reads=000008e0 core-writes=000008e0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g127",
+      "symbol": "_uart2_isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_uart2_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g128",
+      "symbol": "_UART1_int",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_UART1_int removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g128",
+      "symbol": "_LCMIF_DMA_Interrupt",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_LCMIF_DMA_Interrupt removed-bytes=16 stack-saved=16 core-reads=00000cc0 core-writes=00000cc0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g129",
+      "symbol": "_timer0",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_timer0 removed-bytes=24 stack-saved=21 core-reads=ffffffff core-writes=000f0ac0 special-reads=3 special-writes=3 flags=1 calls=1 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g133",
+      "symbol": "_CMP_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_CMP_ISR removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g139",
+      "symbol": "_PWMA_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_PWMA_ISR removed-bytes=28 stack-saved=19 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g139",
+      "symbol": "_PWMB_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_PWMB_ISR removed-bytes=28 stack-saved=19 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g141",
+      "symbol": "_uart2_isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_uart2_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g141",
+      "symbol": "_uart3_isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_uart3_isr removed-bytes=20 stack-saved=17 core-reads=000008f0 core-writes=000008f0 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=2 compiler-proof=body-effects"
+      ]
+    },
+    {
+      "id": "g141",
+      "symbol": "_tm0_isr",
+      "diagnostics": [
+        "; mx251-leaf-isr-saves schema=2 symbol=_tm0_isr removed-bytes=23 stack-saved=17 core-reads=00000800 core-writes=00000800 special-reads=3 special-writes=3 flags=1 calls=0 psw1=retained frame=private inline-bits=0 compiler-proof=body-effects"
+      ]
+    }
+  ],
+  "remaining": [
+    {
+      "id": "g079",
+      "symbol": "_PWMA_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-fallback symbol=_PWMA_ISR reason=body-effect instruction=movc\ta,@a+dptr",
+        "; mx251-leaf-isr-fallback symbol=_PWMA_ISR reason=shape-or-cost-or-no-saving known=0 begin=23 end=112 pushes=15 pops=0"
+      ]
+    },
+    {
+      "id": "g133",
+      "symbol": "_timer0_ISR",
+      "diagnostics": [
+        "; mx251-leaf-isr-fallback symbol=_timer0_ISR reason=body-effect instruction=div\twr14,wr8",
+        "; mx251-leaf-isr-fallback symbol=_timer0_ISR reason=shape-or-cost-or-no-saving known=0 begin=23 end=206 pushes=15 pops=0"
+      ]
+    }
+  ],
+  "changedFunctions": [
+    {
+      "id": "g011",
+      "symbol": "_TM0_Isr",
+      "isr": true,
+      "before": 64,
+      "new": 33,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g011",
+      "symbol": "_TM1_Isr",
+      "isr": true,
+      "before": 64,
+      "new": 33,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g013",
+      "symbol": "_timer1_int",
+      "isr": true,
+      "before": 163,
+      "new": 131,
+      "saveRestoreBefore": 52,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT0_int",
+      "isr": true,
+      "before": 62,
+      "new": 31,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT1_int",
+      "isr": true,
+      "before": 62,
+      "new": 31,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT2_int",
+      "isr": true,
+      "before": 62,
+      "new": 31,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT3_int",
+      "isr": true,
+      "before": 62,
+      "new": 31,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g015",
+      "symbol": "_INT4_int",
+      "isr": true,
+      "before": 62,
+      "new": 31,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g023",
+      "symbol": "_UART1_int",
+      "isr": true,
+      "before": 156,
+      "new": 116,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g025",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 158,
+      "new": 118,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g027",
+      "symbol": "_UART3_int",
+      "isr": true,
+      "before": 158,
+      "new": 118,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g029",
+      "symbol": "_UART4_int",
+      "isr": true,
+      "before": 158,
+      "new": 118,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g031",
+      "symbol": "_UART1_int",
+      "isr": true,
+      "before": 156,
+      "new": 116,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g031",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 158,
+      "new": 118,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g033",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g033",
+      "symbol": "_UART3_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g040",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g048",
+      "symbol": "_timer0",
+      "isr": true,
+      "before": 622,
+      "new": 598,
+      "saveRestoreBefore": 48,
+      "saveRestoreAfter": 24
+    },
+    {
+      "id": "g050",
+      "symbol": "_timer0",
+      "isr": true,
+      "before": 622,
+      "new": 598,
+      "saveRestoreBefore": 48,
+      "saveRestoreAfter": 24
+    },
+    {
+      "id": "g052",
+      "symbol": "_I2C_Isr",
+      "isr": true,
+      "before": 351,
+      "new": 315,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 24
+    },
+    {
+      "id": "g058",
+      "symbol": "_PWMA_ISR",
+      "isr": true,
+      "before": 183,
+      "new": 151,
+      "saveRestoreBefore": 52,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g060",
+      "symbol": "_PWMA_ISR",
+      "isr": true,
+      "before": 183,
+      "new": 151,
+      "saveRestoreBefore": 52,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g062",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g062",
+      "symbol": "_FlashSectorErase",
+      "isr": false,
+      "before": 91,
+      "new": 90,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g063",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g063",
+      "symbol": "_FlashSectorErase",
+      "isr": false,
+      "before": 90,
+      "new": 86,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g066",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g084",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g084",
+      "symbol": "_SPI_Isr",
+      "isr": true,
+      "before": 166,
+      "new": 126,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g085",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g085",
+      "symbol": "_SPI_Isr",
+      "isr": true,
+      "before": 166,
+      "new": 126,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g092",
+      "symbol": "_UART1_int",
+      "isr": true,
+      "before": 169,
+      "new": 129,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g092",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g095",
+      "symbol": "_USART1_int",
+      "isr": true,
+      "before": 219,
+      "new": 171,
+      "saveRestoreBefore": 68,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g096",
+      "symbol": "_USART1_int",
+      "isr": true,
+      "before": 169,
+      "new": 129,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g097",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 225,
+      "new": 185,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g098",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g103",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 216,
+      "new": 176,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g104",
+      "symbol": "_RX2_Check",
+      "isr": false,
+      "before": 706,
+      "new": 705,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g104",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 216,
+      "new": 176,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g104",
+      "symbol": "_FlashWriteEnable",
+      "isr": false,
+      "before": 17,
+      "new": 16,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g108",
+      "symbol": "_UART4_int",
+      "isr": true,
+      "before": 105,
+      "new": 70,
+      "saveRestoreBefore": 48,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g112",
+      "symbol": "_LCMIF_DMA_Interrupt",
+      "isr": true,
+      "before": 212,
+      "new": 180,
+      "saveRestoreBefore": 52,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g114",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 217,
+      "new": 177,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g115",
+      "symbol": "_I2C_Isr",
+      "isr": true,
+      "before": 513,
+      "new": 469,
+      "saveRestoreBefore": 68,
+      "saveRestoreAfter": 24
+    },
+    {
+      "id": "g115",
+      "symbol": "_timer0",
+      "isr": true,
+      "before": 57,
+      "new": 56,
+      "saveRestoreBefore": 48,
+      "saveRestoreAfter": 48
+    },
+    {
+      "id": "g116",
+      "symbol": "_UART2_int",
+      "isr": true,
+      "before": 172,
+      "new": 132,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g116",
+      "symbol": "_CheckFlashBusy",
+      "isr": false,
+      "before": 20,
+      "new": 18,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g116",
+      "symbol": "_FlashWriteEnable",
+      "isr": false,
+      "before": 17,
+      "new": 18,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g116",
+      "symbol": "_SPI_Read_Nbytes",
+      "isr": false,
+      "before": 129,
+      "new": 130,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g116",
+      "symbol": "_SPI_Read_Compare",
+      "isr": false,
+      "before": 150,
+      "new": 151,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g116",
+      "symbol": "_SPI_Write_Nbytes",
+      "isr": false,
+      "before": 159,
+      "new": 160,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g117",
+      "symbol": "_timer0",
+      "isr": true,
+      "before": 622,
+      "new": 602,
+      "saveRestoreBefore": 48,
+      "saveRestoreAfter": 28
+    },
+    {
+      "id": "g119",
+      "symbol": "_uart2_isr",
+      "isr": true,
+      "before": 127,
+      "new": 87,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g127",
+      "symbol": "_uart1_isr",
+      "isr": true,
+      "before": 128,
+      "new": 96,
+      "saveRestoreBefore": 56,
+      "saveRestoreAfter": 24
+    },
+    {
+      "id": "g127",
+      "symbol": "_uart2_isr",
+      "isr": true,
+      "before": 125,
+      "new": 85,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g128",
+      "symbol": "_UART1_int",
+      "isr": true,
+      "before": 64,
+      "new": 33,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g128",
+      "symbol": "_LCMIF_DMA_Interrupt",
+      "isr": true,
+      "before": 184,
+      "new": 152,
+      "saveRestoreBefore": 52,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g128",
+      "symbol": "_EEPROM_SectorErase",
+      "isr": false,
+      "before": 45,
+      "new": 44,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g129",
+      "symbol": "_timer0",
+      "isr": true,
+      "before": 198,
+      "new": 174,
+      "saveRestoreBefore": 48,
+      "saveRestoreAfter": 24
+    },
+    {
+      "id": "g133",
+      "symbol": "_CMP_ISR",
+      "isr": true,
+      "before": 109,
+      "new": 78,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    },
+    {
+      "id": "g133",
+      "symbol": "_SetSampleTime",
+      "isr": false,
+      "before": 507,
+      "new": 508,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g133",
+      "symbol": "_usb_req_class",
+      "isr": false,
+      "before": 43,
+      "new": 44,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g139",
+      "symbol": "_PWMA_ISR",
+      "isr": true,
+      "before": 535,
+      "new": 487,
+      "saveRestoreBefore": 68,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g139",
+      "symbol": "_PWMB_ISR",
+      "isr": true,
+      "before": 535,
+      "new": 487,
+      "saveRestoreBefore": 68,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g141",
+      "symbol": "_uart2_isr",
+      "isr": true,
+      "before": 127,
+      "new": 87,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g141",
+      "symbol": "_uart3_isr",
+      "isr": true,
+      "before": 127,
+      "new": 87,
+      "saveRestoreBefore": 60,
+      "saveRestoreAfter": 20
+    },
+    {
+      "id": "g141",
+      "symbol": "_uart_polling",
+      "isr": false,
+      "before": 775,
+      "new": 774,
+      "saveRestoreBefore": 0,
+      "saveRestoreAfter": 0,
+      "layoutOnly": true
+    },
+    {
+      "id": "g141",
+      "symbol": "_tm0_isr",
+      "isr": true,
+      "before": 84,
+      "new": 53,
+      "saveRestoreBefore": 44,
+      "saveRestoreAfter": 16
+    }
+  ],
+  "rows": [
+    {
+      "id": "g000",
+      "name": "00-端口模式设置\\C语言",
+      "status": "BUILT",
+      "before": 55,
+      "new": 55,
+      "keil": 60,
+      "stc": 35,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g000\\mx251\\result.json",
+        "sha256": "62cbe6dc44fc8d47dc8df92d34edb871cca90f05128ee44b41b30734077aee1c"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g003",
+      "name": "01.1-用P6口做跑马灯-入门版\\C语言",
+      "status": "BUILT",
+      "before": 175,
+      "new": 175,
+      "keil": 180,
+      "stc": 164,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g003\\mx251\\result.json",
+        "sha256": "57ef5bc1f01716bf3b67b11ecc67f3ee13a6819ff9d7cef9973b63b3482e915d"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g005",
+      "name": "01.2-用P6口做跑马灯\\C语言",
+      "status": "BUILT",
+      "before": 204,
+      "new": 204,
+      "keil": 169,
+      "stc": 167,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g005\\mx251\\result.json",
+        "sha256": "c8d8d9858d5ed43a87bbacd300e3f9b57ca9864691d85e91418725fa0e8a615d"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g007",
+      "name": "02-Timer0-Timer1-Timer2-Timer3-Timer4测试程序\\C语言",
+      "status": "BUILT",
+      "before": 295,
+      "new": 295,
+      "keil": 286,
+      "stc": 828,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g007\\mx251\\result.json",
+        "sha256": "1eca3a1155e6bb5924d177c6e3ceccf9635827d2c791ac72c7bd6b8f9ecf042d"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g009",
+      "name": "03-用P6，P7口驱动8个数码管\\C语言",
+      "status": "BUILT",
+      "before": 766,
+      "new": 766,
+      "keil": 536,
+      "stc": 1044,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g009\\mx251\\result.json",
+        "sha256": "ea3cf93d3e78d4da5c67240f168a7dbc79f6ce8b736ae231574aa922542450a0"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g011",
+      "name": "04-利用T0,T1做外部计数器\\C语言",
+      "status": "BUILT",
+      "before": 683,
+      "new": 621,
+      "keil": 524,
+      "stc": 1018,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g011\\mx251\\result.json",
+        "sha256": "8d566b6f52b4338325d23b9d8b9f896198f1280bff139e9a7f2a42312acce4cd"
+      },
+      "savedBytes": 62
+    },
+    {
+      "id": "g013",
+      "name": "05-利用定时器测量脉冲宽度\\C语言",
+      "status": "BUILT",
+      "before": 889,
+      "new": 857,
+      "keil": 514,
+      "stc": 1096,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g013\\mx251\\result.json",
+        "sha256": "2bfceb36fdfc114ab4d65d329ced44ad35ffbf269a7439a9fcc540b484ce7cd9"
+      },
+      "savedBytes": 32
+    },
+    {
+      "id": "g015",
+      "name": "06-外中断INT0-INT1-INT2-INT3- INT4测试\\C语言",
+      "status": "BUILT",
+      "before": 860,
+      "new": 705,
+      "keil": 542,
+      "stc": 1068,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g015\\mx251\\result.json",
+        "sha256": "92d51f7209184826ce60cac99c76c899122673b5f30dd4841d20a5e303e0c5b1"
+      },
+      "savedBytes": 155
+    },
+    {
+      "id": "g017",
+      "name": "07-睡眠-唤醒定时器唤醒\\C语言",
+      "status": "BUILT",
+      "before": 615,
+      "new": 615,
+      "keil": 562,
+      "stc": 1106,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g017\\mx251\\result.json",
+        "sha256": "8cd4e29ecafa5c28ac48c45b414688d7c18e2f4c295a822a63c6de31840eb67d"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g019",
+      "name": "08-睡眠-外部中断唤醒\\C语言",
+      "status": "BUILT",
+      "before": 709,
+      "new": 709,
+      "keil": 518,
+      "stc": 1061,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g019\\mx251\\result.json",
+        "sha256": "92413bd5a108ceb0b12d3ce2a202785e34faf95dd0c368304386d3077915d983"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g021",
+      "name": "09-看门狗复位测试程序\\C语言",
+      "status": "BUILT",
+      "before": 504,
+      "new": 504,
+      "keil": 331,
+      "stc": 355,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g021\\mx251\\result.json",
+        "sha256": "257f21802616fffebe74ab300da9bbdac6146cd847db9f4973f16cb09eee7f39"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g023",
+      "name": "10-串口1中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 525,
+      "new": 485,
+      "keil": 346,
+      "stc": 951,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g023\\mx251\\result.json",
+        "sha256": "73e8ad345de93bc4913bf1ba3426ee0cd2964181467419de47c8d07dfb2057b5"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g025",
+      "name": "11-串口2中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 534,
+      "new": 494,
+      "keil": 335,
+      "stc": 938,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g025\\mx251\\result.json",
+        "sha256": "7d83e116ae0ae983dd069be7425dd138d06132210a5f4199c77f4253ad0a6209"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g027",
+      "name": "12-串口3中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 509,
+      "new": 469,
+      "keil": 333,
+      "stc": 945,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g027\\mx251\\result.json",
+        "sha256": "0d28ac40739de25fe517087f3f971fbe66dfce2e3602afb6aa2e1d091b57c9c4"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g029",
+      "name": "13-串口4中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 510,
+      "new": 470,
+      "keil": 333,
+      "stc": 945,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g029\\mx251\\result.json",
+        "sha256": "8f6806385d94e70941ff84c2e042df5e540fab374bd79e9c60e16e576ae5807f"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g031",
+      "name": "14.1-串口1串口2中断模式与电脑收发测试\\C语言",
+      "status": "BUILT",
+      "before": 933,
+      "new": 853,
+      "keil": 549,
+      "stc": 1242,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g031\\mx251\\result.json",
+        "sha256": "082f138da865faa3609672c8554375e475d47d0341b0514ab041e3e7461bae0e"
+      },
+      "savedBytes": 80
+    },
+    {
+      "id": "g033",
+      "name": "14.2-串口2与串口3通信测试程序",
+      "status": "BUILT",
+      "before": 1037,
+      "new": 957,
+      "keil": 665,
+      "stc": 1345,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g033\\mx251\\result.json",
+        "sha256": "e2a8c1c9fc7d5eefe6de35a00ff6bf2388244f6f1e213f7f38198f12aeed469f"
+      },
+      "savedBytes": 80
+    },
+    {
+      "id": "g034",
+      "name": "15-IO行列扫描键盘数码管显示键值和调整时间\\C语言",
+      "status": "BUILT",
+      "before": 1398,
+      "new": 1398,
+      "keil": 961,
+      "stc": 1483,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g034\\mx251\\result.json",
+        "sha256": "7cdcdb57aedf686d0ffeb3acdd92a29bf8fa0ac51afdcd8621357f1ed3a112f7"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g036",
+      "name": "16-ADC键盘扫描数码管显示键值和调整时间\\C语言",
+      "status": "BUILT",
+      "before": 1477,
+      "new": 1477,
+      "keil": 1005,
+      "stc": 1620,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g036\\mx251\\result.json",
+        "sha256": "ea37fe58f98798aa67c65ace3ecdd4927c99021683cabad01dca5d3d238b47e8"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g038",
+      "name": "17-NTC测温度数码管显示\\C语言",
+      "status": "BUILT",
+      "before": 1399,
+      "new": 1399,
+      "keil": 1075,
+      "stc": 2482,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g038\\mx251\\result.json",
+        "sha256": "c34ea565bb44faf577c7dad4cc61043988466509f8fb7d1436c466682645e209"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g040",
+      "name": "18-通过串口2发送命令读写EEPROM测试程序\\C语言",
+      "status": "BUILT",
+      "before": 2006,
+      "new": 1966,
+      "keil": 1596,
+      "stc": 3144,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g040\\mx251\\result.json",
+        "sha256": "86e8f3d4e2046651c51c0734a41eb86d7c28adb0caa934dc3f175f4803017393"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g042",
+      "name": "19-使用LVD低压检测中断保存EEPROM\\C语言",
+      "status": "BUILT",
+      "before": 1273,
+      "new": 1273,
+      "keil": 793,
+      "stc": 1616,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g042\\mx251\\result.json",
+        "sha256": "e2347d6ab5bd2774b3e691fa2f2623d45f6d4b964784ca8fb2bfdddf5a14e7f7"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g044",
+      "name": "20-使用比较器检测低电压时保存数据到EEPROM\\C语言",
+      "status": "BUILT",
+      "before": 1676,
+      "new": 1676,
+      "keil": 956,
+      "stc": 1979,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g044\\mx251\\result.json",
+        "sha256": "7de4d42e62d702540a7702ee9b5f7676435276ba7c060c058866618b8ba79f5e"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g046",
+      "name": "23-利用P3.7做比较器正极输入源，内部1.19V或P3.6口做负极输入源\\C语言",
+      "status": "BUILT",
+      "before": 179,
+      "new": 179,
+      "keil": 160,
+      "stc": 698,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g046\\mx251\\result.json",
+        "sha256": "4bb851c898df8c6cc14bd65be253dfe03c5ed9368e5c776b992691ad59e642fe"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g048",
+      "name": "25-高级PWM1-PWM2-PWM3-PWM4，驱动P6口呼吸灯实验程序\\C语言",
+      "status": "BUILT",
+      "before": 1201,
+      "new": 1177,
+      "keil": 691,
+      "stc": 1046,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g048\\mx251\\result.json",
+        "sha256": "a714bd51a150e01e72edd5fc979ddfd823389836e024276e92518855145ed4c1"
+      },
+      "savedBytes": 24
+    },
+    {
+      "id": "g050",
+      "name": "26-高级PWM5-PWM6-PWM7-PWM8输出测试程序\\C语言",
+      "status": "BUILT",
+      "before": 1159,
+      "new": 1135,
+      "keil": 649,
+      "stc": 1043,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g050\\mx251\\result.json",
+        "sha256": "57778283720a731bc5f85fbf9055c7ed8b303d5d2403503d4678cba2e6f13a18"
+      },
+      "savedBytes": 24
+    },
+    {
+      "id": "g052",
+      "name": "27-I2C从机中断模式与IO口模拟I2C主机进行自发自收\\C语言",
+      "status": "BUILT",
+      "before": 1562,
+      "new": 1526,
+      "keil": 896,
+      "stc": 1686,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g052\\mx251\\result.json",
+        "sha256": "9c4dc0e4719745266cfd121115dc0a56d43d310ecb73e06dab24d93e7a69ce5d"
+      },
+      "savedBytes": 36
+    },
+    {
+      "id": "g054",
+      "name": "28-I2C主机模式访问AT24C02程序\\C语言",
+      "status": "BUILT",
+      "before": 1164,
+      "new": 1164,
+      "keil": 742,
+      "stc": 1430,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g054\\mx251\\result.json",
+        "sha256": "72d617288eabd67e1543c464c8a88efaea905d6fb386ec7b37b4b00023a5c6ef"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g056",
+      "name": "29-红外遥控接收程序(NEC码)-数码管显示用户地址和键值\\C语言",
+      "status": "BUILT",
+      "before": 882,
+      "new": 882,
+      "keil": 584,
+      "stc": 1240,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g056\\mx251\\result.json",
+        "sha256": "b2a2cf7e9e2847f08f4a06e1efe2953da410877a09d79fe15b4fa8b51db3c921"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g058",
+      "name": "30-红外发射程序(NEC码)-使用PWM4产生38KHz载波\\C语言",
+      "status": "BUILT",
+      "before": 1043,
+      "new": 1011,
+      "keil": 872,
+      "stc": 1461,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g058\\mx251\\result.json",
+        "sha256": "4673f7f31c0e3268c17179996270e322e989fa59fc40051f1d818e4b10eee3df"
+      },
+      "savedBytes": 32
+    },
+    {
+      "id": "g060",
+      "name": "31-IO扫描键红外发射-同时接收数码管显示用户码键值程序\\C语言",
+      "status": "BUILT",
+      "before": 1698,
+      "new": 1666,
+      "keil": 1248,
+      "stc": 1941,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g060\\mx251\\result.json",
+        "sha256": "9e394df241a647612d267e3deafe19bc4735220d1f39050dd4ecaef043a3054d"
+      },
+      "savedBytes": 32
+    },
+    {
+      "id": "g062",
+      "name": "32-硬件SPI访问FLASH-PM25LV040-串口2监控",
+      "status": "BUILT",
+      "before": 3143,
+      "new": 3102,
+      "keil": 2710,
+      "stc": 5351,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g062\\mx251\\result.json",
+        "sha256": "8d9ba2de7446c409c731d2673787001c8bfb4ece643c1533db5bb08592f01495"
+      },
+      "savedBytes": 41
+    },
+    {
+      "id": "g063",
+      "name": "33-IO模拟SPI访问FLASH-PM25LV040-串口2监控",
+      "status": "BUILT",
+      "before": 3117,
+      "new": 3073,
+      "keil": 2705,
+      "stc": 5318,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g063\\mx251\\result.json",
+        "sha256": "14ed580c2e6547dd358f0cba94f4767daac7021a81b5f805801f192dd9acdb54"
+      },
+      "savedBytes": 44
+    },
+    {
+      "id": "g064",
+      "name": "34-P1.3做ADC-使用内部基准计算外部电压\\C语言",
+      "status": "BUILT",
+      "before": 935,
+      "new": 935,
+      "keil": 509,
+      "stc": 1139,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g064\\mx251\\result.json",
+        "sha256": "74e208e724e1c67aebe479d1edaec948764c8c01758d612c0cebcd404c63143f"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g066",
+      "name": "35-板上的32K xdata测试程序",
+      "status": "BUILT",
+      "before": 34266,
+      "new": 34226,
+      "keil": 33903,
+      "stc": 35950,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g066\\mx251\\result.json",
+        "sha256": "d327929550718655474ac0463b131898a98827b9567bed3e4c31d030031c7335"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g067",
+      "name": "36.1-LCD1602显示程序",
+      "status": "BUILT",
+      "before": 802,
+      "new": 802,
+      "keil": 725,
+      "stc": 841,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g067\\mx251\\result.json",
+        "sha256": "2626d233ba58b5267d3d557cd4887a4f5c953907f6f0cc5130b71da81b2d0a60"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g068",
+      "name": "36.2-LCD128x64显示图形文字-ST7920",
+      "status": "BUILT",
+      "before": 1856,
+      "new": 1856,
+      "keil": 1791,
+      "stc": 2609,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g068\\mx251\\result.json",
+        "sha256": "dca718cdb4565de0980bf37a05522edf736035a29979090ee4cc6f9d54169a84"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g069",
+      "name": "37-2.4寸ILI9341驱动TFT显示屏实验程序\\Project",
+      "status": "BUILT",
+      "before": 20044,
+      "new": 20044,
+      "keil": 18449,
+      "stc": 31210,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g069\\mx251\\result.json",
+        "sha256": "39011e2131ce8dd3e862b50110cf63c05396b01bb646d09e2755337ee434f95f"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g070",
+      "name": "38-2.4寸ILI9325驱动TFT显示屏实验程序-带触摸功能\\Project",
+      "status": "BUILT",
+      "before": 26394,
+      "new": 26394,
+      "keil": 19536,
+      "stc": 30227,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g070\\mx251\\result.json",
+        "sha256": "b4916204fb87dae8ec79dbae04f12b41faf331e824e8508d2aaf5c012c3cfce1"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g071",
+      "name": "39-通过USB发送命令读取ADC测试程序",
+      "status": "BUILT",
+      "before": 2945,
+      "new": 2945,
+      "keil": 1655,
+      "stc": 2988,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g071\\mx251\\result.json",
+        "sha256": "d22e2045bb3c2df5b2cb1d45be5321b6a79efded565c741cb8428f05efca6fcb"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g072",
+      "name": "40-科学计算器使用CDC虚拟液晶屏显示",
+      "status": "UNSUPPORTED_KEIL_OMF",
+      "before": null,
+      "new": null,
+      "keil": null,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g072\\mx251\\result.json",
+        "sha256": "deafa69c08e64354b3ba40cf9086dd460ddb16643a8feaa448792f6290551d6b"
+      }
+    },
+    {
+      "id": "g073",
+      "name": "41-软件修改内部RC主频\\C语言",
+      "status": "BUILT",
+      "before": 505,
+      "new": 505,
+      "keil": 477,
+      "stc": 461,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g073\\mx251\\result.json",
+        "sha256": "160e8202a4ba86cdec8b214b0a8caccdd8d2cf4efc031fec4aae8955f821dd3a"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g075",
+      "name": "42-一线制温度传感器 DS18B20 测温\\C语言",
+      "status": "BUILT",
+      "before": 1036,
+      "new": 1036,
+      "keil": 1046,
+      "stc": 1579,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g075\\mx251\\result.json",
+        "sha256": "3beece65933dd930105c0de76cc0ed9e97cafa4b9f664136c31deb5937284fe6"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g077",
+      "name": "43-IO口推挽输出驱动有源蜂鸣器实验程序\\C语言",
+      "status": "BUILT",
+      "before": 461,
+      "new": 461,
+      "keil": 410,
+      "stc": 999,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g077\\mx251\\result.json",
+        "sha256": "7cf0811b843cf80ab7115058ef76f54542ce3366ca68b6717548ae2096a8347f"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g079",
+      "name": "44-高级PWM输出两路互补SPWM\\C语言",
+      "status": "BUILT",
+      "before": 976,
+      "new": 976,
+      "keil": 762,
+      "stc": 1280,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g079\\mx251\\result.json",
+        "sha256": "48e7e1a429dca1160e7c64f9f83a32bcf949f80d4af387503823e14b104aacc7"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g081",
+      "name": "45-内部RTC时钟程序\\C语言",
+      "status": "BUILT",
+      "before": 2393,
+      "new": 2393,
+      "keil": 2243,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g081\\mx251\\result.json",
+        "sha256": "0187961f84ac1dfb073d8c607263afc7d69d7344d3305c7e17ed428709459bbb"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g083",
+      "name": "46-MDU32–乘法和除法单元",
+      "status": "BUILT",
+      "before": 9468,
+      "new": 9468,
+      "keil": 1551,
+      "stc": 4750,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g083\\mx251\\result.json",
+        "sha256": "df8ade0d9ac5c0e6b5e3613886d5f991b4b8362bc9db25704400a5ec35ab58c5"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g084",
+      "name": "47-SPI互为主从-SS设置主从-串口透传",
+      "status": "BUILT",
+      "before": 969,
+      "new": 889,
+      "keil": 594,
+      "stc": 1292,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g084\\mx251\\result.json",
+        "sha256": "5a8f4b7ab75a11fffe4aa6d5bb31598c07303f9e8a0614bf3ff402afabbf5ac9"
+      },
+      "savedBytes": 80
+    },
+    {
+      "id": "g085",
+      "name": "48-SPI互为主从-主模式忽略SS-串口透传",
+      "status": "BUILT",
+      "before": 972,
+      "new": 892,
+      "keil": 600,
+      "stc": 1300,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g085\\mx251\\result.json",
+        "sha256": "16d8c8aca2630a54d7e4a1ae1214ff38800cd81aa7a58b9a39dcf5b4dcb8fe42"
+      },
+      "savedBytes": 80
+    },
+    {
+      "id": "g086",
+      "name": "49-CAN总线标准帧收发测试\\C语言",
+      "status": "BUILT",
+      "before": 2825,
+      "new": 2825,
+      "keil": 1543,
+      "stc": 3150,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g086\\mx251\\result.json",
+        "sha256": "715f783bcd33d7ee9e9d604c343c100e7a23c301097525a6e54627fef40215c9"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g088",
+      "name": "50-CAN总线扩展帧收发测试\\C语言",
+      "status": "BUILT",
+      "before": 2827,
+      "new": 2827,
+      "keil": 1545,
+      "stc": 3158,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g088\\mx251\\result.json",
+        "sha256": "4c4c2a7a49ead3d5bb2efe10f4854abb40bb4531e20a661c3d47e7c80f4abab5"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g090",
+      "name": "51-CAN1-CAN2总线标准帧扩展帧同时使用收发测试",
+      "status": "BUILT",
+      "before": 5665,
+      "new": 5665,
+      "keil": 3325,
+      "stc": 7886,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g090\\mx251\\result.json",
+        "sha256": "d48e46f8f12c249bc35a33c1ff7073fee5d2ebe038e20d867f1426f1a2fcb55b"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g091",
+      "name": "52-CAN1-CAN2同时连接总线最多可用4组过滤器",
+      "status": "BUILT",
+      "before": 6238,
+      "new": 6238,
+      "keil": 3471,
+      "stc": 8129,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g091\\mx251\\result.json",
+        "sha256": "1206de90d017fc393f514cc3c140b1aa5198d2fe66c646593e49a25fa8452f05"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g092",
+      "name": "53-UART转LIN总线报文测试程序",
+      "status": "BUILT",
+      "before": 1339,
+      "new": 1259,
+      "keil": 920,
+      "stc": 2087,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g092\\mx251\\result.json",
+        "sha256": "4850eda7a7b7963ec36a7354d35806b7a19073b900f9926220513a9f700a9bb7"
+      },
+      "savedBytes": 80
+    },
+    {
+      "id": "g093",
+      "name": "54-LIN总线从机收发测试",
+      "status": "BUILT",
+      "before": 1429,
+      "new": 1429,
+      "keil": 1694,
+      "stc": 2608,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g093\\mx251\\result.json",
+        "sha256": "35319d2ec1fb177603330f0e2fb405e3d7cd5dfbcc2dd1cb2ba761347b25247e"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g094",
+      "name": "55-LIN总线主机收发测试",
+      "status": "BUILT",
+      "before": 1470,
+      "new": 1470,
+      "keil": 1706,
+      "stc": 2726,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g094\\mx251\\result.json",
+        "sha256": "4667158b38e2b7217e693646ff427bdc041a95b5ad11921ed22c61515da4b451"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g095",
+      "name": "56-LIN总线从机收发测试-USART",
+      "status": "BUILT",
+      "before": 1747,
+      "new": 1699,
+      "keil": 1756,
+      "stc": 3046,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g095\\mx251\\result.json",
+        "sha256": "bcc62eb1a1c5a131c7d6e340efed4e5bef001087fde8a918fb651d8d2b41345a"
+      },
+      "savedBytes": 48
+    },
+    {
+      "id": "g096",
+      "name": "57-LIN总线主机收发测试-USART",
+      "status": "BUILT",
+      "before": 1580,
+      "new": 1540,
+      "keil": 1718,
+      "stc": 2282,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g096\\mx251\\result.json",
+        "sha256": "286798794c67a503c1d837e26898aa019bed6410ab75d0be61013b22621637f1"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g097",
+      "name": "58-LIN总线从机收发测试-USART2",
+      "status": "BUILT",
+      "before": 1754,
+      "new": 1714,
+      "keil": 1764,
+      "stc": 3053,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g097\\mx251\\result.json",
+        "sha256": "5b8cfdc22a36cac0169b090d57bb838df183b5edca8295f11f95a5b01229c3e2"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g098",
+      "name": "59-LIN总线主机收发测试-USART2",
+      "status": "BUILT",
+      "before": 1577,
+      "new": 1537,
+      "keil": 1720,
+      "stc": 2275,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g098\\mx251\\result.json",
+        "sha256": "a2e2570e395735b4307b9d5869f39ccf6e57384a3a2831fc7886006228af1fd8"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g099",
+      "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换-串口返回结果",
+      "status": "BUILT",
+      "before": 924,
+      "new": 924,
+      "keil": 1198,
+      "stc": 1820,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g099\\mx251\\result.json",
+        "sha256": "e17e02437f4291820f972aff5ccfe5d1d936a976d2552bf2b2bf561e099f8bd6"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g100",
+      "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果",
+      "status": "BUILT",
+      "before": 1158,
+      "new": 1158,
+      "keil": 1288,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g100\\mx251\\result.json",
+        "sha256": "d402e29dfa9b513c2c557856efdbc51e1a9c18b18b611f3fb0712117c9bc5878"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g101",
+      "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果-结构体存储结果",
+      "status": "BUILT",
+      "before": 1402,
+      "new": 1402,
+      "keil": 1285,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g101\\mx251\\result.json",
+        "sha256": "c2fd9784e0c56af3b08b83c6164e89e2dc96d9f7ad159922277e89ff177205cf"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g102",
+      "name": "61-DMA-M2M存储器与存储器之间读写",
+      "status": "BUILT",
+      "before": 1249,
+      "new": 1249,
+      "keil": 1279,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g102\\mx251\\result.json",
+        "sha256": "c4840471dce00873a7316fd0c955b73bd6f896d8663acce0abc8a006991db096"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g103",
+      "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI使用DMA访问FLASH-串口2监控",
+      "status": "BUILT",
+      "before": 4187,
+      "new": 4147,
+      "keil": 3313,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g103\\mx251\\result.json",
+        "sha256": "3e1e1c002cef302c1fc2e30438c017d97fe9e85ce67049be81aaffe10b8ab312"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g104",
+      "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI访问FLASH-串口2监控-2T",
+      "status": "BUILT",
+      "before": 3901,
+      "new": 3859,
+      "keil": 3194,
+      "stc": 9424,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g104\\mx251\\result.json",
+        "sha256": "ec0887e82b7d20aea64541a6da9ce9affe104e9d7b9281ff76afbb95d039e29c"
+      },
+      "savedBytes": 42
+    },
+    {
+      "id": "g105",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口1使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1070,
+      "new": 1070,
+      "keil": 1371,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g105\\mx251\\result.json",
+        "sha256": "16c37aa6c07dfacc2831ae9f7019a2864b05e4e31bc82ff6b2411e19e9572417"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g106",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口2使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1051,
+      "new": 1051,
+      "keil": 1357,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g106\\mx251\\result.json",
+        "sha256": "50533b99712cd6d3bd10504585770707978096fde25c55fd57ddb9852d28cc1b"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g107",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口3使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1049,
+      "new": 1049,
+      "keil": 1352,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g107\\mx251\\result.json",
+        "sha256": "b7aac985d02357e2d37159196268a70752efa6808ddd359480dcd279897c6f5d"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g108",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发不定长数据-软件超时",
+      "status": "BUILT",
+      "before": 1828,
+      "new": 1793,
+      "keil": 1699,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g108\\mx251\\result.json",
+        "sha256": "325d7cd7acc8b344a9202e1d87384cb78e2081d16e369550032b3fe7918ce4ba"
+      },
+      "savedBytes": 35
+    },
+    {
+      "id": "g109",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发测试",
+      "status": "BUILT",
+      "before": 1048,
+      "new": 1048,
+      "keil": 1351,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g109\\mx251\\result.json",
+        "sha256": "72f1067b8500f335f6fb8cf0839262e914e972d2ee535244b9d34fbe4d8de934"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g110",
+      "name": "64-DMA综合应用-SPI互为主从-M2M-串口透传",
+      "status": "BUILT",
+      "before": 1553,
+      "new": 1553,
+      "keil": 1848,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g110\\mx251\\result.json",
+        "sha256": "f95610ce28aed1f3756f90c960c3a678125d2aab38294ad8880789243a62fbf4"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g111",
+      "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_6800_DMA_8bit_ST7920",
+      "status": "BUILT",
+      "before": 2236,
+      "new": 2236,
+      "keil": 1990,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g111\\mx251\\result.json",
+        "sha256": "f8eee31daaa81332f35da099028e5748ec5bcc65a6ae4cd1c1e65226341a3dd2"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g112",
+      "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_DMA_8bit_ILI9341",
+      "status": "BUILT",
+      "before": 5900,
+      "new": 5868,
+      "keil": 4976,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g112\\mx251\\result.json",
+        "sha256": "0b64c2ef125767f5e4063128bdcfdd42170bc32e9218468f2a44769e68918618"
+      },
+      "savedBytes": 32
+    },
+    {
+      "id": "g113",
+      "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_LCM_8bit_ILI9341",
+      "status": "BUILT",
+      "before": 5602,
+      "new": 5602,
+      "keil": 4838,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g113\\mx251\\result.json",
+        "sha256": "89283620873cf32439f0dca487f2a1c755b62d8b36826913a5207501d57e89f5"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g114",
+      "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C主机模式读写AT24C02-串口监控",
+      "status": "BUILT",
+      "before": 2902,
+      "new": 2862,
+      "keil": 2533,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g114\\mx251\\result.json",
+        "sha256": "deab90267015b055938da5d05f3e062f11e37e2ff0b2568067ecc3775297c783"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g115",
+      "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C从机中断模式与IO口模拟I2C主机进行自发自收",
+      "status": "BUILT",
+      "before": 2177,
+      "new": 2132,
+      "keil": 1484,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g115\\mx251\\result.json",
+        "sha256": "35221b00404ec7447180ccdedad77d69d3a436dbf88f2a6f6c385c6225580fd1"
+      },
+      "savedBytes": 45
+    },
+    {
+      "id": "g116",
+      "name": "67-硬件高速HSSPI访问FLASH-PM25LV040-串口2监控",
+      "status": "BUILT",
+      "before": 3971,
+      "new": 3933,
+      "keil": 3340,
+      "stc": 9713,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g116\\mx251\\result.json",
+        "sha256": "e738df49b5212bc229888e4a1e5e0b9f41acf6572306f95e56424a660f2873eb"
+      },
+      "savedBytes": 38
+    },
+    {
+      "id": "g117",
+      "name": "68-高速HSPWM1-HSPWM2-HSPWM3-HSPWM4，驱动P6口呼吸灯实验程序",
+      "status": "BUILT",
+      "before": 1291,
+      "new": 1271,
+      "keil": 826,
+      "stc": 1614,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g117\\mx251\\result.json",
+        "sha256": "c4529452d517aa1e0ab40355b3f4c704d334b554143dec74d83b3a4d56520a71"
+      },
+      "savedBytes": 20
+    },
+    {
+      "id": "g118",
+      "name": "69-HID(Human Interface Device)协议范例",
+      "status": "BUILT",
+      "before": 3920,
+      "new": 3920,
+      "keil": 2633,
+      "stc": 3747,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g118\\mx251\\result.json",
+        "sha256": "fe36babc985c059397940f347594bcb9cdee9fc35ea1b790387235ac0c48342e"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g119",
+      "name": "70-CDC(Communication Device Class)协议范例",
+      "status": "BUILT",
+      "before": 5253,
+      "new": 5213,
+      "keil": 3531,
+      "stc": 4677,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g119\\mx251\\result.json",
+        "sha256": "54a81d063ab73dfa3f8942e9d00af88e2f4cf4d962d26a6ed97e8a511d22435f"
+      },
+      "savedBytes": 40
+    },
+    {
+      "id": "g120",
+      "name": "71-基于HID协议的USB键盘范例",
+      "status": "BUILT",
+      "before": 4439,
+      "new": 4439,
+      "keil": 3040,
+      "stc": 4313,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g120\\mx251\\result.json",
+        "sha256": "e7f807607ec55851eabc9f0259a776f4ce57fbef715aa98f59f1d67401ef1d41"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g121",
+      "name": "72-基于HID协议的USB鼠标范例",
+      "status": "BUILT",
+      "before": 4073,
+      "new": 4073,
+      "keil": 2687,
+      "stc": 3809,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g121\\mx251\\result.json",
+        "sha256": "ce779cb8d5a56e8c0931cab36198340c2e4bf696ceb70200e178f6cdef1cee93"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g122",
+      "name": "73-基于WINUSB协议的范例",
+      "status": "BUILT",
+      "before": 4301,
+      "new": 4301,
+      "keil": 2951,
+      "stc": 4014,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g122\\mx251\\result.json",
+        "sha256": "8f83742bf52cfc6587e55c73caa6caa19a8a9848eba3ec33dd5dd591c0f33185"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g123",
+      "name": "74-MSC(Mass Storage Class)协议范例",
+      "status": "BUILT",
+      "before": 5712,
+      "new": 5712,
+      "keil": 4061,
+      "stc": 6459,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g123\\mx251\\result.json",
+        "sha256": "849a01a31a82dbcbc5877c64eced5409a6cb0ded1e7920933ecec32d4649a7b3"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g124",
+      "name": "75-通过定时器周期性调度任务综合例程",
+      "status": "BUILT",
+      "before": 3063,
+      "new": 3063,
+      "keil": 2174,
+      "stc": 4342,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g124\\mx251\\result.json",
+        "sha256": "74aebc55098c1468c3f1893e4e4a6a913bb46602742360cab0873c9d3e0f2d32"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g125",
+      "name": "76-通过USB HID协议打印数据信息-可用于调试",
+      "status": "UNSUPPORTED_KEIL_OMF",
+      "before": null,
+      "new": null,
+      "keil": 6966,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g125\\mx251\\result.json",
+        "sha256": "c129969bc4c3cf311b4beb6e5eb8e3e6280787b09776d2407e7dd959ee51fd22"
+      }
+    },
+    {
+      "id": "g126",
+      "name": "77-USART1复用SPI_使用DMA和寄存器方式访问Flash例程",
+      "status": "BUILT",
+      "before": 1665,
+      "new": 1665,
+      "keil": 1809,
+      "stc": 1613,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g126\\mx251\\result.json",
+        "sha256": "273e8a26007e123747ab6dc4e8c2195623cd5c5d2abcb3b07ca7ed8ae1e1dafe"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g127",
+      "name": "78-USART1复用SPI与USART2复用SPI相互通信例程",
+      "status": "BUILT",
+      "before": 625,
+      "new": 553,
+      "keil": 499,
+      "stc": 1186,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g127\\mx251\\result.json",
+        "sha256": "3030d5c09d4f6421585d30742f29c2b93dd9f6b6be33d0deb4521a3f8889c76e"
+      },
+      "savedBytes": 72
+    },
+    {
+      "id": "g128",
+      "name": "79-UART-SPI-LCM_DMA_交替使用下载显示图片例程",
+      "status": "BUILT",
+      "before": 6809,
+      "new": 6745,
+      "keil": 4616,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g128\\mx251\\result.json",
+        "sha256": "e29794990b059dcaa78bcd2ef7365f5d0068abc80ca2d4db9e973e2593f43521"
+      },
+      "savedBytes": 64
+    },
+    {
+      "id": "g129",
+      "name": "80-高级PWM输出-周期可调-脉冲计数",
+      "status": "BUILT",
+      "before": 564,
+      "new": 540,
+      "keil": 395,
+      "stc": 924,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g129\\mx251\\result.json",
+        "sha256": "8a89b52bc2b996bbdb4b95d5af5ec0f98ad27c75a24102543dc4634a1e625614"
+      },
+      "savedBytes": 24
+    },
+    {
+      "id": "g130",
+      "name": "81-内部RTC时钟低功耗休眠唤醒-比较器检测电压程序",
+      "status": "BUILT",
+      "before": 1336,
+      "new": 1336,
+      "keil": 1501,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g130\\mx251\\result.json",
+        "sha256": "0c3e1f5e22b6af75ee90cfe7a3b3c60f47d2ed555a5a16e7cf6d9efff0f8b3df"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g131",
+      "name": "82-老刘爱捣鼓示波器，使用OLED屏显示或者虚拟OLED接口显示\\1-老刘爱捣鼓示波器，使用SPI OLED屏显示或者虚拟OLED接口显示-CDC协议通信",
+      "status": "UNSUPPORTED_KEIL_OMF",
+      "before": null,
+      "new": null,
+      "keil": 13799,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g131\\mx251\\result.json",
+        "sha256": "f2a00cefac1fae61fd01562596e51e53e1e8da7be1ef1efa3ab3bfb10488f609"
+      }
+    },
+    {
+      "id": "g132",
+      "name": "82-老刘爱捣鼓示波器，使用OLED屏显示或者虚拟OLED接口显示\\2-老刘爱捣鼓示波器，使用I2C OLED屏显示或者虚拟OLED接口显示-CDC协议通信",
+      "status": "UNSUPPORTED_KEIL_OMF",
+      "before": null,
+      "new": null,
+      "keil": 13982,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g132\\mx251\\result.json",
+        "sha256": "e5b9ac3f91d9316488c3d067d3676ed06ed084d321fb76eee2943911cec2c78a"
+      }
+    },
+    {
+      "id": "g133",
+      "name": "83-老梁示波器-CDC虚拟显示",
+      "status": "BUILT",
+      "before": 10880,
+      "new": 10851,
+      "keil": 6979,
+      "stc": 9463,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g133\\mx251\\result.json",
+        "sha256": "c413f8e49b66e8df11df5d3b096c2521afdfbbb2325e338d12566d06f8fa881b"
+      },
+      "savedBytes": 29
+    },
+    {
+      "id": "g134",
+      "name": "84-USB鼠标-键盘复合设备例程",
+      "status": "BUILT",
+      "before": 5187,
+      "new": 5187,
+      "keil": 3523,
+      "stc": 5016,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g134\\mx251\\result.json",
+        "sha256": "f42303f18dc725de715d0c7eaed8eb9b0dc0ca09317c709b4d8b4ca1ff798faa"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g135",
+      "name": "85-老梁示波器-信号发生器",
+      "status": "BUILT",
+      "before": 505,
+      "new": 505,
+      "keil": 416,
+      "stc": 872,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g135\\mx251\\result.json",
+        "sha256": "6f160af4310b0c8fc7fcd43e5ac66da92b65ad76d10a13c65fbcf36c71cab40e"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g136",
+      "name": "86.1-串口绘图-使用UART1接口",
+      "status": "BUILT",
+      "before": 520,
+      "new": 520,
+      "keil": 435,
+      "stc": 949,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g136\\mx251\\result.json",
+        "sha256": "5e8f0d505fa281a06b09c1a82cfbe6610352f33963277cb8db51cdd5935a62d5"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g137",
+      "name": "86.2-串口绘图-使用USB-CDC串口",
+      "status": "UNSUPPORTED_KEIL_OMF",
+      "before": null,
+      "new": null,
+      "keil": 3438,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g137\\mx251\\result.json",
+        "sha256": "c1ebeacfcdb836d4a2b3d87f8de50a9a70db0167b11c5a71db4e0da632e8f540"
+      }
+    },
+    {
+      "id": "g138",
+      "name": "87.1-利用高级PWMA+PWMB溢出中断做2个定时器",
+      "status": "BUILT",
+      "before": 353,
+      "new": 353,
+      "keil": 379,
+      "stc": 1061,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g138\\mx251\\result.json",
+        "sha256": "661a6e67f16ce232a6fed34d723c3063aaf7c0b760f4ef934a3f86d1a76925d0"
+      },
+      "savedBytes": 0
+    },
+    {
+      "id": "g139",
+      "name": "87.2-利用高级PWMA+PWMB实现8个定时器",
+      "status": "BUILT",
+      "before": 1779,
+      "new": 1683,
+      "keil": 887,
+      "stc": 1477,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g139\\mx251\\result.json",
+        "sha256": "7a425641a3fb255831646970b34a8bf3fe1eba075cde41e33170493ed222112d"
+      },
+      "savedBytes": 96
+    },
+    {
+      "id": "g140",
+      "name": "88-USB-CDC转双串口-根据串口波特率自动调整主频",
+      "status": "FAILED",
+      "before": null,
+      "new": null,
+      "keil": null,
+      "stc": null,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g140\\mx251\\result.json",
+        "sha256": "6cb57f12cc6543362b938e6fe6323116f2c305bb714e2d2912e217bca249e177"
+      }
+    },
+    {
+      "id": "g141",
+      "name": "89-USB CDC转双串口-做自动停电上电烧录器",
+      "status": "BUILT",
+      "before": 7145,
+      "new": 7033,
+      "keil": 4656,
+      "stc": 6499,
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\projects\\g141\\mx251\\result.json",
+        "sha256": "d6bb63ca824d1acea942dfa9515617aef821db03e881e55664dcef8b6fa4e034"
+      },
+      "savedBytes": 112
+    }
+  ],
+  "compilerTests": {
+    "count": 216,
+    "evidence": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final-tests\\results.json",
+      "sha256": "8c7c764415dfe950a4c6b135f845afdc5b4d5481eddddd7eec3e23d9c2bcb00a"
+    }
+  },
+  "hardware": {
+    "status": "PASS",
+    "cases": 128,
+    "frames": 224,
+    "aggregateTicks": {
+      "0": 31.5,
+      "1": 0.0
+    },
+    "firmwareSha256": "6196942e78bcd1a7083ecc216628cbc83b509debbd54b0de706a7602cdc396d5",
+    "port": "COM13",
+    "finalReceipt": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\hardware-project\\.build\\mx251\\latest\\receipt.json",
+    "captureResult": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\hardware-capture\\result.json",
+    "finalCompilerSha256": "8208a8ba051e4f996286a2e81bb42f41b70d0f91852ac8f40ac7beeb75c59070",
+    "identicalFlashedHex": true
+  },
+  "aiControls": [
+    {
+      "status": "BUILT",
+      "payloadBytes": 1183,
+      "spanBytes": 1190,
+      "holesBytes": 7,
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\ai-controls\\p039\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "c316da7ad406e2546e664e235adfd8212fe663f7d0b62a6a67df99ca7ff0e74a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\ai-controls\\p039\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b8e10b704b2a8e9a39dd0cad2e60e85049871b8ce22f61627a8c6287376b98ef"
+      },
+      "coreBuild": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\ai-controls\\p039\\.build\\cmake-mx251-core\\core-build.json",
+        "sha256": "59ea342e8ee110ad5dd657d21d9b393a7f0bf711c22a347a392f221a34001167"
+      },
+      "model": "small",
+      "selectiveLeafAbi": {
+        "recordSha256": "27cf3da7abe35dee29f43a3a4e59c9e19021a2016b54f1630d48b580920f1105",
+        "savedBytes": 0,
+        "status": "NO_CANDIDATE",
+        "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+        "applied": false,
+        "mode": "AUTO"
+      },
+      "id": "p039",
+      "beforeBytes": 1183,
+      "identicalHex": true
+    },
+    {
+      "status": "BUILT",
+      "payloadBytes": 1755,
+      "spanBytes": 1755,
+      "holesBytes": 0,
+      "hex": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\ai-controls\\p083\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5a805dc3fb602c2749b8dcd19ff7492102dae4f36c3a38c25a7b4a0e20fe09d8"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\ai-controls\\p083\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2fd64ad6d67498a15c74c79a74c6ca215c81c6a42b1143169cab0a311b85d1b7"
+      },
+      "coreBuild": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\isr-object-20261114\\final\\ai-controls\\p083\\.build\\cmake-mx251-core\\core-build.json",
+        "sha256": "955f3cef20968ebad82fa8e16895dd9ad6c76d1e985f94275eac1da60b1ed001"
+      },
+      "model": "small",
+      "selectiveLeafAbi": {
+        "applied": false,
+        "savedBytes": 0,
+        "mode": "AUTO",
+        "scriptSha256": "e70b2a7aa0473afa4c253eb1e66aeec36ac5bc3a1179230e77be8832eae5767b",
+        "recordSha256": "fcafde0f4875ef074e4d91b7cf64ef4a631f25030539b4e3fbf6746f117b9233",
+        "status": "NO_CANDIDATE"
+      },
+      "id": "p083",
+      "beforeBytes": 1755,
+      "identicalHex": true
+    }
+  ],
+  "timing": "Hardware context correctness was checked; engineering runtime ratios were not measured."
+}
