@@ -43,7 +43,7 @@ def decode(path):
     raise ValueError('Cannot decode ' + str(path))
 
 
-def image(path):
+def image(path, code_min=0xff0000):
     memory, base, end = {}, 0, False
     for line in Path(path).read_text().splitlines():
         raw = bytes.fromhex(line[1:])
@@ -58,14 +58,14 @@ def image(path):
             if at < 65536:
                 at += 0xff0000
             for i, value in enumerate(raw[4:-1]):
-                assert 0xff0000 <= at + i < 0x1000000
+                assert code_min <= at + i < 0x1000000
                 assert at + i not in memory or memory[at + i] == value
                 memory[at + i] = value
         elif kind == 1:
             end = True
         else:
             raise ValueError('Unsupported HEX record ' + str(kind))
-    assert end and memory and min(memory) == 0xff0000
+    assert end and memory and 0xff0000 in memory
     span = max(memory) - min(memory) + 1
     return dict(payloadBytes=len(memory), spanBytes=span, holesBytes=span-len(memory), hex=pin(path)), memory
 
@@ -160,7 +160,7 @@ def prepare(config):
 
 def build_mx(config, project, out):
     core = Path(config['core'])
-    command = [config['pwsh'], '-NoProfile', '-File', core/'build/Build-CMake.ps1',
+    command = [config['pwsh'], '-NoProfile', '-File', config.get('mxEntry', core/'build/Build-CMake.ps1'),
                '-ProjectPath', out, '-CMake', config['cmake'], '-Ninja', config['ninja'],
                '-PowerShell', config['pwsh']] + config['mxSwitches']
     run(out, 'build', command, config, timeout=1800)
@@ -247,13 +247,13 @@ def build_keil(config, project, out):
         run(out, 'vectors', [kit/'BIN/A251.EXE', 'vectors.asm', 'MODSRC', 'CASE', 'OBJECT(vectors.obj)'] +
             (['INTR2'] if intr2 else []), config, keil=True)
         objects.append('vectors.obj')
-    linkflags = ['CASE', 'CLASSES(EDATA(0-0x7FF),HDATA(0-0x7FF))']
+    linkflags = ['CASE', config.get('keilClasses', 'CLASSES(EDATA(0-0x7FF),HDATA(0-0x7FF))')]
     misc = opts.findtext('Lx51/MiscControls') or ''
     if misc and not misc.startswith('//'):
         linkflags.append(misc)
     run(out, 'link', [kit/'BIN/L251.EXE', ','.join(objects + meta.get('libraries', [])), 'TO', 'firmware'] + linkflags, config, keil=True)
     run(out, 'hex', [kit/'BIN/OH251.EXE', 'firmware', 'HEXFILE(firmware.hex)'], config, keil=True)
-    stats, memory = image(out/'firmware.hex')
+    stats, memory = image(out/'firmware.hex', config.get('codeMin', 0xff0000))
     if entries:
         mapping = (out/'FIRMWARE.MAP').read_text('latin1')
         for e in entries:
@@ -281,7 +281,7 @@ def build_stc(config, project, out):
             source = '#define __C251__ 1\n' + ''.join('#define '+s.strip().replace('=', ' ', 1)+'\n'
                           for s in meta['defines'].split(',') if s.strip()) + source
         files.append(dict(name=name, code=source))
-    save(out/'request.json', dict(files=files, target='AI8051U', opts=config['stcOptions']))
+    save(out/'request.json', dict(files=files, target=config.get('stcTarget', 'AI8051U'), opts=config['stcOptions']))
     run(out, 'build', [config['node'], config['stcAdapter'], out/'request.json', out/'response.json', config['stcVendor']], config)
     response = read(out/'response.json')
     result = response.get('result', {})
