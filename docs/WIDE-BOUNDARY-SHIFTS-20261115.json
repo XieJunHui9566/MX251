@@ -1,0 +1,141 @@
+{
+  "status": "PASS_WIDE_BOUNDARY_SHIFTS_AND_HARDWARE",
+  "sourceCommit": "536d195ea2dda8a0733bcbc920127d6a3107a94e",
+  "compilerSha256": "ebd4a0dd690cbab9c315195fdc0d2c2f776a7252c5dc5b5c2a9979670f7a0637",
+  "scope": "General 32-bit constant right shifts; no SDK, project, function-name or device matching; unchanged public ABI",
+  "corpus": {
+    "constantShiftFunctionsPerModel": 150,
+    "constantShiftModels": 2,
+    "instructionOperandCases": 113,
+    "shiftHardwareKinds": 12,
+    "shiftHardwareCasesPerAbi": 768,
+    "shiftHardwareAbis": [
+      2,
+      4
+    ],
+    "inputsPerCase": 40,
+    "inputEvaluationsPerAbi": 30720,
+    "userTranslationUnits": 63,
+    "unchangedObjects": 45,
+    "targetDescriptions": 3,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3605,
+    "workloadTypesAt110Time": 11,
+    "totalWorkloadTypes": 12,
+    "fullOfficialMatrixRebuilt": false,
+    "fullEngineeringTimingQualified": false,
+    "shiftConfigurations": 8
+  },
+  "firmwareBytes": {
+    "before": 6934,
+    "after": 6640,
+    "keil": 6124,
+    "afterRatio": 1.0842586544742
+  },
+  "timing": [
+    {
+      "name": "callback_clean",
+      "beforeTimeRatio": 1.3472066213420042,
+      "afterTimeRatio": 0.9693051282338231,
+      "casesAt110": 64
+    },
+    {
+      "name": "callback_messy",
+      "beforeTimeRatio": 1.3003216522769596,
+      "afterTimeRatio": 0.9396749935324639,
+      "casesAt110": 64
+    },
+    {
+      "name": "giant_clean",
+      "beforeTimeRatio": 0.9274201199650014,
+      "afterTimeRatio": 0.3848395555043538,
+      "casesAt110": 64
+    },
+    {
+      "name": "giant_messy",
+      "beforeTimeRatio": 1.0035116305202831,
+      "afterTimeRatio": 0.2806828951633126,
+      "casesAt110": 64
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\contracts-final\\result.json",
+      "sha256": "237c9089ea46124d3f25cbfc7c56afa9b2679837e806479d1e6f3018b9d21b0f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\constant-shifts-wide\\results.json",
+      "sha256": "bb5dd12902f09a380d8b32e65129bf22ea2f1011076f709e2d11623eb1e66b17"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\encoding-cost\\operand-results.json",
+      "sha256": "61a20fa74f97a4adfe49432f70587b3687826d8a95e757b51f1131eef260178e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\test-scope.json",
+      "sha256": "d5ebeb7d844c153f105596f14e1c26f596c4057f67b14984b0639ee385279608"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\user-stress\\compilation.json",
+      "sha256": "293ce575c4a72fd67ef3f9ed514225de752166c8331ca74d1a2713ecf1805270"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\user-stress\\host-result.json",
+      "sha256": "c247fecdaede91af4751d063c3b5d95c70f2809666a4a2813ace1dfb735717bf"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\user-object-changes.json",
+      "sha256": "d3bb4dca2183b472af6e6ff4cffe0886c21c89ffba385f241d645c678ee0abd3"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\function-costs.json",
+      "sha256": "e85a34e0b8a4556dfb83fba027dae7c3457692304ba88ca8f49b9671c2de9734"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\final\\timing-comparison.json",
+      "sha256": "f4d689a95b7e1e24200f3d2add9c6ab3688e8dc7c51bffbcabd62e1d1a5c4b8a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\final\\mx251-capture\\result.json",
+      "sha256": "ae23112a0f716def1e4a77cacf8ea59683b1b87beee5880cbaefb5af1ec86694"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi2\\source.json",
+      "sha256": "595f27c056baa5a068a09220eaa402b3ed6cca78bf6b844a8947cadccb2c27e5"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi2\\reference.json",
+      "sha256": "31320cf02e826f7cd57604e8b78945e14f671380d5649aa2f409abbd5895d228"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi2\\capture\\result.json",
+      "sha256": "633e3d0ae0846d3228ef174f884423f873d9384cb451267a5c31600af53d956f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi4\\source.json",
+      "sha256": "8553bafc8488d87b7664a910e0399f6f9ead825c228bd05d5c4abe4005921c56"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi4\\reference.json",
+      "sha256": "31320cf02e826f7cd57604e8b78945e14f671380d5649aa2f409abbd5895d228"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi4\\capture\\result.json",
+      "sha256": "6accbb8a3264c0d9056c307c9e2eea9c37049d09e93f13d21a142765ee6f17e1"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\final\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "d72fcfea8a61b7e2c29b13f4bee34b5b3017d7465cf639738a1530de4d9b2467"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi2\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "9d5af5dd1ecb7c34207d38d48f246781f76e17cc08d2db115efede83dbc1dfe0"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\shifts-abi4\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "ce057c217c72004fbfa4eba13719d869c544cd3de5418da1898c664bcee714a9"
+    }
+  ],
+  "candidateEntry": "E:\\STVAPP\\MX251-baseline\\work\\wide-boundary-shifts-20261115\\final\\Build-Optimized.ps1",
+  "fullEngineeringTimingQualified": false
+}
