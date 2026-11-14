@@ -313,7 +313,7 @@ nativeAbiScalar (sym_link *type)
   /* ABI4 transports 24-bit data, CODE and function addresses in the same register
      slots. The pointer type continues to select the memory access space. */
   return (IS_FUNCPTR(type) && size==3) || (IS_PTR(type) && (DCL_TYPE(type)==FPOINTER || DCL_TYPE(type)==GPOINTER || DCL_TYPE(type)==CPOINTER) && size==3 && !IS_FUNC(type->next)) ||
-         (IS_SPEC (type) && !IS_BIT (type) && !IS_BOOL (type) &&
+         (IS_SPEC (type) && !IS_BIT (type) &&
          (IS_INTEGRAL (type) || IS_FLOAT (type)) &&
          (size == 1 || size == 2 || size == 4));
 }

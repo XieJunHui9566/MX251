@@ -59,3 +59,12 @@ global callbacks, DATA/EDATA/XDATA arrays, CODE tables, struct members, callback
 parameters in each argument position, returned callbacks and legacy/wide calls
 in both directions. Each ABI passes 1216 host-referenced board cases; the
 original corpus passes 768/768. See CALLBACK-POINTERS-20261114 for qualification.
+
+The boolean-conversion candidate adds `tools/research/boolean_fixture.py`:
+30 cases cover integer/address truth, byte objects, arrays, struct members,
+boolean parameters/returns and equivalent branch/state-machine/parser forms.
+ABI2 and ABI4 each pass 1920 host-referenced board cases. The original 63 REL
+objects remain identical to the callback candidate. A high-address pointer
+case also fixes the legacy truth test: flat generic pointers must examine all
+24 address bits. See BOOLEAN-CONVERSIONS-20261114 for per-function sizes,
+remaining size differences and the official-project regression.

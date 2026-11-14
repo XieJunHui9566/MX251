@@ -166,7 +166,7 @@ wide_value_type (sym_link *t, bool sampled)
     (size == 1 || size == 2 || size == 4);
 }
 /* CODE transport uses wide_abi_type; scalar operations keep CODE separate. */
-static bool wide_type(sym_link *t) {return wide_value_type(t,false) && !wide_code_pointer(t) && !IS_BIT(t) && !IS_BOOL(t);}
+static bool wide_type(sym_link *t) {return wide_value_type(t,false) && !wide_code_pointer(t) && !IS_BIT(t);}
 
 /* ABI2 and ABI4 transport three-byte CODE pointers. MIR zero-extension
  * to four bytes leaves the physical register and stack layout unchanged.
@@ -354,6 +354,31 @@ wide_symbol_snapshot(wide_function *f,wide_node *n,operand *op,bool store,wide_o
 {
   if(!op || !IS_TRUE_SYMOP(op))return false;
   symbol *s=OP_SYMBOL(op);sym_link *t=operandType(op);memmap *m=SPEC_OCLS(s->etype);
+  /* The front end keeps far _Bool objects as symbols. Express their address
+   * and byte transaction explicitly, just like ordinary pointer accesses. */
+  if(!s->onStack && !s->_isparm && IS_BOOL(t) && !isAtomic(t) &&
+     (m==xdata || m==x_abs || IN_CODESPACE(m))) {
+    if((store && IN_CODESPACE(m)) || !wide_capacity_room(f,2,2,__LINE__))return false;
+    int address=f->nv++,value=f->nv++;
+    f->values[address]=(wide_value){.sym=s,.width=4,.pointer=true,.codePointer=IN_CODESPACE(m),
+      .symbolSnapshot=true,.reads=1,.weight=1+4*n->origin->depth,.reg=-1,.slot=-1,.pin=-1,.preference=-1};
+    f->values[value]=(wide_value){.sym=s,.width=1,.symbolSnapshot=true,
+      .reg=-1,.slot=-1,.pin=-1,.preference=-1};
+    *v=(wide_operand){.value=value,.width=1};
+    wide_node *base=&f->nodes[f->nn++];
+    *base=(wide_node){.op=WM_ADDRESS,.origin=n->origin,.result=address,.width=4,
+      .addressSymbol=s,.addressObject=-1,.label=-1,.target=-1,.succ={-1,-1},
+      .left.value=-1,.right.value=-1,.addressIndex.value=-1};
+    wb_set(&base->def,address);
+    wide_node *memory=&f->nodes[f->nn++];
+    *memory=(wide_node){.op=store?WM_STORE:WM_LOAD,.origin=n->origin,
+      .result=store?-1:value,.width=1,.codeAccess=IN_CODESPACE(m),.byteAccess=isVolatile(t),
+      .addressObject=-1,.label=-1,.target=-1,.succ={-1,-1},
+      .left={.value=address,.width=4,.codePointer=IN_CODESPACE(m)},.right.value=-1,.addressIndex.value=-1};
+    wb_set(&memory->use,address);
+    if(store){memory->right=*v;wb_set(&memory->use,value);}else wb_set(&memory->def,value);
+    return true;
+  }
   if(!s->onStack && !s->_isparm && wide_function_pointer(t) && !isAtomic(t) &&
      (m==data || m==idata || m==xdata || m==x_abs || m==edata || m==e_abs || IN_CODESPACE(m))) {
     if((store && IN_CODESPACE(m)) || !wide_capacity_room(f,1,1,__LINE__))return false;
@@ -387,7 +412,7 @@ wide_symbol_snapshot(wide_function *f,wide_node *n,operand *op,bool store,wide_o
      ((IS_SPEC(s->type) && IS_SPEC(t)) ||
       (wide_pointer(s->type) && wide_pointer(t) && wide_code_pointer(t)==wide_code_pointer(s->type) &&
        (!wide_code_pointer(t) || (s->_isparm && wide_abi_type(t,currFunc->type))))) &&
-     !IS_BITVAR(t) && !IS_BOOL(t) && wide_value_type(t,true) &&
+     !IS_BITVAR(t) && wide_value_type(t,true) &&
      getSize(t)==getSize(s->type)) {
     int object,width=wide_width(t);
     if(!wide_capacity_room(f,1,1,__LINE__) || !wide_stack_object(f,s,&object))return false;
@@ -433,7 +458,7 @@ wide_symbol_snapshot(wide_function *f,wide_node *n,operand *op,bool store,wide_o
   bool extended=m==edata || m==e_abs;
   /* EDATA has a 16-bit linear address, distinct from direct DATA/SFR.
    * Keep each volatile transaction and snapshot at its original IR node. */
-  if(s->onStack || s->_isparm || !IS_SPEC(t) || IS_BITVAR(t) || IS_BOOL(t) ||
+  if(s->onStack || s->_isparm || !IS_SPEC(t) || IS_BITVAR(t) ||
      !wide_value_type(t,true) || (!extended && (!IN_DIRSPACE(m) || IN_FARSPACE(m))) ||
      IN_BITSPACE(m) || IN_CODESPACE(m) || IN_PAGEDSPACE(m) ||
      (m==sfr && width!=1) || (IN_REGSP(m) && m!=sfr) ||
@@ -572,7 +597,7 @@ wide_data_zero_member(sym_link *aggregate,sym_link *value,bool store)
 {
   if(!aggregate || !value || !IS_STRUCT(aggregate) ||
      isVolatile(aggregate) || isAtomic(aggregate) || !IS_SPEC(value) ||
-     !IS_INTEGRAL(value) || IS_BOOL(value) || IS_BITVAR(value) ||
+     !IS_INTEGRAL(value) || IS_BITVAR(value) ||
      isVolatile(value) || isAtomic(value) || (store && isConst(aggregate)))return false;
   structdef *layout=SPEC_STRUCT(aggregate);
   if(!layout || layout->type!=STRUCT || !layout->fields ||
@@ -582,7 +607,7 @@ wide_data_zero_member(sym_link *aggregate,sym_link *value,bool store)
   if(!IS_SPEC(type) || !IS_INTEGRAL(type) || IS_BITVAR(type) ||
      isVolatile(type) || isAtomic(type))return false;
   int width=getSize(value);
-  if(field->offset || IS_BOOL(type) || (store && isConst(type)) ||
+  if(field->offset || (store && isConst(type)) ||
      (width!=1 && width!=2 && width!=4) || getSize(type)!=width ||
      SPEC_NOUN(type)!=SPEC_NOUN(value) || SPEC_USIGN(type)!=SPEC_USIGN(value) ||
      SPEC_LONG(type)!=SPEC_LONG(value) || SPEC_LONGLONG(type)!=SPEC_LONGLONG(value) ||
@@ -880,7 +905,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(pushedSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pushedSample[slot]))return wide_import_reject(f,ic,__LINE__);
           wide_node *memory=&f->nodes[f->nn-1];
-          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_EDATA_LOAD && memory->op!=WM_BIT_LOAD)
+          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_EDATA_LOAD && memory->op!=WM_BIT_LOAD && memory->op!=WM_LOAD)
             return wide_reject(f,"argument-snapshot-memory-contract",__LINE__);
           /* Keep the object's access width. A call needs a value snapshot,
            * not byte transactions for ordinary RAM. Volatile arguments keep
@@ -898,7 +923,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(pendingSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pendingSample[slot]))return wide_import_reject(f,ic,__LINE__);
           wide_node *memory=&f->nodes[f->nn-1];
-          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_EDATA_LOAD && memory->op!=WM_BIT_LOAD)
+          if(memory->op!=WM_SYMBOL_LOAD && memory->op!=WM_EDATA_LOAD && memory->op!=WM_BIT_LOAD && memory->op!=WM_LOAD)
             return wide_reject(f,"argument-snapshot-memory-contract",__LINE__);
           memory->volatileDataWideAccess=false;
           memory->argumentReadReverse=memory->byteAccess && memory->width>1;
@@ -968,7 +993,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
           if(!input)return wide_import_reject(f,ic,__LINE__);
           sym_link *expected=arg?arg->type:operandType(input);
           if(arg?!wide_abi_type(expected,t):
-             (!wide_value_type(expected,true) || IS_BIT(expected) || IS_BOOL(expected)))
+             (!wide_value_type(expected,true) || IS_BIT(expected)))
             return wide_import_reject(f,ic,__LINE__);
           if(count>=registers) {
             n->stackWidths[pushedCount-1-(count-registers)]=getSize(expected);
@@ -1027,15 +1052,22 @@ wide_import (wide_function *f, ebbIndex *ebbi)
           n->op=WM_BIT_STORE;n->addressSymbol=OP_SYMBOL(IC_RESULT(ic));
           f->body=true;break;
         }
-        if(ic->op==CAST && IS_BIT(operandType(IC_RESULT(ic)))) {
-          /* 位临时值必须规范化为 0/1；不能先截为字节，否则 0x100 会变成假。
-           * 真实位对象的访问仍由独立节点完成，不缓存或合并 volatile 访问。 */
-          if(!IS_ITEMP(IC_RESULT(ic)) || !wide_result(f,n,IC_RESULT(ic)) || n->width!=1 ||
+        if(ic->op==CAST && (IS_BIT(operandType(IC_RESULT(ic))) || IS_BOOL(operandType(IC_RESULT(ic))))) {
+          /* Boolean conversion tests the complete integer/address before producing
+           * a byte 0/1. Object writeback remains a separate memory transaction. */
+          sym_link *from=operandType(IC_RIGHT(ic));
+          if((IS_BIT(operandType(IC_RESULT(ic))) && !IS_ITEMP(IC_RESULT(ic))) ||
+             !wide_result(f,n,IC_RESULT(ic)) || n->width!=1 ||
              !wide_use(f,n,IC_RIGHT(ic),&n->right) || n->right.floating ||
-             !IS_INTEGRAL(operandType(IC_RIGHT(ic))))return wide_import_reject(f,ic,__LINE__);
-          n->op=WM_BIT_CAST;f->body=true;break;
+             (!IS_INTEGRAL(from) && !IS_PTR(from) && !IS_FUNC(from)))return wide_import_reject(f,ic,__LINE__);
+          n->op=WM_BIT_CAST;
+          if(n->right.value<0) {
+            n->op='=';n->right=(wide_operand){.value=-1,.width=1,.literal=!!n->right.literal};
+          } else if(IS_BOOLEAN(from) && n->right.width==1)n->op='=';
+          dbuf_printf(f->diagnostics,"; wide boolean conversion icode=%d source-width=%d normalized=%d\n",
+            ic->key,wide_width(from),n->op=='=');
+          f->body=true;break;
         }
-        if (ic->op==CAST && IS_BOOL(operandType(IC_RESULT(ic)))) return wide_import_reject(f,ic,__LINE__);
         if (POINTER_SET(ic) || !wide_result(f,n,IC_RESULT(ic)) || !wide_use(f,n,IC_RIGHT(ic),&n->right)) return wide_import_reject(f,ic,__LINE__);
         if(n->floating!=n->right.floating)return wide_import_reject(f,ic,__LINE__);
         /* Flat CODE, XDATA and generic pointers share the same 24 address
@@ -1211,8 +1243,8 @@ wide_import_order_samples:
         wide_node operation=*n,writeback;bool hasWriteback=false;int at=first;
         for(int k=first+1;k<f->nn;++k) {
           wide_node memory=f->nodes[k];
-          if(memory.op==WM_SYMBOL_STORE || memory.op==WM_EDATA_STORE || memory.op==WM_PARAM_STORE || memory.op==WM_OBJECT_STORE) {if(hasWriteback)return wide_import_reject(f,ic,__LINE__);writeback=memory;hasWriteback=true;}
-          else {if(memory.op!=WM_ADDRESS && memory.op!=WM_SYMBOL_LOAD && memory.op!=WM_EDATA_LOAD && memory.op!=WM_BIT_LOAD && memory.op!=WM_PARAM_LOAD && memory.op!=WM_OBJECT_LOAD)return wide_import_reject(f,ic,__LINE__);f->nodes[at++]=memory;}
+          if(memory.op==WM_STORE || memory.op==WM_SYMBOL_STORE || memory.op==WM_EDATA_STORE || memory.op==WM_PARAM_STORE || memory.op==WM_OBJECT_STORE) {if(hasWriteback)return wide_import_reject(f,ic,__LINE__);writeback=memory;hasWriteback=true;}
+          else {if(memory.op!=WM_LOAD && memory.op!=WM_ADDRESS && memory.op!=WM_SYMBOL_LOAD && memory.op!=WM_EDATA_LOAD && memory.op!=WM_BIT_LOAD && memory.op!=WM_PARAM_LOAD && memory.op!=WM_OBJECT_LOAD)return wide_import_reject(f,ic,__LINE__);f->nodes[at++]=memory;}
         }
         f->nodes[at++]=operation;
         if(hasWriteback)f->nodes[at++]=writeback;
@@ -1318,7 +1350,7 @@ wide_reuse_parameter_loads(wide_function *f)
      * 清空快照。特别是未知别名写入、形参写回和 volatile/SFR 事务，
      * 不能因所读槽相同而沿用旧值。没有跨基本块或调用的内存缓存。 */
     switch(n->op) {
-    case WM_PARAM_LOAD:case WM_NOP:case SEND:case '=':case CAST:
+    case WM_PARAM_LOAD:case WM_NOP:case SEND:case '=':case CAST:case WM_BIT_CAST:
     case '+':case '-':case '*':case '^':case '|':case BITWISEAND:
     case LEFT_OP:case RIGHT_OP:case GETABIT:case GETBYTE:case GETWORD:
     case WM_UMULW:case '<':case '>':case LE_OP:case GE_OP:case EQ_OP:case NE_OP:
@@ -1750,7 +1782,7 @@ wide_reset_allocation(wide_function *f)
 #include "wide_affine.c.inc"
 #include "wide_loop_cursor.c.inc"
 
-/* 只消除直线尾部中仅供 IFX 使用的逻辑非临时值。
+/* 只消除直线尾部中仅供 IFX 使用的逻辑非或布尔规范化临时值。
  * 已取样的输入原样复用；不删读写、不跨调用/标签/内存节点，也不改变
  * 原 CFG 的目标及后继。浮点和有外部入口的片段继续保留原序列。 */
 static unsigned
@@ -1766,18 +1798,18 @@ wide_fold_truth_branch(wide_function *f)
       while(at>=0 && f->nodes[at].op==WM_NOP) --at;
       if(at<0)break;
       wide_node *node=&f->nodes[at];int value=branch->left.value;
-      bool negate=node->op=='!';
-      if(value<0 || value>=f->nv || (!negate && node->op!=CAST && node->op!='=') ||
+      bool negate=node->op=='!',normalize=node->op==WM_BIT_CAST;
+      if(value<0 || value>=f->nv || (!negate && !normalize && node->op!=CAST && node->op!='=') ||
          node->result!=value || node->floating || node->byteAccess ||
          node->orderedReadCount || node->args || node->stackArgs)break;
       wide_operand input=negate?node->left:node->right;
       if(input.floating || (input.width!=1 && input.width!=2 && input.width!=4))break;
-      if(!negate) {
+      if(!negate && !normalize) {
         /* 截断只有在输入来自唯一逻辑非、范围已是 0/1 时才保持真假。
          * 一般整数 0x100 -> uchar 会变零，不得吞掉这种 CAST。 */
         bool canonical=false;unsigned inputDefs=0;
         for(int j=0;j<f->nn;++j)if(input.value>=0 && wb_has(f->nodes[j].def,input.value)) {
-          ++inputDefs;canonical=f->nodes[j].op=='!' && !f->nodes[j].floating;
+          ++inputDefs;canonical=(f->nodes[j].op=='!' || f->nodes[j].op==WM_BIT_CAST) && !f->nodes[j].floating;
         }
         if(input.value<0 || f->values[input.value].pointer || input.codePointer ||
            (node->width<input.width && !(inputDefs==1 && canonical)))break;

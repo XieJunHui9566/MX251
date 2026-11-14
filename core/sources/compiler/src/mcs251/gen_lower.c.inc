@@ -2854,10 +2854,10 @@ toBoolean (operand * oper)
       AccUsed |= aopGetUsesAcc (oper->aop, offset++);
     }
 
-  if (opIsGptr (oper))
+  if (opIsGptr (oper) && GPTRSIZE > FARPTRSIZE)
     {
-      /* assumes that banks never map to address 0x0000
-         so it suffices to check dptr part only and ignore b */
+      /* Only tagged generic pointers have a non-address byte. MCS251 flat
+         pointers use all three bytes, including addresses such as 0x010000. */
       size = AOP_SIZE (oper) - 2;
     }
   else
