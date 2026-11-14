@@ -1,0 +1,92 @@
+{
+  "status": "MEASURED_CALLBACK_TRANSPORT",
+  "sourceCommit": "317cbd89ffefc8e243a599c6145c110ea353fe21",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\final\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "60e9a9b859b6ae6cd1e121eb7df13f122ee3c316277b3e63938dabefb812165e"
+  },
+  "productionFiles": [
+    "core/sources/compiler/src/mcs251/wide_emit.c.inc"
+  ],
+  "imageBytes": {
+    "before": 7103,
+    "after": 7063,
+    "keil": 6124
+  },
+  "callbacks": [
+    {
+      "name": "callback_clean",
+      "beforeBytes": 113,
+      "afterBytes": 99,
+      "keilBytes": 52,
+      "beforeTimeRatio": 1.4085046354607293,
+      "afterTimeRatio": 1.347448982811423
+    },
+    {
+      "name": "callback_messy",
+      "beforeBytes": 255,
+      "afterBytes": 229,
+      "keilBytes": 71,
+      "beforeTimeRatio": 1.5944498928215034,
+      "afterTimeRatio": 1.528856899218882
+    }
+  ],
+  "tests": {
+    "callbackUnits": 32,
+    "transportSites": 168,
+    "callbackHardwareCasesPerAbi": 1408,
+    "callbackHardwareAbis": [
+      2,
+      4
+    ],
+    "userUnits": 63,
+    "unchangedObjects": 54,
+    "targetDescriptions": 3,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3689,
+    "workloadTypesAt110Time": 9,
+    "totalWorkloadTypes": 12,
+    "fullOfficialMatrixRebuilt": false,
+    "fullEngineeringTimingQualified": false
+  },
+  "officialPilot": {
+    "id": "g124",
+    "beforeLastFullMatrixBytes": 2714,
+    "afterBytes": 2699,
+    "comparisonIncludesIntermediateCandidates": true
+  },
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\contracts-final\\results.json",
+      "sha256": "5b554237561c1c3e568947f81c4423819e8289022abe99336416d6884533a5f3"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\transport-effects-final\\result.json",
+      "sha256": "cfef75c1dbfa0c3e7ed39dde1c5d8da617a650c937fd89d63fe7488edf2f349b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\function-costs.json",
+      "sha256": "450dd83d4dfbb26218a24aae1d189d97822a9aed11a78abed189f1c4dce33899"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\user-object-changes.json",
+      "sha256": "091bf121de03458a14746f0935aae2980cd9f0a46891a081c0b8d0c2ed9ba6e4"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\official-indirect-sites.json",
+      "sha256": "35d77a0c1e3ec933eaf9e2c09a6cde3a5fa68eb4f8a90f0074d5774ee43b9537"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\abi2-capture\\result.json",
+      "sha256": "45f6e7fb7a53351217a8b9dd7625bd3d64035620313891bfc224a97cb135a67c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\abi4-capture\\result.json",
+      "sha256": "5360a6a21f0914f783a217aeb907d5afc4face7c5cb3e2b2cf7aea10770a71b3"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\indirect-call-transport-20261115\\final\\timing-comparison.json",
+      "sha256": "1d6aa29a98b1df1855fe7727dcf4d2fbd405acdacb5fe289b89f9c5974cd7e52"
+    }
+  ]
+}
