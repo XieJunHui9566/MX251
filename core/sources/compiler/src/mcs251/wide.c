@@ -26,7 +26,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
 enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
-enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE };
+enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
@@ -55,6 +55,8 @@ typedef struct {
   int addressOffset, addressObject;
   unsigned addressOp;
   bool byteAccess, codeAccess, pointerAccess;
+  unsigned fieldStart,fieldBits;
+  bool fieldBoolean;
   bool argumentReadReverse; /* ABI2 SEND reads least significant byte first. */
   bool rotateCandidate; /* proposal only: original MIR/allocation remain frozen */
   bool volatileDataWideAccess; /* explicit object-access contract; byteAccess remains true */
@@ -471,11 +473,15 @@ wide_use (wide_function *f, wide_node *n, operand *op, wide_operand *v)
   return true;
 }
 
+#include "wide_bitfield.c.inc"
+
 static bool
 wide_memory(wide_function *f,wide_node *n,iCode *ic,bool store)
 {
   operand *p=store?IC_RESULT(ic):IC_LEFT(ic),*value=store?IC_RIGHT(ic):IC_RESULT(ic);
   sym_link *pt=operandType(p),*vt=operandType(value);
+  sym_link *field=store?pt->next:vt;
+  if(IS_BITFIELD(field))return wide_field_import(f,n,ic,store,NULL,0);
   /* 不把只读 CODE 存储退化成 XDATA 写，也不猜测运行期的存储空间。 */
   if(store && wide_code_pointer(pt))return false;
   /* 指针对象物理占三字节，MIR 值占四字节；单独标记访问，
@@ -536,11 +542,16 @@ static bool
 wide_data_zero_member(sym_link *aggregate,sym_link *value,bool store)
 {
   if(!aggregate || !value || !IS_STRUCT(aggregate) ||
-     !wide_extern_data_layout(aggregate) || !IS_SPEC(value) ||
+     isVolatile(aggregate) || isAtomic(aggregate) || !IS_SPEC(value) ||
      !IS_INTEGRAL(value) || IS_BOOL(value) || IS_BITVAR(value) ||
      isVolatile(value) || isAtomic(value) || (store && isConst(aggregate)))return false;
-  symbol *field=SPEC_STRUCT(aggregate)->fields;
+  structdef *layout=SPEC_STRUCT(aggregate);
+  if(!layout || layout->type!=STRUCT || !layout->fields ||
+     !layout->size || layout->size!=(unsigned)getSize(aggregate))return false;
+  symbol *field=layout->fields;
   sym_link *type=field->type;
+  if(!IS_SPEC(type) || !IS_INTEGRAL(type) || IS_BITVAR(type) ||
+     isVolatile(type) || isAtomic(type))return false;
   int width=getSize(value);
   if(field->offset || IS_BOOL(type) || (store && isConst(type)) ||
      (width!=1 && width!=2 && width!=4) || getSize(type)!=width ||
@@ -594,6 +605,9 @@ wide_near_location(wide_function *f,operand *p,iCode *before,iCode *begin,symbol
         if(at<0 || at>=getSize(o->type) || at!=(int)at)return false;
         *object=o;*offset=(int)at;return true;
       }
+      if(d->op=='=' && IC_RIGHT(d) && wide_near_type(operandType(IC_RIGHT(d))) &&
+         compareType(operandType(IC_RIGHT(d)),operandType(IC_RESULT(d)),false)==1)
+        return wide_near_location(f,IC_RIGHT(d),d==begin?NULL:d->prev,begin,object,offset,depth+1);
       if(d->op==CAST && IC_RIGHT(d) &&
          wide_near_type(operandType(IC_RIGHT(d))) && wide_near_type(operandType(IC_RESULT(d))) &&
          wide_data_zero_member(operandType(IC_RIGHT(d))->next,operandType(IC_RESULT(d))->next,false) &&
@@ -628,6 +642,8 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
     if(!address || !value || !wide_near_type(operandType(address)) ||
        !wide_near_location(f,address,ic==begin?NULL:ic->prev,begin,&object,&offset,0))return wide_near_indexed(f,n,ic,begin);
     sym_link *pt=operandType(address),*t=operandType(value);
+    sym_link *field=store?pt->next:t;
+    if(IS_BITFIELD(field))return wide_field_import(f,n,ic,store,object,offset);
     bool memberView=wide_data_zero_member(pt->next,t,store);
     if(!IS_SPEC(t) || !IS_INTEGRAL(t) || IS_BITVAR(t) || isAtomic(t) ||
        (!memberView && (!IS_SPEC(pt->next) || !IS_INTEGRAL(pt->next) ||
@@ -658,7 +674,7 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
     dbuf_printf(f->diagnostics,"; wide near DATA address icode=%d offset=%d destination=generic physical=3\n",ic->key,offset);
     return true;
   }
-  if((ic->op==ADDRESS_OF || ic->op=='+' || ic->op==CAST) && IC_RESULT(ic) &&
+  if((ic->op==ADDRESS_OF || ic->op=='+' || ic->op==CAST || ic->op=='=') && IC_RESULT(ic) &&
      wide_near_location(f,IC_RESULT(ic),ic,begin,&object,&offset,0)) {
     /* Remember fixed definitions without allocating unused virtual values.
      * If a branch or loop needs the actual byte address, near_index_result
@@ -1159,6 +1175,7 @@ wide_import_order_samples:
     }
   }
   if (!f->nn || f->received>2 || pendingMask || pushedCount) return wide_reject(f,"incomplete-function-or-call-sequence",__LINE__);
+  if(!wide_fields_lower(f))return false;
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];
     if(n->op!=RETURN && n->op!=ENDFUNCTION && n->op!=GOTO && n->op!=JUMPTABLE && i+1<f->nn) n->succ[0]=i+1;

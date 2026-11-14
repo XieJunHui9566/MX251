@@ -43,3 +43,10 @@ far-symbol materialization and pointer decrement. The unchanged corpus now
 passes all 768 board cases (2026-11-14); firmware SHA256
 `720b8dc56f80e633d38c3773d6ef7a267072c4ac6d7dada770541f3f18441577`.
 The earlier failing result remains recorded in COMMON-DEVICE-SEMANTICS-20261114.
+
+The byte-bitfield lowering candidate also passes all 768 board cases. Both
+`bits` functions now use the wide backend; the original C sources are unchanged.
+The companion `tools/research/bitfield_fixture.py` generates all 36 byte-contained
+layouts, varying signedness, declared integer type, storage, volatility and
+pointer aliases. Its 2304 board results match the independent host reference.
+See BITFIELD-LOWERING-20261114 for sizes, timing observations and remaining scope.
