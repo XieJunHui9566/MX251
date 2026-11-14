@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "document": "STC32G 系列技术手册",
+  "url": "https://stcmicro.com/datasheet/stc32g-cn.pdf",
+  "downloadedPdf": "E:\\STVAPP\\MX251-baseline\\work\\common-device-semantics-20261114\\stc32g-cn.pdf",
+  "sha256": "db560abcb7339406959cf3c935ad969ae335353f6576af60bd65a236fecd1435",
+  "metadataCreationDate": "2026-07-07",
+  "section": "12.1",
+  "printedPage": 576,
+  "pdfPage": 616,
+  "register": {
+    "name": "P_SW2.EAXFR",
+    "byteAddress": 186,
+    "mask": 128
+  },
+  "facts": {
+    "enabledRegion": [
+      8257536,
+      8323071
+    ],
+    "edata": [
+      0,
+      65535
+    ],
+    "internalXdata": [
+      65536,
+      131071
+    ]
+  },
+  "inference": "EAXFR gates the separate 0x7e0000..0x7effff XFR region; the configured EDATA stack and internal XDATA remain accessible. Existing full memory/motion barriers apply.",
+  "hardwareStatus": "Documentation-based STC32G device effect; this change is not a new STC32G board qualification."
+}

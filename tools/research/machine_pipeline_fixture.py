@@ -143,7 +143,7 @@ def write(path, value):
     path.write_bytes((json.dumps(value, indent=2)+'\n').encode())
 
 
-def capture(image, output, checker=check):
+def capture(image, output, checker=check, max_frames=128*4):
     import serial
     from serial.tools import list_ports
     output.mkdir(parents=True, exist_ok=False)
@@ -163,7 +163,7 @@ def capture(image, output, checker=check):
     data = bytearray()
     start = time.monotonic()
     try:
-        while time.monotonic()-start < 25 and len(data) < 128*16*4:
+        while time.monotonic()-start < 25 and len(data) < max_frames*16:
             data.extend(uart.read(4096))
     finally:
         uart.close()
@@ -171,7 +171,7 @@ def capture(image, output, checker=check):
     result = checker(data)
     result.update(firmwareSha256=sha(image), device=device, port=ports[0].device)
     write(output/'result.json', result)
-    print(json.dumps({k: v for k, v in result.items() if k not in ('ticks', 'device')}))
+    print(json.dumps({k: v for k, v in result.items() if k not in ('ticks', 'device', 'values', 'mismatches')}))
 
 
 if __name__ == '__main__':
