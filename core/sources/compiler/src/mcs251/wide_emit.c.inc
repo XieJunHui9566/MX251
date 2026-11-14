@@ -357,6 +357,29 @@ warithmetic_byte(wide_function *f,wide_node *n)
   else we(f,"\t%s\tr%d,r%d\n",op,work,rhs);
   wstore_byte(f,n->result,work);
 }
+/* Compose adjacent masks on an already sampled byte. No memory operation or
+ * label is crossed, and the intermediate must have no other consumer. */
+static int
+wbyte_masks(wide_function *f,int first)
+{
+  wide_node combined=f->nodes[first];
+  if(combined.op!=BITWISEAND || combined.width!=1 || combined.result<0)return first;
+  if(combined.left.value<0) {wide_operand t=combined.left;combined.left=combined.right;combined.right=t;}
+  if(combined.left.value<0 || combined.left.width!=1 || combined.right.value>=0)return first;
+  int last=first;
+  while(f->values[combined.result].reads==1) {
+    int next=last+1;
+    while(next<f->nn && f->nodes[next].op==WM_NOP)++next;
+    if(next==f->nn || !wide_call_plain(f,last+1,next-last))break;
+    wide_node *n=&f->nodes[next];wide_operand input=n->left,mask=n->right;
+    if(input.value<0) {wide_operand t=input;input=mask;mask=t;}
+    if(n->op!=BITWISEAND || n->width!=1 || n->result<0 || input.width!=1 ||
+       input.value!=combined.result || mask.value>=0 || wb_has(n->out,combined.result))break;
+    combined.right.literal&=mask.literal;combined.result=n->result;last=next;
+  }
+  if(last==first)return first;
+  we(f,"; wide composed byte masks\n");wbitwise_byte(f,&combined);return last;
+}
 static void
 wbranch_operand(wide_function *f,const char *condition,const char *operand,int target)
 {
@@ -1107,8 +1130,21 @@ wshift(wide_function *f,wide_node *n)
   if(n->width==1 && n->left.width==1 && n->right.value<0 &&
      n->right.literal<8 && !n->left.floating && !n->left.codePointer) {
     int byte=dest->reg>=0?dest->reg:11;
+    unsigned count=n->right.literal;
+    if(count>=4 && (!right || !n->left.sign)) {
+      /* Rotations cost one byte each. Even with both A transfers and the
+       * mask, counts 4..7 are shorter than repeated two-byte register shifts. */
+      we(f,"; wide byte rotate-mask count=%u right=%d\n",count,right);
+      wload_byte(f,n->left,11);
+      if(count<=5) {
+        we(f,"\tswap\ta\n");
+        if(count==5)we(f,"\t%s\ta\n",right?"rr":"rl");
+      } else for(unsigned k=count;k<8;++k)we(f,"\t%s\ta\n",right?"rl":"rr");
+      we(f,"\tanl\ta,#0x%02x\n",right?255u>>count:(255u<<count)&255);
+      wstore_byte(f,n->result,11);return;
+    }
     wload_byte(f,n->left,byte);
-    for(unsigned count=0;count<n->right.literal;++count)
+    for(unsigned k=0;k<count;++k)
       we(f,"\t%s\tr%d\n",right?(n->left.sign?"sra":"srl"):"sll",byte);
     wstore_byte(f,n->result,byte);return;
   }
@@ -1888,6 +1924,8 @@ wide_emit(wide_function *f)
     if(constants>i) {i=constants;continue;}
     int predicate=wpredicate_branch(f,i);
     if(predicate>i) {i=predicate;continue;}
+    int masks=wbyte_masks(f,i);
+    if(masks>i) {i=masks;continue;}
     if(n->rotateCandidate) {wrotate_proposal(f,i);i+=2;continue;}
     if(wide_call_plain(f,i+1,2) && wmemory_byte_rmw(f,i)) {i+=2;continue;}
     int indexed=windexed_scaled_memory(f,i);
