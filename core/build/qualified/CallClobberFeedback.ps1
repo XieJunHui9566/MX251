@@ -397,6 +397,28 @@ function Get-Mx251BindingKey($Bindings,[string]$Unit,[string]$Symbol) {
  return $null
 }
 
+function Get-Mx251OrdinaryCallUses($Function) {
+ $pending=$null
+ # Older compilers omit arguments=; current compilers include the ABI slots.
+ # Inspect the emitted setup/result instructions in either format.
+ $pattern='(?m)^;\s*mx251 call-clobber (save|restore) callee=([^\s]+) removed=([0-9a-f]{2}) writes=([0-9a-f]{8})(?: arguments=([0-9a-f]{8}))?\s*$'
+ foreach($m in [regex]::Matches($Function.body,$pattern)) {
+  if($m.Groups[1].Value -ceq 'save') {
+   if($null -ne $pending){throw 'clobber-overlapping-ordinary-save'}
+   $pending=$m;continue
+  }
+  if($null -eq $pending -or $pending.Groups[2].Value -cne $m.Groups[2].Value -or
+     $pending.Groups[3].Value -cne $m.Groups[3].Value -or $pending.Groups[5].Value -cne $m.Groups[5].Value){throw 'clobber-unpaired-ordinary-save'}
+  $start=$pending.Index+$pending.Length
+  $boundary=Get-Mx251BankBody $Function.body.Substring($start,$m.Index-$start) $Function.aliases $Function.objects -SfrLayout $Function.sfrLayout
+  if($boundary.calls.Count -ne 1 -or $boundary.calls[0] -cne $m.Groups[2].Value){$boundary.writes=4294967295L;$boundary.reason='unexpected-call-boundary'}
+  @{caller=$Function.symbol;unit=$Function.unit;callee=$m.Groups[2].Value;removed=[Convert]::ToInt32($m.Groups[3].Value,16);kind='ordinary';boundaryWrites=$boundary.writes;boundaryReason=$boundary.reason;
+    argumentWrites=$(if($m.Groups[5].Success){[Convert]::ToUInt32($m.Groups[5].Value,16)}else{$null})}
+  $pending=$null
+ }
+ if($null -ne $pending){throw 'clobber-unclosed-ordinary-save'}
+}
+
 function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$CompilerSha,[string]$ProfileSha,[switch]$ScopedLocals,$LibraryFunctions=@(),[switch]$CalleePreservation,$MemoryLayout=$null) {
  $record=[ordered]@{schema=1;status='NO_ELIGIBLE_CLOSURE';compilerSha256=$CompilerSha;profileLockSha256=$ProfileSha;inputs=$Inputs;bindings=@();recompiledUnits=@();finalValidated=$false;fallback=$false}
  if(@($Config.archives).Count){$record.status='FALLBACK_PROJECT_ARCHIVE_BINDING_UNPROVEN';return $record}
@@ -447,7 +469,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
  $byName=New-Mx251OrdinalMap;foreach($b in $bindings){$byName[$b.key]=$b}
  $units=@()
  foreach($u in $Config.units){
-  if([IO.Path]::GetExtension($u.file) -cne '.c' -or $u.backend -ceq 'legacy'){continue}
+  if([IO.Path]::GetExtension($u.file) -cne '.c'){continue}
   $needed=$false
   foreach($f in @($scan.functions|Where-Object{$_.unit -ceq $u.name})) {
    foreach($callee in $f.calls){if(Get-Mx251BindingKey $byName $f.unit $callee){$needed=$true;break}}
@@ -503,20 +525,7 @@ function Invoke-Mx251CallClobberFeedback([string]$Root,$Config,$Inputs,[string]$
   # 最终真实调用闭包的破坏集合不相交，不能只检查第一遍推测掩码。
   $uses=@()
   foreach($f in $final.functions){
-   $pending=$null
-   foreach($m in [regex]::Matches($f.body,'(?m)^;\s*mx251 call-clobber (save|restore) callee=([^\s]+) removed=([0-9a-f]{2}) writes=([0-9a-f]{8})\s*$')){
-    if($m.Groups[1].Value -ceq 'save'){
-     if($null -ne $pending){throw 'clobber-overlapping-ordinary-save'}
-     $pending=$m;continue
-    }
-    if($null -eq $pending -or $pending.Groups[2].Value -cne $m.Groups[2].Value -or $pending.Groups[3].Value -cne $m.Groups[3].Value){throw 'clobber-unpaired-ordinary-save'}
-    $start=$pending.Index+$pending.Length
-    $boundary=Get-Mx251BankBody $f.body.Substring($start,$m.Index-$start) $f.aliases $f.objects -SfrLayout $f.sfrLayout
-    if($boundary.calls.Count -ne 1 -or $boundary.calls[0] -cne $m.Groups[2].Value){$boundary.writes=4294967295L;$boundary.reason='unexpected-call-boundary'}
-    $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[2].Value;removed=[Convert]::ToInt32($m.Groups[3].Value,16);kind='ordinary';boundaryWrites=$boundary.writes;boundaryReason=$boundary.reason}
-    $pending=$null
-   }
-   if($null -ne $pending){throw 'clobber-unclosed-ordinary-save'}
+   $uses+=@(Get-Mx251OrdinaryCallUses $f)
    foreach($m in [regex]::Matches($f.body,'(?m)^; mx251-machine-call callee=([^\s]+) writes=([0-9a-f]{8})\s*$')){
     $mask=[Convert]::ToUInt32($m.Groups[2].Value,16)
     $uses+=@{caller=$f.symbol;unit=$f.unit;callee=$m.Groups[1].Value;removed=(4294967295L -bxor $mask);kind='machine'}

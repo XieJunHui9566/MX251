@@ -116,7 +116,7 @@ def reference(root, gcc):
     board.write(root/'reference.json',values)
 
 
-def create_board(root):
+def create_board(root, legacy_units=False):
     generate(root)
     source=(user_stress.SOURCES.parent/'machine-board.c').read_text().replace('"machine-board.h"','"stress.h"')
     start,end=source.index('        x0 = '),source.index('        checksum = 0;')
@@ -124,9 +124,10 @@ def create_board(root):
     source=source.replace('kind < 2','kind < 4').replace('u16 ticks, x0, y0, x1, y1, x2, y2;','u16 ticks;')
     (root/'board.c').write_text(source)
     files=sorted(p.name for p in root.iterdir() if p.suffix in ('.c','.h'))
-    # Explicit-wide keeps ABI2 callers on legacy while enabling actual call
-    # feedback. A project unit explicitly marked legacy receives no feedback.
-    units=[dict(name='u'+str(i),file=n,backend='ordinary-wide' if n in ('wide.c','callees.c') else 'explicit-wide',
+    # Compare ABI2 fallback in explicit-wide units with explicitly selected
+    # legacy units, including the native ABI4 caller on the legacy backend.
+    caller_backend='legacy' if legacy_units else 'explicit-wide'
+    units=[dict(name='u'+str(i),file=n,backend='ordinary-wide' if n in ('wide.c','callees.c') else caller_backend,
         stackAuto=True,defines=[]) for i,n in enumerate(files) if n.endswith('.c')]
     board.write(root/'mx251.json',dict(schema=2,target='AI8051U-34K64-32',model='small',optimization='speed',
         backend='ordinary-wide',explicitAbi=True,standard='sdcc11',runtime='standard',defines=[],files=files,
@@ -140,9 +141,10 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);sub=p.add_subparsers(dest='command',required=True)
     q=sub.add_parser('reference');q.add_argument('--output',type=Path,required=True);q.add_argument('--gcc',type=Path,required=True)
     q=sub.add_parser('board');q.add_argument('--output',type=Path,required=True)
+    q.add_argument('--legacy-units',action='store_true')
     q=sub.add_parser('capture')
     for name in ('output','hex','reference'):q.add_argument('--'+name,type=Path,required=True)
     a=p.parse_args()
     if a.command=='reference':reference(a.output,a.gcc)
-    elif a.command=='board':create_board(a.output)
+    elif a.command=='board':create_board(a.output,a.legacy_units)
     else:bitfield_fixture.capture(a.hex,a.output,a.reference)
