@@ -45,7 +45,7 @@ wide_asm_core_address(unsigned address)
 {
   /* SP/DPTR 扩展、PSW/PSW1、ACC/B 均不得通过目标声明放开。
    * PCON 的串口控制位仍须显式逐位声明，低六位由 core_bits 硬拒绝。
-   * 其余地址也不是默认安全：仍须逐位命中独立核验的目标能力掩码。
+   * peripheral-v1 使用同一核心状态分类；特殊映射位仍须独立声明。
    */
   return address<0x80 || (address>=0x81 && address<=0x86) ||
     address==0xa2 || mcs251StackSfrAddress(address) || address==0xd0 || address==0xd1 ||
@@ -79,6 +79,17 @@ wide_asm_parse_bit_contract(const char *bits,unsigned char output[256],int memor
 static inline const char *
 wide_asm_parse_capabilities(const char *bits,unsigned char output[256])
 {
+  /* Architecture contract: ordinary direct SFR bit writes leave the register
+   * bank, stack and compiler storage accessible. SETB/CLR/CPL do not touch
+   * GPRs or flags; MIR still treats every block as a full memory/motion barrier.
+   * Numeric masks retain their original, explicitly restricted semantics. */
+  if(bits && !strcmp(bits,"peripheral-v1")) {
+    memset(output,0,256);
+    for(unsigned address=0x80;address<256;++address)
+      for(unsigned bit=0;bit<8;++bit)
+        if(!wide_asm_core_bits(address,1u<<bit))output[address]|=1u<<bit;
+    return NULL;
+  }
   return wide_asm_parse_bit_contract(bits,output,0);
 }
 

@@ -9,7 +9,10 @@ TargetContracts.json + TargetProfile.ps1 共用于 STC32G12K128 与 AI8051U-34K6
 不再为AI复制一份改目标字符串的构建脚本。两者仍有各自 profile，不共用启动文件。
 目标注册表 schema 3：architectures 定义 CODE、寻址、有序操作等编译能力；
 targets.deviceEffects 只描述 SFR 布局和有序位操作的硬件作用，不能覆盖架构优化策略。
-未声明外设作用的新目标仍继承通用能力（包括 NOP），不继承其他器件的外设位表。
+同架构统一使用 peripheral-v1：普通 SFR 的 SETB/CLR/CPL 按指令效果进入后端，
+保留完整访存和顺序屏障；不再复制器件外设位白名单。契约要求编译器存储和寄存器
+上下文保持可用；栈、寄存器组、PSW、ACC/B 及已知映射控制位不属于普通外设位。
+特殊映射位仍由 deviceEffects 描述。底层 NN:MM 数字掩码接口保留原有精确范围。
 STC32G 的 EAXFR 依据技术手册第 12.1 节接入 memoryStateBarrier：控制独立 XFR 区，
 不改变 EDATA/栈/内部 XDATA。指令保留原位，内存访问与移动屏障仍然生效。
 profile lock schema 2 必须引用本目录 TargetContracts.json 的确切哈希和精确target ID，

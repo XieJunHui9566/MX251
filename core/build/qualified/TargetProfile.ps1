@@ -38,9 +38,9 @@ function Get-Mx251OrderedAsm($Contract,[string]$Requested) {
   $cap=$Contract.compilerCapabilities.orderedAsm
   Keys-Only $cap @('schema','nop','sfrBitMasks','preservesAllocatorContext','memoryBarrier','motionBarrier','memoryStateBits','preservesCompilerStorage') 'ordered assembly capability'
   if($cap.schema -ne 1 -or $cap.nop -isnot [bool] -or $cap.preservesAllocatorContext -isnot [bool] -or -not $cap.preservesAllocatorContext -or $cap.memoryBarrier -cne 'full' -or $cap.motionBarrier -cne 'full'){throw 'Invalid ordered assembly capability contract'}
-  if($cap.sfrBitMasks -isnot [string] -or ($cap.sfrBitMasks -ne '' -and $cap.sfrBitMasks -cnotmatch '^[0-9a-f]{2}:[0-9a-f]{2}(,[0-9a-f]{2}:[0-9a-f]{2})*$')){throw 'Invalid ordered assembly bit capability syntax'}
+  if($cap.sfrBitMasks -isnot [string] -or ($cap.sfrBitMasks -cnotin @('','peripheral-v1') -and $cap.sfrBitMasks -cnotmatch '^[0-9a-f]{2}:[0-9a-f]{2}(,[0-9a-f]{2}:[0-9a-f]{2})*$')){throw 'Invalid ordered assembly bit capability syntax'}
   $seen=@{}
-  foreach($entry in @($cap.sfrBitMasks.Split(',')|Where-Object{$_ -ne ''})){
+  foreach($entry in @($cap.sfrBitMasks.Split(',')|Where-Object{$_ -cnotin @('','peripheral-v1')})){
    $at=[Convert]::ToInt32($entry.Substring(0,2),16);$mask=[Convert]::ToInt32($entry.Substring(3,2),16)
    if($at -lt 128 -or $mask -eq 0 -or $seen.ContainsKey($at)){throw 'Invalid or duplicate ordered assembly bit capability'}
    $seen[$at]=$mask

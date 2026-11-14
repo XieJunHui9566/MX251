@@ -19,7 +19,7 @@
         "orderedAsm": {
           "schema": 1,
           "nop": true,
-          "sfrBitMasks": "",
+          "sfrBitMasks": "peripheral-v1",
           "preservesAllocatorContext": true,
           "memoryBarrier": "full",
           "motionBarrier": "full"
@@ -30,7 +30,7 @@
   "targets": {
     "STC32G12K128": {
       "id": "STC32G12K128",
-      "revision": 4,
+      "revision": 5,
       "displayName": "STC32G12K128",
       "startup": {
         "sha256": "7225a696352a34eb5c32566c6783bf2018a65e9879d8adf4f53d6fbbf53fd876",
@@ -83,7 +83,6 @@
           "contract": "sph85-v1"
         },
         "orderedBits": {
-          "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:10,ac:d0,fd:d0",
           "memoryStateBits": "ba:80",
           "preservesCompilerStorage": true
         }
@@ -91,7 +90,7 @@
     },
     "AI8051U-34K64-32": {
       "id": "AI8051U-34K64-32",
-      "revision": 11,
+      "revision": 12,
       "displayName": "AI8051U-34K64-32Bit（STC80251）",
       "startup": {
         "sha256": "b13e2b892cd04dcb9059af6e6e475de4c8a32dfd9764ecd88dceecc46afb7cdb",
@@ -137,7 +136,6 @@
           "contract": "sph85-v1"
         },
         "orderedBits": {
-          "sfrBitMasks": "87:c0,88:ff,89:ff,8e:fd,8f:07,bc:e0,dd:ff,de:20,9a:ff,ac:d0,fd:d0,af:ff,cd:c0,ce:ff",
           "memoryStateBits": "ba:80",
           "preservesCompilerStorage": true
         }

@@ -79,7 +79,8 @@ def measure(root, core):
             if 'nativeCodeReads' in shared: flags += ['--mcs251-flat-code-reads']
             if 'orderedAsm' in shared: flags += ['--mcs251-ordered-asm']
             if 'sfrLayout' in effects: flags += ['--mcs251-sfr-layout', effects['sfrLayout']['contract']]
-            if bits.get('sfrBitMasks'): flags += ['--mcs251-ordered-asm-bits',bits['sfrBitMasks']]
+            bit_masks = bits.get('sfrBitMasks', shared.get('orderedAsm',{}).get('sfrBitMasks',''))
+            if bit_masks: flags += ['--mcs251-ordered-asm-bits',bit_masks]
             if bits.get('memoryStateBits'): flags += ['--mcs251-memory-state-bits',bits['memoryStateBits']]
             out = root/(target+'-'+model+'-'+opt)
             out.mkdir()

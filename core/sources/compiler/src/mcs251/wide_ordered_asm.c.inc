@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * 仅把完整验证过的无寄存器破坏指令组导入有序 MIR；不透传任意汇编。
- * 位能力来自调用编译器的显式目标契约，而不是器件/函数/SDK 名称。
+ * 位能力来自显式架构契约或数字掩码，不匹配器件/函数/SDK 名称。
  * Ordinary bits leave memory mapping unchanged. Memory-state bits may alter
  * peripheral mapping, but preserve GPRs, flags, stack and compiler storage.
  * Both use the existing full memory/motion barrier throughout the MIR passes.

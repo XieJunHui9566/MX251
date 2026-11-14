@@ -80,3 +80,14 @@ check all widths and the emitted volatile byte transactions. A frontend literal
 conversion repair preserves masks wider than target int and extends signed
 field constants from the actual field width. Original user-stress RELs remain
 identical (63/63). See MULTIBYTE-BITFIELDS-20261114 for evidence and limits.
+
+The architectural peripheral-effects candidate supplies a common peripheral-v1
+contract for numeric SETB/CLR/CPL, replacing duplicate per-device whitelists.
+check-peripheral-bits.py compiles all 920 ordinary SFR bits in eight ABI/model/
+optimization configurations, checks actual access ordering, preserves numeric
+mask compatibility, and checks exclusions for both SPH layouts. The companion
+tools/research/peripheral_bit_fixture.py uses AI8051U IP2/IP2H priority registers
+with EA clear; its independent workload combines live scalars, stack objects,
+DATA/EDATA/XDATA and calls. All 16 functions use the wide backend; 1024 board
+results match host C. The original 63 pure-C objects are identical to the
+multibyte-field parent. See ARCHITECTURAL-BIT-EFFECTS-20261114 for size results.
