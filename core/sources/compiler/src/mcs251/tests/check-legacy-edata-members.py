@@ -19,6 +19,8 @@ typedef unsigned int u16;
 typedef unsigned long u32;
 struct State {u8 tag;u16 count;u32 total;u8 bytes[5];};
 volatile __edata struct State state;
+struct Slot {u8 tag;u8 *value;};
+volatile __edata struct Slot slot;
 volatile __edata u16 sink;
 volatile __xdata struct State farstate;
 volatile const __code struct State rom={1,2,3,{4,5,6,7,8}};
@@ -31,6 +33,8 @@ volatile __edata struct Bits bits;
 u16 read_member(void) __reentrant __sdcccall(2) {return state.count;}
 u32 read_long(void) __reentrant __sdcccall(4) {return state.total;}
 void write_member(u32 x) __reentrant __sdcccall(4) {state.total=x;}
+u8 *read_pointer(void) __reentrant __sdcccall(4) {return slot.value;}
+void write_pointer(u8 *p) __reentrant __sdcccall(4) {slot.value=p;}
 void repeated(void) __reentrant {state.count;state.count;state.total=0x12345678UL;}
 u16 local_alias(void) __reentrant {volatile struct State *p=&state;return p->count;}
 u8 cast_bytes(void) __reentrant {return ((volatile u8 *)&state)[6];}
@@ -95,6 +99,10 @@ for model in ('small', 'large'):
             for name in ('dynamic', 'unknown', 'volatile_pointer', 'read_far', 'read_code',
                          'read_crossing', 'read_bits', 'postincrement', 'narrow_cast'):
                 assert body(text, name) == body(texts['parent'], name), (d, name)
+            for name, kind in (('read_pointer', 'read'), ('write_pointer', 'write')):
+                b = body(text, name)
+                assert transactions(b, '_slot') == [(kind, i) for i in (1, 2, 3)], (d, name, b)
+                assert not re.search(r'\b(?:dptr|dpxl),#|@dpx', b), (d, name, b)
             assert transactions(body(text, 'read_edge'), '_edge') == [('read', 1), ('read', 2)], d
             assert transactions(body(text, 'from_far')) == [('write', 1), ('write', 2)], d
             assert transactions(body(text, 'to_far')) == [('read', 1), ('read', 2)], d
