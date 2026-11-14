@@ -31,7 +31,7 @@ typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
   int width, reg, slot, pin, preference, weight, reads;
-  bool sign, pointer, codePointer, floating, symbolSnapshot, nearData, addressOnlyOffset;
+  bool sign, pointer, codePointer, floating, symbolSnapshot, nearData, addressOnlyOffset, fieldPromotion;
   wide_bits edges;
 } wide_value;
 typedef struct { int value, width; uint32_t literal; bool sign, floating, codePointer; } wide_operand;
@@ -153,7 +153,7 @@ static bool wide_function_pointer(sym_link *t) {return IS_FUNCPTR(t) && getSize(
 static sym_link *wide_call_type(wide_node *n) {return n->indirectCall?operandType(IC_LEFT(n->origin))->next:n->callee->type;}
 static bool wide_code_pointer(sym_link *t) {return IS_PTR(t) && DCL_TYPE(t)==CPOINTER && getSize(t)==3 && !IS_FUNC(t->next);}
 static bool wide_pointer(sym_link *t) {return wide_function_pointer(t) || IS_PTR(t) && (DCL_TYPE(t)==FPOINTER || DCL_TYPE(t)==GPOINTER || DCL_TYPE(t)==CPOINTER) && getSize(t)==3 && !IS_FUNC(t->next);}
-static int wide_width(sym_link *t) {return wide_pointer(t)?4:getSize(t);}
+static int wide_width(sym_link *t) {return wide_pointer(t) || (IS_BITFIELD(t) && getSize(t)==3)?4:getSize(t);}
 static bool
 wide_value_type (sym_link *t, bool sampled)
 {
@@ -161,6 +161,7 @@ wide_value_type (sym_link *t, bool sampled)
   if(isAtomic(t) || (isVolatile(t) && !sampled))return false;
   if(wide_pointer(t))return true;
   if(IS_FLOAT(t))return size==4;
+  if(IS_BITFIELD(t))return SPEC_BLEN(t)>0 && SPEC_BLEN(t)<=32;
   return IS_SPEC (t) && IS_INTEGRAL (t) &&
     (!IS_BITINT (t) || SPEC_BITINTWIDTH (t) == 8*size) &&
     (size == 1 || size == 2 || size == 4);
@@ -235,6 +236,12 @@ wide_operand_from (wide_function *f, operand *op, wide_operand *v)
   sym_link *t;
   v->value = -1;
   if(wide_address_offset_operand(f,op,v))return true;
+  /* A lossless field promotion may use a three-byte frontend temporary.
+   * Its MIR value is already normalized to four bytes; no object ABI changes. */
+  if(op && IS_ITEMP(op) && !IS_OP_GLOBAL(op) && !OP_SYMBOL(op)->addrtaken)
+    for(int i=0;i<f->nv;++i)if(f->values[i].fieldPromotion && f->values[i].sym==OP_SYMBOL(op)) {
+      *v=(wide_operand){.value=i,.width=4,.sign=f->values[i].sign};return true;
+    }
   /* Internally formed DATA addresses retain the physical one-byte near
    * representation. This does not admit near pointer parameters or objects. */
   if(op && IS_ITEMP(op) && !IS_OP_GLOBAL(op) && !OP_SYMBOL(op)->addrtaken)
@@ -1046,6 +1053,24 @@ wide_import (wide_function *f, ebbIndex *ebbi)
       case '=': case CAST:
         if(wide_parameter_load(f,n,ic)) {f->body=true;break;}
         if(POINTER_SET(ic)) {if(!wide_memory(f,n,ic,true))return wide_import_reject(f,ic,__LINE__);f->body=true;break;}
+        /* Range propagation inserts a lossless _BitInt(24) bridge between
+         * a sampled field and its ordinary integer cast. Keep that bridge in
+         * MIR registers without admitting three-byte objects or arithmetic. */
+        if(ic->op==CAST && IS_ITEMP(IC_RESULT(ic)) && !IS_OP_GLOBAL(IC_RESULT(ic)) &&
+           !OP_SYMBOL(IC_RESULT(ic))->addrtaken && IS_BITINT(operandType(IC_RESULT(ic))) &&
+           SPEC_BITINTWIDTH(operandType(IC_RESULT(ic)))==24 &&
+           IS_BITFIELD(operandType(IC_RIGHT(ic))) &&
+           SPEC_BLEN(operandType(IC_RIGHT(ic)))<=24 &&
+           (!IS_UNSIGNED(operandType(IC_RIGHT(ic))) || IS_UNSIGNED(operandType(IC_RESULT(ic))) ||
+            SPEC_BLEN(operandType(IC_RIGHT(ic)))<24) &&
+           (!IS_UNSIGNED(operandType(IC_RESULT(ic))) || IS_UNSIGNED(operandType(IC_RIGHT(ic))))) {
+          if(!wide_use(f,n,IC_RIGHT(ic),&n->right) || !wide_capacity_room(f,1,0,__LINE__))
+            return wide_import_reject(f,ic,__LINE__);
+          n->result=f->nv++;n->width=4;n->sign=!IS_UNSIGNED(operandType(IC_RESULT(ic)));
+          f->values[n->result]=(wide_value){.sym=OP_SYMBOL(IC_RESULT(ic)),.width=4,.sign=n->sign,
+            .fieldPromotion=true,.reg=-1,.slot=-1,.pin=-1,.preference=-1};
+          wb_set(&n->def,n->result);f->body=true;break;
+        }
         if(wide_bit_symbol(IC_RESULT(ic))) {
           if(!wide_use(f,n,IC_RIGHT(ic),&n->right) || n->right.floating ||
              !IS_INTEGRAL(operandType(IC_RIGHT(ic))))return wide_import_reject(f,ic,__LINE__);

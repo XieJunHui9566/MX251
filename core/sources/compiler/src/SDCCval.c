@@ -2054,7 +2054,8 @@ floatFromVal (value * val)
   if (SPEC_NOUN (val->etype) == V_FIXED16X16)
     return doubleFromFixed16x16 (SPEC_CVAL (val->etype).v_fixed16x16);
 
-  if (SPEC_LONGLONG (val->etype) || SPEC_NOUN (val->etype) == V_BITINT)
+  if (SPEC_LONGLONG (val->etype) || SPEC_NOUN (val->etype) == V_BITINT ||
+      SPEC_NOUN (val->etype) == V_BITFIELD || SPEC_NOUN (val->etype) == V_BITINTBITFIELD)
     {
       if (SPEC_USIGN (val->etype))
         return (double)SPEC_CVAL (val->etype).v_ulonglong;
@@ -3151,6 +3152,21 @@ valLogicAndOr (value * lval, value * rval, int op, bool reduceType)
   return val;
 }
 
+/* Bitfield constants use the field width, not the target int width.
+ * Optimization can recast a long mask to a 17..32-bit field temporary. */
+static TYPE_TARGET_ULONGLONG
+bitfieldLiteral (sym_link *type, TYPE_TARGET_ULONGLONG value)
+{
+  unsigned bits = SPEC_BLEN (type);
+  TYPE_TARGET_ULONGLONG mask;
+  wassert (bits && bits <= 64);
+  mask = 0xffffffffffffffffull >> (64 - bits);
+  value &= mask;
+  if (!SPEC_USIGN (type) && (value & (1ull << (bits - 1))))
+    value |= ~mask;
+  return value;
+}
+
 /*------------------------------------------------------------------*/
 /* valCastLiteral - casts a literal value to another type           */
 /*------------------------------------------------------------------*/
@@ -3203,8 +3219,6 @@ valCastLiteral (sym_link *dtype, double fval, TYPE_TARGET_ULONGLONG llval)
       SPEC_CVAL (val->etype).v_uint = fval ? 1 : 0;
       break;
 
-    case V_BITINTBITFIELD:
-      llval &= (0xffffffffffffffffull >> (64 - SPEC_BLEN (val->etype)));
     case V_BITINT:
       wassert (SPEC_BITINTWIDTH (val->etype) >= 1);
       if (!SPEC_USIGN (val->etype)) // Sign-extend
@@ -3223,11 +3237,12 @@ valCastLiteral (sym_link *dtype, double fval, TYPE_TARGET_ULONGLONG llval)
       break;
 
     case V_BITFIELD:
-      llval &= (0xffffffffffffffffull >> (64 - SPEC_BLEN (val->etype)));
+    case V_BITINTBITFIELD:
+      llval = bitfieldLiteral (val->etype, llval);
       if (SPEC_USIGN (val->etype))
-        SPEC_CVAL (val->etype).v_ulonglong = (TYPE_TARGET_UINT) llval;
+        SPEC_CVAL (val->etype).v_ulonglong = llval;
       else
-        SPEC_CVAL (val->etype).v_longlong = (TYPE_TARGET_INT) llval;
+        SPEC_CVAL (val->etype).v_longlong = (TYPE_TARGET_LONGLONG) llval;
       break;
 
     case V_CHAR:
@@ -3320,7 +3335,7 @@ valRecastLitVal (sym_link * dtype, value * val)
 
     case V_BITFIELD:
     case V_BITINTBITFIELD:
-      ull &= (0xffffffffffffffffull >> (64 - SPEC_BLEN (val->etype)));
+      ull = bitfieldLiteral (val->etype, ull);
       if (SPEC_USIGN (val->etype))
         SPEC_CVAL (val->etype).v_ulonglong = (TYPE_TARGET_ULONGLONG) ull;
       else

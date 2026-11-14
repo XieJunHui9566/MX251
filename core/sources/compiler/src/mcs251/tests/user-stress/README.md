@@ -68,3 +68,15 @@ objects remain identical to the callback candidate. A high-address pointer
 case also fixes the legacy truth test: flat generic pointers must examine all
 24 address bits. See BOOLEAN-CONVERSIONS-20261114 for per-function sizes,
 remaining size differences and the official-project regression.
+
+The multibyte-field candidate extends ordinary MIR lowering to every width
+from 9 through 32 bits, preserving the low-byte-first field ABI. Three-byte
+fields use four-byte MIR values and exactly three memory bytes. The companion
+`tools/research/multibyte_bitfield_fixture.py` covers signed/unsigned fields,
+CODE, DATA, EDATA, XDATA, stack arrays, neighbour preservation, raw target layout
+and mixed legacy/wide access. ABI2 and ABI4 each pass 1920 host-referenced board
+cases; all 2304 original byte-field board cases also pass. Eight configurations
+check all widths and the emitted volatile byte transactions. A frontend literal
+conversion repair preserves masks wider than target int and extends signed
+field constants from the actual field width. Original user-stress RELs remain
+identical (63/63). See MULTIBYTE-BITFIELDS-20261114 for evidence and limits.

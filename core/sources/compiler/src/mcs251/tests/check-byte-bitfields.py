@@ -1,4 +1,4 @@
-"""Check bitfield byte transactions, native ABI, CODE reads and wide-field fallback."""
+"""Check bitfield byte transactions, native ABI, CODE reads and 33-bit-field fallback."""
 import argparse
 import json
 import os
@@ -27,7 +27,7 @@ u32 code_read(const struct Fields __code *p) ABI {return (signed long)p->value;}
 '''
 negative='''
 #define ABI __reentrant __sdcccall(TEST_ABI)
-struct Wide { unsigned int value:12; unsigned int keep:4; };
+struct Wide { unsigned long long value:33; unsigned char keep:7; };
 unsigned long wide_field(volatile struct Wide *p,unsigned long input) ABI {
     p->value=input;return p->value;
 }
@@ -61,8 +61,8 @@ for abi in (2,4):
    fallback=(d/'fallback.rel').read_bytes()
    # Keep source and module name identical when comparing object contents.
    compile('fallback',negative,False)
-   assert fallback==(d/'fallback.rel').read_bytes(),(d,'wide-field fallback changed')
+   assert fallback==(d/'fallback.rel').read_bytes(),(d,'33-bit-field fallback changed')
    rows.append(dict(abi=abi,model=model,optimization=opt,transactions=transactions,
                     codeReadAccepted=True,wideFieldObjectIdentical=True))
 (a.output/'results.json').write_text(json.dumps(rows,indent=2))
-print('PASS: 8 configurations; ordered byte transactions, CODE reads, identical wide-field fallback')
+print('PASS: 8 configurations; ordered byte transactions, CODE reads, identical 33-bit-field fallback')
