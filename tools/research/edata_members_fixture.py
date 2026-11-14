@@ -23,8 +23,7 @@ def create(output):
     text = text.replace('u16 ticks, x0, y0, x1, y1, x2, y2;', 'u16 ticks;')
     (output/'member-board.c').write_text(text)
     files.append('member-board.c')
-    units = [dict(name='u'+str(i), file=name, stackAuto=True, defines=[],
-                  backend='legacy' if name=='member-board.c' else 'ordinary-wide')
+    units = [dict(name='u'+str(i), file=name, stackAuto=True, defines=[], backend='ordinary-wide')
              for i,name in enumerate(files) if name.endswith('.c')]
     config = dict(schema=2, target='AI8051U-34K64-32', model='small', optimization='speed',
         backend='ordinary-wide', explicitAbi=False, standard='sdcc11', runtime='standard',
