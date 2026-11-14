@@ -64,5 +64,22 @@ foreach($change in @(@('abi=2 bank=0','abi=4 bank=0'),@('pushw #0x1234','push dr
  [IO.File]::WriteAllBytes((Join-Path $Output 'u1.rel'),[byte[]]@(0))
  $config.units+=@(@{file='u1.c';name='u1';stackAuto=$true;backend='ordinary-wide'})
  if((Get-Mx251FormatDemand $Output $config).calls.Count -ne 1){throw 'initializer-only unit changed format demand'}
-@{status='PASS';argumentEncodings=2;lateBankContract=$true;rejected=$rejected}|ConvertTo-Json -Depth 4|Set-Content -LiteralPath (Join-Path $Output 'result.json') -Encoding utf8
+ $edata=@('.module constants','.area ESEG (DATA)','_value::','.ds 2',
+  '.area GSINIT (CODE)','mov a,#0x12','mov dptr,#(_value + 1)',
+  'mov dpxl,#((_value + 1) >> 16)','mov @dpx,a',
+  'mov a,#0x34','mov dptr,#_value','mov dpxl,#(_value >> 16)','mov @dpx,a',
+  '.area GSINIT3 (CODE)','mov dptr,#_value','mov dpxl,#0','mov dr12,#2','clr a',
+  '__mcs251_edata_group_clear:','mov @dpx,a','inc dpx','dec dr12','jne __mcs251_edata_group_clear')
+ if(-not (Test-Mx251FormatInitializerUnit $edata)){throw 'EDATA initializer-only unit rejected'}
+ [IO.File]::WriteAllText((Join-Path $Output 'u1.asm'),($edata -join "`n"))
+ if((Get-Mx251FormatDemand $Output $config).calls.Count -ne 1){throw 'EDATA initialization changed format demand'}
+ $initializerRejected=0
+ foreach($change in @(@('jne __mcs251_edata_group_clear','jne _elsewhere'),
+  @('mov @dpx,a','ecall _helper'),@('mov dpxl,#(_value >> 16)','mov dpxl,#(_other >> 16)'),
+  @('.area GSINIT (CODE)','.area CSEG (CODE)'),@('dec dr12','.db 0x12,0,0'))){
+  $changed=($edata -join "`n").Replace($change[0],$change[1]) -split "`n"
+  if(Test-Mx251FormatInitializerUnit $changed){throw 'non-initialization sequence accepted'}
+  $initializerRejected++
+ }
+@{status='PASS';argumentEncodings=2;lateBankContract=$true;edataInitializer=$true;initializerRejected=$initializerRejected;rejected=$rejected}|ConvertTo-Json -Depth 4|Set-Content -LiteralPath (Join-Path $Output 'result.json') -Encoding utf8
 Write-Output 'PASS: legacy/wide symbolic arguments, late bank contract, and format slot matching'

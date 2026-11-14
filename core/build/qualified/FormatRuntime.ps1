@@ -110,17 +110,24 @@ function Assert-Mx251FormatRawVectorImages($RawVectors,$ParentImage,$CandidateIm
 }
 
 function Test-Mx251FormatInitializerUnit([string[]]$Lines) {
- # Function GC can leave a C unit with only storage and literal byte stores.
- # Accept that emitted form; executable data and other instructions do not
- # establish the same absence of calls or transfers into formatting code.
+ # Function GC can leave only storage, literal stores and EDATA clearing.
+ # Match complete generated sequences so their local loop does not look
+ # like an unknown transfer into the formatting library.
+ $codes=@($Lines|ForEach-Object{($_ -split ';',2)[0].Trim()}|Where-Object{$_})
+ $number='(?:0x[0-9a-fA-F]+|[0-9]+)';$symbol='_[\w.$]+'
+ $address="(?:$symbol|\($symbol\s*\+\s*[0-9]+\))"
+ $store="^mov\s+a,#$number`nmov\s+dptr,#(?<address>$address)`nmov\s+dpxl,#\(\k<address>\s*>>\s*16\)`nmov\s+@dpx,a$"
+ $clear="^mov\s+dptr,#$symbol`nmov\s+dpxl,#0`nmov\s+dr12,#$number`nclr\s+a`n(?<loop>[\w.$]+):`nmov\s+@dpx,a`ninc\s+dpx`ndec\s+dr12`njne\s+\k<loop>$"
  $area=''
- foreach($line in $Lines){
-  $code=($line -split ';',2)[0].Trim();if(-not $code){continue}
+ for($i=0;$i -lt $codes.Count;$i++){
+  $code=$codes[$i]
   if($code -cmatch '^\.area\s+(\w+)\b'){$area=$Matches[1];continue}
   if($code -cmatch '^\.(module|optsdcc|globl)\s+'){continue}
   if($code -cmatch '^[A-Za-z_.$][\w.$]*:{1,2}$' -or $code -cmatch '^[A-Za-z_.$][\w.$]*\s*=\s*(0x[0-9a-fA-F]+|[0-9]+)$'){continue}
   if($code -cmatch '^\.(db|dw|ascii|asciz|ds|org)\s+' -and $area -cnotmatch '^(GSINIT[0-9]*|GSFINAL|HOME|CSEG)$'){continue}
   if($area -cmatch '^GSINIT[0-9]*$' -and $code -cmatch '^mov\s+(?:_[\w.$]+|\(_[\w.$]+\s*\+\s*[0-9]+\s*\)),\s*#(?:0x[0-9a-fA-F]+|[0-9]+)$'){continue}
+  if($area -cmatch '^GSINIT[0-9]*$' -and $i+3 -lt $codes.Count -and ($codes[$i..($i+3)] -join "`n") -cmatch $store){$i+=3;continue}
+  if($area -ceq 'GSINIT3' -and $i+8 -lt $codes.Count -and ($codes[$i..($i+8)] -join "`n") -cmatch $clear){$i+=8;continue}
   return $false
  }
  return $true
