@@ -1121,6 +1121,37 @@ wgetword(wide_function *f,wide_node *n)
   we(f,"\tmov\twr10,wr%d\n\tmov\ta,b\n\tmovz\twr20,a\n\torl\twr16,wr20\n",v->reg+2);
   wstore(f,n->result,16);
 }
+/* A shift by 8*k-1 is one doubling plus byte extraction. ADD's carry
+ * supplies the bit lost above bit 31 (or the arithmetic sign fill).
+ * MOV and CLR A preserve CY until it is materialized. No ABI changes. */
+static bool
+wshift_boundary_right(wide_function *f,int work,unsigned count,bool sign)
+{
+  const char *option=getenv("MX251_BOUNDARY_SHIFTS");
+  if(option && !strcmp(option,"0"))return false;
+  if(count!=7 && count!=15 && count!=23 && count!=31)return false;
+  /* The byte permutations need low byte aliases; word extraction also
+   * handles upper allocated registers and the DR16 spill scratch. */
+  if((count==7 || count==23) && work+4>16)return false;
+  we(f,"; wide boundary right shift count=%u signed=%d work=%d\n",count,sign,work);
+  we(f,"\tadd\tdr%d,dr%d\n",work,work);
+  if(count==7)for(int k=3;k>0;--k)we(f,"\tmov\tr%d,r%d\n",work+k,work+k-1);
+  else if(count==15)we(f,"\tmov\twr%d,wr%d\n",work+2,work);
+  else if(count==23)we(f,"\tmov\tr%d,r%d\n",work+3,work);
+  we(f,"\tclr\ta\n");
+  if(sign)we(f,"\tsubb\ta,#0\n");else we(f,"\trlc\ta\n");
+  if(count==7)we(f,"\tmov\tr%d,a\n",work);
+  else if(count==15)we(f,"\t%s\twr%d,a\n",sign?"movs":"movz",work);
+  else if(count==23) {
+    we(f,"\tmov\tr%d,a\n",work+2);
+    if(sign)we(f,"\tmovs\twr%d,a\n",work);else wi(f,work,2,0);
+  } else {
+    we(f,"\t%s\twr%d,a\n",sign?"movs":"movz",work+2);
+    if(sign)we(f,"\tmov\twr%d,wr%d\n",work,work+2);else wi(f,work,2,0);
+  }
+  return true;
+}
+
 static void
 wshift(wide_function *f,wide_node *n)
 {
@@ -1175,6 +1206,9 @@ wshift(wide_function *f,wide_node *n)
   wload(f,n->left,work,width);
   if(n->right.value<0) {
     unsigned count=n->right.literal;
+    if(right && width==4 && wshift_boundary_right(f,work,count,n->left.sign)) {
+      wstore(f,n->result,work);return;
+    }
     if(count>=8 && count<(unsigned)(width*8)) {
       if(width==4 && count>=16) {
         we(f,"\tmov\twr%d,wr%d\n",right?work+2:work,right?work:work+2);

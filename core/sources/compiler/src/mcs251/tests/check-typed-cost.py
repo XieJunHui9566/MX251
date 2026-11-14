@@ -6,6 +6,7 @@ from pathlib import Path
 import argparse, json, os, re, subprocess
 p=argparse.ArgumentParser()
 for name in ('sdcc','assembler','gcc','support','output'):p.add_argument('--'+name,type=Path,required=True)
+p.add_argument('--encoding-only',action='store_true',help='Check the cost table against assembler output without frontend admission assertions.')
 a=p.parse_args(); d=a.output.resolve();d.mkdir(parents=True,exist_ok=False)
 header=Path(__file__).resolve().parents[1]
 env={k.upper():v for k,v in os.environ.items()}
@@ -46,6 +47,7 @@ cases=[]
 for reg in ('a','r0','r9','wr6','dr4'):
     cases += [(f'mov {reg},e:(_Extended+0)',4),(f'mov e:(_Extended+0),{reg}',4)]
 cases += [('sll r5',2),('sll wr6',2),('mov a,(_Case+0x1)',2)]
+cases += [('subb a,#0',2),('subb a,#1',2),('subb a,#255',2),('rlc a',1)]
 for reg in ('a','r0','r9','wr6','dr4'):
     for expr in ('_Case','(_Case)','(_Case+0)'):
         size=2 if reg=='a' else 3
@@ -59,6 +61,7 @@ for address,move,branch in [('0x88',2,3),('0x89',3,4),('0xe6',3,4)]:
                   (f'jbc {address}.{bit},00100$',branch)]
 unknown=['clr _Case','mov r7,_case','mov a,_CASE','mov a,(_Case+4)', 'mov a,(_Case-1)', 'mov a,(_Case+2147483648)', 'mov a,(_Case+4294967296)', 'mov a,(_Case+1+1)', 'mov a,((_Case))', 'mov a,(_Case+0x4)', 'mov a,_CaseSuffix','mov a,(_Sfr+1)', 'mov a,_external_xdata', 'setb _missing', 'mov c,_missing', 'mov dr4,@dr0', 'mov a,(0x1234)']
 unknown += ['mov c,0x89.8','jb 0x89.8,00100$','mov c,0x20.3']
+unknown += ['subb wr4,#0','subb r7,#0']
 cases += [(ins,None) for ins in unknown]
 input_text='\n'.join(x[0] for x in cases)+'\n'
 q=run('evaluate',[d/'driver.exe'],d,input_text.encode());assert q.returncode==0
@@ -79,6 +82,9 @@ for i,((ins,expected),line) in enumerate(zip(cases,q.stdout.decode().splitlines(
         row['assemblerBytes']=len(tokens)
     rows.append(row)
 (d/'operand-results.json').write_text(json.dumps(rows,indent=2)+'\n')
+if a.encoding_only:
+    print('PASS typed costs and actual assembler lengths:',len(rows),'operand cases')
+    raise SystemExit(0)
 # 真实前端类型接入；同名不同大小写对象分别位于 data 与 bit 空间。
 source='''
 typedef unsigned long u32;
