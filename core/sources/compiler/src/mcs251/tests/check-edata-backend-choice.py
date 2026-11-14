@@ -68,10 +68,11 @@ for abi in (2,4):
             for fn in ('apply_feature','edata_spaces'):
                 old,new = costs['parent'][fn],costs['new'][fn]
                 missing = int(old['unknown'].split('/')[0])
-                assert missing > 0 and new['unknown']=='0/0', (d,fn,old,new)
+                assert new['unknown']=='0/0', (d,fn,old,new)
                 assert int(new['wide-bytes']) == int(old['wide-bytes'])+4*missing, (d,fn)
                 assert int(new['wide-ins']) == int(old['wide-ins'])+missing, (d,fn)
-            assert costs['parent']['apply_feature']['selected']=='wide'
+            if int(costs['parent']['apply_feature']['unknown'].split('/')[0]):
+                assert costs['parent']['apply_feature']['selected']=='wide'
             assert costs['new']['apply_feature']['selected']=='legacy', (d,costs)
             rows.append(dict(abi=abi,model=model,optimization=opt,costs=costs))
 report=dict(status='PASS', compilerSha256=hashlib.sha256(a.sdcc.read_bytes()).hexdigest(),

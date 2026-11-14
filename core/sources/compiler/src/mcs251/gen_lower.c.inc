@@ -293,6 +293,22 @@ storeFarPointerByte (void)
   emitcode ("mov", "@dpx,a");
 }
 
+/* EDATA symbols have a direct 16-bit address even though the inherited
+   asmop representation is AOP_DPTR. Keep byte access/order and A clobbering
+   unchanged; only the address form differs. Other far spaces still use DPX. */
+static bool
+mcs251DirectEdata (const asmop *aop)
+{
+  symbol *sym;
+  memmap *space;
+  if (aop->type != AOP_DPTR || aop->code || !(sym = aop->aopu.aop_sym))
+    return false;
+  space = SPEC_OCLS (sym->etype);
+  return (space == edata || space == e_abs) && aop->size > 0 &&
+    aop->size <= 65536 && (!SPEC_ABSA (sym->etype) ||
+      (SPEC_ADDR (sym->etype) >= 0 && SPEC_ADDR (sym->etype) <= 65536 - aop->size));
+}
+
 /* A MCS251 far symbol has a relocatable 24-bit address.  Materialize it at
    the point of use.  More than one far asmop can be live in a single iCode;
    treating DPX as implicit per-operand state makes the last aopOp() silently
@@ -1937,7 +1953,9 @@ aopGet (asmop *aop, int offset, bool bit16, bool dname)
           {
             int physicalOffset = mcs251ScalarByteOffset (aop, offset);
 
-          if (aop->aopu.aop_sym)
+          if (mcs251DirectEdata (aop))
+            emitcode ("mov", "a,e:(%s+%d)", aop->aopu.aop_sym->rname, physicalOffset);
+          else if (aop->aopu.aop_sym)
             {
               mcs251LoadFarSymbol (aop, physicalOffset);
               loadFarPointerByte (aop->code);
@@ -2226,6 +2244,11 @@ aopPut (asmop *aop, const char *s, int offset)
       /* if not in accumulator */
       MOVA (s);
 
+      if (mcs251DirectEdata (aop))
+        {
+          emitcode ("mov", "e:(%s+%d),a", aop->aopu.aop_sym->rname, physicalOffset);
+          break;
+        }
       if (aop->aopu.aop_sym)
         {
           mcs251LoadFarSymbol (aop, physicalOffset);

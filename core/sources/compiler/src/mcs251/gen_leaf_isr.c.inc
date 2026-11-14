@@ -135,12 +135,20 @@ static li_operand li_operand_info(const char *text)
     }
     r.unknown=true;return r;
   }
-  memmap *spaces[]={data,bit,sfr,sfrbit};
-  for(unsigned i=0;i<sizeof spaces/sizeof spaces[0];++i)if(spaces[i])
+  bool extended=!strncmp(text,"e:",2);
+  memmap *spaces[]={data,bit,sfr,sfrbit,edata,e_abs};
+  for(unsigned i=0;i<sizeof spaces/sizeof spaces[0];++i)
+    if(spaces[i] && extended==(spaces[i]==edata || spaces[i]==e_abs))
     for(const set *node=spaces[i]->syms;node;node=node->next) {
       const symbol *s=node->item;if(!s || !s->rname[0] || getSize(s->type)<=0)continue;
-      int offset=wide_cost_symbol_offset(text,s->rname,(unsigned)getSize(s->type));if(offset<0)continue;
+      int offset=wide_cost_symbol_offset(text+(extended?2:0),s->rname,(unsigned)getSize(s->type));if(offset<0)continue;
       sym_link *spec=getSpec(s->type);
+      /* Relocatable EDATA objects are ordinary RAM. An absolute declaration
+       * can name the low register area; only non-core addresses qualify. */
+      if(extended && !s->onStack && !s->_isparm &&
+         (!SPEC_ABSA(spec) || (SPEC_ADDR(spec)>=256 && SPEC_ADDR(spec)<=65535-offset))) {
+        r.memory=true;return r;
+      }
       if(spaces[i]==bit && !SPEC_ABSA(spec) && !s->onStack && !s->_isparm){r.memory=r.bit=true;return r;}
       if(spaces[i]==data && !SPEC_ABSA(spec) && !s->onStack && !s->_isparm){r.memory=true;return r;}
       if(SPEC_ABSA(spec) && (spaces[i]==sfr || spaces[i]==sfrbit))
@@ -154,7 +162,7 @@ static wide_cost_operand li_cost_symbol(const char *name,const void *unused)
 {
   (void)unused;li_operand a=li_operand_info(name);wide_cost_operand r={WC_UNKNOWN,0,0};
   if(!strcmp(name,"psw")){r.kind=WC_DIRECT;return r;}
-  if(!a.unknown && (a.memory || a.gpr || a.special))r.kind=a.bit?WC_BIT:WC_DIRECT;
+  if(!a.unknown && (a.memory || a.gpr || a.special))r.kind=!strncmp(name,"e:",2)?WC_EXT_DIRECT:a.bit?WC_BIT:WC_DIRECT;
   return r;
 }
 
