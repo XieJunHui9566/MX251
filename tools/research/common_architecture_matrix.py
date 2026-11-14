@@ -33,7 +33,7 @@ def prepare(root, baseline, source):
         matrix.save(core/'core.json', value)
         matrix.save(root/'candidate-files.json', dict(files=[matrix.pin(p) for folder in ('build','compat','profiles')
                     for p in sorted((core/folder).rglob('*')) if p.is_file()],
-                    sourceCommit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()))
+                    sourceBaseCommit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip()))
     cfg = dict(matrix.read(source/'config.json'), output=str(root), core=str(core),
                mxEntry=str(package/'Build.ps1'))
     matrix.save(root/'config.json', cfg)
