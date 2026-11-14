@@ -2,6 +2,8 @@
 
 2026-11-14 起，以 [当前开发基线](BASELINE.md)和根目录 `baseline.json` 为后续开发起点，Git 标签 `baseline-20261114`。活动核心位于 `E:/STVAPP/MX251-baseline/core`，当前 `comparison.json` 是该编译器实际重编的七项结果；旧版 75 项冻结成绩保存在 `reference/baseline-20261113`。后续输出使用新目录，历史证据按 `archive/locations.json` 查询。
 
+2026-11-14 完成 [STC32G12K128 V9.6 实验箱全量对比](STC32G-BOX-COMPARISON-20261114.md)：142 个工程（103 C / 39 汇编），同一封装核心成功编译 89 个 C 工程；对 Keil 的 89 个可比项目中 9 个 ≤110%、15 个 ≤120%。Keil C 成功 101 个，STC-IDE C 成功 79 个。STC32G 仍使用旧目标配置，固定 62 个向量，未启用已有 nativeCodeReads / sph85-v1 能力；另外发现 8 个 MX251 构建失败、5 个 USB OMF 缺口和 1 个三方均失败的官方输入问题。下一步优先补齐目标配置与复位向量/近跳转构建路径。此轮核心和 SDK 算法均未修改，未测运行时间；证据位于 `E:/STVAPP/MX251-baseline/work/stc32g-box-20261114`。
+
 依据用户 2026-11-09 的目标，以下作为后续开发与验收口径。
 
 1. 优先完成官方试验箱 / STC-Link1D 的下载协议研究与独立脚本，取得可重复的构建—下载—实测通道。
