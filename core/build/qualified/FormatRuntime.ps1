@@ -117,6 +117,7 @@ function Test-Mx251FormatInitializerUnit([string[]]$Lines) {
  $number='(?:0x[0-9a-fA-F]+|[0-9]+)';$symbol='_[\w.$]+'
  $address="(?:$symbol|\($symbol\s*\+\s*[0-9]+\))"
  $store="^mov\s+a,#$number`nmov\s+dptr,#(?<address>$address)`nmov\s+dpxl,#\(\k<address>\s*>>\s*16\)`nmov\s+@dpx,a$"
+ $edataStore="^(?:mov\s+a,#$number|clr\s+a)`nmov\s+e:\($symbol\s*\+\s*[0-9]+\),a$"
  $clear="^mov\s+dptr,#$symbol`nmov\s+dpxl,#0`nmov\s+dr12,#$number`nclr\s+a`n(?<loop>[\w.$]+):`nmov\s+@dpx,a`ninc\s+dpx`ndec\s+dr12`njne\s+\k<loop>$"
  $area=''
  for($i=0;$i -lt $codes.Count;$i++){
@@ -127,6 +128,7 @@ function Test-Mx251FormatInitializerUnit([string[]]$Lines) {
   if($code -cmatch '^\.(db|dw|ascii|asciz|ds|org)\s+' -and $area -cnotmatch '^(GSINIT[0-9]*|GSFINAL|HOME|CSEG)$'){continue}
   if($area -cmatch '^GSINIT[0-9]*$' -and $code -cmatch '^mov\s+(?:_[\w.$]+|\(_[\w.$]+\s*\+\s*[0-9]+\s*\)),\s*#(?:0x[0-9a-fA-F]+|[0-9]+)$'){continue}
   if($area -cmatch '^GSINIT[0-9]*$' -and $i+3 -lt $codes.Count -and ($codes[$i..($i+3)] -join "`n") -cmatch $store){$i+=3;continue}
+  if($area -cmatch '^GSINIT[0-9]*$' -and $i+1 -lt $codes.Count -and ($codes[$i..($i+1)] -join "`n") -cmatch $edataStore){$i++;continue}
   if($area -ceq 'GSINIT3' -and $i+8 -lt $codes.Count -and ($codes[$i..($i+8)] -join "`n") -cmatch $clear){$i+=8;continue}
   return $false
  }
