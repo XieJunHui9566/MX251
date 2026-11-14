@@ -1,0 +1,6626 @@
+{
+  "schema": 1,
+  "sourceCommit": "cf8f3d1799ea20fc48667b37d3f41337d6235c8f",
+  "testCommit": "ff02145900797fd1174652c000a9c14bd525b8ff",
+  "compilerSha256": "5c18dcbd15388721ecd827c4f07730541707420a4098f089b5e261b28931799c",
+  "parent": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\comparison.json",
+    "sha256": "82e52a296ca960a65ee803800cbeeb05a4769d1bcd0b96915cb5803d4a74030b"
+  },
+  "matrix": {
+    "schema": 1,
+    "compilerSha256": "5c18dcbd15388721ecd827c4f07730541707420a4098f089b5e261b28931799c",
+    "parentReport": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\comparison.json",
+      "sha256": "82e52a296ca960a65ee803800cbeeb05a4769d1bcd0b96915cb5803d4a74030b"
+    },
+    "sourceAlgorithmsChanged": false,
+    "hardwareExecuted": false,
+    "rows": [
+      {
+        "id": "g000",
+        "name": "00-端口模式设置\\C语言",
+        "status": "BUILT",
+        "before": 54,
+        "new": 54,
+        "keil": 60,
+        "stc": 35,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g000\\mx251\\result.json",
+          "sha256": "74dcad8902921bd52f2844eeefa5d5beb48a01d2493337b6e1e63178f5eb4a37"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g003",
+        "name": "01.1-用P6口做跑马灯-入门版\\C语言",
+        "status": "BUILT",
+        "before": 174,
+        "new": 174,
+        "keil": 180,
+        "stc": 164,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g003\\mx251\\result.json",
+          "sha256": "daf537d5c1ed8343c5e9884fe3089a88d4d9efc5d1c7a0d8fd7639b0df02e3dc"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g005",
+        "name": "01.2-用P6口做跑马灯\\C语言",
+        "status": "BUILT",
+        "before": 190,
+        "new": 190,
+        "keil": 169,
+        "stc": 167,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g005\\mx251\\result.json",
+          "sha256": "f5da4fd7aba946423298ca0a06b6d569d44ba9742b12f8fa985206458e0b2543"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g007",
+        "name": "02-Timer0-Timer1-Timer2-Timer3-Timer4测试程序\\C语言",
+        "status": "BUILT",
+        "before": 294,
+        "new": 294,
+        "keil": 286,
+        "stc": 828,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g007\\mx251\\result.json",
+          "sha256": "622293c899b0dc443cd31d4fd2e92604fa9c6caabba2fb5d58b8332851aef63f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g009",
+        "name": "03-用P6，P7口驱动8个数码管\\C语言",
+        "status": "BUILT",
+        "before": 613,
+        "new": 598,
+        "keil": 536,
+        "stc": 1044,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g009\\mx251\\result.json",
+          "sha256": "71030862513decbcefcae3064615a830c2fb5c973f9abb62d678007da1ccfed5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g011",
+        "name": "04-利用T0,T1做外部计数器\\C语言",
+        "status": "BUILT",
+        "before": 560,
+        "new": 546,
+        "keil": 524,
+        "stc": 1018,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g011\\mx251\\result.json",
+          "sha256": "e1d370d095812dcbf221cc2ac8e70efe6484b6edee59b17c252370dc2d5de581"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g013",
+        "name": "05-利用定时器测量脉冲宽度\\C语言",
+        "status": "BUILT",
+        "before": 695,
+        "new": 695,
+        "keil": 514,
+        "stc": 1096,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g013\\mx251\\result.json",
+          "sha256": "d1391948507b5d06f9765bffd3b1510ee5f7ee6f6e89cd8183c14f4c5f51ef21"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g015",
+        "name": "06-外中断INT0-INT1-INT2-INT3- INT4测试\\C语言",
+        "status": "BUILT",
+        "before": 620,
+        "new": 606,
+        "keil": 542,
+        "stc": 1068,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g015\\mx251\\result.json",
+          "sha256": "2e2ad97d1563240408cfb73a86fe275c47f9376d60856029024e5f68add1fdf8"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g017",
+        "name": "07-睡眠-唤醒定时器唤醒\\C语言",
+        "status": "BUILT",
+        "before": 539,
+        "new": 498,
+        "keil": 562,
+        "stc": 1106,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g017\\mx251\\result.json",
+          "sha256": "53ca71877a17f437934eb79123e300928e3a1bbb987900620c0d657b06ee6da5"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g019",
+        "name": "08-睡眠-外部中断唤醒\\C语言",
+        "status": "BUILT",
+        "before": 628,
+        "new": 587,
+        "keil": 518,
+        "stc": 1061,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g019\\mx251\\result.json",
+          "sha256": "73df0345521456e234fab0c9f7b8357276bd116e5ee1617aace366de3087a7c7"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g021",
+        "name": "09-看门狗复位测试程序\\C语言",
+        "status": "BUILT",
+        "before": 410,
+        "new": 410,
+        "keil": 331,
+        "stc": 355,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g021\\mx251\\result.json",
+          "sha256": "64f7fdfe8b506f780adb5dd13a7a678bd7e8c2cd92000ac64e7de8bc5b2505c9"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g023",
+        "name": "10-串口1中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 409,
+        "new": 409,
+        "keil": 346,
+        "stc": 951,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g023\\mx251\\result.json",
+          "sha256": "03c1dc6457997e977b0db5645f4652e27878b95ff55c3d5e96bfd7d9b524e6c2"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g025",
+        "name": "11-串口2中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 425,
+        "new": 425,
+        "keil": 335,
+        "stc": 938,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g025\\mx251\\result.json",
+          "sha256": "feab8d8cfba11cf3bdab09809a57cc167ba08ac843cdf1ab6e0c1f975a461f9a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g027",
+        "name": "12-串口3中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 400,
+        "new": 400,
+        "keil": 333,
+        "stc": 945,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g027\\mx251\\result.json",
+          "sha256": "0a3d040d62280ca588de3e4d8472551d84a7d249bbf95c533cde30d0284ad052"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g029",
+        "name": "13-串口4中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 401,
+        "new": 401,
+        "keil": 333,
+        "stc": 945,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g029\\mx251\\result.json",
+          "sha256": "3db096c97123130f8765f0d6ae79bb61cc6a81193b1466f6845b23f357616858"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g031",
+        "name": "14.1-串口1串口2中断模式与电脑收发测试\\C语言",
+        "status": "BUILT",
+        "before": 712,
+        "new": 712,
+        "keil": 549,
+        "stc": 1242,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g031\\mx251\\result.json",
+          "sha256": "fc1eab43643f455b035f2e4fea3afd51f6e66ef873a7c55007bb208846a64254"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g033",
+        "name": "14.2-串口2与串口3通信测试程序",
+        "status": "BUILT",
+        "before": 803,
+        "new": 803,
+        "keil": 665,
+        "stc": 1345,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g033\\mx251\\result.json",
+          "sha256": "ee054a3364a856d968832b511070149de6d1a23177bb935b80344c7f3829502e"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g034",
+        "name": "15-IO行列扫描键盘数码管显示键值和调整时间\\C语言",
+        "status": "BUILT",
+        "before": 1083,
+        "new": 1081,
+        "keil": 961,
+        "stc": 1483,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g034\\mx251\\result.json",
+          "sha256": "575cf69f7de17c824b1e6a6d6cb7506a019ccd0d3c0308fb301227500f060265"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g036",
+        "name": "16-ADC键盘扫描数码管显示键值和调整时间\\C语言",
+        "status": "BUILT",
+        "before": 1160,
+        "new": 1158,
+        "keil": 1005,
+        "stc": 1620,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g036\\mx251\\result.json",
+          "sha256": "87d7c7c834fe28083c42df58952bb90646f1aa9a62c3161fd7ea27572544e988"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g038",
+        "name": "17-NTC测温度数码管显示\\C语言",
+        "status": "BUILT",
+        "before": 1236,
+        "new": 1236,
+        "keil": 1075,
+        "stc": 2482,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g038\\mx251\\result.json",
+          "sha256": "fbf319be7a444d4f1862c474d946b174fe767cb48321d3feb7d99b66ac5cccbb"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g040",
+        "name": "18-通过串口2发送命令读写EEPROM测试程序\\C语言",
+        "status": "BUILT",
+        "before": 1695,
+        "new": 1695,
+        "keil": 1596,
+        "stc": 3144,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g040\\mx251\\result.json",
+          "sha256": "2a9e2fd166ec5991ae1d48439ad00f27b9d24ef56e43fc6ef1afd31f40437ee7"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g042",
+        "name": "19-使用LVD低压检测中断保存EEPROM\\C语言",
+        "status": "BUILT",
+        "before": 1108,
+        "new": 1080,
+        "keil": 793,
+        "stc": 1616,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g042\\mx251\\result.json",
+          "sha256": "faaae54dba5507409bdc52ae3878cdf9bd854772fc83e805ac713ecdc4a6fb5d"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g044",
+        "name": "20-使用比较器检测低电压时保存数据到EEPROM\\C语言",
+        "status": "BUILT",
+        "before": 1312,
+        "new": 1284,
+        "keil": 956,
+        "stc": 1979,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g044\\mx251\\result.json",
+          "sha256": "e44022509a96c387ebddbed71fb2e5d0e02dbba09335872093ed37db20c252f3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g046",
+        "name": "23-利用P3.7做比较器正极输入源，内部1.19V或P3.6口做负极输入源\\C语言",
+        "status": "BUILT",
+        "before": 179,
+        "new": 179,
+        "keil": 160,
+        "stc": 698,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g046\\mx251\\result.json",
+          "sha256": "d8abfd20b5704f1909f6071c75f76c9c0f0329724ee13b37b7c9ade7b53032f0"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g048",
+        "name": "25-高级PWM1-PWM2-PWM3-PWM4，驱动P6口呼吸灯实验程序\\C语言",
+        "status": "BUILT",
+        "before": 941,
+        "new": 941,
+        "keil": 691,
+        "stc": 1046,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g048\\mx251\\result.json",
+          "sha256": "c574f69419991ede4683f06acce599952e341a2902b207ae6df10d19d11b922a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g050",
+        "name": "26-高级PWM5-PWM6-PWM7-PWM8输出测试程序\\C语言",
+        "status": "BUILT",
+        "before": 899,
+        "new": 899,
+        "keil": 649,
+        "stc": 1043,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g050\\mx251\\result.json",
+          "sha256": "c2c6eb5e323864dd5a4be92dda2c8502ebf59c4dd133e60795313b64bf6e4ff3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g052",
+        "name": "27-I2C从机中断模式与IO口模拟I2C主机进行自发自收\\C语言",
+        "status": "BUILT",
+        "before": 1129,
+        "new": 1129,
+        "keil": 896,
+        "stc": 1686,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g052\\mx251\\result.json",
+          "sha256": "673f3b525af935f6a4255c9b47c9cc8bae5125ce454f62a2faa7166b98d01a51"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g054",
+        "name": "28-I2C主机模式访问AT24C02程序\\C语言",
+        "status": "BUILT",
+        "before": 935,
+        "new": 935,
+        "keil": 742,
+        "stc": 1430,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g054\\mx251\\result.json",
+          "sha256": "f237b3ee3b6f7ef968dfd082aac4845c90042fc8fa41fe2017fc464d51f4520f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g056",
+        "name": "29-红外遥控接收程序(NEC码)-数码管显示用户地址和键值\\C语言",
+        "status": "BUILT",
+        "before": 736,
+        "new": 731,
+        "keil": 584,
+        "stc": 1240,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g056\\mx251\\result.json",
+          "sha256": "a6ee33a71cf60695699374461030a4911794a85ca0da58c17e59d4b82f8683a1"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g058",
+        "name": "30-红外发射程序(NEC码)-使用PWM4产生38KHz载波\\C语言",
+        "status": "BUILT",
+        "before": 928,
+        "new": 928,
+        "keil": 872,
+        "stc": 1461,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g058\\mx251\\result.json",
+          "sha256": "474039790938603306f5e5f2f4d56ed10db7ea681a0c76b4aa1ff0f41559f7a1"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g060",
+        "name": "31-IO扫描键红外发射-同时接收数码管显示用户码键值程序\\C语言",
+        "status": "BUILT",
+        "before": 1454,
+        "new": 1444,
+        "keil": 1248,
+        "stc": 1941,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g060\\mx251\\result.json",
+          "sha256": "bf0855ec1310a53f2de107f5615a0469dc9259cc477bd97aa6bf836c391cceb2"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g062",
+        "name": "32-硬件SPI访问FLASH-PM25LV040-串口2监控",
+        "status": "BUILT",
+        "before": 2942,
+        "new": 2942,
+        "keil": 2710,
+        "stc": 5351,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g062\\mx251\\result.json",
+          "sha256": "b17fea2e82cfb6cf19228f18c04e719a32f513db9e64a7fc183fc6a3675a8897"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g063",
+        "name": "33-IO模拟SPI访问FLASH-PM25LV040-串口2监控",
+        "status": "BUILT",
+        "before": 2917,
+        "new": 2917,
+        "keil": 2705,
+        "stc": 5318,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g063\\mx251\\result.json",
+          "sha256": "386f6ea477d85fb90788492c20f8eb9150107fc5ba3db3d2c03325a6c3de13ad"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g064",
+        "name": "34-P1.3做ADC-使用内部基准计算外部电压\\C语言",
+        "status": "BUILT",
+        "before": 774,
+        "new": 774,
+        "keil": 509,
+        "stc": 1139,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g064\\mx251\\result.json",
+          "sha256": "b2388c451b0ceb9e8da3b31d75867813b5c5bae22815f692ef09ad6ed11869c0"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g066",
+        "name": "35-板上的32K xdata测试程序",
+        "status": "BUILT",
+        "before": 34160,
+        "new": 34155,
+        "keil": 33903,
+        "stc": 35950,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g066\\mx251\\result.json",
+          "sha256": "8c82cf3edf4182165fb3b5091111ef4b99ad1cc114e9d4a03047c67ec36f1f59"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g067",
+        "name": "36.1-LCD1602显示程序",
+        "status": "BUILT",
+        "before": 787,
+        "new": 787,
+        "keil": 725,
+        "stc": 841,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g067\\mx251\\result.json",
+          "sha256": "1610d68b47b21eade124cd755405b06626a588ce6c868de48badf911d2b59004"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g068",
+        "name": "36.2-LCD128x64显示图形文字-ST7920",
+        "status": "BUILT",
+        "before": 1847,
+        "new": 1847,
+        "keil": 1791,
+        "stc": 2609,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g068\\mx251\\result.json",
+          "sha256": "c606324454bd0e98559e8cf3e71a87708d9d50dabe9c9ceb58921a0520ef234c"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g069",
+        "name": "37-2.4寸ILI9341驱动TFT显示屏实验程序\\Project",
+        "status": "BUILT",
+        "before": 19571,
+        "new": 19474,
+        "keil": 18449,
+        "stc": 31210,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g069\\mx251\\result.json",
+          "sha256": "dd2e287ff11bb066b595d865892ab7e66dee810ebbf78661296118f95166da7e"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g070",
+        "name": "38-2.4寸ILI9325驱动TFT显示屏实验程序-带触摸功能\\Project",
+        "status": "BUILT",
+        "before": 19331,
+        "new": 19236,
+        "keil": 19536,
+        "stc": 30227,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g070\\mx251\\result.json",
+          "sha256": "4279eaffe3ecc46908c71a2efecee23a9c08eba816681c66f6fee7378935db15"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g071",
+        "name": "39-通过USB发送命令读取ADC测试程序",
+        "status": "BUILT",
+        "before": 2849,
+        "new": 2547,
+        "keil": 1655,
+        "stc": 2988,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g071\\mx251\\result.json",
+          "sha256": "5f1a5c593d69804d124437fe5af3289402e1aea0b139bdeea3d7190c011712a3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g073",
+        "name": "41-软件修改内部RC主频\\C语言",
+        "status": "BUILT",
+        "before": 481,
+        "new": 481,
+        "keil": 477,
+        "stc": 461,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g073\\mx251\\result.json",
+          "sha256": "43058ad9edde20f8bd12a57c4bde7698b90b31e83d0746c72a81bedfac774390"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g075",
+        "name": "42-一线制温度传感器 DS18B20 测温\\C语言",
+        "status": "BUILT",
+        "before": 895,
+        "new": 895,
+        "keil": 1046,
+        "stc": 1579,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g075\\mx251\\result.json",
+          "sha256": "e1b28b047ba2869a5494c2aacace9dca94f51fe17dde9c50cf662739a765a72f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g077",
+        "name": "43-IO口推挽输出驱动有源蜂鸣器实验程序\\C语言",
+        "status": "BUILT",
+        "before": 437,
+        "new": 437,
+        "keil": 410,
+        "stc": 999,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g077\\mx251\\result.json",
+          "sha256": "503bc3408264c080dfeee0d3218e8af3df1aa107c7586e13dcd951d8d3809bb5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g079",
+        "name": "44-高级PWM输出两路互补SPWM\\C语言",
+        "status": "BUILT",
+        "before": 880,
+        "new": 880,
+        "keil": 762,
+        "stc": 1280,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g079\\mx251\\result.json",
+          "sha256": "bacf62c76e1c63bb218a59f63fa9904a50f4baa30dd6b9b95b5c0563987e096b"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g081",
+        "name": "45-内部RTC时钟程序\\C语言",
+        "status": "BUILT",
+        "before": 2151,
+        "new": 2112,
+        "keil": 2243,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g081\\mx251\\result.json",
+          "sha256": "693b090d3bf29925aaf22f59f5344a59d3e8fc6e23d0ec2a5e5cd3c23e824376"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g083",
+        "name": "46-MDU32–乘法和除法单元",
+        "status": "BUILT",
+        "before": 8291,
+        "new": 8291,
+        "keil": 1551,
+        "stc": 4750,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g083\\mx251\\result.json",
+          "sha256": "69d811524ab8ebf0aefa35549d74598b13771a6f1aa7ae3ad1916fb3c1abf1ba"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g084",
+        "name": "47-SPI互为主从-SS设置主从-串口透传",
+        "status": "BUILT",
+        "before": 756,
+        "new": 756,
+        "keil": 594,
+        "stc": 1292,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g084\\mx251\\result.json",
+          "sha256": "2e621bcc45ee01f3061cc033dab648918b02c690751e11e65fd59b3008b9febc"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g085",
+        "name": "48-SPI互为主从-主模式忽略SS-串口透传",
+        "status": "BUILT",
+        "before": 761,
+        "new": 761,
+        "keil": 600,
+        "stc": 1300,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g085\\mx251\\result.json",
+          "sha256": "c769b8adfddba03588073809e21ec97ff1994797674bccf2982fac30f54eba82"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g086",
+        "name": "49-CAN总线标准帧收发测试\\C语言",
+        "status": "BUILT",
+        "before": 1795,
+        "new": 1795,
+        "keil": 1543,
+        "stc": 3150,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g086\\mx251\\result.json",
+          "sha256": "39f40ad8adb2c4ab966d05ea449ac0c06d6f7fdb88499365689df6729da9dd72"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g088",
+        "name": "50-CAN总线扩展帧收发测试\\C语言",
+        "status": "BUILT",
+        "before": 1796,
+        "new": 1796,
+        "keil": 1545,
+        "stc": 3158,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g088\\mx251\\result.json",
+          "sha256": "6612704f843d9faa4f2adcda26e89e67f623e7c6ef57cc765c05dcbaf4b676ef"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g090",
+        "name": "51-CAN1-CAN2总线标准帧扩展帧同时使用收发测试",
+        "status": "BUILT",
+        "before": 4003,
+        "new": 4003,
+        "keil": 3325,
+        "stc": 7886,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g090\\mx251\\result.json",
+          "sha256": "b3b05c5c3e488b5b36ed95a73dbad2c8b51b126d8778f793e31fae50955ba922"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g091",
+        "name": "52-CAN1-CAN2同时连接总线最多可用4组过滤器",
+        "status": "BUILT",
+        "before": 4214,
+        "new": 4214,
+        "keil": 3471,
+        "stc": 8129,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g091\\mx251\\result.json",
+          "sha256": "20f8e3f6dc81a579754ecff85e93dd1c19b8ead941f806ec3f9dd650ec7ad58a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g092",
+        "name": "53-UART转LIN总线报文测试程序",
+        "status": "BUILT",
+        "before": 1077,
+        "new": 1071,
+        "keil": 920,
+        "stc": 2087,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g092\\mx251\\result.json",
+          "sha256": "6b3922bc70e90233b79740e659686b7c255053d2d17d59f2ca48e5b3e422e0a3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g093",
+        "name": "54-LIN总线从机收发测试",
+        "status": "BUILT",
+        "before": 1386,
+        "new": 1346,
+        "keil": 1694,
+        "stc": 2608,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g093\\mx251\\result.json",
+          "sha256": "75a86cb27292add35542208cba58b94cd6aec639a48dc6d610bd3bb2009cd6a6"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g094",
+        "name": "55-LIN总线主机收发测试",
+        "status": "BUILT",
+        "before": 1418,
+        "new": 1378,
+        "keil": 1706,
+        "stc": 2726,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g094\\mx251\\result.json",
+          "sha256": "c3f2fc4fe3c1e324b8588acb6e313c074ac142ca8dd67a5bbb1699c22e34b937"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g095",
+        "name": "56-LIN总线从机收发测试-USART",
+        "status": "BUILT",
+        "before": 1592,
+        "new": 1530,
+        "keil": 1756,
+        "stc": 3046,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g095\\mx251\\result.json",
+          "sha256": "02dede1bc9949b7fe3174957ba6dbacd3fc53299ffccb1d0a4c2e2ad18d432f1"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g096",
+        "name": "57-LIN总线主机收发测试-USART",
+        "status": "BUILT",
+        "before": 1402,
+        "new": 1402,
+        "keil": 1718,
+        "stc": 2282,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g096\\mx251\\result.json",
+          "sha256": "3cc72934ee44bc2dc45e5cdf813e57fbb0edfb1b18549b70e4deb32f994d1fef"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g097",
+        "name": "58-LIN总线从机收发测试-USART2",
+        "status": "BUILT",
+        "before": 1602,
+        "new": 1540,
+        "keil": 1764,
+        "stc": 3053,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g097\\mx251\\result.json",
+          "sha256": "bf185ba39f1fd9e4f77919e08c5db12aeeb1b7b775210a0bb0dadac726ef2df3"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "main",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g098",
+        "name": "59-LIN总线主机收发测试-USART2",
+        "status": "BUILT",
+        "before": 1408,
+        "new": 1408,
+        "keil": 1720,
+        "stc": 2275,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g098\\mx251\\result.json",
+          "sha256": "509203b200f68ee2cc8097646767425f3d169f69b6fb6c9028647d9054452650"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g099",
+        "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换-串口返回结果",
+        "status": "BUILT",
+        "before": 916,
+        "new": 916,
+        "keil": 1198,
+        "stc": 1820,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g099\\mx251\\result.json",
+          "sha256": "77e0cba9b792cba2bcc5713f138a2fca546b12f2bf93632d6aaa9cc9cdb2d4c3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g100",
+        "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果",
+        "status": "BUILT",
+        "before": 1146,
+        "new": 1146,
+        "keil": 1288,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g100\\mx251\\result.json",
+          "sha256": "9cde79ee618236502121b73512919cb70462603ecb8aa0e42be39eca15c1445d"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g101",
+        "name": "60-DMA-ADC采样数据自动存储\\16路ADC转换使用DMA-串口返回结果-结构体存储结果",
+        "status": "BUILT",
+        "before": 1311,
+        "new": 1311,
+        "keil": 1285,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g101\\mx251\\result.json",
+          "sha256": "3e9732a6e2fe6ee31f1e5f8a30ef340ebfacf5877458c9f2290aa9e64272cc5b"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g102",
+        "name": "61-DMA-M2M存储器与存储器之间读写",
+        "status": "BUILT",
+        "before": 1225,
+        "new": 1225,
+        "keil": 1279,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g102\\mx251\\result.json",
+          "sha256": "2338805360ad44daec8615c6028adaccd0c153496dfb6a751605924ea96e12b5"
+        },
+        "refusalsBefore": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ],
+        "refusalsAfter": [
+          [
+            "u0",
+            "UartInit",
+            "ordered-asm-core-state-write"
+          ]
+        ]
+      },
+      {
+        "id": "g103",
+        "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI使用DMA访问FLASH-串口2监控",
+        "status": "BUILT",
+        "before": 3930,
+        "new": 3930,
+        "keil": 3313,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g103\\mx251\\result.json",
+          "sha256": "93a42306c39b43a70e7fa84cee368efb5ba35bb0dafd3f5378f6cb22a421969d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g104",
+        "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI访问FLASH-串口2监控-2T",
+        "status": "BUILT",
+        "before": 3643,
+        "new": 3643,
+        "keil": 3194,
+        "stc": 9424,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g104\\mx251\\result.json",
+          "sha256": "f305da4b3b55322d82060593694a2778d9d7b4b60df2f5491c0dff78c81e4245"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g105",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口1使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1056,
+        "new": 1056,
+        "keil": 1371,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g105\\mx251\\result.json",
+          "sha256": "6cb3dbb684f29ec7781ef1451a1a543225a8376d7a7dd0f9226f04dac59e774d"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g106",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口2使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1037,
+        "new": 1037,
+        "keil": 1357,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g106\\mx251\\result.json",
+          "sha256": "87f01ae14ebd6bf28449e7a972174b9386bd965532e9ca676ff34ddee351aa18"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g107",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口3使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1035,
+        "new": 1035,
+        "keil": 1352,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g107\\mx251\\result.json",
+          "sha256": "e2c4d29785ef4263d4b53d9ad7ef436813977a9fb00a68ee79ef8de2d8832ec3"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g108",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发不定长数据-软件超时",
+        "status": "BUILT",
+        "before": 1670,
+        "new": 1670,
+        "keil": 1699,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g108\\mx251\\result.json",
+          "sha256": "88a0098527a5be87d664012b9f97814d9ba5c9d2f9758083af1d72aed087d06e"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g109",
+        "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发测试",
+        "status": "BUILT",
+        "before": 1034,
+        "new": 1034,
+        "keil": 1351,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g109\\mx251\\result.json",
+          "sha256": "3508e5f0af5e2929c8999270f2dfba9bb3690c238393064121de04e068fffe33"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g110",
+        "name": "64-DMA综合应用-SPI互为主从-M2M-串口透传",
+        "status": "BUILT",
+        "before": 1553,
+        "new": 1553,
+        "keil": 1848,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g110\\mx251\\result.json",
+          "sha256": "a9edf69812babee6ce16a5a6cabcdeef68adb5c7332d4b0895b6cf481ede321a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g111",
+        "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_6800_DMA_8bit_ST7920",
+        "status": "BUILT",
+        "before": 2227,
+        "new": 2227,
+        "keil": 1990,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g111\\mx251\\result.json",
+          "sha256": "b454cd3be7a62c71ceb33ecaad3176544915192c9ace29d01d973cf215d58578"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g112",
+        "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_DMA_8bit_ILI9341",
+        "status": "BUILT",
+        "before": 5636,
+        "new": 5636,
+        "keil": 4976,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g112\\mx251\\result.json",
+          "sha256": "7a1c14dcefc81964d20ae25b439024c0da3e58af9b7ae36f27ccc7d4dafb0ce5"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g113",
+        "name": "65-DMA-LCM液晶屏接口测试\\LCM_Test_8080_LCM_8bit_ILI9341",
+        "status": "BUILT",
+        "before": 5433,
+        "new": 5433,
+        "keil": 4838,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g113\\mx251\\result.json",
+          "sha256": "1ccccb3411f2903072f032d0f913e6719b56bbce801e332a04c1b1efdc390dd2"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g114",
+        "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C主机模式读写AT24C02-串口监控",
+        "status": "BUILT",
+        "before": 2729,
+        "new": 2729,
+        "keil": 2533,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g114\\mx251\\result.json",
+          "sha256": "d56f9f73fda9409966afcc6839a27b709b98daa040be7e6d97927de1582ab119"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g115",
+        "name": "66-DMA-I2C与存储器数据自动收发\\DMA-I2C从机中断模式与IO口模拟I2C主机进行自发自收",
+        "status": "BUILT",
+        "before": 1700,
+        "new": 1700,
+        "keil": 1484,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g115\\mx251\\result.json",
+          "sha256": "6f944300bc20c9f62b742a767805ea5440d6f8f7a6147be487eee7b8219d1c8f"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g116",
+        "name": "67-硬件高速HSSPI访问FLASH-PM25LV040-串口2监控",
+        "status": "BUILT",
+        "before": 3761,
+        "new": 3761,
+        "keil": 3340,
+        "stc": 9713,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g116\\mx251\\result.json",
+          "sha256": "37da420465d6d26eee6b8a7825207e57b193b627a2d71f900f761f7fd87be1bf"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g117",
+        "name": "68-高速HSPWM1-HSPWM2-HSPWM3-HSPWM4，驱动P6口呼吸灯实验程序",
+        "status": "BUILT",
+        "before": 1035,
+        "new": 1035,
+        "keil": 826,
+        "stc": 1614,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g117\\mx251\\result.json",
+          "sha256": "f5ad8396f7327293c3a5707ed53833d839f6c82ce54e35ac376e50c1b0e1e3fa"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g118",
+        "name": "69-HID(Human Interface Device)协议范例",
+        "status": "BUILT",
+        "before": 3123,
+        "new": 3124,
+        "keil": 2633,
+        "stc": 3747,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g118\\mx251\\result.json",
+          "sha256": "9d7965981dd36c772ad535e9f7fb7f5c6502a28e97195fe1e8d34a939bd3b0fb"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g119",
+        "name": "70-CDC(Communication Device Class)协议范例",
+        "status": "BUILT",
+        "before": 4344,
+        "new": 4329,
+        "keil": 3531,
+        "stc": 4677,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g119\\mx251\\result.json",
+          "sha256": "748dbca29a5aec8cb72c728bc96ae8871f69129039a615e5919acf42d28309ee"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g120",
+        "name": "71-基于HID协议的USB键盘范例",
+        "status": "BUILT",
+        "before": 3539,
+        "new": 3535,
+        "keil": 3040,
+        "stc": 4313,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g120\\mx251\\result.json",
+          "sha256": "188b0f09b464b486627a84887120bc1bf223abc7d18227a025cfee858469e6cd"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g121",
+        "name": "72-基于HID协议的USB鼠标范例",
+        "status": "BUILT",
+        "before": 3186,
+        "new": 3186,
+        "keil": 2687,
+        "stc": 3809,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g121\\mx251\\result.json",
+          "sha256": "2450a34097a1ce0faea2572c844a1b3c544dcee9f3e5652d5538948fd285aaaf"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g122",
+        "name": "73-基于WINUSB协议的范例",
+        "status": "BUILT",
+        "before": 3378,
+        "new": 3379,
+        "keil": 2951,
+        "stc": 4014,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g122\\mx251\\result.json",
+          "sha256": "a88c348088eeb1be2af2135cc65187a0569fbdd74c3c1898cb5ee0626894ea4e"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g123",
+        "name": "74-MSC(Mass Storage Class)协议范例",
+        "status": "BUILT",
+        "before": 4771,
+        "new": 4772,
+        "keil": 4061,
+        "stc": 6459,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g123\\mx251\\result.json",
+          "sha256": "9a9594567a4bc434f96f2c5decce004862eea450114e42d924991be457f0ec01"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g124",
+        "name": "75-通过定时器周期性调度任务综合例程",
+        "status": "BUILT",
+        "before": 2886,
+        "new": 2714,
+        "keil": 2174,
+        "stc": 4342,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g124\\mx251\\result.json",
+          "sha256": "3fef129066c74e458bb75ccdcf3bb85bf6c9ee37805b10e41e0594cfce735a0a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g126",
+        "name": "77-USART1复用SPI_使用DMA和寄存器方式访问Flash例程",
+        "status": "BUILT",
+        "before": 1665,
+        "new": 1665,
+        "keil": 1809,
+        "stc": 1613,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g126\\mx251\\result.json",
+          "sha256": "1998707b6ad6799ba9bfc1c7eed1f980b58add02555e480c14cba9e6c4218dae"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g127",
+        "name": "78-USART1复用SPI与USART2复用SPI相互通信例程",
+        "status": "BUILT",
+        "before": 527,
+        "new": 527,
+        "keil": 499,
+        "stc": 1186,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g127\\mx251\\result.json",
+          "sha256": "ff8f5ef1e704f362cbf07ad5ee94ce17c99ceaad7b86c00346548a0dffe01c4a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g128",
+        "name": "79-UART-SPI-LCM_DMA_交替使用下载显示图片例程",
+        "status": "BUILT",
+        "before": 5416,
+        "new": 5416,
+        "keil": 4616,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g128\\mx251\\result.json",
+          "sha256": "e6681337aa6ce2cd7b7b5aba4fa9f17837cef71db40e4d39acdf34144cf055c0"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g129",
+        "name": "80-高级PWM输出-周期可调-脉冲计数",
+        "status": "BUILT",
+        "before": 462,
+        "new": 462,
+        "keil": 395,
+        "stc": 924,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g129\\mx251\\result.json",
+          "sha256": "e1d52616cb52cb0d09c9395d5796e73893fdf4a0dec8a3b329ee132d0b8f9f81"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g130",
+        "name": "81-内部RTC时钟低功耗休眠唤醒-比较器检测电压程序",
+        "status": "BUILT",
+        "before": 1299,
+        "new": 1299,
+        "keil": 1501,
+        "stc": null,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g130\\mx251\\result.json",
+          "sha256": "b53752dbf78cc937bc2574a9dad57d85f52ecc72462c8cf528333c3bfdd4b86a"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g133",
+        "name": "83-老梁示波器-CDC虚拟显示",
+        "status": "BUILT",
+        "before": 8595,
+        "new": 8591,
+        "keil": 6979,
+        "stc": 9463,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g133\\mx251\\result.json",
+          "sha256": "0a4e239eaeaf899fa24a8f9c431ad8f85888645c1f678bcdfd8947bf4ad26951"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g134",
+        "name": "84-USB鼠标-键盘复合设备例程",
+        "status": "BUILT",
+        "before": 4180,
+        "new": 4176,
+        "keil": 3523,
+        "stc": 5016,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g134\\mx251\\result.json",
+          "sha256": "5457f4bdee6751316a9fd8dcac1ab5edb5883b84ffb06844a2e3455c458b36fb"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g135",
+        "name": "85-老梁示波器-信号发生器",
+        "status": "BUILT",
+        "before": 445,
+        "new": 445,
+        "keil": 416,
+        "stc": 872,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g135\\mx251\\result.json",
+          "sha256": "95b9ca9433c5bc8072d5c2d627824e6f5095404eae8a41df80c24e7a41e1ad89"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g136",
+        "name": "86.1-串口绘图-使用UART1接口",
+        "status": "BUILT",
+        "before": 501,
+        "new": 501,
+        "keil": 435,
+        "stc": 949,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g136\\mx251\\result.json",
+          "sha256": "817bc7e7b0c7395744a222e08b688e146e72d386c7ddaeb15b5ae1800e6c6593"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g138",
+        "name": "87.1-利用高级PWMA+PWMB溢出中断做2个定时器",
+        "status": "BUILT",
+        "before": 353,
+        "new": 353,
+        "keil": 379,
+        "stc": 1061,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g138\\mx251\\result.json",
+          "sha256": "d386875d9550b194f1691bf318a3fe17361e436b582410381d2b58970a7d59ca"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g139",
+        "name": "87.2-利用高级PWMA+PWMB实现8个定时器",
+        "status": "BUILT",
+        "before": 1386,
+        "new": 1386,
+        "keil": 887,
+        "stc": 1477,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g139\\mx251\\result.json",
+          "sha256": "19ba2e6d5bf0353f296b5234f1a7b11b87011fb1322b76f1fc67461f08310e80"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      },
+      {
+        "id": "g141",
+        "name": "89-USB CDC转双串口-做自动停电上电烧录器",
+        "status": "BUILT",
+        "before": 5768,
+        "new": 5749,
+        "keil": 4656,
+        "stc": 6499,
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g141\\mx251\\result.json",
+          "sha256": "452158eeb4fdd3420175f5938867091161a90952c67adbe097d34e70ca473168"
+        },
+        "refusalsBefore": [],
+        "refusalsAfter": []
+      }
+    ],
+    "summary": {
+      "rebuilt": 97,
+      "beforeBytes": 242146,
+      "afterBytes": 240983,
+      "smaller": 27,
+      "larger": 3,
+      "unchanged": 67,
+      "refusalReasons": {
+        "ordered-asm-core-state-write": 10
+      },
+      "formerlyBlockedMains": {
+        "refusal:ordered-asm-core-state-write": 7
+      },
+      "keil": {
+        "count": 97,
+        "at110": 40,
+        "at120": 70,
+        "new110": [],
+        "new120": [
+          "g019"
+        ],
+        "lost110": [],
+        "lost120": []
+      },
+      "stc": {
+        "count": 79,
+        "at110": 75,
+        "at120": 77,
+        "new110": [],
+        "new120": [],
+        "lost110": [],
+        "lost120": []
+      }
+    }
+  },
+  "tests": {
+    "members": {
+      "status": "PASS",
+      "rows": [
+        {
+          "model": "small",
+          "optimization": "size",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "small",
+          "optimization": "speed",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "small",
+          "optimization": "speed",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "aliasReload": true,
+          "otherSpacesIdentical": true
+        }
+      ],
+      "compilerSha256": "5c18dcbd15388721ecd827c4f07730541707420a4098f089b5e261b28931799c",
+      "hardwareExecuted": false
+    },
+    "scalars": {
+      "status": "PASS",
+      "rows": [
+        {
+          "model": "small",
+          "optimization": "size",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "small",
+          "optimization": "speed",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "small",
+          "optimization": "speed",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "stackAuto": false,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "stackAuto": true,
+          "volatilePhysicalOrder": true,
+          "farAndCodeIdentical": true
+        }
+      ],
+      "compilerSha256": "5c18dcbd15388721ecd827c4f07730541707420a4098f089b5e261b28931799c"
+    },
+    "costs": {
+      "status": "PASS",
+      "compilerSha256": "5c18dcbd15388721ecd827c4f07730541707420a4098f089b5e261b28931799c",
+      "baselineSha256": "4e42d6a4ddcabd61ed67f8ee33a2d7140ca9e07e0bd617f72bacbc83debe1861",
+      "sourceSha256": "550a99ce9206192890722e1cf70c6691c2f31363f15a58fa0e377844e248a99b",
+      "configurations": [
+        {
+          "abi": 2,
+          "model": "small",
+          "optimization": "size",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "189",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "78",
+                "wide-ins": "14",
+                "legacy-ins": "30",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "183",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "67",
+                "wide-ins": "14",
+                "legacy-ins": "25",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 2,
+          "model": "small",
+          "optimization": "speed",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "189",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "78",
+                "wide-ins": "14",
+                "legacy-ins": "30",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "183",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "67",
+                "wide-ins": "14",
+                "legacy-ins": "25",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 2,
+          "model": "large",
+          "optimization": "size",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "189",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "74",
+                "wide-ins": "14",
+                "legacy-ins": "27",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "183",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "63",
+                "wide-ins": "14",
+                "legacy-ins": "22",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 2,
+          "model": "large",
+          "optimization": "speed",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "189",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "74",
+                "wide-ins": "14",
+                "legacy-ins": "27",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "183",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "48",
+                "legacy-bytes": "63",
+                "wide-ins": "14",
+                "legacy-ins": "22",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 4,
+          "model": "small",
+          "optimization": "size",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "186",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "68",
+                "wide-ins": "12",
+                "legacy-ins": "25",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "180",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "57",
+                "wide-ins": "12",
+                "legacy-ins": "20",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 4,
+          "model": "small",
+          "optimization": "speed",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "186",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "68",
+                "wide-ins": "12",
+                "legacy-ins": "25",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "180",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "57",
+                "wide-ins": "12",
+                "legacy-ins": "20",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 4,
+          "model": "large",
+          "optimization": "size",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "186",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "68",
+                "wide-ins": "12",
+                "legacy-ins": "25",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "180",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "57",
+                "wide-ins": "12",
+                "legacy-ins": "20",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        },
+        {
+          "abi": 4,
+          "model": "large",
+          "optimization": "speed",
+          "costs": {
+            "parent": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "186",
+                "wide-ins": "77",
+                "legacy-ins": "74",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "68",
+                "wide-ins": "12",
+                "legacy-ins": "25",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 9
+            },
+            "new": {
+              "apply_feature": {
+                "selected": "legacy",
+                "wide-bytes": "198",
+                "legacy-bytes": "180",
+                "wide-ins": "77",
+                "legacy-ins": "71",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "edata_spaces": {
+                "selected": "wide",
+                "wide-bytes": "42",
+                "legacy-bytes": "57",
+                "wide-ins": "12",
+                "legacy-ins": "20",
+                "wide-peak": "0",
+                "legacy-peak": "0",
+                "unknown": "0/0"
+              },
+              "assembledEdataMoves": 11
+            }
+          }
+        }
+      ]
+    }
+  },
+  "userStress": {
+    "status": "PASS",
+    "compilerSha256": "5c18dcbd15388721ecd827c4f07730541707420a4098f089b5e261b28931799c",
+    "configurations": 9,
+    "translationUnits": 63,
+    "targets": [
+      "STC32G12K128",
+      "AI8051U-34K64-32",
+      "Independent251"
+    ],
+    "identicalPureCObjects": true,
+    "valueLimit": 128,
+    "nodeLimit": 512,
+    "source": "854b605847ebaec1675b8178db341f1201c4f1d127310391f2966f54c7545250",
+    "rows": [
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "callback",
+        "codeBytes": 370,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "giant",
+        "codeBytes": 7349,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "callback",
+        "codeBytes": 370,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "giant",
+        "codeBytes": 7349,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "callback",
+        "codeBytes": 370,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "giant",
+        "codeBytes": 7349,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "small",
+        "optimization": "speed",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "STC32G12K128",
+        "model": "large",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "AI8051U-34K64-32",
+        "model": "large",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "bits",
+        "codeBytes": 1008,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "callback",
+        "codeBytes": 356,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "dispatch",
+        "codeBytes": 273,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "callback_xor",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "fields",
+        "codeBytes": 613,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "fields_clean",
+            "wide"
+          ],
+          [
+            "fields_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "giant",
+        "codeBytes": 13058,
+        "refusals": [
+          [
+            "giant_messy",
+            "value-capacity"
+          ]
+        ],
+        "admissions": [],
+        "backendChoices": []
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "parser",
+        "codeBytes": 448,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "parser_clean",
+            "wide"
+          ],
+          [
+            "parser_messy",
+            "wide"
+          ]
+        ]
+      },
+      {
+        "target": "Independent251",
+        "model": "large",
+        "optimization": "size",
+        "unit": "ring",
+        "codeBytes": 571,
+        "refusals": [],
+        "admissions": [],
+        "backendChoices": [
+          [
+            "ring_messy",
+            "wide"
+          ]
+        ]
+      }
+    ]
+  },
+  "hostStress": {
+    "status": "PASS",
+    "evaluations": 3072,
+    "equivalentPairs": 1536,
+    "compiler": "E:\\MCU\\MINGW\\mingw64\\bin\\gcc.exe",
+    "unsignedWidths": [
+      8,
+      16,
+      32
+    ],
+    "seedRange": [
+      0,
+      255
+    ]
+  },
+  "identicalStressObjects": [
+    "AI8051U-34K64-32-large-size\\bits.rel",
+    "AI8051U-34K64-32-large-size\\callback.rel",
+    "AI8051U-34K64-32-large-size\\dispatch.rel",
+    "AI8051U-34K64-32-large-size\\fields.rel",
+    "AI8051U-34K64-32-large-size\\giant.rel",
+    "AI8051U-34K64-32-large-size\\parser.rel",
+    "AI8051U-34K64-32-large-size\\ring.rel",
+    "AI8051U-34K64-32-small-size\\bits.rel",
+    "AI8051U-34K64-32-small-size\\callback.rel",
+    "AI8051U-34K64-32-small-size\\dispatch.rel",
+    "AI8051U-34K64-32-small-size\\fields.rel",
+    "AI8051U-34K64-32-small-size\\giant.rel",
+    "AI8051U-34K64-32-small-size\\parser.rel",
+    "AI8051U-34K64-32-small-size\\ring.rel",
+    "AI8051U-34K64-32-small-speed\\bits.rel",
+    "AI8051U-34K64-32-small-speed\\callback.rel",
+    "AI8051U-34K64-32-small-speed\\dispatch.rel",
+    "AI8051U-34K64-32-small-speed\\fields.rel",
+    "AI8051U-34K64-32-small-speed\\giant.rel",
+    "AI8051U-34K64-32-small-speed\\parser.rel",
+    "AI8051U-34K64-32-small-speed\\ring.rel",
+    "Independent251-large-size\\bits.rel",
+    "Independent251-large-size\\callback.rel",
+    "Independent251-large-size\\dispatch.rel",
+    "Independent251-large-size\\fields.rel",
+    "Independent251-large-size\\giant.rel",
+    "Independent251-large-size\\parser.rel",
+    "Independent251-large-size\\ring.rel",
+    "Independent251-small-size\\bits.rel",
+    "Independent251-small-size\\callback.rel",
+    "Independent251-small-size\\dispatch.rel",
+    "Independent251-small-size\\fields.rel",
+    "Independent251-small-size\\giant.rel",
+    "Independent251-small-size\\parser.rel",
+    "Independent251-small-size\\ring.rel",
+    "Independent251-small-speed\\bits.rel",
+    "Independent251-small-speed\\callback.rel",
+    "Independent251-small-speed\\dispatch.rel",
+    "Independent251-small-speed\\fields.rel",
+    "Independent251-small-speed\\giant.rel",
+    "Independent251-small-speed\\parser.rel",
+    "Independent251-small-speed\\ring.rel",
+    "STC32G12K128-large-size\\bits.rel",
+    "STC32G12K128-large-size\\callback.rel",
+    "STC32G12K128-large-size\\dispatch.rel",
+    "STC32G12K128-large-size\\fields.rel",
+    "STC32G12K128-large-size\\giant.rel",
+    "STC32G12K128-large-size\\parser.rel",
+    "STC32G12K128-large-size\\ring.rel",
+    "STC32G12K128-small-size\\bits.rel",
+    "STC32G12K128-small-size\\callback.rel",
+    "STC32G12K128-small-size\\dispatch.rel",
+    "STC32G12K128-small-size\\fields.rel",
+    "STC32G12K128-small-size\\giant.rel",
+    "STC32G12K128-small-size\\parser.rel",
+    "STC32G12K128-small-size\\ring.rel",
+    "STC32G12K128-small-speed\\bits.rel",
+    "STC32G12K128-small-speed\\callback.rel",
+    "STC32G12K128-small-speed\\dispatch.rel",
+    "STC32G12K128-small-speed\\fields.rel",
+    "STC32G12K128-small-speed\\giant.rel",
+    "STC32G12K128-small-speed\\parser.rel",
+    "STC32G12K128-small-speed\\ring.rel"
+  ],
+  "changedStressObjects": [],
+  "hardware": {
+    "status": "NOT_RUN",
+    "reason": "STC-Link1D enumeration returned no devices; user will connect later",
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "b5d50d7103ff8aea5016e1e923d44552296945b05b62b70fe9f2e24bcb82e397"
+    },
+    "reference": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\board\\reference.json",
+      "sha256": "ea9749685a12008f6bc6ed2b2f85e77a0ab4511c162e0dfc4f70f8f356955907"
+    },
+    "referenceSource": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-20261115\\final\\host-isr\\reference.json",
+      "sha256": "ea9749685a12008f6bc6ed2b2f85e77a0ab4511c162e0dfc4f70f8f356955907"
+    },
+    "expectedCases": 256,
+    "expectedTimerInterruptsPerFullSet": 2048,
+    "codeBytes": 3718,
+    "timingQualified": false,
+    "inheritedScalarTest": {
+      "status": "NOT_RUN",
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\scalar-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6d5d51917f5d1e8300563b1f42828b38912a98e0362664429e63a9a9857c867c"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\scalar-board\\reference.json",
+        "sha256": "48db756c747145df8e86c9aca3dd43bc9a89fd580b71a16a480d3a8089714d6b"
+      },
+      "expectedCases": 1024,
+      "codeBytes": 4684
+    }
+  },
+  "attribution": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\function-attribution.json",
+    "sha256": "cffb3e452b4fc833499f40e130a893738350ed6646206d3ffe93ec434aca8b66"
+  },
+  "functionChanges": [
+    {
+      "project": "g009",
+      "unit": "u0",
+      "name": "_DisplayRTC",
+      "before": 122,
+      "after": 107,
+      "delta": -15,
+      "isr": false
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "name": "_DisplayScan",
+      "before": 238,
+      "after": 224,
+      "delta": -14,
+      "isr": false
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "name": "_DisplayScan",
+      "before": 238,
+      "after": 224,
+      "delta": -14,
+      "isr": false
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "name": "_main",
+      "before": 316,
+      "after": 275,
+      "delta": -41,
+      "isr": false
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "name": "_main",
+      "before": 338,
+      "after": 297,
+      "delta": -41,
+      "isr": false
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "name": "_DisplayRTC",
+      "before": 99,
+      "after": 97,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "name": "_DisplayRTC",
+      "before": 99,
+      "after": 97,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "name": "_main",
+      "before": 379,
+      "after": 369,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "name": "_LVD_Routine",
+      "before": 117,
+      "after": 99,
+      "delta": -18,
+      "isr": true
+    },
+    {
+      "project": "g044",
+      "unit": "u0",
+      "name": "_CMP_Isr",
+      "before": 365,
+      "after": 337,
+      "delta": -28,
+      "isr": true
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "name": "_main",
+      "before": 237,
+      "after": 232,
+      "delta": -5,
+      "isr": false
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "name": "_main",
+      "before": 324,
+      "after": 314,
+      "delta": -10,
+      "isr": false
+    },
+    {
+      "project": "g066",
+      "unit": "u0",
+      "name": "_Xdata_Test",
+      "before": 95,
+      "after": 90,
+      "delta": -5,
+      "isr": false
+    },
+    {
+      "project": "g069",
+      "unit": "u0",
+      "name": "_LCD_DrawLine",
+      "before": 182,
+      "after": 186,
+      "delta": 4,
+      "isr": false
+    },
+    {
+      "project": "g069",
+      "unit": "u0",
+      "name": "__draw_circle_8",
+      "before": 196,
+      "after": 204,
+      "delta": 8,
+      "isr": false
+    },
+    {
+      "project": "g069",
+      "unit": "u0",
+      "name": "_Fill_Triangel",
+      "before": 769,
+      "after": 767,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g069",
+      "unit": "u0",
+      "name": "_LCD_ShowChar",
+      "before": 495,
+      "after": 494,
+      "delta": -1,
+      "isr": false
+    },
+    {
+      "project": "g069",
+      "unit": "u0",
+      "name": "_GUI_DrawFont16",
+      "before": 708,
+      "after": 697,
+      "delta": -11,
+      "isr": false
+    },
+    {
+      "project": "g070",
+      "unit": "u0",
+      "name": "_Fill_Triangel",
+      "before": 767,
+      "after": 769,
+      "delta": 2,
+      "isr": false
+    },
+    {
+      "project": "g070",
+      "unit": "u0",
+      "name": "_Show_Str",
+      "before": 469,
+      "after": 467,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "name": "_UsbInit",
+      "before": 94,
+      "after": 91,
+      "delta": -3,
+      "isr": false
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "name": "_usb_isr",
+      "before": 1905,
+      "after": 1606,
+      "delta": -299,
+      "isr": true
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "name": "_DisplayRTC",
+      "before": 199,
+      "after": 160,
+      "delta": -39,
+      "isr": false
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "name": "_main",
+      "before": 338,
+      "after": 332,
+      "delta": -6,
+      "isr": false
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "name": "_main",
+      "before": 414,
+      "after": 374,
+      "delta": -40,
+      "isr": false
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "name": "_main",
+      "before": 414,
+      "after": 374,
+      "delta": -40,
+      "isr": false
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "name": "_main",
+      "before": 579,
+      "after": 517,
+      "delta": -62,
+      "isr": false
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "name": "_main",
+      "before": 579,
+      "after": 517,
+      "delta": -62,
+      "isr": false
+    },
+    {
+      "project": "g118",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 113,
+      "after": 109,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 216,
+      "after": 221,
+      "delta": 5,
+      "isr": false
+    },
+    {
+      "project": "g119",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 137,
+      "after": 133,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "name": "_uart_init",
+      "before": 73,
+      "after": 69,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "name": "_uart_polling",
+      "before": 345,
+      "after": 338,
+      "delta": -7,
+      "isr": false
+    },
+    {
+      "project": "g120",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 115,
+      "after": 111,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g121",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 115,
+      "after": 111,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 204,
+      "after": 208,
+      "delta": 4,
+      "isr": false
+    },
+    {
+      "project": "g122",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 127,
+      "after": 123,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 216,
+      "after": 221,
+      "delta": 5,
+      "isr": false
+    },
+    {
+      "project": "g123",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 115,
+      "after": 111,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "name": "_usb_get_status",
+      "before": 216,
+      "after": 221,
+      "delta": 5,
+      "isr": false
+    },
+    {
+      "project": "g124",
+      "unit": "u9",
+      "name": "_Sample_NTC",
+      "before": 186,
+      "after": 184,
+      "delta": -2,
+      "isr": false
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "name": "_DisplayRTC",
+      "before": 98,
+      "after": 86,
+      "delta": -12,
+      "isr": false
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "name": "_usb_init",
+      "before": 113,
+      "after": 109,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g134",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 117,
+      "after": 113,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u1",
+      "name": "_usb_init",
+      "before": 121,
+      "after": 117,
+      "delta": -4,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "name": "_uart_init",
+      "before": 173,
+      "after": 168,
+      "delta": -5,
+      "isr": false
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "name": "_uart_polling",
+      "before": 656,
+      "after": 646,
+      "delta": -10,
+      "isr": false
+    }
+  ],
+  "directSites": [
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g009",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g011",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g015",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g017",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g019",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g034",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g036",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_tmp",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_tmp",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_tmp",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g042",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_tmp",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g044",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_tmp",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g044",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_tmp",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g044",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_tmp",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g044",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_tmp",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g056",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g060",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g066",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX2_Buffer",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 0,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 2,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 4,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 8,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 0,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 2,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 4,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 8,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 10,
+      "size": 2
+    },
+    {
+      "project": "g069",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 12,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 0,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 2,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 4,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColorTab",
+      "offset": 8,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 0,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 2,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 4,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 8,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 10,
+      "size": 2
+    },
+    {
+      "project": "g070",
+      "unit": "u2",
+      "kind": "store",
+      "object": "_ColornTab",
+      "offset": 12,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_Ep0Stage",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g071",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_Ep0Stage",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g081",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g092",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g093",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g094",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX1_Buffer",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX1_Buffer",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_RX1_Buffer",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g095",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX1_Buffer",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_TX_BUF",
+      "offset": 7,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX2_Buffer",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX2_Buffer",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "store",
+      "object": "_RX2_Buffer",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g097",
+      "unit": "u0",
+      "kind": "load",
+      "object": "_RX2_Buffer",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g118",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g119",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding",
+      "offset": 0,
+      "size": 4
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g119",
+      "unit": "u7",
+      "kind": "load",
+      "object": "_LineCoding",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g120",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g121",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g121",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g122",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 6,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "load",
+      "object": "_Setup",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 3,
+      "size": 3
+    },
+    {
+      "project": "g123",
+      "unit": "u4",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 1,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 3,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 5,
+      "size": 3
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 8,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 9,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 11,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 13,
+      "size": 3
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 16,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 17,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 19,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 21,
+      "size": 3
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 24,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 25,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 27,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 29,
+      "size": 3
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 32,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 33,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 35,
+      "size": 2
+    },
+    {
+      "project": "g124",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Task_Comps",
+      "offset": 37,
+      "size": 3
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 2,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 3,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "load",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g124",
+      "unit": "u10",
+      "kind": "store",
+      "object": "_LED8",
+      "offset": 1,
+      "size": 1
+    },
+    {
+      "project": "g133",
+      "unit": "u3",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g134",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u1",
+      "kind": "store",
+      "object": "_Ep0State",
+      "offset": 0,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding1",
+      "offset": 0,
+      "size": 4
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding1",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding1",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding1",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding2",
+      "offset": 0,
+      "size": 4
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding2",
+      "offset": 4,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding2",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "store",
+      "object": "_LineCoding2",
+      "offset": 6,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "load",
+      "object": "_LineCoding1",
+      "offset": 5,
+      "size": 1
+    },
+    {
+      "project": "g141",
+      "unit": "u7",
+      "kind": "load",
+      "object": "_LineCoding2",
+      "offset": 5,
+      "size": 1
+    }
+  ],
+  "nextResearch": {
+    "project": "g071",
+    "source": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-edata-members-20261115\\final\\projects\\g071\\mx251\\.build\\mx251\\latest\\selective-leaf-abi.json",
+      "sha256": "712af7b3b6636f5617ad993f651e82575b13cb8a3235a68268f33ec23566797b"
+    },
+    "phase": "selective-leaf-abi comparison, before final outer build passes",
+    "baselineBytes": 2615,
+    "candidateBytes": 2685,
+    "selection": "KEEP_BASELINE",
+    "binding": {
+      "key": "___m251r4_WriteReg",
+      "abi": 4,
+      "symbol": "___m251r4_WriteReg",
+      "bitsWrites": 0,
+      "writes": 2560,
+      "dpxWrites": 0,
+      "local": false,
+      "unit": "u0"
+    },
+    "observation": "ABI4 leaf gets smaller but legacy ISR repeatedly saves/restores WR4 around it.",
+    "rootCause": "gen_call_clobber.c.inc:mcs251TrimKnownCallRegisters requires both caller and callee ABI2. ABI4 feedback is loaded but excluded here.",
+    "nextStep": "Account for the ABI4 argument-setup writes together with callee writes, then trim the legacy caller save set; merely removing the ABI check would miss argument clobbers."
+  },
+  "sourceAlgorithmsChanged": false,
+  "timingQualified": false,
+  "sizeRegressions": {
+    "projects": [
+      "g118",
+      "g122",
+      "g123"
+    ],
+    "bytesEach": 1,
+    "reason": "backend selection happens before final transformations: usb_get_status selects legacy at 227 versus wide 232 bytes, but final legacy is 221 versus prior wide 216. usb_init saves four bytes, leaving each image one byte larger."
+  }
+}
