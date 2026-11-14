@@ -868,6 +868,35 @@ wide_capture_multiply_range(wide_function *f,wide_node *n,iCode *ic,operand *a,o
 }
 
 static bool
+wide_reduce_runtime_power2(wide_function *f,wide_node *n,iCode *ic,operand *dividend,
+                          unsigned operation,unsigned width,unsigned signedness)
+{
+  if(operation<1 || operation>2 || !n->ordinaryCall || n->args!=2 ||
+     n->stackArgs!=1 || n->stackBytes!=width || n->result<0 ||
+     n->width!=width || n->left.width!=width)return false;
+  wide_operand divisor=n->stackOperands[0];
+  if(divisor.value>=0 || !divisor.literal || (divisor.literal&(divisor.literal-1)) ||
+     (signedness && (divisor.literal&(UINT32_C(1)<<(8*width-1)))))return false;
+  /* Promotions make (unsigned_byte + 1) a signed int, even though the
+   * expression remains nonnegative. Reuse the isolated value analysis on
+   * the sampled argument; do not alter shared iCode or reread its object. */
+  struct valinfo range={0};
+  if(signedness) {
+    if(!f->rangeAnalysis)f->rangeAnalysis=computeIsolatedValinfos(f->sourceBlocks,"_mx251_power2");
+    range=getIsolatedOperandValinfo(f->rangeAnalysis,ic,dividend);
+    if(range.nothing || range.anything || range.min<0 || range.max<range.min)return false;
+  }
+  unsigned shift=0;for(uint32_t d=divisor.literal;d>1;d>>=1)++shift;
+  n->op=operation==1?RIGHT_OP:BITWISEAND;
+  n->right=(wide_operand){.value=-1,.width=width,.literal=operation==1?shift:divisor.literal-1};
+  n->use=(wide_bits){{0}};wb_set(&n->use,n->left.value);
+  n->callee=NULL;n->ordinaryCall=false;n->args=n->stackArgs=n->stackBytes=0;
+  dbuf_printf(f->diagnostics,"; wide runtime-power2 icode=%d width=%u signed=%u min=%lld max=%lld shift=%u result=%s\n",
+    ic->key,width,signedness,range.min,range.max,shift,operation==1?"quotient":"remainder");
+  return true;
+}
+
+static bool
 wide_import (wide_function *f, ebbIndex *ebbi)
 {
   f->sourceBlocks=ebbi;
@@ -1052,6 +1081,8 @@ wide_import (wide_function *f, ebbIndex *ebbi)
            (!wide_result(f,n,IC_RESULT(ic)) || n->width!=wide_width(t->next) || n->floating!=IS_FLOAT(t->next))) return wide_import_reject(f,ic,__LINE__);
         if(!n->indirectCall && n->ordinaryCall && count==2 && pushedCount==1)
           wide_capture_multiply_range(f,n,ic,pending[0],pushed[0]);
+        if(compilerIntegerRuntime)
+          wide_reduce_runtime_power2(f,n,ic,pending[0],runtimeOperation,runtimeWidth,runtimeSigned);
         pending[0]=pending[1]=NULL;pendingMask=pushedCount=0;f->body=true;break;
       }
       case JUMPTABLE: {
