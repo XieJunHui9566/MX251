@@ -938,6 +938,22 @@ static void
 wunsigned_multiply(wide_function *f,wide_node *n)
 {
   wide_operand input=n->left,scale=n->right;
+  const char *byteProduct=getenv("MX251_LOW_BYTE_PRODUCTS");
+  if(n->width==1 && n->left.width==1 && n->right.width==1 &&
+     (!byteProduct || strcmp(byteProduct,"0"))) {
+    /* Only the low product byte is observed, for either signedness.
+     * MUL A,Rn writes the enclosing B:A pair, which is reserved scratch.
+     * Keep an allocated factor in place; two spills use B then A. */
+    int rhs=scale.value>=0?f->values[scale.value].reg:-1;
+    if(rhs<0 && input.value>=0 && f->values[input.value].reg>=0) {
+      wide_operand swap=input;input=scale;scale=swap;rhs=f->values[scale.value].reg;
+    }
+    if(rhs<0) {wload_byte(f,scale,10);rhs=10;}
+    wload_byte(f,input,11);
+    we(f,"; wide low-byte multiply signed=%d/%d rhs=%d\n\tmul\tr11,r%d\n",
+       input.sign,scale.sign,rhs,rhs);
+    wstore_byte(f,n->result,11);return;
+  }
   if(input.value<0) {wide_operand t=input;input=scale;scale=t;}
   if(n->width<=2 && scale.value<0 && (scale.literal==2 || scale.literal==4)) {
     int shifts=scale.literal==2?1:2;
@@ -948,7 +964,7 @@ wunsigned_multiply(wide_function *f,wide_node *n)
   }
   /* DR16/DR20 不参与分配；两个输入先快照到不重叠的 WR16/WR20。
    * MUL 的完整积写 DR16，窄结果取低字 WR18，再由 wstore 取低字节。
-   * 新增的 8x8->8 保留两个因子，结果按模 2^8 截断。结果与输入的别名、
+   * 结果与输入的别名、
    * spill 均交给统一搬运处理，不触及仍活跃的分配寄存器。 */
   wload(f,n->left,16,2);wload(f,n->right,20,2);
   we(f,"; wide integer multiply %dx%d -> %d signed=%d/%d\n\tmul\twr16,wr20\n",

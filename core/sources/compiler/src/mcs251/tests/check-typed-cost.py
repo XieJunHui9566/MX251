@@ -48,6 +48,7 @@ for reg in ('a','r0','r9','wr6','dr4'):
     cases += [(f'mov {reg},e:(_Extended+0)',4),(f'mov e:(_Extended+0),{reg}',4)]
 cases += [('sll r5',2),('sll wr6',2),('mov a,(_Case+0x1)',2)]
 cases += [('subb a,#0',2),('subb a,#1',2),('subb a,#255',2),('rlc a',1)]
+cases += [(f'mul r11,r{reg}',2) for reg in range(16)]
 for reg in ('a','r0','r9','wr6','dr4'):
     for expr in ('_Case','(_Case)','(_Case+0)'):
         size=2 if reg=='a' else 3
