@@ -43,12 +43,12 @@ wide_stack_call_addresses(wide_function *f)
   } while(changed);
   unsigned count=0;
   for(int i=0;i<f->nn;++i) {
-    wide_node *n=&f->nodes[i];if(n->op!=CALL || !n->ordinaryCall)continue;
+    wide_node *n=&f->nodes[i];if(n->op!=CALL || !n->ordinaryCall || n->indirectCall)continue;
     bool replaced=false;
     for(unsigned k=0;k<=n->stackArgs;++k) {
       if(!k && (!n->args || n->variadicCall))continue;
       wide_operand *o=k?&n->stackOperands[k-1]:&n->left;
-      unsigned physical=k?n->stackWidths[k-1]:getSize(FUNC_ARGS(n->callee->type)->type);
+      unsigned physical=k?n->stackWidths[k-1]:getSize(FUNC_ARGS(wide_call_type(n))->type);
       if(physical!=3 || o->value<0 || !address[o->value].symbol ||
          !wide_address_dominates(f,d,o->value,i))continue;
       n->callAddresses[k]=address[o->value];o->value=-1;o->literal=0;

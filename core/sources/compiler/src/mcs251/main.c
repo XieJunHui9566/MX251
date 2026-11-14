@@ -310,9 +310,9 @@ static bool
 nativeAbiScalar (sym_link *type)
 {
   const int size = getSize (type);
-  /* ABI4 transports 24-bit data and CODE addresses in the same register
+  /* ABI4 transports 24-bit data, CODE and function addresses in the same register
      slots. The pointer type continues to select the memory access space. */
-  return (IS_PTR(type) && (DCL_TYPE(type)==FPOINTER || DCL_TYPE(type)==GPOINTER || DCL_TYPE(type)==CPOINTER) && size==3 && !IS_FUNC(type->next)) ||
+  return (IS_FUNCPTR(type) && size==3) || (IS_PTR(type) && (DCL_TYPE(type)==FPOINTER || DCL_TYPE(type)==GPOINTER || DCL_TYPE(type)==CPOINTER) && size==3 && !IS_FUNC(type->next)) ||
          (IS_SPEC (type) && !IS_BIT (type) && !IS_BOOL (type) &&
          (IS_INTEGRAL (type) || IS_FLOAT (type)) &&
          (size == 1 || size == 2 || size == 4));
@@ -339,13 +339,13 @@ mcs251ValidateNativeAbi (sym_link *ftype)
     }
   if (!IS_VOID (ftype->next) && (!nativeAbiScalar (ftype->next) || (IS_PTR(ftype->next) && FUNC_SDCCCALL(ftype)!=4)))
     {
-      werror (E_MCS251_NATIVE_ABI, "return must be void, an 8/16/32-bit integer or float, or an ABI4 xdata/generic/code pointer");
+      werror (E_MCS251_NATIVE_ABI, "return must be void, an 8/16/32-bit integer or float, or an ABI4 xdata/generic/code/function pointer");
       valid = false;
     }
   for (value *arg = FUNC_ARGS (ftype); arg; arg = arg->next)
     if (!IS_VOID (arg->type) && (!nativeAbiScalar (arg->type) || (IS_PTR(arg->type) && FUNC_SDCCCALL(ftype)!=4)))
       {
-        werror (E_MCS251_NATIVE_ABI, "parameters must be 8/16/32-bit integers or float, or ABI4 xdata/generic/code pointers");
+        werror (E_MCS251_NATIVE_ABI, "parameters must be 8/16/32-bit integers or float, or ABI4 xdata/generic/code/function pointers");
         valid = false;
       }
   return valid;

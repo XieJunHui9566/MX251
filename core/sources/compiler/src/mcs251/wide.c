@@ -2,7 +2,7 @@
 #include "instruction_effects.h"
 #include "extended_constants.h"
 /* SPDX-License-Identifier: GPL-2.0-or-later
- * 251 原生宽度后端：整数运算、浮点值传递及寄存器 ABI 的直接调用。
+ * 251 原生宽度后端：整数运算、浮点值传递及寄存器 ABI 的直接/间接调用。
  * 宽值、寄存器重叠、控制流与溢出槽在发射前统一决定。 */
 #include "common.h"
 #include "wide.h"
@@ -69,7 +69,8 @@ typedef struct {
   wide_operand stackOperands[WA_MAX];
   unsigned char stackWidths[WA_MAX];
   wide_symbol_address callAddresses[WA_MAX+1]; /* register argument, then physical stack order */
-  bool ordinaryCall, variadicCall, carryResult;
+  bool ordinaryCall, variadicCall, carryResult, indirectCall;
+  /* CALL addressIndex carries the indirect target through existing value rewrites. */
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
   wide_call_contract call;
   wide_bits callFrameValues, callStores, callLoads, callArguments;
@@ -148,8 +149,10 @@ static wide_bits wb_minus (wide_bits a, wide_bits b) { for (int i=0;i<WB_WORDS;+
 
 /* 与原后端 __gptrget/put 的平坦寻址一致；高补位仍统一清零。
    近指针/pdata 转换需原后端处理，不能直接当作平坦地址。 */
+static bool wide_function_pointer(sym_link *t) {return IS_FUNCPTR(t) && getSize(t)==3;}
+static sym_link *wide_call_type(wide_node *n) {return n->indirectCall?operandType(IC_LEFT(n->origin))->next:n->callee->type;}
 static bool wide_code_pointer(sym_link *t) {return IS_PTR(t) && DCL_TYPE(t)==CPOINTER && getSize(t)==3 && !IS_FUNC(t->next);}
-static bool wide_pointer(sym_link *t) {return IS_PTR(t) && (DCL_TYPE(t)==FPOINTER || DCL_TYPE(t)==GPOINTER || DCL_TYPE(t)==CPOINTER) && getSize(t)==3 && !IS_FUNC(t->next);}
+static bool wide_pointer(sym_link *t) {return wide_function_pointer(t) || IS_PTR(t) && (DCL_TYPE(t)==FPOINTER || DCL_TYPE(t)==GPOINTER || DCL_TYPE(t)==CPOINTER) && getSize(t)==3 && !IS_FUNC(t->next);}
 static int wide_width(sym_link *t) {return wide_pointer(t)?4:getSize(t);}
 static bool
 wide_value_type (sym_link *t, bool sampled)
@@ -351,6 +354,21 @@ wide_symbol_snapshot(wide_function *f,wide_node *n,operand *op,bool store,wide_o
 {
   if(!op || !IS_TRUE_SYMOP(op))return false;
   symbol *s=OP_SYMBOL(op);sym_link *t=operandType(op);memmap *m=SPEC_OCLS(s->etype);
+  if(!s->onStack && !s->_isparm && wide_function_pointer(t) && !isAtomic(t) &&
+     (m==data || m==idata || m==xdata || m==x_abs || m==edata || m==e_abs || IN_CODESPACE(m))) {
+    if((store && IN_CODESPACE(m)) || !wide_capacity_room(f,1,1,__LINE__))return false;
+    int value=f->nv++;
+    f->values[value]=(wide_value){.sym=s,.width=4,.pointer=true,.symbolSnapshot=true,
+      .reg=-1,.slot=-1,.pin=-1,.preference=-1};
+    *v=(wide_operand){.value=value,.width=4};
+    wide_node *memory=&f->nodes[f->nn++];
+    *memory=(wide_node){.op=(m==edata || m==e_abs)?(store?WM_EDATA_STORE:WM_EDATA_LOAD):(store?WM_SYMBOL_STORE:WM_SYMBOL_LOAD),.origin=n->origin,
+      .result=store?-1:value,.width=4,.addressSymbol=s,.addressObject=-1,
+      .pointerAccess=true,.codeAccess=IN_CODESPACE(m),.byteAccess=isVolatile(t),
+      .label=-1,.target=-1,.succ={-1,-1},.left.value=-1,.right.value=-1,.addressIndex.value=-1};
+    if(store){memory->right=*v;wb_set(&memory->use,value);}else wb_set(&memory->def,value);
+    return true;
+  }
   /* 位读取在原位置取样为规范的 0/1 字节。位写入另行处理，必须检查
    * 完整右值非零，不能先截成一个字节（例如 0x100 仍必须写入 1）。 */
   if(!store && wide_bit_symbol(op)) {
@@ -464,10 +482,20 @@ wide_result (wide_function *f, wide_node *n, operand *op)
 static bool
 wide_use (wide_function *f, wide_node *n, operand *op, wide_operand *v)
 {
-  if(op && IS_TRUE_SYMOP(op)) {
+  if(op && IS_SYMOP(op) && IS_FUNC(operandType(op))) {
+    if(!wide_capacity_room(f,1,1,__LINE__))return false;
+    int value=f->nv++;
+    f->values[value]=(wide_value){.sym=OP_SYMBOL(op),.width=4,.pointer=true,.symbolSnapshot=true,.reg=-1,.slot=-1,.pin=-1,.preference=-1};
+    *v=(wide_operand){.value=value,.width=4};
+    wide_node *address=&f->nodes[f->nn++];
+    *address=(wide_node){.op=WM_ADDRESS,.origin=n->origin,.result=value,.width=4,
+      .addressSymbol=OP_SYMBOL(op),.addressObject=-1,.label=-1,.target=-1,.succ={-1,-1},
+      .left.value=-1,.right.value=-1,.addressIndex.value=-1};
+    wb_set(&address->def,value);
+  } else if(op && IS_TRUE_SYMOP(op)) {
     /* SEND/IPUSH 延迟到 CALL 的原策略只允许纯值。不能将真实对象读取
      * 偷移到调用点；前端已显式取样为 ITEMP 的参数仍按原路径处理。 */
-    if(n->op==CALL || !wide_symbol_snapshot(f,n,op,false,v))return false;
+    if((n->op==CALL && !n->indirectCall) || !wide_symbol_snapshot(f,n,op,false,v))return false;
   } else if (!wide_operand_from(f,op,v)) return false;
   if (v->value >= 0) {wb_set(&n->use,v->value);++f->values[v->value].reads;f->values[v->value].weight+=1+4*n->origin->depth;}
   return true;
@@ -485,9 +513,10 @@ wide_memory(wide_function *f,wide_node *n,iCode *ic,bool store)
   /* 不把只读 CODE 存储退化成 XDATA 写，也不猜测运行期的存储空间。 */
   if(store && wide_code_pointer(pt))return false;
   /* 指针对象物理占三字节，MIR 值占四字节；单独标记访问，
-   * 不能用宽寄存器大小读写内存。CODE 指针值及函数/近指针保留回退。 */
-  bool pointer=wide_pointer(pt) && wide_pointer(pt->next) && wide_pointer(vt) &&
-    !wide_code_pointer(pt) && !wide_code_pointer(pt->next) && !wide_code_pointer(vt);
+   * 不能用宽寄存器大小读写内存。函数指针共用三字节布局；CODE 数据指针值和近指针对象仍回退。 */
+  bool pointer=wide_pointer(pt) && wide_pointer(pt->next) && (wide_pointer(vt) || (store && IS_FUNC(vt) && wide_function_pointer(pt->next))) &&
+    !wide_code_pointer(pt->next) && !wide_code_pointer(vt) &&
+    (!wide_code_pointer(pt) || (wide_function_pointer(pt->next) && wide_function_pointer(vt)));
   if(!wide_pointer(pt) || isAtomic(pt->next) || isAtomic(vt))return false;
   if(!pointer && (!IS_SPEC(pt->next) || (!IS_INTEGRAL(pt->next) && !IS_FLOAT(pt->next)) ||
      IS_BITVAR(pt->next) || !IS_SPEC(vt) || (!IS_INTEGRAL(vt) && !IS_FLOAT(vt)) ||
@@ -496,7 +525,7 @@ wide_memory(wide_function *f,wide_node *n,iCode *ic,bool store)
      (IS_BITINT(pt->next) && SPEC_BITINTWIDTH(pt->next)!=8*getSize(vt))))return false;
   if(!store && IC_RIGHT(ic) && (!IS_OP_LITERAL(IC_RIGHT(ic)) || operandLitValue(IC_RIGHT(ic))!=0))return false;
   if(!wide_use(f,n,p,&n->left))return false;
-  n->op=store?WM_STORE:WM_LOAD;n->width=wide_width(vt);n->codeAccess=wide_code_pointer(pt);n->pointerAccess=pointer;
+  n->op=store?WM_STORE:WM_LOAD;n->width=pointer?4:wide_width(vt);n->codeAccess=wide_code_pointer(pt);n->pointerAccess=pointer;
   /* 易失访问保持原后端的字节宽度、地址递增顺序；普通对象才使用字读写。 */
   n->byteAccess=isVolatile(pt->next) || isOperandVolatile(value,TRUE);
   if(store) {if(!wide_use(f,n,value,&n->right))return false;}
@@ -518,7 +547,7 @@ wide_extern_data_layout(sym_link *type)
 {
   if(!type || isVolatile(type) || isAtomic(type))return false;
   if(IS_ARRAY(type))return getSize(type)>0 && getSize(type)<=128 && wide_extern_data_layout(type->next);
-  if(!IS_STRUCT(type))return IS_SPEC(type) && IS_INTEGRAL(type) && !IS_BITVAR(type) &&
+  if(!IS_STRUCT(type))return wide_function_pointer(type) || IS_SPEC(type) && IS_INTEGRAL(type) && !IS_BITVAR(type) &&
     (getSize(type)==1 || getSize(type)==2 || getSize(type)==4);
   structdef *layout=SPEC_STRUCT(type);
   if(!layout || layout->type!=STRUCT || !layout->fields || !layout->size ||
@@ -644,6 +673,16 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
     sym_link *pt=operandType(address),*t=operandType(value);
     sym_link *field=store?pt->next:t;
     if(IS_BITFIELD(field))return wide_field_import(f,n,ic,store,object,offset);
+    if(wide_function_pointer(pt->next) && (wide_function_pointer(t) || (store && IS_FUNC(t))) &&
+       !isAtomic(pt->next) && !isAtomic(t) && offset+3<=getSize(object->type)) {
+      if(load && IC_RIGHT(ic) && (!IS_OP_LITERAL(IC_RIGHT(ic)) || operandLitValue(IC_RIGHT(ic))!=0))return false;
+      if(store) {if(!wide_use(f,n,value,&n->right))return false;}
+      else if(!wide_result(f,n,value))return false;
+      n->op=store?WM_SYMBOL_STORE:WM_SYMBOL_LOAD;n->width=4;n->pointerAccess=true;
+      n->addressSymbol=object;n->addressOffset=offset;
+      n->byteAccess=isVolatile(object->type) || isVolatile(pt->next) || isOperandVolatile(value,TRUE);
+      f->body=true;return true;
+    }
     bool memberView=wide_data_zero_member(pt->next,t,store);
     if(!IS_SPEC(t) || !IS_INTEGRAL(t) || IS_BITVAR(t) || isAtomic(t) ||
        (!memberView && (!IS_SPEC(pt->next) || !IS_INTEGRAL(pt->next) ||
@@ -790,7 +829,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
       n->target=n->label=-1;n->succ[0]=n->succ[1]=-1;n->addressObject=-1;
       /* 参数的寄存器搬运在 CALL 并行完成；真实对象读取必须保留在
        * 原 SEND/IPUSH 的位置，不能合并重复对象或推迟 volatile 取样。 */
-      if((pendingMask || pushedCount) && ic->op!=SEND && ic->op!=IPUSH && ic->op!=CALL) return wide_import_reject(f,ic,__LINE__);
+      if((pendingMask || pushedCount) && ic->op!=SEND && ic->op!=IPUSH && ic->op!=CALL && ic->op!=PCALL) return wide_import_reject(f,ic,__LINE__);
       if(wide_near_field(f,n,ic,bb->sch))goto wide_import_order_samples;
       switch (ic->op) {
       case FUNCTION: case ENDFUNCTION: break;
@@ -837,7 +876,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
          * 内存节点，后续只运输其快照；现有内存类型/字节访问门槛不变。 */
         if(!ic->parmPush || pushedCount==WA_MAX)return wide_import_reject(f,ic,__LINE__);
         unsigned slot=pushedCount++;operand *input=IC_LEFT(ic);pushed[slot]=input;
-        pushedSampled[slot]=input && IS_TRUE_SYMOP(input);
+        pushedSampled[slot]=input && IS_TRUE_SYMOP(input) && !IS_FUNC(operandType(input));
         if(pushedSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pushedSample[slot]))return wide_import_reject(f,ic,__LINE__);
           wide_node *memory=&f->nodes[f->nn-1];
@@ -855,7 +894,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
       case SEND: {
         if(ic->argreg<1 || ic->argreg>2 || (pendingMask&(1u<<(ic->argreg-1)))) return wide_import_reject(f,ic,__LINE__);
         unsigned slot=ic->argreg-1;operand *input=IC_LEFT(ic);pending[slot]=input;
-        pendingSampled[slot]=input && IS_TRUE_SYMOP(input);
+        pendingSampled[slot]=input && IS_TRUE_SYMOP(input) && !IS_FUNC(operandType(input));
         if(pendingSampled[slot]) {
           if(!wide_symbol_snapshot(f,n,input,false,&pendingSample[slot]))return wide_import_reject(f,ic,__LINE__);
           wide_node *memory=&f->nodes[f->nn-1];
@@ -868,18 +907,24 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         }
         pendingMask|=1u<<slot;f->body=true;break;
       }
-      case CALL: {
+      case CALL: case PCALL: {
         /* 普通入口复用同一调用保存与物理栈编组；CALL 的 ABI、可重入、
          * 类型与 cdef 门槛仍逐项验证。跨普通入口的尾跳转仍禁用，
          * 确保返回值转换和本帧释放由当前函数完成。 */
         sym_link *t=operandType(IC_LEFT(ic));
-        if(!IS_SYMOP(IC_LEFT(ic)) || !IS_FUNC(t) || (FUNC_SDCCCALL(t)!=4 && FUNC_SDCCCALL(t)!=2) ||
+        n->indirectCall=ic->op==PCALL;
+        if(n->indirectCall) {
+          if(!wide_function_pointer(t))return wide_import_reject(f,ic,__LINE__);
+          t=t->next;n->op=CALL;
+          if(!wide_use(f,n,IC_LEFT(ic),&n->addressIndex))return wide_import_reject(f,ic,__LINE__);
+        }
+        if((!n->indirectCall && !IS_SYMOP(IC_LEFT(ic))) || !IS_FUNC(t) || (FUNC_SDCCCALL(t)!=4 && FUNC_SDCCCALL(t)!=2) ||
            !IFFUNC_ISREENT(t) || IFFUNC_ISISR(t) || IFFUNC_ISNAKED(t) ||
            IFFUNC_ISCRITICAL(t) || IFFUNC_CALLEESAVES(t) || IFFUNC_ISBANKEDCALL(t) ||
            FUNC_REGBANK(t) || (IFFUNC_HASVARARGS(t) && FUNC_SDCCCALL(t)!=2) || IFFUNC_ISNORETURN(t) ||
            (!wide_abi_type(t->next,t) && !IS_VOID(t->next) && !wide_carry_result(t)) || !wide_stack_signature(t)) return wide_import_reject(f,ic,__LINE__);
         /* 普通可重入 ABI 仅第一个标量在 DPL/DPH/B/A，其余按原宽度压栈。
-         * 非可重入静态形参、间接调用及其他调用约定仍整体回退。 */
+         * 间接调用复用同一布局；非可重入静态形参和其他调用约定仍回退。 */
         n->ordinaryCall=FUNC_SDCCCALL(t)==2;
         n->variadicCall=IFFUNC_HASVARARGS(t);
         n->carryResult=wide_carry_result(t);
@@ -901,8 +946,8 @@ wide_import (wide_function *f, ebbIndex *ebbi)
           if(sampled)dbuf_printf(f->diagnostics,"; wide native argument snapshots icode=%d objects=%u order=ir\n",ic->key,sampled);
         }
         unsigned runtimeOperation=0,runtimeWidth=0,runtimeSigned=0;
-        bool compilerIntegerRuntime=wide_integer_runtime_contract(OP_SYMBOL(IC_LEFT(ic)),&runtimeOperation,&runtimeWidth,&runtimeSigned);
-        if(n->ordinaryCall && OP_SYMBOL(IC_LEFT(ic))->cdef && !compilerIntegerRuntime)
+        bool compilerIntegerRuntime=!n->indirectCall && wide_integer_runtime_contract(OP_SYMBOL(IC_LEFT(ic)),&runtimeOperation,&runtimeWidth,&runtimeSigned);
+        if(!n->indirectCall && n->ordinaryCall && OP_SYMBOL(IC_LEFT(ic))->cdef && !compilerIntegerRuntime)
           return wide_import_reject(f,ic,__LINE__);
         if(compilerIntegerRuntime)
           dbuf_printf(f->diagnostics,"; wide compiler-runtime-call icode=%d operation=%u bytes=%u signed=%u abi=2 preserve=full-live-registers\n",ic->key,runtimeOperation,runtimeWidth,runtimeSigned);
@@ -944,11 +989,11 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(pendingMask!=((1u<<(count<registers?count:registers))-1) ||
            pushedCount!=(count>registers?count-registers:0) || bytes!=ic->parmBytes)return wide_import_reject(f,ic,__LINE__);
         n->stackArgs=pushedCount;n->stackBytes=bytes;
-        n->args=count;n->callee=OP_SYMBOL(IC_LEFT(ic));
+        n->args=count;n->callee=n->indirectCall?NULL:OP_SYMBOL(IC_LEFT(ic));
         if(n->variadicCall)dbuf_printf(f->diagnostics,"; wide variadic call icode=%d arguments=%u stack-bytes=%u registers=0\n",ic->key,count,bytes);
         if(IC_RESULT(ic) && !IS_VOID(t->next) &&
            (!wide_result(f,n,IC_RESULT(ic)) || n->width!=wide_width(t->next) || n->floating!=IS_FLOAT(t->next))) return wide_import_reject(f,ic,__LINE__);
-        if(n->ordinaryCall && count==2 && pushedCount==1)
+        if(!n->indirectCall && n->ordinaryCall && count==2 && pushedCount==1)
           wide_capture_multiply_range(f,n,ic,pending[0],pushed[0]);
         pending[0]=pending[1]=NULL;pendingMask=pushedCount=0;f->body=true;break;
       }
@@ -995,7 +1040,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(n->floating!=n->right.floating)return wide_import_reject(f,ic,__LINE__);
         /* Flat CODE, XDATA and generic pointers share the same 24 address
          * bits. Keep the destination's access space; only the value is copied.
-         * Near/paged/function pointers are excluded by wide_pointer. */
+         * Function pointers use the same bits; near/paged pointers remain excluded. */
         if (ic->op=='=' && n->width!=n->right.width) return wide_import_reject(f,ic,__LINE__);
         f->body=true;break;
       case GET_VALUE_AT_ADDRESS:
@@ -1017,7 +1062,8 @@ wide_import (wide_function *f, ebbIndex *ebbi)
             }
           }
           if(!wide_stack_object(f,s,&n->addressObject))return wide_import_reject(f,ic,__LINE__);
-        } else if(IN_CODESPACE(m)) {if(!code)return wide_import_reject(f,ic,__LINE__);}
+        } else if(IS_FUNC(s->type)) {if(!wide_function_pointer(operandType(IC_RESULT(ic))))return wide_import_reject(f,ic,__LINE__);}
+        else if(IN_CODESPACE(m)) {if(!code)return wide_import_reject(f,ic,__LINE__);}
         else if(code || !IN_FARSPACE(m) || m->paged)return wide_import_reject(f,ic,__LINE__);
         n->op=WM_ADDRESS;n->addressSymbol=s;n->addressOffset=(int)operandLitValue(IC_RIGHT(ic));f->body=true;break;
       }
@@ -1166,7 +1212,7 @@ wide_import_order_samples:
         for(int k=first+1;k<f->nn;++k) {
           wide_node memory=f->nodes[k];
           if(memory.op==WM_SYMBOL_STORE || memory.op==WM_EDATA_STORE || memory.op==WM_PARAM_STORE || memory.op==WM_OBJECT_STORE) {if(hasWriteback)return wide_import_reject(f,ic,__LINE__);writeback=memory;hasWriteback=true;}
-          else {if(memory.op!=WM_SYMBOL_LOAD && memory.op!=WM_EDATA_LOAD && memory.op!=WM_BIT_LOAD && memory.op!=WM_PARAM_LOAD && memory.op!=WM_OBJECT_LOAD)return wide_import_reject(f,ic,__LINE__);f->nodes[at++]=memory;}
+          else {if(memory.op!=WM_ADDRESS && memory.op!=WM_SYMBOL_LOAD && memory.op!=WM_EDATA_LOAD && memory.op!=WM_BIT_LOAD && memory.op!=WM_PARAM_LOAD && memory.op!=WM_OBJECT_LOAD)return wide_import_reject(f,ic,__LINE__);f->nodes[at++]=memory;}
         }
         f->nodes[at++]=operation;
         if(hasWriteback)f->nodes[at++]=writeback;

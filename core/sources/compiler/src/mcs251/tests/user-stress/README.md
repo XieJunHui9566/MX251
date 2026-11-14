@@ -50,3 +50,12 @@ The companion `tools/research/bitfield_fixture.py` generates all 36 byte-contain
 layouts, varying signedness, declared integer type, storage, volatility and
 pointer aliases. Its 2304 board results match the independent host reference.
 See BITFIELD-LOWERING-20261114 for sizes, timing observations and remaining scope.
+
+The callback-pointer candidate moves both unchanged `callback` functions to the
+wide backend. Function addresses, three-byte pointer objects and ABI2/ABI4
+indirect calls share the existing value, memory and call-save machinery.
+`tools/research/callback_fixture.py` exercises 19 equivalent forms: local and
+global callbacks, DATA/EDATA/XDATA arrays, CODE tables, struct members, callback
+parameters in each argument position, returned callbacks and legacy/wide calls
+in both directions. Each ABI passes 1216 host-referenced board cases; the
+original corpus passes 768/768. See CALLBACK-POINTERS-20261114 for qualification.

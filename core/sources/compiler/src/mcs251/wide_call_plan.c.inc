@@ -9,7 +9,7 @@ wide_prepare_calls(wide_function *f)
     p->calleeWrites=UINT32_MAX;p->known=wide_leaf_writes(n->callee,&p->calleeWrites);
     p->scratchWrites=MCS251_AB_BYTES|wide_mask(16,4)|wide_mask(20,4);
     if(n->args && !n->variadicCall) {
-      p->argumentBytes=getSize(FUNC_ARGS(n->callee->type)->type);
+      p->argumentBytes=getSize(FUNC_ARGS(wide_call_type(n))->type);
       if(n->ordinaryCall) {
         if(mcs251InternalArgument(n->callee))p->argumentWrites=wide_mask(4,4);
         else if(p->argumentBytes>2)p->argumentWrites|=wide_mask(10,p->argumentBytes==4?2:1);
@@ -19,7 +19,7 @@ wide_prepare_calls(wide_function *f)
       }
     }
     if(n->result>=0) {
-      p->resultBytes=getSize(n->callee->type->next);
+      p->resultBytes=getSize(wide_call_type(n)->next);
       if(!n->ordinaryCall || mcs251InternalReturn(n->callee))
         p->resultReads=wide_mask(n->width==1?7:8-n->width,n->width);
       else if(p->resultBytes>2)p->resultReads=wide_mask(10,p->resultBytes==4?2:1);

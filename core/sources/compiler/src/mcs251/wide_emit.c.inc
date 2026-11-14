@@ -427,20 +427,31 @@ wboolean_result(wide_function *f,wide_node *n,const char *condition)
 static void
 wmemory_pointer(wide_function *f,wide_node *n)
 {
-  bool store=n->op==WM_STORE || n->op==WM_EDATA_STORE;
+  bool store=n->op==WM_STORE || n->op==WM_EDATA_STORE || n->op==WM_SYMBOL_STORE;
   bool extended=n->op==WM_EDATA_LOAD || n->op==WM_EDATA_STORE;
   char a[3][SDCC_NAME_MAX+32];
-  wassert(n->pointerAccess && n->width==4 && !n->codeAccess && !n->addressOp);
+  wassert(n->pointerAccess && n->width==4 && !n->addressOp);
   if(extended) {
     for(int k=0;k<3;++k)SNPRINTF(a[k],sizeof a[k],"e:(%s+%d)",n->addressSymbol->rname,n->addressOffset+k);
   } else if(n->addressObject>=0) {
     int base=f->objects[n->addressObject].slot+n->addressOffset-f->frame-f->stackDepth+1;
     for(int k=0;k<3;++k)wa(a[k],base+k);
   } else {
-    wload(f,n->left,16,4);
+    if(n->addressSymbol) {
+      we(f,"\tmov\ta,#((%s%+d)>>16)\n\tmovz\twr16,a\n\tmov\twr18,#(%s%+d)\n",
+         n->addressSymbol->rname,n->addressOffset,n->addressSymbol->rname,n->addressOffset);
+    } else wload(f,n->left,16,4);
     for(int k=0;k<3;++k)SNPRINTF(a[k],sizeof a[k],k?"@dr16+%d":"@dr16",k);
   }
   we(f,"; wide pointer object %s physical=3 logical=4 volatile-bytes=%d\n",store?"store":"load",n->byteAccess);
+  if(n->codeAccess) {
+    wassert(!store);
+    we(f,"; wide CODE pointer read physical=3\n\tmov\tdpx,dr16\n");
+    we(f,"\tclr\ta\n\tmovc\ta,@a+dptr\n\tmovz\twr20,a\n\tinc\tdpx\n");
+    we(f,"\tclr\ta\n\tmovc\ta,@a+dptr\n\tmov\tb,a\n\tinc\tdpx\n");
+    we(f,"\tclr\ta\n\tmovc\ta,@a+dptr\n\tmov\twr22,wr10\n");
+    wstore_known(f,n->result,20,true);return;
+  }
   if(store) {
     wload(f,n->right,20,4);
     we(f,"\tmov\twr10,wr20\n\tmov\t%s,a\n",a[0]);
@@ -570,6 +581,7 @@ wmemory_edata(wide_function *f,wide_node *n)
 static void
 wmemory_symbol(wide_function *f,wide_node *n)
 {
+  if(n->pointerAccess){wmemory_pointer(f,n);return;}
   if(n->op==WM_EDATA_LOAD || n->op==WM_EDATA_STORE){wmemory_edata(f,n);return;}
   bool store=n->op==WM_SYMBOL_STORE;
   we(f,"; wide symbol %s %s width=%d volatile=%d\n",store?"store":"load",n->addressSymbol->rname,n->width,n->byteAccess);
@@ -1345,7 +1357,7 @@ wordinary_forward_return(wide_function *f,int index)
   wide_node *ret=&f->nodes[index+1];
   if(ret->op!=RETURN || ret->left.value!=call->result ||
      f->values[call->result].reads!=1 || ret->width!=call->width ||
-     getSize(currFunc->type->next)!=getSize(call->callee->type->next))return false;
+     getSize(currFunc->type->next)!=getSize(wide_call_type(call)->next))return false;
   /* 只连接紧邻且唯一使用的原样返回，不跨转换、内存写回或控制流。
    * 调用后若还有其他活值，继续原保存/重组路径，不能借此删掉恢复。 */
   for(int v=0;v<f->nv;++v)
@@ -1359,7 +1371,7 @@ wcall_tail_return(wide_function *f,int index)
   wide_node *call=&f->nodes[index];
   /* The caller frame must no longer own storage visible to the callee.
    * Outgoing stack arguments still require the caller's cleanup on return. */
-  if(f->no || f->formalAddress || call->stackBytes ||
+  if(call->indirectCall || f->no || f->formalAddress || call->stackBytes ||
      f->ordinaryEntry!=call->ordinaryCall)return false;
   /* Restoring a preserved argument group would replace the tail arguments. */
   if(f->preserved)return false;
@@ -1377,7 +1389,7 @@ wcall_tail_return(wide_function *f,int index)
     if(ret->op!=RETURN || call->carryResult || call->result<0 ||
        ret->left.value!=call->result || ret->width!=call->width ||
        f->values[call->result].reads!=1)return false;
-    return getSize(currFunc->type->next)==getSize(call->callee->type->next) &&
+    return getSize(currFunc->type->next)==getSize(wide_call_type(call)->next) &&
       mcs251InternalReturn(currFunc)==mcs251InternalReturn(call->callee);
   }
   return false;
@@ -1448,6 +1460,11 @@ wcall_original(wide_function *f,int index)
     f->stackDepth+=v->width;
   }
   size_t setupStart=dbuf_get_length(&f->output);
+  if(n->indirectCall) {
+    /* Snapshot before argument registers are overwritten. The target is below
+     * the outgoing arguments; reload into reserved DR20 without touching A/B. */
+    wload(f,n->addressIndex,20,4);we(f,"\tpush\tdr20\n");f->stackDepth+=4;
+  }
   if(n->stackArgs)we(f,"; wide stack call args=%u bytes=%u\n",n->stackArgs,n->stackBytes);
   for(unsigned k=0;k<n->stackArgs;++k) {
     if(n->variadicCall)we(f,"; MX251 argument region begin\n");
@@ -1468,7 +1485,7 @@ wcall_original(wide_function *f,int index)
     if(n->args && !n->variadicCall) {
       /* 先快照全部首参，再改 A/B；不能让字节拆分覆盖尚未读取的源。
        * DPL/DPH 是独立 SFR，B/A 对应 R10/R11；只借用保留 DR16。 */
-      unsigned bytes=getSize(FUNC_ARGS(n->callee->type)->type);
+      unsigned bytes=getSize(FUNC_ARGS(wide_call_type(n))->type);
       if(n->callAddresses[0].stack) {
         wcall_stack_address(f,n->callAddresses[0]);
         we(f,"\tmov\twr10,wr18\n\tmov\tdpl,a\n\tmov\tdph,b\n"
@@ -1490,7 +1507,7 @@ wcall_original(wide_function *f,int index)
     }
   } else warguments(f,n);
   if(tail) {
-    we(f,"; wide tail call abi=%u frame=%d\n",(unsigned)FUNC_SDCCCALL(n->callee->type),f->frame);
+    we(f,"; wide tail call abi=%u frame=%d\n",(unsigned)FUNC_SDCCCALL(wide_call_type(n)),f->frame);
     wstep(f,60,4,true,f->frame);
     wrestore_preserved(f);
     we(f,"\tejmp\t%s\n",n->callee->rname);
@@ -1500,7 +1517,11 @@ wcall_original(wide_function *f,int index)
       f->nodes[index+1].op==GOTO || f->nodes[index+1].op==ENDFUNCTION);
   }
   size_t setupEnd=dbuf_get_length(&f->output);
-  we(f,"\tecall\t%s\n",n->callee->rname);
+  if(n->indirectCall) {
+    char high[32],low[32];wa(high,-(int)n->stackBytes-3);wa(low,-(int)n->stackBytes-1);
+    we(f,"; wide indirect call abi=%u\n\tmov\twr20,%s\n\tmov\twr22,%s\n\tecall\t@dr20\n",
+       (unsigned)FUNC_SDCCCALL(wide_call_type(n)),high,low);
+  } else we(f,"\tecall\t%s\n",n->callee->rname);
   size_t finishStart=dbuf_get_length(&f->output);
   bool discardOrdinaryResult=n->ordinaryCall && n->result>=0 && !wb_has(n->out,n->result);
   if(n->carryResult && n->result>=0 && !discardOrdinaryResult) {
@@ -1510,7 +1531,8 @@ wcall_original(wide_function *f,int index)
     we(f,"; wide ordinary bit result: CY to byte before cleanup\n\tclr\ta\n\trlc\ta\n");
     wstore_byte(f,n->result,11);
   }
-  if(n->stackBytes) {wstep(f,60,4,true,n->stackBytes);f->stackDepth-=n->stackBytes;}
+  unsigned outgoing=n->stackBytes+(n->indirectCall?4:0);
+  if(outgoing) {wstep(f,60,4,true,outgoing);f->stackDepth-=outgoing;}
   if(wordinary_forward_return(f,index)) {
     /* 保留真正的 CALL、完整实参及调用期间的本地帧。被调函数仍可访问
      * 当前局部对象/取址形参；返回后才清理栈，不把此优化变成尾跳转。
@@ -1524,11 +1546,11 @@ wcall_original(wide_function *f,int index)
    * 会使结果活跃。保留真实 CALL、清栈、恢复及其副作用，不改原生 ABI。
    * finish 写集合由下面的实际发射文本重算，不能沿用已删复制的破坏集。 */
   if(discardOrdinaryResult)
-    we(f,"; wide ordinary result unused: no extraction physical=%u\n",getSize(n->callee->type->next));
+    we(f,"; wide ordinary result unused: no extraction physical=%u\n",getSize(wide_call_type(n)->next));
   /* 使用中的返回值先移出 ABI 寄存器，再恢复调用者；干涉图保证不覆盖活值。 */
   if(n->result>=0 && !discardOrdinaryResult && !n->carryResult) {
     if(n->ordinaryCall && !mcs251InternalReturn(n->callee)) {
-      unsigned bytes=getSize(n->callee->type->next);
+      unsigned bytes=getSize(wide_call_type(n)->next);
       if(!wordinary_result_direct(f,n->result,bytes)) {
       /* 在恢复活寄存器前按逻辑低字节 DPL/DPH/B/A 重组成宽值。
        * 指针仅有三字节，显式补零；浮点只运输位模式，不做数值转换。 */
@@ -1551,10 +1573,10 @@ wcall_original(wide_function *f,int index)
     bool valid=knownLeaf && !setup.unknown && !finish.unknown && !(omitted&(calleeWrites|setup.writes|finish.writes));
     if(!valid)f->callEffectsInvalid=true;
     dbuf_printf(&f->output,"; mx251-call-save caller=%s site=%d callee=%s omitted=%08lx groups=%u bytes=%u verified=%u\n",
-      currFunc->rname,index,n->callee->rname,(unsigned long)omitted,omittedGroups,omittedBytes,valid);
+      currFunc->rname,index,n->indirectCall?"@indirect":n->callee->rname,(unsigned long)omitted,omittedGroups,omittedBytes,valid);
   }
-  dbuf_printf(&f->output,"; mx251-call-effects schema=1 caller=%s site=%d callee=%s abi=%u live=%08lx setup=%08lx finish=%08lx complete=%u saved=",
-     currFunc->rname,index,n->callee->rname,(unsigned)FUNC_SDCCCALL(n->callee->type),
+  dbuf_printf(&f->output,"; mx251-%scall-effects schema=1 caller=%s site=%d callee=%s abi=%u live=%08lx setup=%08lx finish=%08lx complete=%u saved=",
+     n->indirectCall?"indirect-":"",currFunc->rname,index,n->indirectCall?"@indirect":n->callee->rname,(unsigned)FUNC_SDCCCALL(wide_call_type(n)),
      (unsigned long)liveBytes,(unsigned long)setup.writes,(unsigned long)finish.writes,!setup.unknown && !finish.unknown);
   for(int j=0;j<count;++j) {
     wide_value *v=&f->values[saved[j]];
