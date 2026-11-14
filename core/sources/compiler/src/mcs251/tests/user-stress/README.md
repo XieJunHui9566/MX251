@@ -37,3 +37,9 @@ the other 704 cases match. The parent and architecture-policy candidate produce
 identical firmware. The legacy DPTR address cache survives a runtime pointer
 load and incorrectly removes a subsequent fixed-member address reload. Keep
 the failing test intact; do not count compile success as runtime success.
+
+The pointer-cache repair invalidates fixed-address facts after runtime loads,
+far-symbol materialization and pointer decrement. The unchanged corpus now
+passes all 768 board cases (2026-11-14); firmware SHA256
+`720b8dc56f80e633d38c3773d6ef7a267072c4ac6d7dada770541f3f18441577`.
+The earlier failing result remains recorded in COMMON-DEVICE-SEMANTICS-20261114.

@@ -271,6 +271,7 @@ incrementFarPointer (void)
 static void
 decrementFarPointer (void)
 {
+  _G.dptrCache.valid = false;
   emitcode ("dec", "dpx");
 }
 
@@ -302,6 +303,7 @@ mcs251LoadFarSymbol (asmop *aop, int offset)
   const char *name = aop->aopu.aop_sym->rname;
 
   wassert (aop->type == AOP_DPTR && aop->aopu.aop_sym);
+  _G.dptrCache.valid = false;
   if (offset)
     {
       emitcode ("mov", "dptr,#(%s + %d)", name, offset);
@@ -2408,6 +2410,7 @@ loadDptrFromOperand (operand *op, bool loadBToo)
         case AOP_STR:
           /* DPL/DPH are already in place for register arguments. */
           emitcode ("mov", "dpxl,%s", opGet (op, 2, FALSE, FALSE));
+          _G.dptrCache.valid = false;
           return;
 
         case AOP_IMMD:
@@ -2418,6 +2421,7 @@ loadDptrFromOperand (operand *op, bool loadBToo)
               emitcode ("mov", "dpl,%s", opGet (op, 0, FALSE, FALSE));
               emitcode ("mov", "dph,%s", opGet (op, 1, FALSE, FALSE));
               emitcode ("mov", "dpxl,%s", opGet (op, 2, FALSE, FALSE));
+              _G.dptrCache.valid = false;
             }
           else
             {
@@ -2580,16 +2584,20 @@ loadDptrFromOperand (operand *op, bool loadBToo)
           emitpop ("dpxl");
           emitpop ("dph");
           emitpop ("dpl");
+          _G.dptrCache.valid = false;
           return;
 
         default:
           emitcode ("mov", "dpl,%s", opGet (op, 0, FALSE, FALSE));
           emitcode ("mov", "dph,%s", opGet (op, 1, FALSE, FALSE));
           emitcode ("mov", "dpxl,%s", opGet (op, 2, FALSE, FALSE));
+          _G.dptrCache.valid = false;
           return;
         }
     }
 
+  /* Only the literal path above records a reusable fixed address. */
+  _G.dptrCache.valid = false;
   if (AOP_TYPE (op) != AOP_STR)
     {
       /* if this is rematerializable */
