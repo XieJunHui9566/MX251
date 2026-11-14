@@ -3077,10 +3077,19 @@ wide_choose_shared_tails(wide_function *f,wide_selection_cost *cost)
     "shared-tail","groups",false,"tail-original","tail-trial",true,true);
 }
 
+#include "wide_equal_branches.c.inc"
+
+static mcs251_wide_result
+wide_choose_equal_branches(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_equal_branches,wide_choose_shared_tails,
+    "equal-branch","diamonds",false,"equal-original","equal-trial",false,true);
+}
+
 static mcs251_wide_result
 wide_choose_value_webs(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_value_webs,wide_choose_shared_tails,
+  return wide_choose_transform(f,cost,wide_value_webs,wide_choose_equal_branches,
     "value-webs","splits",false,"webs-original","webs-trial",false,false);
 }
 
