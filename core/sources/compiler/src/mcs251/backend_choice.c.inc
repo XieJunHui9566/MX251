@@ -142,13 +142,20 @@ mcs251BackendSymbol(const char *name,const void *unused)
   if(strlen(name)==3 && name[0]=='a' && name[1]=='r' && name[2]>='0' && name[2]<='7') {
     result.kind=WC_DIRECT;return result;
   }
-  memmap *spaces[]={data,sfr,sfrbit,bit};
+  bool extended=!strncmp(name,"e:",2);
+  const char *object=extended?name+2:name;
+  memmap *spaces[]={data,sfr,sfrbit,bit,edata,e_abs};
   for(unsigned i=0;i<sizeof spaces/sizeof spaces[0];++i)if(spaces[i])
     for(const set *node=spaces[i]->syms;node;node=node->next) {
       const symbol *s=node->item;
       if(!s || !s->rname[0] || getSize(s->type)<=0)continue;
-      if(bc_symbol_offset(name,s->rname,(unsigned)getSize(s->type))<0)continue;
-      result.kind=IN_BITSPACE(spaces[i])?WC_BIT:WC_DIRECT;return result;
+      bool edataObject=spaces[i]==edata || spaces[i]==e_abs;
+      if(extended!=edataObject || s->onStack)continue;
+      int offset=bc_symbol_offset(object,s->rname,(unsigned)getSize(s->type));
+      if(offset<0)continue;
+      if(extended && SPEC_ABSA(s->etype) &&
+         (SPEC_ADDR(s->etype)<0 || SPEC_ADDR(s->etype)>65535-offset))continue;
+      result.kind=extended?WC_EXT_DIRECT:IN_BITSPACE(spaces[i])?WC_BIT:WC_DIRECT;return result;
     }
   return result;
 }
