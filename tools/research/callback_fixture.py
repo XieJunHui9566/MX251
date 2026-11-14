@@ -11,7 +11,8 @@ import user_stress
 CASES = ['local', 'local_array', 'data_scalar', 'edata_scalar', 'xdata_scalar',
          'data_array', 'edata_array', 'xdata_array', 'code_array', 'struct_member',
          'wide_first', 'wide_second', 'wide_third', 'wide_return',
-         'legacy_first', 'legacy_second', 'legacy_third', 'legacy_return', 'legacy_invoke']
+         'legacy_first', 'legacy_second', 'legacy_third', 'legacy_return', 'legacy_invoke',
+         'stack_arguments', 'pressure', 'repeated']
 
 
 def generate(root):
@@ -40,6 +41,9 @@ typedef uint32_t u32;
 typedef u32 (*Operation)(u32, u8) ABI;
 u32 add(u32 x,u8 y) ABI;
 u32 mix(u32 x,u8 y) ABI;
+typedef u32 (*Many)(u32,u8,u16,u32,const u8 *,const u8 *) ABI;
+u32 many(u32 x,u8 y,u16 a,u32 b,const u8 *p,const u8 *q) ABI;
+u32 pressure(Operation fn,u32 x,u8 y,u32 a,u32 b,u32 c,u32 d,u32 e) ABI;
 u32 stress_run(u8 kind,u8 seed);
 '''
     for prefix in ('wide', 'legacy'):
@@ -53,6 +57,9 @@ Operation {prefix}_choose(u8 y) ABI;
     (root/'targets.c').write_text('''#include "stress.h"
 u32 add(u32 x,u8 y) ABI {return x+(u32)y*257UL+0x1234UL;}
 u32 mix(u32 x,u8 y) ABI {return (x<<3)^(x>>7)^y;}
+u32 many(u32 x,u8 y,u16 a,u32 b,const u8 *p,const u8 *q) ABI {
+    return (x+b)^((u32)a<<8)^y^((u16)*p<<4)^*q;
+}
 ''')
     for prefix in ('wide', 'legacy'):
         source = '#include "stress.h"\n'
@@ -61,6 +68,12 @@ u32 mix(u32 x,u8 y) ABI {return (x<<3)^(x>>7)^y;}
                                ('third','u32 x,u8 y,Operation fn')]:
             source += f'u32 {prefix}_{position}({args}) ABI {{return fn(x,y);}}\n'
         source += f'Operation {prefix}_choose(u8 y) ABI {{return (y&1)?add:mix;}}\n'
+        if prefix == 'wide':
+            source += '''u32 pressure(Operation fn,u32 x,u8 y,u32 a,u32 b,u32 c,u32 d,u32 e) ABI {
+    u32 r=fn(x,y); r=fn(r,(u8)(y+1));
+    return r^a^(b<<1)^(c>>1)^(d+e);
+}
+'''
         if prefix == 'legacy':
             source += 'u32 legacy_invoke(u32 x,u8 y) ABI { return wide_third(x,y,(y&1)?add:mix); }\n'
         (root/(prefix+'.c')).write_text(source)
@@ -74,10 +87,20 @@ static Operation __xdata xt[2];
 static Operation const __code ct[2]={mix,add};
 struct Record {u8 before; Operation fn; u8 after;};
 static struct Record __xdata records[2];
+static Many volatile many_fn;
+static u8 anchor=0x37;
 '''
     for kind, name in enumerate(CASES):
         setup = ''; call = 'fn(x,y)'
         if name == 'local': setup = 'fn=(y&1)?add:mix;'
+        elif name == 'stack_arguments':
+            setup = 'u8 local=(u8)(y^0xa5); many_fn=many;'
+            call = 'many_fn(x,y,0x9abcU,0x12345678UL,&local,&anchor)'
+        elif name == 'pressure':
+            setup = 'fn=(y&1)?add:mix;'
+            call = 'pressure(fn,x,y,x+1,x^0xfedcba98UL,x+3,x+4,x+5)'
+        elif name == 'repeated':
+            setup = 'fn=(y&1)?add:mix; x=fn(x,y); x=fn(x,(u8)(y+1));'
         elif name == 'local_array': setup = 'Operation t[2]; t[0]=mix; t[1]=add; fn=*(t+(y&1));'
         elif name.endswith('_scalar'):
             obj = {'data_scalar':'dfn','edata_scalar':'efn','xdata_scalar':'xfn'}[name]
@@ -117,7 +140,7 @@ def reference(root,gcc):
     user_stress.run([gcc,'-std=c99','-O2','-Wall',*sorted(p.name for p in root.glob('*.c')),
                      '-o','reference.exe'],root,label='compile')
     values={k:int(v) for k,v in (line.split() for line in user_stress.run([root/'reference.exe'],root).splitlines())}
-    for k in range(len(CASES)):
+    for k in range(CASES.index('stack_arguments')):
         for s in range(64): assert values[f'{k}:{s}']==values[f'0:{s}'],(k,s)
     board.write(root/'reference.json',values)
 

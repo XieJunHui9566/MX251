@@ -1527,10 +1527,17 @@ wcall_original(wide_function *f,int index)
     f->stackDepth+=v->width;
   }
   size_t setupStart=dbuf_get_length(&f->output);
+  int indirectReg=20;
   if(n->indirectCall) {
-    /* Snapshot before argument registers are overwritten. The target is below
-     * the outgoing arguments; reload into reserved DR20 without touching A/B. */
-    wload(f,n->addressIndex,20,4);we(f,"\tpush\tdr20\n");f->stackDepth+=4;
+    /* Argument setup uses DR16 and B:A; DR20 is reserved for the target.
+     * Keep an allocated target in place when argument registers do not
+     * overlap it. Otherwise snapshot once, including private call-frame
+     * copies, before preparing any arguments. Neither path needs stack space. */
+    int reg=n->addressIndex.value>=0?wsource_location(f,n->addressIndex.value).reg:-1;
+    uint32_t writes=n->call.argumentWrites|MCS251_AB_BYTES|wide_mask(16,4);
+    if(reg>=0 && !(wide_mask(reg,4)&writes))indirectReg=reg;
+    else wload(f,n->addressIndex,indirectReg,4);
+    we(f,"; wide indirect target reg=%d transport=%s\n",indirectReg,reg==indirectReg?"resident":"snapshot");
   }
   if(n->stackArgs)we(f,"; wide stack call args=%u bytes=%u\n",n->stackArgs,n->stackBytes);
   for(unsigned k=0;k<n->stackArgs;++k) {
@@ -1585,9 +1592,8 @@ wcall_original(wide_function *f,int index)
   }
   size_t setupEnd=dbuf_get_length(&f->output);
   if(n->indirectCall) {
-    char high[32],low[32];wa(high,-(int)n->stackBytes-3);wa(low,-(int)n->stackBytes-1);
-    we(f,"; wide indirect call abi=%u\n\tmov\twr20,%s\n\tmov\twr22,%s\n\tecall\t@dr20\n",
-       (unsigned)FUNC_SDCCCALL(wide_call_type(n)),high,low);
+    we(f,"; wide indirect call abi=%u\n\tecall\t@dr%d\n",
+       (unsigned)FUNC_SDCCCALL(wide_call_type(n)),indirectReg);
   } else we(f,"\tecall\t%s\n",n->callee->rname);
   size_t finishStart=dbuf_get_length(&f->output);
   bool discardOrdinaryResult=n->ordinaryCall && n->result>=0 && !wb_has(n->out,n->result);
@@ -1598,7 +1604,7 @@ wcall_original(wide_function *f,int index)
     we(f,"; wide ordinary bit result: CY to byte before cleanup\n\tclr\ta\n\trlc\ta\n");
     wstore_byte(f,n->result,11);
   }
-  unsigned outgoing=n->stackBytes+(n->indirectCall?4:0);
+  unsigned outgoing=n->stackBytes;
   if(outgoing) {wstep(f,60,4,true,outgoing);f->stackDepth-=outgoing;}
   if(wordinary_forward_return(f,index)) {
     /* 保留真正的 CALL、完整实参及调用期间的本地帧。被调函数仍可访问
