@@ -1,6 +1,8 @@
-# 当前 SDK 对照范围：75 项
+# 原 75 项 SDK 冻结对照
 
 2026-11-13，统一编译器 `bundled-final-nine/core-07`，启动实现 `86ae728`，后端实现 `172cb90`。
+
+2026-11-14 已封装新的活动核心。本页保留旧编译器的 75 项冻结成绩；新核心的实际验证范围见 [开发基线](BASELINE.md)。
 
 - 体积 ≤Keil 120%：**75/75**。
 - 体积 ≤Keil 110%：**75/75**。
@@ -32,7 +34,7 @@
 
 入口：`E:/STVAPP/MX251-baseline/Build.ps1`。
 
-配置：`E:/STVAPP/MX251-baseline/sdk-baseline.json`，保留全部 75 项与 p108 显式输入替换。完整产物位于基线目录 `evidence/bundled-final-nine/matrix-07`；后续配置默认写入 `work/next-sdk-matrix`，以基线根目录 `comparison.json` 为对照。历史证据中的原路径按 `archive/locations.json` 查找。
+配置：`E:/STVAPP/MX251-baseline/sdk-baseline.json`，保留全部 75 项与 p108 显式输入替换。完整产物位于基线目录 `evidence/bundled-final-nine/matrix-07`；后续配置默认写入 `work/next-sdk-matrix`，本页的历史对照表位于 `reference/baseline-20261113/comparison.json`。历史证据中的原路径按 `archive/locations.json` 查找。
 
 [结构化名单](active-sdk-cohort.json) 与 [本轮证据](bundled-final-nine-evidence.json) 绑定编译器、配置、报告及测试。体积目标已完成，运行时间目标继续保留。
 

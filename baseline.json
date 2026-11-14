@@ -1,71 +1,78 @@
 {
-  "schema": 1,
-  "id": "mx251-baseline-20261113",
+  "schema": 2,
+  "id": "mx251-baseline-20261114",
   "status": "ACTIVE_DEVELOPMENT_BASELINE",
-  "date": "2026-11-13",
-  "gitTag": "baseline-20261113",
+  "date": "2026-11-14",
+  "gitTag": "baseline-20261114",
   "publicVersion": "0.0170-test",
-  "compilerSourceCommit": "172cb90e22aa9b99c5097ef6141f42251b7b0c69",
-  "qualificationCommit": "b6ff0f8d33e8f9707449ea86a256af449ef97da9",
+  "compilerSourceCommit": "e5326b6382a44a338380c2e1e6264b571e5f2618",
+  "qualificationCommit": "2df230b",
+  "packagingCommit": "efdf351a552d00f802d8feec5ea88a0bd3c6ab97",
   "core": {
     "path": "E:\\STVAPP\\MX251-baseline\\core\\core.json",
-    "sha256": "7ec1c2ec7873f1f12dfe18e49cafa7ce298bfadf0a6a6d894a48260dec5425a6"
+    "sha256": "bf6fd287d81ddae4d9901bfa65217647f1962f9f33bd1946539f9b678ce46bd5"
   },
   "compiler": {
     "path": "E:\\STVAPP\\MX251-baseline\\core\\toolchain\\bin\\sdcc.exe",
-    "sha256": "4e6a7d78e3fc4d9988bf43c56777d4cf66b25d453de60eb4f4f65f987fdd55fc"
+    "sha256": "54a2c9c3795f8fd3ddc617b256b5e98f0696558e6f2fe718ece3027cf795b71e"
   },
   "entry": {
     "path": "E:\\STVAPP\\MX251-baseline\\Build.ps1",
-    "sha256": "458696cc5990e1e22f43fa53d1ccfcd977e37e39c020169254fa344b5751f030"
+    "sha256": "23dda911020180de4ecef4fd377585ef0b13f3c6cccff0fb8ead7932e3bee89d"
   },
   "configuration": {
     "path": "E:\\STVAPP\\MX251-baseline\\sdk-baseline.json",
     "sha256": "938b8e784ed888ef8fa4cd2c007075556dc4904afd7fb0f481a89693e060a797"
   },
+  "expandedConfiguration": {
+    "path": "E:\\STVAPP\\MX251-baseline\\reference\\sdk-expanded\\config.json",
+    "sha256": "3b0e74bc5bf6f8ac00935ec78698845f76ee8c5b42cbddbb71205ebf873c4311"
+  },
   "comparison": {
     "path": "E:\\STVAPP\\MX251-baseline\\comparison.json",
-    "sha256": "8097b7e8d5388747fbbf1a04de1b8de901070512687f749724204763836e09e2"
+    "sha256": "b0c9a8c5102a3db60fd179c0b1af9312dc38bff34bbc34b69284c41c0e95c53b"
   },
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-baseline\\evidence\\bundled-final-nine\\qualification.json",
-    "sha256": "afb840e371d93b4756ad6ada44da20c4a2f6192428bdc7ac9e3b4d6079cb23ea"
+    "path": "E:\\STVAPP\\MX251-baseline\\evidence\\abi4-backend-choice\\ABI4-BACKEND-CHOICE-RESULTS.json",
+    "sha256": "8b82169de7c83313d180a19265200ec0eb2962950c2c6fe70a11ebba5ecf511e"
   },
   "summary": {
-    "projects": 75,
-    "improved": 73,
-    "unchanged": 0,
-    "larger": 2,
-    "savedBytes": 1956,
-    "mxTotalBytes": 189090,
-    "keilTotalBytes": 192049,
-    "within110": 75,
-    "within120": 75,
-    "stcStatuses": {
-      "BUILT": 59,
-      "UNSUPPORTED_ASSEMBLY_INPUT": 13,
-      "FAILED": 3
-    },
-    "smallerThanStcRaw": 54,
-    "weightedKeilRatio": 0.98459247379575
+    "projects": 7,
+    "improved": 2,
+    "unchanged": 5,
+    "increased": 0,
+    "savedBytes": 32,
+    "atMost120": 1,
+    "atMost110": 0
   },
-  "hardwareCasesPassed": 768,
+  "summaryScope": "Seven projects rebuilt by this compiler; not a new full SDK qualification",
+  "hardwareCasesPassed": 512,
   "fullProjectRuntimeMeasured": false,
   "localEntry": "E:\\STVAPP\\MX251-baseline\\Build.ps1",
   "developmentWorktree": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251",
   "compilerBuildDirectory": "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build",
-  "policy": "Future compiler changes compare against this baseline. Keep frozen outputs immutable and use a new output directory.",
+  "previousBaseline": {
+    "path": "E:\\STVAPP\\MX251-baseline\\reference\\baseline-20261113\\baseline.json",
+    "sha256": "e799f67e4697bf50f6cac1456faa48a952f42b908269963d9ea9ed62d9d60720"
+  },
+  "package": {
+    "schema": 1,
+    "file": "MX251-core-20261114-windows-x64.zip",
+    "bytes": 191787974,
+    "sha256": "36a96bb395808bbb0e6338deda8409151aff8ba59510129a385cdfb9a16c73e2",
+    "buildId": "mx251-core-20261114"
+  },
+  "smoke": {
+    "path": "E:\\STVAPP\\MX251-baseline\\evidence\\core-packaging-20261114\\package-smoke.json",
+    "sha256": "878d4ef453960b022e59cfcfeba7ea6d7927e4e441d46ea6566f6c322e7cc26b"
+  },
   "evidenceLocations": {
     "path": "E:\\STVAPP\\MX251-baseline\\archive\\locations.json",
-    "sha256": "0bfbe815c73441fb3ea53f31dc2fdc39d8303fdcf6bd5beb8e961f9b295afba2"
+    "sha256": "28a353f528b1d13bb9d5f2f416f0e595eac1470c65d9dce59dc76b3dc1b0da94"
   },
-  "originQualification": {
-    "path": "E:\\STVAPP\\MX251-mainline-20261113\\bundled-final-nine\\Build-Optimized-07.ps1",
-    "sha256": "fbb329beddf56ace71ae085932f7cf1188df1c6653dc9d5164d32399eede4969"
-  },
-  "relocation": "Compiler, runtime and qualified build scripts are byte-identical. Host tools and relative launcher moved into baseline. Frozen evidence uses archive/locations.json.",
+  "policy": "Compare later compiler changes with this core. Use new output directories; retained historical 75-project results describe the 2026-11-13 compiler.",
   "cleanup": {
-    "path": "E:\\STVAPP\\MX251-baseline\\cleanup.json",
-    "sha256": "91dc7a9698fb0337203116c5a6246ba726f7bfa519a63101cf0db66f873c8845"
+    "path": "E:\\STVAPP\\MX251-baseline\\cleanup-20261114.json",
+    "sha256": "7becde5b44051b510bbec77ea97c2511fdcbf7d24ba29f12d3bab08971b0c7a3"
   }
 }

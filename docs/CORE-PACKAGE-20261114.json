@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "date": "2026-11-14",
+  "gitTag": "baseline-20261114",
+  "packagingCommit": "efdf351a552d00f802d8feec5ea88a0bd3c6ab97",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "54a2c9c3795f8fd3ddc617b256b5e98f0696558e6f2fe718ece3027cf795b71e"
+  },
+  "core": {
+    "path": "E:\\STVAPP\\MX251-baseline\\core\\core.json",
+    "sha256": "bf6fd287d81ddae4d9901bfa65217647f1962f9f33bd1946539f9b678ce46bd5"
+  },
+  "package": {
+    "schema": 1,
+    "file": "MX251-core-20261114-windows-x64.zip",
+    "bytes": 191787974,
+    "sha256": "36a96bb395808bbb0e6338deda8409151aff8ba59510129a385cdfb9a16c73e2",
+    "buildId": "mx251-core-20261114"
+  },
+  "entry": {
+    "path": "E:\\STVAPP\\MX251-baseline\\Build.ps1",
+    "sha256": "23dda911020180de4ecef4fd377585ef0b13f3c6cccff0fb8ead7932e3bee89d"
+  },
+  "smoke": {
+    "status": "PASS",
+    "cases": [
+      {
+        "project": "edata",
+        "target": "AI8051U-34K64-32",
+        "runtime": "standard",
+        "bytes": 276,
+        "firmwareSha256": "9aa4997fcebb4b6478e23432f16ef6a0429028a435dfe328cb52d71962ec57d7"
+      },
+      {
+        "project": "float",
+        "target": "AI8051U-34K64-32",
+        "runtime": "native-math",
+        "bytes": 8196,
+        "firmwareSha256": "e9252ca91472259358dad9c9f158bdfa69a7dbc5f486b736d8e1d76e6b4b668d"
+      },
+      {
+        "project": "math-casts-stc",
+        "target": "STC32G12K128",
+        "runtime": "native-math-wide",
+        "bytes": 1226,
+        "firmwareSha256": "e2b7d2239569bdf6667ef80841b6862702bdd97f879d378e87a7babcf3db098d"
+      }
+    ],
+    "floatHexMatchesPrevious512CaseQualification": true,
+    "hardwareRerun": false
+  },
+  "relocation": {
+    "status": "PASS",
+    "bindings": [
+      "core",
+      "compiler",
+      "entry",
+      "configuration",
+      "expandedConfiguration",
+      "comparison",
+      "qualification",
+      "smoke",
+      "evidenceLocations"
+    ],
+    "currentProjectArtifacts": 14,
+    "retainedOriginalInputFiles": 436,
+    "compilerSha256": "54a2c9c3795f8fd3ddc617b256b5e98f0696558e6f2fe718ece3027cf795b71e",
+    "compilerBuildRetained": true
+  },
+  "cleanup": {
+    "schema": 1,
+    "date": "2026-11-14",
+    "status": "COMPLETE",
+    "removed": [
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\abi4-backend-choice",
+        "files": 3592,
+        "bytes": 166828569.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\edata-scalars",
+        "files": 31311,
+        "bytes": 1902154215.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\exact-float-scale",
+        "files": 6981,
+        "bytes": 431010496.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\float-format-edata",
+        "files": 10377,
+        "bytes": 598638586.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\format-call-transport",
+        "files": 9169,
+        "bytes": 384222993.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\integer-format-divmod",
+        "files": 14263,
+        "bytes": 765729648.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\math-native-transport",
+        "files": 3105,
+        "bytes": 104655507.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\native-startup",
+        "files": 6457,
+        "bytes": 260428179.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-compatibility",
+        "files": 26717,
+        "bytes": 2669828511.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\sdk-math-coverage",
+        "files": 14213,
+        "bytes": 1213612362.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\usb-omf-format",
+        "files": 1581,
+        "bytes": 69522725.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\development\\vector-function-gc",
+        "files": 6911,
+        "bytes": 430119296.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\superseded-core-20261113",
+        "files": 285,
+        "bytes": 55214774.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\MX251-core-20261114",
+        "files": 9499,
+        "bytes": 402807587.0
+      },
+      {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\package-smoke",
+        "files": 477,
+        "bytes": 10585636.0
+      }
+    ],
+    "archive": "E:\\STVAPP\\MX251-baseline\\archive\\development-records-20261114.zip",
+    "archiveBytes": 1191793676,
+    "archiveSha256": "3ea1cbc809cf8e4e9a6ffa1aabcc3572cabc75da220726b4b53801691d5ed428",
+    "retainedResearchRecords": 79612,
+    "grossRemovedBytes": 9465359084,
+    "initialBytesApprox": 11123806006,
+    "currentBytes": 3762763336,
+    "currentFiles": 85880,
+    "netReleasedBytesApprox": 7361042670,
+    "netReleasedGiBApprox": 6.86,
+    "calculation": "File length totals; initial directory inventory rounded to 0.01 MiB, includes new portable ZIP and research archive in final total",
+    "activeCore": "E:\\STVAPP\\MX251-baseline\\core",
+    "retained": [
+      "Git history and active source checkout",
+      "main checkout user changes",
+      "current compiler build",
+      "original SDK inputs",
+      "Keil/STC references",
+      "latest firmware/board results",
+      "original STC-Link1D captures"
+    ],
+    "optionalCleanupNotPerformed": "Additional source __pycache__ removal was rejected by automatic approval policy without a specific reason; caches and local maintenance scripts remain",
+    "preexistingRemovedBytes": 9051965861
+  },
+  "notes": "Existing 512 board cases reused; no compiler rebuild, full matrix rerun or firmware download during packaging"
+}
