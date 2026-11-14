@@ -1,0 +1,235 @@
+{
+  "status": "MEASURED_AND_IMPLEMENTED",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "e39acb8f67bb2bd8219a1643039348802375765f5067691608706c8b06f5f263"
+  },
+  "implementationCommit": "078a0055c9d0bb1ff06d5b85f3e594a28c421e8c",
+  "timingToolsCommit": "c40ce2419050fe1b60292e8f02172b389974d213",
+  "fixtureCommit": "c64e03db177c7fd3c1697697dbbcb648236c24cd",
+  "sdkAlgorithmsChanged": false,
+  "defaultCoreReplaced": false,
+  "fullEngineeringTimingQualified": false,
+  "timerScope": "Dispatch, one workload and result transport. No UART. Raw ticks; no baseline subtraction.",
+  "beforeTiming": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\final\\timing-comparison.json",
+    "sha256": "edd751ba8a0af967601fcea18ebf3aef5d773f1219a861fdc97f72e3b20ea2c8"
+  },
+  "afterTiming": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\timing-comparison.json",
+    "sha256": "e5b704170985a72c2496aa6b1b7b47b31891357d8ba47516c89f91d40518ab6f"
+  },
+  "rows": [
+    {
+      "name": "fields_clean",
+      "beforeRatio": 1.2641249425815342,
+      "afterRatio": 1.2645798546942608,
+      "afterWorstInputRatio": 1.265161003524543,
+      "afterCasesAt110": 0
+    },
+    {
+      "name": "fields_messy",
+      "beforeRatio": 1.4661575841721624,
+      "afterRatio": 1.4666852004082946,
+      "afterWorstInputRatio": 1.4671944661028808,
+      "afterCasesAt110": 0
+    },
+    {
+      "name": "parser_clean",
+      "beforeRatio": 1.0119452219112355,
+      "afterRatio": 1.0122593858156372,
+      "afterWorstInputRatio": 1.0187713944774606,
+      "afterCasesAt110": 64
+    },
+    {
+      "name": "parser_messy",
+      "beforeRatio": 0.9694424673784104,
+      "afterRatio": 0.9696489341167794,
+      "afterWorstInputRatio": 0.9743389419535028,
+      "afterCasesAt110": 64
+    },
+    {
+      "name": "ring_clean",
+      "beforeRatio": 1.9700854038470481,
+      "afterRatio": 0.48624835797668214,
+      "afterWorstInputRatio": 0.48628604463637154,
+      "afterCasesAt110": 64
+    },
+    {
+      "name": "ring_messy",
+      "beforeRatio": 1.089673272990343,
+      "afterRatio": 1.0900654063579398,
+      "afterWorstInputRatio": 1.0909096784601162,
+      "afterCasesAt110": 64
+    },
+    {
+      "name": "bits_clean",
+      "beforeRatio": 1.5839964955829744,
+      "afterRatio": 1.584566517712975,
+      "afterWorstInputRatio": 1.5846822132823173,
+      "afterCasesAt110": 0
+    },
+    {
+      "name": "bits_messy",
+      "beforeRatio": 2.409691629955947,
+      "afterRatio": 2.4105587894221343,
+      "afterWorstInputRatio": 2.4105587894221343,
+      "afterCasesAt110": 0
+    },
+    {
+      "name": "callback_clean",
+      "beforeRatio": 1.4077446053798404,
+      "afterRatio": 1.4081329201317925,
+      "afterWorstInputRatio": 1.4203582791211096,
+      "afterCasesAt110": 0
+    },
+    {
+      "name": "callback_messy",
+      "beforeRatio": 1.5935895265504203,
+      "afterRatio": 1.5943888029845088,
+      "afterWorstInputRatio": 1.6064172986527896,
+      "afterCasesAt110": 0
+    },
+    {
+      "name": "giant_clean",
+      "beforeRatio": 0.9274412034450407,
+      "afterRatio": 0.927817137586936,
+      "afterWorstInputRatio": 0.9288091577832004,
+      "afterCasesAt110": 64
+    },
+    {
+      "name": "giant_messy",
+      "beforeRatio": 1.0266322058658277,
+      "afterRatio": 1.027001653070002,
+      "afterWorstInputRatio": 1.0291990665168858,
+      "afterCasesAt110": 64
+    }
+  ],
+  "beforeKindsAt110": 5,
+  "afterKindsAt110": 6,
+  "currentHardware": {
+    "status": "PASS",
+    "cases": 832,
+    "codeBytes": 11074,
+    "compilerSha256": "e39acb8f67bb2bd8219a1643039348802375765f5067691608706c8b06f5f263",
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "f7f92c0f7ed9ecc826a5b2b0e3d8f5d131170b4c2e6e8e60d557107c1459606a"
+    },
+    "receipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\mx251\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "610bd315ff5ab0ac02358233d646d103b649426e71d82c22f81254b29fa8633c"
+    },
+    "capture": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\mx251-capture\\result.json",
+      "sha256": "0e8794e9ff683203bd4dd029bda4b0d0ce15f328687bf3e42b0d8231f4c94f91"
+    },
+    "uart": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\mx251-capture\\uart.bin",
+      "sha256": "e1ede9bc5669c568c19747024e74b3cdb4441db94465e445fa710e0a7e5fe885"
+    },
+    "flash": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\mx251-capture\\flash\\result.json",
+      "sha256": "45236f566a91c6e3ed4fa93de27ff46ab5106ba5431442e741d2ca73966e6217"
+    }
+  },
+  "boundaryHardware": {
+    "status": "PASS",
+    "cases": 320,
+    "codeBytes": 1664,
+    "compilerSha256": "e39acb8f67bb2bd8219a1643039348802375765f5067691608706c8b06f5f263",
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-board-final\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "1fb07225ce866c80b96370132f4ffbe973e5fc8555153639521c6786e248c48f"
+    },
+    "receipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-board-final\\board\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "7f847a929c3f34f84cc1489cc4b4fbc87a68a231be2083180737623caed86e03"
+    },
+    "capture": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-board-final\\capture\\result.json",
+      "sha256": "a7e9cba7b2bd5fd116eaf457241dfc8dee19c94ec1808d983e235ec34458867f"
+    },
+    "uart": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-board-final\\capture\\uart.bin",
+      "sha256": "5396949e8ccd3b3309075d0bdc128beb443964202a6952854394972f397d34cf"
+    },
+    "flash": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-board-final\\capture\\flash\\result.json",
+      "sha256": "9437b49076942177e685305aa2dade5eb7fad4dd2c58d43589f530bad63eea64"
+    }
+  },
+  "keilCaptureReused": true,
+  "keilCapture": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\keil-capture\\result.json",
+    "sha256": "9e4b4a00a9d8fa6f5057996bb25595111e75c3c8af6e33959046fcdcdbc5b946"
+  },
+  "boundaryTests": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-tests-final\\result.json",
+    "sha256": "188dd78c78bb60f89f1272d09115909e674a13139ecbd45f9ad6b96ba8f51c2a"
+  },
+  "volatileAccesses": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\power2-tests-final\\volatile-accesses.json",
+    "sha256": "cac57e50e736171affa02f1f65f213bdc46ea017bc926c3045a1d0b05a49e7c3"
+  },
+  "userStress": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\user-stress\\compilation.json",
+    "sha256": "c57237d7a28d12f4475e913d87125edd7d6c3013d01bb5e28c8d700b9dec57a5"
+  },
+  "hostStress": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\user-stress\\host-result.json",
+    "sha256": "c247fecdaede91af4751d063c3b5d95c70f2809666a4a2813ace1dfb735717bf"
+  },
+  "changedUserObjects": [
+    "AI8051U-34K64-32-large-size\\ring.rel",
+    "AI8051U-34K64-32-small-size\\ring.rel",
+    "AI8051U-34K64-32-small-speed\\ring.rel",
+    "Independent251-large-size\\ring.rel",
+    "Independent251-small-size\\ring.rel",
+    "Independent251-small-speed\\ring.rel",
+    "STC32G12K128-large-size\\ring.rel",
+    "STC32G12K128-small-size\\ring.rel",
+    "STC32G12K128-small-speed\\ring.rel"
+  ],
+  "unchangedUserObjects": 54,
+  "ring": {
+    "beforeFunctionBytes": 292,
+    "afterFunctionBytes": 214,
+    "keilFunctionBytes": 157,
+    "beforeTicksPerInput": 993,
+    "afterTicksPerInput": 245,
+    "elapsedReduction": 0.7531841223597873
+  },
+  "imageBytes": {
+    "before": 11152,
+    "after": 11074,
+    "keil": 6124
+  },
+  "officialPilot": {
+    "id": "g133",
+    "codeBytes": 8591,
+    "hexIdentical": true,
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\projects\\g133\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "659ffaa5defdc764d065ec46ae23f7b6b5187535f28ef56d2f3af60a12f975ad"
+    }
+  },
+  "complete97Rebuilt": false,
+  "largeFunctionCosts": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\final\\large-function-costs.json",
+    "sha256": "da80e6199b3278ae5ac25a18bb32b0e581f618dd4529830008ae3529c92ccdcd"
+  },
+  "nextCapacity": {
+    "function": "giant_messy",
+    "reason": "value-capacity",
+    "values": 512,
+    "nodes": 515,
+    "mxFunctionBytes": 7243,
+    "keilFunctionBytes": 3947,
+    "assembly": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\mx251\\.build\\mx251\\latest\\u5.asm",
+      "sha256": "60b6877392ac1d44ad68325ab6a3228ea6de776d55af8e1c9f67c10eb343a636"
+    }
+  },
+  "candidateEntry": "E:\\STVAPP\\MX251-baseline\\work\\large-function-timing-20261115\\optimized\\Build-Optimized.ps1"
+}
