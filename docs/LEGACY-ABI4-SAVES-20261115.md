@@ -47,14 +47,16 @@ g071 选择性 ABI4 的同一比较阶段：父版基线 2615 B、候选 2685 B�
 - 实板固件 **6001 B**，有 256 项 GCC 参考；旧后端 ABI2、新 ABI4、普通宽后端及 Timer0 中断四条路径应产生相同结果，每套 512 次中断。覆盖参数宽度、栈参数、返回值和跨调用活值。
 - 实板汇编已确认普通旧后端调用和中断中的 ABI4 调用触发精简；短用例中被调函数不写任何通用寄存器，参数装载仍覆盖 R7/R15，因此必须保留 R7 的调用前活值，只去掉 R4..R6 保存。主机参考与板端共用源文件已逐字节核对。
 
-**硬件未执行**：STC-Link1D 枚举为空。固件、参考结果与 SHA 已保存到 `hardware-status.json`，连接后直接运行以下命令；不恢复旧固件。本固件不测运行时间。
+**后续实板已通过**：AI8051U-34K64、STC-Link1D `82941086`、COM13，ABI4 256/256、EDATA 256/256、标量语义 1024/1024。以下命令保留供新输出目录复现；本轮执行和后续显式旧后端接入见 [实板与反馈报告](LEGACY-FEEDBACK-HARDWARE-20261115.md)。运行时间尚未比较。
 
 ```powershell
 E:/MCU/python/python.exe -B -X utf8 tools/research/legacy_abi4_fixture.py capture --hex E:\STVAPP\MX251-baseline\work\legacy-abi4-saves-20261115\final\board\.build\mx251\latest\firmware.hex --reference E:\STVAPP\MX251-baseline\work\legacy-abi4-saves-20261115\final\board\reference.json --output E:\STVAPP\MX251-baseline\work\legacy-abi4-saves-20261115\final\capture
 ```
 
-候选入口：`E:\STVAPP\MX251-baseline\work\legacy-abi4-saves-20261115\final\Build-Optimized.ps1`。默认冻结核心未替换，上轮 EDATA/标量实板待测项仍保留。
+候选入口：`E:\STVAPP\MX251-baseline\work\legacy-abi4-saves-20261115\final\Build-Optimized.ps1`。默认冻结核心未替换，上轮 EDATA/标量实板待测项已完成。
 
 ## 后续线索
 
 构建脚本 `CallClobberFeedback.ps1` 仍跳过显式配置为 `legacy` 的编译单元。新后端中回退生成的函数，以及 `explicit-wide` 单元中的 ABI2 函数已经可以使用本轮能力；明确选择旧后端的用户工程尚未接入该反馈流程。下一步可把它们接入现有反馈及最终写入核验流程。本轮没有修改此构建策略，实板用例使用 `explicit-wide` 让 ABI2 继续由旧后端生成并取得真实调用反馈。当前 97 项官方工程没有显式 `legacy` 单元，因此接通这一分支主要补齐用户工程能力，不能据此预期这套 SDK 再次缩小。
+
+上述显式旧后端接入及 `arguments=` 记录解析已在 `890a276` 完成，见后续报告。

@@ -1,0 +1,380 @@
+{
+  "schema": 1,
+  "buildSourceCommit": "890a27665b9608fc978373cab762d3ffa56fd860",
+  "compilerSha256": "6dda7b0e6bddc960f41e8000950e175030cc398ab066bd1a4da792bd16b07144",
+  "completedAt": "2026-11-14T20:45:03.894414+00:00",
+  "deviceModel": "AI8051U-34K64",
+  "probeSerial": "82941086",
+  "port": "COM13",
+  "priorHardware": {
+    "abi4": {
+      "status": "PASS",
+      "cases": 256,
+      "codeBytes": 6001,
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "4cb9f251e0fc260f9d7be407a08023e720bb80b4c20acc308d59f2d762ba8cbf"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\board\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "8b1ed4b30c149d8f52dc77b5762bc6673556c392965ccdc2f2c318d9b3bfeda3"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\board\\reference.json",
+        "sha256": "d7d75487ba9b7c4889963de617cc9d9e00b762b0a6caaf5219ebe967dce160c7"
+      },
+      "capture": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\capture\\result.json",
+        "sha256": "c53206a6b5082fba0cdeff31cd42166ae8c2c6290a9c024a5ba612b1cc92d177"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\capture\\uart.bin",
+        "sha256": "a1b1d157a761168042fca52ff162a57cb6becae32c324c10d67e8dcd38571d2b"
+      },
+      "flash": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\capture\\flash\\result.json",
+        "sha256": "bb2ab5d230e12d160be81360a4754ffa454cf17b10bddd79fe5db1a0d1cef7e9"
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "timingQualified": false,
+      "executionEvidence": "Board UART checksums match host C reference; download acknowledgement alone is not the execution result"
+    },
+    "edata": {
+      "status": "PASS",
+      "cases": 256,
+      "codeBytes": 3718,
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\edata-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b5d50d7103ff8aea5016e1e923d44552296945b05b62b70fe9f2e24bcb82e397"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\edata-board\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "da0d2eabbfd451a8b62cc1a0210ac1e225191d0d7570a82a88afd4a2a8c84bda"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\edata-board\\reference.json",
+        "sha256": "ea9749685a12008f6bc6ed2b2f85e77a0ab4511c162e0dfc4f70f8f356955907"
+      },
+      "capture": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\edata-capture\\result.json",
+        "sha256": "00b965b1427efa4b700ba0c0547512de684e86511df80803b4ef158c81f99b87"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\edata-capture\\uart.bin",
+        "sha256": "114e943d204bddcad8de8c97b09fd32c9bd68576f418ec320636f27a72c1c70e"
+      },
+      "flash": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\edata-capture\\flash\\result.json",
+        "sha256": "a245365b9a0033b38470b68a778335f654d916894142c1c5fd3d1e8c229097ea"
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "timingQualified": false,
+      "executionEvidence": "Board UART checksums match host C reference; download acknowledgement alone is not the execution result"
+    },
+    "scalar": {
+      "status": "PASS",
+      "cases": 1024,
+      "codeBytes": 4684,
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6d5d51917f5d1e8300563b1f42828b38912a98e0362664429e63a9a9857c867c"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-board\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "4c8e88bdaef40b7b24367c4151f15d1a4a756ce921c172b0ac23ebce681c2acf"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-board\\reference.json",
+        "sha256": "48db756c747145df8e86c9aca3dd43bc9a89fd580b71a16a480d3a8089714d6b"
+      },
+      "capture": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-capture\\result.json",
+        "sha256": "dfa7d8d62c527bd8e012a65eae29a68d64c17135703d05d0427990d531a15bd7"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-capture\\uart.bin",
+        "sha256": "c4840282ecea455ddd9a98767f864233e7371530d125502c67d342021f379604"
+      },
+      "flash": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-capture\\flash\\result.json",
+        "sha256": "d340c431541c82c8fadd63fb3a37594ffd94613ebc55d743c65793daa33eafb6"
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "timingQualified": false,
+      "executionEvidence": "Board UART checksums match host C reference; download acknowledgement alone is not the execution result"
+    }
+  },
+  "currentHardware": {
+    "abi4Legacy": {
+      "status": "PASS",
+      "cases": 256,
+      "codeBytes": 6763,
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "91876f8a569e44cd637d60d77924d1a9efb4d07314b2d958f5e0a8e7242cf8f1"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\board\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "99fd28ba5b7e00c62e82ed1cbeb91694a4a18dc8f7d9789e4c1326a8401d229b"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\board\\reference.json",
+        "sha256": "d7d75487ba9b7c4889963de617cc9d9e00b762b0a6caaf5219ebe967dce160c7"
+      },
+      "capture": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\capture\\result.json",
+        "sha256": "5054f8291f224b6c19d560873d7c09fc9854f5db7e39029184968b0124cad2c8"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\capture\\uart.bin",
+        "sha256": "e33864cfe141bf9d9237526b06fef86f33bf6ff20b5481c0103dfb29dbb3dd80"
+      },
+      "flash": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\capture\\flash\\result.json",
+        "sha256": "1760a6b3ae811f38255978bd4924fdebd9d1bb3a3f4f7db48c4746a2856f58aa"
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "timingQualified": false,
+      "executionEvidence": "Board UART checksums match host C reference; download acknowledgement alone is not the execution result"
+    },
+    "edata": {
+      "status": "PASS",
+      "cases": 256,
+      "codeBytes": 3694,
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "08add62151b5ffcf7b38be3af76bcfa9451fe7eff32109f587dce04b7b511aa8"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-board\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "85a10b3ef37f9c2e2f7d76aaa4c8d0c44e76a5106134604e9e256ef7b6acf0d2"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-board\\reference.json",
+        "sha256": "ea9749685a12008f6bc6ed2b2f85e77a0ab4511c162e0dfc4f70f8f356955907"
+      },
+      "capture": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-capture\\result.json",
+        "sha256": "3d0fe5f42e731aea493f16851ef04365715713e1cfed77d6a6cf48d74bf51a04"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-capture\\uart.bin",
+        "sha256": "51e5fb3e80c9184b801ed898065df9a08bb78a3c6719c4ecff726e1d8daa60aa"
+      },
+      "flash": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-capture\\flash\\result.json",
+        "sha256": "893ec186b1360762143e94d87f2221d7d88b7d5665d3db6492505df4d62ae990"
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "timingQualified": false,
+      "executionEvidence": "Board UART checksums match host C reference; download acknowledgement alone is not the execution result"
+    },
+    "scalar": {
+      "status": "PASS",
+      "cases": 1024,
+      "codeBytes": 4684,
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\scalar-board\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6d5d51917f5d1e8300563b1f42828b38912a98e0362664429e63a9a9857c867c"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\scalar-board\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "eef326008b8ece3e230f61949dbca38dc56b321710c354b37e2f9b3e41ddb358"
+      },
+      "reference": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\scalar-board\\reference.json",
+        "sha256": "48db756c747145df8e86c9aca3dd43bc9a89fd580b71a16a480d3a8089714d6b"
+      },
+      "capture": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-capture\\result.json",
+        "sha256": "dfa7d8d62c527bd8e012a65eae29a68d64c17135703d05d0427990d531a15bd7"
+      },
+      "uart": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-capture\\uart.bin",
+        "sha256": "c4840282ecea455ddd9a98767f864233e7371530d125502c67d342021f379604"
+      },
+      "flash": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\scalar-capture\\flash\\result.json",
+        "sha256": "d340c431541c82c8fadd63fb3a37594ffd94613ebc55d743c65793daa33eafb6"
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "timingQualified": false,
+      "executionEvidence": "Board UART checksums match host C reference; download acknowledgement alone is not the execution result",
+      "captureReusedForIdenticalImage": true
+    }
+  },
+  "currentReferenceCases": 1536,
+  "explicitLegacyFixture": {
+    "beforeBytes": 6781,
+    "afterBytes": 6763,
+    "sourceAndConfigIdentical": true
+  },
+  "edataFixture": {
+    "beforeBytes": 3718,
+    "afterBytes": 3694
+  },
+  "feedback": {
+    "board": {
+      "report": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\board\\.build\\mx251\\latest\\call-clobber-feedback.json",
+        "sha256": "96a9ef5eb0f276c0cddae7ee7cad1f331676bc1dc180714609f5a5b26dce06c7"
+      },
+      "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "ordinaryCalls": 22,
+      "recompiledUnits": [
+        "u0",
+        "u2",
+        "u3",
+        "u4",
+        "u6",
+        "u7",
+        "u6"
+      ],
+      "attempts": 2
+    },
+    "edata-board": {
+      "report": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\edata-board\\.build\\mx251\\latest\\call-clobber-feedback.json",
+        "sha256": "f9a1177a151934af6bc0342fe0794b4b208fe6d3625cd65e32c19b5ad6a1cfa3"
+      },
+      "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "ordinaryCalls": 17,
+      "recompiledUnits": [
+        "u1",
+        "u6"
+      ],
+      "attempts": 1
+    },
+    "scalar-board": {
+      "report": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\scalar-board\\.build\\mx251\\latest\\call-clobber-feedback.json",
+        "sha256": "ea434c2e2a171a0cb376622d8877e139190d7357b606503a1cf2f0c364bb656c"
+      },
+      "status": "FINAL_ACTUAL_CALL_PRESERVATION_VERIFIED",
+      "ordinaryCalls": 0,
+      "recompiledUnits": [
+        "u1",
+        "u3",
+        "u5"
+      ],
+      "attempts": 1
+    }
+  },
+  "corpusAudit": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\corpus-audit.json",
+    "sha256": "993709073afae90b6cbd1320b24d78e2737f2e24d6f266a5471c669cc0fd8691"
+  },
+  "auditSummary": {
+    "status": "PASS",
+    "parserCases": 4,
+    "projects": 97,
+    "projectsWithUses": 16,
+    "calls": 109,
+    "abi4Calls": 26
+  },
+  "corpus": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final\\comparison.json",
+    "sha256": "d0a6819f87e16a720ceecf7a3a4fcc9b1d2a4d4a84d14a0567fe633a80faa2a9"
+  },
+  "corpusMeasurement": "Reuse prior 97 builds; zero explicitly legacy units, audit final instructions; rebuild g071 byte-identical",
+  "matrixSummary": {
+    "rebuilt": 97,
+    "beforeBytes": 240983,
+    "afterBytes": 240899,
+    "smaller": 1,
+    "larger": 0,
+    "unchanged": 96,
+    "refusalReasons": {
+      "ordered-asm-core-state-write": 10
+    },
+    "formerlyBlockedMains": {
+      "refusal:ordered-asm-core-state-write": 7
+    },
+    "keil": {
+      "count": 97,
+      "at110": 40,
+      "at120": 70,
+      "new110": [],
+      "new120": [],
+      "lost110": [],
+      "lost120": []
+    },
+    "stc": {
+      "count": 79,
+      "at110": 75,
+      "at120": 77,
+      "new110": [],
+      "new120": [],
+      "lost110": [],
+      "lost120": []
+    }
+  },
+  "g071": {
+    "codeBytes": 2463,
+    "hexIdentical": true,
+    "firmware": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\projects\\g071\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "1661e9c852fde453f0d4d5dd8021ae828079970b83030cabce56346c25541d83"
+    },
+    "receipt": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\projects\\g071\\mx251\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "fa38a8dade00f6269d6e35dfd2d96555c8c4672624a885b59d18889efba1cf69"
+    },
+    "feedback": {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\projects\\g071\\mx251\\.build\\mx251\\latest\\call-clobber-feedback.json",
+      "sha256": "e6fd8f9b25d090753382f25338451213327a0f7ff053c0ebb559642640ebc8fd"
+    }
+  },
+  "sourceAlgorithmsChanged": false,
+  "timingQualified": false,
+  "qualificationCorpusRoot": "E:\\STVAPP\\MX251-baseline\\work\\legacy-abi4-saves-20261115\\final",
+  "candidateEntry": "E:\\STVAPP\\MX251-baseline\\work\\legacy-feedback-hardware-20261115\\final\\Build-Optimized.ps1"
+}
