@@ -128,8 +128,8 @@ wide_private_union_forward(wide_function *f)
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];
     if(n->op==WM_NOP) {n->addressObject=-1;n->addressSymbol=NULL;continue;}
-    if(n->addressObject>=0) {wassert(map[n->addressObject]>=0);n->addressObject=map[n->addressObject];}
   }
+  wide_remap_objects(f,map);
   f->no=objects;f->frame=frame;
   wide_reset_allocation(f);
   return count;

@@ -24,7 +24,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
 /* 存储上界与本轮导入限额分开：默认仍按 128/512 回退，独立比较容量收益。
  * 候选仍整体复制，数组内嵌避免分配试算之间共享可变位集或节点。
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
-enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_BIT_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
+enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
 enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
@@ -85,7 +85,7 @@ typedef struct {
   bool memoryStateBarrier;
   wide_asm_instruction orderedAsm[WASM_MAX];
   unsigned orderedReadCount;
-  symbol *orderedReadSymbols[2];
+  wide_symbol_address orderedReads[2];
   wide_bits use, def, in, out;
 } wide_node;
 /* 文本位置用于替换，字节上界用于证明距离；二者不能混用。 */
@@ -776,6 +776,35 @@ wide_stack_object (wide_function *f, symbol *s, int *object)
 }
 
 static bool
+wide_discard_read(wide_function *f,wide_node *n,operand *op)
+{
+  if(!IS_TRUE_SYMOP(op) || !isOperandVolatile(op,TRUE))return false;
+  symbol *s=OP_SYMBOL(op);sym_link *t=operandType(op);memmap *m=SPEC_OCLS(s->etype);
+  wide_symbol_address read={.symbol=s,.object=-1};
+  if(!wide_bit_symbol(op)) {
+    if(!wide_value_type(t,true) || IS_BITVAR(t) || isAtomic(t) ||
+       getSize(t)!=getSize(s->type))return false;
+    if(s->onStack && (!s->_isparm || wide_register_parameter(s))) {
+      if(!wide_stack_object(f,s,&read.object))return false;
+      read.stack=true;
+    } else if(s->_isparm) {
+      sym_link *parameter;
+      if(!wide_parameter_slot(op,&parameter,&read.offset))return false;
+      read.stack=true;
+    } else if(m==edata || m==e_abs) {
+      if(SPEC_ABSA(s->etype) && (SPEC_ADDR(s->etype)<0 ||
+          SPEC_ADDR(s->etype)>65536-getSize(t)))return false;
+    } else if(m==xdata || m==xidata || m==x_abs || IN_CODESPACE(m)) {
+      /* Full linear addresses; CODE retains MOVC byte transactions. */
+    } else if(!IN_DIRSPACE(m) || IN_FARSPACE(m) || IN_PAGEDSPACE(m) ||
+              IN_BITSPACE(m) || (IN_REGSP(m) && m!=sfr) ||
+              (m==sfr && getSize(t)!=1))return false;
+  }
+  n->orderedReads[n->orderedReadCount++]=read;
+  return true;
+}
+
+static bool
 wide_parameter_load(wide_function *f,wide_node *n,iCode *ic)
 {
   sym_link *t;int offset;
@@ -869,20 +898,16 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(!wide_ordered_asm_import(f,n,ic))return wide_import_reject(f,ic,__LINE__);
         f->body=true;break;
       case DUMMY_READ_VOLATILE: {
-        /* 赋值表达式的弃用值也可能要求一次真实 volatile 位读取。
-         * 与 genDummyRead 一致按 RIGHT、LEFT 次序执行，不合并相同位。
-         * 这是 C IR 语义能力，不借 ASM 位掩码授予任意地址访问。 */
-        if(!f->orderedAsmEnabled)return wide_reject(f,"ordered-volatile-bit-read-disabled",__LINE__);
+        /* Keep discarded C volatile accesses in RIGHT/LEFT order, including
+         * repeated operands. They do not require an inline-assembly contract. */
         operand *reads[2]={IC_RIGHT(ic),IC_LEFT(ic)};
         for(unsigned j=0;j<2;++j) {
           operand *read=reads[j];if(!read)continue;
-          if(!wide_bit_symbol(read) || !isOperandVolatile(read,TRUE))
+          if(!wide_discard_read(f,n,read))
             return wide_reject(f,"unsupported-volatile-dummy-read-operand",__LINE__);
-          n->orderedReadSymbols[n->orderedReadCount++]=OP_SYMBOL(read);
         }
         if(!n->orderedReadCount)return wide_reject(f,"empty-volatile-dummy-read",__LINE__);
-        n->op=WM_VOLATILE_BIT_READ;n->byteAccess=true;f->body=true;
-        dbuf_printf(f->diagnostics,"; wide volatile-bit-read admitted icode=%d reads=%u order=right-left carry-clobber=scratch\n",ic->key,n->orderedReadCount);
+        n->op=WM_VOLATILE_READ;n->byteAccess=true;f->body=true;
         break;
       }
       case LABEL: n->label=IC_LABEL(ic)->key;break;
@@ -1212,15 +1237,14 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         n->op=ic->op=='/'?WM_UDIVW:WM_UMODW;f->body=true;break;
       }
       case '*':
-        /* 无符号窄因子先零扩展到 WR，MUL 保留完整 32 位积。
-         * 新增的 8x8->8 按模 256 取低字节，与前端的截断语义一致；
-         * 其他截断宽度、有符号、指针及宽因子仍回退，不扩大未经验证的路径。 */
+        /* A low 8/16-bit product is independent of signedness after each
+         * input is extended to WR according to its type. Full 32-bit products
+         * still require unsigned factors: MUL itself is unsigned. */
         if (!wide_result(f,n,IC_RESULT(ic)) || !wide_use(f,n,IC_LEFT(ic),&n->left) ||
-            !wide_use(f,n,IC_RIGHT(ic),&n->right) || n->sign || n->left.sign || n->right.sign ||
+            !wide_use(f,n,IC_RIGHT(ic),&n->right) ||
             n->floating || n->left.floating || n->right.floating ||
             (n->width!=1 && n->width!=2 && n->width!=4) || n->left.width>2 || n->right.width>2 ||
-            (n->left.width+n->right.width>n->width &&
-             !(n->width==1 && n->left.width==1 && n->right.width==1)) ||
+            (n->width==4 && (n->sign || n->left.sign || n->right.sign)) ||
             wide_pointer(operandType(IC_RESULT(ic))) || wide_pointer(operandType(IC_LEFT(ic))) ||
             wide_pointer(operandType(IC_RIGHT(ic)))) return wide_import_reject(f,ic,__LINE__);
         n->op=WM_UMULW;f->body=true;break;
@@ -1300,6 +1324,27 @@ wide_import_order_samples:
   return true;
 }
 
+static bool
+wide_discarded_object(wide_function *f,int object)
+{
+  for(int i=0;i<f->nn;++i)for(unsigned j=0;j<f->nodes[i].orderedReadCount;++j)
+    if(f->nodes[i].orderedReads[j].object==object)return true;
+  return false;
+}
+
+static void
+wide_remap_objects(wide_function *f,const int *map)
+{
+  for(int i=0;i<f->nn;++i) {
+    wide_node *n=&f->nodes[i];
+    if(n->addressObject>=0) {wassert(map[n->addressObject]>=0);n->addressObject=map[n->addressObject];}
+    for(unsigned j=0;j<n->orderedReadCount;++j)if(n->orderedReads[j].object>=0) {
+      int object=map[n->orderedReads[j].object];wassert(object>=0);
+      n->orderedReads[j].object=object;
+    }
+  }
+}
+
 /* 只提升从未取址、非易失且只有入口一次写入的寄存器形参。
  * 整个 MIR 必须只以独占对象节点访问它，不能有地址导出或间接访问。
  * 由此证明所有读取都是同一个入口值；跨调用/分支的活期仍交给原有
@@ -1311,7 +1356,7 @@ wide_immutable_parameter_homes(wide_function *f)
   bool removed[WO_MAX]={false};int map[WO_MAX],count=0;
   for(int object=0;object<f->no;++object) {
     symbol *s=f->objects[object].sym;
-    if(s->addrtaken || !wide_register_parameter(s))continue;
+    if(s->addrtaken || !wide_register_parameter(s) || wide_discarded_object(f,object))continue;
     int initializer=-1,reads=0;bool valid=true;wide_operand input={.value=-1};
     for(int i=0;i<f->nn;++i) {
       wide_node *n=&f->nodes[i];
@@ -1356,10 +1401,7 @@ wide_immutable_parameter_homes(wide_function *f)
     map[i]=objects;wide_object object=f->objects[i];object.slot=frame;
     frame+=object.size;f->objects[objects++]=object;
   }
-  for(int i=0;i<f->nn;++i)if(f->nodes[i].addressObject>=0) {
-    int object=map[f->nodes[i].addressObject];wassert(object>=0);
-    f->nodes[i].addressObject=object;
-  }
+  wide_remap_objects(f,map);
   f->no=objects;f->frame=frame;
 }
 
@@ -1601,7 +1643,7 @@ wide_stack_addresses (wide_function *f)
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];int resultObject=-1,resultOffset=0;
     if(n->op==LABEL || n->op==FUNCTION || n->op==ENDFUNCTION ||
-       n->op==GOTO || n->op==IFX || n->op==JUMPTABLE || n->op==RETURN || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_BIT_READ)
+       n->op==GOTO || n->op==IFX || n->op==JUMPTABLE || n->op==RETURN || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_READ)
       for(int v=0;v<f->nv;++v)object[v]=-1;
     if((n->op==WM_LOAD || n->op==WM_STORE) && n->left.value>=0) {
       int v=n->left.value,o=object[v];
@@ -1712,7 +1754,7 @@ wide_fold_indexed_addresses (wide_function *f)
     for(int j=i+1;j<f->nn;++j) {
       wide_node *n=&f->nodes[j];
       if(n->op==LABEL || n->op==GOTO || n->op==IFX || n->op==JUMPTABLE ||
-         n->op==CALL || n->op==RETURN || n->op==ENDFUNCTION || n->op==FUNCTION || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_BIT_READ)break;
+         n->op==CALL || n->op==RETURN || n->op==ENDFUNCTION || n->op==FUNCTION || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_READ)break;
       if(wb_has(n->use,result)) {
         if((n->op!=WM_LOAD && n->op!=WM_STORE) || n->left.value!=result ||
            n->right.value==result || n->addressOp || n->addressObject>=0 ||
@@ -1755,7 +1797,7 @@ wide_fold_extensions (wide_function *f)
       wide_node *n=&f->nodes[j];
       if(n->op==LABEL || n->op==GOTO || n->op==IFX || n->op==JUMPTABLE || n->op==CALL ||
          n->op==RETURN || n->op==FUNCTION || n->op==ENDFUNCTION ||
-         n->op==RECEIVE || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_BIT_READ || wb_has(n->def,cast->right.value))break;
+         n->op==RECEIVE || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_READ || wb_has(n->def,cast->right.value))break;
       if(!wb_has(n->use,result))continue;
       if(n->width!=cast->width || (n->op!='+' && n->op!='-' && n->op!='^' &&
          n->op!='|' && n->op!=BITWISEAND))break;
@@ -1904,7 +1946,7 @@ static bool
 wide_sink_block_barrier(wide_node *n)
 {
   return n->op==FUNCTION || n->op==ENDFUNCTION || n->op==LABEL ||
-    n->op==RECEIVE || n->op==RETURN || n->op==IFX || n->op==GOTO || n->op==JUMPTABLE || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_BIT_READ;
+    n->op==RECEIVE || n->op==RETURN || n->op==IFX || n->op==GOTO || n->op==JUMPTABLE || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_READ;
 }
 
 static bool
@@ -2363,11 +2405,22 @@ wide_resolve_cost_operand(const char *text,const void *context)
   wide_cost_operand unknown={WC_UNKNOWN,0,0};
   for(int i=0;i<f->nn;++i) {
     const wide_node *n=&f->nodes[i];symbol *s=n->addressSymbol;
-    if(n->op==WM_VOLATILE_BIT_READ)for(unsigned j=0;j<n->orderedReadCount;++j) {
-      symbol *read=n->orderedReadSymbols[j];
-      if(!read || !IN_BITSPACE(SPEC_OCLS(read->etype)))continue;
-      if(SPEC_ABSA(read->etype) && (SPEC_ADDR(read->etype)<0 || SPEC_ADDR(read->etype)>255))continue;
-      if(!strcmp(text,read->rname))return (wide_cost_operand){WC_BIT,0,0};
+    if(n->op==WM_VOLATILE_READ)for(unsigned j=0;j<n->orderedReadCount;++j) {
+      const wide_symbol_address *access=&n->orderedReads[j];symbol *read=access->symbol;
+      if(!read || access->stack)continue;
+      memmap *m=SPEC_OCLS(read->etype);
+      if(m==edata || m==e_abs) {
+        if(!strncmp(text,"e:",2) && wide_cost_symbol_offset(text+2,read->rname,getSize(read->type))>=0)
+          return (wide_cost_operand){WC_EXT_DIRECT,0,0};
+        continue;
+      }
+      bool bit=IN_BITSPACE(m);
+      if(!bit && (!IN_DIRSPACE(m) || IN_FARSPACE(m) || IN_CODESPACE(m) ||
+          IN_PAGEDSPACE(m) || (IN_REGSP(m) && m!=sfr)))continue;
+      int offset=wide_cost_symbol_offset(text,read->rname,bit?1:getSize(read->type));
+      if(offset<0 || (SPEC_ABSA(read->etype) &&
+          (SPEC_ADDR(read->etype)<0 || SPEC_ADDR(read->etype)>255-offset)))continue;
+      return (wide_cost_operand){bit?WC_BIT:WC_DIRECT,0,0};
     }
     if(n->op==WM_ORDERED_ASM)for(unsigned j=0;j<n->orderedAsmCount;++j) {
       const wide_asm_instruction *instruction=&n->orderedAsm[j];char spelling[16];

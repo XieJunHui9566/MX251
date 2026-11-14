@@ -2,7 +2,7 @@
 """Compile native narrow products, real spills, and conservative fallback boundaries."""
 from pathlib import Path
 import argparse,json,re,subprocess
-p=argparse.ArgumentParser();p.add_argument('--sdcc',type=Path,required=True);p.add_argument('--source',type=Path,required=True);p.add_argument('--output-dir',type=Path,required=True)
+p=argparse.ArgumentParser();p.add_argument('--sdcc',type=Path,required=True);p.add_argument('--source',type=Path,required=True);p.add_argument('--baseline',type=Path);p.add_argument('--output-dir',type=Path,required=True)
 a=p.parse_args();a.output_dir.mkdir(parents=True,exist_ok=False);rows=[]
 boundary='''typedef unsigned int u16;typedef unsigned long u32;
 #define ABI __reentrant __sdcccall(4)
@@ -22,15 +22,23 @@ for model in ['small','large']:
   commands.append(dict(args=args,exitCode=r.returncode));return (d/(name+'.asm')).read_text()
  asm=compile('core',a.source.read_text());accepted=dict(re.findall(r'wide-mir accepted: (\w+).*frame=(\d+)',asm))
  assert len(accepted)==13 and int(accepted['pressure'])>0
- assert re.findall(r'wide-mir fallback: (\w+)',asm)==['byteword']
+ assert 'wide-mir fallback:' not in asm and 'byteword' in accepted
  assert 'reg=24' in asm and 'reg=28' in asm
  assert re.search(r'mul\s+wr16,wr20\s+mov\s+@spx',asm), 'result spill coverage'
- assert re.search(r'mov\s+wr20,@spx[^\n]*\n; wide unsigned multiply',asm), 'input spill coverage'
+ assert re.search(r'mov\s+(wr\d+),@spx[^\n]*\n(?:\tmov[^\n]*\n){0,2}\tmov\s+wr20,\1\n; wide integer multiply',asm), 'input spill coverage'
  assert not re.search(r'\br(?:1[6-9]|2\d|3[01])\b',asm)
- assert asm.count('wide unsigned multiply 16x16 -> 32')==15 and asm.count('wide unsigned multiply 8x8 -> 16')==1
+ assert asm.count('wide integer multiply 16x16 -> 32')==14 and asm.count('wide integer multiply 8x8 -> 16')==1
  assert {int(x) for x in re.findall(r'wide getword offset=(\d)',asm)}=={0,1,2}
  neg=compile('boundary',boundary)
- assert re.findall(r'wide-mir fallback: (\w+)',neg)==['truncated','signed_full','mixed','wide']
- assert 'wide unsigned multiply' not in neg and re.search(r'\b(?:ecall|ejmp)\s+___m251r4___fsmul_u16\b',neg)
- rows.append(dict(model=model,accepted=accepted,commands=commands,hardwareExecuted=False))
-(a.output_dir/'results.json').write_text(json.dumps(rows,indent=2));print('PASS: 13 native functions/model, actual input/result spills, exact products/extracts, 5 fallback/call boundaries')
+ assert re.findall(r'wide-mir accepted: (\w+)',neg)==['truncated','signed_full','mixed','wide','user_call']
+ assert neg.count('ecall\t__mullong')==3
+ assert 'wide integer multiply' not in neg and re.search(r'\b(?:ecall|ejmp)\s+___m251r4___fsmul_u16\b',neg)
+ if a.baseline:
+  old=d/'baseline';old.mkdir()
+  for name in ('core','boundary'):
+   (old/(name+'.c')).write_bytes((d/(name+'.c')).read_bytes())
+   args=[str(a.baseline.resolve()),*commands[0]['args'][1:-1],name+'.c']
+   q=subprocess.run(args,cwd=old,capture_output=True);assert q.returncode==0,q.stderr
+   assert (old/(name+'.rel')).read_bytes()==(d/(name+'.rel')).read_bytes(),(model,name)
+ rows.append(dict(model=model,accepted=accepted,commands=commands,hardwareExecuted=False,parentObjectsIdentical=bool(a.baseline)))
+(a.output_dir/'results.json').write_text(json.dumps(rows,indent=2));print('PASS: 13 native functions/model, actual input/result spills, exact products/extracts, runtime-call boundaries')

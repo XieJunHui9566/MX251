@@ -9,7 +9,7 @@ wide_private_stack_values(wide_function *f)
     symbol *s=f->objects[object].sym;sym_link *type=s->type;
     bool raw=f->objects[object].privateUnion && wide_private_union_type(&f->objects[object]);
     if(!s->onStack || (!raw && !wide_abi_type(type,currFunc->type)) ||
-       isVolatile(type) || isAtomic(type) || f->nv==f->valueLimit)continue;
+       isVolatile(type) || isAtomic(type) || wide_discarded_object(f,object) || f->nv==f->valueLimit)continue;
     int width=raw?4:wide_width(type);
     bool floating=!raw && IS_FLOAT(type),pointer=!raw && wide_pointer(type);
     bool sign=!raw && !floating && !pointer && !SPEC_USIGN(getSpec(type));
@@ -60,8 +60,7 @@ wide_private_stack_values(wide_function *f)
     map[i]=objects;wide_object object=f->objects[i];object.slot=frame;
     frame+=object.size;f->objects[objects++]=object;
   }
-  for(int i=0;i<f->nn;++i)if(f->nodes[i].addressObject>=0)
-    f->nodes[i].addressObject=map[f->nodes[i].addressObject];
+  wide_remap_objects(f,map);
   f->no=objects;f->frame=frame;f->promotedStackObjects=true;wide_reset_allocation(f);
   return count;
 }

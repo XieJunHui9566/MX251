@@ -12,7 +12,7 @@ for model in ['small','large']:
   q=subprocess.run(args,cwd=d,capture_output=True);(d/'compile.log').write_bytes(q.stdout+q.stderr);assert not q.returncode,q.stderr
   asm=(d/'test.asm').read_text();accepted=re.findall(r'wide-mir accepted: (\w+)',asm)
   assert accepted==names and 'wide-mir fallback:' not in asm
-  assert asm.count('wide unsigned multiply 8x8 -> 8')==9
+  assert asm.count('wide integer multiply 8x8 -> 8')==9
   assert int(re.search(r'wide-mir accepted: pressure8;.*frame=(\d+)',asm)[1])>0
   assert not re.search(r'\br(?:1[6-9]|2\d|3[01])\b',asm)
   rows.append(dict(model=model,optimize=opt,args=args,accepted=accepted,realSpills=True,hardwareExecuted=False))

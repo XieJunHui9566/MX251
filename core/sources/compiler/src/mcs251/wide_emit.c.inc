@@ -880,6 +880,37 @@ wrange_multiply(wide_function *f,wide_node *n)
   }
 }
 
+/* genDummyRead visits each scalar from its low byte to its high byte.
+ * No result is materialized; A/DR16 and carry are reserved scratch here. */
+static void
+wdiscard_reads(wide_function *f,wide_node *n)
+{
+  we(f,"; wide volatile-read reads=%u order=right-left bytes=low-first\n",n->orderedReadCount);
+  for(unsigned j=0;j<n->orderedReadCount;++j) {
+    wide_symbol_address *read=&n->orderedReads[j];symbol *s=read->symbol;
+    memmap *m=SPEC_OCLS(s->etype);int width=getSize(s->type);
+    if(IN_BITSPACE(m)) {we(f,"\tmov\tc,%s\n",s->rname);continue;}
+    for(int k=width-1;k>=0;--k) {
+      if(read->stack) {
+        int base=read->object>=0?f->objects[read->object].slot+1:
+          read->offset-f->preservedBytes;
+        char address[32];wa(address,base+k-f->frame-f->stackDepth);
+        we(f,"\tmov\ta,%s\n",address);
+      } else if(m==edata || m==e_abs) {
+        we(f,"\tmov\ta,e:(%s+%d)\n",s->rname,k);
+      } else if(IN_CODESPACE(m)) {
+        we(f,"\tmov\tdptr,#(%s+%d)\n\tmov\tdpxl,#((%s+%d)>>16)\n\tclr\ta\n\tmovc\ta,@a+dptr\n",
+           s->rname,k,s->rname,k);
+      } else if(m==xdata || m==xidata || m==x_abs) {
+        if(k==width-1)
+          we(f,"\tmov\ta,#((%s+%d)>>16)\n\tmovz\twr16,a\n\tmov\twr18,#(%s+%d)\n",s->rname,k,s->rname,k);
+        else we(f,"\tdec\tdr16\n");
+        we(f,"\tmov\ta,@dr16\n");
+      } else we(f,"\tmov\ta,(%s+%d)\n",s->rname,k);
+    }
+  }
+}
+
 static void
 wunsigned_multiply(wide_function *f,wide_node *n)
 {
@@ -897,8 +928,8 @@ wunsigned_multiply(wide_function *f,wide_node *n)
    * 新增的 8x8->8 保留两个因子，结果按模 2^8 截断。结果与输入的别名、
    * spill 均交给统一搬运处理，不触及仍活跃的分配寄存器。 */
   wload(f,n->left,16,2);wload(f,n->right,20,2);
-  we(f,"; wide unsigned multiply %dx%d -> %d\n\tmul\twr16,wr20\n",
-     n->left.width*8,n->right.width*8,n->width*8);
+  we(f,"; wide integer multiply %dx%d -> %d signed=%d/%d\n\tmul\twr16,wr20\n",
+     n->left.width*8,n->right.width*8,n->width*8,n->left.sign,n->right.sign);
   wstore(f,n->result,n->width==4?16:18);
 }
 static void
@@ -1963,12 +1994,8 @@ wide_emit(wide_function *f)
     }
     switch(n->op) {
     case WM_NOP:case FUNCTION:case SEND:break;
-    case WM_VOLATILE_BIT_READ:
-      /* Carry 是节点内部临时状态，MIR 不保留跨节点的隐式条件码。
-       * 与旧 genDummyRead 相同每个操作数只读一次位；不改 A/GPR。 */
-      we(f,"; wide volatile-bit-read reads=%u order=right-left\n",n->orderedReadCount);
-      for(unsigned j=0;j<n->orderedReadCount;++j)
-        we(f,"\tmov\tc,%s\n",n->orderedReadSymbols[j]->rname);
+    case WM_VOLATILE_READ:
+      wdiscard_reads(f,n);
       break;
     case WM_ORDERED_ASM:
       /* 真 NOP 不是可删除的 MIR 空节点。整组指令保持原顺序和次数，
