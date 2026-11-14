@@ -20,7 +20,7 @@ param(
  [switch]$FunctionGc,
  [string]$FunctionGcKeep='',
  [ValidateSet('AUTO','OFF')][string]$OrderedAsm='AUTO',
- [ValidateSet('128','256','512')][string]$WideValueLimit='128',
+ [ValidateSet('128','256','512','1024')][string]$WideValueLimit='128',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='512',
  [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
  [ValidateSet('AUTO','OFF')][string]$NearTransfers='AUTO',

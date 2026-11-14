@@ -21,10 +21,10 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
 #else
 #define WA_FAIL(stage) 0
 #endif
-/* 存储上界与本轮导入限额分开：默认仍按 128/512 回退，独立比较容量收益。
+/* 存储上界与本轮导入限额分开：低层默认 128/512，项目入口选择 1024/2048。
  * 候选仍整体复制，数组内嵌避免分配试算之间共享可变位集或节点。
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
-enum { WV_MAX = 512, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
+enum { WV_MAX = 1024, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
 enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
@@ -2261,30 +2261,7 @@ wide_fixed_object_addresses(wide_function *f)
   return changedUses;
 }
 
-static void
-wide_liveness (wide_function *f)
-{
-  bool changed;
-  do {
-    changed=false;
-    for(int i=f->nn;i-->0;) {
-      wide_node *n=&f->nodes[i];wide_bits out={{0}},in;
-      for(int k=0;k<2;++k) if(n->succ[k]>=0) out=wb_or(out,f->nodes[n->succ[k]].in);
-      for(int k=0;k<n->jumpCount;++k)
-        out=wb_or(out,f->nodes[f->jumpSuccessors[n->jumpStart+k]].in);
-      in=wb_or(n->use,wb_minus(out,n->def));
-      changed |= !wb_equal(n->in,in) || !wb_equal(n->out,out);n->in=in;n->out=out;
-    }
-  } while(changed);
-  for(int i=0;i<f->nn;++i) {
-    wide_node *n=&f->nodes[i];
-    for(int a=0;a<f->nv;++a) for(int b=0;b<a;++b) {
-      bool conflict=(wb_has(n->in,a)&&wb_has(n->in,b)) ||
-        (wb_has(n->def,a)&&wb_has(n->out,b)) || (wb_has(n->def,b)&&wb_has(n->out,a));
-      if(conflict) {wb_set(&f->values[a].edges,b);wb_set(&f->values[b].edges,a);}
-    }
-  }
-}
+#include "wide_liveness.c.inc"
 
 static uint32_t wide_mask (int reg,int width) {return mcs251RegisterBytes((unsigned)reg,(unsigned)width);}
 #include "wide_call_plan.c.inc"
@@ -3153,8 +3130,8 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
   if(fatalError){Safe_free(f);return MCS251_WIDE_ERROR;}
   if(!wide_capacity_profile(f))goto fallback;
   if(!wide_ordered_asm_profile(f))goto fallback;
-  dbuf_printf(diagnostics,"; wide capacity function=%s value-limit=%d node-limit=%d storage-values=%u storage-nodes=%u\n",
-              currFunc->name,f->valueLimit,f->nodeLimit,(unsigned)WV_MAX,(unsigned)WN_MAX);
+  dbuf_printf(diagnostics,"; wide capacity function=%s value-limit=%d node-limit=%d storage-values=%u storage-nodes=%u storage-bytes=%lu\n",
+              currFunc->name,f->valueLimit,f->nodeLimit,(unsigned)WV_MAX,(unsigned)WN_MAX,(unsigned long)sizeof *f);
   if(mcs251RangeNarrowMultiplyEnabled)
     f->rangeAnalysis=computeIsolatedValinfos(ebbi,"_mx251_narrow_multiply");
   if(wide_import(f,ebbi)) {

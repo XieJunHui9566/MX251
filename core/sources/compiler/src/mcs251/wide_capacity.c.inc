@@ -20,6 +20,7 @@ wide_capacity_profile(wide_function *f)
     if(!strcmp(values,"128"))f->valueLimit=128;
     else if(!strcmp(values,"256"))f->valueLimit=256;
     else if(!strcmp(values,"512"))f->valueLimit=512;
+    else if(!strcmp(values,"1024"))f->valueLimit=1024;
     else return wide_reject(f,"invalid-MX251_WIDE_VALUE_LIMIT",__LINE__);
   }
   if(nodes) {

@@ -6,7 +6,7 @@ param(
  [string]$PowerShell=(Join-Path $PSHOME 'pwsh.exe'),
  [ValidateSet('ON','OFF')][string]$FunctionGc='ON',
  [string[]]$FunctionGcKeep=@(),
- [ValidateSet('128','256','512')][string]$WideValueLimit='512',
+ [ValidateSet('128','256','512','1024')][string]$WideValueLimit='1024',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='2048',
  [switch]$C251BitComplement,
  [switch]$LeafCallFeedback,
