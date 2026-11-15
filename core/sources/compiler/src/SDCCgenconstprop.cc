@@ -790,9 +790,10 @@ static void update_out_edges (cfg_t &G, unsigned int i, int key_false, int key_t
 }
 
 #include "mcs251/branch_facts.cc.inc"
+#include "mcs251/loop_facts.cc.inc"
 
 static void
-recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<unsigned int>, std::set<unsigned int> > &todo, const valinfos &global_operands, const std::map <int, sym_link *>& global_types, bool externchange, int end_it_quickly, const mcs251_branch_facts &branch_facts)
+recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<unsigned int>, std::set<unsigned int> > &todo, const valinfos &global_operands, const std::map <int, sym_link *>& global_types, bool externchange, int end_it_quickly, const mcs251_branch_facts &branch_facts, const mcs251_loop_facts &loop_facts)
 {
   iCode *const ic = G[i].ic;
   bool change = externchange;
@@ -809,7 +810,7 @@ recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<u
   typedef /*typename*/ boost::graph_traits<cfg_t>::in_edge_iterator in_iter_t;
   in_iter_t in, in_end;
   for (boost::tie(in, in_end) = boost::in_edges(i, G); in != in_end; ++in)
-    change |= valinfos_unions (ic, G[*in]);
+    change |= loop_facts.merge (i, ic, G[*in]);
 
   typedef /*typename*/ boost::graph_traits<cfg_t>::out_edge_iterator out_iter_t;
   out_iter_t out, out_end;
@@ -1087,6 +1088,10 @@ recompute_node (cfg_t &G, unsigned int i, ebbIndex *ebbi, std::pair<std::queue<u
               resultvalinfo.min = one;
               resultvalinfo.max = one;
             }
+          else if (TARGET_IS_MCS251 && IS_INTEGRAL (operandType (left)) &&
+            !leftvalinfo.anything && !rightvalinfo.anything &&
+            (leftvalinfo.max < rightvalinfo.min || rightvalinfo.max < leftvalinfo.min))
+            resultvalinfo.min = resultvalinfo.max = (ic->op == NE_OP);
           else if (IS_PTR (operandType (left)) && !leftvalinfo.anything && !rightvalinfo.anything && leftvalinfo.nonnull && rightvalinfo.min == 0 && rightvalinfo.max == 0)
             {
               bool one = (ic->op == NE_OP);
@@ -1153,6 +1158,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
 
   create_cfg_genconstprop(G, sic, ebbi);
   mcs251_branch_facts branch_facts (G, ebbi);
+  mcs251_loop_facts loop_facts (G, ebbi);
 
   std::pair <std::queue<unsigned int>, std::set<unsigned int> > todo; // Nodes where valinfos need to be updated. We need a pair of a queue and a set to implement a queue with uniqe entries. A plain set wouldn't work, as we'd be working on some nodes all the time while never getting to others before we reach the round limit.
   valinfos global_operands;                // Set of operands that are global or had their address taken, and thus need to be invalidated at every potential pointer write (or function call).
@@ -1166,6 +1172,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
     {
       delete G[i].ic->valinfos;
       G[i].ic->valinfos = new struct valinfos;;
+      loop_facts.seed (i, *G[i].ic->valinfos);
       delete G[i].ic->resultvalinfo;
       G[i].ic->resultvalinfo = NULL;
       if (G[i].ic->left && IS_SYMOP (G[i].ic->left) && OP_SYMBOL (G[i].ic->left)->ismyparm)
@@ -1195,7 +1202,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
         }
     }
   for (unsigned int i = 0; i < boost::num_vertices (G); i++)
-    recompute_node (G, i, ebbi, todo, global_operands, global_types, true, 0, branch_facts);
+    recompute_node (G, i, ebbi, todo, global_operands, global_types, true, 0, branch_facts, loop_facts);
 
   // Forward pass to get first approximation.
   for (unsigned long round = 0; !todo.first.empty (); round++)
@@ -1209,7 +1216,7 @@ recomputeValinfos (iCode *sic, ebbIndex *ebbi, const char *suffix)
       std::cout << "Round " << round << " node " << i << " ic " << G[i].ic->key << "\n"; std::cout.flush();
 #endif
 
-      recompute_node (G, i, ebbi, todo, global_operands, global_types, false, (round >= max_rounds) + (round >= max_rounds * 2), branch_facts);
+      recompute_node (G, i, ebbi, todo, global_operands, global_types, false, (round >= max_rounds) + (round >= max_rounds * 2), branch_facts, loop_facts);
     }
 
   // Refinement backward pass.
@@ -1275,7 +1282,18 @@ optimizeValinfoConst (iCode *sic)
                   attachiCodeOperand (operandFromValue (valCastLiteral (operandType (right), vright.min, vright.min), false), &ic->right, ic);
                 }
             }
-          
+          // Both code generators can consume a proven nonnegative remainder
+          // as a mask; do this before '%' becomes a runtime-library call.
+          if (TARGET_IS_MCS251 && ic->op == '%' && IS_INTEGRAL (operandType (ic->left)) &&
+            !vleft.anything && !vleft.nothing && vleft.min >= 0 &&
+            !vright.anything && !vright.nothing && vright.min == vright.max && vright.min > 0 &&
+            !(vright.min & (vright.min - 1)))
+            {
+              long long mask = vright.min - 1;
+              ic->op = BITWISEAND;
+              attachiCodeOperand (operandFromValue (valCastLiteral (operandType (ic->right), mask, mask), false), &ic->right, ic);
+            }
+
         }
     }
 }
