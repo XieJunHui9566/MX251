@@ -1,0 +1,312 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "sourceCommit": "20842b674e51773a6b5c08ef8af90f6f1d34e254",
+  "branch": "codex/symbolic-index-20261116",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "f52819c9696799300a050e0560ea4440c46481268d2e165cb08dbe2a0d7bc587"
+  },
+  "candidate": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\candidate",
+  "qualification": "TARGETED_COMPILE_ONLY",
+  "projects": [
+    {
+      "id": "p070",
+      "beforeBytes": 5480,
+      "afterBytes": 5480,
+      "deltaBytes": 0,
+      "keilBytes": 4913,
+      "percentKeil": 111.54081009566457,
+      "gap120Bytes": 0,
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\final\\projects\\p070\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "1ea07d9c7d949836340037e47cfe7ae6bdbc734c3a606c62e6e9385d13bb50fd"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\final\\projects\\p070\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "0a47a11ca0f0a2f60060064ac76c414ceceb3da52ce75b8a7f8f6820fef28501"
+      }
+    },
+    {
+      "id": "p106",
+      "beforeBytes": 8098,
+      "afterBytes": 8042,
+      "deltaBytes": -56,
+      "keilBytes": 6649,
+      "percentKeil": 120.9505188750188,
+      "gap120Bytes": 64,
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ce545ca3774e962b12560c20e9cc0842381b47cb617ec89b5c500c8d07d4acad"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ebefaf4a735dbb009504b108458ddff4eedd266a9a569fc4972e15c2ddf09fdd"
+      }
+    }
+  ],
+  "tests": {
+    "symbolic": {
+      "status": "PASS",
+      "configurations": [
+        {
+          "model": "small",
+          "optimization": "speed",
+          "abi": 2,
+          "bytes": {
+            "before": 1421,
+            "after": 1375,
+            "disabled": 1421
+          },
+          "selected": [
+            [
+              "si_word",
+              "199",
+              "185"
+            ],
+            [
+              "si_long",
+              "206",
+              "192"
+            ],
+            [
+              "si_offset",
+              "228",
+              "208"
+            ]
+          ]
+        },
+        {
+          "model": "small",
+          "optimization": "speed",
+          "abi": 4,
+          "bytes": {
+            "before": 1158,
+            "after": 1110,
+            "disabled": 1158
+          },
+          "selected": [
+            [
+              "si_word",
+              "154",
+              "140"
+            ],
+            [
+              "si_long",
+              "155",
+              "147"
+            ],
+            [
+              "si_offset",
+              "184",
+              "170"
+            ]
+          ]
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "abi": 2,
+          "bytes": {
+            "before": 1421,
+            "after": 1375,
+            "disabled": 1421
+          },
+          "selected": [
+            [
+              "si_word",
+              "199",
+              "185"
+            ],
+            [
+              "si_long",
+              "206",
+              "192"
+            ],
+            [
+              "si_offset",
+              "228",
+              "208"
+            ]
+          ]
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "abi": 4,
+          "bytes": {
+            "before": 1158,
+            "after": 1110,
+            "disabled": 1158
+          },
+          "selected": [
+            [
+              "si_word",
+              "154",
+              "140"
+            ],
+            [
+              "si_long",
+              "155",
+              "147"
+            ],
+            [
+              "si_offset",
+              "184",
+              "170"
+            ]
+          ]
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "abi": 2,
+          "bytes": {
+            "before": 1421,
+            "after": 1375,
+            "disabled": 1421
+          },
+          "selected": [
+            [
+              "si_word",
+              "199",
+              "185"
+            ],
+            [
+              "si_long",
+              "206",
+              "192"
+            ],
+            [
+              "si_offset",
+              "228",
+              "208"
+            ]
+          ]
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "abi": 4,
+          "bytes": {
+            "before": 1158,
+            "after": 1110,
+            "disabled": 1158
+          },
+          "selected": [
+            [
+              "si_word",
+              "154",
+              "140"
+            ],
+            [
+              "si_long",
+              "155",
+              "147"
+            ],
+            [
+              "si_offset",
+              "184",
+              "170"
+            ]
+          ]
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "abi": 2,
+          "bytes": {
+            "before": 1421,
+            "after": 1375,
+            "disabled": 1421
+          },
+          "selected": [
+            [
+              "si_word",
+              "199",
+              "185"
+            ],
+            [
+              "si_long",
+              "206",
+              "192"
+            ],
+            [
+              "si_offset",
+              "228",
+              "208"
+            ]
+          ]
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "abi": 4,
+          "bytes": {
+            "before": 1158,
+            "after": 1110,
+            "disabled": 1158
+          },
+          "selected": [
+            [
+              "si_word",
+              "154",
+              "140"
+            ],
+            [
+              "si_long",
+              "155",
+              "147"
+            ],
+            [
+              "si_offset",
+              "184",
+              "170"
+            ]
+          ]
+        }
+      ],
+      "addressModelChecks": 1179648,
+      "accessWidths": [
+        1,
+        2,
+        4
+      ],
+      "compilerSha256": "f52819c9696799300a050e0560ea4440c46481268d2e165cb08dbe2a0d7bc587",
+      "baselineSha256": "fb5d91f3440285cec99724885e9325c9ced26448bde7a7090266ce10b8afa869",
+      "hardwareExecuted": false
+    },
+    "encoding": {
+      "status": "PASS",
+      "cases": 171
+    }
+  },
+  "hardware": {
+    "executed": false,
+    "referenceCases": 512,
+    "firmwareBytes": 1942,
+    "firmwareSha256": "1bf504d4f76e935d1467429f6a65fe404dc0ed12dcd4762c90e40ae7f98208c0",
+    "flash": {
+      "status": "failed",
+      "programAcknowledged": false,
+      "flashReadback": false,
+      "error": "HID transfer timed out after 5000 ms",
+      "eraseAttempted": false,
+      "configurationAttempted": false
+    },
+    "trace": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\hardware\\capture\\flash\\trace.ndjson"
+  },
+  "cohorts": {
+    "fullMatrixRerun": false,
+    "original75": {
+      "at110": 75,
+      "at120": 75
+    },
+    "expanded31": {
+      "at110": 12,
+      "at120": 22
+    },
+    "runtimeQualified": false
+  },
+  "defaultChanged": false
+}
