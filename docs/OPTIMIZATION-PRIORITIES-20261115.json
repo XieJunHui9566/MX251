@@ -1,0 +1,1037 @@
+{
+  "status": "READ_ONLY_OPTIMIZATION_RESEARCH",
+  "date": "2026-11-15",
+  "compilerSourceCommit": "8bd2b32",
+  "researchBaseCommit": "c8dfaf7",
+  "scope": "Existing final linked images and stored compiler diagnostics only; no compilation or hardware execution in this research. Historical images remain historical. Function-pair positive gaps are not net image savings; Keil map segments can contain tables. Raw comparison exceptions are preserved, not removed from the original matrix.",
+  "matrix": {
+    "all": {
+      "projects": 203,
+      "pass110": 131,
+      "pass120": 175,
+      "gapTo110Bytes": 37242,
+      "gapTo120Bytes": 19813
+    },
+    "excludingRawComparisonExceptions": {
+      "projects": 200,
+      "pass110": 131,
+      "pass120": 175,
+      "gapTo110Bytes": 15518,
+      "gapTo120Bytes": 3263
+    }
+  },
+  "exceptions": [
+    {
+      "id": "p144",
+      "mxBytes": 35828,
+      "keilBytes": 25221,
+      "model": "large",
+      "keilModel": "XSMALL"
+    },
+    {
+      "id": "p145",
+      "mxBytes": 34518,
+      "keilBytes": 24968,
+      "model": "large",
+      "keilModel": "XSMALL"
+    },
+    {
+      "id": "g083",
+      "mxBytes": 8291,
+      "keilBytes": 1551,
+      "model": "small",
+      "keilModel": "XSMALL"
+    }
+  ],
+  "positiveMatchedFunctionGapByBackend": {
+    "legacy": 2257,
+    "wide-accepted": 10613,
+    "wide": 12093,
+    "unresolved": 200,
+    "legacy-fallback": 1129,
+    "entry-contract": 1405
+  },
+  "widePositiveGapShare": 0.819799978337004,
+  "ambiguousFunctionNames": [],
+  "finalAllocationCandidateDiagnostics": {
+    "total": 2218,
+    "identicalTexts": 669,
+    "functions": 1303
+  },
+  "candidateObservations": [
+    {
+      "id": "p127",
+      "function": "_FFT",
+      "backend": "wide-accepted",
+      "old": 896,
+      "best": 832,
+      "delta": 64,
+      "oldFrame": "74",
+      "newFrame": "40"
+    },
+    {
+      "id": "p144",
+      "function": "_u8g2_IsIntersection",
+      "backend": "wide-accepted",
+      "old": 147,
+      "best": 143,
+      "delta": 4,
+      "oldFrame": "0",
+      "newFrame": "0"
+    },
+    {
+      "id": "p145",
+      "function": "_u8g2_IsIntersection",
+      "backend": "wide-accepted",
+      "old": 147,
+      "best": 143,
+      "delta": 4,
+      "oldFrame": "0",
+      "newFrame": "0"
+    },
+    {
+      "id": "g090",
+      "function": "_main",
+      "backend": "wide",
+      "old": 963,
+      "best": 947,
+      "delta": 16,
+      "oldFrame": "4",
+      "newFrame": "4"
+    },
+    {
+      "id": "g091",
+      "function": "_main",
+      "backend": "wide",
+      "old": 1125,
+      "best": 1109,
+      "delta": 16,
+      "oldFrame": "4",
+      "newFrame": "4"
+    },
+    {
+      "id": "g112",
+      "function": "_Show_Str",
+      "backend": "wide-accepted",
+      "old": 264,
+      "best": 258,
+      "delta": 6,
+      "oldFrame": "7",
+      "newFrame": "2"
+    },
+    {
+      "id": "g113",
+      "function": "_Show_Str",
+      "backend": "wide-accepted",
+      "old": 264,
+      "best": 258,
+      "delta": 6,
+      "oldFrame": "7",
+      "newFrame": "2"
+    }
+  ],
+  "buildCosts": [
+    {
+      "id": "p078",
+      "seconds": 583.6157848000003,
+      "cUnits": 5,
+      "compilerInvocations": 44,
+      "phases": {
+        "initial": 10,
+        "scalar": 6,
+        "preserve": 4,
+        "clobber": 18,
+        "format-runtime-abi2": 2,
+        "format-runtime-body4": 2,
+        "format-runtime": 2
+      },
+      "sources": [
+        [
+          "src/gui.c",
+          12
+        ],
+        [
+          "src/lcd.c",
+          10
+        ],
+        [
+          "src/test.c",
+          8
+        ]
+      ]
+    },
+    {
+      "id": "p136",
+      "seconds": 37.30302650000522,
+      "cUnits": 3,
+      "compilerInvocations": 9,
+      "phases": {
+        "initial": 3,
+        "scalar": 2,
+        "clobber": 4
+      },
+      "sources": [
+        [
+          "src/main.c",
+          4
+        ],
+        [
+          "src/w25q128fv.c",
+          3
+        ],
+        [
+          "src/tlv320aic23.c",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "p068",
+      "seconds": 58.25883550000435,
+      "cUnits": 1,
+      "compilerInvocations": 7,
+      "phases": {
+        "initial": 1,
+        "scalar": 1,
+        "preserve": 1,
+        "clobber": 1,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/main.c",
+          4
+        ],
+        [
+          "format-runtime.c",
+          3
+        ]
+      ]
+    },
+    {
+      "id": "p069",
+      "seconds": 64.56955609999568,
+      "cUnits": 1,
+      "compilerInvocations": 8,
+      "phases": {
+        "initial": 1,
+        "scalar": 1,
+        "preserve": 1,
+        "clobber": 2,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/main.c",
+          5
+        ],
+        [
+          "format-runtime.c",
+          3
+        ]
+      ]
+    },
+    {
+      "id": "p076",
+      "seconds": 581.1363071000014,
+      "cUnits": 6,
+      "compilerInvocations": 26,
+      "phases": {
+        "initial": 6,
+        "preserve": 5,
+        "clobber": 12,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/gui.c",
+          5
+        ],
+        [
+          "src/test.c",
+          5
+        ],
+        [
+          "src/touch.c",
+          5
+        ]
+      ]
+    },
+    {
+      "id": "p077",
+      "seconds": 505.6239024999959,
+      "cUnits": 6,
+      "compilerInvocations": 23,
+      "phases": {
+        "initial": 6,
+        "preserve": 5,
+        "clobber": 9,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/gui.c",
+          4
+        ],
+        [
+          "src/test.c",
+          4
+        ],
+        [
+          "src/lcd.c",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "p079",
+      "seconds": 322.2017702999947,
+      "cUnits": 6,
+      "compilerInvocations": 26,
+      "phases": {
+        "initial": 6,
+        "preserve": 5,
+        "clobber": 12,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/gui.c",
+          5
+        ],
+        [
+          "src/test.c",
+          5
+        ],
+        [
+          "src/touch.c",
+          5
+        ]
+      ]
+    },
+    {
+      "id": "p081",
+      "seconds": 24.688823299999058,
+      "cUnits": 1,
+      "compilerInvocations": 5,
+      "phases": {
+        "initial": 1,
+        "clobber": 1,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "format-runtime.c",
+          3
+        ],
+        [
+          "src/main.c",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "p092",
+      "seconds": 68.94179460000305,
+      "cUnits": 1,
+      "compilerInvocations": 8,
+      "phases": {
+        "initial": 2,
+        "scalar": 2,
+        "preserve": 2,
+        "clobber": 2
+      },
+      "sources": [
+        [
+          "src/main.c",
+          8
+        ]
+      ]
+    },
+    {
+      "id": "p116",
+      "seconds": 35.32445540000481,
+      "cUnits": 1,
+      "compilerInvocations": 7,
+      "phases": {
+        "initial": 1,
+        "scalar": 1,
+        "preserve": 1,
+        "clobber": 1,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/main.c",
+          4
+        ],
+        [
+          "format-runtime.c",
+          3
+        ]
+      ]
+    },
+    {
+      "id": "p127",
+      "seconds": 34.92062449999503,
+      "cUnits": 8,
+      "compilerInvocations": 15,
+      "phases": {
+        "initial": 8,
+        "preserve": 1,
+        "clobber": 6
+      },
+      "sources": [
+        [
+          "src/usb.c",
+          3
+        ],
+        [
+          "src/uart.c",
+          2
+        ],
+        [
+          "src/f003.c",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "p141",
+      "seconds": 120.87938310000027,
+      "cUnits": 9,
+      "compilerInvocations": 46,
+      "phases": {
+        "initial": 18,
+        "preserve": 4,
+        "clobber": 24
+      },
+      "sources": [
+        [
+          "src/oscope-v2-8bit-cdc.c",
+          9
+        ],
+        [
+          "src/usb.c",
+          8
+        ],
+        [
+          "src/usb_req_class.c",
+          6
+        ]
+      ]
+    },
+    {
+      "id": "p144",
+      "seconds": 532.6762237000003,
+      "cUnits": 48,
+      "compilerInvocations": 110,
+      "phases": {
+        "initial": 48,
+        "preserve": 25,
+        "clobber": 37
+      },
+      "sources": [
+        [
+          "src/u8g2_circle.c",
+          4
+        ],
+        [
+          "src/u8g2_font.c",
+          4
+        ],
+        [
+          "src/u8x8_message.c",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "p145",
+      "seconds": 534.8983560000052,
+      "cUnits": 48,
+      "compilerInvocations": 111,
+      "phases": {
+        "initial": 48,
+        "preserve": 25,
+        "clobber": 38
+      },
+      "sources": [
+        [
+          "src/u8g2_circle.c",
+          4
+        ],
+        [
+          "src/u8g2_font.c",
+          4
+        ],
+        [
+          "src/u8x8_message.c",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "g070",
+      "seconds": 485.8912152999983,
+      "cUnits": 6,
+      "compilerInvocations": 26,
+      "phases": {
+        "initial": 6,
+        "preserve": 5,
+        "clobber": 12,
+        "format-runtime-abi2": 1,
+        "format-runtime-body4": 1,
+        "format-runtime": 1
+      },
+      "sources": [
+        [
+          "src/gui.c",
+          5
+        ],
+        [
+          "src/test.c",
+          5
+        ],
+        [
+          "src/touch.c",
+          5
+        ]
+      ]
+    },
+    {
+      "id": "g071",
+      "seconds": 67.91449529999954,
+      "cUnits": 1,
+      "compilerInvocations": 8,
+      "phases": {
+        "initial": 2,
+        "scalar": 2,
+        "preserve": 2,
+        "clobber": 2
+      },
+      "sources": [
+        [
+          "src/main.c",
+          8
+        ]
+      ]
+    },
+    {
+      "id": "g133",
+      "seconds": 141.73372849999578,
+      "cUnits": 9,
+      "compilerInvocations": 46,
+      "phases": {
+        "initial": 18,
+        "preserve": 4,
+        "clobber": 24
+      },
+      "sources": [
+        [
+          "src/oscope-v2-8bit-cdc.c",
+          9
+        ],
+        [
+          "src/usb.c",
+          8
+        ],
+        [
+          "src/usb_req_class.c",
+          6
+        ]
+      ]
+    }
+  ],
+  "buildTotals": {
+    "cUnits": 160,
+    "compilerInvocations": 525,
+    "sumProjectWallSeconds": 4200.578282499999
+  },
+  "examples": [
+    {
+      "id": "p144",
+      "name": "U8G2_READ_FONT_INFO",
+      "backend": "wide",
+      "mx": {
+        "bytes": 714,
+        "instructionCount": 247,
+        "categoryBytes": {
+          "immediateMove": 43,
+          "registerMove": 296,
+          "stack": 88,
+          "call": 80,
+          "memoryMove": 60,
+          "arithmeticAndBits": 146,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "immediateMove": 21,
+          "registerMove": 105,
+          "stack": 42,
+          "call": 20,
+          "memoryMove": 20,
+          "arithmeticAndBits": 38,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 0,
+        "instructionCount": 0,
+        "categoryBytes": {},
+        "categoryInstructions": {}
+      },
+      "keilMap": 355,
+      "masks": {
+        "count": 19,
+        "bytes": 76
+      },
+      "stackLoadStore": {
+        "count": 2,
+        "bytes": 8
+      }
+    },
+    {
+      "id": "p144",
+      "name": "U8G2_FONT_DECODE_LEN",
+      "backend": "wide-accepted",
+      "mx": {
+        "bytes": 563,
+        "instructionCount": 195,
+        "categoryBytes": {
+          "stack": 280,
+          "immediateMove": 6,
+          "registerMove": 95,
+          "arithmeticAndBits": 108,
+          "memoryMove": 45,
+          "branch": 12,
+          "call": 16,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 96,
+          "immediateMove": 2,
+          "registerMove": 41,
+          "arithmeticAndBits": 30,
+          "memoryMove": 15,
+          "branch": 6,
+          "call": 4,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 0,
+        "instructionCount": 0,
+        "categoryBytes": {},
+        "categoryInstructions": {}
+      },
+      "keilMap": 307,
+      "masks": {
+        "count": 12,
+        "bytes": 48
+      },
+      "stackLoadStore": {
+        "count": 38,
+        "bytes": 152
+      }
+    },
+    {
+      "id": "p144",
+      "name": "U8G2_FONT_DECODE_GLYPH",
+      "backend": "wide-accepted",
+      "mx": {
+        "bytes": 803,
+        "instructionCount": 290,
+        "categoryBytes": {
+          "stack": 232,
+          "registerMove": 231,
+          "arithmeticAndBits": 173,
+          "call": 48,
+          "memoryMove": 72,
+          "branch": 32,
+          "immediateMove": 13,
+          "return": 2
+        },
+        "categoryInstructions": {
+          "stack": 78,
+          "registerMove": 98,
+          "arithmeticAndBits": 54,
+          "call": 12,
+          "memoryMove": 24,
+          "branch": 16,
+          "immediateMove": 6,
+          "return": 2
+        }
+      },
+      "keil": {
+        "bytes": 0,
+        "instructionCount": 0,
+        "categoryBytes": {},
+        "categoryInstructions": {}
+      },
+      "keilMap": 477,
+      "masks": {
+        "count": 15,
+        "bytes": 60
+      },
+      "stackLoadStore": {
+        "count": 31,
+        "bytes": 124
+      }
+    },
+    {
+      "id": "p127",
+      "name": "FFT",
+      "backend": "wide-accepted",
+      "mx": {
+        "bytes": 870,
+        "instructionCount": 305,
+        "categoryBytes": {
+          "stack": 440,
+          "immediateMove": 43,
+          "registerMove": 123,
+          "arithmeticAndBits": 154,
+          "memoryMove": 69,
+          "branch": 16,
+          "call": 24,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 126,
+          "immediateMove": 13,
+          "registerMove": 60,
+          "arithmeticAndBits": 68,
+          "memoryMove": 23,
+          "branch": 8,
+          "call": 6,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 0,
+        "instructionCount": 0,
+        "categoryBytes": {},
+        "categoryInstructions": {}
+      },
+      "keilMap": 493,
+      "masks": {
+        "count": 6,
+        "bytes": 24
+      },
+      "stackLoadStore": {
+        "count": 92,
+        "bytes": 368
+      }
+    },
+    {
+      "id": "p106",
+      "name": "MAIN",
+      "backend": "wide-accepted",
+      "mx": {
+        "bytes": 2664,
+        "instructionCount": 948,
+        "categoryBytes": {
+          "memoryMove": 267,
+          "arithmeticAndBits": 277,
+          "immediateMove": 573,
+          "call": 279,
+          "stack": 896,
+          "registerMove": 305,
+          "branch": 67
+        },
+        "categoryInstructions": {
+          "memoryMove": 89,
+          "arithmeticAndBits": 101,
+          "immediateMove": 193,
+          "call": 73,
+          "stack": 329,
+          "registerMove": 131,
+          "branch": 32
+        }
+      },
+      "keil": {
+        "bytes": 0,
+        "instructionCount": 0,
+        "categoryBytes": {},
+        "categoryInstructions": {}
+      },
+      "keilMap": 1739,
+      "masks": {
+        "count": 0,
+        "bytes": 0
+      },
+      "stackLoadStore": {
+        "count": 0,
+        "bytes": 0
+      }
+    },
+    {
+      "id": "g071",
+      "name": "USB_ISR",
+      "backend": "wide",
+      "mx": {
+        "bytes": 1323,
+        "instructionCount": 502,
+        "categoryBytes": {
+          "stack": 134,
+          "immediateMove": 330,
+          "memoryMove": 267,
+          "call": 94,
+          "registerMove": 175,
+          "branch": 198,
+          "arithmeticAndBits": 124,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 61,
+          "immediateMove": 114,
+          "memoryMove": 68,
+          "call": 41,
+          "registerMove": 84,
+          "branch": 91,
+          "arithmeticAndBits": 42,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 934,
+        "instructionCount": 345,
+        "categoryBytes": {
+          "stack": 28,
+          "memoryMove": 209,
+          "immediateMove": 293,
+          "call": 108,
+          "branch": 181,
+          "arithmeticAndBits": 78,
+          "registerMove": 36,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 14,
+          "memoryMove": 56,
+          "immediateMove": 103,
+          "call": 36,
+          "branch": 75,
+          "arithmeticAndBits": 42,
+          "registerMove": 18,
+          "return": 1
+        }
+      },
+      "keilMap": 934,
+      "masks": {
+        "count": 2,
+        "bytes": 8
+      },
+      "stackLoadStore": {
+        "count": 0,
+        "bytes": 0
+      }
+    },
+    {
+      "id": "g139",
+      "name": "PWMA_TIMER",
+      "backend": "wide",
+      "mx": {
+        "bytes": 284,
+        "instructionCount": 84,
+        "categoryBytes": {
+          "immediateMove": 122,
+          "memoryMove": 136,
+          "registerMove": 6,
+          "arithmeticAndBits": 19,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "immediateMove": 36,
+          "memoryMove": 39,
+          "registerMove": 3,
+          "arithmeticAndBits": 5,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 199,
+        "instructionCount": 63,
+        "categoryBytes": {
+          "arithmeticAndBits": 4,
+          "immediateMove": 118,
+          "memoryMove": 76,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "arithmeticAndBits": 3,
+          "immediateMove": 35,
+          "memoryMove": 24,
+          "return": 1
+        }
+      },
+      "keilMap": 199,
+      "masks": {
+        "count": 0,
+        "bytes": 0
+      },
+      "stackLoadStore": {
+        "count": 0,
+        "bytes": 0
+      }
+    },
+    {
+      "id": "g139",
+      "name": "PWMA_ISR",
+      "backend": "entry-contract",
+      "mx": {
+        "bytes": 339,
+        "instructionCount": 126,
+        "categoryBytes": {
+          "stack": 20,
+          "immediateMove": 46,
+          "memoryMove": 169,
+          "registerMove": 58,
+          "arithmeticAndBits": 33,
+          "branch": 12,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 10,
+          "immediateMove": 18,
+          "memoryMove": 47,
+          "registerMove": 29,
+          "arithmeticAndBits": 17,
+          "branch": 4,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 194,
+        "instructionCount": 65,
+        "categoryBytes": {
+          "stack": 16,
+          "immediateMove": 56,
+          "memoryMove": 62,
+          "arithmeticAndBits": 33,
+          "registerMove": 14,
+          "branch": 12,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 8,
+          "immediateMove": 14,
+          "memoryMove": 18,
+          "arithmeticAndBits": 13,
+          "registerMove": 7,
+          "branch": 4,
+          "return": 1
+        }
+      },
+      "keilMap": 194,
+      "masks": {
+        "count": 0,
+        "bytes": 0
+      },
+      "stackLoadStore": {
+        "count": 0,
+        "bytes": 0
+      }
+    },
+    {
+      "id": "p140",
+      "name": "ADC_ISR",
+      "backend": "wide",
+      "mx": {
+        "bytes": 659,
+        "instructionCount": 237,
+        "categoryBytes": {
+          "stack": 60,
+          "immediateMove": 53,
+          "arithmeticAndBits": 127,
+          "memoryMove": 266,
+          "registerMove": 114,
+          "call": 12,
+          "branch": 26,
+          "return": 1
+        },
+        "categoryInstructions": {
+          "stack": 30,
+          "immediateMove": 15,
+          "arithmeticAndBits": 50,
+          "memoryMove": 69,
+          "registerMove": 57,
+          "call": 3,
+          "branch": 12,
+          "return": 1
+        }
+      },
+      "keil": {
+        "bytes": 0,
+        "instructionCount": 0,
+        "categoryBytes": {},
+        "categoryInstructions": {}
+      },
+      "keilMap": 493,
+      "masks": {
+        "count": 4,
+        "bytes": 16
+      },
+      "stackLoadStore": {
+        "count": 0,
+        "bytes": 0
+      }
+    }
+  ],
+  "addressMaskObservations": [
+    {
+      "rawComparisonOnly": false,
+      "count": 304,
+      "bytes": 1216,
+      "projects": 44,
+      "functions": 201
+    },
+    {
+      "rawComparisonOnly": true,
+      "count": 764,
+      "bytes": 3056,
+      "projects": 2,
+      "functions": 178
+    }
+  ],
+  "inputs": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\cumulative-comparison.json",
+      "sha256": "e39cb37b48b61c8f5ba1c898694d83a25a8b4ecf81a5ce7e0ff56e332ec95efe"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\research-current-gaps.json",
+      "sha256": "1e89d010661b975ff7693bc819239dd89db0d8f45dc12e105d664b036b1303ab"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\research-selection.json",
+      "sha256": "8a7b6eb519f2d4b58173157ff3ab44f12f589b3299658471d0b861d9d499e4e8"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\research-build-cost.json",
+      "sha256": "80a82a3eab36eddaa9d8031d2d79f4c4a5040c24f32638f485d45e1f8d45d62e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\research-examples.json",
+      "sha256": "61c9c4192e5797996f8ab8dfb141d6260a9d887ad8bd4798c9c33d72a85d1f57"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\research-address-patterns.json",
+      "sha256": "51ec251b1559eefe8cf4b70b8e3057a50917d57572c7f0013905ed9f2e09b239"
+    }
+  ]
+}
