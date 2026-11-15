@@ -84,7 +84,8 @@ wide_cost_arg(const char *s)
     }
     a.kind=s[k]?WC_INDEXED:WC_INDIRECT;return a;
   }
-  if(!strcmp(s,"b") || !strcmp(s,"acc") || !strcmp(s,"dpl") || !strcmp(s,"dph")) {a.kind=WC_DIRECT;return a;}
+  if(!strcmp(s,"b") || !strcmp(s,"acc") || !strcmp(s,"dpl") || !strcmp(s,"dph") ||
+     !strcmp(s,"psw") || !strcmp(s,"dpxl")) {a.kind=WC_DIRECT;return a;}
   /* 强制 direct 的汇编拼写可独立确定长度；未解析的普通符号不猜测存储空间。 */
   if((*s=='*' && s[1]) || (!strncmp(s,"s:",2) && s[2])) {a.kind=WC_DIRECT;return a;}
   n=strtol(s,&end,0);
@@ -152,7 +153,7 @@ wide_instruction_bytes_context(const char *text,size_t length,wide_cost_resolver
   /* 固定 ACC.bit 已在操作数分类中识别，其余位仍要求类型上下文。 */
 #define WC_OP(s) (!strcmp(op,(s)))
   if(WC_OP("nop"))return !*args?1:0;
-  if(WC_OP("eret") && !*args)return 1;
+  if((WC_OP("eret") || WC_OP("reti")) && !*args)return 1;
   if(WC_OP("ejmp") || WC_OP("ecall")) {
     if(!*args || *second)return 0;
     if(a.kind==WC_INDIRECT && a.width==4)return 2;

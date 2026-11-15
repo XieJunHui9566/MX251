@@ -130,6 +130,7 @@ mcs251BackendSymbol(const char *name,const void *unused)
 {
   (void)unused;
   wide_cost_operand result={WC_UNKNOWN,0,0};
+  if(IFFUNC_ISISR(currFunc->type) && !strcmp(name,"bits"))return (wide_cost_operand){WC_DIRECT,0,0};
   if(name[0]=='b' && name[1]>='0' && name[1]<='7' && !name[2])
     return (wide_cost_operand){WC_BIT,0,0};
   if(strlen(name)==6 && name[0]=='0' && (name[1]=='x' || name[1]=='X') &&

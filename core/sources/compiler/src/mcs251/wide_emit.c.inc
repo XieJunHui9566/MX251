@@ -55,6 +55,7 @@ wrestore_preserved(wide_function *f)
 static void
 wreturn(wide_function *f)
 {
+  if(f->interruptEntry) {wj(f,"ejmp",2000000);return;}
   wstep(f,60,4,true,f->frame);
   wrestore_preserved(f);
   we(f,"\teret\n");
@@ -1533,6 +1534,7 @@ wordinary_forward_return(wide_function *f,int index)
 static bool
 wcall_tail_return(wide_function *f,int index)
 {
+  if(f->interruptEntry)return false;
   wide_node *call=&f->nodes[index];
   /* The caller frame must no longer own storage visible to the callee.
    * Outgoing stack arguments still require the caller's cleanup on return. */
@@ -1981,7 +1983,7 @@ wrotate_proposal(wide_function *f,int i)
 static void
 wide_emit(wide_function *f)
 {
-  f->preserved=wide_preserve_registers(currFunc);f->preservedBytes=0;
+  f->preserved=f->interruptEntry?0:wide_preserve_registers(currFunc);f->preservedBytes=0;
   const int groups[]={8,12,24,28};
   for(unsigned i=0;i<4;++i) {
     int reg=groups[i],width=reg==8?2:4;
@@ -2012,6 +2014,13 @@ wide_emit(wide_function *f)
       int reg=groups[i],width=reg==8?2:4;
       if(f->preserved&wide_mask(reg,width))we(f,"\tpush\t%s%d\n",wp(width),reg);
     }
+  }
+  if(f->interruptEntry) {
+    we(f,"; mx251-native-isr frame=%d\n\tpush\t0xd1\n",f->frame);
+    if(IFFUNC_HASFCALL(currFunc->type))we(f,"\tpush\tbits\n");
+    we(f,"\tpush\tpsw\n\tmov\tpsw,#0x00\n");
+    for(int reg=0;reg<32;reg+=4)we(f,"\tpush\tdr%d\n",reg);
+    we(f,"\tpush\tdpl\n\tpush\tdph\n\tpush\tdpxl\n; mx251-isr-body-begin\n");
   }
   wstep(f,60,4,false,f->frame);
   if(f->nativeReceiveFree)wnative_receive_prefix(f);
@@ -2424,5 +2433,15 @@ wide_emit(wide_function *f)
     default:wbinary(f,n);break;
     }
   }
+  if(f->interruptEntry) {
+    wl(f,2000000);
+    wstep(f,60,4,true,f->frame);
+    we(f,"; mx251-isr-body-end\n\tpop\tdpxl\n\tpop\tdph\n\tpop\tdpl\n");
+    for(int reg=28;reg>=0;reg-=4)we(f,"\tpop\tdr%d\n",reg);
+    we(f,"\tpop\tpsw\n");
+    if(IFFUNC_HASFCALL(currFunc->type))we(f,"\tpop\tbits\n");
+    we(f,"\tpop\t0xd1\n\treti\n");
+  }
   wrelax_branches(f);
+  if(f->interruptEntry)mcs251FinishWideIsr(&f->output,f->sourceBlocks,f->frame);
 }

@@ -120,6 +120,7 @@ typedef struct {
   int relativeAddressBase,relativeAddressNode;
   int64_t relativeAddressOffset;
   bool body, sampledQualified, formalAddress, ordinaryEntry, allocationInvalid;
+  bool interruptEntry;
   bool nativeReceiveFree;
   bool promotedStackObjects; /* Keep object allocation choices after scalar promotion. */
   bool narrowNegate;
@@ -2485,6 +2486,7 @@ wide_resolve_cost_operand(const char *text,const void *context)
 {
   const wide_function *f=context;
   wide_cost_operand unknown={WC_UNKNOWN,0,0};
+  if(f->interruptEntry && !strcmp(text,"bits"))return (wide_cost_operand){WC_DIRECT,0,0};
   for(int i=0;i<f->nn;++i) {
     const wide_node *n=&f->nodes[i];symbol *s=n->addressSymbol;
     if(s && n->edataIndexed && (n->op==WM_LOAD || n->op==WM_STORE)) {
@@ -3197,6 +3199,20 @@ wide_is_function_body (ebbIndex *ebbi)
   return entries == 1 && ends == 1;
 }
 
+bool
+mcs251WideIsrEligible(void)
+{
+  const char *enabled=getenv("MX251_NATIVE_ISR");
+  return (!enabled || strcmp(enabled,"0")) && mcs251WideEnabled &&
+    mcs251WideOrdinaryEnabled && currFunc && IFFUNC_ISISR(currFunc->type) &&
+    FUNC_SDCCCALL(currFunc->type)==2 && IS_VOID(currFunc->type->next) &&
+    !FUNC_ARGS(currFunc->type) && !IFFUNC_ISNAKED(currFunc->type) &&
+    !IFFUNC_ISCRITICAL(currFunc->type) && !IFFUNC_CALLEESAVES(currFunc->type) &&
+    !IFFUNC_ISBANKEDCALL(currFunc->type) && !FUNC_REGBANK(currFunc->type) &&
+    !options.debug && !options.useXstack && !options.noRegParams &&
+    !options.excludeRegsSet;
+}
+
 static mcs251_wide_result
 wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnostics, bool narrowNegate)
 {
@@ -3210,7 +3226,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
      (ordinary && (!mcs251WideOrdinaryEnabled || currFunc->cdef ||
                    !(IFFUNC_ISREENT(currFunc->type) || options.stackAuto))) ||
      options.debug || options.useXstack || options.noRegParams ||
-     IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
+     (IFFUNC_ISISR(currFunc->type) && !mcs251WideIsrEligible()) || IFFUNC_ISNAKED(currFunc->type) ||
      IFFUNC_ISCRITICAL(currFunc->type) || IFFUNC_CALLEESAVES(currFunc->type) ||
      IFFUNC_ISBANKEDCALL(currFunc->type) || FUNC_REGBANK(currFunc->type) ||
      IFFUNC_HASVARARGS(currFunc->type) ||
@@ -3220,7 +3236,8 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
     if(!wide_abi_type(arg->type,currFunc->type)) {dbuf_printf(diagnostics,"; wide admission function=%s skip=parameter-type\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
   if(!wide_stack_signature(currFunc->type)) {dbuf_printf(diagnostics,"; wide admission function=%s skip=stack-signature\n",currFunc->name);return MCS251_WIDE_FALLBACK;}
   f=Safe_alloc(sizeof *f);memset(f,0,sizeof *f);f->ordinaryEntry=ordinary;f->diagnostics=diagnostics;f->candidateOutput=output;
-  f->narrowNegate=narrowNegate;
+  f->interruptEntry=IFFUNC_ISISR(currFunc->type);
+  f->narrowNegate=narrowNegate || f->interruptEntry;
   f->domainCount=mcs251ParameterDomainValues(currFunc,FUNC_ARGS(currFunc->type),1,f->domainValues);
   if(fatalError){Safe_free(f);return MCS251_WIDE_ERROR;}
   if(!wide_capacity_profile(f))goto fallback;

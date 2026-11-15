@@ -161,7 +161,7 @@ static li_operand li_operand_info(const char *text)
 static wide_cost_operand li_cost_symbol(const char *name,const void *unused)
 {
   (void)unused;li_operand a=li_operand_info(name);wide_cost_operand r={WC_UNKNOWN,0,0};
-  if(!strcmp(name,"psw")){r.kind=WC_DIRECT;return r;}
+  if(!strcmp(name,"psw") || !strcmp(name,"bits")){r.kind=WC_DIRECT;return r;}
   if(!a.unknown && (a.memory || a.gpr || a.special))r.kind=!strncmp(name,"e:",2)?WC_EXT_DIRECT:a.bit?WC_BIT:WC_DIRECT;
   return r;
 }
@@ -170,7 +170,7 @@ static wide_cost_operand li_cost_symbol(const char *name,const void *unused)
 static bool li_local_label(const char *name,li_line *lines,unsigned begin,unsigned end)
 {
   const char *p=name;while(isdigit((unsigned char)*p))++p;
-  if(p==name || strcmp(p,"$"))return false;
+  if((p==name || strcmp(p,"$")) && strncmp(name,"__wm_",5))return false;
   size_t n=strlen(name);
   for(unsigned i=begin;i<end;++i)if(lines[i].label) {
     p=lines[i].node->line;while(isspace((unsigned char)*p))++p;
@@ -332,7 +332,7 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
    * cleanup. These change the argument stack, not the private saved values;
    * arbitrary SPX assignments and inline stack access are still excluded. */
   if(!strcmp(op,"pushw") ||
-     ((!strcmp(op,"inc") || !strcmp(op,"dec")) && !strcmp(l->arg[0],"spx"))) {
+     ((!strcmp(op,"inc") || !strcmp(op,"dec") || !strcmp(op,"add") || !strcmp(op,"sub")) && !strcmp(l->arg[0],"spx"))) {
     mx251_effects e=mx251InstructionEffects(l->node->line,strlen(l->node->line),NULL,0);
     if(e.unknown || e.writes || e.specialWrites!=MX251_SPECIAL_SPX)return false;
     all->reads|=e.reads;all->specialReads|=e.specialReads;all->specialWrites|=e.specialWrites;
@@ -377,8 +377,10 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
     !strcmp(op,"anl") || !strcmp(op,"orl") || !strcmp(op,"xrl");
   bool unary=!strcmp(op,"inc") || !strcmp(op,"dec") || !strcmp(op,"rl") || !strcmp(op,"rr") ||
     !strcmp(op,"rlc") || !strcmp(op,"rrc") || !strcmp(op,"sll") || !strcmp(op,"srl") || !strcmp(op,"sra");
+  bool step=unary && l->nargs==2 && l->arg[1][0]=='#' &&
+    (!strcmp(op,"inc") || !strcmp(op,"dec"));
   if((!move && !compare && !bitop && !binary && !unary) ||
-     l->nargs!=(move || compare || binary?2u:1u))return false;
+     l->nargs!=(move || compare || binary || step?2u:1u))return false;
   li_operand a=li_operand_info(l->arg[0]),b={0};if(l->nargs==2)b=li_operand_info(l->arg[1]);
   if(a.unknown || b.unknown || *l->arg[0]=='#')return false;
   if(a.indirect && (!move || !li_indirect_store(l,lines,begin,(unsigned)(l-lines))))return false;
@@ -394,7 +396,7 @@ static bool li_body_effect(li_line *l,li_effects *all,li_line *lines,unsigned be
  * both ends together, switch bank before register saves, and restore PSW last.
  * Group only already-preserved bytes; DPX's padding byte is private scratch. */
 static void li_group_saves(li_line *lines,unsigned *pushes,unsigned *pops,
-                           unsigned count,const bool *removed,int bank,bool dropBank)
+                           unsigned count,const bool *removed,int bank,bool dropBank,struct dbuf_s *diagnostics)
 {
   uint32_t gpr=0;unsigned before=0,oldStack=0,dpx=0;
   char names[LI_SAVES][32];unsigned nn=0;
@@ -447,25 +449,15 @@ static void li_group_saves(li_line *lines,unsigned *pushes,unsigned *pops,
     lines[pops[i]].node->line=Safe_strdup(i?"; mx251 grouped restore":dbuf_c_str(&exit));
   }
   if(bank>=0)lines[bank].node->line=Safe_strdup("; mx251 bank selection belongs to grouped entry");
-  dbuf_printf(codeOutBuf,"; mx251-isr-save-groups schema=1 symbol=%s saved-bytes=%u stack-before=%u stack-after=%u frame=private\n",
+  dbuf_printf(diagnostics,"; mx251-isr-save-groups schema=1 symbol=%s saved-bytes=%u stack-before=%u stack-after=%u frame=private\n",
     currFunc->rname,before-after,oldStack,newStack);
   dbuf_destroy(&entry);dbuf_destroy(&exit);
 }
 
-static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
+static void li_trim_saves(lineNode *head,int inlineBits,struct dbuf_s *diagnostics)
 {
   const char *enable=getenv("MX251_LEAF_ISR_SAVES");
   if(enable && !strcmp(enable,"0"))return;
-  if(!currFunc || !IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
-     IFFUNC_ISCRITICAL(currFunc->type) || FUNC_REGBANK(currFunc->type) || options.debug ||
-     options.useXstack || currFunc->stack || currFunc->xstack || inlineBits<0)return;
-  unsigned functions=0,ends=0;
-  for(iCode *ic=lic;ic;ic=ic->next) {
-    functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
-    if(ic->op==PCALL ||
-       ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
-  }
-  if(functions!=1 || ends!=1)return;
   li_line *lines=Safe_alloc(LI_LINES*sizeof *lines);unsigned count=0,begin=0,end=0;
   unsigned pushes[LI_SAVES],pops[LI_SAVES],npush=0,npop=0;int bank=-1;bool ok=true;li_effects effects={0};
   for(lineNode *p=head;p;p=p->next) {
@@ -479,7 +471,7 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
     li_line *l=&lines[i];if(l->empty || l->label)continue;
     if(i>=begin && i<end) {
       if(!li_body_effect(l,&effects,lines,begin,end)){
-        dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=body-effect instruction=%s\n",currFunc->rname,l->node->line);ok=false;
+        dbuf_printf(diagnostics,"; mx251-leaf-isr-fallback symbol=%s reason=body-effect instruction=%s\n",currFunc->rname,l->node->line);ok=false;
       }
       continue;
     }
@@ -524,18 +516,58 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
   if(ok && (saved || dropBank)) {
     for(unsigned i=begin;effects.calls && i<end;++i)
       if(!strcmp(lines[i].op,"ecall") || !strcmp(lines[i].op,"lcall") || !strcmp(lines[i].op,"acall")) {
-        dbuf_printf(codeOutBuf,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
-        if(omittedDpx)dbuf_printf(codeOutBuf,"; mx251-isr-dpx-call callee=%s omitted=%u\n",lines[i].arg[0],omittedDpx);
-        if(omittedBits)dbuf_printf(codeOutBuf,"; mx251-isr-bits-call callee=%s omitted=1\n",lines[i].arg[0]);
+        dbuf_printf(diagnostics,"; mx251-isr-call callee=%s omitted=%08lx\n",lines[i].arg[0],(unsigned long)omitted);
+        if(omittedDpx)dbuf_printf(diagnostics,"; mx251-isr-dpx-call callee=%s omitted=%u\n",lines[i].arg[0],omittedDpx);
+        if(omittedBits)dbuf_printf(diagnostics,"; mx251-isr-bits-call callee=%s omitted=1\n",lines[i].arg[0]);
       }
     for(unsigned i=0;i<npush;++i)if(remove[i]) {
       lines[pushes[i]].node->line=Safe_strdup("; mx251 leaf ISR: unused private save removed");
       lines[pops[npop-1-i]].node->line=Safe_strdup("; mx251 leaf ISR: paired restore removed");
     }
     if(dropBank)lines[bank].node->line=Safe_strdup("; mx251 leaf ISR: unused bank selection removed");
-    dbuf_printf(codeOutBuf,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
+    dbuf_printf(diagnostics,"; mx251-leaf-isr-saves schema=2 symbol=%s removed-bytes=%u stack-saved=%u core-reads=%08lx core-writes=%08lx special-reads=%u special-writes=%u flags=%u calls=%u psw1=retained frame=private inline-bits=%u compiler-proof=body-effects\n",
       currFunc->rname,bytes,saved,(unsigned long)effects.reads,(unsigned long)effects.writes,effects.specialReads,effects.specialWrites,effects.flags,effects.calls,(unsigned)inlineBits);
-  } else dbuf_printf(codeOutBuf,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
-  if(ok)li_group_saves(lines,pushes,pops,npush,remove,bank,dropBank);
+  } else dbuf_printf(diagnostics,"; mx251-leaf-isr-fallback symbol=%s reason=shape-or-cost-or-no-saving known=%u begin=%u end=%u pushes=%u pops=%u\n",currFunc->rname,ok,begin,end,npush,npop);
+  if(ok)li_group_saves(lines,pushes,pops,npush,remove,bank,dropBank,diagnostics);
   Safe_free(lines);
+}
+
+static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
+{
+  if(!currFunc || !IFFUNC_ISISR(currFunc->type) || IFFUNC_ISNAKED(currFunc->type) ||
+     IFFUNC_ISCRITICAL(currFunc->type) || FUNC_REGBANK(currFunc->type) || options.debug ||
+     options.useXstack || currFunc->stack || currFunc->xstack || inlineBits<0)return;
+  unsigned functions=0,ends=0;
+  for(iCode *ic=lic;ic;ic=ic->next) {
+    functions+=ic->op==FUNCTION;ends+=ic->op==ENDFUNCTION;
+    if(ic->op==PCALL || ic->op==CRITICAL || ic->op==ENDCRITICAL)return;
+  }
+  if(functions==1 && ends==1)li_trim_saves(head,inlineBits,codeOutBuf);
+}
+
+/* The prototype keeps the complete context for frames and indirect writes;
+ * otherwise it shares the established ISR save analysis with byte codegen. */
+void mcs251FinishWideIsr(struct dbuf_s *output,ebbIndex *ebbi,int frame)
+{
+  char *text=Safe_strdup(dbuf_c_str(output)),*line=text;
+  lineNode *head=NULL,*tail=NULL;
+  while(*line) {
+    char *end=strchr(line,'\n');if(end)*end=0;
+    lineNode *p=newLineNode(line);
+    if(tail){tail->next=p;p->prev=tail;}else head=p;tail=p;
+    li_line parsed;
+    if(li_parse(p,&parsed) && !strcmp(parsed.op,"ecall") && parsed.nargs==1)
+      for(int b=0;b<ebbi->count;++b) {
+        eBBlock *bb=ebbi->bbOrder[b];
+        for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
+          if(ic->op==CALL && IS_SYMOP(IC_LEFT(ic)) &&
+             !strcmp(parsed.arg[0],OP_SYMBOL(IC_LEFT(ic))->rname))p->ic=ic;
+      }
+    if(!end)break;line=end+1;
+  }
+  dbuf_set_length(output,0);
+  if(!frame)li_trim_saves(head,0,output);
+  for(lineNode *p=head;p;p=p->next)dbuf_printf(output,"%s\n",p->line);
+  while(head){lineNode *next=head->next;Safe_free(head->line);Safe_free(head->aln);Safe_free(head);head=next;}
+  Safe_free(text);
 }

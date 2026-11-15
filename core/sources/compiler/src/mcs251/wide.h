@@ -21,4 +21,6 @@ extern unsigned char mcs251MemoryStateBits[256];
  * 代码与诊断分别暂存，只有完整成功才提交候选机器代码。 */
 typedef enum { MCS251_WIDE_FALLBACK, MCS251_WIDE_ACCEPTED, MCS251_WIDE_ERROR } mcs251_wide_result;
 mcs251_wide_result mcs251TryWideFunction (ebbIndex *, bool narrowNegate);
+bool mcs251WideIsrEligible(void);
+void mcs251FinishWideIsr(struct dbuf_s *, ebbIndex *, int frame);
 #endif
