@@ -54,6 +54,7 @@ report=dict(schema=1,status='PASS_CALL_SAVE_REUSE',sourceCommit=meta['compilerSo
     unchangedProjects=sum(r['saved']==0 for r in rows),largerProjects=sum(r['saved']<0 for r in rows),
     savedBytes=sum(r['saved'] for r in rows),rows=rows,counts=summaries,
     new110=[r['id'] for r in rows if r['crossed110']],new120=[r['id'] for r in rows if r['crossed120']],
+    remainingRefusals=pin(root/'remaining-refusals.json'),
     hardware=dict(cases=hw['cases'],frames=hw['frames'],port=hw['port'],firmwareSha256=hw['firmwareSha256'],
       codeBytes=receipt['codeBytes'],checks=['ABI2/ABI4 consecutive calls with byte/word/dword live values',
       'register arguments, stack arguments and later use of saved values as arguments',

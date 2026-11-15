@@ -1,0 +1,698 @@
+{
+  "schema": 1,
+  "status": "PASS_CALL_SAVE_REUSE",
+  "sourceCommit": "cbdf09eef3277432e3c9dcf993cbd371ec3e0be0",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "71e1cf6a3e7c5daf4bf0e4f7a134c1b508126936c2ab0a570a88bebaf0a3ec7d"
+  },
+  "core": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\candidate\\core",
+  "buildEntry": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\Build-Optimized.ps1",
+  "parent": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\cumulative-comparison.json",
+    "sha256": "72fc83084aa4a568886168603209ef4e462e515fdcf0be5b7af4139377bc76a3"
+  },
+  "scannedProjects": 203,
+  "scannedUnits": 635,
+  "rebuiltProjects": 17,
+  "improvedProjects": 10,
+  "unchangedProjects": 5,
+  "largerProjects": 2,
+  "savedBytes": 1179,
+  "rows": [
+    {
+      "id": "g070",
+      "name": "38-2.4寸ILI9325驱动TFT显示屏实验程序-带触摸功能\\Project",
+      "cohort": "stc32g-97",
+      "before": 19735,
+      "after": 19087,
+      "saved": 648,
+      "keilBytes": 19536,
+      "beforeRatio": 1.0101863226863226,
+      "afterRatio": 0.9770167895167895,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_LCD_Fill",
+          "before": 153,
+          "after": 125,
+          "isr": false
+        },
+        {
+          "name": "_LCD_DrawLine",
+          "before": 222,
+          "after": 198,
+          "isr": false
+        },
+        {
+          "name": "_LCD_DrawRectangle",
+          "before": 140,
+          "after": 100,
+          "isr": false
+        },
+        {
+          "name": "__draw_circle_8",
+          "before": 331,
+          "after": 253,
+          "isr": false
+        },
+        {
+          "name": "_gui_circle",
+          "before": 252,
+          "after": 208,
+          "isr": false
+        },
+        {
+          "name": "_Draw_Triangel",
+          "before": 121,
+          "after": 88,
+          "isr": false
+        },
+        {
+          "name": "_Fill_Triangel",
+          "before": 720,
+          "after": 769,
+          "isr": false
+        },
+        {
+          "name": "_LCD_ShowChar",
+          "before": 662,
+          "after": 522,
+          "isr": false
+        },
+        {
+          "name": "_LCD_ShowString",
+          "before": 132,
+          "after": 116,
+          "isr": false
+        },
+        {
+          "name": "_GUI_DrawFont16",
+          "before": 812,
+          "after": 701,
+          "isr": false
+        },
+        {
+          "name": "_Show_Str",
+          "before": 529,
+          "after": 467,
+          "isr": false
+        },
+        {
+          "name": "_Gui_Drawbmp16",
+          "before": 146,
+          "after": 142,
+          "isr": false
+        },
+        {
+          "name": "_main",
+          "before": 36,
+          "after": 34,
+          "isr": false
+        },
+        {
+          "name": "_DrawTestPage",
+          "before": 189,
+          "after": 181,
+          "isr": false
+        },
+        {
+          "name": "_Test_FillRec",
+          "before": 282,
+          "after": 274,
+          "isr": false
+        },
+        {
+          "name": "_Test_Circle",
+          "before": 260,
+          "after": 252,
+          "isr": false
+        },
+        {
+          "name": "_Test_Triangle",
+          "before": 335,
+          "after": 332,
+          "isr": false
+        },
+        {
+          "name": "_Chinese_Font_test",
+          "before": 170,
+          "after": 169,
+          "isr": false
+        },
+        {
+          "name": "_Test_Read",
+          "before": 413,
+          "after": 399,
+          "isr": false
+        },
+        {
+          "name": "_Lcd_RD_DATA_16Bit",
+          "before": 77,
+          "after": 75,
+          "isr": false
+        },
+        {
+          "name": "_LCD_ReadReg",
+          "before": 85,
+          "after": 74,
+          "isr": false
+        },
+        {
+          "name": "_LCD_Clear",
+          "before": 96,
+          "after": 80,
+          "isr": false
+        },
+        {
+          "name": "_LCD_ReadPoint",
+          "before": 92,
+          "after": 84,
+          "isr": false
+        },
+        {
+          "name": "_LCD_Init",
+          "before": 669,
+          "after": 667,
+          "isr": false
+        },
+        {
+          "name": "_LCD_SetWindows",
+          "before": 125,
+          "after": 91,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\g070\\mx251\\result.json",
+        "sha256": "bce0ea5da6f1998d6eeb1a4b7294cc768e9c6fee288c6c55887c25f98f14de1f"
+      }
+    },
+    {
+      "id": "g071",
+      "name": "39-通过USB发送命令读取ADC测试程序",
+      "cohort": "stc32g-97",
+      "before": 2463,
+      "after": 2222,
+      "saved": 241,
+      "keilBytes": 1655,
+      "beforeRatio": 1.4882175226586103,
+      "afterRatio": 1.3425981873111783,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "___m251r4_WriteReg",
+          "before": 17,
+          "after": 21,
+          "isr": false
+        },
+        {
+          "name": "_usb_isr",
+          "before": 1568,
+          "after": 1323,
+          "isr": true
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\g071\\mx251\\result.json",
+        "sha256": "bf871d1fed95b772afe78e99be1002518508323749adb12de5a887fd875c7d0f"
+      }
+    },
+    {
+      "id": "g133",
+      "name": "83-老梁示波器-CDC虚拟显示",
+      "cohort": "stc32g-97",
+      "before": 8153,
+      "after": 8154,
+      "saved": -1,
+      "keilBytes": 6979,
+      "beforeRatio": 1.1682189425419114,
+      "afterRatio": 1.1683622295457803,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_ShowStartTime",
+          "before": 110,
+          "after": 111,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\g133\\mx251\\result.json",
+        "sha256": "94ef457d279a99e33b80b089963fb4e070052cba591dd659f1f0b920d337c21f"
+      }
+    },
+    {
+      "id": "p068",
+      "name": "32-硬件SPI访问FLASH-串口监控",
+      "cohort": "ai8051u-expanded31",
+      "before": 3344,
+      "after": 3340,
+      "saved": 4,
+      "keilBytes": 3381,
+      "beforeRatio": 0.9890564921620822,
+      "afterRatio": 0.9878734102336587,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_RX1_Check",
+          "before": 767,
+          "after": 763,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p068\\mx251\\result.json",
+        "sha256": "b668ce4faddaec665c637cb1271b7132a4797957855937bf0bf92ff8d852aff7"
+      }
+    },
+    {
+      "id": "p069",
+      "name": "33-IO模拟SPI访问FLASH-串口监控",
+      "cohort": "ai8051u-expanded31",
+      "before": 3321,
+      "after": 3317,
+      "saved": 4,
+      "keilBytes": 3378,
+      "beforeRatio": 0.9831261101243339,
+      "afterRatio": 0.9819419775014802,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_RX1_Check",
+          "before": 767,
+          "after": 763,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p069\\mx251\\result.json",
+        "sha256": "c31af0d9ac8699bcf1962c5f9fd6ffa4eb9fddea12796a4e71e5d8be4e79a537"
+      }
+    },
+    {
+      "id": "p076",
+      "name": "37.1-2.4寸ILI9341驱动TFT显示屏实验程序-带触摸功能，IO模拟I8080接口程序/Project",
+      "cohort": "ai8051u-expanded31",
+      "before": 19033,
+      "after": 19033,
+      "saved": 0,
+      "keilBytes": 19918,
+      "beforeRatio": 0.9555678280951903,
+      "afterRatio": 0.9555678280951903,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p076\\mx251\\result.json",
+        "sha256": "f5209add149892da405488485fc362bd67dd492a5cf1ee26cd57f34358b1da05"
+      }
+    },
+    {
+      "id": "p077",
+      "name": "37.2-2.4寸ILI9341驱动TFT显示屏实验程序-带触摸功能，硬件I8080接口程序/Project",
+      "cohort": "ai8051u-expanded31",
+      "before": 19000,
+      "after": 19000,
+      "saved": 0,
+      "keilBytes": 19921,
+      "beforeRatio": 0.9537673811555645,
+      "afterRatio": 0.9537673811555645,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p077\\mx251\\result.json",
+        "sha256": "747362e9a9a59e2a91e82eeba84613d619c768eab65f135275d0bf0d66455e0c"
+      }
+    },
+    {
+      "id": "p078",
+      "name": "37.3-2.4寸TFT320240彩屏，ILI9325驱动IC，IO模拟I8080接口程序/Project",
+      "cohort": "ai8051u-frozen75",
+      "before": 18305,
+      "after": 18305,
+      "saved": 0,
+      "keilBytes": 17937,
+      "beforeRatio": 1.0205162513240786,
+      "afterRatio": 1.0205162513240786,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p078\\mx251\\result.json",
+        "sha256": "6a5c14c14e427602b14313508e0ba2e103925e66887abc7478b762ddf5fa2227"
+      }
+    },
+    {
+      "id": "p079",
+      "name": "37.4-2.4寸TFT320240彩屏，ILI9325驱动IC，硬件I8080接口程序/Project",
+      "cohort": "ai8051u-expanded31",
+      "before": 18770,
+      "after": 18770,
+      "saved": 0,
+      "keilBytes": 19556,
+      "beforeRatio": 0.9598077316424627,
+      "afterRatio": 0.9598077316424627,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p079\\mx251\\result.json",
+        "sha256": "32d8b4d2cb92a30b9bb8699791a6741b2fc17aa6630b91eebdec2e0e548b8560"
+      }
+    },
+    {
+      "id": "p081",
+      "name": "39-一线制温度传感器 DS18B20 测温-IO模拟/C语言",
+      "cohort": "ai8051u-expanded31",
+      "before": 2752,
+      "after": 2752,
+      "saved": 0,
+      "keilBytes": 2806,
+      "beforeRatio": 0.9807555238774056,
+      "afterRatio": 0.9807555238774056,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p081\\mx251\\result.json",
+        "sha256": "f93ec5d9f88db6d0fd9e167e6e4c8faccae2780bc7769ae810465fa78d7ee691"
+      }
+    },
+    {
+      "id": "p092",
+      "name": "48-通过USB-HID发送命令读取ADC测试程序",
+      "cohort": "ai8051u-expanded31",
+      "before": 2473,
+      "after": 2232,
+      "saved": 241,
+      "keilBytes": 1667,
+      "beforeRatio": 1.483503299340132,
+      "afterRatio": 1.3389322135572885,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "___m251r4_WriteReg",
+          "before": 17,
+          "after": 21,
+          "isr": false
+        },
+        {
+          "name": "_usb_isr",
+          "before": 1568,
+          "after": 1323,
+          "isr": true
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p092\\mx251\\result.json",
+        "sha256": "29a1e4b8c4f1d3dd641c550cc7a94c67fe080fdcc7af200d2370ad3c7015a2e3"
+      }
+    },
+    {
+      "id": "p116",
+      "name": "67-硬件高速HS-SPI访问FLASH-串口监控",
+      "cohort": "ai8051u-expanded31",
+      "before": 3394,
+      "after": 3389,
+      "saved": 5,
+      "keilBytes": 3432,
+      "beforeRatio": 0.9889277389277389,
+      "afterRatio": 0.9874708624708625,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_RX1_Check",
+          "before": 767,
+          "after": 763,
+          "isr": false
+        },
+        {
+          "name": "_SPI_Read_Nbytes",
+          "before": 126,
+          "after": 125,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p116\\mx251\\result.json",
+        "sha256": "92665f52996b860bb6ee1d38b820f1c2ea0e18e69768e49ec30131e6d112cd36"
+      }
+    },
+    {
+      "id": "p127",
+      "name": "73-频谱分析256点FFT-USB-CDC送电脑ISP软件调试接口FFT绘图显示",
+      "cohort": "ai8051u-expanded31",
+      "before": 9357,
+      "after": 9345,
+      "saved": 12,
+      "keilBytes": 6998,
+      "beforeRatio": 1.3370963132323521,
+      "afterRatio": 1.3353815375821663,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_FFT",
+          "before": 882,
+          "after": 870,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p127\\mx251\\result.json",
+        "sha256": "0251a834578bff195be4153a426963a56ca87ae48604bd13140eaea865c2e4c2"
+      }
+    },
+    {
+      "id": "p136",
+      "name": "82-I2S接口-数字录放音-存储在FLASH中-TLV320AIC23B",
+      "cohort": "ai8051u-frozen75",
+      "before": 4454,
+      "after": 4452,
+      "saved": 2,
+      "keilBytes": 4128,
+      "beforeRatio": 1.0789728682170543,
+      "afterRatio": 1.0784883720930232,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_PlayProcess",
+          "before": 548,
+          "after": 546,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p136\\mx251\\result.json",
+        "sha256": "3add3a80ae66c417c2553c2238fb0e760393f552fe7742648cd5e50877a06973"
+      }
+    },
+    {
+      "id": "p141",
+      "name": "85-示波器-CDC虚拟显示",
+      "cohort": "ai8051u-expanded31",
+      "before": 8155,
+      "after": 8156,
+      "saved": -1,
+      "keilBytes": 6957,
+      "beforeRatio": 1.1722006612045421,
+      "afterRatio": 1.1723444013224091,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_ShowStartTime",
+          "before": 110,
+          "after": 111,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p141\\mx251\\result.json",
+        "sha256": "e05cc84a61d307201aceff784ccf4a6cd78f8fed45c2b0e7c6ba3e5af0c736f8"
+      }
+    },
+    {
+      "id": "p144",
+      "name": "87-U8G2_DMA_OLED/1-U8G2_I2C_DMA_OLED",
+      "cohort": "ai8051u-expanded31",
+      "before": 35840,
+      "after": 35828,
+      "saved": 12,
+      "keilBytes": 25221,
+      "beforeRatio": 1.4210380238689981,
+      "afterRatio": 1.420562229887792,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_u8g2_font_decode_len",
+          "before": 567,
+          "after": 563,
+          "isr": false
+        },
+        {
+          "name": "_u8g2_font_decode_glyph",
+          "before": 807,
+          "after": 803,
+          "isr": false
+        },
+        {
+          "name": "_u8g2_triangle",
+          "before": 282,
+          "after": 278,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p144\\mx251\\result.json",
+        "sha256": "2fa01076a14dcc0c11f61223e7fdce1c89bc2728ae24692d831adabeba48a3bc"
+      }
+    },
+    {
+      "id": "p145",
+      "name": "87-U8G2_DMA_OLED/2-U8G2_SPI_DMA_OLED",
+      "cohort": "ai8051u-expanded31",
+      "before": 34530,
+      "after": 34518,
+      "saved": 12,
+      "keilBytes": 24968,
+      "beforeRatio": 1.3829702018583787,
+      "afterRatio": 1.3824895866709388,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_u8g2_font_decode_len",
+          "before": 567,
+          "after": 563,
+          "isr": false
+        },
+        {
+          "name": "_u8g2_font_decode_glyph",
+          "before": 807,
+          "after": 803,
+          "isr": false
+        },
+        {
+          "name": "_u8g2_triangle",
+          "before": 282,
+          "after": 278,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p145\\mx251\\result.json",
+        "sha256": "0d3afd659d87004531a7711b51d31f7fcb16ee91c8722751f8ab15f1b6c32d83"
+      }
+    }
+  ],
+  "counts": {
+    "ai8051u-expanded31": {
+      "projects": 31,
+      "keil110": 12,
+      "keil120": 21,
+      "stcProjects": 17,
+      "stc110": 17,
+      "stc120": 17
+    },
+    "ai8051u-frozen75": {
+      "projects": 75,
+      "keil110": 75,
+      "keil120": 75,
+      "stcProjects": 0,
+      "stc110": 0,
+      "stc120": 0
+    },
+    "stc32g-97": {
+      "projects": 97,
+      "keil110": 44,
+      "keil120": 79,
+      "stcProjects": 79,
+      "stc110": 76,
+      "stc120": 77
+    }
+  },
+  "new110": [],
+  "new120": [],
+  "remainingRefusals": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\remaining-refusals.json",
+    "sha256": "dcc6bc767a05c8adca1065b6bc718ebb630a31310b3617a5726fe0436f4ce8f8"
+  },
+  "hardware": {
+    "cases": 128,
+    "frames": 228,
+    "port": "COM13",
+    "firmwareSha256": "56a615a0b5974fc8e5da760037c752def97d4a20297d693d5f47d3fa203b2d92",
+    "codeBytes": 3664,
+    "checks": [
+      "ABI2/ABI4 consecutive calls with byte/word/dword live values",
+      "register arguments, stack arguments and later use of saved values as arguments",
+      "all four interrupted register banks; GPR, PSW/PSW1, DPX and SPX restoration",
+      "local stack array and unknown assembly callee"
+    ]
+  },
+  "limitations": [
+    "Official project runtime was not measured; instruction counts are not cycle measurements.",
+    "Keil/STC-IDE reference images are retained builds; unchanged projects retain previous linked images.",
+    "Reuse currently requires identical complete save layouts and straight-line register-only gaps.",
+    "Ordered inline assembly and deferred word-multiply replacement regions do not participate."
+  ],
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\census-final\\result.json",
+      "sha256": "72da4f90bda7e058ba5660b91dce305e3cb7956f023730ebe2633bfc714a941a"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\contracts-qualified\\result.json",
+      "sha256": "e58efbb49f50de1e26f09f77a10ff0d1b3f881996259b9082889c8b08ed40f39"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\hardware-final\\source.json",
+      "sha256": "97670d73548b619d5d4f16a1fd359c5164c0f70825ce3354ede5741ecb9a9712"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\hardware-final\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "1f31e2564316c88743759b33dd42e7ab7f500f0cd12ce4430e7c48129c38f9ca"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\hardware-final-capture\\result.json",
+      "sha256": "ac93be56af18fd3fbf68da9a1c7f4b7e32b56e4fc4168b90cdbc327583991c82"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\package-check.json",
+      "sha256": "5650448d7720c267730cccba4daf07dceeea70c509650c96d6fd0d26580afdcd"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\cumulative-comparison.json",
+      "sha256": "e39cb37b48b61c8f5ba1c898694d83a25a8b4ecf81a5ce7e0ff56e332ec95efe"
+    }
+  ]
+}
