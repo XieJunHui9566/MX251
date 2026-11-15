@@ -852,7 +852,9 @@ bool _mcs251_rtrackUpdate (const char *line)
       return false;
     }
 
-  if (!strncmp (line, "mul\t", 4))
+  /* Only the AB form has these byte results. Native register forms reach
+     the untracked-instruction path below and invalidate their aliases. */
+  if (!strcmp (line, "mul\tab"))
     {
       if (mcs251_regs[A_IDX].rtrack.valueKnown && mcs251_regs[B_IDX].rtrack.valueKnown)
         {
@@ -870,12 +872,15 @@ bool _mcs251_rtrackUpdate (const char *line)
       return false;
     }
 
-  if (!strncmp (line, "div\t", 4))
+  if (!strcmp (line, "div\tab"))
     {
-      if (mcs251_regs[A_IDX].rtrack.valueKnown && mcs251_regs[B_IDX].rtrack.valueKnown)
+      if (mcs251_regs[A_IDX].rtrack.valueKnown && mcs251_regs[B_IDX].rtrack.valueKnown &&
+          mcs251_regs[B_IDX].rtrack.value != 0)
         {
-           rtrack_data_set_val (A_IDX, (unsigned char) (mcs251_regs[A_IDX].rtrack.value / mcs251_regs[B_IDX].rtrack.value));
-           rtrack_data_set_val (B_IDX, (unsigned char) (mcs251_regs[A_IDX].rtrack.value % mcs251_regs[B_IDX].rtrack.value));
+           unsigned char dividend = mcs251_regs[A_IDX].rtrack.value;
+           unsigned char divisor = mcs251_regs[B_IDX].rtrack.value;
+           rtrack_data_set_val (A_IDX, (unsigned char) (dividend / divisor));
+           rtrack_data_set_val (B_IDX, (unsigned char) (dividend % divisor));
         }
       else
         {
