@@ -1,0 +1,278 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "sourceCommit": "6f808093968ed46add60ba534ca83e15868e924b",
+  "branch": "codex/integer-views-20261116",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "0ae408bfb78cee83219e520aa18be0c85db31331cb7427df587f2e47c4c073a1"
+  },
+  "candidate": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\candidate",
+  "parent": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\SYMBOLIC-INDEX-20261116.json",
+    "sha256": "38f0527138c99c430436f0080356679fb4d368b2db71f99352f0dddf5ce35803"
+  },
+  "parentCore": {
+    "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\candidate\\core\\core.json",
+    "sha256": "0679023154951ce68dd108ba6cdae554cafcb951f9269f8cba553bee474573dd"
+  },
+  "qualification": "TARGETED_COMPILE_ONLY",
+  "projects": [
+    {
+      "id": "p106",
+      "beforeBytes": 8042,
+      "afterBytes": 8006,
+      "deltaBytes": -36,
+      "keilBytes": 6649,
+      "percentKeil": 120.40908407279291,
+      "gap120Bytes": 28,
+      "beforeReceipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\symbolic-index-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ce545ca3774e962b12560c20e9cc0842381b47cb617ec89b5c500c8d07d4acad"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "780491651b3ca0e43c70100c4c612216ac03c93d7c0f0cbfd2bdf0e5fae28663"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "cecbdeaddb0af9e29eda24ae83673bb4f94e4ea4ff5171b8d651c33735094e08"
+      }
+    },
+    {
+      "id": "p127",
+      "beforeBytes": 9020,
+      "afterBytes": 9014,
+      "deltaBytes": -6,
+      "keilBytes": 6998,
+      "percentKeil": 128.8082309231209,
+      "gap120Bytes": 617,
+      "beforeReceipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\control\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "20620b433671e3a8a98d4c000cac43eeac1a90e0fcc5598eb009c0306121da37"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a34feba8e536f1781bdbd188b9b2cc1c0f2f33a15135ce148ec1c97e3e413060"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7f3c19f8cbfda690de6a04f71c642ee6fa038662567a4403f7d19dd24f1790ff"
+      }
+    },
+    {
+      "id": "g071",
+      "beforeBytes": 2202,
+      "afterBytes": 2198,
+      "deltaBytes": -4,
+      "keilBytes": 1655,
+      "percentKeil": 132.809667673716,
+      "gap120Bytes": 212,
+      "beforeReceipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\control\\projects\\g071\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "17e72bf0334eb6e82024da7770b5b880aac1e744f60d8b7db7d19161e1642c55"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\g071\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "0f6f8975f76a16112fc8176d4bb17e8f6dfcf03b39c8603f7b9dca4ee9050e28"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\g071\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "c33ad18a238db48f6ab77c0ca8aeecc11331a19cf401e8ed1a2ad917011b6d31"
+      }
+    }
+  ],
+  "compileUnits": [
+    {
+      "id": "p070",
+      "unit": "u0",
+      "beforeBytes": 1260,
+      "afterBytes": 1258,
+      "deltaBytes": -2
+    },
+    {
+      "id": "p106",
+      "unit": "u0",
+      "beforeBytes": 2428,
+      "afterBytes": 2392,
+      "deltaBytes": -36
+    },
+    {
+      "id": "p127",
+      "unit": "u1",
+      "beforeBytes": 2134,
+      "afterBytes": 2128,
+      "deltaBytes": -6
+    },
+    {
+      "id": "p083",
+      "unit": "u0",
+      "beforeBytes": 1046,
+      "afterBytes": 1046,
+      "deltaBytes": 0
+    },
+    {
+      "id": "p092",
+      "unit": "u0",
+      "beforeBytes": 2166,
+      "afterBytes": 2162,
+      "deltaBytes": -4
+    },
+    {
+      "id": "g071",
+      "unit": "u0",
+      "beforeBytes": 2150,
+      "afterBytes": 2146,
+      "deltaBytes": -4
+    },
+    {
+      "id": "p141",
+      "unit": "u1",
+      "beforeBytes": 4438,
+      "afterBytes": 4436,
+      "deltaBytes": -2
+    },
+    {
+      "id": "g133",
+      "unit": "u2",
+      "beforeBytes": 4393,
+      "afterBytes": 4391,
+      "deltaBytes": -2
+    },
+    {
+      "id": "p130",
+      "unit": "u0",
+      "beforeBytes": 4461,
+      "afterBytes": 4455,
+      "deltaBytes": -6
+    },
+    {
+      "id": "g091",
+      "unit": "u0",
+      "beforeBytes": 3119,
+      "afterBytes": 3119,
+      "deltaBytes": 0
+    },
+    {
+      "id": "g090",
+      "unit": "u0",
+      "beforeBytes": 2939,
+      "afterBytes": 2939,
+      "deltaBytes": 0
+    },
+    {
+      "id": "p135",
+      "unit": "u1",
+      "beforeBytes": 4455,
+      "afterBytes": 4453,
+      "deltaBytes": -2
+    },
+    {
+      "id": "p045",
+      "unit": "u0",
+      "beforeBytes": 839,
+      "afterBytes": 839,
+      "deltaBytes": 0
+    },
+    {
+      "id": "p060",
+      "unit": "u0",
+      "beforeBytes": 804,
+      "afterBytes": 804,
+      "deltaBytes": 0
+    }
+  ],
+  "compileUnitSummary": {
+    "count": 14,
+    "improved": 9,
+    "unchanged": 5,
+    "deltaBytes": -64
+  },
+  "tests": {
+    "integerViews": {
+      "status": "PASS",
+      "configurations": [
+        {
+          "model": "small",
+          "optimization": "speed",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "optimization": "speed",
+          "abi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "abi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "abi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "abi": 4,
+          "status": "PASS"
+        }
+      ]
+    },
+    "machine": {
+      "status": "PASS",
+      "programs": 194,
+      "executions": 12416,
+      "transformedPrograms": 161,
+      "boundaries": 5
+    },
+    "copyFlow": {
+      "status": "PASS",
+      "checks": 32,
+      "mixedSignCases": 786432,
+      "configurations": 4,
+      "report": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\checks\\copy-final\\result.json",
+        "sha256": "7f1372c73e92df636e970ab97336d4f98c8bae00736fc5f445a8913d4cfca425"
+      },
+      "hostLog": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\checks\\copy-final\\host-run.log",
+        "sha256": "6eef7184f49ad7e01f57644d322573ca12de9b3b347403d2b85446799941f07f"
+      }
+    }
+  },
+  "hardwareExecuted": false,
+  "firmwareExecutionTime": null,
+  "fullMatrixRebuilt": false,
+  "keilRebuilt": false,
+  "stcIdeRebuilt": false,
+  "notes": [
+    "Compile-unit sizes are not complete firmware sizes.",
+    "p127 predecessor was rebuilt at symbolic-index compiler, measuring 9020 B; arithmetic-semantics historical 9014 B is not this batch control.",
+    "No SDK source or target description changes.",
+    "Main checkout user build-script changes preserved."
+  ]
+}
