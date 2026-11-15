@@ -2,6 +2,7 @@
  * 宽 MIR 的独立发射器。仅使用已验证的寄存器位置，不调用旧字节发射器。 */
 #include "wide_branch.c.inc"
 #include "wide_call_save_plan.h"
+#include "wide_call_reuse.h"
 extern int mcs251CallSavePackMode;
 #include "wide_relative_address.c.inc"
 static void we (wide_function *f,const char *format,...) {
@@ -1612,6 +1613,7 @@ wcall_original(wide_function *f,int index)
                                      (unsigned)mcs251CallSavePackMode,&savePlan);
     }
   }
+  if(count)we(f,"; wide save-begin weight=%u\n",f->emitWeight);
   if(packed) {
     we(f,"; wide caller-save pack mode=%d groups=%d->%u bytes=%u mask=%08lx reordered=%u\n",
        mcs251CallSavePackMode,count,savePlan.count,savePlan.bytes,
@@ -1626,6 +1628,7 @@ wcall_original(wide_function *f,int index)
     we(f,"\tpush\t%s%d\n",v->width==1?"r":wp(v->width),v->reg);
     f->stackDepth+=v->width;
   }
+  if(count)we(f,"; wide save-end\n");
   size_t setupStart=dbuf_get_length(&f->output);
   int indirectReg=20;
   if(n->indirectCall) {
@@ -1691,6 +1694,12 @@ wcall_original(wide_function *f,int index)
       f->nodes[index+1].op==GOTO || f->nodes[index+1].op==ENDFUNCTION);
   }
   size_t setupEnd=dbuf_get_length(&f->output);
+  mx251_effects setup=mx251TextEffects(dbuf_get_buf(&f->output)+setupStart,setupEnd-setupStart);
+  uint32_t inputs=n->call.argumentWrites;
+  if(n->indirectCall)inputs|=wide_mask(indirectReg,4);
+  we(f,"; wide call-inputs touch=%08lx complete=%u\n",
+     (unsigned long)(inputs|setup.reads|setup.writes),
+     !setup.unknown && !IFFUNC_ISNAKED(wide_call_type(n)));
   if(n->indirectCall) {
     we(f,"; wide indirect call abi=%u\n\tecall\t@dr%d\n",
        (unsigned)FUNC_SDCCCALL(wide_call_type(n)),indirectReg);
@@ -1740,7 +1749,6 @@ wcall_original(wide_function *f,int index)
   /* 记录调用者准备参数/接回结果的真实物理写入；它们不属于 callee。
    * 保存按原宽度成组记录，不能把未受影响的几个字节误算为整组可删。 */
   const char *body=dbuf_get_buf(&f->output);
-  mx251_effects setup=mx251TextEffects(body+setupStart,setupEnd-setupStart);
   mx251_effects finish=mx251TextEffects(body+finishStart,finishEnd-finishStart);
   if(omitted) {
     bool valid=knownLeaf && !setup.unknown && !finish.unknown && !(omitted&(calleeWrites|setup.writes|finish.writes));
@@ -1756,6 +1764,8 @@ wcall_original(wide_function *f,int index)
     dbuf_printf(&f->output,"%s%08lx",j?",":"",(unsigned long)mcs251RegisterBytes(v->reg,v->width));
   }
   dbuf_append_str(&f->output,"\n");
+  bool hasRestore=count!=0;
+  if(hasRestore)we(f,"; wide restore-begin weight=%u\n",f->emitWeight);
   if(packed) {
     for(unsigned i=savePlan.count;i>0;--i) {
       mcs251_wide_save_step p=savePlan.steps[i-1];
@@ -1768,6 +1778,7 @@ wcall_original(wide_function *f,int index)
     wide_value *v=&f->values[saved[--count]];
     we(f,"\tpop\t%s%d\n",v->width==1?"r":wp(v->width),v->reg);f->stackDepth-=v->width;
   }
+  if(hasRestore)we(f,"; wide restore-end\n");
   wassert(!f->stackDepth);return false;
 }
 
@@ -2443,5 +2454,13 @@ wide_emit(wide_function *f)
     we(f,"\tpop\t0xd1\n\treti\n");
   }
   wrelax_branches(f);
+  bool ordered=false;
+  for(int i=0;i<f->nn;++i)if(f->nodes[i].op==WM_ORDERED_ASM)ordered=true;
+  if(!ordered) {
+    wide_call_reuse_result reuse=wide_reuse_call_saves((char *)dbuf_get_buf(&f->output),dbuf_get_length(&f->output));
+    f->emitInstructions-=reuse.instructions;f->emitCost-=reuse.weighted;
+    if(reuse.bridges)dbuf_printf(&f->output,"; wide call-save reuse bridges=%u instructions=%u weighted=%u\n",
+      reuse.bridges,reuse.instructions,reuse.weighted);
+  }
   if(f->interruptEntry)mcs251FinishWideIsr(&f->output,f->sourceBlocks,f->frame);
 }

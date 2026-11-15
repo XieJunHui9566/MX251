@@ -3996,6 +3996,13 @@ mcs251_assignRegisters (ebbIndex * ebbi)
   mcs251_genCode (ic);
   mcs251MachinePipeline(backendStart,ebbi,false,orderedBlocks);
   if(wideText) {
+    if(getenv("MX251_BACKEND_CANDIDATES")) {
+      fprintf(stderr,"\n; backend candidate function=%s kind=wide begin\n",currFunc->rname);
+      fwrite(wideText,1,wideLength,stderr);
+      fprintf(stderr,"\n; backend candidate function=%s kind=legacy begin\n",currFunc->rname);
+      fwrite(dbuf_get_buf(codeOutBuf)+backendStart,1,dbuf_get_length(codeOutBuf)-backendStart,stderr);
+      fprintf(stderr,"\n; backend candidate function=%s end\n",currFunc->rname);
+    }
     mcs251_backend_cost wideCost=mcs251BackendCost(wideText,wideLength,isrTrial || narrowTrial || bodyChoice);
     mcs251_backend_cost legacyCost=mcs251BackendCost(dbuf_get_buf(codeOutBuf)+backendStart,dbuf_get_length(codeOutBuf)-backendStart,isrTrial || narrowTrial || bodyChoice);
     bool legacy=(isrTrial || narrowTrial) ?
