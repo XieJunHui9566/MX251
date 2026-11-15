@@ -1,0 +1,696 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "branch": "codex/format-cost-study-20261116",
+  "implementationCommit": "4f29b18",
+  "sourceCommit": "1e396b0bbca8061b74ee450032649099a5b94d42",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "0ae408bfb78cee83219e520aa18be0c85db31331cb7427df587f2e47c4c073a1"
+  },
+  "compilerUnchanged": true,
+  "candidate": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\candidate",
+  "candidateManifest": {
+    "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\candidate\\core\\core.json",
+    "sha256": "aa1a4bc23e84e07a35a798da6cce014c2443a6bfbed963397e0bf2618703bc7b"
+  },
+  "qualification": "TARGETED_COMPILE_ONLY",
+  "inventory": {
+    "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\inventory.json",
+    "sha256": "11107c1e4ed1a5ef6266d5e83408f601d8b5038f28c70a20523260a3392ec4e3"
+  },
+  "inventorySummary": {
+    "projects": 203,
+    "errors": [],
+    "statuses": {
+      "no-constant-format-calls": 130,
+      "APPLIED_CLOSED_FIXED_INTEGER_FORMAT_RUNTIME": 68,
+      "APPLIED_CLOSED_FIXED_FORMAT_RUNTIME": 2
+    },
+    "applied": 70,
+    "pendingApplied": 13,
+    "runtimeBytes": 31626,
+    "plainCalls": 305,
+    "plainProjects": 54,
+    "fixedRadixProjects": 16,
+    "pendingFixedRadix": [
+      "p070",
+      "p106",
+      "g090",
+      "g091"
+    ],
+    "largest": [
+      {
+        "id": "p081",
+        "runtime": 1229,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 0,
+        "tokens": [
+          "%0.1f"
+        ]
+      },
+      {
+        "id": "p041",
+        "runtime": 1228,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 0,
+        "tokens": [
+          "%0.2f"
+        ]
+      },
+      {
+        "id": "g090",
+        "runtime": 909,
+        "gap110": 267,
+        "gap120": 0,
+        "plain": 2,
+        "tokens": [
+          "%08lX",
+          "%d",
+          "%02X"
+        ]
+      },
+      {
+        "id": "g091",
+        "runtime": 909,
+        "gap110": 288,
+        "gap120": 0,
+        "plain": 2,
+        "tokens": [
+          "%08lX",
+          "%d",
+          "%02X"
+        ]
+      },
+      {
+        "id": "p105",
+        "runtime": 717,
+        "gap110": 216,
+        "gap120": 0,
+        "plain": 17,
+        "tokens": [
+          "%02X",
+          "%d",
+          "%c"
+        ]
+      },
+      {
+        "id": "g103",
+        "runtime": 717,
+        "gap110": 227,
+        "gap120": 0,
+        "plain": 17,
+        "tokens": [
+          "%02X",
+          "%d",
+          "%c"
+        ]
+      },
+      {
+        "id": "g104",
+        "runtime": 717,
+        "gap110": 47,
+        "gap120": 0,
+        "plain": 16,
+        "tokens": [
+          "%02X",
+          "%d",
+          "%c"
+        ]
+      },
+      {
+        "id": "g116",
+        "runtime": 717,
+        "gap110": 4,
+        "gap120": 0,
+        "plain": 17,
+        "tokens": [
+          "%02X",
+          "%d",
+          "%c"
+        ]
+      },
+      {
+        "id": "p070",
+        "runtime": 683,
+        "gap110": 76,
+        "gap120": 0,
+        "plain": 14,
+        "tokens": [
+          "%08lx",
+          "%02bx"
+        ]
+      },
+      {
+        "id": "p106",
+        "runtime": 683,
+        "gap110": 693,
+        "gap120": 28,
+        "plain": 29,
+        "tokens": [
+          "%08lx",
+          "%02bx"
+        ]
+      },
+      {
+        "id": "p122",
+        "runtime": 593,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 11,
+        "tokens": [
+          "%lu",
+          "%02X"
+        ]
+      },
+      {
+        "id": "p120",
+        "runtime": 593,
+        "gap110": 410,
+        "gap120": 0,
+        "plain": 10,
+        "tokens": [
+          "%lu",
+          "%02X"
+        ]
+      },
+      {
+        "id": "p121",
+        "runtime": 593,
+        "gap110": 440,
+        "gap120": 0,
+        "plain": 10,
+        "tokens": [
+          "%lu",
+          "%02X"
+        ]
+      },
+      {
+        "id": "p123",
+        "runtime": 593,
+        "gap110": 566,
+        "gap120": 82,
+        "plain": 6,
+        "tokens": [
+          "%lu",
+          "%02X"
+        ]
+      },
+      {
+        "id": "g128",
+        "runtime": 593,
+        "gap110": 339,
+        "gap120": 0,
+        "plain": 9,
+        "tokens": [
+          "%lu",
+          "%02X"
+        ]
+      },
+      {
+        "id": "p097",
+        "runtime": 581,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 2,
+        "tokens": [
+          "%d",
+          "%02x"
+        ]
+      },
+      {
+        "id": "p099",
+        "runtime": 581,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 2,
+        "tokens": [
+          "%d",
+          "%02x"
+        ]
+      },
+      {
+        "id": "p103",
+        "runtime": 541,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 1,
+        "tokens": [
+          "%02d",
+          "%04x"
+        ]
+      },
+      {
+        "id": "g101",
+        "runtime": 541,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 1,
+        "tokens": [
+          "%02d",
+          "%04x"
+        ]
+      },
+      {
+        "id": "p062",
+        "runtime": 500,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 0,
+        "tokens": [
+          "%04x",
+          "%u"
+        ]
+      },
+      {
+        "id": "p066",
+        "runtime": 500,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 0,
+        "tokens": [
+          "%u",
+          "%04x"
+        ]
+      },
+      {
+        "id": "p078",
+        "runtime": 487,
+        "gap110": 0,
+        "gap120": 0,
+        "plain": 0,
+        "tokens": [
+          "%x",
+          "%04x"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "p070",
+      "beforeBytes": 5478,
+      "afterBytes": 5251,
+      "savedBytes": 227,
+      "keilBytes": 4913,
+      "percentKeil": 106.87970690006107,
+      "beforePercentKeil": 111.50010177081214,
+      "pass110": true,
+      "pass120": true,
+      "applicationSourcesIdentical": true,
+      "beforeReceipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\control\\projects\\p070\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "488d5879759637d203ad979221513d65820d119559bb4f2db05a1042c4963da2"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\final\\projects\\p070\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e0c4942ab4cd49b3284d8a4ad26e75d2ad6bbbb1f62c42b6aa55f905f8aaff80"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\final\\projects\\p070\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8248f1c63fdf8af616919da5708c9adee48676423d6fe0eda17f5560072cb08e"
+      },
+      "formatterBytesBefore": 683,
+      "formatterBytesAfter": 456
+    },
+    {
+      "id": "p106",
+      "beforeBytes": 8006,
+      "afterBytes": 7779,
+      "savedBytes": 227,
+      "keilBytes": 6649,
+      "percentKeil": 116.99503684764626,
+      "beforePercentKeil": 120.40908407279291,
+      "pass110": false,
+      "pass120": true,
+      "applicationSourcesIdentical": true,
+      "beforeReceipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\integer-views-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "780491651b3ca0e43c70100c4c612216ac03c93d7c0f0cbfd2bdf0e5fae28663"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "0f271a3e612ad25b1c74a08d9f352a52d7e95e7bdaebd1848968300db67db428"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5e947d4a0005d3f4f62dc6dda9dd3903351e97c8adc1187c6beb780771986178"
+      },
+      "formatterBytesBefore": 683,
+      "formatterBytesAfter": 456
+    },
+    {
+      "id": "g090",
+      "beforeBytes": 3889,
+      "afterBytes": 3761,
+      "savedBytes": 128,
+      "keilBytes": 3325,
+      "percentKeil": 113.11278195488721,
+      "beforePercentKeil": 116.9624060150376,
+      "pass110": false,
+      "pass120": true,
+      "applicationSourcesIdentical": true,
+      "beforeReceipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\control\\projects\\g090\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ec3a92e0fcb678fcbbbb7bf32f274b1f9cd970a4f90fca73a68a42ee3d966f32"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\final\\projects\\g090\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ab6c8d03b067b78b62dff7a595c9e03fb246b7e60307844c05fd5e5e4dd107f9"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\final\\projects\\g090\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "4a11855dfe1c52870cdd97a4d187222060c30a96475e178fda230ca3985e1bc1"
+      },
+      "formatterBytesBefore": 909,
+      "formatterBytesAfter": 781
+    }
+  ],
+  "runtimeCoverage": [
+    {
+      "id": "p060",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 373
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 371
+        }
+      ],
+      "representedProjects": [
+        "p060",
+        "p100",
+        "p102",
+        "g093",
+        "g094",
+        "g096",
+        "g098",
+        "g100"
+      ]
+    },
+    {
+      "id": "p078",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 487
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 471
+        }
+      ],
+      "representedProjects": [
+        "p078",
+        "p080",
+        "p076",
+        "p077",
+        "p079",
+        "g069",
+        "g070"
+      ]
+    },
+    {
+      "id": "p098",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 337
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 313
+        }
+      ],
+      "representedProjects": [
+        "p098"
+      ]
+    },
+    {
+      "id": "p104",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 373
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 371
+        }
+      ],
+      "representedProjects": [
+        "p104",
+        "p142",
+        "p068",
+        "p069",
+        "p116",
+        "g102"
+      ]
+    },
+    {
+      "id": "p112",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 381
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 375
+        }
+      ],
+      "representedProjects": [
+        "p112",
+        "p113"
+      ]
+    },
+    {
+      "id": "p122",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 593
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 591
+        }
+      ],
+      "representedProjects": [
+        "p122",
+        "p120",
+        "p121",
+        "p123",
+        "g128"
+      ]
+    },
+    {
+      "id": "p070",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 683
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 456
+        }
+      ],
+      "representedProjects": [
+        "p070",
+        "p106"
+      ]
+    },
+    {
+      "id": "g090",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 909
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 781
+        }
+      ],
+      "representedProjects": [
+        "g090",
+        "g091"
+      ]
+    },
+    {
+      "id": "g095",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 433
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 433
+        }
+      ],
+      "representedProjects": [
+        "g095",
+        "g097"
+      ]
+    },
+    {
+      "id": "g126",
+      "variants": [
+        {
+          "mode": "before",
+          "abi": "abi4",
+          "bytes": 377
+        },
+        {
+          "mode": "after",
+          "abi": "abi4",
+          "bytes": 280
+        }
+      ],
+      "representedProjects": [
+        "g126"
+      ]
+    }
+  ],
+  "tests": {
+    "integerKernels": {
+      "status": "PASS",
+      "kernels": 21,
+      "cases": 240096,
+      "radixSubsets": 7,
+      "full16BitDomain": true,
+      "native32AndSoftware32": true,
+      "hardwareExecuted": false
+    },
+    "completeFormatter": {
+      "status": "PASS",
+      "groups": 12,
+      "formats": 19,
+      "cases": 2490368,
+      "apis": [
+        "printf",
+        "sprintf"
+      ],
+      "hardwareExecuted": false
+    },
+    "targetCompilation": {
+      "status": "PASS",
+      "configurations": [
+        {
+          "model": "small",
+          "privateAbi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "privateAbi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "privateAbi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "privateAbi": 4,
+          "status": "PASS"
+        }
+      ]
+    },
+    "generatorEquivalence": [
+      {
+        "id": "p106",
+        "status": "IDENTICAL_NORMALIZED_SOURCE",
+        "privateAbi": "abi4",
+        "sourceSha256": "2f8013fd5be972c5fe2dbf33a077f9dc26c92d64e35b61eab1a453b6cd742952",
+        "normalizedSha256": "46f9dec188313506f9d9f29b73ca79859507fe4eccce6e7eda84103b58ebf803"
+      },
+      {
+        "id": "p070",
+        "status": "IDENTICAL_NORMALIZED_SOURCE",
+        "privateAbi": "abi4",
+        "sourceSha256": "2f8013fd5be972c5fe2dbf33a077f9dc26c92d64e35b61eab1a453b6cd742952",
+        "normalizedSha256": "46f9dec188313506f9d9f29b73ca79859507fe4eccce6e7eda84103b58ebf803"
+      },
+      {
+        "id": "g090",
+        "status": "IDENTICAL_NORMALIZED_SOURCE",
+        "privateAbi": "abi4",
+        "sourceSha256": "adb4531deab5ec7361d6a48edc929fa96c0f08b17d19c6b32f1efdb440f5bff8",
+        "normalizedSha256": "eda68ad870bacb9a096c3b1806e43aacba7006c78047164ef824bc788aedc97e"
+      }
+    ]
+  },
+  "measuredBuildScripts": [
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\measured-build-scripts\\FormatRuntime.ps1",
+      "sha256": "17e560f4ea9338a7f2e1fe9e7a6f1fe09fd34321db97ca0c87141d57bd2b172e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\measured-build-scripts\\ExtendedFormat.ps1",
+      "sha256": "87d5e7bf29003bf7ffd05aab95beb44941fc95cd77d527f8a2f23692826e996f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\measured-build-scripts\\FormatRuntimeContract.json",
+      "sha256": "e2cb1a18d0d04543bbff58bbec410bc9c95e2d9fedd9e6e6bb6e1bafc254e52e"
+    }
+  ],
+  "finalBuildScripts": [
+    {
+      "path": "build/qualified/FormatRuntime.ps1",
+      "sha256": "17e560f4ea9338a7f2e1fe9e7a6f1fe09fd34321db97ca0c87141d57bd2b172e"
+    },
+    {
+      "path": "build/qualified/ExtendedFormat.ps1",
+      "sha256": "ac70c84cf1a1653cd8d022a44ac5f7e820a00493dd0a3f121dffcce7a9d0f96b"
+    },
+    {
+      "path": "build/qualified/FormatRuntimeContract.json",
+      "sha256": "bac076efac3b376a36dadd0021473025617e90fd0467769f08af8bfbc00f566d"
+    }
+  ],
+  "hardwareExecuted": false,
+  "firmwareExecutionTime": null,
+  "fullMatrixRebuilt": false,
+  "keilRebuilt": false,
+  "stcIdeRebuilt": false,
+  "sdkSourcesChanged": false,
+  "mainDefaultChanged": false,
+  "cumulativeExpanded31": {
+    "pass110": 13,
+    "pass120": 23,
+    "total": 31,
+    "sameCompilerFullRerun": false
+  },
+  "notes": [
+    "Only three complete firmware projects were rebuilt with this runtime update.",
+    "Coverage grouped 36 retained runtime sources into 10 identical source/model/private-ABI shapes; aggregate object delta is not full firmware savings.",
+    "Two mixed-alphabet projects retain the buffered kernel after observing +13 B; final control is unchanged at 433 B.",
+    "Full builds predate only the mixed-alphabet gate and whitespace normalization; final generator produces identical normalized selected source for all three linked projects. Measured script snapshots are retained."
+  ]
+}
