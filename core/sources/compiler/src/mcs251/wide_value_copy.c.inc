@@ -4,6 +4,25 @@
  * Merge overlapping copies: a source that dies at its copy is already a
  * register-coalescing opportunity, not duplicated live storage.
  */
+static bool
+wide_copy_same_representation(wide_value *a,wide_value *b)
+{
+  if(a->pointer!=b->pointer || a->codePointer!=b->codePointer ||
+     a->floating!=b->floating || a->nearData!=b->nearData)return false;
+  if(a->sign!=b->sign) {
+    const char *enabled=getenv("MX251_INTEGER_VIEW_COPIES");
+    if((enabled && !strcmp(enabled,"0")) || a->pointer || a->codePointer ||
+       a->floating || a->nearData)return false;
+    /* Equal-width integer conversions preserve the stored bits. Each use
+     * retains its own sign/width, which selects extension, comparison and
+     * shift semantics independently of the allocation identity. Boolean
+     * normalization has its own WM_BIT_CAST node and is not a copy. */
+  }
+  if(a->pointer && (!IS_PTR(a->sym->type) || !IS_PTR(b->sym->type) ||
+     DCL_TYPE(a->sym->type)!=DCL_TYPE(b->sym->type)))return false;
+  return true;
+}
+
 static int
 wide_copy_source(wide_function *f,wide_node *n)
 {
@@ -13,13 +32,8 @@ wide_copy_source(wide_function *f,wide_node *n)
      n->byteAccess || n->addressOp || n->addressSymbol || n->addressObject>=0)return -1;
   wide_value *a=&f->values[n->right.value],*b=&f->values[n->result];
   if(a->width!=b->width || n->width!=b->width || n->right.width!=a->width ||
-     a->sign!=b->sign || a->pointer!=b->pointer || a->codePointer!=b->codePointer ||
-     a->floating!=b->floating || a->nearData!=b->nearData || b->symbolSnapshot ||
+     !wide_copy_same_representation(a,b) || b->symbolSnapshot ||
      b->pin>=0)return -1;
-  /* Same-width integer/float copies preserve bits. Pointer casts must also
-   * preserve the address space and its canonical internal representation. */
-  if(a->pointer && (!IS_PTR(a->sym->type) || !IS_PTR(b->sym->type) ||
-     DCL_TYPE(a->sym->type)!=DCL_TYPE(b->sym->type)))return -1;
   return n->right.value;
 }
 

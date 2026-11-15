@@ -15,10 +15,7 @@ wide_definition_copy(wide_function *f,wide_node *n)
     /* Operand types remain on each use. This identity concerns the 32 bits,
      * not a conversion between the source and destination C types. */
     if(a->width!=4 || a->pointer || b->pointer)return -1;
-  } else if(a->sign!=b->sign || a->pointer!=b->pointer || a->codePointer!=b->codePointer ||
-            a->floating!=b->floating || a->nearData!=b->nearData)return -1;
-  if(a->pointer && (!IS_PTR(a->sym->type) || !IS_PTR(b->sym->type) ||
-     DCL_TYPE(a->sym->type)!=DCL_TYPE(b->sym->type)))return -1;
+  } else if(!wide_copy_same_representation(a,b))return -1;
   return n->right.value;
 }
 

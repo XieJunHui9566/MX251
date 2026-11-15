@@ -33,6 +33,11 @@ windexed_object_base(wide_function *f,int value,unsigned depth)
 static bool
 windexed_object_access(wide_function *f,wide_node *n)
 {
+  if(n->symbolicIndexed && n->addressSymbol) {
+    symbol *s=n->addressSymbol;sym_link *spec=getSpec(s->type);
+    return !SPEC_ABSA(spec) && !s->_isparm && getSize(s->type)>0 &&
+      SPEC_SCLS(spec)!=S_SFR && SPEC_SCLS(spec)!=S_SBIT;
+  }
   return (n->op==WM_LOAD || n->op==WM_STORE) && !n->byteAccess &&
     !n->pointerAccess && n->width>0 && windexed_object_base(f,n->left.value,0);
 }

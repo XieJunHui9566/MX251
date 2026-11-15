@@ -9,7 +9,7 @@
 #include <string.h>
 
 enum { WV_MAX=512, WN_MAX=2048, WA_MAX=16, WB_WORDS=8,
-       FUNCTION=256, CAST, WM_NOP, INPUT, BRANCH, TABLE, RESULT };
+       FUNCTION=256, CAST, WM_NOP, INPUT, BRANCH, TABLE, RESULT, EXTEND, RESULT32, WM_RAW32_COPY };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct { int pointer, space; } test_type;
 typedef struct { test_type *type; } symbol;
@@ -17,7 +17,7 @@ typedef struct {
   symbol *sym; int width,pin;
   bool sign,pointer,codePointer,floating,nearData,symbolSnapshot;
 } wide_value;
-typedef struct { int value,width; unsigned literal; } wide_operand;
+typedef struct { int value,width; unsigned literal; bool sign; } wide_operand;
 typedef struct {
   unsigned op,orderedReadCount,orderedAsmCount,addressOp,stackArgs;
   bool byteAccess; symbol *addressSymbol;
@@ -107,12 +107,20 @@ static unsigned execute(wide_function *f,unsigned seed)
     case '=':case CAST:r=b;break;
     case '+':r=a+b;break;
     case '^':r=a^b;break;
+    case EXTEND: {
+      unsigned bits=8*n->left.width,mask=bits==32?UINT32_MAX:(1u<<bits)-1;
+      r=n->left.sign && (a&(1u<<(bits-1)))?a|~mask:a;break;
+    }
+    case RESULT32:return a^b;
     case BRANCH:if(a&b)next=n->succ[1];break;
     case TABLE:next=f->jumpSuccessors[n->jumpStart+(a%n->jumpCount)];break;
     case RESULT:return (a*257+b)&65535;
     default:break;
     }
-    if(n->result>=0)v[n->result]=r&65535;
+    if(n->result>=0) {
+      unsigned bits=8*f->values[n->result].width;
+      v[n->result]=bits==32?r:r&((1u<<bits)-1);
+    }
     assert(next>=0 && next<f->nn);pc=next;
   }
   assert(!"nonterminating test graph");return 0;
@@ -135,6 +143,32 @@ static void check_versions(const char *name,unsigned minimumSplits)
 }
 int main(void)
 {
+  unsigned viewCases=0;
+  /* Opposite signedness views share bits, while each consumer retains its
+   * extension semantics. Exercise both passes and both conversion directions. */
+  for(int width=1;width<=4;width*=2)for(int sign=0;sign<2;++sign) {
+    init(6);original.values[0].sign=sign;original.values[1].sign=!sign;
+    original.values[0].width=original.values[1].width=width;
+    original.values[2].width=original.values[3].width=4;
+    node(1,INPUT,0,-1,-1,0);node(2,CAST,1,-1,0,0);
+    original.nodes[2].width=original.nodes[2].right.width=width;
+    node(3,EXTEND,2,1,-1,0);original.nodes[3].left.sign=!sign;
+    node(4,EXTEND,3,0,-1,0);original.nodes[4].left.sign=sign;
+    original.nodes[3].left.width=original.nodes[4].left.width=width;
+    node(5,RESULT32,-1,2,3,0);
+    for(int pass=0;pass<2;++pass) {
+      optimized=original;
+      if(pass)wide_definition_copies(&optimized);else wide_value_copies(&optimized);
+      assert(optimized.nodes[3].left.value==0 && optimized.nodes[3].left.sign==!sign);
+      assert(optimized.nodes[2].op==WM_NOP);
+      for(unsigned seed=0;seed<65536;++seed) {
+        unsigned input=width==4?seed*65537u:seed;
+        assert(execute(&original,input)==execute(&optimized,input));
+        ++viewCases;
+      }
+      ++checks;
+    }
+  }
   init(5);node(1,INPUT,0,-1,-1,0);node(2,'=',1,-1,0,0);
   node(3,'=',2,-1,1,0);node(4,RESULT,-1,2,1,0);
   check("copy chain",4,0,2,1);
@@ -229,6 +263,6 @@ int main(void)
   node(3,'+',0,0,-1,1);node(4,'=',2,-1,1,0);node(5,'=',1,-1,0,0);
   node(6,'+',3,1,2,0);node(7,RESULT,-1,3,0,0);
   check_versions("multiple copies retain old sampled source",1);
-  printf("PASS %u graphs, 256 inputs per executable graph\n",checks);
+  printf("PASS %u copy/version checks; %u mixed-sign cases; 256 inputs per existing executable CFG\n",checks,viewCases);
   return 0;
 }

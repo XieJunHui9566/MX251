@@ -19,6 +19,11 @@ def main():
     reference = importlib.util.spec_from_file_location('machine_model', Path(__file__).with_name('machine-ir-model.py'))
     machine = importlib.util.module_from_spec(reference); reference.loader.exec_module(machine)
     programs = {
+        'object-memory': '_test:\n mov dr16,#6144\n mov wr6,wr4\n mov wr12,@dr16 ; mx251-object-memory schema=1\n mov wr6,wr4\n mov @dr16,wr6 ; mx251-object-memory schema=1\n mov wr4,wr12\n eret\n',
+        'object-indexed': '_test:\n mov dr16,#6144\n mov wr20,wr4\n mov @dr16+2,wr20 ; mx251-object-memory schema=1\n mov wr20,#0\n mov wr6,@dr16+2 ; mx251-object-memory schema=1\n eret\n',
+        'object-overlap': '_test:\n mov dr16,#6144\n mov dr20,dr16\n mov wr18,@dr16 ; mx251-object-memory schema=1\n mov wr4,@dr20+2 ; mx251-object-memory schema=1\n mov @dr20,wr18 ; mx251-object-memory schema=1\n eret\n',
+        'object-loop': '_test:\n mov dr16,#6144\n mov r15,#0\nL:\n mov wr6,wr4\n mov r8,@dr16 ; mx251-object-memory schema=1\n mov wr6,wr4\n add r8,#17\n mov @dr16,r8 ; mx251-object-memory schema=1\n inc dr16,#1\n inc r15,#1\n cmp r15,#5\n jc L\n eret\n',
+        'object-address-coalesce': '_test:\n mov dr16,#6144\n mov wr6,@dr16+2 ; mx251-object-memory schema=1\n mov dr24,dr16\n mov dr16,#0\n eret\n',
         'peripheral-bits': '_test:\n mov wr6,wr4\n cmp wr0,#32768\n setb 0xaf.7\n mov wr6,wr4\n setb 0xaf.7\n clr 0x9a.3\n cpl 0xce.2\n jc L\n mov wr12,wr6\nL:\n eret\n',
         'peripheral-loop': '_test:\n mov r15,#0\nL:\n mov wr6,wr4\n clr 0xaf.7\n mov a,_data\n setb 0xaf.7\n mov _data,a\n mov wr6,wr4\n inc r15,#1\n cmp r15,#3\n jc L\n eret\n',
         'typed-memory': '_test:\n mov r6,#0\n mov a,_data\n mov r6,#0\n mov _data,a\n eret\n',
@@ -95,20 +100,29 @@ def main():
     assert bits.count('setb 0xaf.7') == 2 and bits.count('mov wr6,wr4') == 1
     assert 'cjne' in (args.output/'cjne-flags-live-optimized.asm').read_text()
     assert 'mx251-machine-call' in (args.output/'typed-call-optimized.asm').read_text()
+    assert (args.output/'object-memory-optimized.asm').read_text().count('mov wr6,wr4')==1
+    assert 'mov wr20,wr4' not in (args.output/'object-indexed-optimized.asm').read_text()
+    assert '@dr24+2' in (args.output/'object-address-coalesce-optimized.asm').read_text()
     for width in (2, 4):
         prefix = 'wr' if width == 2 else 'dr'
         assert f'mov {prefix}16,{prefix}' not in (args.output/f'high-register-store-{width}-optimized.asm').read_text()
     # A caller-visible value and a fixed PC displacement must remain observable.
     for name, text in {
         'opaque-call':'_test:\n mov wr4,wr16\n ecall _opaque\n eret\n',
+        'unmarked-memory':'_test:\n mov wr6,wr4\n mov r8,@dr16\n mov wr6,wr4\n eret\n',
         'relative-pc':'_test:\n mov wr4,wr4\n sjmp $+2\n eret\n',
         'bank-change':'_test:\n mov psw,#8\n mov wr4,wr4\n eret\n',
         'indirect-jump':'_test:\n mov wr4,wr4\n jmp @a+dptr\n',
     }.items():
         p=args.output/(name+'.asm');p.write_bytes(text.encode())
         result=subprocess.run([str(args.probe),str(p)],capture_output=True,check=True).stdout.decode()
-        assert 'mov wr4,wr16' in result if name=='opaque-call' else result.replace('\r\n','\n')==text,name
-    report={'status':'PASS','programs':len(programs),'executions':executions,'transformedPrograms':changes,'boundaries':4}
+        if name=='opaque-call':
+            assert 'mov wr4,wr16' in result,name
+        elif name=='unmarked-memory':
+            assert result.count('mov wr6,wr4')==2 and 'mx251-object-memory' not in result,name
+        else:
+            assert result.replace('\r\n','\n')==text,name
+    report={'status':'PASS','programs':len(programs),'executions':executions,'transformedPrograms':changes,'boundaries':5}
     (args.output/'result.json').write_bytes((json.dumps(report,indent=2)+'\n').encode())
     print(json.dumps(report))
 

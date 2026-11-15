@@ -25,6 +25,8 @@ def execute(text, name, seed):
     memory = bytearray(8192)
     for i in range(0x1000 - 16, 0x1001):
         memory[i] = randomizer.randrange(256)
+    for i in range(0x1800,0x1900):
+        memory[i] = randomizer.randrange(256)
     sp = 0x1000
     carry = zero = False
     pc = labels[name]
@@ -46,8 +48,11 @@ def execute(text, name, seed):
         return eval(s, {'__builtins__': {}}, {})
 
     def address(s):
-        assert s.startswith('@spx'), s
-        return sp + (int(s[4:], 0) if s[4:] else 0)
+        if s.startswith('@spx'):
+            return sp + (int(s[4:], 0) if s[4:] else 0)
+        m = re.fullmatch(r'@(dr\d+)([+-]\d+)?', s)
+        assert m, s
+        return read(m[1]) + (int(m[2]) if m[2] else 0)
 
     def read(s, width=None):
         if s in direct:
@@ -60,7 +65,9 @@ def execute(text, name, seed):
         if s.startswith('@'):
             assert width
             at = address(s)
-            return int.from_bytes(memory[at:at + width], 'big')
+            value = int.from_bytes(memory[at:at + width], 'big')
+            if not s.startswith('@spx'):events.append(('read-memory',at,width,value))
+            return value
         first, width = register(s)
         return int.from_bytes(regs[first:first + width], 'big')
 
@@ -77,6 +84,7 @@ def execute(text, name, seed):
             assert width
             at = address(s)
             memory[at:at + width] = (value & ((1 << (width * 8)) - 1)).to_bytes(width, 'big')
+            if not s.startswith('@spx'):events.append(('write-memory',at,width,value & ((1 << (width * 8)) - 1)))
             return
         first, width = register(s)
         regs[first:first + width] = (value & ((1 << (width * 8)) - 1)).to_bytes(width, 'big')

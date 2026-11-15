@@ -724,6 +724,7 @@ wmemory_emit(wide_function *f,wide_node *n,bool addressReady)
   }
   if(!n->byteAccess) {
     int address=addressReady?16:windexed_address(f,n);
+    const char *object=windexed_object_access(f,n)?" ; mx251-object-memory schema=1":"";
     /* CODE remains read-only in MIR. The target contract permits the same
      * physical loads as unified RAM, including unaligned words. Volatile
      * CODE reads retain the byte transactions above. */
@@ -732,16 +733,16 @@ wmemory_emit(wide_function *f,wide_node *n,bool addressReady)
     if(n->width==1) {
       if(store) {
         if(n->right.value>=0 && f->values[n->right.value].reg>=0)
-          we(f,"\tmov\t@dr%d,r%d\n",address,f->values[n->right.value].reg);
+          we(f,"\tmov\t@dr%d,r%d%s\n",address,f->values[n->right.value].reg,object);
         else {
           if(n->right.value<0)we(f,"\tmov\ta,#0x%02lx\n",(unsigned long)(n->right.literal&255));
           else {char slot[32];wa(slot,f->values[n->right.value].slot-f->frame-f->stackDepth+1);we(f,"\tmov\ta,%s\n",slot);}
-          we(f,"\tmov\t@dr%d,a\n",address);
+          we(f,"\tmov\t@dr%d,a%s\n",address,object);
         }
       } else {
         wide_value *v=&f->values[n->result];
-        if(v->reg>=0)we(f,"\tmov\tr%d,@dr%d\n",v->reg,address);
-        else {char slot[32];wa(slot,v->slot-f->frame-f->stackDepth+1);we(f,"\tmov\ta,@dr%d\n\tmov\t%s,a\n",address,slot);}
+        if(v->reg>=0)we(f,"\tmov\tr%d,@dr%d%s\n",v->reg,address,object);
+        else {char slot[32];wa(slot,v->slot-f->frame-f->stackDepth+1);we(f,"\tmov\ta,@dr%d%s\n\tmov\t%s,a\n",address,object,slot);}
       }
       return;
     }
@@ -754,7 +755,7 @@ wmemory_emit(wide_function *f,wide_node *n,bool addressReady)
     }
     for(int k=0;k<n->width;k+=2) {
       char a[32];if(k)SNPRINTF(a,sizeof a,"@dr%d+%d",address,k);else SNPRINTF(a,sizeof a,"@dr%d",address);
-      if(store)we(f,"\tmov\t%s,wr%d\n",a,data+k);else we(f,"\tmov\twr%d,%s\n",data+k,a);
+      if(store)we(f,"\tmov\t%s,wr%d%s\n",a,data+k,object);else we(f,"\tmov\twr%d,%s%s\n",data+k,a,object);
     }
     if(!store)wstore(f,n->result,data);
     return;

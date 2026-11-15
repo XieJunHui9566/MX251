@@ -10,7 +10,7 @@
 enum { MI_REGS=32, MI_OPERANDS=3 };
 typedef struct {
   char text[192];
-  int reg,width,indirect,memory;
+  int reg,width,indirect,memory,displacement;
 } mi_operand;
 typedef struct {
   char *original;
@@ -18,7 +18,7 @@ typedef struct {
   mi_operand operand[MI_OPERANDS];
   unsigned operands;
   uint32_t reads,writes,in,out;
-  int successors[2],branch,terminal,unknown,pure,copy,removed,changed,call;
+  int successors[2],branch,terminal,unknown,pure,copy,removed,changed,call,objectMemory;
   uint32_t equal[MI_REGS];
   short constant[MI_REGS];
 } mi_instruction;
@@ -52,8 +52,20 @@ static int mi_register(const char *text,int *width) {
   return -1;
 }
 static void mi_operand_parse(mi_operand *operand) {
-  operand->reg=-1;operand->width=0;operand->indirect=operand->text[0]=='@';
+  operand->reg=-1;operand->width=0;operand->displacement=0;operand->indirect=operand->text[0]=='@';
   operand->reg=mi_register(operand->text+operand->indirect,&operand->width);
+  if(operand->reg<0 && operand->indirect) {
+    const char *start=operand->text+1,*offset=strchr(start,'+');
+    if(!offset)offset=strchr(start,'-');
+    if(offset && offset-start<16) {
+      char name[16],*end;memcpy(name,start,(size_t)(offset-start));name[offset-start]=0;
+      long displacement=strtol(offset,&end,0);
+      int width,reg=mi_register(name,&width);
+      if(end>offset+1 && !*end && displacement>=-32768 && displacement<=32767 && reg>=0 && width==4) {
+        operand->reg=reg;operand->width=width;operand->displacement=(int)displacement;
+      }
+    }
+  }
 }
 static int mi_is(const mi_instruction *n,const char *opcode) {return !strcmp(n->opcode,opcode);}
 static int mi_jump(const char *s) {
@@ -120,6 +132,18 @@ static void mi_effects(mi_instruction *n,const char *body,size_t length) {
     n->pure=!(n->writes&MCS251_AB_BYTES);
     n->copy=mi_is(n,"mov") && s->reg>=0 && s->width==d->width;
   }
+  /* The emitter proved this transaction stays in an allocated C object.
+   * Keep the memory instruction observable; only its GPR effects become
+   * precise. A raw/integer/absolute pointer retains the unknown alias set. */
+  if(n->objectMemory && mi_is(n,"mov") && n->operands==2 &&
+     d->indirect!=s->indirect && d->reg>=0 && s->reg>=0) {
+    mi_operand *address=d->indirect?d:s,*value=d->indirect?s:d;
+    if(address->width==4 && (value->width==1 || value->width==2)) {
+      n->reads=mi_mask(address->reg,4)|(d->indirect?mi_mask(value->reg,value->width):0);
+      n->writes=d->indirect?0:mi_mask(value->reg,value->width);
+      n->unknown=n->pure=n->copy=0;
+    }
+  }
 }
 static int mi_parse(mi_program *p,const char *body,size_t length,uint32_t exitLive,mi_resolver resolve,mi_call_resolver call,void *context) {
   memset(p,0,sizeof *p);p->exitLive=exitLive;
@@ -131,6 +155,9 @@ static int mi_parse(mi_program *p,const char *body,size_t length,uint32_t exitLi
     mi_instruction *n=&p->instructions[p->count++];size_t bytes=end-begin;
     n->original=(char *)malloc(bytes+2);if(!n->original)return 0;
     memcpy(n->original,body+begin,bytes);n->original[bytes]='\n';n->original[bytes+1]=0;
+    const char *objectOption=getenv("MX251_OBJECT_MEMORY_FACTS");
+    n->objectMemory=(!objectOption || strcmp(objectOption,"0")) &&
+      strstr(n->original,"; mx251-object-memory schema=1")!=NULL;
     const char *s=n->original;while(isspace((unsigned char)*s))++s;
     if(*s && *s!=';') {
       char cleaned[640];size_t size=0;
@@ -278,7 +305,8 @@ static int mi_same(const uint32_t *eq,int a,int b,int width) {
   return 1;
 }
 static void mi_set_register(mi_operand *o,int reg) {
-  snprintf(o->text,sizeof o->text,"%s%sr%d",o->indirect?"@":"",o->width==4?"d":o->width==2?"w":"",reg);
+  int length=snprintf(o->text,sizeof o->text,"%s%sr%d",o->indirect?"@":"",o->width==4?"d":o->width==2?"w":"",reg);
+  if(o->displacement)snprintf(o->text+length,sizeof o->text-(size_t)length,"%+d",o->displacement);
   o->reg=reg;
 }
 /* Allocated homes precede the emitter's DR16/DR20 scratch registers. This
@@ -501,6 +529,7 @@ static char *mi_optimize(const char *body,size_t length,uint32_t exitLive,mi_res
       else {
         used+=(size_t)snprintf(output+used,capacity-used,"\t%s\t",n->opcode);
         for(unsigned k=0;k<n->operands;++k)used+=(size_t)snprintf(output+used,capacity-used,"%s%s",k?",":"",n->operand[k].text);
+        if(n->objectMemory)used+=(size_t)snprintf(output+used,capacity-used," ; mx251-object-memory schema=1");
         output[used++]='\n';output[used]=0;
       }
       if(n->call && !n->unknown && n->writes!=UINT32_MAX)
