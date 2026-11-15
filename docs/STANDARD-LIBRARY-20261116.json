@@ -1,0 +1,574 @@
+{
+  "schema": 1,
+  "sourceCommit": "4efb87d",
+  "scope": [
+    "__memcpy",
+    "memset",
+    "strlen"
+  ],
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "348c57b8c6082cb944ffbb0958b210c8bd112979a9388b9a976c2776bf1aecb7"
+  },
+  "libraryManifest": {
+    "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\library\\manifest.json",
+    "sha256": "e85a5a31fa45df53e5166b34d238a5a639a4b25e1cee7e5176f51a90f5fdedd3"
+  },
+  "library": {
+    "schema": 1,
+    "qualification": "COMPILE_ONLY",
+    "compilerSha256": "348c57b8c6082cb944ffbb0958b210c8bd112979a9388b9a976c2776bf1aecb7",
+    "archives": [
+      {
+        "path": "lib/mcs251-small-stack-auto/libsdcc.lib",
+        "oldSha256": "70946fe7a06c07dfd29a636e89928cdaf961ec9c02348c447c81d79856eb5dd0",
+        "sha256": "db9d32949810a8a7edab02032bbb2dc89ae221c7f86ae745fdc2d72e22dd3825",
+        "unchangedMembers": 138,
+        "members": [
+          {
+            "member": "__memcpy.rel",
+            "sourceSha256": "c797c8794b87e31059580ae049ee440bfcc70834fcce56765b004160af507841",
+            "oldSha256": "cfb157de357375c52516d41192319290302fac9c9166ea637eecefc2a8a72ce8",
+            "sha256": "b0b653fd3deff8efdfe743301d0210b198bf5ae969e1aee45d54dfbd3bb3e495",
+            "before": {
+              "codeBytes": 207,
+              "exports": [
+                ".__.ABS.",
+                "___memcpy"
+              ]
+            },
+            "after": {
+              "codeBytes": 72,
+              "exports": [
+                ".__.ABS.",
+                "___memcpy"
+              ]
+            },
+            "command": [
+              "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--opt-code-size",
+              "--std-sdcc11",
+              "--nostdinc",
+              "-IE:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\include",
+              "-c",
+              "__memcpy.c",
+              "-o",
+              "__memcpy.rel"
+            ]
+          },
+          {
+            "member": "_memset.rel",
+            "sourceSha256": "2e63ffa5ee415e25c862ebd128445ae35c310f9548914534dcd236674814d559",
+            "oldSha256": "54c2d7dff54e033a5e78c1b658c468d1e3e2d8614aedc72503b544305d6289de",
+            "sha256": "5120d0f7e70288cd7b946d823cc567133a18f4138b91244e640cee1a22dfe003",
+            "before": {
+              "codeBytes": 141,
+              "exports": [
+                ".__.ABS.",
+                "_memset"
+              ]
+            },
+            "after": {
+              "codeBytes": 66,
+              "exports": [
+                ".__.ABS.",
+                "_memset"
+              ]
+            },
+            "command": [
+              "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--opt-code-size",
+              "--std-sdcc11",
+              "--nostdinc",
+              "-IE:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\include",
+              "-c",
+              "_memset.c",
+              "-o",
+              "_memset.rel"
+            ]
+          },
+          {
+            "member": "strlen.rel",
+            "sourceSha256": "ef8410f3ee391e18af934960624f9f576e22f609dce61f82575c58d61b4ca75b",
+            "oldSha256": "d7ba6bba80eb5da92967cb9dec203890b9dafa6e3ff14f3c3f406dfdfaf6a67a",
+            "sha256": "0852d54be3e784296ebb69b6734bc2f5eaaa2b92a35d86a6eee23a8cdccb60a3",
+            "before": {
+              "codeBytes": 96,
+              "exports": [
+                ".__.ABS.",
+                "_strlen"
+              ]
+            },
+            "after": {
+              "codeBytes": 43,
+              "exports": [
+                ".__.ABS.",
+                "_strlen"
+              ]
+            },
+            "command": [
+              "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-small",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--opt-code-size",
+              "--std-sdcc11",
+              "--nostdinc",
+              "-IE:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\include",
+              "-c",
+              "strlen.c",
+              "-o",
+              "strlen.rel"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "lib/mcs251-large-stack-auto/libsdcc.lib",
+        "oldSha256": "e4236d6ea5e63220dee7ba47a19ff0dfc925184cf7aea9bbd71a329c3ead49ff",
+        "sha256": "58850334b1bbcda2d9348775defac528f5b1643895405078b309e2f25b4f4683",
+        "unchangedMembers": 138,
+        "members": [
+          {
+            "member": "__memcpy.rel",
+            "sourceSha256": "c797c8794b87e31059580ae049ee440bfcc70834fcce56765b004160af507841",
+            "oldSha256": "05b89bbba3f2da0f3b811c724013fba69c2c63e649b88322d7b7d2a503ad9412",
+            "sha256": "17593b2d0856fc505e3566647ccabd27a57a4d537e1ab9a3439e20576871e67a",
+            "before": {
+              "codeBytes": 207,
+              "exports": [
+                ".__.ABS.",
+                "___memcpy"
+              ]
+            },
+            "after": {
+              "codeBytes": 72,
+              "exports": [
+                ".__.ABS.",
+                "___memcpy"
+              ]
+            },
+            "command": [
+              "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--opt-code-size",
+              "--std-sdcc11",
+              "--nostdinc",
+              "-IE:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\include",
+              "-c",
+              "__memcpy.c",
+              "-o",
+              "__memcpy.rel"
+            ]
+          },
+          {
+            "member": "_memset.rel",
+            "sourceSha256": "2e63ffa5ee415e25c862ebd128445ae35c310f9548914534dcd236674814d559",
+            "oldSha256": "1cc97106e746dd2d5304213d3a16b865169d363b64f04ba0880dcf4b14c19c85",
+            "sha256": "b16773316e3a8ff8364dd76e94cd1e7ab610b91189b0eb8e915755e20dc339f3",
+            "before": {
+              "codeBytes": 141,
+              "exports": [
+                ".__.ABS.",
+                "_memset"
+              ]
+            },
+            "after": {
+              "codeBytes": 66,
+              "exports": [
+                ".__.ABS.",
+                "_memset"
+              ]
+            },
+            "command": [
+              "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--opt-code-size",
+              "--std-sdcc11",
+              "--nostdinc",
+              "-IE:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\include",
+              "-c",
+              "_memset.c",
+              "-o",
+              "_memset.rel"
+            ]
+          },
+          {
+            "member": "strlen.rel",
+            "sourceSha256": "ef8410f3ee391e18af934960624f9f576e22f609dce61f82575c58d61b4ca75b",
+            "oldSha256": "bda756e42674c972b84474b67da60847c149deae598bc1909f80a6f22dd89c0d",
+            "sha256": "264604ed3911935939c7bccbcb26e95ee2d11a90c002725c9af2e4ba52d02809",
+            "before": {
+              "codeBytes": 96,
+              "exports": [
+                ".__.ABS.",
+                "_strlen"
+              ]
+            },
+            "after": {
+              "codeBytes": 43,
+              "exports": [
+                ".__.ABS.",
+                "_strlen"
+              ]
+            },
+            "command": [
+              "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+              "-mmcs251",
+              "--model-large",
+              "--stack-auto",
+              "--mcs251-wide-ordinary",
+              "--mcs251-machine-ir",
+              "--opt-code-size",
+              "--std-sdcc11",
+              "--nostdinc",
+              "-IE:\\STVAPP\\MX251\\.build\\standard-library-20261116\\candidate\\core\\toolchain\\include",
+              "-c",
+              "strlen.c",
+              "-o",
+              "strlen.rel"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "rows": [
+    {
+      "id": "g108",
+      "name": "63-DMA-UART串口与存储器数据自动收发\\串口4使用DMA中断模式与电脑收发不定长数据-软件超时",
+      "sourceInputsIdentical": true,
+      "sourceFiles": 5,
+      "control": {
+        "bytes": 1625,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\g108\\mx251\\result.json",
+          "sha256": "e484bc830195e02e2e20d34502184abb85e28f53b28d3800b622c3a294db6af8"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\g108\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "c919cbf5e89a40722cdf6d2e47052a15105cc8c19855a28ddc671155e370bd1a"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\g108\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "ffef8cb302b577cb39a6af4a38d1b0c12ea8d0d87f99c9172c15d5269ece7cd2"
+        }
+      },
+      "new": {
+        "bytes": 1486,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\g108\\mx251\\result.json",
+          "sha256": "d22d3c19154751c906a58014b9ab94867ec25bb7853ea28f90647cb34201b155"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\g108\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "50c6679426233f265a7463b3fa8ff0d2971c69aa6d4fbd5ad289d92a45a98825"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\g108\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "a3f3954ea83d080d406c96c16c049f7d2b073d1a0167d1604f84b680ae015e79"
+        }
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1699,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g108\\keil\\result.json",
+            "sha256": "0ce8f130600987a81b9239e1ba54c633743dfadcae4b0117058162a0800cab7a"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g108\\keil\\firmware.hex",
+            "sha256": "6accde8093fdfceb6ae7d5a982fd41a3ab90158b479d1b22402b0e3bae77a5ac"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g108\\stc-soft\\result.json",
+            "sha256": "faa578f2b9f82cd869939baf77a930fa05912fa4515216f4647321035f6462d0"
+          }
+        }
+      },
+      "saved": 139,
+      "keilPercent": 87.46321365509122
+    },
+    {
+      "id": "g123",
+      "name": "74-MSC(Mass Storage Class)协议范例",
+      "sourceInputsIdentical": true,
+      "sourceFiles": 21,
+      "control": {
+        "bytes": 4709,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\g123\\mx251\\result.json",
+          "sha256": "b0e7523ee81a27f8a1bd44031163b6187bc97c0eaebe6b83a972f846bd455e2d"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\g123\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "5fbf3a6f79e40bc5808c150baffc909c6cd6a9d2f1b400fdd6f7108704320081"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\g123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "58b8f3116b7cca46f45d562de0099f7a30cb8c0a4a906c68004cbdde46cf817a"
+        }
+      },
+      "new": {
+        "bytes": 4566,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\g123\\mx251\\result.json",
+          "sha256": "8cbeac91c50dc25f6073679b18a82fcff6790dc45dcc41c2e84aac8f37012a70"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\g123\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "27808c250a1ab77a76297a2f25d4a472c95f1c3c559089991b02c5fb53539d2d"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\g123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "19c843ec626660f7ff02f6bed683d9917bd8b90c67308fe281327621f129cb33"
+        }
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 4061,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g123\\keil\\result.json",
+            "sha256": "78de98239456b1be10cb658afaba6926e21ea18233b5bbd68a7db8dfbe50e16b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g123\\keil\\firmware.hex",
+            "sha256": "c4cbc236232bc41b9fd781e44f398817fba582527b2d852a33d66ceef8e744f9"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 6459,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g123\\stc-soft\\result.json",
+            "sha256": "66d40c25e161945008d5e95498ed20d58d790a091f5688c6a84c9226197fe6a4"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g123\\stc-soft\\firmware.hex",
+            "sha256": "589e887195368aee6426728cd50fead0b65bf145f7bb7f840f155365ed27d3d6"
+          }
+        }
+      },
+      "saved": 143,
+      "keilPercent": 112.43536074858409
+    },
+    {
+      "id": "p091",
+      "name": "47-MSC(Mass Storage Class)协议范例-U盘演示程序",
+      "sourceInputsIdentical": true,
+      "sourceFiles": 20,
+      "control": {
+        "bytes": 4686,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\p091\\mx251\\result.json",
+          "sha256": "54beaab2f85a8af3328aed262b435622dd48d08ff79af68b0099064340475a88"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\p091\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "06b2f88779d6f52d3bab554bbc59b679cc046d00bd22cc2c2728f352816850b8"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\p091\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "32d287d2df96980364ba6f98c6ca0d640dc14f22efdb5fbfdf19757b55b1364d"
+        }
+      },
+      "new": {
+        "bytes": 4543,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\p091\\mx251\\result.json",
+          "sha256": "de3b63314618511616aa708b6501df92aa3dd7a3176505ab49b11f736cbfbf3d"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\p091\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "68ac98f77b5fafabc34c965a626b5d0f00ce682bcebbb7cb191e4c902ac54caf"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\p091\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "83d011743dd2b1cdd4d45159c852b2c809af3c332c74917769311e295dc82322"
+        }
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 4401,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p091\\keil\\result.json",
+            "sha256": "6c436b4030d71ff72718782812447d4a5b8bc316551126e15ed9be227bf6709b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p091\\keil\\firmware.hex",
+            "sha256": "5e6e5bf1d821a04e889bcae0a1feb7d32b483f2a4a2ea1dfb969ef91ab07eff6"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 7343,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p091\\stc\\result.json",
+            "sha256": "6f06d15216f0a012a368b70629bd52f0e77f2c9843e19de882c05942af90daad"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p091\\stc\\firmware.hex",
+            "sha256": "35c7470ee0903bf0b6b77a3be05c8ba8286b458566dbe47b3199c06f10b23d13"
+          }
+        }
+      },
+      "saved": 143,
+      "keilPercent": 103.22653942285844
+    },
+    {
+      "id": "p080",
+      "name": "38-3.5寸ILI9486驱动TFT显示屏实验程序/Project",
+      "sourceInputsIdentical": true,
+      "sourceFiles": 13,
+      "control": {
+        "bytes": 18550,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\p080\\mx251\\result.json",
+          "sha256": "82c2e178609a13fb64e20887fdc6b3b0899ad4122767d331751ed423f66e9a22"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\p080\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "113dd96a576bc655e9fad3c392e90cebcfca6d660f98fcc34f7cb37f2fc7853a"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control\\projects\\p080\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "a7d58a75dfc64bb658520e2895e56b7b3ef332379891f8549d970803c033cb39"
+        }
+      },
+      "new": {
+        "bytes": 18493,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\p080\\mx251\\result.json",
+          "sha256": "3142d54767239d2cc9b2913fbe23f93fe4387e7e6f4033fe7baf142ee134afda"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\p080\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "d37b7f98cf72d0db7a5bc28a05babf860b58ec2058fe06679b65069060996e23"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\new\\projects\\p080\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "16db18e2d6b955393953602a2770e8dadd3e51f7681fdca9e2d1844263d2d504"
+        }
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 18071,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p080\\keil\\result.json",
+            "sha256": "3316fc3fcc63e5e08167a2606fa41421927e1801ea48a7359e1d0f08c5da2b7a"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p080\\keil\\firmware.hex",
+            "sha256": "98b41f7d5dd1df63b8963ddb9243722d963d85ef19ec6642fc91cd94e590ac49"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 30543,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p080\\stc\\result.json",
+            "sha256": "467c90013fa6048439fafcb78080594731b6182f8800f46cecf036792b5008f1"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p080\\stc\\firmware.hex",
+            "sha256": "d411a6a7ab4806ba78e19ea202270be81fda2107e20b94cfc54baef5d2462500"
+          }
+        }
+      },
+      "saved": 57,
+      "keilPercent": 102.33523324663825
+    }
+  ],
+  "netSaved": 482,
+  "boards": [
+    {
+      "model": "small",
+      "bytes": 2257,
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-small\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "eb94e5b6bcd0f7829eb62fc5f378764d6bc5dd260e1b97da8a1789b33da540c6"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-small\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "f1113cd0ef9aa9dc4f832748bff4758d3744c4e7fa926c2392a4e76266acab11"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-small\\source.json",
+        "sha256": "1ae702bac7b9a7a0df0d404b364944b9a34cf97d299ad75fbf47bcc43f0eee67"
+      },
+      "targetExecuted": false
+    },
+    {
+      "model": "large",
+      "bytes": 2340,
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-large-model\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "aa0b54e047f0e8785911715abc8b4bbfce4c54ed6f0e4b8be492b1cd090e673f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-large-model\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "19be8900c44c5f7b63b3792c89636a22572d92ee3de501a15630bb81118bcffb"
+      },
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-large-model\\source.json",
+        "sha256": "d2c6eb066f71551819bfca8b60520ec2d50cbfd8210875da615a441be01046c6"
+      },
+      "targetExecuted": false
+    }
+  ],
+  "hostWorkloadCases": 128,
+  "hardware": {
+    "status": "TARGET_HANDSHAKE_TIMEOUT",
+    "targetExecuted": false,
+    "eraseAttempted": false,
+    "configurationAttempted": false,
+    "attempts": 1,
+    "result": {
+      "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-small\\flash\\result.json",
+      "sha256": "bea1729fa99e5b7fdb81556917c589e5c57694f2a14b5a7a7c6c1ca06929cf58"
+    },
+    "log": {
+      "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-small\\flash.log",
+      "sha256": "ba4ef43fb6ead3c47766a6ad7379085914df55be3780e3eefa89daadb234de24"
+    }
+  },
+  "fullMatrixRebuilt": false,
+  "defaultChanged": false,
+  "qualification": "TARGETED_COMPILE_ONLY"
+}
