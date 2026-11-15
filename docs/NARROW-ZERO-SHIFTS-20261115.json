@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "status": "PASS_NARROW_ZERO_SHIFTS_AND_HARDWARE",
+  "sourceCommit": "0ce7859fa868b02c2bdae30616e4f03c520a9093",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "f5b71514e0e1805b9c9b272e96f7fa5d0b4ffc357c41928cb21e80935890f7e2"
+  },
+  "assembler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\candidate\\core\\toolchain\\bin\\sdas251.exe",
+    "sha256": "9faf2b4cc7e2a0fd132377687a348554df654afe3ef34826ebc7323626b950b5"
+  },
+  "candidate": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\candidate\\core",
+  "buildEntry": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\Build-Optimized.ps1",
+  "previousTiming": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\timing-comparison.json",
+    "sha256": "4aeb88b8cba213b9563604446b1935ff674b68f4b680eb3060b853586268792b"
+  },
+  "imageBytes": {
+    "before": 6528,
+    "after": 6400,
+    "keil": 6124
+  },
+  "imageRatioToKeil": 1.0450685826257349,
+  "rows": [
+    {
+      "name": "fields_clean",
+      "beforeBytes": 156,
+      "afterBytes": 147,
+      "keilBytes": 134,
+      "beforeTimeRatio": 1.117334641704917,
+      "afterTimeRatio": 1.0883905288646993,
+      "casesAt110": 64
+    },
+    {
+      "name": "fields_messy",
+      "beforeBytes": 185,
+      "afterBytes": 176,
+      "keilBytes": 201,
+      "beforeTimeRatio": 0.9109587142134108,
+      "afterTimeRatio": 0.9109587142134108,
+      "casesAt110": 64
+    },
+    {
+      "name": "parser_clean",
+      "beforeBytes": 215,
+      "afterBytes": 196,
+      "keilBytes": 178,
+      "beforeTimeRatio": 0.9821338704863461,
+      "afterTimeRatio": 0.9670371926786973,
+      "casesAt110": 64
+    },
+    {
+      "name": "parser_messy",
+      "beforeBytes": 217,
+      "afterBytes": 195,
+      "keilBytes": 175,
+      "beforeTimeRatio": 0.9412369130226574,
+      "afterTimeRatio": 0.9262876049198925,
+      "casesAt110": 64
+    },
+    {
+      "name": "ring_clean",
+      "beforeBytes": 206,
+      "afterBytes": 189,
+      "keilBytes": 157,
+      "beforeTimeRatio": 0.5198944944970035,
+      "afterTimeRatio": 0.5099728438386638,
+      "casesAt110": 64
+    },
+    {
+      "name": "ring_messy",
+      "beforeBytes": 192,
+      "afterBytes": 172,
+      "keilBytes": 155,
+      "beforeTimeRatio": 1.003713628164587,
+      "afterTimeRatio": 0.9477124386103396,
+      "casesAt110": 64
+    },
+    {
+      "name": "bits_clean",
+      "beforeBytes": 260,
+      "afterBytes": 244,
+      "keilBytes": 229,
+      "beforeTimeRatio": 0.9113123415872144,
+      "afterTimeRatio": 0.8458847888578759,
+      "casesAt110": 64
+    },
+    {
+      "name": "bits_messy",
+      "beforeBytes": 260,
+      "afterBytes": 244,
+      "keilBytes": 235,
+      "beforeTimeRatio": 0.8591853760132211,
+      "afterTimeRatio": 0.7975002720943232,
+      "casesAt110": 64
+    },
+    {
+      "name": "callback_clean",
+      "beforeBytes": 99,
+      "afterBytes": 99,
+      "keilBytes": 52,
+      "beforeTimeRatio": 0.9687819964183935,
+      "afterTimeRatio": 0.9687819964183935,
+      "casesAt110": 64
+    },
+    {
+      "name": "callback_messy",
+      "beforeBytes": 99,
+      "afterBytes": 99,
+      "keilBytes": 71,
+      "beforeTimeRatio": 0.9391678530346351,
+      "afterTimeRatio": 0.9391678530346351,
+      "casesAt110": 64
+    },
+    {
+      "name": "giant_clean",
+      "beforeBytes": 103,
+      "afterBytes": 103,
+      "keilBytes": 88,
+      "beforeTimeRatio": 0.38463185845472925,
+      "afterTimeRatio": 0.38463185845472925,
+      "casesAt110": 64
+    },
+    {
+      "name": "giant_messy",
+      "beforeBytes": 3865,
+      "afterBytes": 3865,
+      "keilBytes": 3947,
+      "beforeTimeRatio": 0.2805314112309265,
+      "afterTimeRatio": 0.2805314112309265,
+      "casesAt110": 64
+    }
+  ],
+  "qualification": {
+    "contractConfigurations": 8,
+    "unchangedSignedFullWidthAndReusedFunctions": 4,
+    "volatileTransactionsPerSampledFunction": 5,
+    "pressureSpillsCovered": true,
+    "userTranslationUnits": 63,
+    "userConfigurations": 9,
+    "independentTargetDescriptions": 3,
+    "identicalPureCObjectsAcrossTargets": true,
+    "changedUserObjects": 45,
+    "unchangedUserObjects": 18,
+    "hostEvaluations": 3072,
+    "hostEquivalentPairs": 1536,
+    "abi2HardwareCases": 768,
+    "abi4HardwareCases": 768,
+    "narrowHardwareEvaluations": 98304,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3650,
+    "userHardwareMinimumSamples": 4,
+    "userKindsFullyAt110Time": 12,
+    "userKinds": 12
+  },
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\contracts-final\\result.json",
+      "sha256": "1b711d072d0dbb43573dc2b2549188d3acdedd93f5d9aa638c894b34da2b8a59"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\user-stress\\compilation.json",
+      "sha256": "093ecb3465ae45bde5af67b1a206272ded9f33a1512415d22f473036e0f07629"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\user-stress\\host-result.json",
+      "sha256": "c247fecdaede91af4751d063c3b5d95c70f2809666a4a2813ace1dfb735717bf"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\narrow-abi2\\capture\\result.json",
+      "sha256": "685d5d5896e112bce8bbea6c3cde40a1632c1ffb7180ec876f11451e22d87aa9"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\narrow-abi4\\capture\\result.json",
+      "sha256": "fe3fd6e09b8554783bc75addb3f5d82184f046d72938f0915140743d611d3c92"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\mx251-capture\\result.json",
+      "sha256": "448eb3bafcce13f6c6c5885fde7697ba6f04aed96986b4587d4c84b4c5bf2131"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\keil-capture\\result.json",
+      "sha256": "9e4b4a00a9d8fa6f5057996bb25595111e75c3c8af6e33959046fcdcdbc5b946"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\function-costs.json",
+      "sha256": "278d33ea82ac0db39fb55d78cca7c3415820b8e2ce2d63700ef7200af83029db"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\user-object-changes.json",
+      "sha256": "4d3f2e8e9d0cd11486665208d378d16ca90b8fe0361742dd420c57d5285302c9"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\source.json",
+      "sha256": "e105d6bb99922bec6e3628772707d353af4a720bb24a7c8dc79f8f850fd2ccd5"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\timing-comparison.json",
+      "sha256": "8dad0a3589ef0280d634ef41795879015988052ee19f5bf7b91d9a48d6fbeb33"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\narrow-abi2\\source.json",
+      "sha256": "b1d52dd9e68ba959fa6923c08c68487787d11e9e70ca231ed1ef6b97e4c55103"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\narrow-abi4\\source.json",
+      "sha256": "f65a2c1cc63fa4f11731e03645f167d3989726dfc6e068b1b3161501eae76723"
+    }
+  ],
+  "firmware": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\final\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "7e5ffba46b9148d373f3324bfbf1bcdfb8e071441aeb67bdf880da07dafc9e14"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\narrow-abi2\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "308b04e3e389c49a14b1506d10b7092ac5f56f330dd4eb61b8347715c8ca163e"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\narrow-zero-shifts-20261115\\narrow-abi4\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "768a775d894f433adde40a71b114cb31e88815098da07bd7b124ab27da1e2484"
+    }
+  ],
+  "fullOfficialMatrixRerun": false,
+  "fullEngineeringTimingQualified": false,
+  "stcIdeTimingMeasured": false,
+  "nextInvestigation": "Measure the current compiler on the complete official project corpus; investigate remaining common costs by final linked function sizes."
+}
