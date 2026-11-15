@@ -1,0 +1,885 @@
+{
+  "schema": 1,
+  "status": "PASS_IDATA_NEGATE",
+  "sourceCommit": "ca7b2f3bb47aed4b6b2c54333d1318813c7019f0",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "80c01d7445fc3670a1b25ba5c25773d12ef321c80388524651b50f385cac87f7"
+  },
+  "core": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\candidate\\core",
+  "buildEntry": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\Build-Optimized.ps1",
+  "parent": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\NATIVE-ISR-BODIES-20261115.json",
+    "sha256": "175a1448d01160baede56cb080a821e4ad8bba7d3b0394e6510623658b97d752"
+  },
+  "matrix": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\comparison.json",
+    "sha256": "9d1b66743e49151cd13c250793a576f6eb587f9f246a6bff7d77c4454aee8301"
+  },
+  "scannedProjects": 172,
+  "scannedUnits": 233,
+  "rebuiltProjects": 23,
+  "improvedProjects": 21,
+  "unchangedProjects": 2,
+  "savedBytes": 2351,
+  "rows": [
+    {
+      "id": "g023",
+      "name": "10-串口1中断模式与电脑收发测试\\C语言",
+      "cohort": "stc32g-97",
+      "before": 398,
+      "after": 396,
+      "saved": 2,
+      "keilBytes": 346,
+      "beforeRatio": 1.1502890173410405,
+      "afterRatio": 1.1445086705202312,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 123,
+          "after": 121,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g023\\mx251\\result.json",
+        "sha256": "603ac0499d3698ed410f937364fe0ce44539028609bfa81eeacc042348b1640e"
+      }
+    },
+    {
+      "id": "g025",
+      "name": "11-串口2中断模式与电脑收发测试\\C语言",
+      "cohort": "stc32g-97",
+      "before": 414,
+      "after": 412,
+      "saved": 2,
+      "keilBytes": 335,
+      "beforeRatio": 1.2358208955223882,
+      "afterRatio": 1.2298507462686568,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 123,
+          "after": 121,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g025\\mx251\\result.json",
+        "sha256": "cb3f5dffeb4e40f99814f48a15f09a27360a3945550f293c4397a639c9b1e6d2"
+      }
+    },
+    {
+      "id": "g027",
+      "name": "12-串口3中断模式与电脑收发测试\\C语言",
+      "cohort": "stc32g-97",
+      "before": 389,
+      "after": 387,
+      "saved": 2,
+      "keilBytes": 333,
+      "beforeRatio": 1.1681681681681682,
+      "afterRatio": 1.162162162162162,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 123,
+          "after": 121,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g027\\mx251\\result.json",
+        "sha256": "a914545bc09307e49f13cb50421804e521498a51026572efe7a2396217df842b"
+      }
+    },
+    {
+      "id": "g029",
+      "name": "13-串口4中断模式与电脑收发测试\\C语言",
+      "cohort": "stc32g-97",
+      "before": 390,
+      "after": 388,
+      "saved": 2,
+      "keilBytes": 333,
+      "beforeRatio": 1.1711711711711712,
+      "afterRatio": 1.165165165165165,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 123,
+          "after": 121,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g029\\mx251\\result.json",
+        "sha256": "96fad5c972446493528db1cf7c0630f706ff244c8a9b5511a60e80303f2b3c5f"
+      }
+    },
+    {
+      "id": "g031",
+      "name": "14.1-串口1串口2中断模式与电脑收发测试\\C语言",
+      "cohort": "stc32g-97",
+      "before": 692,
+      "after": 686,
+      "saved": 6,
+      "keilBytes": 549,
+      "beforeRatio": 1.2604735883424407,
+      "afterRatio": 1.2495446265938068,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 191,
+          "after": 185,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g031\\mx251\\result.json",
+        "sha256": "932affc01a92312196cacc2a2554c240fde9a75d249b2543be9e763e39e588f9"
+      }
+    },
+    {
+      "id": "g040",
+      "name": "18-通过串口2发送命令读写EEPROM测试程序\\C语言",
+      "cohort": "stc32g-97",
+      "before": 1643,
+      "after": 1641,
+      "saved": 2,
+      "keilBytes": 1596,
+      "beforeRatio": 1.0294486215538847,
+      "afterRatio": 1.0281954887218046,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 611,
+          "after": 609,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g040\\mx251\\result.json",
+        "sha256": "afc2088772008304636a2d926b96bbfc1017a7e395e562c50397b10bdb2949d4"
+      }
+    },
+    {
+      "id": "g062",
+      "name": "32-硬件SPI访问FLASH-PM25LV040-串口2监控",
+      "cohort": "stc32g-97",
+      "before": 2880,
+      "after": 2880,
+      "saved": 0,
+      "keilBytes": 2710,
+      "beforeRatio": 1.062730627306273,
+      "afterRatio": 1.062730627306273,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g062\\mx251\\result.json",
+        "sha256": "cfe4e8f6add05920b2574f0dbf5b736eaa13131df89e8268369211c7a8fa40e0"
+      }
+    },
+    {
+      "id": "g063",
+      "name": "33-IO模拟SPI访问FLASH-PM25LV040-串口2监控",
+      "cohort": "stc32g-97",
+      "before": 2852,
+      "after": 2852,
+      "saved": 0,
+      "keilBytes": 2705,
+      "beforeRatio": 1.054343807763401,
+      "afterRatio": 1.054343807763401,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g063\\mx251\\result.json",
+        "sha256": "cf6f586bc440238513720deca93cc004152eaea8755f9ea923ca0a45cc0c93aa"
+      }
+    },
+    {
+      "id": "g084",
+      "name": "47-SPI互为主从-SS设置主从-串口透传",
+      "cohort": "stc32g-97",
+      "before": 739,
+      "after": 727,
+      "saved": 12,
+      "keilBytes": 594,
+      "beforeRatio": 1.2441077441077442,
+      "afterRatio": 1.2239057239057238,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 244,
+          "after": 232,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g084\\mx251\\result.json",
+        "sha256": "0a6d24c9c8af00a6c6cb46b189f08b9ab693627e55e689b38e52e11727659fe6"
+      }
+    },
+    {
+      "id": "g085",
+      "name": "48-SPI互为主从-主模式忽略SS-串口透传",
+      "cohort": "stc32g-97",
+      "before": 742,
+      "after": 738,
+      "saved": 4,
+      "keilBytes": 600,
+      "beforeRatio": 1.2366666666666666,
+      "afterRatio": 1.23,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 247,
+          "after": 243,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g085\\mx251\\result.json",
+        "sha256": "f99487026d064d7a222178e1a2176db0e7f1772a7b0f1ea51040e75b0675530c"
+      }
+    },
+    {
+      "id": "g094",
+      "name": "55-LIN总线主机收发测试",
+      "cohort": "stc32g-97",
+      "before": 1410,
+      "after": 1378,
+      "saved": 32,
+      "keilBytes": 1706,
+      "beforeRatio": 0.8264947245017585,
+      "afterRatio": 0.8077373974208675,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 406,
+          "after": 374,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g094\\mx251\\result.json",
+        "sha256": "1b379224dbc6e4eb6b144cb915fa000f3d00027872b66eb82e8aa66a2705a3fe"
+      }
+    },
+    {
+      "id": "g104",
+      "name": "62-DMA-SPI与存储器数据自动收发\\硬件SPI访问FLASH-串口2监控-2T",
+      "cohort": "stc32g-97",
+      "before": 3569,
+      "after": 3566,
+      "saved": 3,
+      "keilBytes": 3194,
+      "beforeRatio": 1.117407639323732,
+      "afterRatio": 1.1164683782091422,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_RX2_Check",
+          "before": 646,
+          "after": 644,
+          "isr": false
+        },
+        {
+          "name": "_SPI_Read_Compare",
+          "before": 147,
+          "after": 146,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g104\\mx251\\result.json",
+        "sha256": "d56b603305eeef88fc9723cbb9dad1313679a738acdb6765f6a3734913111713"
+      }
+    },
+    {
+      "id": "g116",
+      "name": "67-硬件高速HSSPI访问FLASH-PM25LV040-串口2监控",
+      "cohort": "stc32g-97",
+      "before": 3686,
+      "after": 3684,
+      "saved": 2,
+      "keilBytes": 3340,
+      "beforeRatio": 1.1035928143712574,
+      "afterRatio": 1.102994011976048,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_RX2_Check",
+          "before": 642,
+          "after": 640,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g116\\mx251\\result.json",
+        "sha256": "f5d788c0615eb52a00ae42a7480920ecf9a808db96eebdc3721cd3bea1555cb8"
+      }
+    },
+    {
+      "id": "g133",
+      "name": "83-老梁示波器-CDC虚拟显示",
+      "cohort": "stc32g-97",
+      "before": 8455,
+      "after": 8153,
+      "saved": 302,
+      "keilBytes": 6979,
+      "beforeRatio": 1.2114916177102737,
+      "afterRatio": 1.1682189425419114,
+      "crossed110": false,
+      "crossed120": true,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_ShowOscope",
+          "before": 266,
+          "after": 264,
+          "isr": false
+        },
+        {
+          "name": "_SetSampleTime",
+          "before": 452,
+          "after": 295,
+          "isr": false
+        },
+        {
+          "name": "_usb_isr",
+          "before": 152,
+          "after": 149,
+          "isr": true
+        },
+        {
+          "name": "_usb_bulk_intr_in",
+          "before": 50,
+          "after": 49,
+          "isr": false
+        },
+        {
+          "name": "_usb_in_ep1",
+          "before": 47,
+          "after": 43,
+          "isr": false
+        },
+        {
+          "name": "_usb_in_ep2",
+          "before": 47,
+          "after": 43,
+          "isr": false
+        },
+        {
+          "name": "_usb_out_ep1",
+          "before": 67,
+          "after": 64,
+          "isr": false
+        },
+        {
+          "name": "_usb_req_class",
+          "before": 30,
+          "after": 32,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\g133\\mx251\\result.json",
+        "sha256": "f3247c116e567f483cee9c025758d9f3892e27dd2b5476799d1c4cbc2fe604c9"
+      }
+    },
+    {
+      "id": "p021",
+      "name": "10-串口1中断模式与电脑收发测试/C语言",
+      "cohort": "ai8051u-expanded31",
+      "before": 395,
+      "after": 393,
+      "saved": 2,
+      "keilBytes": 347,
+      "beforeRatio": 1.138328530259366,
+      "afterRatio": 1.1325648414985592,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 123,
+          "after": 121,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p021\\mx251\\result.json",
+        "sha256": "a311f70ad0d235be0e24d7ef941606f0822ce41f4e58b5378e17e0864972e2d8"
+      }
+    },
+    {
+      "id": "p022",
+      "name": "10-串口1中断模式与电脑收发测试/C语言 - P36P37",
+      "cohort": "ai8051u-expanded31",
+      "before": 418,
+      "after": 416,
+      "saved": 2,
+      "keilBytes": 364,
+      "beforeRatio": 1.1483516483516483,
+      "afterRatio": 1.1428571428571428,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 125,
+          "after": 123,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p022\\mx251\\result.json",
+        "sha256": "67d2282011c0f817665b62ba59d7733fd26525fd863bfb7c81b59ac86d004a77"
+      }
+    },
+    {
+      "id": "p024",
+      "name": "11-串口2中断模式与电脑收发测试/C语言",
+      "cohort": "ai8051u-expanded31",
+      "before": 411,
+      "after": 409,
+      "saved": 2,
+      "keilBytes": 336,
+      "beforeRatio": 1.2232142857142858,
+      "afterRatio": 1.2172619047619047,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 123,
+          "after": 121,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p024\\mx251\\result.json",
+        "sha256": "f15d06843cb78eb07ae8d185bee6a541573fe778898175988a7d0b4772fa594d"
+      }
+    },
+    {
+      "id": "p030",
+      "name": "14.1-串口1串口2中断模式同时与电脑收发测试/C语言",
+      "cohort": "ai8051u-expanded31",
+      "before": 690,
+      "after": 684,
+      "saved": 6,
+      "keilBytes": 551,
+      "beforeRatio": 1.252268602540835,
+      "afterRatio": 1.2413793103448276,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 191,
+          "after": 185,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p030\\mx251\\result.json",
+        "sha256": "00d91360854f40c88afaa8cfe7f72e32094d0b30723f3be7079451e85d3a0bf3"
+      }
+    },
+    {
+      "id": "p043",
+      "name": "19-通过串口发送命令读写EEPROM测试程序/C语言",
+      "cohort": "ai8051u-expanded31",
+      "before": 1613,
+      "after": 1611,
+      "saved": 2,
+      "keilBytes": 1604,
+      "beforeRatio": 1.0056109725685785,
+      "afterRatio": 1.004364089775561,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_main",
+          "before": 611,
+          "after": 609,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p043\\mx251\\result.json",
+        "sha256": "a316b7b5c05d2039914f59f7f6d049d2ccb758c7a1dd21af648e0bd7622b3d26"
+      }
+    },
+    {
+      "id": "p105",
+      "name": "62-DMA-SPI与存储器数据自动收发",
+      "cohort": "ai8051u-expanded31",
+      "before": 3871,
+      "after": 3858,
+      "saved": 13,
+      "keilBytes": 3297,
+      "beforeRatio": 1.1740976645435244,
+      "afterRatio": 1.170154686078253,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_UART1_int",
+          "before": 128,
+          "after": 115,
+          "isr": true
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p105\\mx251\\result.json",
+        "sha256": "63864438b5bed3290d72dbbfbea9e40b7669f37335808cb98ed626cb1a66dc81"
+      }
+    },
+    {
+      "id": "p115",
+      "name": "66-DMA-I2C主机模式读写AT24C02-串口监控",
+      "cohort": "ai8051u-expanded31",
+      "before": 2673,
+      "after": 2660,
+      "saved": 13,
+      "keilBytes": 2519,
+      "beforeRatio": 1.0611353711790392,
+      "afterRatio": 1.055974593092497,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_UART1_int",
+          "before": 128,
+          "after": 115,
+          "isr": true
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p115\\mx251\\result.json",
+        "sha256": "5b9831494429a87eff62230a030c5289ae48044ffd1bc26224618412407cdb41"
+      }
+    },
+    {
+      "id": "p135",
+      "name": "81-I2S-播放下载在FLASH中的立体声ADPCM音乐-TLV320AIC23B",
+      "cohort": "ai8051u-expanded31",
+      "before": 11020,
+      "after": 9382,
+      "saved": 1638,
+      "keilBytes": 7944,
+      "beforeRatio": 1.3872104733131922,
+      "afterRatio": 1.1810171198388721,
+      "crossed110": false,
+      "crossed120": true,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_I2S_ISR",
+          "before": 3385,
+          "after": 1741,
+          "isr": true
+        },
+        {
+          "name": "_FlashWrite_Nbytes",
+          "before": 142,
+          "after": 144,
+          "isr": false
+        },
+        {
+          "name": "_SPI_DMA_RxTRIG",
+          "before": 222,
+          "after": 227,
+          "isr": false
+        },
+        {
+          "name": "_usb_init",
+          "before": 85,
+          "after": 79,
+          "isr": false
+        },
+        {
+          "name": "_usb_read_fifo",
+          "before": 56,
+          "after": 54,
+          "isr": false
+        },
+        {
+          "name": "_usb_isr",
+          "before": 152,
+          "after": 149,
+          "isr": true
+        },
+        {
+          "name": "_usb_setup",
+          "before": 169,
+          "after": 168,
+          "isr": false
+        },
+        {
+          "name": "_usb_ctrl_in",
+          "before": 149,
+          "after": 148,
+          "isr": false
+        },
+        {
+          "name": "_usb_ctrl_out",
+          "before": 137,
+          "after": 136,
+          "isr": false
+        },
+        {
+          "name": "_usb_in_ep1",
+          "before": 44,
+          "after": 43,
+          "isr": false
+        },
+        {
+          "name": "_usb_in_ep2",
+          "before": 44,
+          "after": 43,
+          "isr": false
+        },
+        {
+          "name": "_usb_out_ep1",
+          "before": 65,
+          "after": 64,
+          "isr": false
+        },
+        {
+          "name": "_usb_clear_feature",
+          "before": 169,
+          "after": 176,
+          "isr": false
+        },
+        {
+          "name": "_usb_set_feature",
+          "before": 161,
+          "after": 168,
+          "isr": false
+        },
+        {
+          "name": "_usb_set_address",
+          "before": 80,
+          "after": 83,
+          "isr": false
+        },
+        {
+          "name": "_usb_get_descriptor",
+          "before": 242,
+          "after": 241,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p135\\mx251\\result.json",
+        "sha256": "3e626fa5d8206fd1b95f05b8786340bce874a1b5938d26bb09fd63ab609baa41"
+      }
+    },
+    {
+      "id": "p141",
+      "name": "85-示波器-CDC虚拟显示",
+      "cohort": "ai8051u-expanded31",
+      "before": 8457,
+      "after": 8155,
+      "saved": 302,
+      "keilBytes": 6957,
+      "beforeRatio": 1.2156101768003449,
+      "afterRatio": 1.1722006612045421,
+      "crossed110": false,
+      "crossed120": true,
+      "sourceInputsIdentical": true,
+      "functions": [
+        {
+          "name": "_ShowOscope",
+          "before": 266,
+          "after": 264,
+          "isr": false
+        },
+        {
+          "name": "_SetSampleTime",
+          "before": 452,
+          "after": 295,
+          "isr": false
+        },
+        {
+          "name": "_usb_isr",
+          "before": 152,
+          "after": 149,
+          "isr": true
+        },
+        {
+          "name": "_usb_bulk_intr_in",
+          "before": 50,
+          "after": 49,
+          "isr": false
+        },
+        {
+          "name": "_usb_in_ep1",
+          "before": 47,
+          "after": 43,
+          "isr": false
+        },
+        {
+          "name": "_usb_in_ep2",
+          "before": 47,
+          "after": 43,
+          "isr": false
+        },
+        {
+          "name": "_usb_out_ep1",
+          "before": 67,
+          "after": 64,
+          "isr": false
+        },
+        {
+          "name": "_usb_req_class",
+          "before": 30,
+          "after": 32,
+          "isr": false
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p141\\mx251\\result.json",
+        "sha256": "d75e73da804b6ae175fc1cd5451a28013eeefe5219a5c2471e6d325f55318a86"
+      }
+    }
+  ],
+  "counts": {
+    "ai8051u-expanded31": {
+      "projects": 31,
+      "keil110": 12,
+      "keil120": 21,
+      "stcProjects": 17,
+      "stc110": 17,
+      "stc120": 17
+    },
+    "ai8051u-frozen75": {
+      "projects": 75,
+      "keil110": 75,
+      "keil120": 75,
+      "stcProjects": 0,
+      "stc110": 0,
+      "stc120": 0
+    },
+    "stc32g-97": {
+      "projects": 97,
+      "keil110": 44,
+      "keil120": 79,
+      "stcProjects": 79,
+      "stc110": 76,
+      "stc120": 77
+    }
+  },
+  "new110": [],
+  "new120": [
+    "g133",
+    "p135",
+    "p141"
+  ],
+  "hardware": {
+    "cases": 128,
+    "frames": 251,
+    "port": "COM13",
+    "firmwareSha256": "d1bd6f82b581a31b59ae51fb2e2c08a36ad368854d97a4a58a16328958b0ee17",
+    "codeBytes": 3565,
+    "idataRange": "0x6d..0xec",
+    "checks": [
+      "fixed and dynamic IDATA access above 0x7f",
+      "volatile 16-bit array loads and stores",
+      "near-to-generic pointer conversion",
+      "mixed-sign 16/32-bit negation via ABI2 and ABI4",
+      "all four interrupted register banks",
+      "GPR, PSW/PSW1, DPX and SPX restoration",
+      "stack frame and unknown assembly callee"
+    ]
+  },
+  "limitations": [
+    "Official project runtime was not measured; static instruction counts are not cycle measurements.",
+    "Keil and STC-IDE reference images are retained builds.",
+    "The census covers ISR translation units; it is not a fresh link of every project.",
+    "IDATA pointer parameters and pointer objects still use the legacy entry path.",
+    "A signed 16-to-32 conversion split through _BitInt(24) remains a separate import gap."
+  ],
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\census\\result.json",
+      "sha256": "214fd1ef838ec4b67845bf52d7a55ee7b61d71366d14cf6a3012d8cc5660ab00"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\changed-units.json",
+      "sha256": "022bd341ad3f877b6187e265a90fe8b305e0361ec7e16148d8984539dc92f275"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\contracts-final\\result.json",
+      "sha256": "a1f3c1aba8c0eebcc360ecdacc3cb3f8f688f2466c7895cf4c3fb260a08d8b70"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\data-regression-final\\result.json",
+      "sha256": "c0340d35c03f9be9e83ce9ded62ad102b8e50913ac6b659113b19fdcc3c7eaa8"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\hardware-final\\source.json",
+      "sha256": "08b51795c58ceac0d406a898fe18189c0dbb1d1d399caccf9b7e58232b308570"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\hardware-final\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "b29ff4e8b4051c2f9cd540af13561cbdf21f08ec2af003b7dd7ca9f4ee71afa0"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\hardware-capture\\result.json",
+      "sha256": "db4aa7f8d34aa5f594995bf8de72e5123d401bfe6a7128f63ff04063ee3bab12"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\package-check.json",
+      "sha256": "58ec9eb9e5db44caf1a8457ffd840e0197a49e4058a8ea937fbb76ea14920bb6"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\cumulative-comparison.json",
+      "sha256": "72fc83084aa4a568886168603209ef4e462e515fdcf0be5b7af4139377bc76a3"
+    }
+  ]
+}
