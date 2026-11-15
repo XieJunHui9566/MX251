@@ -1,0 +1,422 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "sourceCommit": "c38d4cd5055add62e19dfcf878ae1873e84c2329",
+  "branch": "codex/loop-range-20261115",
+  "compilerSha256": "fb5d91f3440285cec99724885e9325c9ced26448bde7a7090266ce10b8afa869",
+  "beforeCompilerSha256": "15f47f7a7dc49abe173e38b5d282943933b5b5d465b5f053816106940e78f2a2",
+  "candidate": "E:\\STVAPP\\MX251\\.build\\loop-range-20261115\\candidate",
+  "fullProjects": [
+    {
+      "id": "p070",
+      "cohort": "ai8051u-expanded31",
+      "name": "34-硬件QSPI访问FLASH-串口监控",
+      "before": 5938,
+      "after": 5480,
+      "delta": -458,
+      "keil": 4913,
+      "keilPercent": 111.54081009566457,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\loop-range-20261115\\final\\projects\\p070\\mx251\\result.json",
+        "sha256": "c100204f78d5e584f506f6269598d4bedf2d48980ab249709155c51bf2f0133f"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\loop-range-20261115\\final\\projects\\p070\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "0a47a11ca0f0a2f60060064ac76c414ceceb3da52ce75b8a7f8f6820fef28501"
+      },
+      "reference": {
+        "status": "BUILT",
+        "bytes": 4913,
+        "model": "XSMALL",
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p070\\keil\\result.json",
+          "sha256": "0cbd87f82186250e7a5c472eaa91134c6e843f78783e647f9531110e8f6d27b4"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p070\\keil\\firmware.hex",
+          "sha256": "5dd07ccc8e44a43ac48012545de45dc8fe421c18be61b62e2b1a85bad56a9290"
+        }
+      },
+      "hardwareExecuted": false,
+      "staticModCalls": {
+        "before": 5,
+        "after": 0
+      },
+      "staticPrintfCalls": {
+        "before": 29,
+        "after": 24
+      }
+    },
+    {
+      "id": "p106",
+      "cohort": "ai8051u-expanded31",
+      "name": "63-DMA-QSPI-P2P访问QSPI Flash",
+      "before": 8454,
+      "after": 8098,
+      "delta": -356,
+      "keil": 6649,
+      "keilPercent": 121.79275078959242,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\loop-range-20261115\\final\\projects\\p106\\mx251\\result.json",
+        "sha256": "68416d8584fad9695470f246fc1a17864b2565558c15cc196ec388b9f9426631"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\loop-range-20261115\\final\\projects\\p106\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "f74a67cdde0de4ee3afc491003bc86bba6d5da7d8e4499c79b47b8a907000af4"
+      },
+      "reference": {
+        "status": "BUILT",
+        "bytes": 6649,
+        "model": "XSMALL",
+        "result": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p106\\keil\\result.json",
+          "sha256": "8b9a944434c568191d36a2675bfd52d76f61756677a51a3c0ac8a1731b36aad6"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p106\\keil\\firmware.hex",
+          "sha256": "e3c1fa2a9790bbfc4192757163f6932fe13093ce383a47dd3b9edb12c071df1c"
+        }
+      },
+      "hardwareExecuted": false,
+      "staticModCalls": {
+        "before": 8,
+        "after": 0
+      },
+      "staticPrintfCalls": {
+        "before": 42,
+        "after": 42
+      }
+    }
+  ],
+  "checks": {
+    "loops": {
+      "status": "PASS",
+      "configurations": [
+        {
+          "model": "small",
+          "backend": "legacy",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "backend": "legacy",
+          "abi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "backend": "wide",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "backend": "wide",
+          "abi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "backend": "legacy",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "backend": "legacy",
+          "abi": 4,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "backend": "wide",
+          "abi": 2,
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "backend": "wide",
+          "abi": 4,
+          "status": "PASS"
+        }
+      ]
+    },
+    "branches": {
+      "status": "PASS",
+      "configurations": [
+        {
+          "model": "small",
+          "backend": "legacy",
+          "variableShiftsBefore": {
+            "bf_mask": 1,
+            "bf_guard": 1,
+            "bf_switch": 19,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 1,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 2,
+            "bf_state": 4,
+            "bf_case": 4
+          },
+          "variableShiftsAfter": {
+            "bf_mask": 0,
+            "bf_guard": 0,
+            "bf_switch": 2,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 0,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 1,
+            "bf_state": 1,
+            "bf_case": 4
+          }
+        },
+        {
+          "model": "small",
+          "backend": "wide",
+          "variableShiftsBefore": {
+            "bf_mask": 1,
+            "bf_guard": 1,
+            "bf_switch": 19,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 1,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 2,
+            "bf_state": 4,
+            "bf_case": 4
+          },
+          "variableShiftsAfter": {
+            "bf_mask": 0,
+            "bf_guard": 0,
+            "bf_switch": 2,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 0,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 1,
+            "bf_state": 1,
+            "bf_case": 4
+          }
+        },
+        {
+          "model": "large",
+          "backend": "legacy",
+          "variableShiftsBefore": {
+            "bf_mask": 1,
+            "bf_guard": 1,
+            "bf_switch": 19,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 1,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 2,
+            "bf_state": 4,
+            "bf_case": 4
+          },
+          "variableShiftsAfter": {
+            "bf_mask": 0,
+            "bf_guard": 0,
+            "bf_switch": 2,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 0,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 1,
+            "bf_state": 1,
+            "bf_case": 4
+          }
+        },
+        {
+          "model": "large",
+          "backend": "wide",
+          "variableShiftsBefore": {
+            "bf_mask": 1,
+            "bf_guard": 1,
+            "bf_switch": 19,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 1,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 2,
+            "bf_state": 4,
+            "bf_case": 4
+          },
+          "variableShiftsAfter": {
+            "bf_mask": 0,
+            "bf_guard": 0,
+            "bf_switch": 2,
+            "bf_join": 2,
+            "bf_loop": 2,
+            "bf_cast": 0,
+            "bf_wide": 0,
+            "bf_signed": 0,
+            "bf_call_arg": 1,
+            "bf_mutate": 0,
+            "bf_memory": 1,
+            "bf_state": 1,
+            "bf_case": 4
+          }
+        }
+      ]
+    },
+    "cursors": {
+      "status": "PASS",
+      "configurations": [
+        {
+          "model": "small",
+          "optimization": "speed",
+          "selected": [
+            "cursor_copy",
+            "cursor_fill"
+          ],
+          "variants": [
+            "enabled",
+            "disabled",
+            "movc"
+          ],
+          "shapeAndTargetChecks": true
+        },
+        {
+          "model": "small",
+          "optimization": "size",
+          "selected": [
+            "cursor_copy",
+            "cursor_fill"
+          ],
+          "variants": [
+            "enabled",
+            "disabled",
+            "movc"
+          ],
+          "shapeAndTargetChecks": true
+        },
+        {
+          "model": "large",
+          "optimization": "speed",
+          "selected": [
+            "cursor_copy",
+            "cursor_fill"
+          ],
+          "variants": [
+            "enabled",
+            "disabled",
+            "movc"
+          ],
+          "shapeAndTargetChecks": true
+        },
+        {
+          "model": "large",
+          "optimization": "size",
+          "selected": [
+            "cursor_copy",
+            "cursor_fill"
+          ],
+          "variants": [
+            "enabled",
+            "disabled",
+            "movc"
+          ],
+          "shapeAndTargetChecks": true
+        }
+      ]
+    }
+  },
+  "hardware": {
+    "status": "BLOCKED_TARGET_HANDSHAKE",
+    "hostReferenceCases": 1280,
+    "source": {
+      "source": "5a5c8c01f3d695f92a64649aedb74e4496e4c7feb0fee73ce8b6d296f0fb589c",
+      "cases": 1280,
+      "innerInputsPerCase": 1,
+      "kinds": [
+        "small",
+        "large",
+        "negative",
+        "descending",
+        "break-continue",
+        "zero-trip",
+        "one-trip",
+        "redefined",
+        "escaped",
+        "volatile",
+        "byte-wrap",
+        "nested",
+        "dynamic",
+        "address",
+        "multiple-entry",
+        "multiple-update",
+        "word-wrap",
+        "signed-boundary",
+        "mixed-compare",
+        "long-counter"
+      ]
+    },
+    "builds": [
+      {
+        "mode": "board",
+        "bytes": 1805,
+        "sha256": "29aa99261852f5db530e7fca36fb35787faf493efd58fe8847bc4d48a5a5fefb"
+      },
+      {
+        "mode": "before",
+        "bytes": 1845,
+        "sha256": "38973214f974f56bfcafad282fd2817f8b19fbd26db296f16146d2f462b73dc0"
+      },
+      {
+        "mode": "abi2",
+        "bytes": 2068,
+        "sha256": "4ba02c73bc260cd6f32bede16533f2f1b36d6127643a0773be62a1c5e9803981"
+      }
+    ],
+    "attempts": [
+      {
+        "status": "failed",
+        "programAcknowledged": false,
+        "flashReadback": false,
+        "error": "HID transfer timed out after 5000 ms",
+        "eraseAttempted": false,
+        "configurationAttempted": false
+      },
+      {
+        "status": "failed",
+        "programAcknowledged": false,
+        "flashReadback": false,
+        "error": "HID transfer timed out after 5000 ms",
+        "eraseAttempted": false,
+        "configurationAttempted": false
+      }
+    ],
+    "runtimeComparison": null
+  },
+  "measurementScope": "Two full firmware builds; retained Keil references, no new STC-IDE builds or full 203 matrix",
+  "cumulativeExpanded31": {
+    "keil110": 12,
+    "keil120Before": 21,
+    "keil120After": 22,
+    "fullMatrixRerun": false
+  }
+}
