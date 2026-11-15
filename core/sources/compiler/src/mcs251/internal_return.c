@@ -74,6 +74,7 @@ bool mcs251InternalArgument(symbol *s)
 typedef struct {
   char name[256];
   char signature[INTERNAL_ABI_SIGNATURE];
+  char scope[1024]; /* '*' for external linkage, otherwise the C input path. */
 } internal_abi_target;
 static internal_abi_target internalAbiTargets[INTERNAL_ABI_LIMIT];
 static unsigned internalAbiCount;
@@ -95,38 +96,60 @@ internalAbiLoad (void)
   const char *path = getenv ("MX251_INTERNAL_ABI4_CONTRACT");
   if (!path || !*path) return;
   FILE *f = fopen (path, "r");
-  char line[1536];
+  char line[2560];
   if (!f) {internalAbiFail ("cannot open contract", NULL); return;}
-  if (!fgets (line, sizeof line, f) || strcmp (line, "MX251-INTERNAL-ABI4-V2\n"))
+  if (!fgets (line, sizeof line, f) || (strcmp (line, "MX251-INTERNAL-ABI4-V2\n") &&
+      strcmp(line,"MX251-INTERNAL-ABI4-V3\n")))
     {internalAbiFail ("invalid contract header", NULL); fclose (f); return;}
+  bool scoped=!strcmp(line,"MX251-INTERNAL-ABI4-V3\n");
   while (fgets (line, sizeof line, f))
     {
       size_t n = strlen (line);
       if (!n || line[n - 1] != '\n' || internalAbiCount == INTERNAL_ABI_LIMIT)
         {internalAbiFail ("truncated or excessive target records", NULL); break;}
       line[--n] = 0;
-      char *tab = strchr (line, '\t');
-      if (!tab || tab == line || tab - line >= 256 || strchr (tab + 1, '\t') ||
-          !tab[1] || strlen (tab + 1) >= INTERNAL_ABI_SIGNATURE || line[0] != '_')
+      char *name=line,*scope="*";
+      if(scoped) {
+        name=strchr(line,'\t');
+        if(!name || name==line || name-line>=1024) {internalAbiFail("invalid target scope",NULL);break;}
+        *name++=0;scope=line;
+        for(char *p=scope;*p;++p)if(*p=='\\')*p='/';
+      }
+      char *tab = strchr (name, '\t');
+      if (!tab || tab == name || tab - name >= 256 || strchr (tab + 1, '\t') ||
+          !tab[1] || strlen (tab + 1) >= INTERNAL_ABI_SIGNATURE || name[0] != '_')
         {internalAbiFail ("invalid target record", NULL); break;}
       *tab++ = 0;
-      for (const char *p = line; *p; ++p)
+      for (const char *p = name; *p; ++p)
         if (!isalnum ((unsigned char)*p) && *p != '_' && *p != '$')
           {internalAbiFail ("invalid target name", line); break;}
       for (const char *p = tab; *p; ++p)
         if (!isalnum ((unsigned char)*p) && *p != '(' && *p != ')' && *p != ',' && *p != '_')
           {internalAbiFail ("invalid signature character", line); break;}
       for (unsigned i = 0; i < internalAbiCount; ++i)
-        if (!strcmp (internalAbiTargets[i].name, line))
+        if (!strcmp (internalAbiTargets[i].name, name) && !strcmp(internalAbiTargets[i].scope,scope))
           {internalAbiFail ("duplicate target", line); break;}
       if (fatalError) break;
-      strcpy (internalAbiTargets[internalAbiCount].name, line);
+      strcpy (internalAbiTargets[internalAbiCount].name, name);
       strcpy (internalAbiTargets[internalAbiCount].signature, tab);
+      strcpy (internalAbiTargets[internalAbiCount].scope, scope);
       ++internalAbiCount;
     }
   if (ferror (f)) internalAbiFail ("contract read failed", NULL);
   fclose (f);
   if (!fatalError && !internalAbiCount) internalAbiFail ("empty contract", NULL);
+}
+
+static bool
+internalAbiTargetMatches(const internal_abi_target *target,symbol *function)
+{
+  if(strcmp(target->name+1,function->name))return false;
+  if(!strcmp(target->scope,"*"))return !IS_STATIC(function->etype);
+  if(!IS_STATIC(function->etype) || !fullSrcFileName)return false;
+  const char *source=fullSrcFileName,*scope=target->scope;
+  for(;*source && *scope;++source,++scope)
+    if((*source=='\\'?'/':*source)!=*scope)return false;
+  return !*source && !*scope;
 }
 
 static bool
@@ -185,8 +208,8 @@ internalAbiType (sym_link *type, char *text, size_t size, unsigned depth)
   if (IS_PTR (type))
     {
       if (depth || getSize (type) != 3 || !type->next ||
-          (DCL_TYPE (type) != FPOINTER && DCL_TYPE (type) != GPOINTER)) return false;
-      return internalAbiAppend (text, size, DCL_TYPE (type) == FPOINTER ? "pX(" : "pG(") &&
+          (DCL_TYPE (type) != FPOINTER && DCL_TYPE (type) != GPOINTER && DCL_TYPE (type) != CPOINTER)) return false;
+      return internalAbiAppend (text, size, DCL_TYPE (type) == FPOINTER ? "pX(" : DCL_TYPE(type)==CPOINTER ? "pC(" : "pG(") &&
         internalAbiType (type->next, text, size, depth + 1) && internalAbiAppend (text, size, ")");
     }
   if (depth == 1 && IS_STRUCT (type)) return mcs251FlatAggregateToken (type, text, size);
@@ -220,6 +243,14 @@ internalAbiSignature (sym_link *type, char *text, size_t size)
 }
 
 bool
+mcs251InternalTransportSignature(sym_link *type,char *text,size_t size)
+{
+  return type && IS_FUNC(type) && !FUNC_NOPROTOTYPE(type) && !type->funcAttrs.oldStyle &&
+    !IFFUNC_HASVARARGS(type) && !IFFUNC_ISISR(type) && IFFUNC_ISREENT(type) &&
+    (FUNC_SDCCCALL(type)==2 || FUNC_SDCCCALL(type)==4) && internalAbiSignature(type,text,size);
+}
+
+bool
 mcs251InternalTransportMatches (symbol *function, const char *expected)
 {
   char signature[INTERNAL_ABI_SIGNATURE];
@@ -237,7 +268,7 @@ mcs251InternalNative (symbol *function)
   char signature[INTERNAL_ABI_SIGNATURE];
   if (!internalAbiSignature (function->type, signature, sizeof signature)) return false;
   for (unsigned i = 0; i < internalAbiCount; ++i)
-    if (!strcmp (internalAbiTargets[i].name + 1, function->name) &&
+    if (internalAbiTargetMatches(&internalAbiTargets[i],function) &&
         !strcmp (internalAbiTargets[i].signature, signature)) return true;
   return false;
 }
@@ -254,14 +285,14 @@ mcs251ConfigureInternalAbi (symbol *function, sym_link *type)
   if (fatalError) return;
   const internal_abi_target *target = NULL;
   for (unsigned i = 0; i < internalAbiCount; ++i)
-    if (!strcmp (internalAbiTargets[i].name + 1, function->name))
+    if (internalAbiTargetMatches(&internalAbiTargets[i],function))
       {target = &internalAbiTargets[i]; break;}
   if (!target) return;
 
   bool customPreserves = false;
   for (unsigned i = 0; i < sizeof type->funcAttrs.preserved_regs / sizeof type->funcAttrs.preserved_regs[0]; ++i)
     customPreserves |= type->funcAttrs.preserved_regs[i];
-  if (function->cdef || function->addrtaken || IS_STATIC (function->etype) ||
+  if (function->cdef || function->addrtaken ||
       IS_TYPEDEF (function->etype) || options.useXstack || options.noRegParams ||
       options.sdcccall != 2 || (FUNC_SDCCCALL (type) != 2 && FUNC_SDCCCALL (type) != 4) ||
       !IFFUNC_ISREENT (type) || FUNC_NOPROTOTYPE (type) || type->funcAttrs.oldStyle ||

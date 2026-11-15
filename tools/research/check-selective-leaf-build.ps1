@@ -39,7 +39,7 @@ $null=Check 'address-reference' 0
 $escaped=[regex]::Escape($Symbol)
 foreach($u in $config.units|Where-Object{[IO.Path]::GetExtension($_.file) -ceq '.c'}){
  $p=Join-Path $Output ($u.name+'.asm');$t=[IO.File]::ReadAllText($p)
- $t=[regex]::Replace($t,'(?m)^; mx251-scalar-call schema=1 owner=\S+ target='+$escaped+' signature=\S+ values=\S+\s*$', '')
+ $t=[regex]::Replace($t,'(?m)^; mx251-transport-call schema=1 owner=\S+ target='+$escaped+' signature=\S+\s*$', '')
  [IO.File]::WriteAllText($p,$t)
 }
 $null=Check 'untyped-machine-call' 0

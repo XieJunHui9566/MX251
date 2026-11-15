@@ -1,4 +1,5 @@
 #include "ordinary_scalar.h"
+#include "internal_return.h"
 /* A definition with an empty old-style parameter list is a zero-argument
  * entry. Calls additionally need the actual argument fact from AST lowering;
  * f() in a declaration alone does not specify the argument count. Keep this
@@ -17,6 +18,9 @@ static bool nearOldStyleNoArgSignature(sym_link *ft,char *out,size_t size)
 static void ordinaryScalarMetadata(ebbIndex *ebbi)
 {
   char signature[128];
+  char transport[1024];
+  if(mcs251InternalTransportSignature(currFunc->type,transport,sizeof transport))
+    dbuf_printf(codeOutBuf,"; mx251-transport-definition schema=1 symbol=%s signature=%s\n",currFunc->rname,transport);
   if(ordinaryScalarSignature(currFunc->type,signature,sizeof signature))
     dbuf_printf(codeOutBuf,"; mx251-scalar-definition schema=1 symbol=%s signature=%s\n",currFunc->rname,signature);
   else if((FUNC_SDCCCALL(currFunc->type)==4 && ordinaryScalarSignatureMode(currFunc->type,signature,sizeof signature,true)) ||
@@ -27,6 +31,8 @@ static void ordinaryScalarMetadata(ebbIndex *ebbi)
     for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next) {
       if(ic->op!=CALL || !IC_LEFT(ic) || IC_LEFT(ic)->type!=SYMBOL)continue;
       symbol *callee=OP_SYMBOL(IC_LEFT(ic));sym_link *ft=operandType(IC_LEFT(ic));
+      if(mcs251InternalTransportSignature(ft,transport,sizeof transport))
+        dbuf_printf(codeOutBuf,"; mx251-transport-call schema=1 owner=%s target=%s signature=%s\n",currFunc->rname,callee->rname,transport);
       if(IS_FUNC(ft) && FUNC_SDCCCALL(ft)==4 && ordinaryScalarSignatureMode(ft,signature,sizeof signature,true))
         dbuf_printf(codeOutBuf,"; mx251-near-call schema=1 owner=%s target=%s signature=%s\n",currFunc->rname,callee->rname,signature);
       else if(nearOldStyleNoArgSignature(ft,signature,sizeof signature))

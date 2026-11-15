@@ -347,7 +347,8 @@ static void mcs251ShareFunctions(struct dbuf_s *buffer,fs_operand_barrier barrie
         size_t end=at;while(end<f->end && source[end]!='\n')++end;
         const char *p=source+at;
         if(!strncmp(p,"; mx251-function begin ",23) || !strncmp(p,"; mx251-scalar-definition ",26) ||
-           !strncmp(p,"; mx251-bank-contract ",22) || !strncmp(p,"; mx251-scalar-call ",20))dbuf_append(&out,p,end-at+1);
+           !strncmp(p,"; mx251-bank-contract ",22) || !strncmp(p,"; mx251-scalar-call ",20) ||
+           !strncmp(p,"; mx251-transport-definition ",29) || !strncmp(p,"; mx251-transport-call ",23))dbuf_append(&out,p,end-at+1);
         at=end+1;
       }
       dbuf_printf(&out,"; mx251-function-sharing schema=1 group=%u members=%u constants=%u frame=%u\n%s:\n",g->serial,g->count,g->ns,g->frame,f->name);

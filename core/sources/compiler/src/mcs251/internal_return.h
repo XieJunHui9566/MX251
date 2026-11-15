@@ -8,6 +8,7 @@ bool mcs251InternalArgument (symbol *function);
 void mcs251ConfigureInternalAbi (symbol *function, sym_link *functionType);
 /* 只读查询已载入且签名相符的闭合原生契约；不改写声明。 */
 bool mcs251InternalNative (symbol *function);
+bool mcs251InternalTransportSignature(sym_link *functionType,char *text,size_t size);
 bool mcs251FlatAggregateToken (sym_link *type, char *text, size_t size);
 bool mcs251InternalTransportMatches (symbol *function, const char *signature);
 #endif
