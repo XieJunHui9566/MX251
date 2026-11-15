@@ -155,6 +155,7 @@ static inline mx251_effects mx251InstructionEffects(const char *line,size_t leng
   }
   if(!strcmp(op,"sjmp") || !strcmp(op,"ljmp") || !strcmp(op,"ejmp") ||
      !strcmp(op,"je") || !strcmp(op,"jne") || !strcmp(op,"jc") || !strcmp(op,"jnc") ||
+     !strcmp(op,"jsge") || !strcmp(op,"jsl") || !strcmp(op,"jsg") || !strcmp(op,"jsle") ||
      !strcmp(op,"jz") || !strcmp(op,"jnz")) {
     if(b || !mx251EffectLocalLabel(a,body,bodyLength))goto unknown;
     if(!strcmp(op,"jz") || !strcmp(op,"jnz"))e.reads=UINT32_C(1)<<MCS251_BYTE_A;

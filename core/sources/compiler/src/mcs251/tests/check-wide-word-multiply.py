@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile native narrow products, real spills, and conservative fallback boundaries."""
+"""Compile native narrow products, real spills, and full-width call boundaries."""
 from pathlib import Path
 import argparse,json,re,subprocess
 p=argparse.ArgumentParser();p.add_argument('--sdcc',type=Path,required=True);p.add_argument('--source',type=Path,required=True);p.add_argument('--baseline',type=Path);p.add_argument('--output-dir',type=Path,required=True)
@@ -31,7 +31,8 @@ for model in ['small','large']:
  assert {int(x) for x in re.findall(r'wide getword offset=(\d)',asm)}=={0,1,2}
  neg=compile('boundary',boundary)
  assert re.findall(r'wide-mir accepted: (\w+)',neg)==['truncated','signed_full','mixed','wide','user_call']
- assert neg.count('ecall\t__mullong')==3
+ assert neg.count('ecall\t__mullong')==1
+ assert neg.count('wide word-origin summary products=1 ')==2
  assert 'wide integer multiply' not in neg and re.search(r'\b(?:ecall|ejmp)\s+___m251r4___fsmul_u16\b',neg)
  if a.baseline:
   old=d/'baseline';old.mkdir()
@@ -39,6 +40,6 @@ for model in ['small','large']:
    (old/(name+'.c')).write_bytes((d/(name+'.c')).read_bytes())
    args=[str(a.baseline.resolve()),*commands[0]['args'][1:-1],name+'.c']
    q=subprocess.run(args,cwd=old,capture_output=True);assert q.returncode==0,q.stderr
-   assert (old/(name+'.rel')).read_bytes()==(d/(name+'.rel')).read_bytes(),(model,name)
- rows.append(dict(model=model,accepted=accepted,commands=commands,hardwareExecuted=False,parentObjectsIdentical=bool(a.baseline)))
+   if name=='core':assert (old/(name+'.rel')).read_bytes()==(d/(name+'.rel')).read_bytes(),(model,name)
+ rows.append(dict(model=model,accepted=accepted,commands=commands,hardwareExecuted=False,parentCoreObjectsIdentical=bool(a.baseline)))
 (a.output_dir/'results.json').write_text(json.dumps(rows,indent=2));print('PASS: 13 native functions/model, actual input/result spills, exact products/extracts, runtime-call boundaries')

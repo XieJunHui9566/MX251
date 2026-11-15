@@ -79,6 +79,15 @@ int main(void) {
     assert(!e.unknown && e.reads==(UINT32_C(1)<<MCS251_BYTE_A) && !e.writes);
     assert(!e.flagsReads && !e.flagsWrites && !e.memory && !e.specialWrites);
   }
+  const char *signedBranches[]={"jsge","jsl","jsg","jsle"};
+  for(unsigned i=0;i<sizeof signedBranches/sizeof *signedBranches;++i) {
+    char s[64];snprintf(s,sizeof s,"%s __wm_target",signedBranches[i]);
+    mx251_effects e=mx251InstructionEffects(s,strlen(s),body,strlen(body));
+    assert(!e.unknown && !e.reads && !e.writes && e.flagsReads==UINT32_MAX);
+    assert(!e.flagsWrites && !e.memory && !e.specialWrites);
+    snprintf(s,sizeof s,"%s missing",signedBranches[i]);
+    assert(mx251InstructionEffects(s,strlen(s),body,strlen(body)).unknown);
+  }
   const char *bad[]={"jb acc.8,__wm_target","jb acc.0,missing","jb acc.1x,__wm_target","jbc acc.2,__wm_target"};
   for(unsigned i=0;i<sizeof bad/sizeof *bad;++i)
     assert(mx251InstructionEffects(bad[i],strlen(bad[i]),body,strlen(body)).unknown);
@@ -93,5 +102,5 @@ q = subprocess.run(command, capture_output=True)
 assert q.returncode == 0, q.stderr
 subprocess.run([str((a.output / 'effects.exe').resolve())], check=True)
 (a.output / 'result.json').write_text(json.dumps(dict(status='PASS', configurations=rows,
-    effectsCommand=command, effectsCases=20), indent=2) + '\n')
+    effectsCommand=command, effectsCases=28), indent=2) + '\n')
 print('PASS: 4 configurations; encoded bit branches, full volatile reads, preserved stack frame and instruction effects')

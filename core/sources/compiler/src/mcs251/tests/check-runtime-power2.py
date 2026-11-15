@@ -1,4 +1,4 @@
-"""Check promoted power-of-two lowering and unchanged signed boundaries."""
+"""Check promoted power-of-two lowering, signed quotients and remainder boundaries."""
 import argparse
 import json
 import os
@@ -41,18 +41,20 @@ for model in ('small', 'large'):
                     functions[match[1]] = match[2]
                 variants[name] = functions
             transformed = sum(text.count('; wide runtime-power2 ') for text in variants['after'].values())
-            assert transformed == 6, (model, opt, abi, transformed)
+            assert transformed == 7, (model, opt, abi, transformed)
             for name in ('promote_mod', 'promote_div', 'wide_mod', 'wide_div', 'volatile_mod'):
                 text = next(v for k,v in variants['after'].items() if k.endswith('_'+name))
                 assert 'wide-mir accepted: '+name in text and 'wide runtime-power2 ' in text
                 assert not re.search(r'\b(?:ecall|ejmp)\s+__(?:mod|div)', text)
-            for name in ('negative_mod', 'negative_div', 'wrapped_mod', 'negative_divisor'):
+            negative = next(v for k,v in variants['after'].items() if k.endswith('_negative_div'))
+            assert 'wide signed power2 quotient width=2 shift=4 rounding=zero' in negative
+            for name in ('negative_mod', 'wrapped_mod', 'negative_divisor'):
                 old = next(v for k,v in variants['before'].items() if k.endswith('_'+name))
                 new = next(v for k,v in variants['after'].items() if k.endswith('_'+name))
                 # Emitted instructions, including labels, must remain identical.
                 code = lambda s: '\n'.join(l for l in s.splitlines() if l and not l.startswith(';'))
                 assert code(old) == code(new), (model, opt, abi, name)
             rows.append(dict(model=model, optimization=opt, abi=abi, transformed=transformed,
-                             negativeBoundaryCodeUnchanged=True))
+                             signedQuotientRoundsToZero=True, remainderBoundaryCodeUnchanged=True))
 (a.output / 'result.json').write_text(json.dumps(dict(status='PASS', configurations=rows), indent=2))
-print('PASS: 8 configurations, 6 transformations each, 4 signed boundaries unchanged')
+print('PASS: 8 configurations, 7 transformations each, signed quotient rounding and 3 remainder boundaries unchanged')

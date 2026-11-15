@@ -1326,6 +1326,8 @@ wrotate(wide_function *f,wide_node *n)
   wstore(f,n->result,work);
 }
 
+#include "wide_integer_emit.c.inc"
+
 static void
 wconstant_multiply(wide_function *f,wide_node *n)
 {
@@ -2336,6 +2338,8 @@ wide_emit(wide_function *f)
       f->callOperands=(wide_bits){{0}};break;
     case '*':wconstant_multiply(f,n);break;
     case WM_UMULW:wunsigned_multiply(f,n);break;
+    case WM_MUL16:wword_product(f,n);break;
+    case WM_SDIVP2:wsigned_power2(f,n);break;
     case WM_UDIVMOD: {
       int quotient=n->remainderFirst?n->pairedResult:n->result;
       int remainder=n->remainderFirst?n->result:n->pairedResult;

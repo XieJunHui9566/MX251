@@ -26,7 +26,7 @@ extern bool mcs251InlineClosedLeafText(struct dbuf_s *output,symbol *owner,ebbIn
  * 对象位掩码、参数 ABI、跳转边池、帧和搜索预算不随这两个上界扩大。 */
 enum { WV_MAX = 1024, WN_MAX = 2048, WO_MAX = 32, WA_MAX = 16, WJ_MAX = 2048, WASM_MAX = 16, WB_WORDS = (WV_MAX + 63) / 64, WM_LOAD=0x10000, WM_STORE, WM_ADDRESS, WM_UMULW, WM_NOP, WM_PARAM_LOAD, WM_PARAM_STORE, WM_PARAM_ADDRESS, WM_OBJECT_LOAD, WM_OBJECT_STORE, WM_SYMBOL_LOAD, WM_SYMBOL_STORE, WM_BIT_LOAD, WM_BIT_STORE, WM_BIT_CAST, WM_RAW32_COPY, WM_ORDERED_ASM, WM_VOLATILE_READ, WM_UMUL32N, WM_ROTATE_LEFT, WM_UDIVW, WM_UMODW, WM_NEAR_ADDRESS, WM_UDIVMOD };
 #include "wide_ordered_contract.h"
-enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE, WM_CONSTANT_LOOKUP };
+enum { WM_BYTE_PACK = WM_UDIVMOD + 1, WM_EDATA_LOAD, WM_EDATA_STORE, WM_FIELD_LOAD, WM_FIELD_STORE, WM_CONSTANT_LOOKUP, WM_SDIVP2, WM_MUL16 };
 typedef struct { uint64_t w[WB_WORDS]; } wide_bits;
 typedef struct {
   symbol *sym;
@@ -76,6 +76,7 @@ typedef struct {
   wide_symbol_address callAddresses[WA_MAX+1]; /* register argument, then physical stack order */
   bool ordinaryCall, variadicCall, carryResult, indirectCall;
   /* CALL addressIndex carries the indirect target through existing value rewrites. */
+  unsigned multiplySignedMask;
   unsigned rangeMultiplyMask; /* 本次 CALL 前的完整 u32 实参范围，非类型猜测 */
   wide_call_contract call;
   wide_bits callFrameValues, callStores, callLoads, callArguments;
@@ -201,14 +202,22 @@ wide_carry_result(sym_link *type)
  * 平坦指针在 MIR 中为四字节，栈上仍严格占三字节，不改变公开 ABI。 */
 static unsigned wide_register_count(sym_link *type) {return IFFUNC_HASVARARGS(type)?0:FUNC_SDCCCALL(type)==2?1:2;}
 
-/* 编译器拥有的 16/32 位整数支持调用可复用普通 ABI2。
- * 身份来自前端 operation/type 表，绝不按函数拼写识别。仅承认完整
- * 同宽、同符号、二参数的原型；不改运算实现、不省略活寄存器保存。
- * 8 位混合提升、64 位、移位、浮点及未知 cdef 仍保留旧后端。 */
+/* Compiler-owned 16/32-bit integer calls share semantic recognition across
+ * ABI2 and ABI4. Identity comes from the front-end operation/type table,
+ * with a matching full prototype; ordinary user functions never qualify. */
+static bool
+wide_arithmetic_semantics_enabled(void)
+{
+  const char *option=getenv("MX251_ARITHMETIC_SEMANTICS");
+  return !option || strcmp(option,"0");
+}
+
 static bool
 wide_integer_runtime_contract(symbol *callee,unsigned *operation,unsigned *width,unsigned *signedness)
 {
-  if(!callee || !callee->cdef || !IS_FUNC(callee->type) || FUNC_SDCCCALL(callee->type)!=2)return false;
+  if(!callee || !callee->cdef || !IS_FUNC(callee->type))return false;
+  unsigned abi=FUNC_SDCCCALL(callee->type);
+  if(abi!=2 && (abi!=4 || !wide_arithmetic_semantics_enabled()))return false;
   sym_link *t=callee->type,*r=t->next;value *a=FUNC_ARGS(t);
   if(!a || !a->next || a->next->next || !IS_SPEC(r) || !IS_INTEGRAL(r) || IS_BITINT(r))return false;
   for(unsigned op=0;op<3;++op)for(unsigned index=1;index<=2;++index)for(unsigned sign=0;sign<2;++sign) {
@@ -223,6 +232,23 @@ wide_integer_runtime_contract(symbol *callee,unsigned *operation,unsigned *width
     *operation=op;*width=bytes;*signedness=!expectedUnsigned;return true;
   }
   return false;
+}
+
+/* Import has checked the full call prototype and sampled arguments. This
+ * view gives arithmetic transforms the same inputs for either physical ABI. */
+static bool
+wide_runtime_binary(wide_node *n,unsigned width,wide_operand *right)
+{
+  if(n->args!=2 || n->result<0 || n->width!=width || n->left.width!=width ||
+     n->indirectCall || n->floating || n->left.floating)return false;
+  if(n->ordinaryCall) {
+    if(n->stackArgs!=1 || n->stackBytes!=width)return false;
+    *right=n->stackOperands[0];
+  } else {
+    if(n->stackArgs || n->stackBytes)return false;
+    *right=n->right;
+  }
+  return right->width==width && !right->floating;
 }
 
 static bool
@@ -916,10 +942,8 @@ static bool
 wide_reduce_runtime_power2(wide_function *f,wide_node *n,iCode *ic,operand *dividend,
                           unsigned operation,unsigned width,unsigned signedness)
 {
-  if(operation<1 || operation>2 || !n->ordinaryCall || n->args!=2 ||
-     n->stackArgs!=1 || n->stackBytes!=width || n->result<0 ||
-     n->width!=width || n->left.width!=width)return false;
-  wide_operand divisor=n->stackOperands[0];
+  wide_operand divisor;
+  if(operation<1 || operation>2 || !wide_runtime_binary(n,width,&divisor))return false;
   if(divisor.value>=0 || !divisor.literal || (divisor.literal&(divisor.literal-1)) ||
      (signedness && (divisor.literal&(UINT32_C(1)<<(8*width-1)))))return false;
   /* Promotions make (unsigned_byte + 1) a signed int, even though the
@@ -929,10 +953,12 @@ wide_reduce_runtime_power2(wide_function *f,wide_node *n,iCode *ic,operand *divi
   if(signedness) {
     if(!f->rangeAnalysis)f->rangeAnalysis=computeIsolatedValinfos(f->sourceBlocks,"_mx251_power2");
     range=getIsolatedOperandValinfo(f->rangeAnalysis,ic,dividend);
-    if(range.nothing || range.anything || range.min<0 || range.max<range.min)return false;
   }
+  bool negative=signedness && (range.nothing || range.anything || range.min<0 || range.max<range.min);
+  if(negative && (operation!=1 || !wide_arithmetic_semantics_enabled()))return false;
   unsigned shift=0;for(uint32_t d=divisor.literal;d>1;d>>=1)++shift;
-  n->op=operation==1?RIGHT_OP:BITWISEAND;
+  n->op=negative?WM_SDIVP2:operation==1?RIGHT_OP:BITWISEAND;
+  if(negative)n->left.sign=true;
   n->right=(wide_operand){.value=-1,.width=width,.literal=operation==1?shift:divisor.literal-1};
   n->use=(wide_bits){{0}};wb_set(&n->use,n->left.value);
   n->callee=NULL;n->ordinaryCall=false;n->args=n->stackArgs=n->stackBytes=0;
@@ -1084,7 +1110,7 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(!n->indirectCall && n->ordinaryCall && OP_SYMBOL(IC_LEFT(ic))->cdef && !compilerIntegerRuntime)
           return wide_import_reject(f,ic,__LINE__);
         if(compilerIntegerRuntime)
-          dbuf_printf(f->diagnostics,"; wide compiler-runtime-call icode=%d operation=%u bytes=%u signed=%u abi=2 preserve=full-live-registers\n",ic->key,runtimeOperation,runtimeWidth,runtimeSigned);
+          dbuf_printf(f->diagnostics,"; wide compiler-runtime-call icode=%d operation=%u bytes=%u signed=%u abi=%u\n",ic->key,runtimeOperation,runtimeWidth,runtimeSigned,FUNC_SDCCCALL(t));
         unsigned registers=wide_register_count(t),count=0,bytes=0;
         /* For ABI2 varargs, every argument is an IPUSH. The front end has
          * already applied default promotions (or explicit SDCC casts).
@@ -1934,6 +1960,7 @@ wide_reset_allocation(wide_function *f)
 }
 
 
+#include "wide_integer_semantics.c.inc"
 #include "wide_constant_addresses.c.inc"
 #include "wide_affine.c.inc"
 #include "wide_loop_cursor.c.inc"
@@ -3267,6 +3294,7 @@ wide_try_function (ebbIndex *ebbi, struct dbuf_s *output, struct dbuf_s *diagnos
     bool importedStackObjects=f->no!=0;
     wide_private_union_prepare(f);
     wide_immutable_parameter_homes(f);
+    wide_reduce_word_products(f);
     wide_reuse_integer_quotients(f);
     wide_strength_reduce(f);
     wide_stack_addresses(f);
