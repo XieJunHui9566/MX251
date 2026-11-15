@@ -387,8 +387,8 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   $parentImage=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.parentBytes=$parentImage.Count
   $source=New-Mx251FormatSource $demand ([IO.File]::ReadAllText($kernelPath))
   # Recompile the standard puts provider with the current pointer backend.
-  # A user-defined puts has no archive member and is left with the application.
-  if(@($record.parentLibraries|Where-Object{$_.member -ceq 'puts.rel'}).Count){
+  # Application providers, including archive members, keep their implementation.
+  if(@($record.parentLibraries|Where-Object{$_.member -ceq 'puts.rel' -and $_.archive -cmatch '^lib/mcs251-(small|large)-stack-auto/libsdcc\.lib$'}).Count){
    $putsPath=Join-Path $PSScriptRoot '../../sources/compiler/device/lib/puts.c'
    if((Hash-File $putsPath) -cne $contract.putsSourceSha256){throw 'format-puts-source-mismatch'}
    $source+="`n"+[IO.File]::ReadAllText($putsPath)
