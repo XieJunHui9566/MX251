@@ -532,7 +532,7 @@
         "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-small\\source.json",
         "sha256": "1ae702bac7b9a7a0df0d404b364944b9a34cf97d299ad75fbf47bcc43f0eee67"
       },
-      "targetExecuted": false
+      "targetExecuted": true
     },
     {
       "model": "large",
@@ -549,26 +549,253 @@
         "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-large-model\\source.json",
         "sha256": "d2c6eb066f71551819bfca8b60520ec2d50cbfd8210875da615a441be01046c6"
       },
-      "targetExecuted": false
+      "targetExecuted": true
     }
   ],
   "hostWorkloadCases": 128,
   "hardware": {
-    "status": "TARGET_HANDSHAKE_TIMEOUT",
-    "targetExecuted": false,
-    "eraseAttempted": false,
-    "configurationAttempted": false,
-    "attempts": 1,
-    "result": {
-      "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-small\\flash\\result.json",
-      "sha256": "bea1729fa99e5b7fdb81556917c589e5c57694f2a14b5a7a7c6c1ca06929cf58"
+    "status": "PASS",
+    "target": "AI8051U-34K64",
+    "dateLocal": "2026-11-16",
+    "timezone": "Asia/Shanghai",
+    "targetExecuted": true,
+    "casesTotal": 512,
+    "candidateCases": 256,
+    "framesTotal": 2117,
+    "captures": [
+      {
+        "model": "small",
+        "variant": "control",
+        "cases": 128,
+        "frames": 541,
+        "codeBytes": 2528,
+        "device": {
+          "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+          "product": "STC-USB-Link1D",
+          "serial": "82941086",
+          "version": 256,
+          "inputBytes": 65,
+          "outputBytes": 65
+        },
+        "port": "COM13",
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-small\\result.json",
+          "sha256": "8a2b433e126ad21327f34a14ce9b03095d1c01909c064f39d00cf304cf69cfaa"
+        },
+        "rawUart": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-small\\uart.bin",
+          "sha256": "ff85f069910cd351092add85d090337f211c73f4c3480456c530def6068a8340"
+        },
+        "flash": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-small\\flash\\result.json",
+          "sha256": "531e98f775ca8670c2951bfc82c5794758d6f3c63f0e564b512e646a71ba9f80"
+        },
+        "flashTrace": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-small\\flash\\trace.ndjson",
+          "sha256": "66d615d9811f71fa2a20637f19933f7664a5962f7c88a3561997ca25680f8eed"
+        },
+        "firmware": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control-board-small\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "f57185dcbed4641f8b3f80b26a43526519f2548f8f50365de2d848a0da97fb9a"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control-board-small\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "50d970f8a16623bb7278779f933f5b8c500cfe74da6cc118d17b2e87a28d01cc"
+        }
+      },
+      {
+        "model": "small",
+        "variant": "new",
+        "cases": 128,
+        "frames": 514,
+        "codeBytes": 2257,
+        "device": {
+          "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+          "product": "STC-USB-Link1D",
+          "serial": "82941086",
+          "version": 256,
+          "inputBytes": 65,
+          "outputBytes": 65
+        },
+        "port": "COM13",
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-small\\result.json",
+          "sha256": "a52f3b84ad0a14ad45c69201c40ea6fcdfedb320c5d040374ccf0c39d4c631d7"
+        },
+        "rawUart": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-small\\uart.bin",
+          "sha256": "bdc971fd101800940402e7de6db5cb0ecdf6126a585e17dd87323e4f0b930d38"
+        },
+        "flash": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-small\\flash\\result.json",
+          "sha256": "da765d8750386af8da03b296e0ac3f48922482b7d49592253014e02d29ee5204"
+        },
+        "flashTrace": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-small\\flash\\trace.ndjson",
+          "sha256": "e37ab7edd13fec3566ba93231fee855d396579401e76582cf8a26f55a03c2a13"
+        },
+        "firmware": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-small\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "f1113cd0ef9aa9dc4f832748bff4758d3744c4e7fa926c2392a4e76266acab11"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-small\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "eb94e5b6bcd0f7829eb62fc5f378764d6bc5dd260e1b97da8a1789b33da540c6"
+        }
+      },
+      {
+        "model": "large",
+        "variant": "control",
+        "cases": 128,
+        "frames": 540,
+        "codeBytes": 2611,
+        "device": {
+          "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+          "product": "STC-USB-Link1D",
+          "serial": "82941086",
+          "version": 256,
+          "inputBytes": 65,
+          "outputBytes": 65
+        },
+        "port": "COM13",
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-large\\result.json",
+          "sha256": "c231a1d1208237720d19e8332a1e6aa5cb424ffa04a806d1c7c377c8d3bec4c0"
+        },
+        "rawUart": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-large\\uart.bin",
+          "sha256": "4f77fc02b2c3fd5490cf36a3665de7bc688ab08481ee678178a62599328dbcfa"
+        },
+        "flash": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-large\\flash\\result.json",
+          "sha256": "e395051a8012ebcfd36c158ecee4e16c70b7c829d8324b7779fb07f749a9b8dc"
+        },
+        "flashTrace": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\control-large\\flash\\trace.ndjson",
+          "sha256": "30e053f7b455bec537365ad351f938ba34dcfe063a1006445f861b55cb5d265d"
+        },
+        "firmware": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control-board-large\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "18d7b6d61bc43420b7113917e4f13098d11dc90928252a00916e71cb686d24d4"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\control-board-large\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "6a5d5e7b7c8bcfd21ec62a45bbcf32318728218af666231fb9a9eb8c90c68e51"
+        }
+      },
+      {
+        "model": "large",
+        "variant": "new",
+        "cases": 128,
+        "frames": 522,
+        "codeBytes": 2340,
+        "device": {
+          "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+          "product": "STC-USB-Link1D",
+          "serial": "82941086",
+          "version": 256,
+          "inputBytes": 65,
+          "outputBytes": 65
+        },
+        "port": "COM13",
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-large\\result.json",
+          "sha256": "2b32302be43dd90deefb15ccf548d4ea958d61a1e3c4e7dd203319e74583594e"
+        },
+        "rawUart": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-large\\uart.bin",
+          "sha256": "871f4ccb09544d0db869e46530b0f6b07634c8cc6d4751984a54392c15b83ba0"
+        },
+        "flash": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-large\\flash\\result.json",
+          "sha256": "1074d7921e7be01506f242eedb44cc747c7f9a093a18129930fd78a439b24971"
+        },
+        "flashTrace": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\new-large\\flash\\trace.ndjson",
+          "sha256": "d4557ec63498b84b207097a98545a05dfd1bd5eaea0585961cd09afd44f27578"
+        },
+        "firmware": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-large-model\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "19be8900c44c5f7b63b3792c89636a22572d92ee3de501a15630bb81118bcffb"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\board-large-model\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "aa0b54e047f0e8785911715abc8b4bbfce4c54ed6f0e4b8be492b1cd090e673f"
+        }
+      }
+    ],
+    "timing": {
+      "qualification": "TARGETED_HARDWARE_PASS",
+      "scope": "Complete memory/string workload including initialization and checks; not an isolated primitive microbenchmark or Keil comparison",
+      "rows": [
+        {
+          "model": "small",
+          "casesPerVersion": 128,
+          "oldTicks": 616339.5,
+          "newTicks": 335689.5,
+          "percent": 54.465031042144794,
+          "reductionPercent": 45.534968957855206,
+          "oldFirmwareSha256": "f57185dcbed4641f8b3f80b26a43526519f2548f8f50365de2d848a0da97fb9a",
+          "newFirmwareSha256": "f1113cd0ef9aa9dc4f832748bff4758d3744c4e7fa926c2392a4e76266acab11",
+          "slowerCases": []
+        },
+        {
+          "model": "large",
+          "casesPerVersion": 128,
+          "oldTicks": 616321.0,
+          "newTicks": 335685.5,
+          "percent": 54.46601689703904,
+          "reductionPercent": 45.53398310296096,
+          "oldFirmwareSha256": "18d7b6d61bc43420b7113917e4f13098d11dc90928252a00916e71cb686d24d4",
+          "newFirmwareSha256": "19be8900c44c5f7b63b3792c89636a22572d92ee3de501a15630bb81118bcffb",
+          "slowerCases": []
+        }
+      ]
     },
-    "log": {
-      "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-small\\flash.log",
-      "sha256": "ba4ef43fb6ead3c47766a6ad7379085914df55be3780e3eefa89daadb234de24"
+    "comparison": {
+      "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-direct\\hardware-comparison.json",
+      "sha256": "9324f65f7a259ce299b53ea9932a8f694cf3689bc3a1a5568c20098c43683526"
+    },
+    "timingSource": "On-chip Timer0 ticks: median per kind/seed, summed over 128 cases; workload includes initialization and checks; UART transmission outside timed interval.",
+    "comparisonBaseline": "Same compiler and fixture with original standard library. No Keil timing claim.",
+    "connectionResolution": "After changing the USB connection, all four images completed download and UART validation without changes to the downloader or compiler.",
+    "previousAttempts": [
+      {
+        "status": "TARGET_HANDSHAKE_TIMEOUT",
+        "targetExecuted": false,
+        "eraseAttempted": false,
+        "configurationAttempted": false,
+        "attempts": 1,
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-small\\flash\\result.json",
+          "sha256": "bea1729fa99e5b7fdb81556917c589e5c57694f2a14b5a7a7c6c1ca06929cf58"
+        },
+        "log": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-small\\flash.log",
+          "sha256": "ba4ef43fb6ead3c47766a6ad7379085914df55be3780e3eefa89daadb234de24"
+        }
+      },
+      {
+        "status": "USB_IO_ABORTED",
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-connected-small\\flash\\result.json",
+          "sha256": "a28a53bc6cac4649b6c7c9e88db5febae592816738da2ed2491ca599fa1ec72f"
+        }
+      },
+      {
+        "status": "USB_IO_ABORTED_AFTER_BRIDGE_IDENTIFICATION",
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hardware-verified-control-small\\flash\\result.json",
+          "sha256": "a28a53bc6cac4649b6c7c9e88db5febae592816738da2ed2491ca599fa1ec72f"
+        }
+      }
+    ],
+    "transportProbe": {
+      "path": "E:\\STVAPP\\MX251\\.build\\standard-library-20261116\\hid-control-diagnostic.json",
+      "sha256": "7e661c40b1ac670f9621cc640e79fcace831d22d6aac2475e88e71e29e602d12"
     }
   },
   "fullMatrixRebuilt": false,
   "defaultChanged": false,
-  "qualification": "TARGETED_COMPILE_ONLY"
+  "qualification": "TARGETED_HARDWARE_PASS"
 }
