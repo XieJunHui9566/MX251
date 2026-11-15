@@ -1,0 +1,2319 @@
+{
+  "schema": 1,
+  "date": "2026-11-15",
+  "scope": "Research only: no compiler, linker, firmware or SDK changes; no build or hardware run.",
+  "sourceHead": "d4cd203",
+  "qualifiedComparisonSource": "c095393b9e4ff76566719bb0b890d1586798491f",
+  "matrixKind": "Cumulative retained final images with three call-transport replacements, not one newly rebuilt compiler matrix",
+  "excludedFromNormalComparison": [
+    "p144",
+    "p145",
+    "g083"
+  ],
+  "excludedExperimentalCandidate": "call-stack-homes-20261115",
+  "summary": {
+    "errors": [],
+    "projects": 203,
+    "pending110": 69,
+    "gap110": 15275,
+    "gap120": 3084,
+    "helpers": [
+      {
+        "callee": "___fs2uint",
+        "sites": 2,
+        "projects": 2,
+        "pending110": 2
+      },
+      {
+        "callee": "___fsadd",
+        "sites": 1,
+        "projects": 1,
+        "pending110": 1
+      },
+      {
+        "callee": "___fsmul",
+        "sites": 1,
+        "projects": 1,
+        "pending110": 1
+      },
+      {
+        "callee": "__divsint",
+        "sites": 6,
+        "projects": 2,
+        "pending110": 2
+      },
+      {
+        "callee": "__modsint",
+        "sites": 13,
+        "projects": 2,
+        "pending110": 2
+      }
+    ],
+    "signedLoops": {
+      "sites": 29,
+      "projects": 9,
+      "pending110": 2
+    },
+    "pairedSignExtensions": {
+      "sites": 131,
+      "projects": 42,
+      "pending110": 26
+    },
+    "oneArgumentPrintf": {
+      "sites": 271,
+      "projects": 43,
+      "pending110": 13
+    },
+    "largestProjectGaps": [
+      {
+        "id": "p127",
+        "name": "73-频谱分析256点FFT-USB-CDC送电脑ISP软件调试接口FFT绘图显示",
+        "bytes": 9257,
+        "keil": 6998,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\address-remat-20261115\\projects\\p127\\mx251\\.build\\mx251\\latest",
+        "gap110": 1560,
+        "gap120": 860
+      },
+      {
+        "id": "p106",
+        "name": "63-DMA-QSPI-P2P访问QSPI Flash",
+        "bytes": 8454,
+        "keil": 6649,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\call-transport-20261115\\projects\\p106\\mx251\\.build\\mx251\\latest",
+        "gap110": 1141,
+        "gap120": 476
+      },
+      {
+        "id": "p130",
+        "name": "76-ST7789驱动1.3寸TFT240x240显示屏实验程序-SPI-DMA刷屏",
+        "bytes": 31107,
+        "keil": 27478,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p130\\mx251\\.build\\mx251\\latest",
+        "gap110": 882,
+        "gap120": 0
+      },
+      {
+        "id": "p140",
+        "name": "84-USB录放音声卡-TLV320AIC23B-内部36.864M-外接32768Hz晶振",
+        "bytes": 6274,
+        "keil": 5059,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\address-remat-20261115\\projects\\p140\\mx251\\.build\\mx251\\latest",
+        "gap110": 710,
+        "gap120": 204
+      },
+      {
+        "id": "p135",
+        "name": "81-I2S-播放下载在FLASH中的立体声ADPCM音乐-TLV320AIC23B",
+        "bytes": 9382,
+        "keil": 7944,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\negate-width-20261115\\projects\\p135\\mx251\\.build\\mx251\\latest",
+        "gap110": 644,
+        "gap120": 0
+      },
+      {
+        "id": "g141",
+        "name": "89-USB CDC转双串口-做自动停电上电烧录器",
+        "bytes": 5725,
+        "keil": 4656,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\address-remat-20261115\\projects\\g141\\mx251\\.build\\mx251\\latest",
+        "gap110": 604,
+        "gap120": 138
+      },
+      {
+        "id": "p123",
+        "name": "72.2-QSPI-TFT_DMA_P2P外设到外设_显示图片程序",
+        "bytes": 5888,
+        "keil": 4839,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p123\\mx251\\.build\\mx251\\latest",
+        "gap110": 566,
+        "gap120": 82
+      },
+      {
+        "id": "p070",
+        "name": "34-硬件QSPI访问FLASH-串口监控",
+        "bytes": 5938,
+        "keil": 4913,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p070\\mx251\\.build\\mx251\\latest",
+        "gap110": 534,
+        "gap120": 43
+      },
+      {
+        "id": "p141",
+        "name": "85-示波器-CDC虚拟显示",
+        "bytes": 8156,
+        "keil": 6957,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\p141\\mx251\\.build\\mx251\\latest",
+        "gap110": 504,
+        "gap120": 0
+      },
+      {
+        "id": "g133",
+        "name": "83-老梁示波器-CDC虚拟显示",
+        "bytes": 8154,
+        "keil": 6979,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\usb-call-values-20261115\\projects\\g133\\mx251\\.build\\mx251\\latest",
+        "gap110": 478,
+        "gap120": 0
+      },
+      {
+        "id": "p121",
+        "name": "71.2-电脑通过UART发送图片数据写入到DMA SPI Flash，SPI-TFT_DMA_双缓冲区交替显示图片，不占CPU时间程序-ILI9325",
+        "bytes": 5465,
+        "keil": 4569,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p121\\mx251\\.build\\mx251\\latest",
+        "gap110": 440,
+        "gap120": 0
+      },
+      {
+        "id": "g119",
+        "name": "70-CDC(Communication Device Class)协议范例",
+        "bytes": 4315,
+        "keil": 3531,
+        "raw": false,
+        "root": "E:\\STVAPP\\MX251-baseline\\work\\address-remat-20261115\\projects\\g119\\mx251\\.build\\mx251\\latest",
+        "gap110": 431,
+        "gap120": 78
+      }
+    ],
+    "largestFunctionGaps": [
+      {
+        "id": "p106",
+        "name": "_main",
+        "mx": 2664,
+        "keil": 1739,
+        "gap": 925,
+        "categories": {
+          "memoryMove": 267,
+          "arithmeticAndBits": 277,
+          "immediateMove": 573,
+          "call": 279,
+          "stack": 896,
+          "registerMove": 305,
+          "branch": 67
+        }
+      },
+      {
+        "id": "p083",
+        "name": "_main",
+        "mx": 973,
+        "keil": 473,
+        "gap": 500,
+        "categories": {
+          "memoryMove": 638,
+          "arithmeticAndBits": 35,
+          "call": 54,
+          "immediateMove": 126,
+          "stack": 82,
+          "registerMove": 36,
+          "branch": 2
+        }
+      },
+      {
+        "id": "p070",
+        "name": "_main",
+        "mx": 1539,
+        "keil": 1041,
+        "gap": 498,
+        "categories": {
+          "memoryMove": 135,
+          "arithmeticAndBits": 157,
+          "immediateMove": 221,
+          "call": 199,
+          "stack": 604,
+          "registerMove": 180,
+          "branch": 43
+        }
+      },
+      {
+        "id": "p092",
+        "name": "_usb_isr",
+        "mx": 1323,
+        "keil": 934,
+        "gap": 389,
+        "categories": {
+          "stack": 134,
+          "immediateMove": 330,
+          "memoryMove": 267,
+          "call": 94,
+          "registerMove": 175,
+          "branch": 198,
+          "arithmeticAndBits": 124,
+          "return": 1
+        }
+      },
+      {
+        "id": "g071",
+        "name": "_usb_isr",
+        "mx": 1316,
+        "keil": 934,
+        "gap": 382,
+        "categories": {
+          "stack": 134,
+          "immediateMove": 330,
+          "memoryMove": 267,
+          "call": 93,
+          "registerMove": 169,
+          "branch": 198,
+          "arithmeticAndBits": 124,
+          "return": 1
+        }
+      },
+      {
+        "id": "p141",
+        "name": "_main",
+        "mx": 1932,
+        "keil": 1582,
+        "gap": 350,
+        "categories": {
+          "memoryMove": 706,
+          "arithmeticAndBits": 371,
+          "immediateMove": 195,
+          "registerMove": 160,
+          "branch": 325,
+          "call": 147,
+          "stack": 28
+        }
+      },
+      {
+        "id": "g133",
+        "name": "_main",
+        "mx": 1879,
+        "keil": 1541,
+        "gap": 338,
+        "categories": {
+          "memoryMove": 684,
+          "arithmeticAndBits": 363,
+          "call": 145,
+          "immediateMove": 192,
+          "stack": 28,
+          "registerMove": 158,
+          "branch": 309
+        }
+      },
+      {
+        "id": "p130",
+        "name": "_LCD_ShowFloatNum1",
+        "mx": 563,
+        "keil": 226,
+        "gap": 337,
+        "categories": {
+          "stack": 356,
+          "registerMove": 102,
+          "immediateMove": 31,
+          "arithmeticAndBits": 29,
+          "call": 28,
+          "branch": 16,
+          "return": 1
+        }
+      },
+      {
+        "id": "p127",
+        "name": "_FFT",
+        "mx": 795,
+        "keil": 493,
+        "gap": 302,
+        "categories": {
+          "stack": 356,
+          "registerMove": 119,
+          "immediateMove": 40,
+          "arithmeticAndBits": 170,
+          "memoryMove": 69,
+          "branch": 16,
+          "call": 24,
+          "return": 1
+        }
+      },
+      {
+        "id": "g091",
+        "name": "_main",
+        "mx": 1078,
+        "keil": 784,
+        "gap": 294,
+        "categories": {
+          "stack": 234,
+          "memoryMove": 307,
+          "arithmeticAndBits": 185,
+          "immediateMove": 168,
+          "call": 45,
+          "branch": 65,
+          "registerMove": 74
+        }
+      },
+      {
+        "id": "g090",
+        "name": "_main",
+        "mx": 926,
+        "keil": 640,
+        "gap": 286,
+        "categories": {
+          "stack": 234,
+          "memoryMove": 251,
+          "arithmeticAndBits": 169,
+          "call": 45,
+          "immediateMove": 108,
+          "branch": 45,
+          "registerMove": 74
+        }
+      },
+      {
+        "id": "p130",
+        "name": "_main",
+        "mx": 1042,
+        "keil": 775,
+        "gap": 267,
+        "categories": {
+          "stack": 478,
+          "immediateMove": 207,
+          "arithmeticAndBits": 98,
+          "memoryMove": 83,
+          "call": 60,
+          "registerMove": 84,
+          "branch": 31,
+          "return": 1
+        }
+      }
+    ]
+  },
+  "arithmeticInventory": [
+    {
+      "callee": "___m251r4__divslong",
+      "sites": 34,
+      "projects": 10,
+      "pending110": 3
+    },
+    {
+      "callee": "___m251r4__divulong",
+      "sites": 12,
+      "projects": 9,
+      "pending110": 5
+    },
+    {
+      "callee": "___m251r4__mullong",
+      "sites": 17,
+      "projects": 6,
+      "pending110": 5
+    },
+    {
+      "callee": "__divsint",
+      "sites": 6,
+      "projects": 2,
+      "pending110": 2
+    },
+    {
+      "callee": "__modsint",
+      "sites": 13,
+      "projects": 2,
+      "pending110": 2
+    },
+    {
+      "callee": "__mulint",
+      "sites": 1,
+      "projects": 1,
+      "pending110": 1
+    }
+  ],
+  "confirmedPositivePower2LongDivision": [
+    {
+      "id": "p127",
+      "unit": "u1",
+      "function": "_FFT",
+      "line": 1189,
+      "callee": "___m251r4__divslong",
+      "nearbyDr12Immediate": 1024,
+      "snippet": [
+        {
+          "line": 1177,
+          "source": "add\tdr16,dr4",
+          "bytes": 2
+        },
+        {
+          "line": 1178,
+          "source": "mov\t@spx-0x0007,wr16",
+          "bytes": 4
+        },
+        {
+          "line": 1179,
+          "source": "mov\t@spx-0x0005,wr18",
+          "bytes": 4
+        },
+        {
+          "line": 1181,
+          "source": "push\tdr12",
+          "bytes": 2
+        },
+        {
+          "line": 1182,
+          "source": "push\twr2",
+          "bytes": 2
+        },
+        {
+          "line": 1183,
+          "source": "push\twr0",
+          "bytes": 2
+        },
+        {
+          "line": 1185,
+          "source": "mov\twr4,@spx-0x000f",
+          "bytes": 4
+        },
+        {
+          "line": 1186,
+          "source": "mov\twr6,@spx-0x000d",
+          "bytes": 4
+        },
+        {
+          "line": 1187,
+          "source": "mov\tdr12,#0x0400",
+          "bytes": 4
+        },
+        {
+          "line": 1189,
+          "source": "ecall\t___m251r4__divslong",
+          "bytes": 4
+        },
+        {
+          "line": 1191,
+          "source": "mov\t@spx-0x000f,wr4",
+          "bytes": 4
+        },
+        {
+          "line": 1192,
+          "source": "mov\t@spx-0x000d,wr6",
+          "bytes": 4
+        },
+        {
+          "line": 1196,
+          "source": "pop\twr0",
+          "bytes": 2
+        }
+      ]
+    },
+    {
+      "id": "p127",
+      "unit": "u1",
+      "function": "_FFT",
+      "line": 1264,
+      "callee": "___m251r4__divslong",
+      "nearbyDr12Immediate": 1024,
+      "snippet": [
+        {
+          "line": 1252,
+          "source": "mov\t@spx-0x0013,wr16",
+          "bytes": 4
+        },
+        {
+          "line": 1253,
+          "source": "mov\t@spx-0x0011,wr18",
+          "bytes": 4
+        },
+        {
+          "line": 1255,
+          "source": "push\tdr12",
+          "bytes": 2
+        },
+        {
+          "line": 1256,
+          "source": "push\twr2",
+          "bytes": 2
+        },
+        {
+          "line": 1257,
+          "source": "push\twr0",
+          "bytes": 2
+        },
+        {
+          "line": 1258,
+          "source": "push\twr4",
+          "bytes": 2
+        },
+        {
+          "line": 1260,
+          "source": "mov\twr4,@spx-0x001d",
+          "bytes": 4
+        },
+        {
+          "line": 1261,
+          "source": "mov\twr6,@spx-0x001b",
+          "bytes": 4
+        },
+        {
+          "line": 1262,
+          "source": "mov\tdr12,#0x0400",
+          "bytes": 4
+        },
+        {
+          "line": 1264,
+          "source": "ecall\t___m251r4__divslong",
+          "bytes": 4
+        },
+        {
+          "line": 1266,
+          "source": "mov\t@spx-0x001d,wr4",
+          "bytes": 4
+        },
+        {
+          "line": 1267,
+          "source": "mov\t@spx-0x001b,wr6",
+          "bytes": 4
+        },
+        {
+          "line": 1271,
+          "source": "pop\twr4",
+          "bytes": 2
+        }
+      ]
+    },
+    {
+      "id": "p140",
+      "unit": "u9",
+      "function": "_ADC_ISR",
+      "line": 2461,
+      "callee": "___m251r4__divslong",
+      "nearbyDr12Immediate": 32768,
+      "snippet": [
+        {
+          "line": 2445,
+          "source": "mov\tdr12,e:(_Yout0+0)",
+          "bytes": 4
+        },
+        {
+          "line": 2447,
+          "source": "push\tdr4",
+          "bytes": 2
+        },
+        {
+          "line": 2449,
+          "source": "mov\twr4,#0xffff",
+          "bytes": 4
+        },
+        {
+          "line": 2450,
+          "source": "mov\twr6,#0x8035",
+          "bytes": 4
+        },
+        {
+          "line": 2452,
+          "source": "ecall\t___m251r4__mullong",
+          "bytes": 4
+        },
+        {
+          "line": 2453,
+          "source": "mov\tdr12,dr4",
+          "bytes": 2
+        },
+        {
+          "line": 2456,
+          "source": "pop\tdr4",
+          "bytes": 2
+        },
+        {
+          "line": 2458,
+          "source": "sub\tdr4,dr12",
+          "bytes": 2
+        },
+        {
+          "line": 2459,
+          "source": "mov\tdr12,#0x8000",
+          "bytes": 4
+        },
+        {
+          "line": 2461,
+          "source": "ecall\t___m251r4__divslong",
+          "bytes": 4
+        },
+        {
+          "line": 2465,
+          "source": "mov\te:(_out+0),dr4",
+          "bytes": 4
+        },
+        {
+          "line": 2468,
+          "source": "mov\te:(_Yout0+0),dr4",
+          "bytes": 4
+        },
+        {
+          "line": 2470,
+          "source": "mov\tdr4,e:(_out+0)",
+          "bytes": 4
+        }
+      ]
+    }
+  ],
+  "volatileFullObjectCensus": {
+    "sites": 36,
+    "projects": 1,
+    "pending110Projects": 1,
+    "memoryBytes": 576,
+    "grossMemoryByteDifference": 432,
+    "unsupportedEstimates": 0,
+    "byProject": [
+      {
+        "id": "p083",
+        "sites": 36,
+        "memoryBytes": 576,
+        "grossMemoryByteDifference": 432,
+        "unsupportedEstimates": 0
+      }
+    ],
+    "observedWideEncodings": [
+      {
+        "space": "symbol",
+        "operation": "load",
+        "width": 2,
+        "encodingBytes": {
+          "3": 495
+        }
+      },
+      {
+        "space": "symbol",
+        "operation": "store",
+        "width": 2,
+        "encodingBytes": {
+          "3": 185
+        }
+      },
+      {
+        "space": "symbol",
+        "operation": "load",
+        "width": 4,
+        "encodingBytes": {
+          "3": 58
+        }
+      },
+      {
+        "space": "symbol",
+        "operation": "store",
+        "width": 4,
+        "encodingBytes": {
+          "3": 27
+        }
+      },
+      {
+        "space": "edata",
+        "operation": "store",
+        "width": 4,
+        "encodingBytes": {
+          "4": 108
+        }
+      },
+      {
+        "space": "edata",
+        "operation": "load",
+        "width": 4,
+        "encodingBytes": {
+          "4": 155
+        }
+      },
+      {
+        "space": "edata",
+        "operation": "load",
+        "width": 2,
+        "encodingBytes": {
+          "4": 831
+        }
+      },
+      {
+        "space": "edata",
+        "operation": "store",
+        "width": 2,
+        "encodingBytes": {
+          "4": 606
+        }
+      }
+    ],
+    "scope": "Observed complete-object allocated RAM volatile byte transactions. Gross comparison to existing nonvolatile wide encoding is a policy opportunity, not a semantics-preserving implementation result or net firmware estimate. Address-taken and concurrency qualifications have not been established."
+  },
+  "constantSymbolBases": {
+    "projects": 6,
+    "pending110": 4,
+    "functions": 6,
+    "savePairs": 56,
+    "saveBytes": 224
+  },
+  "constantSymbolBaseSites": [
+    {
+      "id": "p103",
+      "unit": "u0",
+      "function": "_main",
+      "symbol": "_DmaBuffer+0",
+      "register": 24,
+      "line": 924,
+      "initializationBytes": 10,
+      "savePairs": 3,
+      "saveBytes": 12,
+      "otherUses": 1
+    },
+    {
+      "id": "p092",
+      "unit": "u0",
+      "function": "_usb_isr",
+      "symbol": "_HidInput+0",
+      "register": 24,
+      "line": 2780,
+      "initializationBytes": 10,
+      "savePairs": 2,
+      "saveBytes": 8,
+      "otherUses": 3
+    },
+    {
+      "id": "p106",
+      "unit": "u0",
+      "function": "_main",
+      "symbol": "_buf+0",
+      "register": 28,
+      "line": 1428,
+      "initializationBytes": 10,
+      "savePairs": 45,
+      "saveBytes": 180,
+      "otherUses": 17
+    },
+    {
+      "id": "p140",
+      "unit": "u6",
+      "function": "_i2s_isr",
+      "symbol": "_WaveBuffer+0",
+      "register": 24,
+      "line": 929,
+      "initializationBytes": 10,
+      "savePairs": 1,
+      "saveBytes": 4,
+      "otherUses": 1
+    },
+    {
+      "id": "g071",
+      "unit": "u0",
+      "function": "_usb_isr",
+      "symbol": "_HidInput+0",
+      "register": 24,
+      "line": 2778,
+      "initializationBytes": 10,
+      "savePairs": 2,
+      "saveBytes": 8,
+      "otherUses": 3
+    },
+    {
+      "id": "g101",
+      "unit": "u0",
+      "function": "_main",
+      "symbol": "_DmaBuffer+0",
+      "register": 24,
+      "line": 992,
+      "initializationBytes": 10,
+      "savePairs": 3,
+      "saveBytes": 12,
+      "otherUses": 1
+    }
+  ],
+  "normalProjectTotals": [
+    {
+      "id": "p001",
+      "bytes": 170,
+      "keil": 180,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p003",
+      "bytes": 290,
+      "keil": 286,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p005",
+      "bytes": 475,
+      "keil": 564,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p007",
+      "bytes": 520,
+      "keil": 618,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p009",
+      "bytes": 147,
+      "keil": 168,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p011",
+      "bytes": 551,
+      "keil": 542,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p013",
+      "bytes": 216,
+      "keil": 324,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p015",
+      "bytes": 298,
+      "keil": 272,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p017",
+      "bytes": 345,
+      "keil": 359,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p019",
+      "bytes": 461,
+      "keil": 477,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p026",
+      "bytes": 342,
+      "keil": 334,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p028",
+      "bytes": 343,
+      "keil": 334,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p032",
+      "bytes": 737,
+      "keil": 704,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p033",
+      "bytes": 693,
+      "keil": 1154,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p035",
+      "bytes": 838,
+      "keil": 989,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p037",
+      "bytes": 875,
+      "keil": 1033,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p039",
+      "bytes": 1183,
+      "keil": 1105,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p045",
+      "bytes": 909,
+      "keil": 832,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p047",
+      "bytes": 175,
+      "keil": 160,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p049",
+      "bytes": 1100,
+      "keil": 1002,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p051",
+      "bytes": 625,
+      "keil": 608,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p053",
+      "bytes": 690,
+      "keil": 691,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p055",
+      "bytes": 650,
+      "keil": 651,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p057",
+      "bytes": 493,
+      "keil": 525,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p059",
+      "bytes": 2798,
+      "keil": 3210,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p060",
+      "bytes": 1209,
+      "keil": 1473,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p062",
+      "bytes": 922,
+      "keil": 1241,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p064",
+      "bytes": 1220,
+      "keil": 1700,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p066",
+      "bytes": 1572,
+      "keil": 1901,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p071",
+      "bytes": 34136,
+      "keil": 33926,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p074",
+      "bytes": 963,
+      "keil": 909,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p075",
+      "bytes": 1841,
+      "keil": 1789,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p078",
+      "bytes": 18305,
+      "keil": 17937,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p080",
+      "bytes": 18630,
+      "keil": 18071,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p084",
+      "bytes": 1778,
+      "keil": 2261,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p086",
+      "bytes": 2579,
+      "keil": 2633,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p087",
+      "bytes": 3728,
+      "keil": 3531,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p088",
+      "bytes": 2984,
+      "keil": 3032,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p089",
+      "bytes": 2638,
+      "keil": 2687,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p090",
+      "bytes": 2860,
+      "keil": 2951,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p091",
+      "bytes": 4723,
+      "keil": 4401,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p095",
+      "bytes": 5124,
+      "keil": 4830,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p096",
+      "bytes": 3611,
+      "keil": 3469,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p097",
+      "bytes": 1420,
+      "keil": 1648,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p098",
+      "bytes": 1181,
+      "keil": 1694,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p099",
+      "bytes": 1441,
+      "keil": 1674,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p100",
+      "bytes": 1242,
+      "keil": 1706,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p101",
+      "bytes": 909,
+      "keil": 1189,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p102",
+      "bytes": 969,
+      "keil": 1289,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p103",
+      "bytes": 1161,
+      "keil": 1286,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p104",
+      "bytes": 979,
+      "keil": 1280,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p107",
+      "bytes": 944,
+      "keil": 1482,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p108",
+      "bytes": 1049,
+      "keil": 1432,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p109",
+      "bytes": 923,
+      "keil": 1463,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p110",
+      "bytes": 925,
+      "keil": 1462,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p111",
+      "bytes": 925,
+      "keil": 1461,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p112",
+      "bytes": 5452,
+      "keil": 5704,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p113",
+      "bytes": 5261,
+      "keil": 5481,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p114",
+      "bytes": 3342,
+      "keil": 3250,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p117",
+      "bytes": 784,
+      "keil": 826,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p119",
+      "bytes": 482,
+      "keil": 499,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p122",
+      "bytes": 4395,
+      "keil": 4283,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p128",
+      "bytes": 3849,
+      "keil": 3938,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p129",
+      "bytes": 3342,
+      "keil": 3250,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p131",
+      "bytes": 5370,
+      "keil": 5304,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p132",
+      "bytes": 5302,
+      "keil": 5308,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p133",
+      "bytes": 443,
+      "keil": 404,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p134",
+      "bytes": 746,
+      "keil": 780,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p136",
+      "bytes": 4452,
+      "keil": 4128,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p137",
+      "bytes": 449,
+      "keil": 454,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p138",
+      "bytes": 483,
+      "keil": 498,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p139",
+      "bytes": 449,
+      "keil": 454,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p142",
+      "bytes": 1349,
+      "keil": 1858,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p146",
+      "bytes": 280,
+      "keil": 277,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p149",
+      "bytes": 441,
+      "keil": 423,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p021",
+      "bytes": 393,
+      "keil": 347,
+      "gap110": 12,
+      "gap120": 0
+    },
+    {
+      "id": "p022",
+      "bytes": 416,
+      "keil": 364,
+      "gap110": 16,
+      "gap120": 0
+    },
+    {
+      "id": "p024",
+      "bytes": 409,
+      "keil": 336,
+      "gap110": 40,
+      "gap120": 6
+    },
+    {
+      "id": "p030",
+      "bytes": 684,
+      "keil": 551,
+      "gap110": 78,
+      "gap120": 23
+    },
+    {
+      "id": "p041",
+      "bytes": 2703,
+      "keil": 2582,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p043",
+      "bytes": 1605,
+      "keil": 1604,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p068",
+      "bytes": 3334,
+      "keil": 3381,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p069",
+      "bytes": 3317,
+      "keil": 3378,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p070",
+      "bytes": 5938,
+      "keil": 4913,
+      "gap110": 534,
+      "gap120": 43
+    },
+    {
+      "id": "p072",
+      "bytes": 714,
+      "keil": 725,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p073",
+      "bytes": 846,
+      "keil": 843,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p076",
+      "bytes": 19033,
+      "keil": 19918,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p077",
+      "bytes": 19000,
+      "keil": 19921,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p079",
+      "bytes": 18770,
+      "keil": 19556,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p081",
+      "bytes": 2752,
+      "keil": 2806,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p083",
+      "bytes": 1747,
+      "keil": 1459,
+      "gap110": 143,
+      "gap120": 0
+    },
+    {
+      "id": "p092",
+      "bytes": 2228,
+      "keil": 1667,
+      "gap110": 395,
+      "gap120": 228
+    },
+    {
+      "id": "p105",
+      "bytes": 3842,
+      "keil": 3297,
+      "gap110": 216,
+      "gap120": 0
+    },
+    {
+      "id": "p106",
+      "bytes": 8454,
+      "keil": 6649,
+      "gap110": 1141,
+      "gap120": 476
+    },
+    {
+      "id": "p115",
+      "bytes": 2644,
+      "keil": 2519,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p116",
+      "bytes": 3383,
+      "keil": 3432,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "p120",
+      "bytes": 5529,
+      "keil": 4654,
+      "gap110": 410,
+      "gap120": 0
+    },
+    {
+      "id": "p121",
+      "bytes": 5465,
+      "keil": 4569,
+      "gap110": 440,
+      "gap120": 0
+    },
+    {
+      "id": "p123",
+      "bytes": 5888,
+      "keil": 4839,
+      "gap110": 566,
+      "gap120": 82
+    },
+    {
+      "id": "p127",
+      "bytes": 9257,
+      "keil": 6998,
+      "gap110": 1560,
+      "gap120": 860
+    },
+    {
+      "id": "p130",
+      "bytes": 31107,
+      "keil": 27478,
+      "gap110": 882,
+      "gap120": 0
+    },
+    {
+      "id": "p135",
+      "bytes": 9382,
+      "keil": 7944,
+      "gap110": 644,
+      "gap120": 0
+    },
+    {
+      "id": "p140",
+      "bytes": 6274,
+      "keil": 5059,
+      "gap110": 710,
+      "gap120": 204
+    },
+    {
+      "id": "p141",
+      "bytes": 8156,
+      "keil": 6957,
+      "gap110": 504,
+      "gap120": 0
+    },
+    {
+      "id": "g000",
+      "bytes": 54,
+      "keil": 60,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g003",
+      "bytes": 174,
+      "keil": 180,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g005",
+      "bytes": 190,
+      "keil": 169,
+      "gap110": 5,
+      "gap120": 0
+    },
+    {
+      "id": "g007",
+      "bytes": 294,
+      "keil": 286,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g009",
+      "bytes": 572,
+      "keil": 536,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g011",
+      "bytes": 540,
+      "keil": 524,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g013",
+      "bytes": 621,
+      "keil": 514,
+      "gap110": 56,
+      "gap120": 5
+    },
+    {
+      "id": "g015",
+      "bytes": 600,
+      "keil": 542,
+      "gap110": 4,
+      "gap120": 0
+    },
+    {
+      "id": "g017",
+      "bytes": 485,
+      "keil": 562,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g019",
+      "bytes": 574,
+      "keil": 518,
+      "gap110": 5,
+      "gap120": 0
+    },
+    {
+      "id": "g021",
+      "bytes": 384,
+      "keil": 331,
+      "gap110": 20,
+      "gap120": 0
+    },
+    {
+      "id": "g023",
+      "bytes": 396,
+      "keil": 346,
+      "gap110": 16,
+      "gap120": 0
+    },
+    {
+      "id": "g025",
+      "bytes": 412,
+      "keil": 335,
+      "gap110": 44,
+      "gap120": 10
+    },
+    {
+      "id": "g027",
+      "bytes": 387,
+      "keil": 333,
+      "gap110": 21,
+      "gap120": 0
+    },
+    {
+      "id": "g029",
+      "bytes": 388,
+      "keil": 333,
+      "gap110": 22,
+      "gap120": 0
+    },
+    {
+      "id": "g031",
+      "bytes": 686,
+      "keil": 549,
+      "gap110": 83,
+      "gap120": 28
+    },
+    {
+      "id": "g033",
+      "bytes": 803,
+      "keil": 665,
+      "gap110": 72,
+      "gap120": 5
+    },
+    {
+      "id": "g034",
+      "bytes": 1048,
+      "keil": 961,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g036",
+      "bytes": 1128,
+      "keil": 1005,
+      "gap110": 23,
+      "gap120": 0
+    },
+    {
+      "id": "g038",
+      "bytes": 1203,
+      "keil": 1075,
+      "gap110": 21,
+      "gap120": 0
+    },
+    {
+      "id": "g040",
+      "bytes": 1635,
+      "keil": 1596,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g042",
+      "bytes": 1047,
+      "keil": 793,
+      "gap110": 175,
+      "gap120": 96
+    },
+    {
+      "id": "g044",
+      "bytes": 1155,
+      "keil": 956,
+      "gap110": 104,
+      "gap120": 8
+    },
+    {
+      "id": "g046",
+      "bytes": 179,
+      "keil": 160,
+      "gap110": 3,
+      "gap120": 0
+    },
+    {
+      "id": "g048",
+      "bytes": 779,
+      "keil": 691,
+      "gap110": 19,
+      "gap120": 0
+    },
+    {
+      "id": "g050",
+      "bytes": 737,
+      "keil": 649,
+      "gap110": 24,
+      "gap120": 0
+    },
+    {
+      "id": "g052",
+      "bytes": 1099,
+      "keil": 896,
+      "gap110": 114,
+      "gap120": 24
+    },
+    {
+      "id": "g054",
+      "bytes": 894,
+      "keil": 742,
+      "gap110": 78,
+      "gap120": 4
+    },
+    {
+      "id": "g056",
+      "bytes": 709,
+      "keil": 584,
+      "gap110": 67,
+      "gap120": 9
+    },
+    {
+      "id": "g058",
+      "bytes": 925,
+      "keil": 872,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g060",
+      "bytes": 1424,
+      "keil": 1248,
+      "gap110": 52,
+      "gap120": 0
+    },
+    {
+      "id": "g062",
+      "bytes": 2873,
+      "keil": 2710,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g063",
+      "bytes": 2852,
+      "keil": 2705,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g064",
+      "bytes": 744,
+      "keil": 509,
+      "gap110": 185,
+      "gap120": 134
+    },
+    {
+      "id": "g066",
+      "bytes": 34160,
+      "keil": 33903,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g067",
+      "bytes": 783,
+      "keil": 725,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g068",
+      "bytes": 1847,
+      "keil": 1791,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g069",
+      "bytes": 19336,
+      "keil": 18449,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g070",
+      "bytes": 19087,
+      "keil": 19536,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g071",
+      "bytes": 2202,
+      "keil": 1655,
+      "gap110": 382,
+      "gap120": 216
+    },
+    {
+      "id": "g073",
+      "bytes": 481,
+      "keil": 477,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g075",
+      "bytes": 869,
+      "keil": 1046,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g077",
+      "bytes": 434,
+      "keil": 410,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g079",
+      "bytes": 880,
+      "keil": 762,
+      "gap110": 42,
+      "gap120": 0
+    },
+    {
+      "id": "g081",
+      "bytes": 2079,
+      "keil": 2243,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g084",
+      "bytes": 727,
+      "keil": 594,
+      "gap110": 74,
+      "gap120": 15
+    },
+    {
+      "id": "g085",
+      "bytes": 738,
+      "keil": 600,
+      "gap110": 78,
+      "gap120": 18
+    },
+    {
+      "id": "g086",
+      "bytes": 1739,
+      "keil": 1543,
+      "gap110": 42,
+      "gap120": 0
+    },
+    {
+      "id": "g088",
+      "bytes": 1738,
+      "keil": 1545,
+      "gap110": 39,
+      "gap120": 0
+    },
+    {
+      "id": "g090",
+      "bytes": 3924,
+      "keil": 3325,
+      "gap110": 267,
+      "gap120": 0
+    },
+    {
+      "id": "g091",
+      "bytes": 4106,
+      "keil": 3471,
+      "gap110": 288,
+      "gap120": 0
+    },
+    {
+      "id": "g092",
+      "bytes": 1063,
+      "keil": 920,
+      "gap110": 51,
+      "gap120": 0
+    },
+    {
+      "id": "g093",
+      "bytes": 1344,
+      "keil": 1694,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g094",
+      "bytes": 1376,
+      "keil": 1706,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g095",
+      "bytes": 1530,
+      "keil": 1756,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g096",
+      "bytes": 1367,
+      "keil": 1718,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g097",
+      "bytes": 1540,
+      "keil": 1764,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g098",
+      "bytes": 1373,
+      "keil": 1720,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g099",
+      "bytes": 916,
+      "keil": 1198,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g100",
+      "bytes": 1146,
+      "keil": 1288,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g101",
+      "bytes": 1311,
+      "keil": 1285,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g102",
+      "bytes": 1225,
+      "keil": 1279,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g103",
+      "bytes": 3871,
+      "keil": 3313,
+      "gap110": 227,
+      "gap120": 0
+    },
+    {
+      "id": "g104",
+      "bytes": 3560,
+      "keil": 3194,
+      "gap110": 47,
+      "gap120": 0
+    },
+    {
+      "id": "g105",
+      "bytes": 1056,
+      "keil": 1371,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g106",
+      "bytes": 1037,
+      "keil": 1357,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g107",
+      "bytes": 1035,
+      "keil": 1352,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g108",
+      "bytes": 1670,
+      "keil": 1699,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g109",
+      "bytes": 1034,
+      "keil": 1351,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g110",
+      "bytes": 1553,
+      "keil": 1848,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g111",
+      "bytes": 2227,
+      "keil": 1990,
+      "gap110": 38,
+      "gap120": 0
+    },
+    {
+      "id": "g112",
+      "bytes": 5636,
+      "keil": 4976,
+      "gap110": 163,
+      "gap120": 0
+    },
+    {
+      "id": "g113",
+      "bytes": 5433,
+      "keil": 4838,
+      "gap110": 112,
+      "gap120": 0
+    },
+    {
+      "id": "g114",
+      "bytes": 2671,
+      "keil": 2533,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g115",
+      "bytes": 1670,
+      "keil": 1484,
+      "gap110": 38,
+      "gap120": 0
+    },
+    {
+      "id": "g116",
+      "bytes": 3678,
+      "keil": 3340,
+      "gap110": 4,
+      "gap120": 0
+    },
+    {
+      "id": "g117",
+      "bytes": 873,
+      "keil": 826,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g118",
+      "bytes": 3113,
+      "keil": 2633,
+      "gap110": 217,
+      "gap120": 0
+    },
+    {
+      "id": "g119",
+      "bytes": 4315,
+      "keil": 3531,
+      "gap110": 431,
+      "gap120": 78
+    },
+    {
+      "id": "g120",
+      "bytes": 3528,
+      "keil": 3040,
+      "gap110": 184,
+      "gap120": 0
+    },
+    {
+      "id": "g121",
+      "bytes": 3179,
+      "keil": 2687,
+      "gap110": 224,
+      "gap120": 0
+    },
+    {
+      "id": "g122",
+      "bytes": 3361,
+      "keil": 2951,
+      "gap110": 115,
+      "gap120": 0
+    },
+    {
+      "id": "g123",
+      "bytes": 4760,
+      "keil": 4061,
+      "gap110": 293,
+      "gap120": 0
+    },
+    {
+      "id": "g124",
+      "bytes": 2660,
+      "keil": 2174,
+      "gap110": 269,
+      "gap120": 52
+    },
+    {
+      "id": "g126",
+      "bytes": 1665,
+      "keil": 1809,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g127",
+      "bytes": 527,
+      "keil": 499,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g128",
+      "bytes": 5416,
+      "keil": 4616,
+      "gap110": 339,
+      "gap120": 0
+    },
+    {
+      "id": "g129",
+      "bytes": 425,
+      "keil": 395,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g130",
+      "bytes": 1299,
+      "keil": 1501,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g133",
+      "bytes": 8154,
+      "keil": 6979,
+      "gap110": 478,
+      "gap120": 0
+    },
+    {
+      "id": "g134",
+      "bytes": 4166,
+      "keil": 3523,
+      "gap110": 291,
+      "gap120": 0
+    },
+    {
+      "id": "g135",
+      "bytes": 445,
+      "keil": 416,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g136",
+      "bytes": 501,
+      "keil": 435,
+      "gap110": 23,
+      "gap120": 0
+    },
+    {
+      "id": "g138",
+      "bytes": 353,
+      "keil": 379,
+      "gap110": 0,
+      "gap120": 0
+    },
+    {
+      "id": "g139",
+      "bytes": 1386,
+      "keil": 887,
+      "gap110": 411,
+      "gap120": 322
+    },
+    {
+      "id": "g141",
+      "bytes": 5725,
+      "keil": 4656,
+      "gap110": 604,
+      "gap120": 138
+    }
+  ],
+  "implementationPriority": [
+    "ABI-independent arithmetic semantics, signed 16-bit-origin full products, signed positive-power-of-two division",
+    "Shared loop induction ranges consumed by remainder, branches and address extension"
+  ],
+  "observationsNotSavings": [
+    "Helper inventories are not counts of removable calls",
+    "Adjacent sign extensions are not necessarily redundant",
+    "Volatile width difference is policy-dependent gross encoding cost",
+    "Constant-address saves exclude reconstruction cost",
+    "No new size or timing qualification"
+  ],
+  "readErrors": [],
+  "files": [
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\inventory.py",
+      "sha256": "8d2879682f7fd7afb84573eeb6fccefaeb81ea1e2bafd0d8b5c5dcf1a2286b16",
+      "bytes": 6161
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\inventory.json",
+      "sha256": "59804931d351b75733f17dbe02add837bf69f65358ee18b164946da1a6074162",
+      "bytes": 2586455
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\summary.json",
+      "sha256": "b1d76f38c39f983d54b1bafc42cc1d503da57f1dba36f5161498ffb7d16a86c0",
+      "bytes": 9300
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\arithmetic_calls.py",
+      "sha256": "e526ccaff60b8e929d540e8aa7880f98dd58e6319e15ede0f26aefce8f0263c6",
+      "bytes": 2887
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\arithmetic-calls.json",
+      "sha256": "5d40db15a21d82bd3896bbf92a7ba8b9201502f5dc5347080396e60969c2d61e",
+      "bytes": 162258
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\constant_bases.py",
+      "sha256": "8207b4c61d3d64cf6d3d1826c780cb2fc7985cb3071fc3aa9e7093d0fbf166d4",
+      "bytes": 3432
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\constant-bases.json",
+      "sha256": "a12ef797693afd7a121b8b8d109ebad667363c42401920ffd6b140add56cf20a",
+      "bytes": 5697
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\volatile_inventory.py",
+      "sha256": "6cfc93d76d5ddcdb3e93ebc84e576ab75496f5e7a714dd4d8e098036ce28b55d",
+      "bytes": 4277
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\high-yield-study-20261115\\volatile-inventory.json",
+      "sha256": "d8718262f412d361be4f05f548c2047a4cfe8b35890090751ac66e310bb810d9",
+      "bytes": 45234
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide.c",
+      "sha256": "6e34cbcbb4e1561d3cbb85245bf49c3f61f4b06e82dc11440b4cfbf6dd7c7fbb",
+      "bytes": 185671
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_address_remat.c.inc",
+      "sha256": "95a567339025990bf96c34609834ae96ceb747f9415fcfa802b8c626aa52f8c3",
+      "bytes": 4813
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_constant_addresses.c.inc",
+      "sha256": "3f9f0912975b1917b0d4fad2cb96312e029412ab9ae5a3aca4052ea3b6bd0c5c",
+      "bytes": 2687
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\wide_loop_cursor.c.inc",
+      "sha256": "f868fd72694326fdf679f5839cfe7fe609265619e02b48374e3f097d053f55b7",
+      "bytes": 8031
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\mcs251\\branch_facts.cc.inc",
+      "sha256": "b58aa4d059aa06ad1672eea2bfd222cac3992105616d45ae04606c8696046288",
+      "bytes": 10509
+    },
+    {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\src\\SDCCgenconstprop.cc",
+      "sha256": "1492ad107e658757942b7424a734b4f7adc4b6ebd132c36902acdc766bc3f227",
+      "bytes": 73050
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\address-remat-20261115\\cumulative-comparison.json",
+      "sha256": "136bd1b541a3fd868f77b7d788b2fdab99d84eb37e61918c670accaae2412db2",
+      "bytes": 556423
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\call-transport-20261115\\comparison.json",
+      "sha256": "0ebe7b198a6e07e0b544d974edda0bbc89c0b9bdcd37f915aded2d002cf112c8",
+      "bytes": 12516
+    }
+  ]
+}
