@@ -47,7 +47,43 @@ function Write-Mx251ExtendedFormatDecision($Tree,[int]$Depth=2) {
  }
  return $source
 }
+function New-Mx251HexFormatKernel($Tokens,[int]$Bits) {
+ # The format contract already truncates b conversions to eight bits.
+ # Emit high nibbles directly; no digit array or reverse traversal is needed.
+ $actualBits=if($Bits -eq 16 -and @($Tokens|Where-Object{$_['byteConversion'] -eq $true}).Count -eq @($Tokens).Count){8}else{$Bits}
+ $type='uint'+$actualBits+'_t';$digits=$actualBits/4;$high=$actualBits-4
+ $fixed=-not @($Tokens|Where-Object{($_['flags'] -band 4) -eq 0 -or $_['width'] -lt $digits}).Count
+ $scan=if($fixed){''}else{"    while(n>1u && (value>>$high)==0u) { value=($type)(value<<4); --n; }"}
+ return @"
+static unsigned char mx_number($type value, unsigned char radix,
+    unsigned char width, unsigned char flags)
+{
+    unsigned char n=$($digits)u, c, total, pad;
+$scan
+    total=n;
+    pad=width>total?(unsigned char)(width-total):0;
+    total=(unsigned char)(total+pad);
+    while(pad) {
+        if (flags&4u) putchar('0'); else putchar(' ');
+        --pad;
+    }
+    do {
+        c=(unsigned char)(value>>$high);
+        if(c>9u) c=(unsigned char)(c+((flags&2u)?('a'-10):('A'-10)));
+        else c=(unsigned char)(c+'0');
+        putchar(c);
+        value=($type)(value<<4);
+    } while(--n);
+    return total;
+}
+"@
+}
 function New-Mx251IntegerFormatKernel([string]$Kernel,$Tokens,[int]$Bits=16,[switch]$NativeDivision) {
+ $radices=@($Tokens|ForEach-Object{$_.radix}|Sort-Object -Unique)
+ # A varying alphabet adds live state across each output call; the buffered
+ # kernel is smaller for that case. Constant case uses the direct nibble walk.
+ if($radices.Count -eq 1 -and $radices[0] -eq 16 -and
+    @(Get-Mx251IntegerFormatFlagValues $Tokens 2).Count -le 1){return (New-Mx251HexFormatKernel $Tokens $Bits)}
  $body=$Kernel.Substring($Kernel.IndexOf('static unsigned char mx_number'))
  if($Bits -eq 32){
   $body=$body.Replace('uint16_t','uint32_t').Replace('digits[6]','digits[11]').Replace('0x8000u','0x80000000UL').Replace('bit=16','bit=32').Replace('value>>15','value>>31')
@@ -65,7 +101,6 @@ function New-Mx251IntegerFormatKernel([string]$Kernel,$Tokens,[int]$Bits=16,[swi
    $body=[regex]::Replace($body,'        else \{\s+rem=0; bit=32;.*?\} while \(--bit\);\s+\}', $division, [Text.RegularExpressions.RegexOptions]::Singleline)
   }
  }
- $radices=@($Tokens|ForEach-Object{$_.radix}|Sort-Object -Unique)
  if(16 -notin $radices){$body=$body.Replace('radix==16u','0').Replace('if (rem>9u)','if (0)')}
  if(8 -notin $radices){$body=$body.Replace('radix==8u','0')}
  elseif(10 -notin $radices){$body=$body.Replace('radix==8u','1')}
@@ -106,8 +141,8 @@ function New-Mx251ExtendedFormatSource($Demand,[string]$Kernel) {
    $prefix='mx_'+$api+'_n'+$bits
    $body=(New-Mx251IntegerFormatKernel $Kernel $numeric $bits -NativeDivision:([bool]$Demand.nativeIntegerDivision)).Replace('mx_number',$prefix)
    if($buffer){
-    $body=$body.Replace(('uint'+$bits+'_t value,'),('char *destination, uint'+$bits+'_t value,'))
-    $body=$body.Replace("putchar(' ')","*destination++=' '").Replace("putchar('-')","*destination++='-'").Replace("putchar('0')","*destination++='0'").Replace('putchar(digits[--n])','*destination++=(char)digits[--n]')
+    $body=[regex]::Replace($body,'(uint(?:8|16|32)_t value,)','char *destination, $1')
+    $body=$body.Replace("putchar(' ')","*destination++=' '").Replace("putchar('-')","*destination++='-'").Replace("putchar('0')","*destination++='0'").Replace('putchar(digits[--n])','*destination++=(char)digits[--n]').Replace('putchar(c)','*destination++=(char)c')
    }
    foreach($pair in @(@(1,'(flags & 1u)'),@(2,'(flags&2u)'),@(4,'(flags&4u)'))){
     $values=@(Get-Mx251IntegerFormatFlagValues $numeric $pair[0])

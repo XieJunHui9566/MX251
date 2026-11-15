@@ -260,8 +260,8 @@ function New-Mx251FormatSource($Demand,[string]$Kernel) {
    $body=New-Mx251IntegerFormatKernel $Kernel $ops
    $body=$body.Replace('mx_number',$prefix+'_number')
    if($buffer){
-    $body=$body.Replace('uint16_t value,','char *destination, uint16_t value,')
-    $body=$body.Replace("putchar(' ')","*destination++=' '").Replace("putchar('-')","*destination++='-'").Replace("putchar('0')","*destination++='0'").Replace('putchar(digits[--n])','*destination++=(char)digits[--n]')
+    $body=[regex]::Replace($body,'(uint(?:8|16|32)_t value,)','char *destination, $1')
+    $body=$body.Replace("putchar(' ')","*destination++=' '").Replace("putchar('-')","*destination++='-'").Replace("putchar('0')","*destination++='0'").Replace('putchar(digits[--n])','*destination++=(char)digits[--n]').Replace('putchar(c)','*destination++=(char)c')
    }
    # 复用已评审的能力裁剪：不可能出现的符号/字母大小写/填充分支删除。
    foreach($pair in @(@(1,'(flags & 1u)'),@(2,'(flags&2u)'),@(4,'(flags&4u)'))){
