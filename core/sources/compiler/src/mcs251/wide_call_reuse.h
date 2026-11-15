@@ -3,13 +3,42 @@
 #define MCS251_WIDE_CALL_REUSE_H
 #include "instruction_effects.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct { unsigned instructions,weighted,bridges; } wide_call_reuse_result;
+
+/* Argument setup may overwrite a held register before reading it. Track
+ * definite writes along straight-line setup, then add the ABI entry reads.
+ * This permits literal ABI4 arguments without restoring their former values. */
+static uint32_t
+wide_call_input_touch(const char *text,size_t length,uint32_t inputs,bool *complete)
+{
+  uint32_t defined=0,touch=0;*complete=true;
+  static const char *allowed[]={"mov","movz","movs","push","pushw","add","addc",
+    "sub","subb","anl","orl","xrl","inc","dec","clr","xch","mul","div",
+    "sll","srl","sra","rl","rr","rlc","rrc","cpl"};
+  for(size_t start=0;start<length;) {
+    size_t end=start;while(end<length && text[end]!='\n')++end;
+    const char *q=text+start;while(q<text+end && isspace((unsigned char)*q))++q;
+    if(q<text+end && *q!=';') {
+      bool known=false;
+      for(unsigned i=0;i<sizeof allowed/sizeof *allowed;++i) {
+        size_t n=strlen(allowed[i]);
+        if((size_t)(text+end-q)>n && !memcmp(q,allowed[i],n) && isspace((unsigned char)q[n]))known=true;
+      }
+      mx251_effects e=mx251InstructionEffects(text+start,end-start,text,length);
+      if(!known || e.unknown) {*complete=false;return UINT32_MAX;}
+      touch|=e.reads&~defined;defined|=e.writes;
+    }
+    start=end+1;
+  }
+  return touch|(inputs&~defined);
+}
 
 /* Only emitter-owned save/restore regions participate. Between regions SP
  * differs from the original, so allow register-only moves there. Once the
  * identical save layout is reached, SP and every argument/frame offset agree.
- * The next call's complete setup and ABI inputs must not touch held registers.
+ * The next call's setup and ABI inputs must not read their former contents.
  * Keep text offsets intact: branch relaxation and later proposals own them. */
 static wide_call_reuse_result
 wide_reuse_call_saves(char *text,size_t length)

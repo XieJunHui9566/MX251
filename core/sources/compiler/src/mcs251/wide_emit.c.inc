@@ -1697,9 +1697,10 @@ wcall_original(wide_function *f,int index)
   mx251_effects setup=mx251TextEffects(dbuf_get_buf(&f->output)+setupStart,setupEnd-setupStart);
   uint32_t inputs=n->call.argumentWrites;
   if(n->indirectCall)inputs|=wide_mask(indirectReg,4);
+  bool inputsComplete;
+  uint32_t inputTouch=wide_call_input_touch(dbuf_get_buf(&f->output)+setupStart,setupEnd-setupStart,inputs,&inputsComplete);
   we(f,"; wide call-inputs touch=%08lx complete=%u\n",
-     (unsigned long)(inputs|setup.reads|setup.writes),
-     !setup.unknown && !IFFUNC_ISNAKED(wide_call_type(n)));
+     (unsigned long)inputTouch,inputsComplete && !IFFUNC_ISNAKED(wide_call_type(n)));
   if(n->indirectCall) {
     we(f,"; wide indirect call abi=%u\n\tecall\t@dr%d\n",
        (unsigned)FUNC_SDCCCALL(wide_call_type(n)),indirectReg);

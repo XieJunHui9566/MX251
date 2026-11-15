@@ -50,6 +50,13 @@ static unsigned check(const char *gap,const char *setup,unsigned inputs,unsigned
 int main(void)
 {
   unsigned checks=0,roundtrips=0;
+  const char *setup[]={"\tmov\tr7,#2\n","\tmov\tr7,r0\n","\tpush\tr7\n\tmov\tr7,#2\n",
+    "\tmov\tr0,#1\n\tadd\tr7,r0\n","\tmov\tr7,@spx\n","\tje\tlabel\nlabel:\n\tmov\tr7,#2\n"};
+  unsigned touches[]={0,1,128,128,0,0xffffffffu};
+  for(unsigned i=0;i<sizeof setup/sizeof *setup;++i) {
+    bool complete;assert(wide_call_input_touch(setup[i],strlen(setup[i]),128,&complete)==touches[i]);
+    assert(complete==(i!=5));++checks;
+  }
   checks+=check("","\tmov\tr6,#2\n\tpush\tr6\n",mask(6,1),1,1);
   checks+=check("\tmov\tr6,#2\n","",mask(6,1),1,1);
   checks+=check("\tmov\tr6,r1\n","",mask(6,1),1,0);
