@@ -1,0 +1,601 @@
+{
+  "schema": 1,
+  "status": "PASS_NATIVE_BANK0_ISR_BODIES",
+  "sourceCommit": "b1560bd31eb02f39d1e051729cf6883c843743ed",
+  "core": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\candidate\\core",
+  "buildEntry": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\Build-Optimized.ps1",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "0b354cb105279b862cb321f4b4a6f38ce8227b9cd00f5911f808c0db2bc35345"
+  },
+  "previousMatrix": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\comparison.json",
+    "sha256": "9d1b66743e49151cd13c250793a576f6eb587f9f246a6bff7d77c4454aee8301"
+  },
+  "sourceAlgorithmsChanged": false,
+  "isrProjectsScanned": 172,
+  "translationUnits": 233,
+  "nativeIsrFunctions": 10,
+  "fullyRebuiltProjects": 9,
+  "savedBytes": 1424,
+  "rows": [
+    {
+      "id": "g013",
+      "name": "05-利用定时器测量脉冲宽度\\C语言",
+      "before": 669,
+      "after": 637,
+      "saved": 32,
+      "keilBytes": 514,
+      "beforeRatio": 1.301556420233463,
+      "afterRatio": 1.2392996108949417,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer1_int",
+          "before": 89,
+          "after": 57
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g013\\mx251\\result.json",
+        "sha256": "3320e5753c44efe43254d678012fd8530a3c7f96f072e87067ddccb0566cb6e9"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 514,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g013\\keil\\result.json",
+            "sha256": "4414224564c781896acb71cb6f4135772691d1f2e01304c5d10dc3b4f91a8af7"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g013\\keil\\firmware.hex",
+            "sha256": "672d0bd872b29bf9e183a8cf3ddf0e47d9a1c6b3379e3bbdc4f94e3cbea53283"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1096,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g013\\stc-soft\\result.json",
+            "sha256": "1f991bf4733445db9bb5b0eec413aa3490b3747d2031dd84e69cb82a1d699b74"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g013\\stc-soft\\firmware.hex",
+            "sha256": "51a1975d28d388dd25712d8e036c804dc620875953d785927a81a7ab06fdd004"
+          }
+        }
+      }
+    },
+    {
+      "id": "g044",
+      "name": "20-使用比较器检测低电压时保存数据到EEPROM\\C语言",
+      "before": 1258,
+      "after": 1171,
+      "saved": 87,
+      "keilBytes": 956,
+      "beforeRatio": 1.3158995815899581,
+      "afterRatio": 1.2248953974895398,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_CMP_Isr",
+          "before": 337,
+          "after": 250
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g044\\mx251\\result.json",
+        "sha256": "d3e7ab3197b3b6e907b97e7e00e4195b3cb8778940e4426b3a338df9430aa9da"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 956,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g044\\keil\\result.json",
+            "sha256": "764fc2d54cfff49f7d86db5c6e6cb70696c35439dc89ad7926c3ca42a68c650c"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g044\\keil\\firmware.hex",
+            "sha256": "48ad95c634c8ffb98f888984a7b5f0e3cec018495f41068eb115968213a3f1e7"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1979,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g044\\stc-soft\\result.json",
+            "sha256": "f0843dbfa1b6280ae6080378ec4f5d9dcd86923a981de68a7dea33e3b8d836ed"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g044\\stc-soft\\firmware.hex",
+            "sha256": "1b15056b806c84deb933a0310e0de3d696ed1705ad757be18e73a60ae70e73d9"
+          }
+        }
+      }
+    },
+    {
+      "id": "g048",
+      "name": "25-高级PWM1-PWM2-PWM3-PWM4，驱动P6口呼吸灯实验程序\\C语言",
+      "before": 941,
+      "after": 779,
+      "saved": 162,
+      "keilBytes": 691,
+      "beforeRatio": 1.361794500723589,
+      "afterRatio": 1.1273516642547032,
+      "crossed110": false,
+      "crossed120": true,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer0",
+          "before": 402,
+          "after": 240
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g048\\mx251\\result.json",
+        "sha256": "12f4836fdacdbaed38ca421d10e2eb7480be18259c2781836f9c8fda7f463324"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 691,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g048\\keil\\result.json",
+            "sha256": "0df32e418b190ae407bfa124daa763ae6d21a70ac22c212103c86c54ea15a62c"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g048\\keil\\firmware.hex",
+            "sha256": "8a513c0ff10ee1a64c3305e0d1e03ad74a739cc0b5cd9f232d9c01438269910a"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1046,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g048\\stc-soft\\result.json",
+            "sha256": "e3febcf35853e1da71037f3e42e6878c6b560dc64d35de9e10c7690c002c44e9"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g048\\stc-soft\\firmware.hex",
+            "sha256": "b4e59f83ebb2dd5bfc21eedfc434c7fc9d4b5af4a6fd8bc12146e80ee0ac7751"
+          }
+        }
+      }
+    },
+    {
+      "id": "g050",
+      "name": "26-高级PWM5-PWM6-PWM7-PWM8输出测试程序\\C语言",
+      "before": 899,
+      "after": 737,
+      "saved": 162,
+      "keilBytes": 649,
+      "beforeRatio": 1.3852080123266564,
+      "afterRatio": 1.1355932203389831,
+      "crossed110": false,
+      "crossed120": true,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer0",
+          "before": 402,
+          "after": 240
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g050\\mx251\\result.json",
+        "sha256": "31b564fa15e1adb6d8ff8584c39ad594eda8bd1e86949acd9d12e9d5becddd0d"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 649,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g050\\keil\\result.json",
+            "sha256": "2c908e123ab62d1a01b24628b25d6d91c1a7232220ff2623a91d20fc9d7be488"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g050\\keil\\firmware.hex",
+            "sha256": "f2e58da19b013c0420cf08ecfce7b86eca02a3aae3a7488639eba4ac46bdebab"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1043,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g050\\stc-soft\\result.json",
+            "sha256": "55188992bc3cd77477e09c60385393b8296621c6597b8a8b00c70656cf446f02"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g050\\stc-soft\\firmware.hex",
+            "sha256": "e2e46963d222826d8949501883d517569135ccacf9cba47ebff5e682ce0536a3"
+          }
+        }
+      }
+    },
+    {
+      "id": "g117",
+      "name": "68-高速HSPWM1-HSPWM2-HSPWM3-HSPWM4，驱动P6口呼吸灯实验程序",
+      "before": 1035,
+      "after": 873,
+      "saved": 162,
+      "keilBytes": 826,
+      "beforeRatio": 1.2530266343825667,
+      "afterRatio": 1.0569007263922519,
+      "crossed110": true,
+      "crossed120": true,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer0",
+          "before": 406,
+          "after": 244
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g117\\mx251\\result.json",
+        "sha256": "589b8d720a46d6318f33e415b9cce7ae7dba92b3b43f176ac57ddb80cd1c34e8"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 826,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g117\\keil\\result.json",
+            "sha256": "8d455aeec5840099679cfd1c31a501963e8891170a460ee8c60f084de65d6b41"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g117\\keil\\firmware.hex",
+            "sha256": "d790c837dc678549297f7779019e1c54693cfaf465f6a6527635f21f04630013"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1614,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g117\\stc-soft\\result.json",
+            "sha256": "ef40570e4ced67013b9b0bc4e0703b8041c4132f60b7609fc5d981d6df34e5d7"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g117\\stc-soft\\firmware.hex",
+            "sha256": "e2ae3defbce489d9d5b938a6dc626f24326019894288e27273cf64cafe0a3791"
+          }
+        }
+      }
+    },
+    {
+      "id": "g129",
+      "name": "80-高级PWM输出-周期可调-脉冲计数",
+      "before": 462,
+      "after": 425,
+      "saved": 37,
+      "keilBytes": 395,
+      "beforeRatio": 1.169620253164557,
+      "afterRatio": 1.0759493670886076,
+      "crossed110": true,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer0",
+          "before": 120,
+          "after": 83
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g129\\mx251\\result.json",
+        "sha256": "ba25bc77e46f76feef60708c60cb14a48652214bbc357c08d511750988eb5fd6"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 395,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g129\\keil\\result.json",
+            "sha256": "d23158010e7e5bbe9a677345e264875b840db57b387c0b4c20e3ae5ee9aa44d3"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g129\\keil\\firmware.hex",
+            "sha256": "ef771742ff4fd879296a0e86429dfadea0fbef57feb63756e685d5c0db74ba43"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 924,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g129\\stc-soft\\result.json",
+            "sha256": "e382b83cbd0c99e4c918ad4254b4353428e73ed70b12e384de80c210495ffd73"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g129\\stc-soft\\firmware.hex",
+            "sha256": "61f2690124add18c2359f463049fe97b2748a515221a1975fcd84a2b0c11227f"
+          }
+        }
+      }
+    },
+    {
+      "id": "g133",
+      "name": "83-老梁示波器-CDC虚拟显示",
+      "before": 8542,
+      "after": 8455,
+      "saved": 87,
+      "keilBytes": 6979,
+      "beforeRatio": 1.2239575870468549,
+      "afterRatio": 1.2114916177102737,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer0_ISR",
+          "before": 326,
+          "after": 241
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\g133\\mx251\\result.json",
+        "sha256": "32290d4539f86b900a08a7aa030f9a1ac7caa5f754ae52c6806c4d27463cf601"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 6979,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g133\\keil\\result.json",
+            "sha256": "3304d5562d66e5bd31d2fae2fbf39f47c47adf4a8234c93b206047ec6724d269"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g133\\keil\\firmware.hex",
+            "sha256": "1f1469459cc5761dcbaeca638fec886691170f23a6efba08b0257efda2b7d942"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 9463,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g133\\stc-soft\\result.json",
+            "sha256": "6552b2ef4b85e9145d50db0bad87811f957d863c5b0c259468fa59bd7a5b65a6"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g133\\stc-soft\\firmware.hex",
+            "sha256": "24d4d2d3a99696fe6850a0968dec38817cf7bc3d34d4dc7ef4865bd67b63d37c"
+          }
+        }
+      }
+    },
+    {
+      "id": "p140",
+      "name": "84-USB录放音声卡-TLV320AIC23B-内部36.864M-外接32768Hz晶振",
+      "before": 6883,
+      "after": 6275,
+      "saved": 608,
+      "keilBytes": 5059,
+      "beforeRatio": 1.3605455623641036,
+      "afterRatio": 1.2403637082427357,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_i2s_isr",
+          "before": 314,
+          "after": 232
+        },
+        {
+          "name": "_ADC_ISR",
+          "before": 1185,
+          "after": 659
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\p140\\mx251\\result.json",
+        "sha256": "65692b1d0ee1334fe5893b2f5004ed6648dcef5d4ce1903d541b6e5084dc1de5"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5059,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\keil\\result.json",
+            "sha256": "fedba69099311ca52aabb12105dc3d2ecc485a535a86fdc9eeabbe67235cce6f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\keil\\firmware.hex",
+            "sha256": "1babb22c2a3e0f68a2ed2d54d615c4fd4d5fa1dc57679ae470811f50f8de189a"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\stc-soft\\result.json",
+            "sha256": "a5f99ff2b632f9a69f4edd9b570cc6ed04338a5348e96750dd28170b860cc358"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\stc-mdu32\\result.json",
+            "sha256": "d9186df7fa082be4ebf961a6ef70d6b33696e0d58d8be203a51475a96b8ab6f0"
+          }
+        }
+      }
+    },
+    {
+      "id": "p141",
+      "name": "85-示波器-CDC虚拟显示",
+      "before": 8544,
+      "after": 8457,
+      "saved": 87,
+      "keilBytes": 6957,
+      "beforeRatio": 1.228115567054765,
+      "afterRatio": 1.2156101768003449,
+      "crossed110": false,
+      "crossed120": false,
+      "sourceInputsIdentical": true,
+      "model": "small",
+      "isrFunctions": [
+        {
+          "name": "_timer0_ISR",
+          "before": 329,
+          "after": 244
+        }
+      ],
+      "result": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\projects\\p141\\mx251\\result.json",
+        "sha256": "b65b846b832710fbc333bbe18a8130825b243c24a9ea7659858314d9e68b34a3"
+      },
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 6957,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p141\\keil\\result.json",
+            "sha256": "74805b24f48ade0d8b9a2091bf07da4c578702cfcafa031ed1fc862681788e44"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p141\\keil\\firmware.hex",
+            "sha256": "5c1518ca6629a21e85f1c9e4fdf4d644fb10ef3e5ec7fb2c5b6359d44fed1209"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 9494,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p141\\stc-soft\\result.json",
+            "sha256": "c8f9bfc96fe3b68aebd53a251dc166c6839fe991a9c1fa338cf6f0429cf154d0"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p141\\stc-soft\\firmware.hex",
+            "sha256": "372ecb2fa109fe5c5feaa05472f094005915ac38b3866f8d1ed630ae61d67105"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "bytes": 9494,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p141\\stc-mdu32\\result.json",
+            "sha256": "2dfab6049ef593f469ef364800d83685bc5c7f33cea70aaea02d31cbb818d29d"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p141\\stc-mdu32\\firmware.hex",
+            "sha256": "372ecb2fa109fe5c5feaa05472f094005915ac38b3866f8d1ed630ae61d67105"
+          }
+        }
+      }
+    }
+  ],
+  "cumulativeKeilCounts": {
+    "ai8051u-expanded31": {
+      "projects": 31,
+      "keil110": 12,
+      "keil120": 19
+    },
+    "ai8051u-frozen75": {
+      "projects": 75,
+      "keil110": 75,
+      "keil120": 75
+    },
+    "stc32g-97": {
+      "projects": 97,
+      "keil110": 44,
+      "keil120": 78
+    }
+  },
+  "cumulativeCountsMethod": "Replace only these nine rows of the retained 203-project matrix.",
+  "hardware": {
+    "cases": 128,
+    "frames": 223,
+    "port": "COM13",
+    "firmwareSha256": "bde2dff9af58055824424e51a4e6fe882f9c1a8f99c028ca4663aa759832c5e7",
+    "codeBytes": 2648,
+    "checks": [
+      "all four interrupted register banks",
+      "R0..R31",
+      "PSW/PSW1",
+      "DPX",
+      "SPX",
+      "early return",
+      "local volatile array",
+      "stack arguments",
+      "unknown assembly callee",
+      "integer results against independent Python constants"
+    ]
+  },
+  "limitations": [
+    "Official project execution time was not measured; static instruction count is not cycle time.",
+    "Keil and STC-IDE binaries are retained reference builds, not rebuilt this round.",
+    "The nine project links used the pilot compiler; all 233 ISR-unit ASM and REL outputs are byte-identical with the final compiler.",
+    "Other-bank, naked, critical and other excluded entry contracts retain the legacy backend.",
+    "No complete new 203-project link matrix was run."
+  ],
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\final-census\\result.json",
+      "sha256": "47901e42e9f67386012fa235cd37b19bccaafbeedd5f2853d856fc7c27d90e5b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\compiler-equivalence.json",
+      "sha256": "ea675fbf69cc53ddde67a50c3eb5c75eaf28bb85ef008ba5326eaf8c9e203c51"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\pilot-builds.json",
+      "sha256": "26ac0342a08c2b8f816a3c8875279a82d477aa8edac2365c1fdd4944c0b71240"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\contracts\\result.json",
+      "sha256": "c5fc63a63f0837691a2356a7fd6f0d74c791b2b19036aba673342f38dadf1d51"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\abi-regression\\results.json",
+      "sha256": "bb93fb53cb4de3f84f2e90d429c25920086df3b5711fc6503b1a78490d611f77"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\hardware-final\\source.json",
+      "sha256": "707cd435951e4dc5f79ae15034dd77754e72182e4c7edbf682669bf1c700306b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\hardware-final\\.build\\mx251\\latest\\receipt.json",
+      "sha256": "a592e9b1441b263372d30e6520744675a7033759a698019a9bc38d85327fcdaf"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\wide-isr-body-20261115\\hardware-capture-final\\result.json",
+      "sha256": "7db64238f6e85e41880a04262950e1f06006cd2db918d44d836f40fd00a7c1a6"
+    }
+  ]
+}
