@@ -151,6 +151,10 @@ mcs251BackendSymbol(const char *name,const void *unused)
       const symbol *s=node->item;
       if(!s || !s->rname[0] || getSize(s->type)<=0)continue;
       bool edataObject=spaces[i]==edata || spaces[i]==e_abs;
+      if(edataObject && !s->onStack) {
+        wide_cost_operand indexed=wide_cost_symbol_index(name,s->rname,getSize(s->type));
+        if(indexed.kind!=WC_UNKNOWN)return indexed;
+      }
       if(extended!=edataObject || s->onStack)continue;
       int offset=bc_symbol_offset(object,s->rname,(unsigned)getSize(s->type));
       if(offset<0)continue;
@@ -199,7 +203,11 @@ mcs251BackendCost(const char *text,size_t length,bool bodyEstimate)
     if(n>=sizeof temp){++c.unknown;continue;}memcpy(temp,p,n);temp[n]=0;
     if(sscanf(temp,"ar%u = 0x%x%n",&ar,&value,&consumed)==2 && consumed==(int)n && ar<8 && value==ar)continue;
     unsigned bytes=bc_instruction_bytes_mode(p,n,mcs251BackendSymbol,NULL,bodyEstimate);
-    if(!bytes || (!bodyEstimate && ended)){++c.unknown;continue;}
+    if(!bytes || (!bodyEstimate && ended)){
+      if(getenv("MX251_BACKEND_COST_TRACE"))
+        fprintf(stderr,"backend cost unknown function=%s instruction=%s\n",currFunc->rname,temp);
+      ++c.unknown;continue;
+    }
     char op[24],args[512];size_t k=0,j=0;
     while(k<n && !isspace((unsigned char)temp[k]) && k+1<sizeof op){op[k]=(char)tolower((unsigned char)temp[k]);++k;}
     op[k]=0;

@@ -576,7 +576,7 @@ wide_memory(wide_function *f,wide_node *n,iCode *ic,bool store)
 /* 只折叠同一基本块内由真实 DATA 对象和常量偏移形成的近地址。
  * 不接纳运行期近指针、近指针 ABI 或地址空间转换；实际字节读写仍保留。 */
 static bool wide_near_type(sym_link *t)
-{return IS_PTR(t) && DCL_TYPE(t)==POINTER && getSize(t)==1 && !IS_FUNC(t->next);}
+{return IS_PTR(t) && (DCL_TYPE(t)==POINTER || DCL_TYPE(t)==IPOINTER) && getSize(t)==1 && !IS_FUNC(t->next);}
 
 /* 外部 DATA 对象须有完整的无重叠标量布局，支持标量数组。
  * volatile/atomic、union、嵌套结构、位域沿用原路径。
@@ -666,8 +666,11 @@ wide_near_location(wide_function *f,operand *p,iCode *before,iCode *begin,symbol
        OP_SYMBOL(IC_RESULT(d))==OP_SYMBOL(p)) {
       if(d->op==ADDRESS_OF && IS_TRUE_SYMOP(IC_LEFT(d)) && IC_RIGHT(d) && IS_OP_LITERAL(IC_RIGHT(d))) {
         symbol *o=OP_SYMBOL(IC_LEFT(d));
-        if(o->onStack || o->_isparm || SPEC_OCLS(o->etype)!=data ||
-           SPEC_ABSA(o->etype) || isAtomic(o->type) || getSize(o->type)<=0 || getSize(o->type)>128)return false;
+        memmap *space=SPEC_OCLS(o->etype);
+        bool indirect=DCL_TYPE(operandType(p))==IPOINTER;
+        if(o->onStack || o->_isparm || space!=(indirect?idata:data) ||
+           SPEC_ABSA(o->etype) || isAtomic(o->type) || getSize(o->type)<=0 ||
+           getSize(o->type)>(indirect?256:128))return false;
         if(IS_EXTERN(o->etype) && !wide_extern_data_layout(o->type))return false;
         double at=operandLitValue(IC_RIGHT(d));
         if(at<0 || at>=getSize(o->type) || at!=(int)at)return false;
@@ -709,6 +712,9 @@ wide_near_field(wide_function *f,wide_node *n,iCode *ic,iCode *begin)
     operand *address=store?IC_RESULT(ic):IC_LEFT(ic),*value=store?IC_RIGHT(ic):IC_RESULT(ic);
     if(!address || !value || !wide_near_type(operandType(address)) ||
        !wide_near_location(f,address,ic==begin?NULL:ic->prev,begin,&object,&offset,0))return wide_near_indexed(f,n,ic,begin);
+    /* IDATA's upper half is RAM only through an indirect address. Materialize
+     * the byte address even for a fixed offset; direct symbols there name SFRs. */
+    if(SPEC_OCLS(object->etype)==idata)return wide_near_indexed(f,n,ic,begin);
     sym_link *pt=operandType(address),*t=operandType(value);
     sym_link *field=store?pt->next:t;
     if(IS_BITFIELD(field))return wide_field_import(f,n,ic,store,object,offset);
@@ -1229,13 +1235,12 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         if(n->floating || n->left.floating)return wide_import_reject(f,ic,__LINE__);
         f->body=true;break;
       case UNARYMINUS:
-        /* 同宽有符号整数在 C 定义域内等于 0-x；复用现有 SUB，
-         * 不插入饱和/越界语义，也不改变前端整型提升和截断。
-         * 最小负数保持目标已有二补码位模式，但不把 C 有符号溢出
-         * 声称为新增的定义域。指针、浮点和宽度/符号不匹配继续回退。
-         * 窄无符号历史成本负例仍由原研究开关单独控制。 */
+        /* Same-width integer negation is 0-x in the result width. Copy
+         * propagation can remove a signedness-only assignment before the
+         * negate, leaving different input/result signs but identical bits.
+         * Keep width changes explicit so integer promotion is preserved. */
         if (!wide_result(f,n,IC_RESULT(ic)) || !wide_use(f,n,IC_LEFT(ic),&n->right) ||
-            n->floating || n->right.floating || n->sign!=n->right.sign ||
+            n->floating || n->right.floating ||
             n->width!=n->right.width ||
             (n->width!=1 && n->width!=2 && n->width!=4) ||
             wide_pointer(operandType(IC_RESULT(ic))) || wide_pointer(operandType(IC_LEFT(ic))) ||

@@ -75,9 +75,12 @@ bc_instruction_bytes_mode(const char *text,size_t length,wide_cost_resolver reso
     /* Source-mode classic indirect byte forms carry the A5 prefix. */
     int di=!strcmp(a,"@r0") || !strcmp(a,"@r1");
     int si=!strcmp(b,"@r0") || !strcmp(b,"@r1");
+    if((di && src.kind==WC_REG && src.width==1 && src.reg==11) ||
+       (si && dst.kind==WC_REG && dst.width==1 && dst.reg==11))return 2;
     if((di && (src.kind==WC_IMM || src.kind==WC_DIRECT)) ||
        (si && dst.kind==WC_DIRECT))return 3;
   }
+  if(narrow && !strcmp(op,"mul") && !second && !strcmp(a,"ab"))return 1;
   if(narrow && !strcmp(op,"djnz"))
     return second==1 && y && (dst.kind==WC_DIRECT ||
       (dst.kind==WC_REG && dst.width==1 && dst.reg<8))?3:0;

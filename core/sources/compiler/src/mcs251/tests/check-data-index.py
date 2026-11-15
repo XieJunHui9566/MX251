@@ -40,11 +40,14 @@ for model in ('small','large'):
         assert re.search(r'wide indexed DATA address .*op=-',text)
         text=(d/'extra.asm').read_text()
         assert 'wide-mir accepted: near_parameter' not in text
-        assert 'wide-mir accepted: wide_index' in text
-        assert 'wide-mir accepted: static_index' in text
+        # Admission and final selection are separate: whole-body selection
+        # can keep a smaller legacy implementation of these tiny functions.
+        for name in ('wide_index','static_index'):
+            assert re.search(r'backend-choice function=_'+name+r' .*wide-bytes=[1-9]',text)
         assert 'wide-mir accepted: aggregate_view' not in text
         fixed=text.split('; mx251-function begin schema=1 symbol=_fixed_index ',1)[1].split('; mx251-function end',1)[0]
         assert 'wide indexed DATA address' not in fixed
-        assert 'wide near DATA field' in fixed
+        assert 'wide near DATA field' in fixed or re.search(
+            r'backend-choice function=_fixed_index selected=legacy .*unknown=0/0',fixed)
 (a.output/'result.json').write_text(json.dumps(dict(status='PASS',configurations=4,commands=rows),indent=2)+'\n')
 print('PASS: small/large x speed/size, DATA byte/word/dword, volatile, signed offsets, address merges, and unchanged near parameter ABI')

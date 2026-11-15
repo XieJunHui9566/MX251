@@ -16,6 +16,8 @@ probe.write_text('''#include <stdio.h>
 #include "backend_encoding.h"
 static wide_cost_operand resolve(const char *s,const void *ctx) {
   (void)ctx;
+  wide_cost_operand indexed=wide_cost_symbol_index(s,"_extended",4);
+  if(indexed.kind!=WC_UNKNOWN)return indexed;
   if(strlen(s)==6 && s[0]=='0' && s[1]=='x' && s[4]=='.')
     return (wide_cost_operand){strtoul(s,NULL,16)&7?WC_EXT_BIT:WC_BIT,0,0};
   return (wide_cost_operand){WC_UNKNOWN,0,0};
@@ -37,9 +39,11 @@ cases = ['cjne a,#1,finish0', 'cjne a,0x82,finish1',
          'jbc acc.0,finish23', 'mov @r0,#16', 'mov @r1,#16',
          'mov @r0,0x99', 'mov @r1,0x99', 'mov 0x99,@r0', 'mov 0x99,@r1']
 cases += ['jmp @a+dptr','cpl 0xce.3','cpl 0x88.4']
+cases += ['mul ab','mov a,@r0','mov a,@r1','mov @r0,a','mov @r1,a',
+          'mov r9,@wr16+(_extended+0)','mov @wr16+(_extended+2),wr6']
 q = subprocess.run([str(exe), *cases], check=True, capture_output=True, text=True)
 costs = list(map(int, q.stdout.split()))
-asm = '.module cost\n.globl _constant\n.area CSEG (CODE)\n'
+asm = '.module cost\n.globl _constant, _extended\n.area CSEG (CODE)\n'
 for i, ins in enumerate(cases):
     asm += f'.globl begin{i}, finish{i}\nbegin{i}:\n\t{ins}\nfinish{i}:\n'
 (a.output_dir / 'cost.asm').write_text(asm)
