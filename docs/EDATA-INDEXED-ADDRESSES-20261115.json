@@ -1,0 +1,252 @@
+{
+  "schema": 1,
+  "status": "PASS_EDATA_INDEXED_ADDRESSES_AND_HARDWARE",
+  "sourceCommit": "9f7a4349a6335ab3acb8b8bc129d91307d966ac2",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "e95b83d784b012d6595b3c0b841df2f413ca2ac97914f44ec63adcdec210ea8e"
+  },
+  "assembler": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\candidate\\core\\toolchain\\bin\\sdas251.exe",
+    "sha256": "9faf2b4cc7e2a0fd132377687a348554df654afe3ef34826ebc7323626b950b5"
+  },
+  "candidate": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\candidate\\core",
+  "buildEntry": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\Build-Optimized.ps1",
+  "previousTiming": {
+    "path": "E:\\STVAPP\\MX251-baseline\\work\\low-byte-products-20261115\\final\\timing-comparison.json",
+    "sha256": "25842efd4eef06b2780a3f7e554052d24e457b1075a8a9264cd36c0dbf90c0d4"
+  },
+  "imageBytes": {
+    "before": 6616,
+    "after": 6528,
+    "keil": 6124
+  },
+  "imageRatioToKeil": 1.0659699542782495,
+  "rows": [
+    {
+      "name": "fields_clean",
+      "beforeBytes": 185,
+      "afterBytes": 156,
+      "keilBytes": 134,
+      "beforeTimeRatio": 1.235171020864162,
+      "afterTimeRatio": 1.117334641704917,
+      "casesAt110": 1
+    },
+    {
+      "name": "fields_messy",
+      "beforeBytes": 219,
+      "afterBytes": 185,
+      "keilBytes": 201,
+      "beforeTimeRatio": 1.0222351396785085,
+      "afterTimeRatio": 0.9109587142134108,
+      "casesAt110": 64
+    },
+    {
+      "name": "parser_clean",
+      "beforeBytes": 215,
+      "afterBytes": 215,
+      "keilBytes": 178,
+      "beforeTimeRatio": 0.982310587430595,
+      "afterTimeRatio": 0.9821338704863461,
+      "casesAt110": 64
+    },
+    {
+      "name": "parser_messy",
+      "beforeBytes": 218,
+      "afterBytes": 217,
+      "keilBytes": 175,
+      "beforeTimeRatio": 0.9414062713108521,
+      "afterTimeRatio": 0.9412369130226574,
+      "casesAt110": 64
+    },
+    {
+      "name": "ring_clean",
+      "beforeBytes": 214,
+      "afterBytes": 206,
+      "keilBytes": 157,
+      "beforeTimeRatio": 0.48624835797668214,
+      "afterTimeRatio": 0.5198944944970035,
+      "casesAt110": 64
+    },
+    {
+      "name": "ring_messy",
+      "beforeBytes": 208,
+      "afterBytes": 192,
+      "keilBytes": 155,
+      "beforeTimeRatio": 1.012511345826545,
+      "afterTimeRatio": 1.003713628164587,
+      "casesAt110": 64
+    },
+    {
+      "name": "bits_clean",
+      "beforeBytes": 260,
+      "afterBytes": 260,
+      "keilBytes": 229,
+      "beforeTimeRatio": 0.911476315498614,
+      "afterTimeRatio": 0.9113123415872144,
+      "casesAt110": 64
+    },
+    {
+      "name": "bits_messy",
+      "beforeBytes": 260,
+      "afterBytes": 260,
+      "keilBytes": 235,
+      "beforeTimeRatio": 0.8593399706349474,
+      "afterTimeRatio": 0.8591853760132211,
+      "casesAt110": 64
+    },
+    {
+      "name": "callback_clean",
+      "beforeBytes": 99,
+      "afterBytes": 99,
+      "keilBytes": 52,
+      "beforeTimeRatio": 0.9689563109382313,
+      "afterTimeRatio": 0.9687819964183935,
+      "casesAt110": 64
+    },
+    {
+      "name": "callback_messy",
+      "beforeBytes": 99,
+      "afterBytes": 99,
+      "keilBytes": 71,
+      "beforeTimeRatio": 0.9393368390335018,
+      "afterTimeRatio": 0.9391678530346351,
+      "casesAt110": 64
+    },
+    {
+      "name": "giant_clean",
+      "beforeBytes": 103,
+      "afterBytes": 103,
+      "keilBytes": 88,
+      "beforeTimeRatio": 0.3847010658904256,
+      "afterTimeRatio": 0.38463185845472925,
+      "casesAt110": 64
+    },
+    {
+      "name": "giant_messy",
+      "beforeBytes": 3865,
+      "afterBytes": 3865,
+      "keilBytes": 3947,
+      "beforeTimeRatio": 0.28058188770388837,
+      "afterTimeRatio": 0.2805314112309265,
+      "casesAt110": 64
+    }
+  ],
+  "qualification": {
+    "contractConfigurations": 8,
+    "indexedAddressPositiveFunctions": 8,
+    "unchangedAddressBoundaryFunctions": 8,
+    "relocationImages": 8,
+    "encodingCostCases": 168,
+    "instructionForms": 269,
+    "instructionFamilies": 65,
+    "opcodeMaps": 2,
+    "startupEncodingCases": 5,
+    "startupEncodingInstructions": 55,
+    "userTranslationUnits": 63,
+    "userConfigurations": 9,
+    "independentTargetDescriptions": 3,
+    "identicalPureCObjectsAcrossTargets": true,
+    "changedUserObjects": 18,
+    "unchangedUserObjects": 45,
+    "hostEvaluations": 3072,
+    "hostEquivalentPairs": 1536,
+    "abi2HardwareCases": 768,
+    "abi4HardwareCases": 768,
+    "indexedHardwareEvaluations": 98304,
+    "userHardwareCases": 832,
+    "userHardwareFrames": 3724,
+    "userHardwareMinimumSamples": 4,
+    "userKindsFullyAt110Time": 11,
+    "userKinds": 12
+  },
+  "evidence": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\timing-comparison.json",
+      "sha256": "4aeb88b8cba213b9563604446b1935ff674b68f4b680eb3060b853586268792b"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\source.json",
+      "sha256": "b55216ee67850e29ebcb213a2c35f0c98e98680839cbc5a03bf5b2d6ec8d4b75"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\mx251-capture\\result.json",
+      "sha256": "2133333b368958a49a6aaca8ae0f5d9336d1cb8fe0aeccd970349705162fe472"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\keil-capture\\result.json",
+      "sha256": "9e4b4a00a9d8fa6f5057996bb25595111e75c3c8af6e33959046fcdcdbc5b946"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\function-costs.json",
+      "sha256": "00217b46ffd92485fbe4add2ae1ef6b589533a73c7029a91a711751433de0c63"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\user-object-changes.json",
+      "sha256": "5d7c25d3288b45e115cf5fcafb1c0b954a01d96b0a5ed07b4b6f1be1e600c635"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\contracts-final\\result.json",
+      "sha256": "8ffdbcc98f90fe426958bbb84265dae4ec37a977acc218fa2678c74b60be8783"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\indexed-relocations-final\\result.json",
+      "sha256": "d2eb1e16b8e8762695079e838fcfaebbf5c824c222e74814872ddc1789d45434"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\encoding-cost\\operand-results.json",
+      "sha256": "64f1bba7832295a61dac5d5823c8d9b86a1b66e2516407514f5a9008ab0b5df2"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\startup-encoding\\result.json",
+      "sha256": "d097006b6c359683018b7905b78b9b30ff09d5d4925e36113fff1da39edec2c8"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\user-stress\\compilation.json",
+      "sha256": "fab8f1ac58b5df525ab1a4dc6cac497fbe55a2e5c36834ee29912b71dbaf3954"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\user-stress\\host-result.json",
+      "sha256": "c247fecdaede91af4751d063c3b5d95c70f2809666a4a2813ace1dfb735717bf"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\indexed-abi2\\capture\\result.json",
+      "sha256": "3442ca62c053ce7d182eae09d27d2f406f1a99169d8b3ce3c8ce68c5d12b38da"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\indexed-abi4\\capture\\result.json",
+      "sha256": "44ad44d7e5cf9520325f0bee4dd650a015a0f23ba93ca3d04f67cd69eb23c9f3"
+    }
+  ],
+  "firmware": [
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\final\\mx251\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "7f3dd2ad5ab99cbb1330338dd283bd6c5ac3b3d53f1d145b8361e910cc1f9df9"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\indexed-abi2\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "8297d0cfee4018828a94d14bd925beaf7ecd420e7239f70718da7a877c1280e2"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251-baseline\\work\\edata-indexed-addresses-20261115\\indexed-abi4\\board\\.build\\mx251\\latest\\firmware.hex",
+      "sha256": "06c6f9160939b186c6648d8ba377895350aea5b3c18335ab140d7b26db1ff43f"
+    }
+  ],
+  "instructionFormsExecution": {
+    "status": "PASS",
+    "evidenceKind": "completed-command-output",
+    "script": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\sdas\\as251\\tests\\check-instruction-forms.py",
+      "sha256": "f3a55813d01f77269406672a6c6fd52a1d68818032c4b9ae8d8d79aa77ba2b87"
+    },
+    "matrix": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\core\\sources\\compiler\\sdas\\as251\\tests\\instruction-forms.tsv",
+      "sha256": "a56ee15ea9a2ab6a58639d8620ac46bbe2ddad291ea5db5c1fc9e2d2d942899f"
+    },
+    "assemblerSha256": "9faf2b4cc7e2a0fd132377687a348554df654afe3ef34826ebc7323626b950b5"
+  },
+  "fullOfficialMatrixRerun": false,
+  "fullEngineeringTimingQualified": false,
+  "stcIdeTimingMeasured": false,
+  "nextInvestigation": "zero-extended narrow values followed by left shifts; redundant high-half zeros"
+}
