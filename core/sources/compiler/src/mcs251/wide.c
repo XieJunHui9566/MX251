@@ -1879,8 +1879,11 @@ wide_fold_extensions (wide_function *f)
          n->op==RETURN || n->op==FUNCTION || n->op==ENDFUNCTION ||
          n->op==RECEIVE || n->op==WM_ORDERED_ASM || n->op==WM_VOLATILE_READ || wb_has(n->def,cast->right.value))break;
       if(!wb_has(n->use,result))continue;
+      const char *shifts=getenv("MX251_NARROW_ZERO_SHIFTS");
+      bool leftShift=n->op==LEFT_OP && n->left.value==result &&
+        (!shifts || strcmp(shifts,"0"));
       if(n->width!=cast->width || (n->op!='+' && n->op!='-' && n->op!='^' &&
-         n->op!='|' && n->op!=BITWISEAND))break;
+         n->op!='|' && n->op!=BITWISEAND && !leftShift))break;
       if(n->left.value==result)n->left=cast->right;else n->right=cast->right;
       n->use=wb_minus(n->use,cast->def);wb_set(&n->use,cast->right.value);
       cast->op=WM_NOP;cast->use=cast->def=(wide_bits){{0}};

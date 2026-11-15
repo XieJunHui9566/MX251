@@ -996,6 +996,13 @@ wbinary(wide_function *f,wide_node *n)
   if(right.value>=0 && f->values[right.value].reg==work && left.value!=right.value) {
     if(commutative){wide_operand t=left;left=right;right=t;}else work=16;
   }
+  const char *zeroBits=getenv("MX251_NARROW_ZERO_BITS");
+  bool bitwise=n->op=='^' || n->op=='|' || n->op==BITWISEAND;
+  bool narrowBits=width==4 && bitwise && (!zeroBits || strcmp(zeroBits,"0"));
+  if(narrowBits && left.width<4 && !left.sign && right.width==4) {
+    wide_operand swap=left;left=right;right=swap;
+  }
+  narrowBits=narrowBits && right.value>=0 && right.width<=2 && !right.sign;
   /* 窄源扩展后，宽结果可能同时覆盖多个输入的字节位置。
    * 必须在写work前保存相交的右值，不能仅比较寄存器起始编号。
    */
@@ -1003,7 +1010,7 @@ wbinary(wide_function *f,wide_node *n)
     f->values[left.value].reg>=0 && f->values[left.value].reg+left.width-width==work;
   bool rightSnapshot=!leftInPlace && right.value>=0 && f->values[right.value].reg>=0 &&
     (wide_mask(work,width)&wide_mask(f->values[right.value].reg,right.width));
-  if(rightSnapshot)wload(f,right,20,width);
+  if(rightSnapshot)wload(f,right,narrowBits?22:20,narrowBits?2:width);
   wload(f,left,work,width);
   if(n->op=='+'||n->op=='-') {
     const char *op=n->op=='+'?"add":"sub";
@@ -1012,12 +1019,18 @@ wbinary(wide_function *f,wide_node *n)
     } else {int rhs=rightSnapshot?20:wread(f,right,20,width);we(f,"\t%s\t%s%d,%s%d\n",op,wp(width),work,wp(width),rhs);}
   } else {
     const char *op=n->op=='^'?"xrl":n->op=='|'?"orl":"anl";
-    int rhs=right.value<0?-1:rightSnapshot?20:wread(f,right,20,width);
+    int rhs=right.value<0?-1:rightSnapshot?(narrowBits?22:20):
+      wread(f,right,narrowBits?22:20,narrowBits?2:width);
+    if(narrowBits)we(f,"; wide zero-high bitwise op=%s source-width=%d\n",op,right.width);
     for(int k=0;k<width;k+=2) {
+      if(narrowBits && !k) {
+        if(n->op==BITWISEAND && (left.width==4 || left.sign))wi(f,work,2,0);
+        continue;
+      }
       if(rhs<0) {uint32_t v=(right.literal>>(8*(width-k-2)))&0xffff;
         if((!v && n->op!=BITWISEAND)||(v==0xffff && n->op==BITWISEAND))continue;
         we(f,"\t%s\twr%d,#0x%04lx\n",op,work+k,(unsigned long)v);
-      } else we(f,"\t%s\twr%d,wr%d\n",op,work+k,rhs+k);
+      } else we(f,"\t%s\twr%d,wr%d\n",op,work+k,rhs+(narrowBits?k-2:k));
     }
   }
   wstore_known(f,n->result,work,n->boundedCursorStep);
@@ -1176,6 +1189,35 @@ wshift(wide_function *f,wide_node *n,int countMask)
   wide_value *dest=&f->values[n->result];int width=n->width==1?2:n->width;
   int work=dest->reg>=0&&n->width>1?dest->reg:16;
   bool right=n->op==RIGHT_OP;
+  const char *narrow=getenv("MX251_NARROW_ZERO_SHIFTS");
+  if(!right && (!narrow || strcmp(narrow,"0")) &&
+     !n->left.sign && !n->left.floating && !n->left.codePointer &&
+     n->left.width<n->width && n->right.value<0 &&
+     (n->right.literal==8 || n->right.literal==16 || n->right.literal==24) &&
+     n->right.literal<(unsigned)n->width*8) {
+    unsigned count=n->right.literal;
+    we(f,"; wide narrow left shift source-width=%d width=%d count=%u\n",n->left.width,n->width,count);
+    if(count==16) {
+      wload(f,n->left,work,2);wi(f,work+2,2,0);
+    } else if(n->left.width==1 && work+n->width<=16) {
+      int byte=work+n->width-1-count/8;
+      wload_byte(f,n->left,byte);
+      we(f,"\tmov\tr%d,#0\n",byte^1);
+      if(n->width==4)wi(f,byte<work+2?work+2:work,2,0);
+    } else {
+      /* Snapshot B:A before writing any result bytes, including when source
+       * and result overlap. Upper registers expose only word aliases. */
+      wload(f,n->left,10,2);
+      if(n->width==4 && count==8) {
+        we(f,"\tmovz\twr%d,r10\n",work);
+        we(f,"\tmov\tb,a\n\tclr\ta\n\tmov\twr%d,wr10\n",work+2);
+      } else {
+        we(f,"\tmov\tb,a\n\tclr\ta\n\tmov\twr%d,wr10\n",work);
+        if(n->width==4)wi(f,work+2,2,0);
+      }
+    }
+    wstore(f,n->result,work);return;
+  }
   if(n->width==1 && n->left.width==1 && n->right.value<0 &&
      n->right.literal<8 && !n->left.floating && !n->left.codePointer) {
     int byte=dest->reg>=0?dest->reg:11;
