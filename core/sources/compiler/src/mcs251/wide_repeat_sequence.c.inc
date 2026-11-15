@@ -164,10 +164,10 @@ wide_repeat_finalize(wide_function *f,const char *text,size_t length,struct dbuf
 static mcs251_wide_result
 wide_choose_repeat(wide_function *f)
 {
-  if(!wide_repeat_enabled())return wide_choose_rotate(f,NULL);
+  if(!wide_repeat_enabled())return wide_choose_address_remat(f,NULL);
   struct dbuf_s baseline,candidate;dbuf_init(&baseline,1024);dbuf_init(&candidate,1024);
   struct dbuf_s *output=f->candidateOutput;f->candidateOutput=&baseline;
-  wide_selection_cost old={0};mcs251_wide_result result=wide_choose_rotate(f,&old);
+  wide_selection_cost old={0};mcs251_wide_result result=wide_choose_address_remat(f,&old);
   f->candidateOutput=output;unsigned saved=0,selected=0;
   if(result==MCS251_WIDE_ACCEPTED && !old.unknown)
     selected=wide_repeat_finalize(f,dbuf_get_buf(&baseline),dbuf_get_length(&baseline),&candidate,&saved);

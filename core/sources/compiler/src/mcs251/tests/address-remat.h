@@ -1,0 +1,10 @@
+typedef unsigned char u8;
+typedef unsigned int u16;
+typedef unsigned long u32;
+typedef struct { u8 a,b,c,d; u16 x,y; u32 tag; } remat_record;
+u8 remat_touch(u8 *p,u8 seed);
+u32 remat_fields(remat_record *p,u8 count);
+u32 remat_cursor(u8 *p,u8 count);
+u32 remat_snapshot(u8 *p,u8 count);
+u32 remat_branch(u8 *p,u8 mode);
+u32 remat_case(u8 kind,u8 seed);

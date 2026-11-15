@@ -3180,6 +3180,15 @@ wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
   dbuf_destroy(&baseline);dbuf_destroy(&candidate);return result;
 }
 
+#include "wide_address_remat.c.inc"
+
+static mcs251_wide_result
+wide_choose_address_remat(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_rematerialize_addresses,wide_choose_rotate,
+    "address-remat","recipes",false,"address-original","address-trial",false,true);
+}
+
 #include "wide_repeat_sequence.c.inc"
 
 static bool
