@@ -1,0 +1,716 @@
+{
+  "schema": 1,
+  "date": "2026-11-16",
+  "branch": "codex/decimal-format-20261116",
+  "sourceCommit": "630fcc99c180735a4a13585784a0f59b5aa4bb8d",
+  "compiler": {
+    "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "f1cc6ca0e904447f31d5a854d8042184f1775e5baeaaaf1a96dfe0b963f1db53"
+  },
+  "parentCompiler": {
+    "path": "E:\\STVAPP\\MX251\\.build\\format-cost-study-20261116\\candidate\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "0ae408bfb78cee83219e520aa18be0c85db31331cb7427df587f2e47c4c073a1"
+  },
+  "candidate": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\candidate",
+  "candidateManifest": {
+    "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\candidate\\core\\core.json",
+    "sha256": "b54a7efb021ea5216d8d9bea1f700670067f516346cebc14e138c3d2958f636e"
+  },
+  "qualification": "TARGETED_COMPILE_ONLY",
+  "inventory": {
+    "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\inventory.json",
+    "sha256": "11107c1e4ed1a5ef6266d5e83408f601d8b5038f28c70a20523260a3392ec4e3"
+  },
+  "decimalProjects": [
+    "p083",
+    "p120",
+    "p121",
+    "p122",
+    "p123",
+    "g128"
+  ],
+  "softwareDecimalProjects": [
+    "p120",
+    "p121",
+    "p122",
+    "p123",
+    "g128"
+  ],
+  "runtimeAlgorithmChanged": false,
+  "study": [
+    {
+      "id": "p120",
+      "algorithm": "word-bytes",
+      "model": "small",
+      "abi": "abi2",
+      "codeBytes": 689,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 689,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\small\\abi2\\format-runtime.c",
+        "sha256": "9b16fe873df712d8ddb6d1944264f5e6e476aa20e4d1402dcd3ea32e849cdb57"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\small\\abi2\\format-runtime.rel",
+        "sha256": "c3b58d40975243967a7ef55633f80d27ddf0578240f3bced344fe7eb9c49eb01"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "word-bytes",
+      "model": "small",
+      "abi": "abi4",
+      "codeBytes": 622,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 622,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\small\\abi4\\format-runtime.c",
+        "sha256": "e740d4d3ed74624a67c90e066e459ff7ce3018773b6a78d69e64f18819d3541d"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\small\\abi4\\format-runtime.rel",
+        "sha256": "9f66a5d765fc36cf9eade8f5e785cf8c455ea661330debd6e06506451bc05eda"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "word-bytes",
+      "model": "large",
+      "abi": "abi2",
+      "codeBytes": 689,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 689,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\large\\abi2\\format-runtime.c",
+        "sha256": "9b16fe873df712d8ddb6d1944264f5e6e476aa20e4d1402dcd3ea32e849cdb57"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\large\\abi2\\format-runtime.rel",
+        "sha256": "af71b01f69839230ba310d208d77a2df648386dc307470a0cb62c8336229b87b"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "word-bytes",
+      "model": "large",
+      "abi": "abi4",
+      "codeBytes": 622,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 622,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\large\\abi4\\format-runtime.c",
+        "sha256": "e740d4d3ed74624a67c90e066e459ff7ce3018773b6a78d69e64f18819d3541d"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\word-bytes\\large\\abi4\\format-runtime.rel",
+        "sha256": "d5513aa26e3620ad7a6812efd719447b676538a6a0973487703d1f150451b485"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "shift-reciprocal",
+      "model": "small",
+      "abi": "abi2",
+      "codeBytes": 806,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 806,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\small\\abi2\\format-runtime.c",
+        "sha256": "461f344bf33c153181e3e3b458096f8d8f40464e3b93c85ee6ab7b79907bf0a3"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\small\\abi2\\format-runtime.rel",
+        "sha256": "a872def6a5a02f7d97b7cb459ac68eb2e5cfaf06e3b67cdc7b0ee267c680f07b"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "shift-reciprocal",
+      "model": "small",
+      "abi": "abi4",
+      "codeBytes": 739,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 739,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\small\\abi4\\format-runtime.c",
+        "sha256": "320d83054af111472423329a44095baa16e7e03b817b20645b57cc1b63109527"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\small\\abi4\\format-runtime.rel",
+        "sha256": "d34e5e0adef22a7ac30baba568f9424f0de139c0db322370eb94337a352c84f2"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "shift-reciprocal",
+      "model": "large",
+      "abi": "abi2",
+      "codeBytes": 806,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 806,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\large\\abi2\\format-runtime.c",
+        "sha256": "461f344bf33c153181e3e3b458096f8d8f40464e3b93c85ee6ab7b79907bf0a3"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\large\\abi2\\format-runtime.rel",
+        "sha256": "9548138a45e774741d01f253d730f5a78462d209bf37c20c8a0cd4ccaf2533aa"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "shift-reciprocal",
+      "model": "large",
+      "abi": "abi4",
+      "codeBytes": 739,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 739,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\large\\abi4\\format-runtime.c",
+        "sha256": "320d83054af111472423329a44095baa16e7e03b817b20645b57cc1b63109527"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\shift-reciprocal\\large\\abi4\\format-runtime.rel",
+        "sha256": "0c6bfb1fa1b0922a9628f350a58ec01d97e360d5b0a5fc424c77d78bfaeca2b7"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "decimal-table",
+      "model": "small",
+      "abi": "abi2",
+      "codeBytes": 701,
+      "constantBytes": 40,
+      "totalCodeAndConstants": 741,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\decimal-table\\small\\abi2\\format-runtime.c",
+        "sha256": "34b10f6f677d0388299a18c49fe85c6da2775070589542f6034c05163c42ec05"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\decimal-table\\small\\abi2\\format-runtime.rel",
+        "sha256": "87313b4a5fab33886353834660c99eeba732b79ed6acde4683baa0706f2c9082"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "decimal-table",
+      "model": "small",
+      "abi": "abi4",
+      "codeBytes": 634,
+      "constantBytes": 40,
+      "totalCodeAndConstants": 674,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\decimal-table\\small\\abi4\\format-runtime.c",
+        "sha256": "7d6f3d98a26c00eb84d35e84ad8757cb7f964b016e8317c7d5791d84657bfa0e"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\decimal-table\\small\\abi4\\format-runtime.rel",
+        "sha256": "68405819e21b5eb6c537df1831461bf6820dc1a000ce0571ee0ec624d1178fe7"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "byte-union",
+      "model": "small",
+      "abi": "abi2",
+      "codeBytes": 714,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 714,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-union\\small\\abi2\\format-runtime.c",
+        "sha256": "4117f2cf62a249a66296cc5bf90e195e1b9c4c1587284713016ae1f4543892dd"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-union\\small\\abi2\\format-runtime.rel",
+        "sha256": "7620681db89c7f2cbcc6901b38d42a344936ea5649fd1ec21773eadff938cb8f"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "byte-union",
+      "model": "small",
+      "abi": "abi4",
+      "codeBytes": 647,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 647,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-union\\small\\abi4\\format-runtime.c",
+        "sha256": "6f5dbbdf4b30f5ffb3983bf33d19db9d64c59aa2b946b91f275e51bc963d2f3d"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-union\\small\\abi4\\format-runtime.rel",
+        "sha256": "30a143da30064b0dac4bd1d6db5381e639d1800a964f8e10f96ab68d144cb102"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "byte-loop",
+      "model": "small",
+      "abi": "abi2",
+      "codeBytes": 671,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 671,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\small\\abi2\\format-runtime.c",
+        "sha256": "c4dcbdb07d974e5a5d689050fa2500450e3eca73083dbf313be93e87320876c4"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\small\\abi2\\format-runtime.rel",
+        "sha256": "20916d3247573cb9bf9a13e68c6232d76e5871e92265929326f30b19d0f30fad"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "byte-loop",
+      "model": "small",
+      "abi": "abi4",
+      "codeBytes": 604,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 604,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\small\\abi4\\format-runtime.c",
+        "sha256": "6c7b06514f24afce317bab9e6ecea91a4559166132a8c699fe94446bc7f2627c"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\small\\abi4\\format-runtime.rel",
+        "sha256": "5e42c7560faea1331c87e204ea4b34fcc75a4bba053f336ab7a14b8421695ffb"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "byte-loop",
+      "model": "large",
+      "abi": "abi2",
+      "codeBytes": 671,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 671,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\large\\abi2\\format-runtime.c",
+        "sha256": "c4dcbdb07d974e5a5d689050fa2500450e3eca73083dbf313be93e87320876c4"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\large\\abi2\\format-runtime.rel",
+        "sha256": "45109d08d3ecc8a9800b131e5974a492dd98567c85e8beee5e1ff7a0da0da087"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "byte-loop",
+      "model": "large",
+      "abi": "abi4",
+      "codeBytes": 604,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 604,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\large\\abi4\\format-runtime.c",
+        "sha256": "6c7b06514f24afce317bab9e6ecea91a4559166132a8c699fe94446bc7f2627c"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\byte-loop\\large\\abi4\\format-runtime.rel",
+        "sha256": "a47d2350a44a715058cd979a0eb31ed5b9a1d012ecc3563e31b81d8c0122085e"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "before",
+      "model": "small",
+      "abi": "abi2",
+      "codeBytes": 658,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 658,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\small\\abi2\\format-runtime.c",
+        "sha256": "6f2794e929f730e04b37344f0767aef53d3fb9372ed165446c70f36234d0910a"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\small\\abi2\\format-runtime.rel",
+        "sha256": "fae5496410da61a864cf77801ab70081ed0824ecb3d9429bfd203f0772171e25"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "before",
+      "model": "small",
+      "abi": "abi4",
+      "codeBytes": 591,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 591,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\small\\abi4\\format-runtime.c",
+        "sha256": "7c0ad2a13d3d8e2066ebf3de80d57800eb4816a3f3c8ea69725f9e06e93fa5f3"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\small\\abi4\\format-runtime.rel",
+        "sha256": "b9cdc3c0f3304e8c11477261fef448f6cf73fc8dfa8d813b28c9d084ef7a39d8"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "before",
+      "model": "large",
+      "abi": "abi2",
+      "codeBytes": 658,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 658,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\large\\abi2\\format-runtime.c",
+        "sha256": "6f2794e929f730e04b37344f0767aef53d3fb9372ed165446c70f36234d0910a"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\large\\abi2\\format-runtime.rel",
+        "sha256": "1f794a40e03d43b2a165d1cd35d4e058b56d15940e651f7d5fa4c728970914a4"
+      }
+    },
+    {
+      "id": "p120",
+      "algorithm": "before",
+      "model": "large",
+      "abi": "abi4",
+      "codeBytes": 591,
+      "constantBytes": 0,
+      "totalCodeAndConstants": 591,
+      "source": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\large\\abi4\\format-runtime.c",
+        "sha256": "7c0ad2a13d3d8e2066ebf3de80d57800eb4816a3f3c8ea69725f9e06e93fa5f3"
+      },
+      "object": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\fixed-study\\p120\\before\\large\\abi4\\format-runtime.rel",
+        "sha256": "39282c7d2eeaa0f01d576a8295489a06c5cb650fd56538f2e1556b7e33559899"
+      }
+    }
+  ],
+  "studyScripts": [
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\study.py",
+      "sha256": "2a1cbb821792681f46038d560131f74eecc6d2fca6c5cd9d46e26b0323b57de6"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\study_record.py",
+      "sha256": "b1115d01a8ba237abf7801193d3363e927c008625e6c9cc3ac269f9d85d71d4f"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\study_fixed.py",
+      "sha256": "51fce06d066a0893181fca749ed5a644f699b6ade8d64c8512b0e33125cc4d86"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\study_extra.py",
+      "sha256": "b560475b204d0336aa30dbd7d2b01bd814cc9082fd75fdf8ebc136f8f0924e22"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\study_extra_fixed.py",
+      "sha256": "54477a806143891891999c6df3f6195975453a723280f9a2448fe3ca29a0f404"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\GenerateProduction.ps1",
+      "sha256": "f2cd095f986e83c2d4d1caffb152c214539d66ff98c460c95bd970e23de4c43f"
+    }
+  ],
+  "compilerCrashBacktrace": {
+    "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\compiler-crash-gdb.log",
+    "sha256": "8721475c2e10e1fe5d61f249eb3fa3554c78512ad0fddb2c7ec2940f5fec0d1e"
+  },
+  "oldCompilerReproducer": {
+    "exitCode": 3221225620,
+    "status": "CRASH_REPRODUCED"
+  },
+  "tests": {
+    "registerTracker": {
+      "status": "PASS",
+      "trackerCases": 131076,
+      "targetCompiles": [
+        {
+          "model": "small",
+          "abi": "ordinary",
+          "status": "PASS"
+        },
+        {
+          "model": "small",
+          "abi": "native",
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "abi": "ordinary",
+          "status": "PASS"
+        },
+        {
+          "model": "large",
+          "abi": "native",
+          "status": "PASS"
+        }
+      ],
+      "hardwareExecuted": false
+    },
+    "nativeNarrowDivision": [
+      {
+        "model": "small",
+        "optimization": "speed",
+        "abi": "ordinary",
+        "accepted": 10,
+        "selectedLegacy": [
+          "div_q8"
+        ],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-small",
+          "--opt-code-speed",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-ordinary"
+        ]
+      },
+      {
+        "model": "small",
+        "optimization": "speed",
+        "abi": "native",
+        "accepted": 11,
+        "selectedLegacy": [],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-small",
+          "--opt-code-speed",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-backend",
+          "--mcs251-native-abi",
+          "-DDIV_ABI=__reentrant __sdcccall(4)"
+        ]
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "abi": "ordinary",
+        "accepted": 10,
+        "selectedLegacy": [
+          "div_q8"
+        ],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-small",
+          "--opt-code-size",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-ordinary"
+        ]
+      },
+      {
+        "model": "small",
+        "optimization": "size",
+        "abi": "native",
+        "accepted": 11,
+        "selectedLegacy": [],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-small",
+          "--opt-code-size",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-backend",
+          "--mcs251-native-abi",
+          "-DDIV_ABI=__reentrant __sdcccall(4)"
+        ]
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "abi": "ordinary",
+        "accepted": 10,
+        "selectedLegacy": [
+          "div_q8"
+        ],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-large",
+          "--opt-code-speed",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-ordinary"
+        ]
+      },
+      {
+        "model": "large",
+        "optimization": "speed",
+        "abi": "native",
+        "accepted": 11,
+        "selectedLegacy": [],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-large",
+          "--opt-code-speed",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-backend",
+          "--mcs251-native-abi",
+          "-DDIV_ABI=__reentrant __sdcccall(4)"
+        ]
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "abi": "ordinary",
+        "accepted": 10,
+        "selectedLegacy": [
+          "div_q8"
+        ],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-large",
+          "--opt-code-size",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-ordinary"
+        ]
+      },
+      {
+        "model": "large",
+        "optimization": "size",
+        "abi": "native",
+        "accepted": 11,
+        "selectedLegacy": [],
+        "liveFrameBytes": 2,
+        "command": [
+          "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build\\sdcc.exe",
+          "-mmcs251",
+          "--model-large",
+          "--opt-code-size",
+          "--stack-auto",
+          "--mcs251-machine-ir",
+          "--mcs251-wide-backend",
+          "--mcs251-native-abi",
+          "-DDIV_ABI=__reentrant __sdcccall(4)"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "p083",
+      "root": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p083\\mx251\\.build\\mx251\\latest",
+      "bytes": 1749,
+      "keil": 1459,
+      "ratioKeil": 119.87662782727895,
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7e00af973b6387908f474856983511dca31c7500459e1df66b444be908ab519a"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "50e7d2eb9a98c7b0a1cdac5488024527e40d8e124d3ad278f66da743d9533ccb"
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p083\\mx251\\result.json",
+        "sha256": "44d5264edc73a7351b21d0e8cc16d8a9af7eb7566233c1c73df6a95544796940"
+      },
+      "sourceManifest": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p083\\mx251\\mx251.json",
+        "sha256": "825aca13963f7e740c408baac91a738499013728120876f40c52a776a92e47be"
+      },
+      "before": {
+        "id": "p083",
+        "root": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p083\\mx251\\.build\\mx251\\latest",
+        "bytes": 1749,
+        "keil": 1459,
+        "ratioKeil": 119.87662782727895,
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "dc43ce8f97c92ce43fbede47557082a2e5b2e875669a0546d495f2ce4ffcabb4"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "50e7d2eb9a98c7b0a1cdac5488024527e40d8e124d3ad278f66da743d9533ccb"
+        },
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p083\\mx251\\result.json",
+          "sha256": "21dc92ed6996cb38df48cf2df359f4daba74d25b359f6c3128daa50a82127c27"
+        },
+        "sourceManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p083\\mx251\\mx251.json",
+          "sha256": "825aca13963f7e740c408baac91a738499013728120876f40c52a776a92e47be"
+        }
+      },
+      "sameFirmwareBytes": true,
+      "applicationSourcesAndConfigUnchanged": true,
+      "historicalInventoryBytes": 1747,
+      "historicalDifferenceNotAttributedToThisFix": true
+    },
+    {
+      "id": "p123",
+      "root": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p123\\mx251\\.build\\mx251\\latest",
+      "bytes": 5532,
+      "keil": 4839,
+      "ratioKeil": 114.32114073155611,
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "bc5cc56506583c6219984369811180bb362b5b72d556dd33adc07737c638394b"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "086c91b76abf57d0c1f79d835a4b9bac7c87f2804bbda908b2228b5c57122714"
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\firmware\\projects\\p123\\mx251\\result.json",
+        "sha256": "74473e5a21ddda4d7d0148d92e4baef21bc46b0c0030f9b7dae7c31e0ad7d223"
+      },
+      "sourceManifest": {
+        "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p123\\mx251\\mx251.json",
+        "sha256": "c57774611f4d34de61a8786bb986ac94ae6098d745b1c796e491bdce202892b7"
+      },
+      "before": {
+        "id": "p123",
+        "root": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p123\\mx251\\.build\\mx251\\latest",
+        "bytes": 5532,
+        "keil": 4839,
+        "ratioKeil": 114.32114073155611,
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "0ea7577859e296b4346cbb668ffa2bc283bd06dfb1d6274cad4f849c3e42ce22"
+        },
+        "hex": {
+          "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "086c91b76abf57d0c1f79d835a4b9bac7c87f2804bbda908b2228b5c57122714"
+        },
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\decimal-format-20261116\\control\\projects\\p123\\mx251\\result.json",
+          "sha256": "d669c720e2da60e54056b3fac5378cc0d81299a618eeb392f1ed386d47d15da8"
+        },
+        "sourceManifest": {
+          "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\ai8051u\\projects\\p123\\mx251\\mx251.json",
+          "sha256": "c57774611f4d34de61a8786bb986ac94ae6098d745b1c796e491bdce202892b7"
+        }
+      },
+      "sameFirmwareBytes": true,
+      "applicationSourcesAndConfigUnchanged": true,
+      "historicalInventoryBytes": 5888,
+      "historicalDifferenceNotAttributedToThisFix": true
+    }
+  ],
+  "hardwareExecuted": false,
+  "firmwareExecutionTime": null,
+  "fullMatrixRebuilt": false,
+  "keilRebuilt": false,
+  "stcIdeRebuilt": false,
+  "sdkSourcesChanged": false,
+  "mainDefaultChanged": false,
+  "cumulativeExpanded31": {
+    "pass110": 13,
+    "pass120": 24,
+    "total": 31,
+    "sameCompilerFullRerun": false,
+    "updatedProject": "p123",
+    "parentCompilerAlreadyPasses": true
+  }
+}
