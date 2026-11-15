@@ -308,7 +308,12 @@ function Invoke-Mx251FunctionGc {
     } else {&$addIssue 'UNKNOWN_SYMBOL_REFERENCE' "$($doc.name):$($record.line+1) $token"}
     if($record.kind -eq 'instruction' -and $record.signedBranch -and -not $codeLabelTarget){&$addIssue 'SIGNED_BRANCH_TARGET_UNPROVEN' "$($doc.name):$($record.line+1) $token"}
     foreach($target in $targets){
-     if($target -cne $record.owner -and $record.expression -match '[+-]'){&$addIssue 'FUNCTION_ADDRESS_ARITHMETIC' "$($doc.name):$($record.line+1) $($record.expression)"}
+     # A zero relocation addend still denotes the function entry. The wide
+     # emitter uses (symbol+0), including inside the high-byte expression.
+     # Normalize only this exact symbol expression for the arithmetic check;
+     # retain the original assembly and the same reachability edge.
+     $expression=[regex]::Replace($record.expression,('\(\s*('+[regex]::Escape($token)+')\s*\+\s*0\s*\)'),'$1')
+     if($target -cne $record.owner -and $expression -match '[+-]'){&$addIssue 'FUNCTION_ADDRESS_ARITHMETIC' "$($doc.name):$($record.line+1) $($record.expression)"}
      $null=$nodes[$record.owner].Add($target)
     }
    }
