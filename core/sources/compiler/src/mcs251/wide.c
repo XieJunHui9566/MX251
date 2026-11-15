@@ -68,6 +68,7 @@ typedef struct {
   bool boundedCursorStep; /* Object-local cursor; final one-past result is unobserved. */
   bool nativeIndexed;
   bool edataIndexed; /* Proven region-00 object plus a sampled integer index. */
+  bool symbolicIndexed; /* Fixed 24-bit object base plus an unsigned byte/word index. */
   unsigned indexedExtent,indexedOrdinal;
   bool privateUnionWordAccess; /* transaction width only; byteAccess still guards aliases */
   unsigned args, stackArgs, stackBytes;
@@ -3208,11 +3209,19 @@ wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
 }
 
 #include "wide_address_remat.c.inc"
+#include "wide_symbolic_index.c.inc"
+
+static mcs251_wide_result
+wide_choose_symbolic_index(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_symbolic_index,wide_choose_rotate,
+    "symbolic-index","accesses",false,"symbolic-original","symbolic-trial",false,true);
+}
 
 static mcs251_wide_result
 wide_choose_address_remat(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_rematerialize_addresses,wide_choose_rotate,
+  return wide_choose_transform(f,cost,wide_rematerialize_addresses,wide_choose_symbolic_index,
     "address-remat","recipes",false,"address-original","address-trial",false,true);
 }
 

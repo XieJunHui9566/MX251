@@ -70,6 +70,17 @@ windexed_offset_first(wide_function *f,wide_node *n)
 static int
 windexed_address(wide_function *f,wide_node *n)
 {
+  if(n->symbolicIndexed) {
+    /* ADD computes the low word and CY. MOV preserves CY; ADDC carries
+     * into the symbol's high byte. MOVZ restores the 24-bit padding even
+     * when the addition crosses a 64 KiB page or wraps at 24 bits. */
+    wload(f,n->addressIndex,18,2);
+    we(f,"; wide symbolic-index address symbol=%s offset=%d index-width=%d\n",
+      n->addressSymbol->rname,n->addressOffset,n->addressIndex.width);
+    we(f,"\tadd\twr18,#(%s+%d)\n\tmov\ta,#((%s+%d)>>16)\n\taddc\ta,#0\n\tmovz\twr16,a\n",
+      n->addressSymbol->rname,n->addressOffset,n->addressSymbol->rname,n->addressOffset);
+    return 16;
+  }
   if(!n->addressOp)return wread(f,n->left,16,4);
   we(f,"; wide indexed address op=%c index-width=%d\n",n->addressOp,n->addressIndex.width);
   if(!windexed_offset_first(f,n)) {

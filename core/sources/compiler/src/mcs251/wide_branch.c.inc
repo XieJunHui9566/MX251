@@ -7,7 +7,7 @@
 static unsigned
 wbranch_instruction_bound(const char *text,size_t length)
 {
-  static const char *known[]={"add","sub","subb","cmp","inc","dec","mul","anl","orl","xrl",
+  static const char *known[]={"add","addc","sub","subb","cmp","inc","dec","mul","anl","orl","xrl",
     "mov","movs","movz","movc","push","pushw","pop","eret","sra","srl","rl","rlc","rr","swap","clr",
     "jb","jnb","ejmp","ecall","jc","jnc","jz","jnz","je","jne","jg","jle","jsl","jsge","jsg","jsle","sjmp"};
   size_t n=0;while(n<length && text[n]>='a' && text[n]<='z')++n;
