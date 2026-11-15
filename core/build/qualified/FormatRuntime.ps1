@@ -386,6 +386,14 @@ function Invoke-Mx251FormatRuntime([string]$Root,$Config,[string]$ToolRoot,[stri
   if(-not @($record.parentLibraries|Where-Object{$_.member -ceq 'printf_large.rel'}).Count){throw 'format-full-provider-not-selected'}
   $parentImage=Get-Mx251FormatHex (Join-Path $Root 'linked.partial.hex');$record.parentBytes=$parentImage.Count
   $source=New-Mx251FormatSource $demand ([IO.File]::ReadAllText($kernelPath))
+  # Recompile the standard puts provider with the current pointer backend.
+  # A user-defined puts has no archive member and is left with the application.
+  if(@($record.parentLibraries|Where-Object{$_.member -ceq 'puts.rel'}).Count){
+   $putsPath=Join-Path $PSScriptRoot '../../sources/compiler/device/lib/puts.c'
+   if((Hash-File $putsPath) -cne $contract.putsSourceSha256){throw 'format-puts-source-mismatch'}
+   $source+="`n"+[IO.File]::ReadAllText($putsPath)
+   $record.putsProvider=@{sourceSha256=$contract.putsSourceSha256;publicAbi=2;implementation='standard-source-current-backend'}
+  }
   $sourcePath=Join-Path $Root 'format-runtime.c';[IO.File]::WriteAllText($sourcePath,$source,[Text.UTF8Encoding]::new($false))
   # 库不继承项目宏或包含目录，避免同名头文件/宏改变公开运行库契约。
   $compileArgs=@('-mmcs251',('--model-'+$Config.model),'--stack-auto','--opt-code-size','--std-sdcc11','--nostdinc',('-I'+(Join-Path $ToolRoot 'include')),('-I'+(Join-Path $ToolRoot 'include/mcs51')),'--mcs251-native-abi','--mcs251-wide-ordinary','--mcs251-function-metadata','-c','format-runtime.c','-o','format-runtime.rel')

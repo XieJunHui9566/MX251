@@ -3533,19 +3533,40 @@ rewriteAstJoinSideEffects (ast *tree, ast *oLeft, ast *oRight)
   deleteSet (&sideEffects);
 }
 
+/* The MCS251 rewrite uses the ordinary generic-pointer stdio interface. */
+static bool
+m251StdIoStringPrototype (symbol *sym, bool varargs)
+{
+  sym_link *type = sym->type;
+  value *arg;
+
+  if (!IS_FUNC (type) || FUNC_NOPROTOTYPE (type) ||
+      FUNC_HASVARARGS (type) != varargs || IS_STATIC (sym->etype) ||
+      !IS_INT (type->next) || getSize (type->next) != 2)
+    return false;
+
+  arg = FUNC_ARGS (type);
+  return arg && !arg->next && IS_GENPTR (arg->type) && IS_CHAR (arg->type->next);
+}
+
 static void
 optStdLibCall (ast *tree, RESULT_TYPE resulttype)
 {
   ast *parms = tree->right;
   ast *func = tree->left;
 
-  if (!TARGET_IS_STM8 && !TARGET_Z80_LIKE && !TARGET_PDK_LIKE && !TARGET_F8_LIKE) // Regression test gcc-torture-execute-20121108-1.c fails to build for hc08 and mcs51 (without --stack-auto)
+  if (!TARGET_IS_STM8 && !TARGET_Z80_LIKE && !TARGET_PDK_LIKE && !TARGET_F8_LIKE &&
+      !(TARGET_IS_MCS251 && options.stackAuto)) // Regression test gcc-torture-execute-20121108-1.c fails to build for hc08 and mcs51 (without --stack-auto)
     return;
 
   if (!IS_FUNC (func->ftype) || IS_LITERAL (func->ftype) || func->type != EX_VALUE || !func->opval.val->sym)
     return;
 
   const char *funcname = func->opval.val->sym->name;
+
+  if (TARGET_IS_MCS251 && (strcmp (funcname, "printf") ||
+      !m251StdIoStringPrototype (func->opval.val->sym, true)))
+    return;
 
   unsigned int nparms = 0;
   ast *parm;
@@ -3574,14 +3595,15 @@ optStdLibCall (ast *tree, RESULT_TYPE resulttype)
         return;
 
       for (size_t i = 0; i < strlength; i++)
-        if (SPEC_CVAL (strlink).v_char[i] == '%')
+        if (SPEC_CVAL (strlink).v_char[i] == '%' ||
+            (TARGET_IS_MCS251 && i + 1 < strlength && !SPEC_CVAL (strlink).v_char[i]))
           return;
       if(strlength < 2 || SPEC_CVAL (strlink).v_char[strlength - 2] != '\n')
         return;
 
       symbol *puts_sym = findSym (SymbolTab, NULL, "puts");
 
-      if(!puts_sym)
+      if(!puts_sym || (TARGET_IS_MCS251 && !m251StdIoStringPrototype (puts_sym, false)))
         return;
 
       // Do the equivalent of

@@ -9,6 +9,7 @@
     "origin": "reviewed compact_format integer kernel"
   },
   "kernelSha256": "a0dca0d42d165f837bf47dbb696062b72a795214334ae0172609624a9b64bd9c",
+  "putsSourceSha256": "fa2af516f7b7c61a24a0de72e55d9f61fc0acbda40a5947720d5ddefd0bf8e85",
   "archives": {
     "lib/mcs251-large-stack-auto/libfloat.lib": "ded18d51f487b8d2cbd7201f6d9a623a9952e1ff80af9b8a6c3804c0859a81a5",
     "lib/mcs251-large-stack-auto/libint.lib": "d16816782c301344408acbc7610a31d16fcb0657d61a6633dc995ed0f6e3dd6b",
