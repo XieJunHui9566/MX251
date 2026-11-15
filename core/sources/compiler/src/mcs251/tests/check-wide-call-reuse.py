@@ -1,5 +1,5 @@
 """Compile shared caller saves through ABI2/4, IRQ frames and ordinary entries."""
-import argparse,json,os,re,subprocess,sys
+import argparse,hashlib,json,os,re,subprocess,sys
 from pathlib import Path
 p=argparse.ArgumentParser(description=__doc__)
 for key in ('sdcc','support','output'):p.add_argument('--'+key,type=Path,required=True)
@@ -45,5 +45,5 @@ u32 ordinary(u32 value,u8 sample,u16 word) {
     framed=text.split('; mcs251 wide-mir accepted: context_leaf_irq;',1)[1].split('; mcs251 wide-mir accepted:',1)[0]
     assert '; wide call-save reuse bridges=' in framed,'ABI4 setup-overwrite coverage'
   rows.append(dict(model=model,opt=opt,removedInstructions=count))
-(a.output/'result.json').write_text(json.dumps(dict(status='PASS',configurations=rows),indent=2)+'\n')
+(a.output/'result.json').write_text(json.dumps(dict(status='PASS',compilerSha256=hashlib.sha256(a.sdcc.read_bytes()).hexdigest(),configurations=rows),indent=2)+'\n')
 print('PASS',rows)
