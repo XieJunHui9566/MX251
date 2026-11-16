@@ -84,7 +84,7 @@ IDE 使用 `sdk/build/Release.cmake`，采用与独立入口相同的优化默�
 
 `59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40`
 
-203 项工程采用冻结源码与配置，复用内容一致的 Keil/STC-IDE 参考；重复的 21 项同版本构建直接复用。详细结果、比较分母和测试范围见 `qualification.json` 及 `comparison.json`。Keil/STC 工具、厂商完整 SDK 不包含在编译器包中。
+203 项工程采用冻结源码与配置，复用内容一致的 Keil/STC-IDE 参考；重复的 25 项同版本构建直接复用。详细结果、比较分母和测试范围见 `qualification.json` 及 `comparison.json`。Keil/STC 工具、厂商完整 SDK 不包含在编译器包中。
 
 独立用户压力集覆盖结构体、状态机/解析、环形缓冲区、位操作、回调、巨型函数和等价的混乱写法；另有寄存器/调用压力实板证据。构建检查与实板测量分别列示，不把宿主参考计算计作 MCU 执行。
 
