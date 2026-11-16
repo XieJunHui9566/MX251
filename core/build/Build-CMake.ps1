@@ -50,7 +50,7 @@ function Run([string]$Label,[string[]]$Arguments){
  try{
   if(-not $process.Start()){throw "Cannot start $Label"}
   $stdout=$process.StandardOutput.ReadToEndAsync();$stderr=$process.StandardError.ReadToEndAsync()
-  if(-not $process.WaitForExit(1800000)){$process.Kill($true);$process.WaitForExit();throw "$Label timed out"}
+  if(-not $process.WaitForExit(3600000)){$process.Kill($true);$process.WaitForExit();throw "$Label timed out"}
   $out=$stdout.GetAwaiter().GetResult();$err=$stderr.GetAwaiter().GetResult()
   [IO.File]::WriteAllText((Join-Path $build "$Label.stdout.log"),$out,[Text.UTF8Encoding]::new($false))
   [IO.File]::WriteAllText((Join-Path $build "$Label.stderr.log"),$err,[Text.UTF8Encoding]::new($false))

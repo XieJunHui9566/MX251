@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "target": "AI8051U-34K64-32",
-  "mx251Version": "0.0170",
+  "mx251Version": "0.0180",
   "toolchain": [
     {
       "path": "bin/as2gbmap",
@@ -53,7 +53,7 @@
     },
     {
       "path": "bin/sdas251.exe",
-      "sha256": "f862c1d931aaf011f722bb55be9a52b9d09c90b6cfc5f75f2393ed66279319ae"
+      "sha256": "9faf2b4cc7e2a0fd132377687a348554df654afe3ef34826ebc7323626b950b5"
     },
     {
       "path": "bin/sdas8051.exe",
@@ -61,7 +61,7 @@
     },
     {
       "path": "bin/sdcc.exe",
-      "sha256": "968d1483d83113b845e1665686e76f1491afeceee35aad5d1381cfd95b37fef1"
+      "sha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40"
     },
     {
       "path": "bin/sdcpp.exe",
@@ -69,7 +69,7 @@
     },
     {
       "path": "bin/sdld.exe",
-      "sha256": "920f50f1b8dcc212acc7bd4535afe8ba485017cb2c701b22f0d5583f116922ab"
+      "sha256": "97f7c1744d598cf4e84d2596cbfc93b643c6e15b11157eaadcb8ee44cc4ec646"
     },
     {
       "path": "bin/sdnm.exe",
@@ -193,7 +193,7 @@
     },
     {
       "path": "include/math.h",
-      "sha256": "92076d013f92fb9286a398d29d4d82bbae0b4871f3500725a94ccf2c6f9b37b4"
+      "sha256": "02ab5e9ed30bb949599e3116e7faefb798991cdc0332b49105f184feaa163ae4"
     },
     {
       "path": "include/mcs51/8051.h",
@@ -625,7 +625,7 @@
     },
     {
       "path": "lib/mcs251-small-stack-auto/libsdcc.lib",
-      "sha256": "70946fe7a06c07dfd29a636e89928cdaf961ec9c02348c447c81d79856eb5dd0"
+      "sha256": "db9d32949810a8a7edab02032bbb2dc89ae221c7f86ae745fdc2d72e22dd3825"
     },
     {
       "path": "lib/mcs251-small-stack-auto/mcs251.lib",
@@ -649,7 +649,7 @@
     },
     {
       "path": "lib/mcs251-large-stack-auto/libsdcc.lib",
-      "sha256": "e4236d6ea5e63220dee7ba47a19ff0dfc925184cf7aea9bbd71a329c3ead49ff"
+      "sha256": "58850334b1bbcda2d9348775defac528f5b1643895405078b309e2f25b4f4683"
     },
     {
       "path": "lib/mcs251-large-stack-auto/mcs251.lib",
@@ -667,27 +667,31 @@
     },
     {
       "path": "compiler/sdcc.exe",
-      "sha256": "968d1483d83113b845e1665686e76f1491afeceee35aad5d1381cfd95b37fef1"
+      "sha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40"
     },
     {
       "path": "runtime/libnativeint.lib",
-      "sha256": "519926a556d1c26f56ecdc90f4e101d7519ff49b6080cb31a70a56af018b0254"
+      "sha256": "14f818b9a3aae2cd8384ccd8cb40e747fe6e36f250eee74b9d4fca35f2875a50"
     },
     {
       "path": "runtime/libnativefloat.lib",
-      "sha256": "b49d69fb5a9d93619889667663af9ca4edc080c4b7b301c7f46ae48bb034f3ee"
+      "sha256": "4427da13ad4961129036ae7f5fde667e2a8d76297d6c19be9a65f70424ee8e31"
     },
     {
       "path": "runtime/libai8051umdu32.lib",
       "sha256": "b4a9e8d470154e5b3db5eb0d2f2271e915ef474d8069ddfeef506ec0e3f830e6"
+    },
+    {
+      "path": "runtime/libnativefloat.effects.json",
+      "sha256": "d6ddf1b7ddcb718b3464a7b0d4a58b9aeeb78225c9423976e0d04b4687f11cab"
     }
   ],
   "compilerOverlay": {
     "path": "compiler/sdcc.exe",
-    "sha256": "968d1483d83113b845e1665686e76f1491afeceee35aad5d1381cfd95b37fef1"
+    "sha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40"
   },
   "targetContract": {
     "id": "AI8051U-34K64-32",
-    "registrySha256": "d5b80a5a6b11097344927a63920d3da3337a84ca317a4687b44f0c3ecd4bae62"
+    "registrySha256": "beb976d26a0996d1326372825727de5da082e61d6ee9aeacbc474ad859f3d6ec"
   }
 }

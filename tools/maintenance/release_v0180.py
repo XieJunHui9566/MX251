@@ -39,19 +39,21 @@ def stage(a):
     core = a.output/'core'
     shutil.copytree(a.host, a.output/'host')
     # Examples come from Git, never from previous generated build directories.
-    names = subprocess.check_output(['git','ls-files','examples'],cwd=REPO,text=True).splitlines()
+    names = subprocess.check_output(['git','ls-files','core','examples'],cwd=REPO,text=True).splitlines()
+    added_sources = 0
     for name in names:
         dest = a.output/name
-        dest.parent.mkdir(parents=True,exist_ok=True)
-        shutil.copy2(REPO/name,dest)
+        if not dest.is_file():
+            dest.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(REPO/name,dest)
+            if name.startswith('core/'): added_sources += 1
     for name in ['Build.cmd','LICENSE','THIRD_PARTY.md']:
         shutil.copy2(REPO/name,a.output/name)
     shutil.copy2(REPO/'core/build/Release.cmake',core/'build/Release.cmake')
-    build = core/'build/qualified/Build.ps1'
-    original_build = build.read_bytes()
-    assert original_build.count(b'WaitForExit(120000)') == 1
-    build.write_bytes(original_build.replace(b'WaitForExit(120000)',b'WaitForExit(600000)'))
-    shutil.copy2(REPO/'core/build/qualified/CompileReuse.ps1',core/'build/qualified/CompileReuse.ps1')
+    build_changes = ['build/qualified/Build.ps1','build/qualified/CompileReuse.ps1',
+        'build/qualified/BuildLatest.ps1','build/Build-CMake.ps1']
+    for name in build_changes:
+        shutil.copy2(REPO/'core'/name,core/name)
     (a.output/'VERSION').write_text(VERSION+'\n')
     for profile in (core/'profiles').iterdir():
         lock = profile/'profile.lock.json'
@@ -59,6 +61,9 @@ def stage(a):
         data['mx251Version'] = IDE_VERSION
         save(lock,data)
     old = read(core/'core.json')
+    source_manifest=core/'sources/compiler-files.json'
+    save(source_manifest,dict(files=[dict(path=p.relative_to(core).as_posix(),sha256=sha(p))
+        for p in sorted((core/'sources/compiler').rglob('*')) if p.is_file()]))
     metadata = {k:old[k] for k in ['schema','name','buildChain','host','entry','buildScript',
         'toolchain','profiles','compiler','assembler','mathLibrary','sourceManifest','sourceManifestSha256']}
     metadata.update(version=VERSION,sourceVersion=VERSION,buildId='mx251-v0.180',
@@ -68,19 +73,22 @@ def stage(a):
         ideCompatibilityVersion=IDE_VERSION,qualificationRecord='../docs/qualification.json',
         qualification='See qualification.json for measured scope; Keil runtime 110% is not yet qualified.',
         lstQualified=False)
+    metadata['sourceManifestSha256']=sha(source_manifest)
     save(core/'core.json',metadata)
     # All executable and library bytes must match the qualified candidate.
     changed=[]
     for item in frozen['files']:
         if sha(a.output/item['path']) != item['sha256']:
             changed.append(Path(item['path']).as_posix())
-    assert set(changed)=={'core/core.json','core/build/qualified/Build.ps1','core/build/qualified/CompileReuse.ps1',
+    assert set(changed)=={'core/core.json','core/sources/compiler-files.json',
+        *['core/'+name for name in build_changes],
         *[f'core/profiles/{p.name}/profile.lock.json' for p in (core/'profiles').iterdir()]}
     save(a.output/'packaging.json',dict(version=VERSION,compilerSha256=frozen['compilerSha256'],
         implementationCommit=frozen['sourceCommit'],metadataOnlyChanges=[x for x in changed if x.endswith('.json')],
         buildTimeoutChange=dict(file='core/build/qualified/Build.ps1',fromSeconds=120,toSeconds=600,
             compilerAndFlagsUnchanged=True),
         ideSessionFix='CompileReuse excludes IDE session leases; compiler inputs/options unchanged',
+        totalBuildTimeoutSeconds=3600,sourceAndLicenseFilesAdded=added_sources,
         additionalBuildEntry='core/build/Release.cmake',binariesRebuilt=False))
     print('STAGED',a.output,flush=True)
 

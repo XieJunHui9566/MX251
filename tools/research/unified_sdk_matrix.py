@@ -163,7 +163,7 @@ def build_mx(config, project, out):
     command = [config['pwsh'], '-NoProfile', '-File', config.get('mxEntry', core/'build/Build-CMake.ps1'),
                '-ProjectPath', out, '-CMake', config['cmake'], '-Ninja', config['ninja'],
                '-PowerShell', config['pwsh']] + config['mxSwitches']
-    run(out, 'build', command, config, timeout=1800)
+    run(out, 'build', command, config, timeout=config.get('mxTimeoutSeconds', 1800))
     latest = out/'.build/mx251/latest'
     receipt = read(latest/'receipt.json')
     assert receipt['status'] == 'complete'

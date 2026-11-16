@@ -99,7 +99,7 @@ try {
  try {
   if(-not $process.Start()){throw 'Cannot start the qualified build script'}
   $stdout=$process.StandardOutput.ReadToEndAsync();$stderr=$process.StandardError.ReadToEndAsync()
-  if(-not $process.WaitForExit(1200000)){$process.Kill($true);$process.WaitForExit();throw 'Managed build timeout'}
+  if(-not $process.WaitForExit(3600000)){$process.Kill($true);$process.WaitForExit();throw 'Managed build timeout'}
   $out=$stdout.GetAwaiter().GetResult();$err=$stderr.GetAwaiter().GetResult();$code=$process.ExitCode
  } finally {$process.Dispose()}
  [IO.Directory]::CreateDirectory($outputRoot)|Out-Null

@@ -1,13 +1,6 @@
 {
   "schema": 1,
   "name": "MX251",
-  "sourceVersion": "0.0170",
-  "buildId": "0.0170-test",
-  "displayName": "MX251 0.0170（测试）",
-  "status": "TEST_RELEASE",
-  "lstQualified": false,
-  "installed": false,
-  "defaultChanged": false,
   "buildChain": [
     "CMake",
     "Ninja",
@@ -15,7 +8,6 @@
   ],
   "host": "Windows x64",
   "entry": "build/Build-CMake.ps1",
-  "projectModule": "build/qualified/Project.cmake",
   "buildScript": "build/qualified/Build.ps1",
   "toolchain": "toolchain",
   "profiles": [
@@ -24,26 +16,34 @@
   ],
   "compiler": {
     "path": "toolchain/bin/sdcc.exe",
-    "sha256": "968d1483d83113b845e1665686e76f1491afeceee35aad5d1381cfd95b37fef1",
-    "versionBanner": "Underlying driver reports SDCC 4.6.0 #0; MX251 build identity is this manifest."
+    "sha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40"
   },
-  "hardwareExecutedDuringIntegration": false,
-  "qualification": "Reuses merged compiler/native-math integration evidence. This test release does not grant all-project or hardware/timing qualification.",
-  "qualificationRecord": "../docs/validation.json",
-  "sourceManifest": "sources/compiler-files.json",
-  "defaultSelected": false,
-  "candidateVariant": "shared-cfg-v3-plus-native-math-floatint",
-  "parentCore": null,
-  "hardwareQualification": "Combined images not hardware-tested",
-  "sourceManifestSha256": "0738c404b97f417dbd506c666df892e4c9c340afcb4030ff8844147505aabc09",
+  "assembler": {
+    "path": "toolchain/bin/sdas251.exe",
+    "sha256": "9faf2b4cc7e2a0fd132377687a348554df654afe3ef34826ebc7323626b950b5"
+  },
   "mathLibrary": {
     "path": "profiles/STC32G12K128/runtime/libnativefloat.lib",
-    "sha256": "b49d69fb5a9d93619889667663af9ca4edc080c4b7b301c7f46ae48bb034f3ee",
-    "buildCompilerSha256": "25d144e99e88d47303a9e6bea06561921143c6ef0f2a66120ca1575c77b2333a",
+    "sha256": "4427da13ad4961129036ae7f5fde667e2a8d76297d6c19be9a65f70424ee8e31",
+    "buildCompilerSha256": "162f64caeb818651aabe44c9f6d0cd82c3d1ccbdb0643927879fa458c5f8b0ed",
     "source": "sources/native-float",
     "recipe": "sources/native-float-builder/BuildNativeFloat.py",
-    "reuse": "Prebuilt archive reused exactly; not rebuilt by the new compiler."
+    "callEffects": "profiles/STC32G12K128/runtime/libnativefloat.effects.json"
   },
-  "releaseChannel": "test",
-  "repository": "https://github.com/XieJunHui9566/MX251"
+  "sourceManifest": "sources/compiler-files.json",
+  "sourceManifestSha256": "3b59282a3453c2bde59e8fc48c89b86c1b157ed3ab0cbd16442da9d4da3b06ef",
+  "version": "0.180",
+  "sourceVersion": "0.180",
+  "buildId": "mx251-v0.180",
+  "displayName": "MX251 v0.180",
+  "releaseChannel": "engineering",
+  "status": "ENGINEERING_RELEASE",
+  "compilerSourceCommit": "bca1db33504ecba8581473e98b7c4f0c7ceb840d",
+  "sourceCommit": "bca1db33504ecba8581473e98b7c4f0c7ceb840d",
+  "projectModule": "build/Release.cmake",
+  "repository": "https://github.com/XieJunHui9566/MX251",
+  "ideCompatibilityVersion": "0.0180",
+  "qualificationRecord": "../docs/qualification.json",
+  "qualification": "See qualification.json for measured scope; Keil runtime 110% is not yet qualified.",
+  "lstQualified": false
 }

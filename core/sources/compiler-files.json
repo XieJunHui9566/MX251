@@ -130,7 +130,7 @@
     },
     {
       "path": "sources/compiler/device/include/math.h",
-      "sha256": "92076d013f92fb9286a398d29d4d82bbae0b4871f3500725a94ccf2c6f9b37b4"
+      "sha256": "02ab5e9ed30bb949599e3116e7faefb798991cdc0332b49105f184feaa163ae4"
     },
     {
       "path": "sources/compiler/device/include/mcs51/8051.h",
@@ -1174,7 +1174,7 @@
     },
     {
       "path": "sources/compiler/device/lib/ceilf.c",
-      "sha256": "dad906a8a84d56b411cf249abb98e634545d1ea75600f586eaff8e94c5fb304f"
+      "sha256": "e86a1712bb81dbea34f43f97a6fbe35926f7ea5d5dd15bb46a909dc722f067cb"
     },
     {
       "path": "sources/compiler/device/lib/ckd_add.c",
@@ -1490,7 +1490,7 @@
     },
     {
       "path": "sources/compiler/device/lib/floorf.c",
-      "sha256": "687d24bd4b69d651beab9a90d3108335db7004e53fee577938de1603065e8776"
+      "sha256": "3026dd712664f45604a910e9cafdab0f149539e33138997814625c4d93f2fe88"
     },
     {
       "path": "sources/compiler/device/lib/free.c",
@@ -1774,7 +1774,7 @@
     },
     {
       "path": "sources/compiler/device/lib/mcs251/native-int/_divulong.asm",
-      "sha256": "56e6648e7212c45f3448b78a57e94651600dcb9cfaa6b3cfb1218d0e664cc033"
+      "sha256": "0ae56487d48125ae6137d0ec8575a7f1f2b73c6f250ac4a694624fe9f3b15169"
     },
     {
       "path": "sources/compiler/device/lib/mcs251/native-int/_modslong.asm",
@@ -1786,11 +1786,11 @@
     },
     {
       "path": "sources/compiler/device/lib/mcs251/native-int/_modulong.asm",
-      "sha256": "655040b408101ddc377a0fd610c78f1a69276f526ff4ad423058b41263732596"
+      "sha256": "91413b4c391d11185ddaafb1ce06fc9ad9274b5686d7cb7924179ada514f6143"
     },
     {
       "path": "sources/compiler/device/lib/mcs251/native-int/_mullong.asm",
-      "sha256": "2a0220b38dfcb0dbc70d303a0f234520f5330ef5c99e97ab6f68e682dbcfed39"
+      "sha256": "c1635bf827521a6c4c0db27de1fe24ae663f9488b7333a89ba19ac702840ea79"
     },
     {
       "path": "sources/compiler/device/lib/mcs251/native-int/_mullong.c",
@@ -1894,7 +1894,7 @@
     },
     {
       "path": "sources/compiler/device/lib/modff.c",
-      "sha256": "ee4f15b3677ad0424e357d1b4223adc54c8a7a1ef22d030bc44bd7ea7bbf8510"
+      "sha256": "8eecd51656ef3a839dfa49fcd467b80da1e36c14e4d490f8fb81f07bef6ccb83"
     },
     {
       "path": "sources/compiler/device/lib/mos6502/__sdcc_indirect_jsr.s",
@@ -5210,11 +5210,11 @@
     },
     {
       "path": "sources/compiler/sdas/as251/mcs251adr.c",
-      "sha256": "0af0fd1e78273db6d84c1e15ab8dac75f1db16be043c84d85f877760874ef465"
+      "sha256": "a39a8091906e98bf3096f05b2fb26b1cb459b7025ab6752751e3c42811ada712"
     },
     {
       "path": "sources/compiler/sdas/as251/mcs251mch.c",
-      "sha256": "1ceb7b4fe33707b5e8811a10daee8d53d7496548759f16b69629e5f62bcfdb02"
+      "sha256": "bb5e4d477b5a5524d893bf02f092a3b2b5d4987fb822611a9a58f4fd0b75e20c"
     },
     {
       "path": "sources/compiler/sdas/as251/mcs251pst.c",
@@ -5303,6 +5303,10 @@
     {
       "path": "sources/compiler/sdas/as251/tests/check-errors.sh",
       "sha256": "27bcd7f989e241f88265ca6af19a8c54684ad44dae5c66c642020119de810ff9"
+    },
+    {
+      "path": "sources/compiler/sdas/as251/tests/check-indexed-relocation.py",
+      "sha256": "5e6270b35639b3cd9e26b0ffc65012bedf015fa7a38bf06c7fc6ac61ac96e775"
     },
     {
       "path": "sources/compiler/sdas/as251/tests/check-instruction-forms.py",
@@ -5466,7 +5470,7 @@
     },
     {
       "path": "sources/compiler/sdas/asxxsrc/asout.c",
-      "sha256": "2d7a40c3453fa3b85d6c77920447622e3a610405d7a4c3af874b6a741cc6df0c"
+      "sha256": "fa54535506deb66804f0a24d0b1a242d2a3d0cea6d9c5fd7dadd90c569d2645c"
     },
     {
       "path": "sources/compiler/sdas/asxxsrc/assubr.c",
@@ -5534,7 +5538,7 @@
     },
     {
       "path": "sources/compiler/sdas/linksrc/lkarea.c",
-      "sha256": "a01572a879cc748995432b51a14053644957e4b873b2cd69ef4b778ce97ddc62"
+      "sha256": "59abed115488ff674bd85e5855068b8aa4276d8f80beb10e41186f397d21cc50"
     },
     {
       "path": "sources/compiler/sdas/linksrc/lkbank.c",
@@ -5586,7 +5590,7 @@
     },
     {
       "path": "sources/compiler/sdas/linksrc/lkmem.c",
-      "sha256": "72342b78c52dc385a2d1cb20f7ef20082951e21be1bce1cbc49dc9187aa79344"
+      "sha256": "f316e43f5b1f681bdd49f701fb3fdbcf9daaaa4602f449f7f68638f520ea6734"
     },
     {
       "path": "sources/compiler/sdas/linksrc/lknoice.c",
@@ -5810,15 +5814,19 @@
     },
     {
       "path": "sources/compiler/src/mcs251/backend_cfg.h",
-      "sha256": "05e2af00c7c065e8ea187b6ca86807681bcc5e5149e4170aa28a650652cd7b19"
+      "sha256": "ae6051bba08d8553b4dff0d4431b9dd22108523d1fc460f48fdc0c9acc649e34"
     },
     {
       "path": "sources/compiler/src/mcs251/backend_choice.c.inc",
-      "sha256": "6ec8e8003d6eb706e150c73517274b17301a88731b3a1e6b0d1e4e1136f96506"
+      "sha256": "ccc484357862e14d9ac9c10b2ad40dd810904041d72eafeb80d0fddcb5e15060"
     },
     {
       "path": "sources/compiler/src/mcs251/backend_encoding.h",
-      "sha256": "7971463a7cf9e067ead5f9a60a2646609207ea990d7885c8b8100b6570380d7d"
+      "sha256": "1d152577120d2910529bd8fddb9a255b5b2dd4c116a1d16bef9240e4c69f45d5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/branch_facts.cc.inc",
+      "sha256": "b58aa4d059aa06ad1672eea2bfd222cac3992105616d45ae04606c8696046288"
     },
     {
       "path": "sources/compiler/src/mcs251/call_merge.h",
@@ -5835,6 +5843,14 @@
     {
       "path": "sources/compiler/src/mcs251/callee_cost.h",
       "sha256": "8331c2d6f8798ada9011442f3d68ca3a47c207edb4ee36573f32ed888100eea2"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/carry_observation.c.inc",
+      "sha256": "5586b18c5554aab94075d44b07e73f81cbbec2ea447aa27400ddccd2d08a2f97"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/carry_observation.h",
+      "sha256": "e7708948a607b853fb29bdb5590fbfd11f745d0c789d541a8b90ac32a1c2ce3f"
     },
     {
       "path": "sources/compiler/src/mcs251/constant_arg.c",
@@ -5854,7 +5870,11 @@
     },
     {
       "path": "sources/compiler/src/mcs251/dpx_high_literal.h",
-      "sha256": "0e4de6d50ea4e266cc8e9a671be517b5e785f10ba3820d85a59cfd6726067ae2"
+      "sha256": "5ae4a584ecaa28951db6d13ae14c5d34c05c1f36f8cd2c4b68f0f13e86702da6"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/exact_float_scale.c.inc",
+      "sha256": "131d1c71a921700334394df89507fabc5a83bf6eade46d49d8f8ae67ae7f92d6"
     },
     {
       "path": "sources/compiler/src/mcs251/extended_constants.h",
@@ -5869,8 +5889,12 @@
       "sha256": "74524253ffff5901aeb40d2ed02b2bf7d893efb1e33fc2370b01e59d07e670ac"
     },
     {
+      "path": "sources/compiler/src/mcs251/function_share.h",
+      "sha256": "f5e0add027ab8c0ae7bb45f275d19b712cec46b32fa07accbaaa0b1cbcf8d663"
+    },
+    {
       "path": "sources/compiler/src/mcs251/gen.c",
-      "sha256": "e8a1895689a702d3b3e3bcf6562eb0ddb678b29bb814a5798441af6001b6327b"
+      "sha256": "91cd4795da46ebe865885c61f7017c7ee8de6266aaf64482499372cc97081fb5"
     },
     {
       "path": "sources/compiler/src/mcs251/gen.h",
@@ -5878,7 +5902,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/gen_call_clobber.c.inc",
-      "sha256": "8d77e5be08e2f397b91b2f1eb1fe416bdf59b2374e75a8910b986ea32126888b"
+      "sha256": "42087e7620846dc55a1952775abbbe7e716b0e5f522462ca273b1e3e9f53be9c"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_call_merge.c.inc",
@@ -5905,6 +5929,10 @@
       "sha256": "c0bac1ce3545bc3d65081e2a1dca8833daccf78cbc6069e7a539e222b60e4380"
     },
     {
+      "path": "sources/compiler/src/mcs251/gen_edata_pointer.c.inc",
+      "sha256": "7de1f20729b1503c9b4d0bf23021fb2dc0848a52c6972b9c7db95e9f72c71291"
+    },
+    {
       "path": "sources/compiler/src/mcs251/gen_frame.c.inc",
       "sha256": "127c7c9b0336f1af8495ffad6e013362d5453f9013706e3695e6701bb89ec4e4"
     },
@@ -5918,7 +5946,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/gen_leaf_isr.c.inc",
-      "sha256": "59676f767e4b68d0641f56941eae180752acfd9244b3904cd555d9aaf10cce1b"
+      "sha256": "2a258aba8bb6db9f3e95a0ed82bc50aef21d89b13a0e1e8a18d1d18ccad5b2a9"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_loop_region.c.inc",
@@ -5926,15 +5954,15 @@
     },
     {
       "path": "sources/compiler/src/mcs251/gen_low_multiply.c.inc",
-      "sha256": "aa9962c6c08a5323b94afd42f7808b45e6bd3ce850fc35b4e751bfdba11dcb87"
+      "sha256": "a4f2200565a3337c0cdc644cfc19bc5ab9178d29e2bdcc227e40603682c95772"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_lower.c.inc",
-      "sha256": "16ddf739be81d66f10c9e8788ab138494e286f29fa574b075efb119b10c06b99"
+      "sha256": "029607280f36f8a670f9349575524874df9a7ab70dbaeaf4f7e0e0053cf51024"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_multiply_plan.c.inc",
-      "sha256": "be14c0a5ec851a7153fc8d760966760e8137bb9127b0917e13d9e461e26f98e9"
+      "sha256": "e8d5a3aca53cc013bc50f278e6841b56ab1a2b8ce77952483e49444cdfa51025"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_native.c.inc",
@@ -5942,7 +5970,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/gen_object_address.c.inc",
-      "sha256": "f53b3054250d74309a1a3c560b8a3e466e8ddb37c6f2e3f4bf02bd9b7d320db8"
+      "sha256": "2b9713128b53e87c66fca5a02f8a0855a68f62434ce0b72d6bf7169dde03aa67"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_outer_counter.c.inc",
@@ -5950,11 +5978,15 @@
     },
     {
       "path": "sources/compiler/src/mcs251/gen_outline.c.inc",
-      "sha256": "1fd32e961931b534d7b3fefaeea6fd4ba29e91c0065782b07c194d9a11d73311"
+      "sha256": "3bb98cf297e62db39bcc1e6b78d0ca11d52589debbef909f89cab1b118ced04b"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_scalar_plan.c.inc",
       "sha256": "f97a2b96e6577d8e683c19205aedf901527335b83cde5bfb60c19a7487ef4789"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/gen_sfr_bit_test.c.inc",
+      "sha256": "f81a3dd9c6bf95f634cf69ce7d62eef7ac86ffa316b51d360b24f5f8f6714e01"
     },
     {
       "path": "sources/compiler/src/mcs251/gen_short_wide_outline.c.inc",
@@ -5973,20 +6005,40 @@
       "sha256": "f90d2dd2d8a95107e8f4c02311d9b793aa1157e01bd09d7e2cc3293305c231ee"
     },
     {
+      "path": "sources/compiler/src/mcs251/initializer.c.inc",
+      "sha256": "57e43dd4c8da8668fab5899e452b2b37ce478ff3b766fbbafe9dee72607150ea"
+    },
+    {
       "path": "sources/compiler/src/mcs251/instruction_effects.h",
-      "sha256": "2840eef50861529c1400531d46144123148cd2c4d5b2e5750b7581cd9d1d8189"
+      "sha256": "ec0c339b824298d83c167744fd9f7d529836dc7b102a2de10a601cc4a7145a63"
     },
     {
       "path": "sources/compiler/src/mcs251/internal_return.c",
-      "sha256": "9a7b03456b202592c1b48f75b40969c46262ab756ca2364c2fdeda343d5bf84c"
+      "sha256": "8cfc97beb1c5891dfd25547e7e59a57e60f7c9b94bc877693100cfe0766fedea"
     },
     {
       "path": "sources/compiler/src/mcs251/internal_return.h",
-      "sha256": "f53327e9e6f32c99932f90bb72a3f494470c6659c62d717f900752aeaf498a09"
+      "sha256": "59799ff752c12858f53fa98613c9b7410b7061f44d70c93a8fbe58aba99d693c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/loop_facts.cc.inc",
+      "sha256": "786fff22bdcc9ff287fa90c60c709c6df70b9354d902af8eae5ae5634402132c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/machine_branch.h",
+      "sha256": "4fc82144ae05b85f6ab18098c2f3d7b5d8f53012dde8cf728b1fa018f8d04e2b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/machine_ir.h",
+      "sha256": "40e6ed83936d4141cc5b8296cbebc4c6b652576d19c9cb1e11753b723d350538"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/machine_pipeline.c.inc",
+      "sha256": "8cd2d1e4bc11d91c97579990ef7c95c50fa08997b3d4d5f53f742187412c6964"
     },
     {
       "path": "sources/compiler/src/mcs251/main.c",
-      "sha256": "07e4d63e9b901a746bfa20e9ae1c890b3ce017b52a53bb6c1758827890f71742"
+      "sha256": "d72d4fd173989724ba023188ce48a32a9afc8e8fdacd321868bfeebd2ef10bf0"
     },
     {
       "path": "sources/compiler/src/mcs251/main.h",
@@ -6030,7 +6082,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/ordinary_scalar.h",
-      "sha256": "8019427d5b05dce0610a39daa108d3b9e34a5fa1595ede5172cf4098f4c60657"
+      "sha256": "d0bd646539395ddfd4c9f1a010ce0d4674dfe692e607183ec46702322084a03b"
     },
     {
       "path": "sources/compiler/src/mcs251/outline_region.h",
@@ -6038,7 +6090,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/peep.c",
-      "sha256": "3ff2c1568bf2f6e00721b21f47ca04339c1dce84ce3cb4fc9b0f7edba46f090d"
+      "sha256": "e5448243a684db2625c5f3191bf010a43e3833e2e343b579e0b52785e1a51d40"
     },
     {
       "path": "sources/compiler/src/mcs251/peep.h",
@@ -6050,11 +6102,11 @@
     },
     {
       "path": "sources/compiler/src/mcs251/pure_scalar_inline.c.inc",
-      "sha256": "71552353fd407d6cb8b5437a5280c887dcbae69cf69d0abcbe328a8bd5d42bc1"
+      "sha256": "6ffa68ef7f3a4cb152f6b9ca3d3660bd718b25c45a474d0508a843951dd2769e"
     },
     {
       "path": "sources/compiler/src/mcs251/ralloc.c",
-      "sha256": "f9a6c98f260afcb214eb4c6e5590bb7f9deaf695adb38bab59cb43acde7bb871"
+      "sha256": "db739d683665f591671559416ed959b5124331b225cf79090abe9cd73c33caae"
     },
     {
       "path": "sources/compiler/src/mcs251/ralloc.h",
@@ -6086,7 +6138,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/rtrack.c",
-      "sha256": "8b8c6f77a3fbe5b14a380592b6bc0d2d8d35ac59fef441fd8cd2754c7c9168a4"
+      "sha256": "4abe09dd773bd940d7ad7ca4aa01c3ca357fe8a00123313cd4679d10c5ea2036"
     },
     {
       "path": "sources/compiler/src/mcs251/rtrack.h",
@@ -6094,7 +6146,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/scalar_metadata.c.inc",
-      "sha256": "0b797a3f00c58ee7fa89673af56dc5094aefea3af4abf651b677767721676a26"
+      "sha256": "6128d5675867c5ef410fc0fe8df80068cd6e27cc9469d01dc137ce427962f03b"
     },
     {
       "path": "sources/compiler/src/mcs251/SEMANTICS-R25.txt",
@@ -6109,8 +6161,36 @@
       "sha256": "e1e3f69491f09bf8e3513377e28eab72e378268b4650b637de324d79b1b49547"
     },
     {
+      "path": "sources/compiler/src/mcs251/symbol_immediate.h",
+      "sha256": "015da89477d5ed393fd338ab847cb9e3f453fa905c1a5b0da79c262d16f30933"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/target_sfr.h",
+      "sha256": "889cdb1903ec05e1220b74733db8e353a2b3b4337a5dbe65bf63c3191edbabc4"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/abi-regression-runtime.c",
       "sha256": "64837c8f1f88c8688c4b10d9fcfd9714b2da0230bd851f2c70ed3f798757b6e7"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/abi4-backend-choice.c",
+      "sha256": "6cdf3f0be879159fb9c318cd1ecf8f899ba83d8edc95273a78e8c55225623727"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/abi4-backend-choice.h",
+      "sha256": "f5e0f92409c40c9c7f2867e497b23626fbf40c4ab98efb36661020fa3b3b3cf5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/address-remat-access.c",
+      "sha256": "f8914c68d97c3dc69719618319c5a13e6ba6005d8ede3071f698188d00d70f1b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/address-remat-cases.c",
+      "sha256": "1ec50566abcbea259d9e5f3298aada6fa0b3484313b58647d8e5b26b4be34d03"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/address-remat.h",
+      "sha256": "989b7bd7ed39f1b9721ba0418bdb4f5d5b438bea9bad414c8f2cfac793e804e5"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/aggregate-initializer.c",
@@ -6121,12 +6201,76 @@
       "sha256": "ce5f025537d36421f696dc9d48a116ec9581827b95bb2909a249d5456a71a7fe"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/bit-call-hardware/main.c",
+      "sha256": "9caae2420df8afd967f18d468b6ea588c2f2c509103cf436c651034ec1d4db57"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/bit-call-hardware/providers.c",
+      "sha256": "280d50c4ed3ccacebe1a0ae3bc4dd759ee9d37f8c53c528aaa35d15bb9860720"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/bit-call-hardware/verify.py",
+      "sha256": "e2740a8388ee1d80a4e860090286b3be95befa0adbe87bcf9161f8ba0fa6981e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/body-choice-callee.c",
+      "sha256": "859c24012865cc4047a9c36f3d31c066a99bfab35053faf5c44c806a9034365e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/body-choice-cases.c",
+      "sha256": "1d4d2443bcc9fe287156c46a413c92ea7fd49f0873e64d76c067752fe77e1e7e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/branch-facts.c",
+      "sha256": "802ee77f56a5c1bbb1e757d17da9e3dd3fb6a3793fb7f7f5182943fa283c3636"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/byte-abi-extract.c",
       "sha256": "568d311ceb2fff266aec441a0fd5907ddf427196ae6955dd5f767bbc0d5de31d"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/byte-bit-operations.c",
+      "sha256": "7f6b5cac80a09440611bce0f728558fefb4d2e6b5724587ab1857c054604f8c8"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/byte-pack-cases.c",
+      "sha256": "665bdc46d1e25d483d0548a303c50093458833b445dd4c150434fb8ae3af7cf0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/byte-pack.c",
+      "sha256": "cbfa2e4e2f7d1515558b1083a2165f58ffcb1fb24d47cbbd38fb1dd68940c1c6"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/byte-pack.h",
+      "sha256": "47586e8f255d5b9780abc89686f46cb76617b128c46b7495305ad5f6db10b0fd"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/call-24bit.c",
       "sha256": "e732f38f3e1cc1c9b9b1cca5bc24226531a59a0fc7e86e522ecb2914a3080bc3"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-boundary-isr.c",
+      "sha256": "eb5244f8ff6bb06cad9fc2d131ccf2c9d61d8536c65fe6452ace36b5a7b0389f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-boundary-runtime.c",
+      "sha256": "c8f88ca323e41ce1e54f1db3950c3236f9d5599072249227d47b000bb117370f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-frame-arguments.c",
+      "sha256": "2a810b6617d9f7ce6156cd8eaa18ca762754101d8d8a0fe8ec0f284b821daa58"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-frame-arguments.h",
+      "sha256": "916a9b59bad37b0b51e422d2f289a758f98c62e16d3c74273bb7acb0062aaa60"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-frame-hardware.c",
+      "sha256": "dcaad6c705e92b835eed545c22fb97e4cd6bab5aa610374104af08107b7d74db"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-frame-providers.c",
+      "sha256": "0da154091d907e05af80e57f61dea6e37d100657232fa7e3799ecd7059d952d0"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/call-merge-host.c",
@@ -6149,12 +6293,108 @@
       "sha256": "fdd17233cdae6ed5a990ea970bde0d988f542cc7034981cf78cec21ef76ff719"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/call-transport-cases.c",
+      "sha256": "652b0a7aee35dbb1fb01728a37fa930ca3eb469e571a3413f193d68c3b01d859"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-transport-left.c",
+      "sha256": "ee93394e68b4ef6d3f1fddac3ce19fb165481d3665e4a9fd2f9016ae8b8ce770"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-transport-right.c",
+      "sha256": "54ffc5d7cfa6bce11cffc201b5feef8d924a512de95be5a26bddf1bd7b717dfc"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/call-transport.h",
+      "sha256": "8e86a395ff4b98f65a660d059a5ddfdcab7d34ed7e0358338c193c351c58a37c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/carry-observation.c",
+      "sha256": "cdbc9c05a409f134bc80c53776709cd74306b5fab905e33dd22df4a4d0d78c51"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-abi4-backend-choice.py",
+      "sha256": "55a22b42cd4dc91dc42dcd5766069b5f2ed0b2ff1b6ad594fab4426cd4ee379e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-address-offset.py",
+      "sha256": "0e6ac00f471647d3b21999901b1caa84da24fdd2e9d3aa957c9a74199f2bbf01"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-address-remat.py",
+      "sha256": "a27d1ed2fe1317886361ca68f68a13287ea7f437ef1016c5228f838cf1cf9634"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-architecture-policy.ps1",
+      "sha256": "6541445906cd693582e515c320526eb37dd6dce8cf05705cf6a58a23c7e5b972"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-argument-object-loads.py",
+      "sha256": "e33a216614d7175e19c7a70dd9b8e50cd5b5fda9f076403ebbdac56a22fa2ab1"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-backend-isolation.py",
       "sha256": "ddb2d024843996cb306503d182b8a26ad10d13693a5ccb886d0b483e02defbba"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-bits-call-effects.ps1",
+      "sha256": "0a0b2d5c6107a9733d6e5b0b4be076457a2cc3d91adb79d01a196069f7704349"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-body-choice.py",
+      "sha256": "67c0615c1d0af359f6f97523f5e6d10c89f1aad53ac4267f324bf45d58b6f7b5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-branch-facts.py",
+      "sha256": "eac12f69142b841b822df9a0ac3412be82511d58cf5c48fe90a40cfd64874557"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-byte-bit-operations.py",
+      "sha256": "bf4a728c2de64dc7def409920d3bca70c32415f4439afda796b33b0b3b216190"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-byte-bitfields.py",
+      "sha256": "ad573cab789fb0d3b0de17cfcfdeede38a0c26a5f3d4a0d815b119d78938da36"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-byte-pack.py",
+      "sha256": "72e298cdab92a71e0704112622fcc95a96570739a0f4e221c1649f48c30681a7"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-c23-struct-redefinitions.py",
       "sha256": "750aa20bca13f5be6d5b05a4862660b198f2b6bd2dbfb3e8bc1f532e88ad72d0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-call-frame-arguments.py",
+      "sha256": "6b8fa45ef82213b531d288b4e45ba59baa6fa4f9e1737129f25652395564f2d0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-call-frame-hardware.py",
+      "sha256": "27a2c7ee1bcb97ed4fdffe8f736726cc23d2d49fccbec327775f179d76d64e5f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-callee-preservation.ps1",
+      "sha256": "0b0148567c830544e6ba6dd6dc103d1ede5d6d4a08ebb3eaec620c9e50caa2c0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-callee-preserved.py",
+      "sha256": "ad07d5c1f0dc2a4f70273462ec200941f52cd3b7ae7ab99a84c4d637758d093c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-candidate-selection.py",
+      "sha256": "e1fbd3a1b442a47d041474dc57770aa55a42b1cee0a98b8a6129355848fc449e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-carry-feedback.ps1",
+      "sha256": "051f173e84c4eaa6c48196879e3a15a36934e354291c42fbde5b3484d576c045"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-carry-observation.py",
+      "sha256": "9801117ed09f81010d9b93f4cf8fe62d9debed651f268f0f49ee78cd09b7991f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-cfg-address-effects.ps1",
+      "sha256": "c8ea609c89f9489e3afb301b8bded451732bc7da9921ef109046f7bebee598b4"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-codegen.sh",
@@ -6165,16 +6405,60 @@
       "sha256": "eb16e0371f1540ecfd425c012cbb5456cd9fff44c6384bf572af62296255c389"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-cursor-cost.c",
+      "sha256": "bd0709b9c2ad768fd5113364b41462520056bc45e1ca89ab3ecf6f8b75ff2e66"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-data-index.py",
+      "sha256": "6a574d9926a28696dd7a2ec7dd3d177ee3903a78d3122ef0079ccd8e95f32b57"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-default-edata.py",
+      "sha256": "a86334ba350bdee1efd514e9f68c0e8cf09323516dbab52a5a5406c6a4d44c1f"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-diagnostics.py",
       "sha256": "cfd937a6dd3748d8b8409a5a548b0f769bf74d04d1a232639c4c702c76816e70"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-direct-fields.py",
+      "sha256": "3835cae3a932cf03683f2b843ac1f4b46a27e15ec06002d36556560c762684fa"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-divmod-native.py",
       "sha256": "089aa91f7fce6280e88d887de122a6d5bff397c9d40d8d1e814aa07210741e31"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-dpx-call-effects.ps1",
+      "sha256": "dd9ba72cdebc5eaf613060fa238edc6697f910292b8e96a4015c5882c604d2de"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-dpx-feedback-repair.ps1",
+      "sha256": "20fe7eb011828de39042f9eae26300687ed97f406d143fe8e2c1119f1968e36d"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-driver.sh",
       "sha256": "3ff42e35998b4ddca6b661809bbdd23303c8a06f3a5c1778395150d068903be1"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-edata-backend-choice.py",
+      "sha256": "7e607741afa9e37536f484d1c5ec52f918a14dca8499a14f8488a63a26a4451f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-edata-indexed-addresses.py",
+      "sha256": "7778ebfe70ae3a78520d72948be9e0f77a34ff05886eb99218062183e46b7f8f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-edata-members.py",
+      "sha256": "10ccf12174301298334eabbf118571d279df48c60521948e9addfee4cd95a8b0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-edata-scalars.py",
+      "sha256": "7b10bc0c4cac08e6780994d801b2f71535157d136afecd2e9034d6804a97e9b5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-edata.py",
+      "sha256": "b9e5c507104a032c021147df650a217dc0ae7b00134257ecc855becd6243d404"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-elf-output.py",
@@ -6185,12 +6469,32 @@
       "sha256": "f60abdb3df6f844fdf78d1ab37c124a8b808fa5c508c7c4474d8fed6f0a17ed3"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-equal-branches.py",
+      "sha256": "711c0b46405bb7463922e902f4b267dae0e149431e43ca6b4020e99448d42e5f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-exact-float-scale.py",
+      "sha256": "ae76f7c007ecd2e9d6e8ed8c17ffdc73656fc9b6698dd598e6fdc6a1f5ecfe33"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-fixed-pointer-addresses.py",
+      "sha256": "dd07844178851dc9425b2c6e5948f30d8e4bd3f5f98d223312dc9c4a73abeec8"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-format-edata-initializer.ps1",
+      "sha256": "72d01620bdf9ab691c3b0a42abc2403e70eeff74feea65b45fd6e8de6bea8ec4"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-frame-lowering.py",
       "sha256": "7a6277514831de281bcfbc4fa2de629dcf696eed6b3124a8ab6bbf6bbf2c1b41"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-fsdiv-boundaries.py",
       "sha256": "27997a56caa347076aec32de0c85a6f40c5c2b7ab56027ccd6caf59b06074ffc"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-function-sharing.py",
+      "sha256": "5bdf5a807f101ca20e08fccf53ae770e756162f416a3b5cd9c9bba4869027379"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-gdbstub.py",
@@ -6201,20 +6505,116 @@
       "sha256": "5f6878e8ad57f12b2ae3c4a6747e2eeeb223225aa3126e5b94eb7932fd37b3e4"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-idata-negate.py",
+      "sha256": "76ba7cdd74d49f9ac59dcaaa9716df4eea6677952c2844a2475193a60fbf73bc"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-indexed-address.py",
+      "sha256": "f6dbec54d103f93391ce92fe8c61fcdc450f23ccf04db3a253ef99a31d2fb685"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-indirect-transport.py",
+      "sha256": "8c413c45594d3a0803b671a73f8e49734de46385286efb3e710bc507c83b0d06"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-integer-semantics.py",
+      "sha256": "2be3305b8f8adc48fd9fbc2fdffe1304717900eb03366218bd3dfafa0784933b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-integer-views.py",
+      "sha256": "4498970a1ec9ea89e746c6f250b052c88d6c8cb000343d37c2bece7664530666"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-interrupt-context.py",
-      "sha256": "1036e1c53f1bfab7fddac556f23c9dabff11171e0911edf0216497f8c4afaa9a"
+      "sha256": "7f3d1941bb56e0ca9382c81230eb807cee52cf52807fa67dbedfb9bc20e9497b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-isr-call-feedback.ps1",
+      "sha256": "7c7e949b18afd0f3a777fc215fc9caced738cdc8ebedfba13e2efeb68e31b1ef"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-isr-dpx.py",
+      "sha256": "ffd5338c51364a5fe5dc4d1ae92ef731bff4ee9ef4667e68604a16b15d4c8636"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-isr-saves.py",
+      "sha256": "c0f50a23a61a3347f7a056cc1678c07a13fc9e89d34995badb2824a46bc2733c"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-language-modes.py",
       "sha256": "1aec6ddc6f93aff429259f3562e992fcaf4dab1614dc45f1d754ebae0875a4c4"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-legacy-abi4-saves.py",
+      "sha256": "fea7f1eca5836d419d9ac71bb8e7c2e107b2694b3e4918c1caac155de5c35232"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-legacy-edata-members.py",
+      "sha256": "6e30b6db9544e056dfb7566e3091f0704226bb6fec648e755df60b0f511ad96f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-legacy-edata.py",
+      "sha256": "44cddfc49b5785a17446411293d78a5f01bb7f49ace51394e4dec358353713a8"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-local-constant-tables.py",
+      "sha256": "e15ccdadabcb925bd48b498b01ee28487ef78b269b10b9d4329156d3fbe89290"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-loop-cursors.py",
+      "sha256": "8839834f951b01d8319aeb9d1e0912286d206a51bc06be7d518f02de6ecc9d07"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-loop-facts.py",
+      "sha256": "3b1572e32275dfbe5e75779c0b6a674d1f5d7d89c488fede897e2be310037379"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-low-byte-products.py",
+      "sha256": "b77c54e4db93f3da51a5dc90a9fe9ad13400605e011f5e331b7c05b5fc8a41fa"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-machine-branch.py",
+      "sha256": "8156f2814dddff70c5c53ba1eab2e0fb4a2806978b043de3a5a9d7cc7f746524"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-machine-call-hardware.py",
+      "sha256": "c38248e7932a9debbfc1cf8d0df556d2b5d44d906b1f4ce00a57d00480b7f385"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-machine-call-plan.py",
+      "sha256": "47dd4f8832b645fe2361dc09e6a4e438537ba2c9635d5d4c76e176ce80c37edb"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-machine-ir.py",
+      "sha256": "b9ef8e5d9d63503077ffd11bd5567b1f6bab6f86a0645861ad251beaf9b6b331"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-many-arguments-capture.py",
+      "sha256": "6d2411106660cedbdfd8e986713e522d0fd96be8488048a3c3e3c46c0dba4543"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-mcs51-qemu.py",
       "sha256": "c7a7940afe3267a104c5e462f5d3aec00776974ae0ae27988d22810983b42e07"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-memory-state.py",
+      "sha256": "f3172937e869fdd155052c56a02f9a5a0f498e820d74e2c4197c598cf34c1bd7"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-memory-values.py",
+      "sha256": "26d4261215f291d81af216835c3814f176582792bd12faf057d72bfe7d22e826"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-mullong.py",
       "sha256": "7094a2d04cdd37710fd8bba2f4ff0a343fb9937c5fc276bc0158b6941ddfd455"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-narrow-negate-encoding.py",
+      "sha256": "7019edce96a5b14e0d69f08851c4d5e76f503ba8f7327ac5812f0b09892ef504"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-narrow-zero-shifts.py",
+      "sha256": "fc5ed2247217f449be232fb4054d6719c48912472bac125048e592a9b180e288"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-native-abi-rejection.py",
@@ -6225,12 +6625,32 @@
       "sha256": "72a2d801db430800d09f45c912085661fd26d9d7ceb58cbae7d1241eea93ea6d"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-native-call-composition.py",
+      "sha256": "41c14325a1f86a6c6f780a7e13f87f47cc9c269a2d41b9e782c18de24f832070"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-native-divmod-pairs.py",
+      "sha256": "907f21549fdfede582c6161596cbff929e1e0929dda83580e86f11824ab0e44d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-native-integer.py",
+      "sha256": "62734b8494a55557d07ad3b5aa19fb2687c8bb3203855a846181131feb879b06"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-native-isa-selection.py",
       "sha256": "85e12ac452965d5aac4e09cacf314ff6920c9b246213497d32152f0938b0a4d5"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-native-isr.py",
+      "sha256": "be1fb42ca22370d3174464ab1c6ed00ef81993f5178073f0b876dc11211e0a61"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-native-multiply-transfer.py",
       "sha256": "2c40a4fad0a0e436778c7ee7084f706def1f3f39516c1dd8e43fb4881d0acbbe"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-native-narrow-division.py",
+      "sha256": "98da418b4d8d7a7bbdb67f9519c132575b656c2c6529f257e1c769392a84a401"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-native-stack-pointer.py",
@@ -6241,12 +6661,120 @@
       "sha256": "c9a713c3851a413003e9e2a8d59ad50fc8e2ab7460f3724bf99e7dee5925d476"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-near-transfers.ps1",
+      "sha256": "75b3fe2d0792aff0fa676e2b97c9b271173fcf08e64a06f8117d846913edc813"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-object-call-effects.ps1",
+      "sha256": "0813b3b44f382cb179bee76df5d505ac29fee5d3b58459edb498dd994d993920"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-object-call-hardware.py",
+      "sha256": "2224f2a7acc33669761dc7cc3ae1ec0a8863ae32536d160a837ef322da2f406d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-old-style-near.py",
+      "sha256": "f64e2828948562817b88974d6fe6aa175b8c82c057982c7d98e7dd24e8bf4448"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-ordinary-peripheral-bits.py",
+      "sha256": "27347cc3501fda7cb75df898e9bd68b64447b5c31809b45d19944971c2e30b7b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-page-relocation.py",
+      "sha256": "9fa5286998de6ee43f33f1f109fdb3f0516a1f00eb76f63352691ba5f7fc6e9d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-page-transfers.ps1",
+      "sha256": "8a74e90a9acc0a0cec31ad2c9c5e79771636cb62306ee604bb131ebf463124e2"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-parameter-addresses.py",
+      "sha256": "f51269c50a6976b2ca6f1bd21db6db61652639faebd3e80c9d228f854dbc0def"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-parameter-values.py",
+      "sha256": "a3a07a9966c9a6424b0111ada66b0d7e51b548478f69003fff280eebccd22fe5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-peripheral-bits.py",
+      "sha256": "79705548a55f50928b33fedad36581e3e64360203a010cced2c7ece2d83d7419"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-peripheral-liveness.py",
+      "sha256": "9eea016cb49f280b87a1935555b16e081c2fb93bab2dfa047b76debc6402352c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-plain-text-printf.py",
+      "sha256": "482ba57b77a2ca3f4ef548d1f8ed32043e33b204861bab0437f20e5c264665cb"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-pointer-stride.py",
+      "sha256": "85a5cac7abde38033af64daf7f3f206f3863ce6de83625e014c0b10819854006"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-predicate-branches.py",
+      "sha256": "cbb7a69b6d0d052419a5897e8bd977d20c7c714f51ee11f6b438da8bebdb5db1"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-preserved-backend.py",
+      "sha256": "ec754bd33104d18766b7b64ba1d738697f75d7814693004494bd87a51aad9e66"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-qemu.py",
       "sha256": "2f134cfe5207ebe41801543594862128c334054cc067a3b651e4d5d54e569f45"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-range-native-divmod.py",
+      "sha256": "d2fff93355e30e4976f9f7277d7aa413d1d272ad84943f24ecd60d85fd61140d"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-register-allocation.py",
       "sha256": "9393a9826f4668e38ef66f45186dc22a4b59b570960603a9ba3411ed4785a6d3"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-relative-address.py",
+      "sha256": "5efa5c364f1c89bd7699c0c1da21dea6a70a5e30d9310838f08d248aa17b3193"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-rtrack-arithmetic.py",
+      "sha256": "b0053bba7321d589c55db0ecba1aae8a223184c0bbdb7748103246be4ff21410"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-runtime-call-effects.ps1",
+      "sha256": "e83dac026da2f2b7dacfeba5200962c3f167567cd129c11075510688d5563781"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-runtime-power2.py",
+      "sha256": "786a032f92f72cc485436af6347e3e2ac72e08ae23188b96e26b7f9b6b666dd1"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-scalar-closure.ps1",
+      "sha256": "197d5f0d2985473e759244a1869f96b69125addcb3210147a8a42375ff8fed4b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-scalar-conversions.py",
+      "sha256": "d4c24134fcb9609bf31900f73128a312c10b01bbe480fc165e3e75252bf26bef"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-scalar-semantics.py",
+      "sha256": "304009d4733f0834350f8bee69a653c5ac9df9f33d83f9c3054859cd1444208d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-sdk-declarations.py",
+      "sha256": "8c29691fad2a573c80bdb66189970280aa474e21f432d4a7100a978587ea0b00"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-sfr-bit-tests.py",
+      "sha256": "2323e3182d218a55cb4e9b6bb95cced8de88e2a52710592a252ed84437e77454"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-shared-cost-batch.py",
+      "sha256": "a141d956e0bd47733e6a67d19b149ed705a0f7584cba37ebb8253b575a3a6ff0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-shared-tails.py",
+      "sha256": "71e714f50b9195210e644b4ece7553dc1ef0f74dee414819319452ec2f77eefa"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-signed-word-casts.py",
@@ -6257,20 +6785,68 @@
       "sha256": "69f06ead3ab5db54d61a4defa264eb658ec0adb9b68cfb9e9a0288b0f008794e"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-switch-ranges.py",
+      "sha256": "6cf63d71d095c0a881ec9e588ab92e2c62607126a433b919d9cd97248edd6edb"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-symbol-address-effects.ps1",
+      "sha256": "dc178ef4be76cd5765dd65d5fc79489d50fc8598da65eccb55c77ef80f51a2a2"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-symbol-addresses.py",
+      "sha256": "5e62e1b3f7f43b8d1685f283918fdb2c8cd5e96b4d1102f1450ce3b9a811f742"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-symbolic-index.py",
+      "sha256": "12874a9090397886520af2d52cc4494f29ce4527d71a4a334bf0586ab450368f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-tail-boundary.py",
+      "sha256": "527c585cdbd2ddb7d8d4ae687077c671ce125d0cebcc8b03eb4f0926efa61a9e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-tail-call-groups.ps1",
+      "sha256": "f7900cab09c9dd7137e83e0c0022321290ee2f0d34c48fd973c38ac31bf275e5"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-target-macros.py",
       "sha256": "dc033b4b08488d10e470ab5e3c50b7ae6f033de8ea2ede761edae68a973ec906"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-target-sfr-feedback.ps1",
+      "sha256": "c3921f178a3dca97509a6472b58d7dc95ade9fcc998d8aa01c0be107231deae4"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-target-sfr.py",
+      "sha256": "3aed546e4ff0700d2a8a5f4e4ebb94db16d73806cbbb90babd99288002542edf"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-typed-cost.py",
-      "sha256": "6ec8b70028790ac3ef94ad4f4793680c765f284f653f1b0da89729926a838354"
+      "sha256": "852f88839ddfb3fc27235b063b67ff47eaa528060366110d63ba5a1582eb7c7b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-value-copy.py",
+      "sha256": "0dd0f7e13b4d9f5f0de13dca11f236423fc3d325378c60faee247a3fbe75bf06"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-value-storage.py",
+      "sha256": "afa12b722f243497547ce846afc55261684ca04a5f4b1a26ee8251653ade7dce"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-variable-left-shift.py",
       "sha256": "bd600bfbbd8eea340f8358112e8fa340c4abf69ab9f19a1970e668a369e99fa2"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-variadic-calls.py",
+      "sha256": "ab177f581cc24283e9db1e394d8f37bb0fe80c7177d0d1b9ce9c535d692f86b9"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-volatile-pointer-read.py",
       "sha256": "7ffe93405f1ba0d52c2ffb1a918e57fc8585bb9ce8c1d19a32cb1db39d3f685b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-bit-call-results.py",
+      "sha256": "b7ae26d90a517e359bd44a7d4de8fd6a1587c19cbbbca36596b5966e71d4573c"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-bit-extract.py",
@@ -6281,12 +6857,16 @@
       "sha256": "c577cb95e1c18d70847a7ffe26cbec7f9ce5d91d1783b781011f7a1479f36ded"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-boundary-shifts.py",
+      "sha256": "47cd19e177e76b87d392feec4d10d1bff102528142569318392f298f3eebb017"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-wide-branch-bounds.py",
-      "sha256": "c8a9e359c18bdcad4bdf963471cdcbd47502002d9527fccb088d17b8562450ac"
+      "sha256": "bc91a151c51d8d462ff6d0a06a56801e1800a2c75700e218cd1cc69383cee129"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-branches.py",
-      "sha256": "a230d5d0a56ec948a79deaeffe17c4dceaa449cefb8be6316b772ce4c6a74a59"
+      "sha256": "e36bb9fa3a0230cc7b4b0392f36001d3fc883bfe289f597be4ae058ded6e44eb"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-byte-extract.py",
@@ -6298,19 +6878,27 @@
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-byte-multiply.py",
-      "sha256": "03c61fcab7894773b8c1d44e233ac6c3d3c8e6cdc538cccaa142a271e72621d5"
+      "sha256": "48fb2838caede052e169dab749c4653dc29c63c3ce3ac529159e344610b74eed"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-byte-operations.py",
       "sha256": "2ae72d679cdcde389802e58331d3815a7be32e04b0ef15b1aae00f98c3c7dba8"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-call-reuse.py",
+      "sha256": "43f566363c28ef7c8bff86c6199ba0f85cf7fdef6129267ada46f4d68687d09c"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-wide-calls.py",
-      "sha256": "9dcf020749249a96f12716d75a62ec31fd76d6383bd142987b040b52dcdaa7b8"
+      "sha256": "898f56614ba6e7407a65fffdce40edc8144323886f672e35081ad918751780c2"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-capacity.py",
+      "sha256": "d97cca1bcb15dc0292719ca74bb801d8580e5f896b4c8c3681e8e4623ad13faa"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-code-load.py",
-      "sha256": "87821184478ade8625abf8438d81d8a65a770b3c6dcdb70ca97dd6f4a5b8777d"
+      "sha256": "068434ae609e80cc5a2fdd06049491501c0e4d4af87f96355e5a4aa338bf904d"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-constant-multiply.py",
@@ -6325,6 +6913,10 @@
       "sha256": "7c9f73dbb34cc11827b8836240adb85d2e31e129a99aaf0d909b21ea06e915f2"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-divmod.py",
+      "sha256": "5fc51df4438996e5a97c3afce83dfac2997a739b96dffdfa4cca45cf82140dd3"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-wide-extensions.py",
       "sha256": "8378170fe58974f1369ad768354803f032db6ddc05c1dec7a2bc6ea8eee9839a"
     },
@@ -6334,11 +6926,11 @@
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-formal-address.py",
-      "sha256": "ca6fd3fe45cf77a93051971d49d521f7e1cbfc8ce93582e69054c870cb0e01e5"
+      "sha256": "72e447d3f9525ea4532d28f926267581796f65ff52b235244aae70d7a50341ab"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-forward-return.py",
-      "sha256": "a657abeac8ef6bb23f1e4a6b35e389d2b596b74c06dcd89b756d040bd454b72e"
+      "sha256": "5a2a84897ec7564241556c49a540378958f85c937480ca5fb83d4212d6a986cd"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-generic.py",
@@ -6369,8 +6961,16 @@
       "sha256": "f21e31ce5ad82199aac2b7e7964f3fda8562eda51252e470f450a76b97a53028"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-many-arguments.py",
+      "sha256": "ccbc2e72c406e10c639def354f2544f3b1410b71d68b1cb800545b2c323ba582"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/check-wide-memory.py",
       "sha256": "a09077d63ac1142d1f439f91cbc1c611ac8992e3df2733e9d458947605770f2c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-wide-narrow-negate.py",
+      "sha256": "c94cad349e70b2f19fe9b3c7dfd84ffaeaa17bbe45aaa33eb4ec8f7bcd5f0d16"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-native-homes.py",
@@ -6378,11 +6978,11 @@
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-ordinary-calls.py",
-      "sha256": "62f9b06f9263b9293e3017e368c340502d35df471ba530ef44000d6591cf00e7"
+      "sha256": "38432999cb875007cf07d02d92a9344b5d9198cf5252aa033a9a0c21bbe81e8c"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-ordinary-float-stack.py",
-      "sha256": "c71c65d8dc9cf00041581ad60af5948321c3719716004f6b982e61c7f0e3e977"
+      "sha256": "3f7a1dc7a650af8837b040dec91c55a8b37f863ee5e908d13b5f62c8dbb6c61a"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-ordinary-leaf.py",
@@ -6430,7 +7030,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-stack-arguments.py",
-      "sha256": "05a01dc8003a3af3c64883298c54c32ecf486739125db8d5d8dc6376bfa3deb9"
+      "sha256": "307d29384bd2579a2edde9e2dd9c9ada1c6b025d9668b97033f0c2a913d221a5"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-stack-direct.py",
@@ -6462,7 +7062,7 @@
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-volatile-values.py",
-      "sha256": "bcd5869e9c9bb94cd885c677fcdbefd52ee9a8ff7755ce02fc8e7f86eb3eec27"
+      "sha256": "75c81e6e9ee0198575794972a3a2f18c1f99d81e4ce0d2eaf94eda7f5e529e8d"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-word-extract.py",
@@ -6470,11 +7070,15 @@
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-wide-word-multiply.py",
-      "sha256": "50b0bd8288314c3ae3f0302e6172d2a00bc889948ba53b1901d5b09e7912fcbf"
+      "sha256": "c1f7a4538063be1717c9ad2581bc61ad9fe1086be4058f1c012d995cebcc9bc0"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/check-word-bitwise.py",
       "sha256": "f61f9e3d9154203078949a9907279a03778cab3e59875305c4fec2ba0452d748"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/check-word-compare.py",
+      "sha256": "411acd29b020915e917c0d96f971445bf56ff1853abf0ae7ffaed96f51eb855b"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/compatible-block-extern-struct.c",
@@ -6505,8 +7109,64 @@
       "sha256": "1748104dd2f2229153893a53659f9c066984160736eac59adb494fa51ae327f1"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/data-index-cases.c",
+      "sha256": "a532cf48172960d657c6dac91308ae59ea4788074fd920b4e53550b39e956587"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/data-index-objects.c",
+      "sha256": "8798715da5d52fa4973ed76df1abbf945bd6261a8a95d1a0204a9678b3df9b69"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/data-index.h",
+      "sha256": "9a69e88b64be2060501836f2ad48c541e09c61ac45b835186ecf3e46c7a7d991"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/debug-smoke.c",
       "sha256": "bb881b1b1690b9fae097c58ce49bdffdea860f4a1c239a04018e007a99ff809b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/direct-fields-access.c",
+      "sha256": "d1195a68319eb430e8efb22781995d838e47b966b4058036c39b7b3ded4077f0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/direct-fields-objects.c",
+      "sha256": "18ba0cd574d5461d4150990392bf10432abd419cf17ba6f2b1b9b6285bffdbec"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/direct-fields.h",
+      "sha256": "65a7ea797b9b6e220c0a39cfe0816b76c8bd3af37609fc5d4e26388da565154a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-indexed-addresses.c",
+      "sha256": "9e5ae7959b713e3b415b9c84a48d5aae36e60593db6e0131559a4fdf5fcbf3dd"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-members-format.c",
+      "sha256": "6cfe6608c3bd79b3d0c91017f41d23049a62d2fd3f98735e5aa7a8dd5bdb0ed7"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-members-init.c",
+      "sha256": "fd82037ef1e35b78aea5af09152214db75fd964228153c5cb0d2cd39d9f4af77"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-members-mutate.c",
+      "sha256": "4a4c0a241c1cb0e60fab92b37c1bee23f1b8d9fe6edcbd2316679bca69301a40"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-members.c",
+      "sha256": "1f58187e19c2bc33aabe4a381353062fdf8e03c7ff67383223936f43406a9c5c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-members.h",
+      "sha256": "257b41981fd21e7624898ff26faaa0c8e31a35ade9c0fc21ac665d21b8011122"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata-other.c",
+      "sha256": "1d817c032dbf828a4acec1468099a474618eb8e16264998c109c6d382921e47a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/edata.c",
+      "sha256": "c459b863952c4591ecbc8325229a0460888c900a8c21ddd61873361fba39e2cc"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/elf-output-probe.c",
@@ -6521,6 +7181,10 @@
       "sha256": "87b06d6a47feb646add940388d4d8f3a2a780a2a76a803cfe1486ac6739a32b5"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/equal-branches.c",
+      "sha256": "7d00940ecb2491fd268a57306a622573a247b2f71bc8185fbd05a3fe323821e2"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/far-callee.c",
       "sha256": "52ea76aa47c28ea393a22a0e11bece1b6486e9ece6c816b9b0b880ba23173ad5"
     },
@@ -6529,8 +7193,20 @@
       "sha256": "bc4914044f919c7cf2fa9b437cd8ae97a3c332737ea3494be14bd9ca4fc380bb"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/fixed-pointer-addresses.c",
+      "sha256": "cb65e8564fb85866105aa65d4981ec42a405074fe5824c11ca7bfec114ac104c"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/frame-lowering.c",
       "sha256": "53dc239ffcb2be57208d06f093e07c13a8f45035671e0c3493729a23b6bf486f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/function-sharing-board.c",
+      "sha256": "3a8bbe431e9c34e54bde286b4a51ab51125c58ee7cf4832f346d4c21c9aa644b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/function-sharing-render.c",
+      "sha256": "cf70a20a76df8d182852b25df67dc8f9108b0523fd7fcff2c7b7ee379ca4bae4"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/gnu-attribute-invalid.c",
@@ -6669,6 +7345,26 @@
       "sha256": "ed0f667b634d87d1fc77e1d9b13a4e26114a4761bdf02fada0afef3d988f3868"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/indexed-address-access.c",
+      "sha256": "9a6abc5360c04d228b5921cee3a734c346a6ed6fc7a2f51a2dafc163a3f9cb0f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/indexed-address-cases.c",
+      "sha256": "41d61dd3df800a318a2a94763fa698ca9c797f60f08b261a6f3c38c5a5a14e21"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/indexed-address.h",
+      "sha256": "adff3cd21f354386664e854397ea9b6c84f2a57b92f389b58177549368f4b137"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/integer-semantics.c",
+      "sha256": "9472e386995ccf77c4f218c00f59ef261365b6d1d948c98567d041da55de633d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/integer-views.c",
+      "sha256": "0116049dcb5e677221b694e1cdcd90b62dbd710d169e590e5732e8a5da6282b3"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/interrupt-context.c",
       "sha256": "a336f7bead9eef01b22e46f4abb1483b424a8744be1014520aa2ecdfdf8e3779"
     },
@@ -6689,8 +7385,76 @@
       "sha256": "aa54451ed17a5618e84975d272a4c0f1d6ebd8170418b2a5c7c9c39b166088fe"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/liveness-sets.c",
+      "sha256": "9fb717353c6f3bcbe4359df322b0d5e1151d8b4d5c8e9e71b6a72d57c259e792"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/local-constant-tables.c",
+      "sha256": "a406cadccd5e33470157cab4879cdfa46bb9656fc439f559a6ddfe54045f7edf"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/longlong-runtime.c",
       "sha256": "3412a84ac692158cf6a6b4ae31de0728625171ec3eef8522e193af6c85b6fe61"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/loop-cursors-cases.c",
+      "sha256": "633dbe7a43d961522c7f645b6d78a9eb8da5f564c21e19f09831f3cfc8c44e3a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/loop-cursors.c",
+      "sha256": "3ea6a8030ffc27e2f86a0b9426f2c34bf32ea3396597ba72382dfbf82a608d40"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/loop-cursors.h",
+      "sha256": "b3e0d0c0ee3364d0ec73437165c8cf4a46de1475099c0cb17b9afbbc20e3fc8f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/loop-facts.c",
+      "sha256": "5a5c8c01f3d695f92a64649aedb74e4496e4c7feb0fee73ce8b6d296f0fb589c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/low-byte-products.c",
+      "sha256": "ad22b63393757c2b1a3c30959d963395ec5d9fe26a38adf82441e4036380beb5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-board.c",
+      "sha256": "40e5a4910213a2e28a582ac1376add2bf7494a2131e682060c5e7390d1b448ff"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-board.h",
+      "sha256": "0624c103188fd45bb47003a5fc97598bde17f750b8fe270bf20e7fe8036bb9c7"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-call-clobber.asm",
+      "sha256": "377e00fca38822d53aeacf1cce2a61241ef34ef1a4bff414bad8d9ba50bec5d1"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-call-hardware.c",
+      "sha256": "6cc5acc69181563c062981ee2bf1f8d6cb40c157328ab92a42adea348e3daa90"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-call-ordinary.c",
+      "sha256": "28824556620e328124e077e4178b1e8a61e1066fe6a57db73cfac8c6c64cef26"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-call-plan.c",
+      "sha256": "f257756363211439356773ae84dc493b09ff3ba17f30e8086bc873cba6394c63"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-call-plan.h",
+      "sha256": "9eadc39c6459cedcfc273482f57f28abf80215b32e23da1c87b0d95333474158"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-control.c",
+      "sha256": "8d9523a7c6b71d1941e1e3075b920202e9639a5e18bf51c531536fd714045dcc"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-ir-model.py",
+      "sha256": "821dc31c7c4a1e2524ccadbf0a9b32f724fb202ff7731d0481812f7093d50828"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/machine-trace.c",
+      "sha256": "adb172fc49d6834e37385036b18247f034e25ffce6ee09ad4693f4c2da596559"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/mcs51-regression.c",
@@ -6713,8 +7477,44 @@
       "sha256": "3819b535e3aa335d40815cf2b0c39ca6b52bd754fc9fceb85b15a6e103865c44"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/memory-state.c",
+      "sha256": "c4ae702a51b21745e3e28fcb92a82daaf67ca517af7a71d33f6dfa8bed2a73f3"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/memory-values.c",
+      "sha256": "e18180bdf8d85a9771537f3bde03dbcd44acd22952f16e756bf724d3d1816d55"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/memory-values.h",
+      "sha256": "b80f7203ebd96e3586860a66b1f94f277a03cbdc46d8297cbc097c23556cf681"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/narrow-zero-shifts.c",
+      "sha256": "d8135d29e72a30c55e37338a8710a9c3488e22b4a8c1a8253e0a31765374de79"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/native-branch-liveness.c",
       "sha256": "5d68536f7640055c41a3742124f36ea62a05147b4c19819a6349a1aeaa6fb418"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/native-call-callees.c",
+      "sha256": "87eb8842d295a901f2ab1807d242bbc2d9a9885ad98213700795f1e46a358057"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/native-call-composition.c",
+      "sha256": "ea54bcbc38fc18ff7d2a629bbee572a2632e897191b73803383996a59bdc2630"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/native-call-composition.h",
+      "sha256": "c9713c34540f103367e85627135ec7e2a2c646c70494753e1e98396484773f44"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/native-divmod-pairs.c",
+      "sha256": "900b85ef9623a9c05875b773cc4c59c6aad0a3829aff6963c08c04a6401fb180"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/native-divmod-pairs.h",
+      "sha256": "50d0c7af91a8d658905fe9ebe05c4b5f236e9d9b93d9f24b5c9e5dc366849817"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/native-extension.c",
@@ -6729,6 +7529,14 @@
       "sha256": "5cd3e7360861de6c44fc9acbe3ef16ceb617d7ae4191d2abf3606971c41f912f"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/native-narrow-division.c",
+      "sha256": "e9c7bc838b96defacd0541969169dd367a26cfae7b3bfe6d0b86eb90db11ccff"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/native-narrow-division.h",
+      "sha256": "ed7f6d4bc79c57c26b8ee9cbb787f14694fecb51f924ecb17492c873b5ef076e"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/native-optimization.c",
       "sha256": "4aa95c80e28e728a671760998e467b12fecff6c8a1203fde302f509a902d7198"
     },
@@ -6739,6 +7547,22 @@
     {
       "path": "sources/compiler/src/mcs251/tests/native-stack-transfer.c",
       "sha256": "c8092a8b568936128d119ffa99e8c9c195381923625ebb63b1c98372e1acb10e"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/near-transfers-cases.c",
+      "sha256": "122be4c61533b05dfb454cef7718d2d8e3b81fe1170ec6787e7f28a172dba7ea"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/object-call-effects-hardware.c",
+      "sha256": "b1de5f452487b614bc88f51eefa5c0b19d54e630769f3ef2abfb61848ac41ccb"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/object-call-effects-store.c",
+      "sha256": "3c2fb6f1ace66b617ac0651413b1515e83b86ba3310335211f5ba509be302aeb"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/object-call-effects-user.c",
+      "sha256": "26a2365553851200605b2d1f64202ae1df6cfbbcce8563f99867bfec2fa4afef"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/official/case-support.h",
@@ -6797,6 +7621,10 @@
       "sha256": "8e1bc389a7b21a24a84f04bcb56d3d780879a1b4faa92448100931d76255c61c"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/old-style-near-cases.c",
+      "sha256": "eaf709df6378b69068aa9ef97877fd6b9876d471d9bf806fccc107ef68ae23da"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/optimization-runtime.c",
       "sha256": "679d4fbc457eb55e92425560660b100ff6f12c9af39a4e7d9d72db147b1cb59d"
     },
@@ -6809,6 +7637,58 @@
       "sha256": "7de21c58575df67b40cc9da847189abd45cb372282222e5f545ee19d5a13a7fd"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/parameter-addresses-access.c",
+      "sha256": "99e14c7e85f516c6ff4c5e88b730332b25ac18701717b3e8a465d2d385a3a36b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/parameter-addresses-cases.c",
+      "sha256": "3a5379ec5fc32e5d94df57fc3bd27e4901faf1f047e7bf7ae71c8669bbf3b3ef"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/parameter-addresses.h",
+      "sha256": "45813b4e4f803a7e793f7ec759edce0cefc123045e789cfeee72bd69ce33aa21"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/parameter-values-access.c",
+      "sha256": "4df9f7df5facf9e1594f8efe59f5704cbba83cb527354fbb0e2c60c3f721c100"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/parameter-values-cases.c",
+      "sha256": "2330fba76a25d49b99f2ef43f9d9128d7947eb29909db2cc4c6e2e36e5fdab35"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/parameter-values.h",
+      "sha256": "d682ce18f70791d999acf21729e3e27da102e9305033ad7eb69ff46721f6be1b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/plain-text-printf.c",
+      "sha256": "f729f58b9b8a6e774c7a47e1feeb5b45daea744de72029e7e6c200dc34f5406b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/pointer-stride-access.c",
+      "sha256": "49ff4748c0ba1e987f45846b1d5a71fa6787f378c06cff5d9e755b5680a326fe"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/pointer-stride-cases.c",
+      "sha256": "61b469a6e8968d176a345d39620f5cc4aa5dc9bd646102e6c48f94c6848adf4f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/pointer-stride.h",
+      "sha256": "db1c67a6bd7dce5addcb48560a983c3412fd76e63f8f79102addd81476005d31"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/predicate-branches.c",
+      "sha256": "93b120bd535f7d8c197fa221cb9ab7a3a3645e233a925132fc63ba2e895e98f9"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/probe-machine-branch.c",
+      "sha256": "718d13b045af32e0e6f658a8d1c551ae8cb4a01faaccb7d7a5dcbab54d840548"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/probe-machine-ir.c",
+      "sha256": "b1d743941731eab1fc311a5bdd0b1786fb70a7ef83ffb19c2739d448313babdc"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/probe-wide-loop-cost.c",
       "sha256": "ce5d9879429c1e46b6d63eb97fb5a35764c4e2cb84b524c5608adea8a516c939"
     },
@@ -6817,12 +7697,56 @@
       "sha256": "12e18cdaec83a0ed61865a697ec936cb0e95816bb033714b5036b724f2560b28"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/range-native-divmod.c",
+      "sha256": "febc3911065fc981d12d0eeb5bc66952fed02075c54ef8f62bdebb8a7642d6fb"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/register-pressure.c",
       "sha256": "38f669c45edd9e1d11baa8cf4e780fc8761cfe5ec1167859105d729e8952d574"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/relative-address-cases.c",
+      "sha256": "5519e343d68fd160268b1a1e1bb06fa13bab039ea1211e873d22f703ce92dca1"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/relative-address.c",
+      "sha256": "8bba9d10a9d5693b2d05caa2655242b67c3af9502806229aefebc63053ae5299"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/relative-address.h",
+      "sha256": "3164b34bf76ea47d8b78f707d95ce74ce5483511e776a922fdd20b9cb7abc3f6"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/rtrack-arithmetic-host.c",
+      "sha256": "2cb28b903b57f7f94480decc205ffd2c260072383387f837b9cf1e9e5283309b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/rtrack-decimal.c",
+      "sha256": "a0b25a552236b6bbfa5e2f9199aeb3e036f7a42cc33adc352795dbd634eee8de"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/runtime-arithmetic.c",
+      "sha256": "88e7260d9743f3520a611678509a0c4303e0a41fd79baffa9ce7c61099f31c35"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/runtime-main.c",
       "sha256": "0f3310323af77342269dccc42d963a59097c92ae8290bbbd4e4e720766056149"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/runtime-power2.c",
+      "sha256": "e96cb0bb291e54b62623f304bf17a3fa7901b0b85a6f42e0b2e1a777ee35bc8a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/scalar-conversions-callees.c",
+      "sha256": "ab06fd7bd0a93e446465db2665db386ce40ff41a66fd00412564b237e42f6c8a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/scalar-conversions-callers.c",
+      "sha256": "c5470f534e0ea432db488ea561830880df73f5181bc639a19b6419e606ed20f4"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/scalar-conversions.h",
+      "sha256": "5ef3fbe6580812bd9ceb303bb0d8d210fccf957597955c11dfad2043641e865b"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/scalar-plan.c",
@@ -6833,12 +7757,40 @@
       "sha256": "b983efa5df14c7a029156178a23a6d1ae2c3e9b93a03fa6b2fecc5198f3093c5"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/shared-tails-callees.c",
+      "sha256": "ac7c35085bd1b5ee0f5f32e9e5c9f7159e795d576f72a22ee769e18d82a4bda2"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/shared-tails-callers.c",
+      "sha256": "fc60f111fb37818acff18ec76860f9ab8d97cfc6a550f65d1b7248a1b835e087"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/shared-tails-cases.c",
+      "sha256": "5ed564b79742bdf24c4dd06c24668662135c4724ea6b4f906afa1f88585e5ee3"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/shared-tails-values.c",
+      "sha256": "7550b69cd1f1b170d36f079817e6169fc2a9cd3352364f6031eb6339ed32cc04"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/shared-tails.h",
+      "sha256": "40c0e415e50e8d846bdbd785b92c44bfdd0f09c361ff74d31a320dd7edad1e17"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/sign-extension.c",
+      "sha256": "d47c05f6536f2bf20fe8220ef3368308d9739d929e248a3eb3b9036a721a015e"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/signed-word-casts.c",
       "sha256": "d375c40c86f34e3ce3a99fca2a87d3519c05d1c040672243d97807f593f96ff7"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/size-type-runtime.c",
       "sha256": "5f47a03845c38f3847a7cbd3417835ad8dd2a7bd09c836ad99079e5395394ac6"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/spill-register-state.c",
+      "sha256": "8b11400e872b183eb984137a363a4b1b06ff2975af155a6074640ed3da27e88a"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/startup-memory.c",
@@ -6853,6 +7805,42 @@
       "sha256": "3e6726ce2a4970d2a40f03c031b73ca0f9bb0eab0e97063e09539b7c5f24ee71"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/symbol-address-callees.c",
+      "sha256": "ec785011f2d2c8157d8438256ebd3d9b24c70fa45812a9d9b594412c2755bf8c"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/symbol-address-callers.c",
+      "sha256": "7ca59c9f38b4a65f32ae6ca0cd063365625c4d30d868e12361038d54322fc2b4"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/symbol-address.h",
+      "sha256": "dc1296cf02a93dce0988f679539fa1c4fc5ff4f1ab8c4520d2cce1fee11a86dc"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/symbolic-index-access.c",
+      "sha256": "83fd8840d29191c505542a433a554d7802ffd608d49ac2da75349d6964e7e973"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/symbolic-index-cases.c",
+      "sha256": "9c23645858ef5855da3d89bbb50bada5c96bdf4ab998321c196d210d96b08d50"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/symbolic-index.h",
+      "sha256": "3ae389dd90ffdf0844316048b0a720bd24d1a2947d2156b0affc8914b04ccfc7"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/tail-boundary-callees.c",
+      "sha256": "155bd9949e7f9bd737fca4c2241b065d49d523bb7bcee10334b24bf8c9adddad"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/tail-boundary-callers.c",
+      "sha256": "8c8477784c2ae94bd9893c1058472b6205b8b495c77d38bd62ff30b1d4c792a5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/tail-boundary.h",
+      "sha256": "29a92545e45eeebd44ebe0300ea28e945d3bd420a66283f006478e253a9f7252"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/transfer-values-host.c",
       "sha256": "9f7d21d45b42e198a90410d36b8c0f553c67e0d9300cd6bc54f821b555699ee0"
     },
@@ -6861,8 +7849,88 @@
       "sha256": "143b9a20fa9b9c25c0a64a6c94250c93340eff9190f8af75d36eae2144929d6a"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/bits.c",
+      "sha256": "336171da45093a58a45a6821a776b850d03e70b16dc3bd08e466853a139ad137"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/callback.c",
+      "sha256": "bc4e9e1d99ae384f2345536f3baf1b7be8c98520c5f13d75e32260407220a896"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/dispatch.c",
+      "sha256": "f2cd314eb0aaa6a5275dd3eb825f2439e71455e919e81790220ed14ad71c3002"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/fields.c",
+      "sha256": "afea1193f9ad0a9273c18bfdc51ff57937beceb62a6256adf13f05e13c5a5381"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/parser.c",
+      "sha256": "0ee626e7e80044a9ff0c2c49f9a06b3d301792ffdc4d96153047f680c2defe7a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/README.md",
+      "sha256": "62899344c4573a8ed131180516cc62cfa5e85ea88458a1fd4c2b1911c8d9707a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/ring.c",
+      "sha256": "4efc184aea2c1ece8cd26ec521e6ba22a87c0014563f9c1092453dd4c2a698df"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/user-stress/stress.h",
+      "sha256": "4b101a746be239d0428ee86a934e982f124cb393f5feac135d8d8082791eb7ba"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-copy-access.c",
+      "sha256": "5dc342be778e94a584413bf9003e66221a44240e149be5077f80d09c25b3fba4"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-copy-cases.c",
+      "sha256": "4705ab184416961fa884832c28d4d22ade4cf1e3264258bbbc74c4297a8d2c3a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-copy-flow.c",
+      "sha256": "d799e7ca3f0980dc9e95a280062e5189bc35955096df4a8fd9ec8e3d2ba8f388"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-copy-sinks.c",
+      "sha256": "279e3945e8502db7aede80bfb2bc606d5763f137442415073a37dcf043d42970"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-copy.h",
+      "sha256": "543aa2a7f09b6606e2a5cb25cddce70d2711085fdb826a5d172f713016e6a407"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-storage-sinks.c",
+      "sha256": "92633c4b594cab1c26c70a42723e3de10ba40d2f731717c1e74627ca09915093"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-storage.c",
+      "sha256": "3caff332ebd50021580f7061e1fdfff6234ccad725da04e4e3e20ea90a1748c5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/value-storage.h",
+      "sha256": "530e152f0df729b07f76e428f246dd766d0ccb6a942cff0abb09b58765bfc4fe"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/variadic-call.h",
+      "sha256": "ed6ef3d4dc3ad20749847ea922a77851d416b653aec47d0786876b05b9a823bd"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/variadic-callees.c",
+      "sha256": "6c44e15474704f11cebe22376348f0cdf64cad50042e30f127d2a06690948235"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/variadic-callers.c",
+      "sha256": "79bd256c68847cc95385210107f5b6dab1664ae57c3045b1d952ed97a4612301"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/volatile-pointer-read.c",
       "sha256": "fcaa38af6e6a5474dd3ccc18b60a5cc180b52b0515ae03e9dc525f998edce364"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-bit-call-results.c",
+      "sha256": "ef3b2b011a8030b81e2022605a1277e9a69b72620471ec9982b98c562c0b1d75"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/wide-bit-extract.c",
@@ -6871,6 +7939,10 @@
     {
       "path": "sources/compiler/src/mcs251/tests/wide-bits.c",
       "sha256": "8d6b96847f3dcc37950ee982b6dc38b7c2469de333676771ac265bf1709fb321"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-boundary-shifts.c",
+      "sha256": "34cb886acdb9f6a795ffff498b9b726a42fb3c60c9069d677119d8a904e18fe3"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/wide-branches.c",
@@ -6897,6 +7969,10 @@
       "sha256": "e8580a4c124dd1da178f05ec55c5aa9cafb8ec60cf3b949a697a476aabe70078"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/wide-call-reuse-host.c",
+      "sha256": "1c4d35f7911dbb095c427a66a7aecc535ae1f2a6fd810acaa05f6a0df015bba6"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/wide-calls.c",
       "sha256": "d99a5a2e678b42b4ed3f51e849e30ad3899a69bc7d723f92bb84f914945d94e1"
     },
@@ -6915,6 +7991,10 @@
     {
       "path": "sources/compiler/src/mcs251/tests/wide-core.c",
       "sha256": "a5fa8160794286094b754b5c2c89af3cd56fe90496bc5574e8788fa9b139563d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-divmod.c",
+      "sha256": "60fa47685aaa640ca1da01a326fbc54134fb47d15b3b606afaaa5a2d6772f6a5"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/wide-extensions.c",
@@ -6977,8 +8057,36 @@
       "sha256": "eb77a2ba26ca6390b93cd4074d32edeea2c23b6782b7466ded0150cceb4f17c4"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/wide-many-arguments-callee.c",
+      "sha256": "8444f2d9e95ff4d19a1257dcdd5e6fac9fbb8c8f59bb1e53c6574319fdb444c5"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-many-arguments-caller.c",
+      "sha256": "795f6770eb93d1caa5e263c3d60c15bd3d896039d59f20ec580d9320de75bc3b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-many-arguments-hardware.c",
+      "sha256": "b4bf1a57d852a3edf67d8cd3b5e46c9ef03220f0e73b01bb8a46150f208529ad"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-many-arguments-hardware.json",
+      "sha256": "b6581e7c402442fbc102d961ba38056d5b8ac716271db3235c80bfc61ea345ce"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-many-arguments-legacy.c",
+      "sha256": "f638b31553cc5487c50c103c94215d370c78352cd02bdbfbc5653bb672b66715"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-many-arguments.h",
+      "sha256": "4d4614ee59bbd9cf6bfa24f23f787a40f533e50107831bf244d7a264e177cb84"
+    },
+    {
       "path": "sources/compiler/src/mcs251/tests/wide-memory.c",
       "sha256": "33d66a6e5bd638d03c8ac06504615d42a906c4d1fc9a92e25209a1d4c01156b2"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/tests/wide-narrow-negate.c",
+      "sha256": "e29064e967b6b2c73626dc601b581bd792e82ae931b4c060199bd23a84e2cc26"
     },
     {
       "path": "sources/compiler/src/mcs251/tests/wide-native-homes.c",
@@ -7145,32 +8253,64 @@
       "sha256": "886dd80831a8cbdb41b654f682a8bea7943111e8f6e0e77721145ef094be511b"
     },
     {
+      "path": "sources/compiler/src/mcs251/tests/word-compare-cases.c",
+      "sha256": "d19c886f7ade997960072f059dbcda48777d539961adafb3212b3d663b69dc1e"
+    },
+    {
       "path": "sources/compiler/src/mcs251/transfer_values.h",
       "sha256": "d14445395067224f708a6264e16a13df6bf9795f22c00a414bfa27707cda9b77"
     },
     {
       "path": "sources/compiler/src/mcs251/wide.c",
-      "sha256": "2a2b261baa4cc1f1077ac79fdfc9c4687ea301354967fec5c9eb9211da918f86"
+      "sha256": "34db6522f72e87fd09b1b1f88567977991705f33c7269a5f67ae021d015f9994"
     },
     {
       "path": "sources/compiler/src/mcs251/wide.h",
-      "sha256": "7ad487f2c61d50563b23d65f3b237747baa144da3a231a2386ff3b122b93cae7"
+      "sha256": "dc4824d5fea9336436773d079e649bff2bac1595cf4de2eda3db41d652b6ac81"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_address_offset.c.inc",
+      "sha256": "ea1d92a3bce61ebf41c19d151be8d50e784b153b4fe9724b1058baa49d8ff326"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_address_remat.c.inc",
+      "sha256": "95a567339025990bf96c34609834ae96ceb747f9415fcfa802b8c626aa52f8c3"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_affine.c.inc",
       "sha256": "d19db9f20c8baf4c353cf55368c214516098bbaedf6a92befa2f5634df26034d"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_affinity_allocation.c.inc",
+      "sha256": "31d041ee7ec9fcdddbfafd05e2d38da630b61da10c085aa101038a44afa5c7aa"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_audit.h",
       "sha256": "0f12eef30da064abc4faea4fd4a4cff8d5812e5b3f42aa9f7abead73de46b262"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_bitfield.c.inc",
+      "sha256": "d193560b3f1b929997057c3c0586c49c4f7f66aab7859c829e8eee847ea86205"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_branch.c.inc",
-      "sha256": "ef558649d410ed7a631d837b11e5dfd4fe21cffaada849d20c5091d0f7e4a2df"
+      "sha256": "7ba626a40ffc9e17fc2441a7f1df333b3b3b169bbb354ec88073f4dc0474803a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_byte_pack.c.inc",
+      "sha256": "fdc5f3fe32c1ed9a7ad470ecd2a7a8404269d79ef71078a82f9405b3124c24c9"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_byte_rmw.c.inc",
-      "sha256": "e32e3513af74076f35f944cbafb916a866f88510cc6a03dd92a1338568830500"
+      "sha256": "a7e1a9bcb35589e3c3bf7740dba2d3b107cca3dd865b38ed337bd814bbf5bb20"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_call_plan.c.inc",
+      "sha256": "4ee7ef94ccefa0a3a2524ee892770b41b9bad82dfba0aac7dec4f12e79c8303b"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_call_reuse.h",
+      "sha256": "c98b788bbf4b0d66adea2c03e16f8d36c4d04b67030ad123ae43ee27115306f4"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_call_save_plan.h",
@@ -7178,35 +8318,83 @@
     },
     {
       "path": "sources/compiler/src/mcs251/wide_capacity.c.inc",
-      "sha256": "9c5fe7f9bab0ce8a76ddc739c5ce433e5c71aa568ac0f9944d6b8caf8d1cdbbf"
+      "sha256": "35099fd6fbbf341384ba0f8ec9f9237708acb639c54f43d2b1eb935d873e79b9"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_constant_addresses.c.inc",
+      "sha256": "4e76980167eb358781550ed5665fb65744db20b4b73d761ab70d65787546b9e3"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_constant_table_emit.c.inc",
+      "sha256": "cb0825c7186a8a668266c02b26b9d02590daac23f3eea1e70f2d43f2fcb4ac99"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_constant_tables.c.inc",
+      "sha256": "9fbf39f4b206ddc23fc8d3f7f0b39c5c53ba078d9630cba545cb7bb0e1c628f0"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_cost.h",
-      "sha256": "e6b525fc88777d1ace5f50ee20664ff10b4259f59d4344b0f7f197f3afd93193"
+      "sha256": "38d7292720793bf5bb9a85f9042cd1cb87ba0d40d661b4cff3d4b421648039fb"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_cursor_cost.c.inc",
+      "sha256": "adcdf0f43a375a212caeaa44b1a0c1894e33994e8f524226c59cd0dbd47571e9"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_definition_copies.c.inc",
+      "sha256": "4df9b2d6d3edd881df4f4e5eb466ad60da38d36354006211f57d1cd75ce748a7"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_direct_byte_rmw.c.inc",
       "sha256": "ba862a5786427d5a71410c3f5aff515d69e9f8ec27355bdc36495dae6cd481cc"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_divmod.c.inc",
+      "sha256": "be16bf7a09690ab62f948d056ec22a285f716ae9aab2636c5d76101193265ddc"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_domain.c.inc",
-      "sha256": "59943a38ef169456709eb251be445b250c4a672d927c8beb2f7a027103367847"
+      "sha256": "7ff911f4c79f19be5296d129092eb7167c3665f81f8827f16ed49b18acc3272a"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_edata_index.c.inc",
+      "sha256": "9aed12b9bfd130335b46cabd039fd44842d204d9896f18464766eaf497003c15"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_emit.c.inc",
-      "sha256": "d7052ff345aed85308020a20669cc3fbb1f8bce22312caea97aaccdbb923af2f"
+      "sha256": "a70615028a67863f82907c7feca62a46a46c0aee02c615a4f11e48106d5bc26f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_equal_branches.c.inc",
+      "sha256": "6c5701ae255969807425ee5db45f3ae41c7f70c43b6d33aa1ac313f8ab71c5b5"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_exact_byte.c.inc",
       "sha256": "53185c80e427ce1180296f7e96caeb6a261657c3091948fe680d702ab96d91c0"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_indexed_address.c.inc",
+      "sha256": "211b150f471a0f388f6185fec69a8211d78c13c19e6c198a63adca10ea0f0cf9"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_indexed_field.c.inc",
       "sha256": "924bc6919b726e3f54d89014a39c82da3720909a38fee5baf7776a6814e3c89c"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_integer_emit.c.inc",
+      "sha256": "9155f34e84e74d01cca633dd2a26f7adf673127abbe603596be6e7268107d322"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_integer_semantics.c.inc",
+      "sha256": "3ab40940da3145cb20cf58fb347b04564d0b8997edf3223597558ce27bc2fcf2"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_leaf_effects.c.inc",
-      "sha256": "96e31179a05cc9d1d5b60060bfc46c61388d656c55f0126199f3b6699f8affc7"
+      "sha256": "bb4a978ff724a290965fe8aa6d746693148ee461c3fd1661520153f3bac41efd"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_liveness.c.inc",
+      "sha256": "2a2ec4beb042c8bbbc8634e5d3565db085459ea6776e9ee04a15418712a422b2"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_load_schedule.c.inc",
@@ -7217,24 +8405,60 @@
       "sha256": "63bbda797e0fc7437efe70185e70fad15773346a604f5c2f8ac87e3dedf4a657"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_loop_cursor.c.inc",
+      "sha256": "f868fd72694326fdf679f5839cfe7fe609265619e02b48374e3f097d053f55b7"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_loop_initializer.c.inc",
-      "sha256": "2ea13e4e364a8906710a22667bfec4f14556fe3a9046ad0684514812ae1dd5ee"
+      "sha256": "9b7e0d549007be7457a76624176a3dec47e6fa5f997d30d14dec4142096e401f"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_memory_values.c.inc",
+      "sha256": "9628fc6321a35223b8a300092a3b07adf93a3b4f68434a0ba68c1fcd791b3658"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_near_index.c.inc",
+      "sha256": "80be3aaae85ad11c09e70b1c08e282d3ae6b18b5c183c92efdbf1a3c97ad0852"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_object_values.c.inc",
+      "sha256": "8a2f73ab4dd7628e324611420d6595949bac000aa55a2d6cb7cddedeedc6c394"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_ordered_asm.c.inc",
-      "sha256": "fb197c875dd212e29a73fe0d0b1eab502260f31c971122856d537fa5c4568bc0"
+      "sha256": "08700a265c75804535660c80e0b4ce0bdd657cb4c7f23d268e6638026bb7696a"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_ordered_contract.h",
-      "sha256": "673e2411e8637cca247a3ea1cb9146135b302a7e7a8462911e634b6acb285a7f"
+      "sha256": "c7ae19b091f047b53ca1de2ef5cebf0d51d0d015b3c70fcefb8a7d2df4274824"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_parameter_addresses.c.inc",
+      "sha256": "330b2fb10ce975d2205b734e66fcd19f4c295c3c1c84e47282e3cad7150e3c93"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_parameter_values.c.inc",
+      "sha256": "54c363ecbfebb729493a63461a97e580e3f615fb947b1a8fafabfd11d37a372d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_predicate_branch.c.inc",
+      "sha256": "99dbcf4b04f270477a418bd595177b4796a2da35d96bf7b5cc6cd485410c3f4d"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_private_values.c.inc",
+      "sha256": "77683e1ddc97905a47afcee43f1df93a961f69d7983de5a6b8c55f9db6c7dcb6"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_recolor.c.inc",
       "sha256": "0e3fd29bc7f7372e5e61bf106045ffa80b4afdd65d0f19b3d6d5443448709f5d"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_relative_address.c.inc",
+      "sha256": "85ec43c9d7fa8e779603570d0a76f941d937a19ba411e9729394ba102659e2aa"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_repeat_sequence.c.inc",
-      "sha256": "b90fdd836bfb694ab64266df5e4b56495d0fa257a391451b1abe20d81dd5ed62"
+      "sha256": "d1260a21113041f81812930d4519d793c6047e37ca625d662e0e59ea8d4da3ce"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_rotate.c.inc",
@@ -7249,16 +8473,48 @@
       "sha256": "190a999cc95f7e082e22a02f891db7155f568d0bd9aaf8a3c25c3752a34db2e9"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_shared_tail.c.inc",
+      "sha256": "223bb0f1940f0483fc71baacc80b9291704d8b00eac6937c2f14d173ab05e9c0"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_single_byte.c.inc",
       "sha256": "56514b4d36848b9fdadf985e295f81d7dc1c591197598fae315d78070d2f8061"
     },
     {
+      "path": "sources/compiler/src/mcs251/wide_spill_registers.c.inc",
+      "sha256": "6ec559b2e70a9995fe08d0a75e0fd6e18060c4f70a2de4c28089c3f62a551a75"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_stack_call_addresses.c.inc",
+      "sha256": "dbee11f3b2bb28ecb52ac1bfe1ab786be04d5c92808ea5227881f8f3e3ee69e6"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_stack_constants.c.inc",
+      "sha256": "ec7d0bee152aa8486989d6c2ad22462659b7eb1e7ecba77c8a6323841276a7b0"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_switch_ranges.c.inc",
+      "sha256": "6f8612276c1fa192e93845567c5da6df177a7ab5b3e6ea522bef375e5a73a935"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_symbolic_index.c.inc",
+      "sha256": "b3dd960f747f2eebfcac2feee5bb53c779bd201bf11aa1748d7205422e377806"
+    },
+    {
       "path": "sources/compiler/src/mcs251/wide_union_forward.c.inc",
-      "sha256": "6f92455cee2ffb1eb99416078504e89081b649cf118b269e5798b2cacdc97142"
+      "sha256": "5bf435c1af3bc16821bf88f23f8cc2083fe43358bdbfab3f12d3a322c1992610"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_unsigned_affine.c.inc",
       "sha256": "225a639c97461662f0e5660be52023ff64f9ccc6b1fe5a14e0e651a5fbf2c226"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_value_copy.c.inc",
+      "sha256": "2c8d88a3c1eecde8be1725601564e79f0ee56b9393bbab9d82185adc47121684"
+    },
+    {
+      "path": "sources/compiler/src/mcs251/wide_value_webs.c.inc",
+      "sha256": "494bc24eb89252f220bec7eea9f295487b59d719680338b13babc64b3609e4d3"
     },
     {
       "path": "sources/compiler/src/mcs251/wide_wordmul_cost.c.inc",
@@ -7882,7 +9138,7 @@
     },
     {
       "path": "sources/compiler/src/SDCC.lex",
-      "sha256": "f1726a2a0aa11632b0e77db2932301855e451cae32c71f3dc90ab9ef0f7503ff"
+      "sha256": "2298249d6875293e66ab8d571506ae0c4c890a44d675e21376868e9585558085"
     },
     {
       "path": "sources/compiler/src/sdcc.vcxproj",
@@ -7894,7 +9150,7 @@
     },
     {
       "path": "sources/compiler/src/SDCC.y",
-      "sha256": "9f14748895c42dc7a2aa38dc6f58546c7fd0fa0d022825367ca4573defe246ac"
+      "sha256": "865c4520108bc264227fa3b239e51f8060aac775f7f9f76d51017fb74973d94f"
     },
     {
       "path": "sources/compiler/src/SDCCargs.h",
@@ -7910,7 +9166,7 @@
     },
     {
       "path": "sources/compiler/src/SDCCast.c",
-      "sha256": "e2ac00920055470724cb85e29c693cc9ef30ec8e8b56124c515f2c9841abc953"
+      "sha256": "c370ec93c9ec94d5e7cbbd38fcd72dc46401cae6e1839f9aea691de3d4adefd1"
     },
     {
       "path": "sources/compiler/src/SDCCast.h",
@@ -8006,7 +9262,7 @@
     },
     {
       "path": "sources/compiler/src/SDCCgenconstprop.cc",
-      "sha256": "de32bc265964012c27f4a386c0faee75cdcc9fcf63f4b732703c0a85fc10492c"
+      "sha256": "a1793e9b8e071f10abc4d6bcc5a27bc0f67e7617a13e78aee1e2b4749885ae01"
     },
     {
       "path": "sources/compiler/src/SDCCglobl.h",
@@ -8014,7 +9270,7 @@
     },
     {
       "path": "sources/compiler/src/SDCCglue.c",
-      "sha256": "a33822974091bf6b3aa514b40f7aa8759ca4bc91052ec513e6f58d3df9cf30ad"
+      "sha256": "8ca0444557923dc3f3b1bf4f912dd8cf265f97e4d16459bf1832ab6c274fcfa3"
     },
     {
       "path": "sources/compiler/src/SDCCglue.h",
@@ -8030,11 +9286,11 @@
     },
     {
       "path": "sources/compiler/src/SDCCicode.c",
-      "sha256": "3c05d30c60afbc67485fe13cf8ed7041027a850af5cf5fde74c71258668e4a00"
+      "sha256": "d2cfce9d79dc79096750cc33851c88cee944aae678521b23f4b924c4b1f979ea"
     },
     {
       "path": "sources/compiler/src/SDCCicode.h",
-      "sha256": "7b1d4ac54171feb143f52e4df5217a598e86b7dba9f5ec16844d187ad3e29ca7"
+      "sha256": "a20eb9e0fe75d03a84443a4c0bf3b5c92ee09cf355bfc135ad3c56666488ef7c"
     },
     {
       "path": "sources/compiler/src/SDCClabel.c",
@@ -8082,11 +9338,11 @@
     },
     {
       "path": "sources/compiler/src/SDCCmem.c",
-      "sha256": "99cd71a8b0df1ed6024bd8bb19d2408c3b2188fb70b4982aa2163624c30bbc13"
+      "sha256": "c307c657cb7abf9b29eb8e2454bbfc57567419528eccd35157438502b9cb80a7"
     },
     {
       "path": "sources/compiler/src/SDCCmem.h",
-      "sha256": "13b8fbadc4cf9e955893e68dd5d4301edddbf4d4a285d638d0310ce0474d40b7"
+      "sha256": "1a5087f707d324625fbe344bb73c1d7c064e6a06185d589969e72cee2f5ed6c7"
     },
     {
       "path": "sources/compiler/src/SDCCnaddr.cc",
@@ -8098,7 +9354,7 @@
     },
     {
       "path": "sources/compiler/src/SDCCopt.c",
-      "sha256": "1220674663d9f98d5ef61838109747a743ae305afa26e0c2a6e99808b32c5477"
+      "sha256": "79f303ba8147cd8d1e646f5bc551acf2036ec4c3c6374c9edf9cae8638ebf802"
     },
     {
       "path": "sources/compiler/src/SDCCopt.h",
@@ -8142,11 +9398,11 @@
     },
     {
       "path": "sources/compiler/src/SDCCsymt.c",
-      "sha256": "7e849edba4833d252c5f614f760c90fa9020628e173c63ee9dc5b14edc87ad3a"
+      "sha256": "c84a917abce3373ee6f781e9cc1ceaf728e8a8763f687e7e7fb8b223389200eb"
     },
     {
       "path": "sources/compiler/src/SDCCsymt.h",
-      "sha256": "7bc08b29e0dee17b2283c993d60d20be2715219936c76da45d7bb6c1411145a2"
+      "sha256": "3153468a3a028eda3ccb1143e3018fdd373a9e8a8cf8f78d127cd2e5571bc888"
     },
     {
       "path": "sources/compiler/src/SDCCsystem.c",
@@ -8170,11 +9426,11 @@
     },
     {
       "path": "sources/compiler/src/SDCCval.c",
-      "sha256": "133db1e70bd03d725da664a8477e0be027d1ccf89a1c60e10ff0374e438fca0b"
+      "sha256": "656c9361306a946ea8e28a1b5c5b4551d904130e53c2da363caeea283e0c105d"
     },
     {
       "path": "sources/compiler/src/SDCCval.h",
-      "sha256": "cd8449a9ca3df200aff32f45f2ea34aefd0b1faf04a4b9e7ee496dd57ea46dc9"
+      "sha256": "5faa5e22f9094d32dc27e4bb0af7989b4f60b82d9b64e49d2f559f7be99810ac"
     },
     {
       "path": "sources/compiler/src/stm8/gen.c",
