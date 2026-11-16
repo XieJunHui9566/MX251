@@ -20,7 +20,7 @@
   "localEntry": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\Build.ps1",
   "qualification": {
     "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\docs\\qualification.json",
-    "sha256": "170e94d5824a7ee68241d747a069bc480381466d0c4fe28abe416abba711be2a"
+    "sha256": "d548ca598d14e687d553add370e6e4bf6ee65e867ee4d2064ebec1e472703e2f"
   },
   "hardwareCasesPassed": 768,
   "fullProjectRuntimeMeasured": false,
