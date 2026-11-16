@@ -1,0 +1,1358 @@
+{
+  "status": "TARGETED_PASS",
+  "implementationCommit": "582c542fa187e37f4c12649febcdc1f401d7a414",
+  "compilerSha256": "ab6ea7db0c78bd71cef0d9297fa459650d8b8321d1fa0839a4e8a3a76087bc4b",
+  "candidate": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\candidate",
+  "candidatePin": {
+    "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\stage.json",
+    "sha256": "843cd1c7ac954cdb542bf3fba08309655872818d0bf3af469116f99d08031e5a"
+  },
+  "frozenCandidateUnchanged": true,
+  "parentReport": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\CANDIDATE-SELECTION-20261116.json",
+    "sha256": "9dfcff832ee2662c6344c10a7605c68ca2c8391759449ceab99aa19c69f5f93b"
+  },
+  "summary": {
+    "built": 21,
+    "smaller": 8,
+    "unchanged": 13,
+    "larger": 0,
+    "deltaBytes": -239
+  },
+  "sourceInputsIdentical": true,
+  "inputPin": {
+    "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\target-inputs.json",
+    "sha256": "ac7479be76ac61dd0df6be8e0de7cba13fbb80b275b68e3db8223ab78f383997"
+  },
+  "sdkSourcesChanged": false,
+  "defaultChanged": false,
+  "fullMatrixRerun": false,
+  "compilerCheck": {
+    "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\compiler-check-final\\result.json",
+    "sha256": "f3fd7397add4aa9de9d038c36b5bc37c8b392017e36f5278edefed205be92086"
+  },
+  "volatileCheck": {
+    "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\volatile-check\\results.json",
+    "sha256": "3eb01d09eaba24e4f50dcda446c9e7c5eb9509c538e3f648984474a9fb93d5d5"
+  },
+  "compilerConfigurations": 4,
+  "volatileConfigurations": 4,
+  "hardware": [
+    {
+      "variant": "before-small",
+      "compilerSha256": "4915456408c41c10ab38ce0bf4d5262b4976aa83544c3ac4ae270ddb15b14b8a",
+      "bytes": 1963,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 2432.0,
+        "1": 3744.0
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\hardware-before-small\\result.json",
+        "sha256": "d09df706f2950685d117a0cbb1723c52fd0ddbda71d6dd32439f7b2668ce3fff"
+      },
+      "rawSerial": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\hardware-before-small\\uart.bin",
+        "sha256": "b75e6707e9087bc21ffccf522bdf9f6d7ee461090e9332cf082b29171c68dd84"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\board-before-small\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "0d13bac64ce79adc98dd7dfa85f8566a880ea08f5c896a3483ca09e492fe4331"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\board-before-small\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "a4697156bf4de34d4a58018bb624828712b2cc6eab5f6ed774460a81a60a8117"
+      }
+    },
+    {
+      "variant": "after-small",
+      "compilerSha256": "ab6ea7db0c78bd71cef0d9297fa459650d8b8321d1fa0839a4e8a3a76087bc4b",
+      "bytes": 1929,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 2431.0,
+        "1": 3744.0
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\hardware-after-small\\result.json",
+        "sha256": "f4147072892f6c993796c7958ead750589f370fa9748a52bc9d64ab327ca2a85"
+      },
+      "rawSerial": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\hardware-after-small\\uart.bin",
+        "sha256": "b2daa85c7e93753414fb75bd55bdf807b043a5ef5a5e042fedc3cfe04a2e9db5"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\board-after-small\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "621272ffe4cdf405dc6c93de5230abef4373a0b9f7eeccdf82248b9871089a64"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\board-after-small\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7ef14b7c1392c43775fa41f44eddd990cf1565889f9e1c670cd3893719785b2f"
+      }
+    },
+    {
+      "variant": "after-large-abi4",
+      "compilerSha256": "ab6ea7db0c78bd71cef0d9297fa459650d8b8321d1fa0839a4e8a3a76087bc4b",
+      "bytes": 1707,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 2176.0,
+        "1": 3327.5
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\hardware-after-large-abi4\\result.json",
+        "sha256": "060541ea9d01c2e75037da8c2d5a64f01485c8652b954dab31a86a9e89de6280"
+      },
+      "rawSerial": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\hardware-after-large-abi4\\uart.bin",
+        "sha256": "eabfea4068719336fa4b30cb6e1893d819aff269a0a46862ae65fe1be2acc204"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\board-after-large-abi4\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "0260569001eb2bb58c34e3e8d9de8a329dcde7673a706a91467219a12c7801c0"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\board-after-large-abi4\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "a96cea81f3ba596bdd1b7d26e9363a63cfc60475f90fe51cbe79a5df450563c6"
+      }
+    }
+  ],
+  "hardwareCases": 384,
+  "fullMatrixHardwareExecuted": false,
+  "keilRuntimeQualification": "NOT_COMPLETE",
+  "functionCosts": {
+    "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\function-costs.json",
+    "sha256": "30ed511967182716991e49e8a4b6e062fb3c02b65363fa06430e296e84fb0bcf"
+  },
+  "rows": [
+    {
+      "id": "g071",
+      "status": "BUILT",
+      "before": 2122,
+      "after": 2118,
+      "delta": -4,
+      "keilBytes": 1655,
+      "keilPercent": 127.97583081570997,
+      "stcBytes": 2988,
+      "stcPercent": 70.88353413654619,
+      "stcReference": "stc-soft",
+      "gap110": 298,
+      "gap120": 132,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1655,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\keil\\result.json",
+            "sha256": "2351620547327a2e7376c22ffb8ebec847656a087480342480bb352289881e69"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\keil\\firmware.hex",
+            "sha256": "431f5811fffeb3a05aeda8b41b693c4c8fd1db07bc4ea4267f254b1315c0063e"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 2988,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\stc-soft\\result.json",
+            "sha256": "64fca9349a4ec36a58981231925e6878746d1541c4c3977912bde507712a3d57"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\stc-soft\\firmware.hex",
+            "sha256": "508f39b46e305ebfcd725d733dbb37f9aebe825e4f51bfbddb9dbb7622688afd"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g071\\mx251\\result.json",
+        "sha256": "f68fc77de089191d444f1886ddb7fe44565410881394888e41b30eb3bc06cfe4"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g071\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "07a54d52cf54c4a96ea5ccaf66b2a3f2f8788f0427ee2d9ee7621280d84bf8d2"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g071\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "fc384b02d0b7422c04cb672122d32b13fefcdcb86dfd0c98b92967c03cb50d01"
+      }
+    },
+    {
+      "id": "g104",
+      "status": "BUILT",
+      "before": 3433,
+      "after": 3421,
+      "delta": -12,
+      "keilBytes": 3194,
+      "keilPercent": 107.10707576706325,
+      "stcBytes": 9424,
+      "stcPercent": 36.3009337860781,
+      "stcReference": "stc-soft",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 3194,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\keil\\result.json",
+            "sha256": "8ecc9e238aa00c0aad92b1e00f6eb09425c5be27b917cc2d0d379abe45d2d3be"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\keil\\firmware.hex",
+            "sha256": "43e9682a73a252571e2b1d9cb24b846a9a2cb32b3fd158e1ea73f391c8c624e8"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 9424,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\stc-soft\\result.json",
+            "sha256": "893eceac303afbcd6588b5d969f7d26d2b17f908ce333a571f8d3365715c6ffa"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\stc-soft\\firmware.hex",
+            "sha256": "f8df05ed07d3de46ff05b04ff707c367e8b6cfc17b8b811d1f246527d9755c42"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g104\\mx251\\result.json",
+        "sha256": "21c68d60af35376c979b58b9742bc9aac261d23b8f684c2a68c9362c91eaa47c"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g104\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7540f9523fba0769383d43e6f9faa2d41ca80766d3f948ed046aa849f750b32d"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g104\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "dcac1fd3f87041cdd343ed46031d2426fd4920be20eeacef35ed2e953a84c964"
+      }
+    },
+    {
+      "id": "g139",
+      "status": "BUILT",
+      "before": 1248,
+      "after": 1128,
+      "delta": -120,
+      "keilBytes": 887,
+      "keilPercent": 127.17023675310034,
+      "stcBytes": 1477,
+      "stcPercent": 76.37102234258633,
+      "stcReference": "stc-soft",
+      "gap110": 153,
+      "gap120": 64,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 887,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\result.json",
+            "sha256": "486f0974de41901dd08592d940e8ce3e4a3936ecbf7c595aed42fd627efe39e4"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\firmware.hex",
+            "sha256": "5a44443ba3d1095e89ca3147a050ee297883d5609d6bcd0ea9a2fcf52806b1fe"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1477,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\stc-soft\\result.json",
+            "sha256": "3ed77c26df015a0c957a98ead521a807b4b5b358ee3eed88d5f590fd7a709863"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\stc-soft\\firmware.hex",
+            "sha256": "3c997f7b73413ec92bfeac72b55b2eb112ce74527985e41f2220a94f091ebc0e"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g139\\mx251\\result.json",
+        "sha256": "e64fa34aeabb33ec92cdc2c199e02d8aad1df04ff7c67a17483f9a99900cd5a5"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g139\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7384d9685696cdb31a7bb50743eba823a1f7653ffe570efeda6bfa37bb0afe5b"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7efd4a5f84ab3ed8636301d3c8c4f70a84cf9b5a97070615e0f7579b5c81bdaa"
+      }
+    },
+    {
+      "id": "g141",
+      "status": "BUILT",
+      "before": 5605,
+      "after": 5589,
+      "delta": -16,
+      "keilBytes": 4656,
+      "keilPercent": 120.03865979381443,
+      "stcBytes": 6499,
+      "stcPercent": 85.99784582243421,
+      "stcReference": "stc-soft",
+      "gap110": 468,
+      "gap120": 2,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 4656,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\keil\\result.json",
+            "sha256": "c96eefc33e2d64df2b557092fe1077acd793a13a7eb93a535fa35b590486068b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\keil\\firmware.hex",
+            "sha256": "7ba8715d464410f8719d49b812400a348f3bff01e0f19b380c1a2f48fc4df37a"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 6499,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\stc-soft\\result.json",
+            "sha256": "0740b312f994207a7c21303498d52ac694919875384c97ec9ba36f33d5e31407"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\stc-soft\\firmware.hex",
+            "sha256": "55b63057a5efebff773070989fe2baf699401a6a4e3ec5198ee4f602da6cbecc"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g141\\mx251\\result.json",
+        "sha256": "fa0ff6939dc5fbdc0cdab28de4977bfecd172dc4b825547689b16ff12f375d64"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g141\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "5ace798298b5b50c003b73f388d78635bbccc6e0789f66d6feb287cd4842c20f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\g141\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "c56d2a13e26339ba4c04fe8340147bc6579ca51e1b52d66144ecfc60473057a9"
+      }
+    },
+    {
+      "id": "p005",
+      "status": "BUILT",
+      "before": 475,
+      "after": 475,
+      "delta": 0,
+      "keilBytes": 564,
+      "keilPercent": 84.21985815602837,
+      "stcBytes": 1163,
+      "stcPercent": 40.84264832330181,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 564,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\keil\\result.json",
+            "sha256": "bfb2109066b687a657a84c2cfcd0b6ddad03be4534f888702824dc3e12d57506"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\keil\\firmware.hex",
+            "sha256": "825c7e1195833a40c55e98d668499fdafa9abcf70281851765f46c55982e72e0"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1163,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\stc\\result.json",
+            "sha256": "471738daaad7eddf698974401a3dfff5d4e751137ed6626c48cb556e81ed4d33"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\stc\\firmware.hex",
+            "sha256": "0905401b7145ecbd2e9f85c2ecc76f9b69eae7de3a4406eea200335ea129705a"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p005\\mx251\\result.json",
+        "sha256": "fed68095f725266aa30d70544a670784b15fc50d1db62b1274bf780f82510e98"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p005\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "f1047b3937debc129732d8b8f3e54de6db233d53ffbd30ae04caa68c108f72f6"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p005\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "efe6341d8af3e2e65e7e65e672aba13d102764ae4e739af3d309a43fffda0181"
+      }
+    },
+    {
+      "id": "p011",
+      "status": "BUILT",
+      "before": 551,
+      "after": 551,
+      "delta": 0,
+      "keilBytes": 542,
+      "keilPercent": 101.66051660516605,
+      "stcBytes": 1230,
+      "stcPercent": 44.796747967479675,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 542,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\keil\\result.json",
+            "sha256": "7b8e55d43b6f4aa78ed1021406bbb0323c83c3246818526714a1fa2c00c1220b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\keil\\firmware.hex",
+            "sha256": "2239398ebf8ab6fc5c9c5b24c6ca83dba6588438839cfaf39c34cb1f5809a0ba"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1230,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\stc\\result.json",
+            "sha256": "423b7c9e2b1490afa84f716eae3468123f37a7952b97b2a65cf93f62091498f5"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\stc\\firmware.hex",
+            "sha256": "93cc5acd041ca26d27cc517ffa9802d9d3b2057b7cc1ff493e06ee26dd6c8264"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p011\\mx251\\result.json",
+        "sha256": "fb5aa3b00f068e00e6743b5f94ed7d16c4ca57d72c2b713233ae1b16fb1b1da7"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p011\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e51c5113d54d275aac4d333555a098b17477773a16c09076b443a31055d0226c"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p011\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8e1ce953cf658e4a56209ec6dbaa584f8b76de72177e70081f8f7da0a018c759"
+      }
+    },
+    {
+      "id": "p017",
+      "status": "BUILT",
+      "before": 345,
+      "after": 345,
+      "delta": 0,
+      "keilBytes": 359,
+      "keilPercent": 96.10027855153203,
+      "stcBytes": 380,
+      "stcPercent": 90.78947368421052,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 359,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\keil\\result.json",
+            "sha256": "7774e6d35d2a1e27f7efa576d63b90f8c7231e8ceb6758cc605960898dfff091"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\keil\\firmware.hex",
+            "sha256": "f7eaf3f2ba4cf400592ca08e35455dc60bf224526e260901f7291893e93dba19"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 380,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\stc\\result.json",
+            "sha256": "2fa1ea3f467953a5ae900a667a362dbdad125c7ca799df4b328b26eeb12b2a5c"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\stc\\firmware.hex",
+            "sha256": "60d81c7f36b0c94f1870ce083f220e7825d97d58d83b58d5ce1066a8f327f0f8"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p017\\mx251\\result.json",
+        "sha256": "ef85bc32942ba20c927d014acafed4a9c395e31e1a0f4815c94ab04f27c5b722"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p017\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "90aee8795c5739a22c4796a358bf366640271dbf9cfcd0163298ea2d1c17a613"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p017\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d7bdf1d0c7f32f9a7c3c9fcb7952913056874a46064fc39bd28a31b536e9f1b3"
+      }
+    },
+    {
+      "id": "p035",
+      "status": "BUILT",
+      "before": 823,
+      "after": 823,
+      "delta": 0,
+      "keilBytes": 989,
+      "keilPercent": 83.21536905965621,
+      "stcBytes": 1602,
+      "stcPercent": 51.37328339575531,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 989,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\keil\\result.json",
+            "sha256": "e99d0a56eb0fde6d6f7550f9b5b1b3382a82617ae466ec4fbf6ae4d332633c32"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\keil\\firmware.hex",
+            "sha256": "2c7076fef8c9cdeaebfd43b84726c1ecb3081e2c7eb91848f36a139d62392da0"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1602,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\stc\\result.json",
+            "sha256": "0011b385daa3d4e0b7c828363471f0bf77f52c078507f279a36f3f88cd80bf41"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\stc\\firmware.hex",
+            "sha256": "988d6a08770f0dfca4a8952c2d969aa38d235db107bdd1c3ac3c5b5828d6db2d"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p035\\mx251\\result.json",
+        "sha256": "04c28345b4c31333e3f5db061d0919e8aeb9b20cca5d29def17c863229bf17e2"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p035\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2b94f96c36c9b2561c721f0c8577fef65ef59298a0fb118e6f7b20d91733c693"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p035\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ac1b9573298c1b8fc3ff5a2879493b7d029edeb60f0313af2f99909936d10633"
+      }
+    },
+    {
+      "id": "p037",
+      "status": "BUILT",
+      "before": 865,
+      "after": 865,
+      "delta": 0,
+      "keilBytes": 1033,
+      "keilPercent": 83.73668925459826,
+      "stcBytes": 1740,
+      "stcPercent": 49.71264367816092,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1033,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\keil\\result.json",
+            "sha256": "425e5f7090141a93bb4488ac7ef4e3e6cf82898f4156163f31316899c0320da3"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\keil\\firmware.hex",
+            "sha256": "b4368d3f2b9fbd7e4bbe28344b1b9fe11fa1705c49fa1bd94ad4edb2d4464062"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1740,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\stc\\result.json",
+            "sha256": "031328be3b0572943a501149d635a4c1f3debe237063a701bb5cb9646a6cd032"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\stc\\firmware.hex",
+            "sha256": "cf3768a4333f6d1d5030c17feedbabc2e1f9d2052632c5b22fd2fe63d9919607"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p037\\mx251\\result.json",
+        "sha256": "bf1bf9a56ad77abef2b98c947d25c3026759e058d4932afc2dc31fb344427a29"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p037\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "5635e54e405a7b22f3af8e3e56c0b7a267e67c4450fb7688e8cda4c630db62f1"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p037\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "3442d1c5f8e5cb8f3e5e063abeaf971dac1d461bb0b3812d12e0fcbd92dbdf51"
+      }
+    },
+    {
+      "id": "p039",
+      "status": "BUILT",
+      "before": 1177,
+      "after": 1177,
+      "delta": 0,
+      "keilBytes": 1105,
+      "keilPercent": 106.5158371040724,
+      "stcBytes": 2594,
+      "stcPercent": 45.3739398612182,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1105,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\keil\\result.json",
+            "sha256": "b93af23ab910b7284761d90809e598cc8b1f4fe83b928d655686f6ce98942f6d"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\keil\\firmware.hex",
+            "sha256": "002745de87267f2fbbb0514bee2af5e2d553f056b29c8fa89e6ecd818907fc32"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 2594,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\stc\\result.json",
+            "sha256": "2947cd4c4ba50136a72eed22ee12bd37cbe4d3c5714fb9f811d3c9581212d5ac"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\stc\\firmware.hex",
+            "sha256": "86a7933b77fbb0af1c84f3900b823b19553c87d6ee146c462a828dbb877b8b54"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p039\\mx251\\result.json",
+        "sha256": "9a7cad1a76a76aab5d88be1c994985a2fa95ea67d4571c4547ddb8d20979e565"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p039\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ba57b594cd7b7bfc6e3596cb94f5960e61bacdaff40c02385b10819c8e88c59b"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p039\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d573c97657264ac4bbd62b9a9ebc7b1abaf4c6082e9f9b7811c14bd682e6c017"
+      }
+    },
+    {
+      "id": "p045",
+      "status": "BUILT",
+      "before": 909,
+      "after": 909,
+      "delta": 0,
+      "keilBytes": 832,
+      "keilPercent": 109.2548076923077,
+      "stcBytes": 1763,
+      "stcPercent": 51.559841179807144,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 832,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\keil\\result.json",
+            "sha256": "42d6d4be9d93153430e6cda7494397e2081f601810fe8020cbc7e535f83432b1"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\keil\\firmware.hex",
+            "sha256": "f2387a4de89013d2be3e028af517d47bdd98418e2216ae6d912fc03a4f4db003"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1763,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\stc\\result.json",
+            "sha256": "6e8bc524c00bcbe17c209e135eb50c5f64fde050c9d2629858bf775c1ca1dea6"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\stc\\firmware.hex",
+            "sha256": "9a14ef96c2694a2b890979b72ae64f8bc6dc8bcccf7864ab55c82ba930f2d11d"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p045\\mx251\\result.json",
+        "sha256": "76b087073ddbfdabff74a5ba249663f045ad811ced3d081681c0365979025619"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p045\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "225bfb90653f5945cad35b1db40ebc20e808c47ab9b17519001db85506c5906d"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p045\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "30a4156b6ca637da33784dce0f2977f7e4d2260ad5be84c7796661bbda0438e0"
+      }
+    },
+    {
+      "id": "p049",
+      "status": "BUILT",
+      "before": 1100,
+      "after": 1100,
+      "delta": 0,
+      "keilBytes": 1002,
+      "keilPercent": 109.78043912175649,
+      "stcBytes": 2129,
+      "stcPercent": 51.66744950681071,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1002,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\keil\\result.json",
+            "sha256": "fc7aca7bf34676cd1e6a21be5e7307b9bad6b3f43a3c125beeae25497893f50e"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\keil\\firmware.hex",
+            "sha256": "07578a735175c3e8c02240f2bc50b44e52152ca599986024c53ce606f46517ff"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 2129,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\stc\\result.json",
+            "sha256": "7682732005ed2b87f69ca012a2eeba0667f7d80a63664e1a0fd00fabbc8d1d7f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\stc\\firmware.hex",
+            "sha256": "d1c73b14064086c9fe3628109fcfa907833a581c0ecb0e0315824d8cc507060d"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p049\\mx251\\result.json",
+        "sha256": "f31f52cdbcb12cd3ff8f7d24c7c051c188537693b9d32890a8cca6a51b019207"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p049\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2ae7e4892f454bc2c75c6f60be92e34380e9efa28b949dac334f8e82b8afb592"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p049\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8c86b9ef1c70c056b2fc3751f7a5b6430e6c779f166b1a40fa4498f512898638"
+      }
+    },
+    {
+      "id": "p059",
+      "status": "BUILT",
+      "before": 2792,
+      "after": 2792,
+      "delta": 0,
+      "keilBytes": 3210,
+      "keilPercent": 86.97819314641744,
+      "stcBytes": 5145,
+      "stcPercent": 54.266277939747326,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 3210,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\keil\\result.json",
+            "sha256": "afcd03671587ba26e7bedf951c14ed3e7a51b82f2dd81a682508880d9f285888"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\keil\\firmware.hex",
+            "sha256": "256d180b0df114c21e009d1db5d7ce2f0b267950da94a712327461abf51cf34c"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 5145,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\stc\\result.json",
+            "sha256": "307b0b3e82158e8be2a474a07f440db0303f89ac596b64fbdb23fb8e5fabc6af"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\stc\\firmware.hex",
+            "sha256": "421a6d9bf19cdc5417a1ca9cf766fa937e234d2687d6af3adbe70edba6782fec"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p059\\mx251\\result.json",
+        "sha256": "d5b6525ab8b3734124a5338d24a088bc4021fa0a38bfe42bbabf6b4111fd2280"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p059\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e922a4764834aa162bf8727ea41eccb9e901de9d0d44671622f45fca2875b244"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p059\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8366b979dcbd9a61848f83e15a7c75a4c4d022b95c3b0afa187a88bf40413251"
+      }
+    },
+    {
+      "id": "p083",
+      "status": "BUILT",
+      "before": 1749,
+      "after": 1749,
+      "delta": 0,
+      "keilBytes": 1459,
+      "keilPercent": 119.87662782727895,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 145,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1459,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\keil\\result.json",
+            "sha256": "64032ca8e8761338cd18a4071ed48adbf4948196e9b19d4c5694a5f515eb54d0"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\keil\\firmware.hex",
+            "sha256": "ed0657bff7f12bf3b88157feca17c9d4bdfb09426331307c2fe40c8e4873c964"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\stc-soft\\result.json",
+            "sha256": "b2fbc6a74a1a42168040085548b8804deb7480334ee253649bf6c51f7301e825"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\stc-mdu32\\result.json",
+            "sha256": "ce5003ed16b7f281eb709f1a68c21cfb86b0560e3ff6b116becc00ce6b1429ad"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p083\\mx251\\result.json",
+        "sha256": "751929f4e45033b76006cece61d0470d09ff6a3146b35b211612a6b60ba8125a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b81206485fef7ea4cfd951ebead4cb1c0cd12560c530e2ddd06bafcfd27cc610"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "50e7d2eb9a98c7b0a1cdac5488024527e40d8e124d3ad278f66da743d9533ccb"
+      }
+    },
+    {
+      "id": "p092",
+      "status": "BUILT",
+      "before": 2111,
+      "after": 2107,
+      "delta": -4,
+      "keilBytes": 1667,
+      "keilPercent": 126.39472105578884,
+      "stcBytes": 3064,
+      "stcPercent": 68.76631853785901,
+      "stcReference": "stc-soft",
+      "gap110": 274,
+      "gap120": 107,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1667,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\keil\\result.json",
+            "sha256": "2bd112afac93bf313d449c0964c26bb468739483847a099d93968d4434ea8b66"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\keil\\firmware.hex",
+            "sha256": "228d71c3720e37944804a2407e668eba73a965c0c53f722130e11941b7a1098f"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 3064,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-soft\\result.json",
+            "sha256": "2d4b1d72d1e0f9ccca7056cfb73d3ad30c1624cd923fb1230f44430d9f375877"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-soft\\firmware.hex",
+            "sha256": "ea19d2ae7c3cd5976e566f44be9f088e252656f6732ff8e9bcfe6501b0213608"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "bytes": 3064,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-mdu32\\result.json",
+            "sha256": "ab277f6b8486da949eae75180e1a1f556286b172f21b8311b4489ba99f3bee15"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-mdu32\\firmware.hex",
+            "sha256": "ea19d2ae7c3cd5976e566f44be9f088e252656f6732ff8e9bcfe6501b0213608"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p092\\mx251\\result.json",
+        "sha256": "54862af256cdeeb487d4b5fe462531111bdc0d948411372744d4f5538bb4c44c"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p092\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "08265b7be0e19cb6ce868c2f7c5a8153718d103d11acd96daa8cd29705126375"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p092\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "be8fc672738dd59576798553d3299571f9028a6cb97b2539b46f58db28b480cc"
+      }
+    },
+    {
+      "id": "p123",
+      "status": "BUILT",
+      "before": 5532,
+      "after": 5520,
+      "delta": -12,
+      "keilBytes": 4839,
+      "keilPercent": 114.07315561066336,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 198,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 4839,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\keil\\result.json",
+            "sha256": "ad156a24ad603166b5053c78f0d5f1c8f0ae346ba51343463a60f2d44d28a9f2"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\keil\\firmware.hex",
+            "sha256": "53878dcd7cbd7ae1b86d32964686899c41b5c62579668334ffec3994cee422d1"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\stc-soft\\result.json",
+            "sha256": "b9cfc0d539f3c75e2bfbb43afde3d65b9c2426d48f611f432577774035f1b7c4"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\stc-mdu32\\result.json",
+            "sha256": "9270d7ce9c9459c075fe96638e80a615353dc86d6aabcf257589e2b86d71c27a"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p123\\mx251\\result.json",
+        "sha256": "f623127dd4f8c66c154d343ca265c5a6376789d29c2bf015e89635391fa1cb21"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b7d9e2202e31c664705368906fd42cfb091a01c3b1d07cba60c1baacd31f07c0"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d3ec5e4838722eddb30dffedd437c7daffe829aee0255569089d9b86b1b029b6"
+      }
+    },
+    {
+      "id": "p127",
+      "status": "BUILT",
+      "before": 8871,
+      "after": 8858,
+      "delta": -13,
+      "keilBytes": 6998,
+      "keilPercent": 126.5790225778794,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 1161,
+      "gap120": 461,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 6998,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\keil\\result.json",
+            "sha256": "b3b7a94182626f940f82bb2613397b29db817c21738063d8286aad93fdc7060f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\keil\\firmware.hex",
+            "sha256": "0d0f05dab73909e53b969c3b3742229f38240736669a87815774ddee9735e257"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\stc-soft\\result.json",
+            "sha256": "08fd8168de215dc366c3d5694fff3ab0dd93cce1208441b8756ec587529d30e0"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\stc-mdu32\\result.json",
+            "sha256": "9b37284aacb64361c1993d1ee4a02c81bf834a118462e25942d813ee8dc86893"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p127\\mx251\\result.json",
+        "sha256": "03dc14a2df462e12f94a82c239c9fcf5e3be1ae571844c754fa2f4cc29e163b0"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "503d5a6f412bf1da9ff0abae402a473f1b4ac1aa697db1dfaa282e33d5a76373"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d2489b8370ed7a3d1d4f83d0c9e37b1d0b7010087a97a6dbebc0603d6599df60"
+      }
+    },
+    {
+      "id": "p130",
+      "status": "BUILT",
+      "before": 30259,
+      "after": 30259,
+      "delta": 0,
+      "keilBytes": 27478,
+      "keilPercent": 110.12082393187278,
+      "stcBytes": 36552,
+      "stcPercent": 82.78343182315605,
+      "stcReference": "stc-soft",
+      "gap110": 34,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 27478,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\keil\\result.json",
+            "sha256": "ef94220a19f72feb9dc59b0bf10b1a5f15a2d20e34bdc50ba76354b5eabb0f1e"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\keil\\firmware.hex",
+            "sha256": "e12764d68b66e05ede56fba87388ad36006f701b7e8078832b3e3a5a0387da26"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 36552,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-soft\\result.json",
+            "sha256": "03eaf569cd589701ac2290d8f079c4395765a335a213873bae2c37bcf836b168"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-soft\\firmware.hex",
+            "sha256": "23bb7018796f8bdde93ef388fa263a2861f4974d1e1fb9442c438750fba129f7"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "bytes": 32551,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-mdu32\\result.json",
+            "sha256": "84b62f224958116981ef9bdaf5ecff543ea5707834f3cb3418b8c655f72af1a6"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-mdu32\\firmware.hex",
+            "sha256": "ce156641136a6b6cf736d4687e29ead21193ebd3f38008ed2d427bf85caf2537"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p130\\mx251\\result.json",
+        "sha256": "ecf1574f4ad941800e99090e081517615601595de68bd975e21a140aced4d5ff"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p130\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a60d72568a5c49cb6bacd0817dbc4612c069304883fd1ec9ba10e70d2a493e4f"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p130\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5005f539d0f024040f32f9422d78e367ab27c3d3836158f9a67e88ad312566fe"
+      }
+    },
+    {
+      "id": "p131",
+      "status": "BUILT",
+      "before": 5265,
+      "after": 5265,
+      "delta": 0,
+      "keilBytes": 5304,
+      "keilPercent": 99.26470588235294,
+      "stcBytes": 6694,
+      "stcPercent": 78.65252464893935,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5304,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\keil\\result.json",
+            "sha256": "ef852ebbc8715e61cefd4e278a0c60a0d6749e5aed2294ba5dc256c29a60b887"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\keil\\firmware.hex",
+            "sha256": "b69be03e501511de0c78a05d716f0de4b5a40eb4a0f9c19f9973b49fbb7ac7db"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 6694,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\stc\\result.json",
+            "sha256": "463776308cd6467c15bd49bd459715c1973f6de60ef477f4e7d19973a30f3c50"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\stc\\firmware.hex",
+            "sha256": "30177883a5d26984e88892b263ef32e9ae5826b3d7042006e67db8d6f831cb99"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p131\\mx251\\result.json",
+        "sha256": "d55729060ff4e8f1b087eb4bbcf26731a99a2e61c9ee7031c2a8af854decc442"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p131\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "77d1f6392de7fdb4c2ffaa024c892da98023c1923917c160afb4765265e5d537"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p131\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "480d34ead5c529172e2e3159fa76ce89696034054f0c6fff8e4aa4341e6b69ed"
+      }
+    },
+    {
+      "id": "p132",
+      "status": "BUILT",
+      "before": 5218,
+      "after": 5218,
+      "delta": 0,
+      "keilBytes": 5308,
+      "keilPercent": 98.30444611906556,
+      "stcBytes": 6732,
+      "stcPercent": 77.51039809863339,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5308,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\keil\\result.json",
+            "sha256": "60c4b9e5a91cf633de1858fa40a42a135178f3b3fd385120f02d2a626a268108"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\keil\\firmware.hex",
+            "sha256": "768a23a7e7f3e99eb091cdbc7faa756efba7ffded80dd2db53154b818d07f15d"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 6732,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\stc\\result.json",
+            "sha256": "bdbdc64cb3fc3b597bd50d9f61ff7a843cf7b084ebc22e3a1d6a2e85bd4fadbc"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\stc\\firmware.hex",
+            "sha256": "7d2d1fba11d10cc20d0c8842b8a2f67758af4f97348b2ab8d02651750f74f63f"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p132\\mx251\\result.json",
+        "sha256": "42a23cf2e2f889c11ec4da318c5c0b191320aa88a23cd874def7e5447b6a509e"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p132\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "287d61d1c9db6e9f7bc7a6a14d97d445a256ad55731777a721dba08e785eaf15"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p132\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "df79208a86289b1a72303da443c5045288eab47c72b14ef57d7c366ae0b8830e"
+      }
+    },
+    {
+      "id": "p140",
+      "status": "BUILT",
+      "before": 6140,
+      "after": 6082,
+      "delta": -58,
+      "keilBytes": 5059,
+      "keilPercent": 120.22138762601304,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 518,
+      "gap120": 12,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5059,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\keil\\result.json",
+            "sha256": "fedba69099311ca52aabb12105dc3d2ecc485a535a86fdc9eeabbe67235cce6f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\keil\\firmware.hex",
+            "sha256": "1babb22c2a3e0f68a2ed2d54d615c4fd4d5fa1dc57679ae470811f50f8de189a"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\stc-soft\\result.json",
+            "sha256": "a5f99ff2b632f9a69f4edd9b570cc6ed04338a5348e96750dd28170b860cc358"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\stc-mdu32\\result.json",
+            "sha256": "d9186df7fa082be4ebf961a6ef70d6b33696e0d58d8be203a51475a96b8ab6f0"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p140\\mx251\\result.json",
+        "sha256": "097d56164a178c01fe938749f3b9fc95e636570ed5de9984986de51213bd8b9c"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p140\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "64a142b609eeaf460b980bd85b4fd69e0a721ad8cbc4c806f034daaeb9ef26eb"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\targeted\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "3668506f791b187138f5c69bc066e9c8199b3ae72c87f3b9f7f4c5d0e65bc604"
+      }
+    }
+  ],
+  "reproduction": [
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\stage.py",
+      "sha256": "aea137a43c261c19ef1a314baabb7aeb16b9e07c37290a7fe231c630161efdfe"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\run-targets.py",
+      "sha256": "9da0d6c66e33247c9421ea6646041cbc210c9b4de3d37018713b1e39ec8ee7f6"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\run-board-builds.py",
+      "sha256": "8274034b919040a10b4205720cc374fa03c898bbd08f89fe1a61fba6ad464887"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\function-costs.py",
+      "sha256": "b593d8cc25d7fae8f2bfffd7d25f35bfe7e387d3f3fff3961be458c3b3f63c1c"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\memory-value-reuse-20261116\\report.py",
+      "sha256": "e7f3f1120efc49459fc026b43354812bdb57b85b720d116ed1f712774f91b55d"
+    }
+  ]
+}
