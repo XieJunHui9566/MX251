@@ -1,4 +1,4 @@
-"""Package the qualified v0.180 compiler without rebuilding or replacing it."""
+"""Package the qualified v0.0180 compiler without rebuilding or replacing it."""
 import argparse
 import hashlib
 import json
@@ -8,7 +8,7 @@ import subprocess
 import zipfile
 
 REPO = Path(__file__).resolve().parents[2]
-VERSION = '0.180'
+VERSION = '0.0180'
 IDE_VERSION = '0.0180'  # StudioX's existing compiler identity requires four digits.
 COMPONENT_VERSION = '0.0.180'
 
@@ -66,8 +66,8 @@ def stage(a):
         for p in sorted((core/'sources/compiler').rglob('*')) if p.is_file()]))
     metadata = {k:old[k] for k in ['schema','name','buildChain','host','entry','buildScript',
         'toolchain','profiles','compiler','assembler','mathLibrary','sourceManifest','sourceManifestSha256']}
-    metadata.update(version=VERSION,sourceVersion=VERSION,buildId='mx251-v0.180',
-        displayName='MX251 v0.180',releaseChannel='engineering',status='ENGINEERING_RELEASE',
+    metadata.update(version=VERSION,sourceVersion=VERSION,buildId='mx251-v0.0180',
+        displayName='MX251 v0.0180',releaseChannel='engineering',status='ENGINEERING_RELEASE',
         compilerSourceCommit=frozen['sourceCommit'],sourceCommit=frozen['sourceCommit'],
         projectModule='build/Release.cmake',repository='https://github.com/XieJunHui9566/MX251',
         ideCompatibilityVersion=IDE_VERSION,qualificationRecord='../docs/qualification.json',
@@ -94,7 +94,7 @@ def stage(a):
         shutil.copy2(REPO/name,a.output/name)
     docs=a.output/'docs'
     docs.mkdir(exist_ok=True)
-    for name in ('RELEASE-v0.180.md','BUILD.md','ARCHITECTURE.md','EDATA.md',
+    for name in ('RELEASE-v0.0180.md','BUILD.md','ARCHITECTURE.md','EDATA.md',
                  'EDATA-SCALAR-BACKEND.md','REGISTER-AFFINITY-20261116.md'):
         shutil.copy2(REPO/'docs'/name,docs/name)
     for name in ('INTEGER-SEMANTICS-20261115.json','INTEGER-SEMANTICS-20261115.md'):
@@ -152,7 +152,7 @@ def ide(a):
         text=cmake.read_text(encoding='utf-8-sig')
         text=text.replace('set(MX251_WIDE_VALUE_LIMIT 512 CACHE','set(MX251_WIDE_VALUE_LIMIT 1024 CACHE')
         cmake.write_text(text,encoding='utf-8')
-        (pack/'README.txt').write_text('MX251 v0.180 配套器件描述及模板。\n使用 studiox.mx251 0.0.180 与 studiox.cmake 4.4.0。\n',encoding='utf-8')
+        (pack/'README.txt').write_text('MX251 v0.0180 配套器件描述及模板。\n使用 studiox.mx251 0.0.180 与 studiox.cmake 4.4.0。\n',encoding='utf-8')
         save(pack/'compiler-release.json',dict(version=VERSION,compilerSha256=read(sdk/'core.json')['compiler']['sha256'],
             parentManifestSha256=sha(source/'manifest.json'),deviceSourcesUnchanged=True))
         archive=a.output/(manifest['id']+'-0.2.180.mcupack')

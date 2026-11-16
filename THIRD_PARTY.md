@@ -21,7 +21,7 @@
 
 - `sdcc-c251-b09075b-source.zip`：继承组件的完整原始源码，SHA-256 为 `467fe3c8d1ecabc78422f71cde82a996228e129dd12aab4d39c467b8bf19d9ae`。
 - `third-party-sources.zip`：归档工具依赖所对应的上游源码包，以及来源、版本、哈希和 MSYS2 包来源记录。
-- `MX251-v0.180-source.zip` / Git 标签 `v0.180` 的源码归档：MX251 当前编译器、运行库和构建脚本。
+- `MX251-v0.0180-source.zip` / Git 标签 `v0.0180` 的源码归档：MX251 当前编译器、运行库和构建脚本。
 
 继承基线下载来源：
 

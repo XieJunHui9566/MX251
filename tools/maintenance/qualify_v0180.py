@@ -63,7 +63,7 @@ def main(work, distribution, repo_output=True):
     cohorts = {name: dict(projects=sum(r['cohort'] == name for r in rows),
         **{ref: compare([r for r in normal if r['cohort'] == name], ref)
            for ref in ('keil', 'stc-soft')}) for name in sorted({r['cohort'] for r in rows})}
-    comparison = dict(version='0.180', compilerSha256=compiler, projects=203,
+    comparison = dict(version='0.0180', compilerSha256=compiler, projects=203,
         normalComparable=len(normal), referencesReused=True,
         measurement='Intel HEX payload bytes, including linked runtime and startup',
         comparisons=comparisons, cohorts=cohorts,
@@ -96,7 +96,7 @@ def main(work, distribution, repo_output=True):
                  'hardware-user-stress/result.json', 'portable-smoke/results.json'):
         target = evidence/name.replace('/', '-')
         shutil.copy2(work/name, target)
-    qualification = dict(schema=1, version='0.180', status='PASS',
+    qualification = dict(schema=1, version='0.0180', status='PASS',
         date=datetime.now().astimezone().isoformat(timespec='seconds'),
         compilerSha256=compiler, compilerSourceCommit=audit['candidate'].get('sourceCommit',
             read(distribution/'core/core.json')['compilerSourceCommit']),
@@ -118,9 +118,9 @@ def main(work, distribution, repo_output=True):
     save(distribution/'docs/qualification.json', qualification)
     save(distribution/'docs/comparison.json', comparison)
     if repo_output:
-        save(REPO/'docs/QUALIFICATION-v0.180.json', qualification)
-        save(REPO/'docs/COMPARISON-v0.180.json', comparison)
-    lines = ['# MX251 v0.180 验收结果', '',
+        save(REPO/'docs/QUALIFICATION-v0.0180.json', qualification)
+        save(REPO/'docs/COMPARISON-v0.0180.json', comparison)
+    lines = ['# MX251 v0.0180 验收结果', '',
         '203/203 个冻结 C 工程构建通过；包含 AI8051U 106 项和 STC32G 97 项。',
         '25 项内容一致的同编译器结果直接复用；其余工程使用发行包入口完成。', '',
         '| 参照 | 可比较工程 | ≤110% | ≤120% |', '| --- | ---: | ---: | ---: |']
@@ -143,9 +143,9 @@ def main(work, distribution, repo_output=True):
     lines += ['', '完整逐工程数据见 `comparison.json`，测试身份和范围见 `qualification.json`。',
               '编译器 SHA-256：`'+compiler+'`。', '']
     report = '\n'.join(lines)
-    (distribution/'docs/QUALIFICATION-v0.180.md').write_text(report, encoding='utf-8', newline='\n')
+    (distribution/'docs/QUALIFICATION-v0.0180.md').write_text(report, encoding='utf-8', newline='\n')
     if repo_output:
-        (REPO/'docs/QUALIFICATION-v0.180.md').write_text(report, encoding='utf-8', newline='\n')
+        (REPO/'docs/QUALIFICATION-v0.0180.md').write_text(report, encoding='utf-8', newline='\n')
     print(comparisons)
 
 

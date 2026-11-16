@@ -1,26 +1,26 @@
 {
   "schema": 2,
-  "id": "mx251-v0.180",
+  "id": "mx251-v0.0180",
   "status": "ACTIVE_ENGINEERING_RELEASE",
-  "gitTag": "v0.180",
-  "publicVersion": "0.180",
+  "gitTag": "v0.0180",
+  "publicVersion": "0.0180",
   "compilerSourceCommit": "bca1db33504ecba8581473e98b7c4f0c7ceb840d",
   "core": {
-    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\core\\core.json",
-    "sha256": "99b2be3b4be1fbbb461bac014670c46ec7d3eaf1c03a5f6b9663926090778bbc"
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.0180\\MX251-v0.0180-windows-x64\\core\\core.json",
+    "sha256": "dd887e830f5b2e6244f52c35bc6faa3f4513fd44cb88c7c968623ed6a5c429e1"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\core\\toolchain\\bin\\sdcc.exe",
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.0180\\MX251-v0.0180-windows-x64\\core\\toolchain\\bin\\sdcc.exe",
     "sha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40"
   },
   "entry": {
-    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\Build.ps1",
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.0180\\MX251-v0.0180-windows-x64\\Build.ps1",
     "sha256": "23dda911020180de4ecef4fd377585ef0b13f3c6cccff0fb8ead7932e3bee89d"
   },
-  "localEntry": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\Build.ps1",
+  "localEntry": "E:\\STVAPP\\MX251\\dist\\v0.0180\\MX251-v0.0180-windows-x64\\Build.ps1",
   "qualification": {
-    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\docs\\qualification.json",
-    "sha256": "d548ca598d14e687d553add370e6e4bf6ee65e867ee4d2064ebec1e472703e2f"
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.0180\\MX251-v0.0180-windows-x64\\docs\\qualification.json",
+    "sha256": "3146e8a19ec2df7babe8adbe406f780057f90b5a35d59246b86df7379c4d6932"
   },
   "hardwareCasesPassed": 768,
   "fullProjectRuntimeMeasured": false,

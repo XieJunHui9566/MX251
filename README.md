@@ -1,10 +1,10 @@
-# MX251 v0.180
+# MX251 v0.0180
 
 面向 MCS-251 的 C 编译工具链。本版将通用后端、寄存器分配、地址生成、调用优化和数学运行库收口为工程使用版本。
 
 提供两个 Windows x64 交付包，共用同一编译器和运行库：
 
-- `MX251-v0.180-windows-x64.zip`：自带 CMake、Ninja、PowerShell、源码、示例，解压即可编译。
+- `MX251-v0.0180-windows-x64.zip`：自带 CMake、Ninja、PowerShell、源码、示例，解压即可编译。
 - `studiox.mx251-0.0.180-win-x64.mcutoolchain`：MCU_StdioX 工具链，另附 AI8051U / STC32G 配套器件模板包及 CMake 组件。
 
 ## 独立编译
@@ -19,7 +19,7 @@ Build.cmd -ProjectPath ".\examples\math-casts-stc"
 
 工程由 `CMakeLists.txt` 管理源码、头文件目录和宏，`mx251.json` 选择目标、模型及运行库。生成文件在工程的 `.build/mx251/latest/`，包括 HEX、BIN、MAP 和 `receipt.json`。移植 Keil 的 bit/sbit 取反写法时追加 `-C251Compatibility`。
 
-使用步骤、IDE 导入、版本映射和限制见 [v0.180 使用说明](docs/RELEASE-v0.180.md)。直接 CMake 接口见 [构建说明](docs/BUILD.md)。
+使用步骤、IDE 导入、版本映射和限制见 [v0.0180 使用说明](docs/RELEASE-v0.0180.md)。直接 CMake 接口见 [构建说明](docs/BUILD.md)。
 
 ## 支持范围
 
