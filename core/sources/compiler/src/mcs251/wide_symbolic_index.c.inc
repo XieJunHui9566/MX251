@@ -4,10 +4,14 @@
  * and the load/store keep their original position and transaction width.
  */
 static unsigned
-wide_symbolic_index(wide_function *f)
+wide_symbolic_index(wide_function *f,bool code)
 {
   const char *enabled=getenv("MX251_SYMBOLIC_INDEX");
   if(enabled && !strcmp(enabled,"0"))return 0;
+  bool found=false;
+  for(int i=0;i<f->nn;++i)if((f->nodes[i].op==WM_LOAD || f->nodes[i].op==WM_STORE) &&
+      !f->nodes[i].addressSymbol && f->nodes[i].codeAccess==code) {found=true;break;}
+  if(!found)return 0;
   wide_address_dominance *d=Safe_alloc(sizeof *d);memset(d,0,sizeof *d);d->entry=-1;
   wide_symbol_address address[WV_MAX]={{0}};
   for(int v=0;v<f->nv;++v)d->definition[v]=-1;
@@ -25,7 +29,7 @@ wide_symbolic_index(wide_function *f)
       wide_node *n=&f->nodes[i];int v=n->result,source=-1;
       if(v<0 || address[v].symbol || !d->reachable[i] || d->definitions[v]!=1 ||
          !(wide_fixed_address_value(&f->values[v]) ||
-           (f->values[v].pointer && f->values[v].codePointer && f->values[v].width==4 &&
+           (code && f->values[v].pointer && f->values[v].codePointer && f->values[v].width==4 &&
             !f->values[v].symbolSnapshot && !f->values[v].floating &&
             !isVolatile(f->values[v].sym->type) && !isAtomic(f->values[v].sym->type))))continue;
       wide_symbol_address a={0};int64_t offset=0;
@@ -51,7 +55,7 @@ wide_symbolic_index(wide_function *f)
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];int base=n->left.value,index=n->addressIndex.value;
     if((n->op!=WM_LOAD && n->op!=WM_STORE) || n->addressObject>=0 || n->addressSymbol ||
-       n->byteAccess || n->pointerAccess || n->orderedReadCount || n->nativeIndexed ||
+       n->codeAccess!=code || n->byteAccess || n->pointerAccess || n->orderedReadCount || n->nativeIndexed ||
        n->addressOp!='+' || base<0 || n->left.width!=4 || !address[base].symbol ||
        !wide_address_dominates(f,d,base,i) || index<0 ||
        n->addressIndex.sign || n->addressIndex.floating || n->addressIndex.codePointer ||
@@ -70,3 +74,9 @@ wide_symbolic_index(wide_function *f)
   if(count) {wide_remove_dead_addresses(f);wide_reset_allocation(f);}
   return count;
 }
+
+static unsigned wide_symbolic_data_index(wide_function *f)
+{return wide_symbolic_index(f,false);}
+
+static unsigned wide_symbolic_code_index(wide_function *f)
+{return wide_symbolic_index(f,true);}

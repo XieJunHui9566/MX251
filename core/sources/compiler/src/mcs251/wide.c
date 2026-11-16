@@ -3229,10 +3229,19 @@ wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
 #include "wide_symbolic_index.c.inc"
 
 static mcs251_wide_result
+wide_choose_symbolic_data_index(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_symbolic_data_index,wide_choose_rotate,
+    "symbolic-index","accesses",false,"symbolic-original","symbolic-trial",false,true);
+}
+
+static mcs251_wide_result
 wide_choose_symbolic_index(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_symbolic_index,wide_choose_rotate,
-    "symbolic-index","accesses",false,"symbolic-original","symbolic-trial",false,true);
+  /* The original candidate includes the complete data-only selector. CODE
+   * folding may improve it, but cannot remove an existing data/loop winner. */
+  return wide_choose_transform(f,cost,wide_symbolic_code_index,wide_choose_symbolic_data_index,
+    "symbolic-code-index","accesses",false,"code-original","code-trial",false,true);
 }
 
 static mcs251_wide_result

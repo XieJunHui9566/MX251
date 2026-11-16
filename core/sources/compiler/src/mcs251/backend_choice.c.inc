@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-or-later
  * 同一 IR 的完整普通/宽后端候选。现有选择比较线性体或共同 CFG 区域；
- * 无环 C 控制流、ABI4 及窄无符号取负使用完整体积与静态指令数选择。
+ * 无环 C 控制流及 ABI4 使用完整编码体积选择；窄无符号取负保留双成本要求。
  * 不交换ASM片段，不改变声明/调用约定，也不以函数或器件名称选择。 */
 #include "internal_return.h"
 #include "wide_cost.h"
@@ -77,8 +77,8 @@ mcs251BackendNarrowTrial(ebbIndex *ebbi)
 
 /* Whole-body selection for ABI4 and acyclic ABI2 C control flow. Unlike the path-dominance
  * selector, this compares both complete implementations, including branch
- * encodings and shared tails. It is a size/instruction-count heuristic, not
- * a claim that every input takes the same number of cycles. */
+ * encodings and shared tails. The smaller encoding wins; static instruction
+ * counts remain diagnostic, not a claim about execution time. */
 static bool
 mcs251BackendBodyEligible(ebbIndex *ebbi)
 {
@@ -90,7 +90,7 @@ mcs251BackendBodyEligible(ebbIndex *ebbi)
   if(currFunc && FUNC_SDCCCALL(currFunc->type)==4)return true;
   /* Newly admitted ordered functions often contain byte-oriented I/O loops.
    * Compare complete bodies as well: retain the byte backend when it has
-   * fewer bytes and no more static instructions. This is a profitability
+   * fewer encoded bytes. This is a profitability
    * heuristic, not a bound on execution time for every loop trip count.
    * Explicit CY writes also use this comparison: shift-carry lowering can
    * expose a compact byte-loop implementation with a different branch shape. */

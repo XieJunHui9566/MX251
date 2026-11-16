@@ -4008,10 +4008,10 @@ mcs251_assignRegisters (ebbIndex * ebbi)
     bool legacy=(isrTrial || narrowTrial) ?
       wideCost.unknown || legacyCost.unknown || wideCost.bytes>=legacyCost.bytes ||
       wideCost.instructions>legacyCost.instructions :
-      /* Ordered I/O bodies use complete size, not a one-instruction saving
-       * that can inflate address/argument setup. Neither count is a cycle bound. */
-      bodyChoice ? !wideCost.unknown && !legacyCost.unknown && legacyCost.bytes<wideCost.bytes &&
-        (orderedBlocks || legacyCost.instructions<=wideCost.instructions) : mcs251BackendChooseLegacy(&wideCost,&legacyCost);
+      /* All complete-body choices use encoded size. A static instruction
+       * count is not an execution-time estimate across different emitters. */
+      bodyChoice ? !wideCost.unknown && !legacyCost.unknown && legacyCost.bytes<wideCost.bytes :
+        mcs251BackendChooseLegacy(&wideCost,&legacyCost);
     int cfg=0;
     if(!isrTrial && !narrowTrial && !bodyChoice && !legacy && (wideCost.unknown || legacyCost.unknown)) {
       cfg=bc_choose(wideText,wideLength,dbuf_get_buf(codeOutBuf)+backendStart,
