@@ -3127,12 +3127,21 @@ wide_choose_object_values(wide_function *f,wide_selection_cost *cost)
     "object-values","loads",false,"object-values-original","object-values-trial",false,false);
 }
 
+#include "wide_memory_values.c.inc"
+
+static mcs251_wide_result
+wide_choose_memory_values(wide_function *f,wide_selection_cost *cost)
+{
+  return wide_choose_transform(f,cost,wide_memory_values,wide_choose_object_values,
+    "memory-values","changes",false,"memory-original","memory-trial",false,true);
+}
+
 #include "wide_definition_copies.c.inc"
 
 static mcs251_wide_result
 wide_choose_value_copies(wide_function *f,wide_selection_cost *cost)
 {
-  return wide_choose_transform(f,cost,wide_definition_copies,wide_choose_object_values,
+  return wide_choose_transform(f,cost,wide_definition_copies,wide_choose_memory_values,
     "definition-copy","changes",false,"definitions-original","definitions-trial",false,false);
 }
 
