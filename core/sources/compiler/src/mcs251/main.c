@@ -50,6 +50,16 @@ static char _defaultRules[] =
 
 static char *interruptVectorCountSpec;
 static unsigned interruptVectorCount;
+static int plainTextPrintfDisabled;
+static unsigned plainTextPrintfRewrites;
+
+bool
+mcs251RewritePlainTextPrintf (void)
+{
+  if (plainTextPrintfDisabled) return false;
+  ++plainTextPrintfRewrites;
+  return true;
+}
 
 /* 数量由目标配置提供；通用后端不内置 STC 或其它芯片的向量上限。 */
 static void
@@ -197,6 +207,7 @@ static OPTION _mcs251_options[] =
     { 0, "--mcs251-sfr-layout", &sfrLayoutSpec, "<legacy-v1|sph85-v1> select target SPH mapping; default legacy-v1", CLAT_STRING },
     { 0, "--mcs251-stack", &extendedStackSpec, "<base,size,edata-size> reserve extended stack and define __mcs251_stack_initial", CLAT_STRING },
     { 0, "--mcs251-default-edata", &defaultEdataEnabled, "place unqualified globals and statics in EDATA (small stack-auto)" },
+    { 0, "--mcs251-no-printf-puts", &plainTextPrintfDisabled, "retain printf calls for whole-image standard-library cost selection" },
     { 0, OPTION_SMALL_MODEL, NULL, "internal data space is used (default)"},
     { 0, OPTION_MEDIUM_MODEL, NULL, "external paged data space is used"},
     { 0, OPTION_LARGE_MODEL, NULL, "external data space is used"},
@@ -562,6 +573,7 @@ _mcs251_getRegName (const struct reg_info *reg)
 static void
 _mcs251_genAssemblerStart (FILE * of)
 {
+  fprintf (of, "; mx251-stdio-rewrites schema=1 printf-puts=%u\n", plainTextPrintfRewrites);
   fprintf(of,"; mx251-sfr-layout schema=1 contract=%s\n",mcs251SphAddress==0x85?"sph85-v1":"legacy-v1");
   if (!options.noOptsdccInAsm)
     {

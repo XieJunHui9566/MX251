@@ -56,7 +56,9 @@ wmemory_byte_rmw (wide_function *f,int first)
    * 宽度、顺序或前后寄存器值，也不把此序列声称为原子操作。 */
   wscratch_memory_address(f,load,3);
   we(f,"; wide adjacent byte-rmw address-reuse exact-read=1 exact-write=1 reg=%d\n",reg);
+  if(f->interruptEntry)we(f,"; mx251-memory-origin begin key=%d\n",store->origin->key);
   we(f,"\tmov\tr%d,@dr16\n\t%s\tr%d,#0x%02lx\n\tmov\t@dr16,r%d\n",
      reg,name,reg,(unsigned long)(op->right.literal&255),reg);
+  if(f->interruptEntry)we(f,"; mx251-memory-origin end\n");
   return true;
 }

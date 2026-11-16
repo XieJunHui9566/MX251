@@ -46,9 +46,11 @@ for model in ('small', 'large'):
         options = ['--model-'+model, '--stack-auto', '--mcs251-native-abi']
         if abi == 'native':
             options += ['-DTEST_ABI=__reentrant __sdcccall(4)']
-        for disabled in (False, True):
-            name = model+'-'+abi+('-disabled' if disabled else '')
-            asm = compile_case(name, source, options+(['--nostdlibcall'] if disabled else []))
+        for mode in ('enabled', 'all-disabled', 'puts-disabled'):
+            disabled = mode != 'enabled'
+            name = model+'-'+abi+'-'+mode
+            asm = compile_case(name, source, options+({'enabled': [], 'all-disabled': ['--nostdlibcall'], 'puts-disabled': ['--mcs251-no-printf-puts']}[mode]))
+            assert re.search(r'mx251-stdio-rewrites schema=1 printf-puts=' + ('0' if disabled else '[1-9][0-9]*') + r'\s*$', asm, re.M), name
             literals = dict(re.findall(r'mx251-string-literal schema=1 symbol=(\S+) bytes=([0-9a-f]+)', asm))
             for fn, expected in changed.items():
                 code = body(asm, fn)

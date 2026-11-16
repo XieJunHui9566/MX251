@@ -550,12 +550,23 @@ static void mcs251LeafIsrSaves(lineNode *head,iCode *lic,int inlineBits)
 void mcs251FinishWideIsr(struct dbuf_s *output,ebbIndex *ebbi,int frame)
 {
   char *text=Safe_strdup(dbuf_c_str(output)),*line=text;
-  lineNode *head=NULL,*tail=NULL;
+  lineNode *head=NULL,*tail=NULL;iCode *memoryOrigin=NULL;
   while(*line) {
     char *end=strchr(line,'\n');if(end)*end=0;
     lineNode *p=newLineNode(line);
     if(tail){tail->next=p;p->prev=tail;}else head=p;tail=p;
+    int key;
+    if(sscanf(line,"; mx251-memory-origin begin key=%d",&key)==1) {
+      memoryOrigin=NULL;
+      for(int b=0;b<ebbi->count;++b) {
+        eBBlock *bb=ebbi->bbOrder[b];
+        for(iCode *ic=bb->sch;ic;ic=ic==bb->ech?NULL:ic->next)
+          if(ic->key==key)memoryOrigin=ic;
+      }
+    } else if(!strcmp(line,"; mx251-memory-origin end"))memoryOrigin=NULL;
     li_line parsed;
+    if(memoryOrigin && li_parse(p,&parsed) && !strcmp(parsed.op,"mov") &&
+       parsed.nargs==2 && parsed.arg[0][0]=='@')p->ic=memoryOrigin;
     if(li_parse(p,&parsed) && !strcmp(parsed.op,"ecall") && parsed.nargs==1)
       for(int b=0;b<ebbi->count;++b) {
         eBBlock *bb=ebbi->bbOrder[b];

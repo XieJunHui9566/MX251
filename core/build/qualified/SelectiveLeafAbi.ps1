@@ -52,6 +52,7 @@ function Invoke-Mx251SelectiveLeafAbi([string]$Root,$Config,$Receipt,[string]$To
  $start.UseShellExecute=$false;$start.CreateNoWindow=$true;$start.RedirectStandardOutput=$true;$start.RedirectStandardError=$true
  $start.Environment['MX251_INTERNAL_ABI4_CONTRACT']=$contract
  $start.Environment['MX251_DEFER_NEAR_TRANSFERS']='1'
+ $start.Environment['MX251_COMPILE_REUSE']=$script:compileReuseRoot
  foreach($arg in @('-NoProfile','-NonInteractive','-File',$BuildScript,'-OutputDirectory',$candidate,'-SelectiveLeafAbi','OFF')){$start.ArgumentList.Add($arg)}
  foreach($key in $BuildParameters.Keys){
   if($key -in @('OutputDirectory','ManagedOutput','SelectiveLeafAbi')){continue}
@@ -83,7 +84,7 @@ function Invoke-Mx251SelectiveLeafAbi([string]$Root,$Config,$Receipt,[string]$To
    # managed build. No paths outside this output directory are moved.
    $backup=Join-Path $trial 'baseline';[IO.Directory]::CreateDirectory($backup)|Out-Null
    $prefix=[IO.Path]::GetFullPath($Root).TrimEnd('\')+'\'
-   foreach($item in @(Get-ChildItem -LiteralPath $Root -Force|Where-Object{$_.Name -cnotin @('owner.json','leaf-abi')})){
+   foreach($item in @(Get-ChildItem -LiteralPath $Root -Force|Where-Object{$_.Name -cnotin @('owner.json','leaf-abi','compile-reuse')})){
     $destination=[IO.Path]::GetFullPath((Join-Path $backup $item.Name))
     if(-not $item.FullName.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase) -or -not $destination.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase)){throw 'leaf-abi-output-path'}
     Move-Item -LiteralPath $item.FullName -Destination $destination

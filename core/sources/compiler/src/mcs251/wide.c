@@ -74,6 +74,7 @@ typedef struct {
   unsigned args, stackArgs, stackBytes;
   wide_operand stackOperands[WA_MAX];
   unsigned char stackWidths[WA_MAX];
+  wide_symbol_address storedAddress; /* Constant address serialized into a pointer object. */
   wide_symbol_address callAddresses[WA_MAX+1]; /* register argument, then physical stack order */
   bool ordinaryCall, variadicCall, carryResult, indirectCall;
   /* CALL addressIndex carries the indirect target through existing value rewrites. */
@@ -211,6 +212,21 @@ wide_arithmetic_semantics_enabled(void)
 {
   const char *option=getenv("MX251_ARITHMETIC_SEMANTICS");
   return !option || strcmp(option,"0");
+}
+
+/* These symbols are the front end's typed, reentrant binary32 helpers.
+ * They use the same ABI2/ABI4 argument and result transport as user calls.
+ * Recognition is by compiler symbol identity, never a user function name. */
+static bool
+wide_float_runtime_contract(symbol *callee)
+{
+  if(!callee || !callee->cdef)return false;
+  symbol *binary[]={fsadd,fssub,fsmul,fsdiv,fseq,fsneq,fslt,fsle};
+  for(unsigned i=0;i<sizeof binary/sizeof *binary;++i)if(callee==binary[i])return true;
+  for(unsigned direction=0;direction<2;++direction)
+    for(unsigned width=0;width<3;++width)
+      for(unsigned sign=0;sign<2;++sign)if(callee==conv[direction][width][sign])return true;
+  return false;
 }
 
 static bool
@@ -1108,7 +1124,8 @@ wide_import (wide_function *f, ebbIndex *ebbi)
         }
         unsigned runtimeOperation=0,runtimeWidth=0,runtimeSigned=0;
         bool compilerIntegerRuntime=!n->indirectCall && wide_integer_runtime_contract(OP_SYMBOL(IC_LEFT(ic)),&runtimeOperation,&runtimeWidth,&runtimeSigned);
-        if(!n->indirectCall && n->ordinaryCall && OP_SYMBOL(IC_LEFT(ic))->cdef && !compilerIntegerRuntime)
+        if(!n->indirectCall && n->ordinaryCall && OP_SYMBOL(IC_LEFT(ic))->cdef && !compilerIntegerRuntime &&
+           !wide_float_runtime_contract(OP_SYMBOL(IC_LEFT(ic))))
           return wide_import_reject(f,ic,__LINE__);
         if(compilerIntegerRuntime)
           dbuf_printf(f->diagnostics,"; wide compiler-runtime-call icode=%d operation=%u bytes=%u signed=%u abi=%u\n",ic->key,runtimeOperation,runtimeWidth,runtimeSigned,FUNC_SDCCCALL(t));

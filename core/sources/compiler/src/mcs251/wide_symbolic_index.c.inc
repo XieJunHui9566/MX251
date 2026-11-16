@@ -24,7 +24,10 @@ wide_symbolic_index(wide_function *f)
     for(int i=0;i<f->nn;++i) {
       wide_node *n=&f->nodes[i];int v=n->result,source=-1;
       if(v<0 || address[v].symbol || !d->reachable[i] || d->definitions[v]!=1 ||
-         !wide_fixed_address_value(&f->values[v]))continue;
+         !(wide_fixed_address_value(&f->values[v]) ||
+           (f->values[v].pointer && f->values[v].codePointer && f->values[v].width==4 &&
+            !f->values[v].symbolSnapshot && !f->values[v].floating &&
+            !isVolatile(f->values[v].sym->type) && !isAtomic(f->values[v].sym->type))))continue;
       wide_symbol_address a={0};int64_t offset=0;
       if(n->op==WM_ADDRESS && n->addressObject<0 && !n->addressOp) {
         a.symbol=n->addressSymbol;offset=n->addressOffset;
@@ -48,7 +51,7 @@ wide_symbolic_index(wide_function *f)
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];int base=n->left.value,index=n->addressIndex.value;
     if((n->op!=WM_LOAD && n->op!=WM_STORE) || n->addressObject>=0 || n->addressSymbol ||
-       n->byteAccess || n->pointerAccess || n->codeAccess || n->orderedReadCount || n->nativeIndexed ||
+       n->byteAccess || n->pointerAccess || n->orderedReadCount || n->nativeIndexed ||
        n->addressOp!='+' || base<0 || n->left.width!=4 || !address[base].symbol ||
        !wide_address_dominates(f,d,base,i) || index<0 ||
        n->addressIndex.sign || n->addressIndex.floating || n->addressIndex.codePointer ||

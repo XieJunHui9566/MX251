@@ -27,6 +27,15 @@ wide_constant_call_addresses(wide_function *f)
   unsigned count=0;
   for(int i=0;i<f->nn;++i) {
     wide_node *n=&f->nodes[i];
+    if((n->op==WM_EDATA_STORE || n->op==WM_STORE) && n->pointerAccess && n->width==4 &&
+       n->addressObject<0 && n->right.value>=0 && address[n->right.value].symbol) {
+      int value=n->right.value;
+      n->storedAddress=address[value];n->right.value=-1;n->right.literal=0;
+      if(n->left.value!=value && n->addressIndex.value!=value) {
+        wide_bits removed={{0}};wb_set(&removed,value);n->use=wb_minus(n->use,removed);
+      }
+      ++count;continue;
+    }
     if(n->op!=CALL || !n->ordinaryCall || n->indirectCall)continue;
     bool replaced=false;
     for(unsigned k=0;k<=n->stackArgs;++k) {

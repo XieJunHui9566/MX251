@@ -477,6 +477,16 @@ wmemory_pointer(wide_function *f,wide_node *n)
     we(f,"\tclr\ta\n\tmovc\ta,@a+dptr\n\tmov\twr22,wr10\n");
     wstore_known(f,n->result,20,true);return;
   }
+  if(store && n->storedAddress.symbol) {
+    wide_symbol_address value=n->storedAddress;
+    we(f,"; wide symbolic pointer store physical=3\n");
+    we(f,"\tmov\ta,#((%s%+d)>>16)\n\tmov\t%s,a\n",value.symbol->rname,value.offset,a[0]);
+    if(n->byteAccess) {
+      we(f,"\tmov\ta,#((%s%+d)>>8)\n\tmov\t%s,a\n",value.symbol->rname,value.offset,a[1]);
+      we(f,"\tmov\ta,#(%s%+d)\n\tmov\t%s,a\n",value.symbol->rname,value.offset,a[2]);
+    } else we(f,"\tmov\twr20,#(%s%+d)\n\tmov\t%s,wr20\n",value.symbol->rname,value.offset,a[1]);
+    return;
+  }
   if(store) {
     wload(f,n->right,20,4);
     we(f,"\tmov\twr10,wr20\n\tmov\t%s,a\n",a[0]);
@@ -837,7 +847,9 @@ wmemory(wide_function *f,wide_node *n,bool addressReady)
     if(!windexed_object_access(f,n))we(f,"\tanl\twr16,#0x00ff\n");
     else we(f,"; wide relative object address padding=zero\n");
   }
+  if(f->interruptEntry && n->op==WM_STORE)we(f,"; mx251-memory-origin begin key=%d\n",n->origin->key);
   wmemory_emit(f,n,addressReady || reuse);
+  if(f->interruptEntry && n->op==WM_STORE)we(f,"; mx251-memory-origin end\n");
   if(eligible && (n->op==WM_STORE || f->values[n->result].reg<0 ||
      !(wide_mask(f->values[n->result].reg,n->width)&wide_mask(f->values[n->left.value].reg,4)))) {
     f->relativeAddressValid=true;f->relativeAddressBase=n->left.value;
@@ -1901,6 +1913,37 @@ wbit_store(wide_function *f,wide_node *n)
   }
 }
 
+/* A sampled bit stays normalized through copies, Boolean casts and !.
+ * Collapse only an adjacent single-use chain back into the same bit.
+ * MOV C / CPL C / MOV bit preserves the original bit read and write,
+ * including pin-read behavior of port bits (unlike hardware CPL bit). */
+static int
+wbit_update(wide_function *f,int first)
+{
+  wide_node *load=&f->nodes[first];
+  if(load->op!=WM_BIT_LOAD || load->result<0 || f->values[load->result].reads!=1)return first;
+  int value=load->result;bool inverse=false;
+  for(int i=first+1;i<f->nn && i<=first+8;++i) {
+    wide_node *previous=&f->nodes[i-1],*n=&f->nodes[i];
+    if(previous->succ[0]!=i || previous->succ[1]>=0 || previous->jumpCount ||
+       n->op==LABEL || !wide_call_plain(f,i,1))break;
+    if(n->op==WM_BIT_STORE) {
+      if(n->addressSymbol!=load->addressSymbol || n->right.value!=value)break;
+      we(f,"; wide bit update inverse=%u exact-read=1 exact-write=1\n\tmov\tc,%s\n",
+         inverse,load->addressSymbol->rname);
+      if(inverse)we(f,"\tcpl\tc\n");
+      we(f,"\tmov\t%s,c\n",n->addressSymbol->rname);return i;
+    }
+    wide_operand source=n->op=='!'?n->left:n->right;
+    if((n->op!='!' && n->op!='=' && n->op!=CAST && n->op!=WM_BIT_CAST) ||
+       source.value!=value || n->result<0 || f->values[n->result].reads!=1 ||
+       n->floating || source.floating)break;
+    if(n->op=='!')inverse=!inverse;
+    value=n->result;
+  }
+  return first;
+}
+
 /* ABI2 的参数和返回值使用相同物理字节。仅对无副作用、无转换的
  * 单参数直通函数保留这些入口字节，避免先搬入宽寄存器再搬回。
  * 不跨内存、调用、分支或栈帧；指针补位及限定类型继续走已有路径。 */
@@ -2052,6 +2095,8 @@ wide_emit(wide_function *f)
     if(repeated>i) {i=repeated;continue;}
     int constants=wstack_constant_run(f,i);
     if(constants>i) {i=constants;continue;}
+    int bitUpdate=wbit_update(f,i);
+    if(bitUpdate>i) {i=bitUpdate;continue;}
     int predicate=wpredicate_branch(f,i);
     if(predicate>i) {i=predicate;continue;}
     int masks=wbyte_masks(f,i);

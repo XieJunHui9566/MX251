@@ -23,6 +23,7 @@ param(
  [ValidateSet('128','256','512','1024')][string]$WideValueLimit='128',
  [ValidateSet('512','1024','2048')][string]$WideNodeLimit='512',
  [ValidateSet('AUTO','OFF')][string]$SelectiveLeafAbi='AUTO',
+ [ValidateSet('AUTO','OFF')][string]$StdIoSharing='AUTO',
  [ValidateSet('AUTO','OFF')][string]$NearTransfers='AUTO',
  [switch]$ManagedOutput
 )
@@ -73,6 +74,7 @@ function Run-Tool([string]$Label,[string]$Exe,[string[]]$Arguments,[switch]$Allo
  if($Exe -ceq $compilerExe -and $Arguments -contains '-c' -and $Arguments -contains '-o'){
   $outAt=[Array]::IndexOf($Arguments,'-o')+1
   $name=[IO.Path]::GetFileNameWithoutExtension($Arguments[$outAt])
+  if($name -cin @($env:MX251_STDIO_PRINTF_UNITS -split ',')){$Arguments+='--mcs251-no-printf-puts'}
   if($script:scalarParameterContracts.ContainsKey($name)){
    $binding=$script:scalarParameterContracts[$name]
    if((Hash-File $binding.path) -cne $binding.sha256){throw 'scalar-contract-drift'}
@@ -92,6 +94,12 @@ function Run-Tool([string]$Label,[string]$Exe,[string[]]$Arguments,[switch]$Allo
  $start.Environment.Remove('MX251_OBJECT_ADDRESS_CAPABILITY')|Out-Null
  if($objectAddressRecord.enabled){$start.Environment['MX251_OBJECT_ADDRESS_CAPABILITY']=$objectAddressRecord.contract}
  $start.Environment['PATH']=(Join-Path $toolRoot 'bin')+';'+(Join-Path $env:SystemRoot 'System32')+';'+$env:SystemRoot
+ $reuse=Get-Mx251CompileReuse $Exe $Arguments $start.Environment
+ if($null -ne $reuse -and (Restore-Mx251CompileReuse $reuse $Label)){
+  $commands.Add([ordered]@{label=$Label;executable=$Exe;arguments=$Arguments;exitCode=0;compileReuse=$reuse.key})
+  Write-Json (Join-Path $outputRoot 'commands.json') @($commands.ToArray())
+  return
+ }
  foreach($arg in $Arguments){$start.ArgumentList.Add($arg)}
  $process=[Diagnostics.Process]::new();$process.StartInfo=$start
  $stdout=[IO.File]::Create((Join-Path $outputRoot ($Label+'.stdout.log')))
@@ -107,6 +115,7 @@ function Run-Tool([string]$Label,[string]$Exe,[string[]]$Arguments,[switch]$Allo
   Write-Json (Join-Path $outputRoot 'commands.json') @($commands.ToArray())
   if($code -ne 0 -and -not $AllowFailure){throw "$Label failed with exit code $code; original stdout/stderr logs retained"}
  } finally {$stdout.Dispose();$stderr.Dispose();$process.Dispose()}
+ if($code -eq 0 -and $null -ne $reuse){Save-Mx251CompileReuse $reuse $Label}
 }
 function Flags([string]$Backend,[bool]$StackAuto,$ExtraDefines) {
  $f=@('-mmcs251',('--model-'+$config.model),('--opt-code-'+$config.optimization))
@@ -332,6 +341,8 @@ try {
  Write-Json (Join-Path $outputRoot 'project.snapshot.json') $config
  foreach($file in $inputs.Keys){$dest=Join-Path $outputRoot $file;[IO.Directory]::CreateDirectory((Split-Path -Parent $dest))|Out-Null;[IO.File]::Copy($inputs[$file].path,$dest,$false);if((Hash-File $dest) -ne $inputs[$file].sha256){throw 'Input changed during snapshot'}}
  [IO.File]::Copy((Join-Path $ProfileRoot 'startup.asm'),(Join-Path $outputRoot 'startup.asm'),$false)
+ . (Join-Path $PSScriptRoot 'CompileReuse.ps1')
+ Initialize-Mx251CompileReuse
  foreach($u in $config.units){
   if([IO.Path]::GetExtension($u.file) -eq '.c'){$args=@(Flags $u.backend $u.stackAuto $u.defines)+@('-c',$u.file,'-o',($u.name+'.rel'));Run-Tool $u.name $compilerExe $args;Check-Assembly (Join-Path $outputRoot ($u.name+'.asm'))}
   else{Check-Assembly (Join-Path $outputRoot $u.file);Run-Tool $u.name (Join-Path $toolRoot 'bin/sdas251.exe') @('-plosgff',($u.name+'.rel'),$u.file)}
@@ -549,7 +560,14 @@ try {
  }
  Write-Json (Join-Path $outputRoot 'receipt.json') $receipt
  Write-Json (Join-Path $outputRoot 'build-state.json') @{status='complete';firmware='firmware.hex';firmwareSha256=$receipt.firmwareSha256}
- Write-Output "Build complete: $outputRoot\firmware.hex ($($receipt.codeBytes) code bytes; leaf ABI: $($selection.status))"
+ . (Join-Path $PSScriptRoot 'StdIoSharing.ps1')
+ $stdio=Invoke-Mx251StdIoSharing $outputRoot $config $receipt $PSCommandPath $PSBoundParameters
+ Write-Json (Join-Path $outputRoot 'stdio-sharing.json') $stdio
+ $receipt=Get-Content -LiteralPath (Join-Path $outputRoot 'receipt.json') -Raw|ConvertFrom-Json -AsHashtable
+ $receipt.stdioSharing=@{status=$stdio.status;applied=$stdio.applied;savedBytes=$stdio.savedBytes;recordSha256=(Hash-File (Join-Path $outputRoot 'stdio-sharing.json'));scriptSha256=(Hash-File (Join-Path $PSScriptRoot 'StdIoSharing.ps1'))}
+ $receipt.buildIdentity.stdioSharing=$receipt.stdioSharing
+ Write-Json (Join-Path $outputRoot 'receipt.json') $receipt
+ Write-Output "Build complete: $outputRoot\firmware.hex ($($receipt.codeBytes) code bytes; stdio: $($stdio.status))"
  exit 0
 } catch {
  $message=$_.Exception.Message

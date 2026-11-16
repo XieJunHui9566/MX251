@@ -33,6 +33,7 @@
 #if !OPT_DISABLE_MCS251
 extern void mcs251ConfigureNativeRuntime (symbol *sym);
 extern bool mcs251C251BitComplementSemantics (void);
+extern bool mcs251RewritePlainTextPrintf (void);
 #endif
 
 int currLineno = 0;
@@ -3605,6 +3606,11 @@ optStdLibCall (ast *tree, RESULT_TYPE resulttype)
 
       if(!puts_sym || (TARGET_IS_MCS251 && !m251StdIoStringPrototype (puts_sym, false)))
         return;
+
+#if !OPT_DISABLE_MCS251
+      if (TARGET_IS_MCS251 && !mcs251RewritePlainTextPrintf ())
+        return;
+#endif
 
       // Do the equivalent of
       // DCL_ELEM (strsym->type)--;

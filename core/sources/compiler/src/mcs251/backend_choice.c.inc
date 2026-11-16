@@ -46,7 +46,6 @@ mcs251BackendChoiceEligible(ebbIndex *ebbi, bool narrowTrial)
         if(!op || !IS_SYMOP(op) || !IS_FUNC(operandType(op)) ||
            (FUNC_SDCCCALL(operandType(op))!=2 &&
             !((native || ordered || narrowTrial) && FUNC_SDCCCALL(operandType(op))==4)) ||
-           (!native && !narrowTrial && OP_SYMBOL(op)->cdef) ||
            mcs251InternalReturn(OP_SYMBOL(op)) || mcs251InternalArgument(OP_SYMBOL(op)))return false;
       }
     }
