@@ -1,0 +1,1142 @@
+{
+  "status": "TARGETED_PASS",
+  "implementationCommit": "afabf3fb141dcbeefdaec5cdba55b2137ac4c2b0",
+  "compilerSha256": "4915456408c41c10ab38ce0bf4d5262b4976aa83544c3ac4ae270ddb15b14b8a",
+  "candidate": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\candidate",
+  "candidatePin": {
+    "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\stage.json",
+    "sha256": "eb5a50d4be03d77697d756a4ee2d61f0d0b6b97db3e8aa34f81db0c61838a730"
+  },
+  "parentReport": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\SHARED-COST-BATCH-20261116.json",
+    "sha256": "51738239e8dc8d792947e511997be20d4250f4005c5d02e346f776158432a09f"
+  },
+  "targetCount": 21,
+  "built": 21,
+  "smaller": 14,
+  "larger": 0,
+  "unchanged": 7,
+  "deltaBytes": -139,
+  "previousRegressionsRepaired": [
+    "p005",
+    "p011",
+    "p017",
+    "p035",
+    "p037",
+    "p039",
+    "p045",
+    "p049",
+    "p059",
+    "p131",
+    "p132"
+  ],
+  "compilerConfigurations": 8,
+  "compilerChecks": 22,
+  "hardware": {
+    "status": "PASS",
+    "caseCountPerCompiler": 128,
+    "rows": [
+      {
+        "variant": "before",
+        "compiler": "319a90fc6e3dfd77c8ce6f38c9dd6a1c5d157cba78f133beab5d562688dc32d7",
+        "bytes": 2862,
+        "cases": 128,
+        "aggregateTicks": {
+          "0": 17664,
+          "1": 508608.0
+        },
+        "firmware": {
+          "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\board-before\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "c321556b2166f2176e44d4bb013902a7165e7579f1b994a107ac96bbc102ac4b"
+        },
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\hardware-before\\result.json",
+          "sha256": "914c8fcd21229993150821a7fc8fff16ca55e81f1133d127b869e436aa47e7ac"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\board-before\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "daa85c9c41eab60b58baae92f159db214f3d191e1fd4036fc7736cdc2ff9f8ec"
+        }
+      },
+      {
+        "variant": "after",
+        "compiler": "4915456408c41c10ab38ce0bf4d5262b4976aa83544c3ac4ae270ddb15b14b8a",
+        "bytes": 2862,
+        "cases": 128,
+        "aggregateTicks": {
+          "0": 19071,
+          "1": 508608.0
+        },
+        "firmware": {
+          "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\board-after\\.build\\mx251\\latest\\firmware.hex",
+          "sha256": "78231072f7cac909dd603d2114e1fd1de3c14b5a57244bb1615e4c7205efdf55"
+        },
+        "result": {
+          "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\hardware-after\\result.json",
+          "sha256": "fef7c84eff79317790d0573a930bf5ce3a8f402ca03633ec0e7e3e83949ee92c"
+        },
+        "receipt": {
+          "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\board-after\\.build\\mx251\\latest\\receipt.json",
+          "sha256": "b71ee444b8f521fafdb282f0d58a2032b0e43037850ab26f0c178591b48778a3"
+        }
+      }
+    ],
+    "ratios": {
+      "0": 1.0796535326086956,
+      "1": 1.0
+    },
+    "timer": "MCU Timer0 ticks; per-input repeated frame medians",
+    "comparison": "previous MX251 candidate, not Keil",
+    "source": {
+      "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\tools\\research\\candidate_selection_fixture.py",
+      "sha256": "0ea78cda0e0a3729942c3e63b3b0cb888dad45ffe968645e763c3962cdc3e9ad"
+    }
+  },
+  "rows": [
+    {
+      "id": "g071",
+      "preBatch": 2198,
+      "before": 2122,
+      "after": 2122,
+      "delta": 0,
+      "keil": 1655,
+      "keilPercent": 128.21752265861028,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g071\\mx251\\result.json",
+        "sha256": "21e18d2a688957514a948019e931e32ef311eb341541b3526b6358c693198b81"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g071\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "795f7b49fa2563de96ae5d78c9d6a207574aa6b4076eee18dce77df64bd2c04a"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g071\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d26dad8e367a3ba43e0457ddb53e26a3d07750a2ce6343e91abcc2e44580219a"
+      }
+    },
+    {
+      "id": "g104",
+      "preBatch": 3462,
+      "before": 3433,
+      "after": 3433,
+      "delta": 0,
+      "keil": 3194,
+      "keilPercent": 107.48278021289919,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g104\\mx251\\result.json",
+        "sha256": "41bf91a7cda31db57b66592d50b27ab797eff90e925c697d63e877992a9ed193"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g104\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "dfc97415d90abd47b59b48e3bd31f040ce2184a7bb3c9638ab0e527165003916"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g104\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d9b3421facb012205bd032564cfec56f75fec0d43057606a5960910001e65ee1"
+      }
+    },
+    {
+      "id": "g139",
+      "preBatch": 1386,
+      "before": 1248,
+      "after": 1248,
+      "delta": 0,
+      "keil": 887,
+      "keilPercent": 140.6989853438557,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g139\\mx251\\result.json",
+        "sha256": "8d5c696c22840b45b576ea7232143d9daa2cc0c51bc448d18709a84446bba4e2"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g139\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "3f9ee2a0f97ba06917c23a11b5f31d5dc3f257d88b02a9f42413c51babcf14cc"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "9f5b42bd20b6f81b83a082d7552b3bcfa4fe8e89b45b9dc3cdb7c01f65e66448"
+      }
+    },
+    {
+      "id": "g141",
+      "preBatch": 5701,
+      "before": 5607,
+      "after": 5605,
+      "delta": -2,
+      "keil": 4656,
+      "keilPercent": 120.38230240549828,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g141\\mx251\\result.json",
+        "sha256": "fb5014b419391abd76455401498c7102da4c482bd687a2c3fb73e08dae991717"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g141\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "1118bff063e4156c373437e46ff4c707eccfe74b3301441a8d99c7bdcd2b0a8c"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\g141\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "4fe83cf2ab750289e6d1628e4e3ac1ec2ddd38dc64fbe3a2c616bcae8dc5327d"
+      }
+    },
+    {
+      "id": "p005",
+      "preBatch": 475,
+      "before": 479,
+      "after": 475,
+      "delta": -4,
+      "keil": 564,
+      "keilPercent": 84.21985815602837,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p005\\mx251\\result.json",
+        "sha256": "96a8c8669fee008e775968efdb25f49dda0bbbdd5e2a290402d5f827d52aa025"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p005\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "4f85fcaedb1be10d7ea5a8ca8b009efb0f2b0add2979f15cdf0684fa4dc24c42"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p005\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "efe6341d8af3e2e65e7e65e672aba13d102764ae4e739af3d309a43fffda0181"
+      }
+    },
+    {
+      "id": "p011",
+      "preBatch": 551,
+      "before": 555,
+      "after": 551,
+      "delta": -4,
+      "keil": 542,
+      "keilPercent": 101.66051660516605,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p011\\mx251\\result.json",
+        "sha256": "cb51925bc4a36c8126e431bc365ed1bbcef60e25f418eee9eec6a4c43d565fc4"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p011\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7eca46140d7be570230bb86accfaaf9a44db12d58e943b87877294dbe0a4e69b"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p011\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8e1ce953cf658e4a56209ec6dbaa584f8b76de72177e70081f8f7da0a018c759"
+      }
+    },
+    {
+      "id": "p017",
+      "preBatch": 345,
+      "before": 353,
+      "after": 345,
+      "delta": -8,
+      "keil": 359,
+      "keilPercent": 96.10027855153203,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p017\\mx251\\result.json",
+        "sha256": "f863a2cc0ccb32c41cd4191f5b575c21747cd95df7a4caf5bfa1bd3df5f44731"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p017\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "356df0bcbf46f54fad0ea3ad5cad161b335355c6d4f5882e12ec639ddeb45221"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p017\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d7bdf1d0c7f32f9a7c3c9fcb7952913056874a46064fc39bd28a31b536e9f1b3"
+      }
+    },
+    {
+      "id": "p035",
+      "preBatch": 838,
+      "before": 842,
+      "after": 823,
+      "delta": -19,
+      "keil": 989,
+      "keilPercent": 83.21536905965621,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p035\\mx251\\result.json",
+        "sha256": "a58ff741ab52f480490fd2369fedd8d113dd94c20c3a88469b166a05cc58dff5"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p035\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "f0af138bf58efc33edcc4b9cb7f6b10dbd89ae200ec10f29040c05363bd4f539"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p035\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ac1b9573298c1b8fc3ff5a2879493b7d029edeb60f0313af2f99909936d10633"
+      }
+    },
+    {
+      "id": "p037",
+      "preBatch": 875,
+      "before": 879,
+      "after": 865,
+      "delta": -14,
+      "keil": 1033,
+      "keilPercent": 83.73668925459826,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p037\\mx251\\result.json",
+        "sha256": "671c0572664aea6bc3bee0e04675238ffed8ed5e0bb50c848568f43be62efe9a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p037\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "6498ec0327881b632c7893fb27312e2a638a51aa578e1804754c1645f0db7aee"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p037\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "3442d1c5f8e5cb8f3e5e063abeaf971dac1d461bb0b3812d12e0fcbd92dbdf51"
+      }
+    },
+    {
+      "id": "p039",
+      "preBatch": 1177,
+      "before": 1181,
+      "after": 1177,
+      "delta": -4,
+      "keil": 1105,
+      "keilPercent": 106.5158371040724,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p039\\mx251\\result.json",
+        "sha256": "df5354e4f75d65f2e3802db83ab87cc1771eb35e8715862f5474c7c7eaa43136"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p039\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "b7f0e2dfa4eb72f941b87e393930467fcc701606ea99dd95a2ad0e40d8026921"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p039\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d573c97657264ac4bbd62b9a9ebc7b1abaf4c6082e9f9b7811c14bd682e6c017"
+      }
+    },
+    {
+      "id": "p045",
+      "preBatch": 909,
+      "before": 913,
+      "after": 909,
+      "delta": -4,
+      "keil": 832,
+      "keilPercent": 109.2548076923077,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p045\\mx251\\result.json",
+        "sha256": "a12eab01f7bbb030dc96a7c74f46ac651372415c486864e3f268b10ca237ba5e"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p045\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e3e6c018045cb6d739dc56dc097ff956b5a6e97b7a9cf3da594bcc6925759090"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p045\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "30a4156b6ca637da33784dce0f2977f7e4d2260ad5be84c7796661bbda0438e0"
+      }
+    },
+    {
+      "id": "p049",
+      "preBatch": 1100,
+      "before": 1104,
+      "after": 1100,
+      "delta": -4,
+      "keil": 1002,
+      "keilPercent": 109.78043912175649,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p049\\mx251\\result.json",
+        "sha256": "42f60c604efae6a32915be24d0dd3b4c6f5c6f96da741c59921949273200986b"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p049\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "5fac2fadec7528e13bf4812153c5b03a165885635a5d931255d6889e6c1c850e"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p049\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8c86b9ef1c70c056b2fc3751f7a5b6430e6c779f166b1a40fa4498f512898638"
+      }
+    },
+    {
+      "id": "p059",
+      "preBatch": 2792,
+      "before": 2799,
+      "after": 2792,
+      "delta": -7,
+      "keil": 3210,
+      "keilPercent": 86.97819314641744,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p059\\mx251\\result.json",
+        "sha256": "6c8ff4b520bba1f69a963ae47022ed067b34fe7a06e061987370d49db2ed5fe6"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p059\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "33e5df315eba41e9d0cda895066c8786462477cd999086a0db477e3edf62418b"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p059\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8366b979dcbd9a61848f83e15a7c75a4c4d022b95c3b0afa187a88bf40413251"
+      }
+    },
+    {
+      "id": "p083",
+      "preBatch": 1806,
+      "before": 1749,
+      "after": 1749,
+      "delta": 0,
+      "keil": 1459,
+      "keilPercent": 119.87662782727895,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p083\\mx251\\result.json",
+        "sha256": "084857cfb8f8444b21b8d13a85e1c7279212566c575bbe8efe581e8faa688f11"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "8023399e1a27643484a73a3b6e7e6e3b720b71f9fdefa73c10e6fbd2b148a5f5"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "50e7d2eb9a98c7b0a1cdac5488024527e40d8e124d3ad278f66da743d9533ccb"
+      }
+    },
+    {
+      "id": "p092",
+      "preBatch": 2187,
+      "before": 2111,
+      "after": 2111,
+      "delta": 0,
+      "keil": 1667,
+      "keilPercent": 126.63467306538692,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p092\\mx251\\result.json",
+        "sha256": "6dbdb9fb1f5956c1a4e9c97644e99e32bbb636c5ced68a52cf9f8e10200e9152"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p092\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7a056fc71332e354d18114cbd6462a63c51bedb445742e6f65a76c526a48184f"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p092\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "54e3bdc4bd5c2d65d07c0ec88b9adeeb82f042de675abde6fd89b317c3deb9b8"
+      }
+    },
+    {
+      "id": "p123",
+      "preBatch": 5554,
+      "before": 5532,
+      "after": 5532,
+      "delta": 0,
+      "keil": 4839,
+      "keilPercent": 114.32114073155611,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p123\\mx251\\result.json",
+        "sha256": "911e8c2a25fd57f7bef766f0a6632d0a8fada900a267a2f883af6c63916c6524"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "8f814c58e5f39c935b07c6b4b828a1321b7076af9bbcfc1c5ea2af356bf4081f"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "086c91b76abf57d0c1f79d835a4b9bac7c87f2804bbda908b2228b5c57122714"
+      }
+    },
+    {
+      "id": "p127",
+      "preBatch": 9014,
+      "before": 8871,
+      "after": 8871,
+      "delta": 0,
+      "keil": 6998,
+      "keilPercent": 126.76478993998285,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p127\\mx251\\result.json",
+        "sha256": "3129beadbea4abc846075d1d73acbde93a55bf1b655052533e611ba45b9c5ed2"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "576d341bd5f6f6cb6286f0cd9d2a7eb4ca3baf983cffd536e0173e14a74aa546"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7ae2c75d0b207b6d985c158f584bf808e7cf7be1f39c0105ad0d7396c53abe40"
+      }
+    },
+    {
+      "id": "p130",
+      "preBatch": 30896,
+      "before": 30282,
+      "after": 30259,
+      "delta": -23,
+      "keil": 27478,
+      "keilPercent": 110.12082393187278,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p130\\mx251\\result.json",
+        "sha256": "6b9f37e57413c0a1b71b840fb52f2c2694df6b7015fbaec85919a0ba16e76fe1"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p130\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e5c486add87a56a1aac9eaa289578720c60ebc4082f9e6a5d06edc45f4725e8f"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p130\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5005f539d0f024040f32f9422d78e367ab27c3d3836158f9a67e88ad312566fe"
+      }
+    },
+    {
+      "id": "p131",
+      "preBatch": 5265,
+      "before": 5281,
+      "after": 5265,
+      "delta": -16,
+      "keil": 5304,
+      "keilPercent": 99.26470588235294,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p131\\mx251\\result.json",
+        "sha256": "24f725d02ae0327c83a4337e80d46bd2a225300c5d1fb0d5afefcefeb50fc808"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p131\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "cb741d7f573f2aec02e6ddf4e1bf738783ec9b6db168bad35c84c5f3fa2fa583"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p131\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "480d34ead5c529172e2e3159fa76ce89696034054f0c6fff8e4aa4341e6b69ed"
+      }
+    },
+    {
+      "id": "p132",
+      "preBatch": 5218,
+      "before": 5234,
+      "after": 5218,
+      "delta": -16,
+      "keil": 5308,
+      "keilPercent": 98.30444611906556,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p132\\mx251\\result.json",
+        "sha256": "6daa149152232ae2e8bc6614c3daeefb50ce497b8e08bb1f4405845a6d37b239"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p132\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "72e43535475eac6af170f2ed22a6f48ac21243a90b30bcebcd4979579ab44d98"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p132\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "df79208a86289b1a72303da443c5045288eab47c72b14ef57d7c366ae0b8830e"
+      }
+    },
+    {
+      "id": "p140",
+      "preBatch": 6257,
+      "before": 6154,
+      "after": 6140,
+      "delta": -14,
+      "keil": 5059,
+      "keilPercent": 121.36785926072346,
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p140\\mx251\\result.json",
+        "sha256": "87113648810e14bfb876bf5766ec39d6ef71c8afedd8e6871eb6d11489396df0"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p140\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "44c7eb5da0fe8277210bc4148ba4ccda6faea1d3c8938cc7eb23cf1020c65b07"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\targeted\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "62d060120645d8d3a242344a9ca601748d73e8e92718d53d6595b459e05f0cc6"
+      }
+    }
+  ],
+  "inputsUnchanged": true,
+  "sdkSourcesChanged": false,
+  "full203Rebuilt": false,
+  "defaultChanged": false,
+  "runtime110KeilQualified": false,
+  "compilerCheck": {
+    "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\compiler-check-flat\\result.json",
+    "sha256": "08448fb28d93adea8e8bbb8796f4ccb1fab953fcdab36fab41ad46767ceaa4ef"
+  },
+  "sharedCheck": {
+    "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\compiler-shared-check\\result.json",
+    "sha256": "f540e6c18946d075eb8dc6e0dd9d6f18e37b7c5655dd5a55993dc38b79dda2a3"
+  },
+  "inputs": {
+    "path": "E:\\STVAPP\\MX251\\.build\\candidate-selection-20261116\\target-inputs.json",
+    "sha256": "2c951bfd9ba9a43d65cda2b384037d44c5ee396e1d0cfca9ad4c8d8fc88910f6"
+  },
+  "nextCosts": {
+    "scope": "Existing frozen batch instruction categories, not measured removable bytes",
+    "rows": [
+      {
+        "id": "p127",
+        "function": "FFT",
+        "gap": 290,
+        "mx": {
+          "bytes": 783,
+          "instructionCount": 292,
+          "categoryBytes": {
+            "stack": 204,
+            "immediateMove": 37,
+            "registerMove": 140,
+            "arithmeticAndBits": 288,
+            "memoryMove": 69,
+            "branch": 44,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 51,
+            "immediateMove": 14,
+            "registerMove": 68,
+            "arithmeticAndBits": 113,
+            "memoryMove": 23,
+            "branch": 22,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 493,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "7ae2c75d0b207b6d985c158f584bf808e7cf7be1f39c0105ad0d7396c53abe40"
+          }
+        ]
+      },
+      {
+        "id": "p127",
+        "function": "MAIN",
+        "gap": 223,
+        "mx": {
+          "bytes": 628,
+          "instructionCount": 248,
+          "categoryBytes": {
+            "stack": 70,
+            "arithmeticAndBits": 83,
+            "memoryMove": 217,
+            "immediateMove": 61,
+            "registerMove": 107,
+            "branch": 46,
+            "call": 43,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 30,
+            "arithmeticAndBits": 41,
+            "memoryMove": 77,
+            "immediateMove": 22,
+            "registerMove": 48,
+            "branch": 16,
+            "call": 13,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 405,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "7ae2c75d0b207b6d985c158f584bf808e7cf7be1f39c0105ad0d7396c53abe40"
+          }
+        ]
+      },
+      {
+        "id": "p127",
+        "function": "USB_SET_CONFIGURATION",
+        "gap": 71,
+        "mx": {
+          "bytes": 236,
+          "instructionCount": 87,
+          "categoryBytes": {
+            "memoryMove": 52,
+            "arithmeticAndBits": 10,
+            "branch": 24,
+            "registerMove": 8,
+            "immediateMove": 62,
+            "stack": 40,
+            "call": 40
+          },
+          "categoryInstructions": {
+            "memoryMove": 13,
+            "arithmeticAndBits": 3,
+            "branch": 11,
+            "registerMove": 4,
+            "immediateMove": 26,
+            "stack": 20,
+            "call": 10
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 165,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "7ae2c75d0b207b6d985c158f584bf808e7cf7be1f39c0105ad0d7396c53abe40"
+          }
+        ]
+      },
+      {
+        "id": "p127",
+        "function": "USB_CTRL_OUT",
+        "gap": 70,
+        "mx": {
+          "bytes": 151,
+          "instructionCount": 55,
+          "categoryBytes": {
+            "immediateMove": 23,
+            "stack": 20,
+            "call": 18,
+            "registerMove": 26,
+            "branch": 9,
+            "return": 1,
+            "memoryMove": 40,
+            "arithmeticAndBits": 14
+          },
+          "categoryInstructions": {
+            "immediateMove": 9,
+            "stack": 9,
+            "call": 5,
+            "registerMove": 12,
+            "branch": 4,
+            "return": 1,
+            "memoryMove": 10,
+            "arithmeticAndBits": 5
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 81,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "7ae2c75d0b207b6d985c158f584bf808e7cf7be1f39c0105ad0d7396c53abe40"
+          }
+        ]
+      },
+      {
+        "id": "g139",
+        "function": "PWMA_TIMER",
+        "gap": 85,
+        "mx": {
+          "bytes": 284,
+          "instructionCount": 84,
+          "categoryBytes": {
+            "immediateMove": 122,
+            "memoryMove": 136,
+            "registerMove": 6,
+            "arithmeticAndBits": 19,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "immediateMove": 36,
+            "memoryMove": 39,
+            "registerMove": 3,
+            "arithmeticAndBits": 5,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 199,
+          "instructionCount": 63,
+          "categoryBytes": {
+            "arithmeticAndBits": 4,
+            "immediateMove": 118,
+            "memoryMove": 76,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "arithmeticAndBits": 3,
+            "immediateMove": 35,
+            "memoryMove": 24,
+            "return": 1
+          }
+        },
+        "keilSegment": 199,
+        "matches": true,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "9f5b42bd20b6f81b83a082d7552b3bcfa4fe8e89b45b9dc3cdb7c01f65e66448"
+          },
+          {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\unit0.lst",
+            "sha256": "55654e3715389d27318b4cf35cd69b22f9023b42560e83b7dcdfd742dd932f60"
+          }
+        ]
+      },
+      {
+        "id": "g139",
+        "function": "PWMB_TIMER",
+        "gap": 84,
+        "mx": {
+          "bytes": 284,
+          "instructionCount": 84,
+          "categoryBytes": {
+            "immediateMove": 122,
+            "memoryMove": 136,
+            "registerMove": 6,
+            "arithmeticAndBits": 19,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "immediateMove": 36,
+            "memoryMove": 39,
+            "registerMove": 3,
+            "arithmeticAndBits": 5,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 200,
+          "instructionCount": 63,
+          "categoryBytes": {
+            "immediateMove": 120,
+            "memoryMove": 76,
+            "arithmeticAndBits": 3,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "immediateMove": 36,
+            "memoryMove": 24,
+            "arithmeticAndBits": 2,
+            "return": 1
+          }
+        },
+        "keilSegment": 200,
+        "matches": true,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "9f5b42bd20b6f81b83a082d7552b3bcfa4fe8e89b45b9dc3cdb7c01f65e66448"
+          },
+          {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\unit0.lst",
+            "sha256": "55654e3715389d27318b4cf35cd69b22f9023b42560e83b7dcdfd742dd932f60"
+          }
+        ]
+      },
+      {
+        "id": "g139",
+        "function": "PWMA_ISR",
+        "gap": 76,
+        "mx": {
+          "bytes": 270,
+          "instructionCount": 98,
+          "categoryBytes": {
+            "stack": 20,
+            "immediateMove": 61,
+            "memoryMove": 126,
+            "registerMove": 16,
+            "branch": 22,
+            "arithmeticAndBits": 24,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 10,
+            "immediateMove": 16,
+            "memoryMove": 42,
+            "registerMove": 8,
+            "branch": 9,
+            "arithmeticAndBits": 12,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 194,
+          "instructionCount": 65,
+          "categoryBytes": {
+            "stack": 16,
+            "immediateMove": 56,
+            "memoryMove": 62,
+            "arithmeticAndBits": 33,
+            "registerMove": 14,
+            "branch": 12,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 8,
+            "immediateMove": 14,
+            "memoryMove": 18,
+            "arithmeticAndBits": 13,
+            "registerMove": 7,
+            "branch": 4,
+            "return": 1
+          }
+        },
+        "keilSegment": 194,
+        "matches": true,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "9f5b42bd20b6f81b83a082d7552b3bcfa4fe8e89b45b9dc3cdb7c01f65e66448"
+          },
+          {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\unit0.lst",
+            "sha256": "55654e3715389d27318b4cf35cd69b22f9023b42560e83b7dcdfd742dd932f60"
+          }
+        ]
+      },
+      {
+        "id": "g139",
+        "function": "PWMB_ISR",
+        "gap": 76,
+        "mx": {
+          "bytes": 270,
+          "instructionCount": 98,
+          "categoryBytes": {
+            "stack": 20,
+            "immediateMove": 61,
+            "memoryMove": 126,
+            "registerMove": 16,
+            "branch": 22,
+            "arithmeticAndBits": 24,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 10,
+            "immediateMove": 16,
+            "memoryMove": 42,
+            "registerMove": 8,
+            "branch": 9,
+            "arithmeticAndBits": 12,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 194,
+          "instructionCount": 65,
+          "categoryBytes": {
+            "stack": 16,
+            "immediateMove": 56,
+            "memoryMove": 62,
+            "arithmeticAndBits": 33,
+            "registerMove": 14,
+            "branch": 12,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 8,
+            "immediateMove": 14,
+            "memoryMove": 18,
+            "arithmeticAndBits": 13,
+            "registerMove": 7,
+            "branch": 4,
+            "return": 1
+          }
+        },
+        "keilSegment": 194,
+        "matches": true,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "9f5b42bd20b6f81b83a082d7552b3bcfa4fe8e89b45b9dc3cdb7c01f65e66448"
+          },
+          {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\unit0.lst",
+            "sha256": "55654e3715389d27318b4cf35cd69b22f9023b42560e83b7dcdfd742dd932f60"
+          }
+        ]
+      },
+      {
+        "id": "g071",
+        "function": "USB_ISR",
+        "gap": 308,
+        "mx": {
+          "bytes": 1242,
+          "instructionCount": 467,
+          "categoryBytes": {
+            "stack": 134,
+            "immediateMove": 330,
+            "memoryMove": 267,
+            "call": 92,
+            "registerMove": 105,
+            "branch": 189,
+            "arithmeticAndBits": 124,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 61,
+            "immediateMove": 114,
+            "memoryMove": 68,
+            "call": 41,
+            "registerMove": 52,
+            "branch": 88,
+            "arithmeticAndBits": 42,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 934,
+          "instructionCount": 345,
+          "categoryBytes": {
+            "stack": 28,
+            "memoryMove": 209,
+            "immediateMove": 293,
+            "call": 108,
+            "branch": 181,
+            "arithmeticAndBits": 78,
+            "registerMove": 36,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 14,
+            "memoryMove": 56,
+            "immediateMove": 103,
+            "call": 36,
+            "branch": 75,
+            "arithmeticAndBits": 42,
+            "registerMove": 18,
+            "return": 1
+          }
+        },
+        "keilSegment": 934,
+        "matches": true,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\g071\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "d26dad8e367a3ba43e0457ddb53e26a3d07750a2ce6343e91abcc2e44580219a"
+          },
+          {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\keil\\unit0.lst",
+            "sha256": "54e75539165d6de48b6ae847297c57357e385766194ea9fd3fe132272307942d"
+          }
+        ]
+      },
+      {
+        "id": "p140",
+        "function": "ADC_ISR",
+        "gap": 151,
+        "mx": {
+          "bytes": 644,
+          "instructionCount": 233,
+          "categoryBytes": {
+            "stack": 60,
+            "immediateMove": 49,
+            "arithmeticAndBits": 136,
+            "memoryMove": 266,
+            "registerMove": 98,
+            "call": 8,
+            "branch": 26,
+            "return": 1
+          },
+          "categoryInstructions": {
+            "stack": 30,
+            "immediateMove": 14,
+            "arithmeticAndBits": 55,
+            "memoryMove": 69,
+            "registerMove": 49,
+            "call": 2,
+            "branch": 13,
+            "return": 1
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 493,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "2566393492ca08ab9777a25c43637e634b5a35ae8fe6397381211921161f77da"
+          }
+        ]
+      },
+      {
+        "id": "p140",
+        "function": "MAIN",
+        "gap": 131,
+        "mx": {
+          "bytes": 529,
+          "instructionCount": 183,
+          "categoryBytes": {
+            "memoryMove": 185,
+            "call": 43,
+            "arithmeticAndBits": 102,
+            "immediateMove": 79,
+            "registerMove": 67,
+            "branch": 53
+          },
+          "categoryInstructions": {
+            "memoryMove": 47,
+            "call": 18,
+            "arithmeticAndBits": 38,
+            "immediateMove": 26,
+            "registerMove": 29,
+            "branch": 25
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 398,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "2566393492ca08ab9777a25c43637e634b5a35ae8fe6397381211921161f77da"
+          }
+        ]
+      },
+      {
+        "id": "p140",
+        "function": "USB_CTRL_OUT",
+        "gap": 72,
+        "mx": {
+          "bytes": 149,
+          "instructionCount": 55,
+          "categoryBytes": {
+            "immediateMove": 23,
+            "stack": 20,
+            "call": 18,
+            "registerMove": 26,
+            "branch": 5,
+            "return": 3,
+            "memoryMove": 40,
+            "arithmeticAndBits": 14
+          },
+          "categoryInstructions": {
+            "immediateMove": 9,
+            "stack": 9,
+            "call": 5,
+            "registerMove": 12,
+            "branch": 2,
+            "return": 3,
+            "memoryMove": 10,
+            "arithmeticAndBits": 5
+          }
+        },
+        "keil": {
+          "bytes": 0,
+          "instructionCount": 0,
+          "categoryBytes": {},
+          "categoryInstructions": {}
+        },
+        "keilSegment": 77,
+        "matches": false,
+        "sources": [
+          {
+            "path": "E:\\STVAPP\\MX251\\.build\\shared-cost-batch-20261116\\full-matrix\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+            "sha256": "2566393492ca08ab9777a25c43637e634b5a35ae8fe6397381211921161f77da"
+          }
+        ]
+      }
+    ]
+  }
+}
