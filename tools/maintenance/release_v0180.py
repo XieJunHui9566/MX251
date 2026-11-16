@@ -90,6 +90,16 @@ def stage(a):
         ideSessionFix='CompileReuse excludes IDE session leases; compiler inputs/options unchanged',
         totalBuildTimeoutSeconds=3600,sourceAndLicenseFilesAdded=added_sources,
         additionalBuildEntry='core/build/Release.cmake',binariesRebuilt=False))
+    for name in ('README.md','CHANGELOG.md'):
+        shutil.copy2(REPO/name,a.output/name)
+    docs=a.output/'docs'
+    docs.mkdir(exist_ok=True)
+    for name in ('RELEASE-v0.180.md','BUILD.md','ARCHITECTURE.md','EDATA.md',
+                 'EDATA-SCALAR-BACKEND.md','REGISTER-AFFINITY-20261116.md'):
+        shutil.copy2(REPO/'docs'/name,docs/name)
+    for name in ('INTEGER-SEMANTICS-20261115.json','INTEGER-SEMANTICS-20261115.md'):
+        if (a.output/name).is_file():
+            (a.output/name).rename(docs/name)
     print('STAGED',a.output,flush=True)
 
 
