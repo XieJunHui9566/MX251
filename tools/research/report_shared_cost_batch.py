@@ -54,7 +54,7 @@ def main():
         assert read(latest/'receipt.json')['compilerSha256']==compiler
         hardware.append(dict(fixture=project,result=pin(root/name/'result.json'),
                              cases=record['cases'],frames=record['frames'],firmware=pin(latest/'firmware.hex')))
-    focus_ids = ['p083','p123','g104','p127','g139','g071','p092','p140','g141']
+    focus_ids = ['p083','p123','g104','p127','g139','g071','p092','p130','p140','g141']
     focus = [by_id[pid] for pid in focus_ids]
     reuse_check=read(root/'reuse-check/result.json')
     assert reuse_check['status']=='PASS' and reuse_check['compilerSha256']==compiler
@@ -81,6 +81,7 @@ def main():
         f"实现提交 `{candidate['sourceCommit'][:7]}`；同一冻结候选完成 {result['summary']['built']}/203 项构建。",
         '与上一轮冻结编译器使用相同应用源码、配置和 Keil/STC-IDE 参考；不修改 SDK，不更换默认核心。','',
         '## 整批结果','',
+        f"203项中：{len(gains)}项缩小、{len(increases)}项增大、{sum(r['status']=='BUILT' and r['delta']==0 for r in rows)}项不变，净变化 {result['summary']['deltaBytes']:+d} B。",
         f"正常可比200项：Keil 110% 为 {total['at110']}/200，120% 为 {total['at120']}/200。",
         f"较上一冻结版本，{total['smaller']} 项缩小、{total['larger']} 项增大、{total['unchanged']} 项不变；正常集合合计变化 {total['afterBytes']-total['beforeBytes']:+d} B。",
         f"新进入110%：{', '.join(total['new110']) or '无'}；退出110%：{', '.join(total['lost110']) or '无'}。",
@@ -93,8 +94,27 @@ def main():
               '| --- | ---: | ---: | ---: | ---: | ---: |']
     for r in focus:
         lines.append(f"| {r['id']} | {r['before']} | {r.get('bytes','失败')} | {r.get('delta','—')} | {r.get('keilBytes','—')} | {r.get('keilPercent',0):.2f}% |")
+    lines += ['', '## 增长项与选择缺口','',
+        '| 工程 | 上版/B | 本版/B | 增加/B | 本版/Keil | 变化函数 |',
+        '| --- | ---: | ---: | ---: | ---: | --- |']
+    for g in data['growthAttribution']:
+        r=by_id[g['id']]
+        changes=', '.join(f"{c['function']} {c['delta']:+d} B" for c in g['functions'])
+        lines.append(f"| {r['id']} | {r['before']} | {r['bytes']} | {r['delta']} | {r['keilPercent']:.2f}% | {changes} |")
+    if {'p131','p132'} <= set(data['increases']):
+        lines += ['', 'p131/p132 的增长均来自 main。旧版选择只折叠数据地址的3处访问；'
+            '新版把CODE读取一起纳入5处访问的候选后，因循环成本增加而拒绝整个候选，'
+            '失去了原来的数据地址折叠组合。最终代码的CODE拷贝循环也增加了地址计算。'
+            '这是通用优化组合的选择缺口，不是库函数增长，也不因仍低于Keil而忽略。'
+            '后续应保留已有数据地址方案，再独立评估CODE方案；本批候选不替换默认核心。']
+    if 'p059' in data['increases']:
+        lines += ['', 'p059 的 Sample_Display 从旧后端切换到wide：选择时指令数41→40，'
+            '字节85→93；最终函数81→89 B，Sample_RTC另省1 B，整包净增7 B。'
+            '这是现有后端选择对指令数和体积的权衡，不能据指令数直接宣称运行时间改善。']
+    if not increases: lines += ['', '无增长项。']
     lines += ['', '## 通用改动','',
         '- 共享输出库：将 printf→puts 的取舍推迟到完整链接后，比较两种完整固件，保留更小版本。只对同时链接标准 puts/printf 且存在自动改写的工程试编。',
+        f"- 本批共享输出库选择：{sum(x['status']=='SHARED_PRINTF' for x in stdio)}项改用共享printf、{sum(x['status']=='KEEP_PUTS' for x in stdio)}项保留puts；相对同一编译器选择前的固件共省 {data['stdioSavedBytes']} B。",
         f"- 构建复用：源码与头文件、工具及配置锁、参数、反馈内容相同的编译调用在同次构建内复用。最终所选构建日志记录 {reuse} 次复用；不引入跨项目持久缓存。",
         '- CODE 索引：将常量表的符号地址保留到访存发射，减少循环中的地址活值和栈搬运，保持原读取空间与宽度。',
         '- 指针对象：常量地址直接按三字节布局写入，普通写入使用字指令，volatile 写入保持原来的逐字节顺序。',
