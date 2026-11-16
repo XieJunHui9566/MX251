@@ -116,6 +116,7 @@ typedef struct {
   uint32_t preserved;
   int preservedBytes;
   unsigned emitWeight, emitCost, emitInstructions;
+  bool reuseSpillRegisters;int spillRegisterSlots[32];unsigned spillRegisterReuses;
   bool scratchAddressValid;
   uint32_t scratchAddress;
   int scratchNode,scratchNextNode;
@@ -2592,7 +2593,22 @@ wide_emitted_bytes(const wide_function *f,const char *text,size_t length)
   return wide_function_bytes_context(text,length,wide_resolve_cost_operand,f);
 }
 
-typedef struct { unsigned bytes,unknown,heuristic,instructions,spills;int frame; } wide_selection_cost;
+/* The winner owns its MIR snapshot until the final allocation stage. */
+typedef struct { unsigned bytes,unknown,heuristic,instructions,spills;int frame;wide_function *form; } wide_selection_cost;
+
+static bool
+wide_affinity_enabled(void)
+{
+  const char *option=getenv("MX251_REGISTER_AFFINITY");
+  return !option || strcmp(option,"0");
+}
+
+static void
+wide_selection_take(wide_selection_cost *cost,wide_selection_cost *original,wide_selection_cost *trial,bool selected)
+{
+  if(cost) {*cost=selected?*trial:*original;if(selected)trial->form=NULL;else original->form=NULL;}
+  Safe_free(original->form);Safe_free(trial->form);
+}
 
 typedef struct {
   char *text;size_t length;unsigned heuristic,instructions,spills;int frame;wide_byte_cost size;
@@ -2634,6 +2650,8 @@ wide_emit_candidate(wide_function *f,wide_function *trial,wide_allocation_candid
 }
 
 #include "wide_recolor.c.inc"
+static mcs251_wide_result wide_choose_allocation(wide_function *,wide_selection_cost *);
+#include "wide_affinity_allocation.c.inc"
 
 static mcs251_wide_result
 wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
@@ -2729,7 +2747,12 @@ wide_choose_allocation(wide_function *f,wide_selection_cost *cost)
     }
     dbuf_printf(f->diagnostics,"; wide allocation selected=%d candidates=%d heuristic=%u instructions=%u frame=%d\n",selected,count,c[selected].heuristic,c[selected].instructions,c[selected].frame);
     dbuf_printf(f->diagnostics,"; wide cost objective=%s known-bytes=%u unknown=%u group-known=%d\n",optimize.codeSize?(allKnown?"encoded-bytes":"instruction-fallback"):"weighted-instructions",c[selected].size.bytes,c[selected].size.unknown,allKnown);
-    if(cost)*cost=(wide_selection_cost){c[selected].size.bytes,c[selected].size.unknown,c[selected].heuristic,c[selected].instructions,c[selected].spills,c[selected].frame};
+    if(cost) {
+      *cost=(wide_selection_cost){c[selected].size.bytes,c[selected].size.unknown,c[selected].heuristic,c[selected].instructions,c[selected].spills,c[selected].frame,NULL};
+      if(wide_affinity_enabled()) {
+        cost->form=Safe_alloc(sizeof *f);memcpy(cost->form,f,sizeof *f);
+      }
+    }
     dbuf_append(f->candidateOutput,c[selected].text,c[selected].length);
   }
   for(int i=0;i<count;++i)Safe_free(c[i].text);
@@ -2870,7 +2893,7 @@ wide_choose_transform_frame(wide_function *f,wide_selection_cost *cost,
     wide_pointer_copy_audit(diagnostics,selected?originalKind:trialKind,selected?&originalDiagnostics:&trialDiagnostics);
     dbuf_append(diagnostics,dbuf_get_buf(chosenDiagnostics),dbuf_get_length(chosenDiagnostics));
     if(result==MCS251_WIDE_ACCEPTED)dbuf_append(code,dbuf_get_buf(chosenCode),dbuf_get_length(chosenCode));
-    if(cost && result==MCS251_WIDE_ACCEPTED)*cost=selected?newCost:oldCost;
+    wide_selection_take(result==MCS251_WIDE_ACCEPTED?cost:NULL,&oldCost,&newCost,selected);
   }
   dbuf_destroy(&originalCode);dbuf_destroy(&originalDiagnostics);
   dbuf_destroy(&trialCode);dbuf_destroy(&trialDiagnostics);Safe_free(trial);
@@ -3231,6 +3254,7 @@ wide_choose_rotate(wide_function *f,wide_selection_cost *cost)
   struct dbuf_s *chosen=selected?&candidate:&baseline;
   if(result==MCS251_WIDE_ACCEPTED)dbuf_append(output,dbuf_get_buf(chosen),dbuf_get_length(chosen));
   if(cost) {*cost=original;if(selected)cost->bytes=wide_emitted_bytes(f,dbuf_get_buf(chosen),dbuf_get_length(chosen)).bytes;}
+  else Safe_free(original.form);
   dbuf_destroy(&baseline);dbuf_destroy(&candidate);return result;
 }
 

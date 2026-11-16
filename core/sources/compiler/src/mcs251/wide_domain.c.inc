@@ -219,7 +219,7 @@ wide_choose_domain(wide_function *f,wide_selection_cost *cost)
   dbuf_append_str(diag,"\n");
   dbuf_append(diag,dbuf_get_buf(selected?&nd:&od),dbuf_get_length(selected?&nd:&od));
   if(a==MCS251_WIDE_ACCEPTED)dbuf_append(out,dbuf_get_buf(selected?&nc:&oc),dbuf_get_length(selected?&nc:&oc));
-  if(cost)*cost=selected?newCost:oldCost;
+  wide_selection_take(cost,&oldCost,&newCost,selected);
   dbuf_destroy(&oc);dbuf_destroy(&nc);dbuf_destroy(&od);dbuf_destroy(&nd);Safe_free(trial);
   return b==MCS251_WIDE_ERROR?b:a;
 }

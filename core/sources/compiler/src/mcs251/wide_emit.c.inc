@@ -5,6 +5,7 @@
 #include "wide_call_reuse.h"
 extern int mcs251CallSavePackMode;
 #include "wide_relative_address.c.inc"
+#include "wide_spill_registers.c.inc"
 static void we (wide_function *f,const char *format,...) {
   size_t begin=dbuf_get_length(&f->output);
   va_list ap;va_start(ap,format);dbuf_vprintf(&f->output,format,ap);va_end(ap);
@@ -13,6 +14,7 @@ static void we (wide_function *f,const char *format,...) {
   for(size_t i=begin;i<end;) {
     size_t next=i;while(next<end && p[next]!='\n')++next;
     wrelative_observe(f,p+i,next-i);
+    wspill_observe(f,p+i,next-i);
     if(next==end)f->relaxDisabled=true;
     if(p[i]=='\t') {unsigned bound=wbranch_instruction_bound(p+i+1,next-i-1);if(bound)f->emitUpper+=bound;else ++f->emitBarrier;}
     else if(next>i && p[i]!=';' && p[next-1]!=':')++f->emitBarrier;
@@ -123,7 +125,12 @@ wload(wide_function *f,wide_operand o,int dest,int width)
     int offset=o.width-width;
     if(v.reg>=0) {if(dest!=v.reg+offset) we(f,"\tmov\t%s%d,%s%d\n",wp(width),dest,wp(width),v.reg+offset);}
     else {
-      for(int k=0;k<width;k+=2) {char address[32];wa(address,v.slot+offset+k-f->frame-f->stackDepth+1);we(f,"\tmov\twr%d,%s\n",dest+k,address);}
+      for(int k=0;k<width;k+=2) {
+        int slot=v.slot+offset+k,cached=wspill_find(f,slot,2);
+        if(cached>=0) {if(cached!=dest+k)we(f,"\tmov\twr%d,wr%d\n",dest+k,cached);}
+        else {char address[32];wa(address,slot-f->frame-f->stackDepth+1);we(f,"\tmov\twr%d,%s\n",dest+k,address);}
+        wspill_remember(f,slot,dest+k,2);
+      }
     }
   } else {
     int low=dest+width-2;
@@ -160,6 +167,7 @@ wstore_known(wide_function *f,int value,int source,bool pointerClean)
     if(v->reg!=source) we(f,"\tmov\t%s%d,%s%d\n",wp(v->width),v->reg,wp(v->width),source);
   } else for(int k=0;k<v->width;k+=2) {
     char address[32];wa(address,v->slot+k-f->frame-f->stackDepth+1);we(f,"\tmov\t%s,wr%d\n",address,source+k);
+    wspill_remember(f,v->slot+k,source+k,2);
   }
 }
 static void wstore(wide_function *f,int value,int source) {wstore_known(f,value,source,false);}
@@ -2041,6 +2049,7 @@ wrotate_proposal(wide_function *f,int i)
 static void
 wide_emit(wide_function *f)
 {
+  wspill_clear(f);f->spillRegisterReuses=0;
   f->preserved=f->interruptEntry?0:wide_preserve_registers(currFunc);f->preservedBytes=0;
   const int groups[]={8,12,24,28};
   for(unsigned i=0;i<4;++i) {
@@ -2504,6 +2513,7 @@ wide_emit(wide_function *f)
     if(IFFUNC_HASFCALL(currFunc->type))we(f,"\tpop\tbits\n");
     we(f,"\tpop\t0xd1\n\treti\n");
   }
+  if(f->spillRegisterReuses)dbuf_printf(&f->output,"; wide spill-register reuse loads=%u\n",f->spillRegisterReuses);
   wrelax_branches(f);
   bool ordered=false;
   for(int i=0;i<f->nn;++i)if(f->nodes[i].op==WM_ORDERED_ASM)ordered=true;

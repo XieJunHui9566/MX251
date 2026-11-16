@@ -164,12 +164,27 @@ wide_repeat_finalize(wide_function *f,const char *text,size_t length,struct dbuf
 static mcs251_wide_result
 wide_choose_repeat(wide_function *f)
 {
-  if(!wide_repeat_enabled())return wide_choose_address_remat(f,NULL);
+  if(!wide_repeat_enabled() && !wide_affinity_enabled())return wide_choose_address_remat(f,NULL);
   struct dbuf_s baseline,candidate;dbuf_init(&baseline,1024);dbuf_init(&candidate,1024);
   struct dbuf_s *output=f->candidateOutput;f->candidateOutput=&baseline;
   wide_selection_cost old={0};mcs251_wide_result result=wide_choose_address_remat(f,&old);
   f->candidateOutput=output;unsigned saved=0,selected=0;
-  if(result==MCS251_WIDE_ACCEPTED && !old.unknown)
+  if(result==MCS251_WIDE_ACCEPTED && old.form) {
+    wide_function *form=old.form;form->diagnostics=f->diagnostics;
+    wide_allocation_candidate allocation={0};
+    allocation.length=dbuf_get_length(&baseline);allocation.text=Safe_alloc(allocation.length);
+    memcpy(allocation.text,dbuf_get_buf(&baseline),allocation.length);
+    allocation.size=(wide_byte_cost){old.bytes,old.unknown};
+    allocation.heuristic=old.heuristic;allocation.instructions=old.instructions;
+    allocation.frame=old.frame;allocation.spills=old.spills;
+    wide_choose_affinity(form,&allocation);
+    if(form->allocationInvalid)result=MCS251_WIDE_ERROR;
+    dbuf_set_length(&baseline,0);dbuf_append(&baseline,allocation.text,allocation.length);
+    old.bytes=allocation.size.bytes;old.unknown=allocation.size.unknown;
+    Safe_free(allocation.text);
+  }
+  Safe_free(old.form);old.form=NULL;
+  if(wide_repeat_enabled() && result==MCS251_WIDE_ACCEPTED && !old.unknown)
     selected=wide_repeat_finalize(f,dbuf_get_buf(&baseline),dbuf_get_length(&baseline),&candidate,&saved);
   struct dbuf_s *chosen=selected?&candidate:&baseline;
   if(result==MCS251_WIDE_ACCEPTED)dbuf_append(output,dbuf_get_buf(chosen),dbuf_get_length(chosen));
