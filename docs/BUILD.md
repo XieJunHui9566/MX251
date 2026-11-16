@@ -1,6 +1,6 @@
 # 构建与使用
 
-当前开发默认使用 [2026-11-13 基线](BASELINE.md)及根目录 `Build-Baseline.ps1`。下述 Release ZIP / `Build.cmd` 说明保留给已有公开发行包；该旧包不是当前开发基线。
+当前发行版本为 **v0.180**，完整交付与 IDE 导入步骤见 [使用说明](RELEASE-v0.180.md)。独立包入口为 `Build.cmd`；源码工作树本机入口为 `Build-Baseline.ps1`。
 
 ## 使用预编译工具链
 
@@ -45,12 +45,12 @@ $project = Join-Path $sdk 'examples/math-casts-ai'
 $build = Join-Path $project '.build/cmake-direct'
 & "$sdk/host/cmake/bin/cmake.exe" -S $project -B $build -G Ninja `
   "-DCMAKE_MAKE_PROGRAM=$sdk/host/ninja/ninja.exe" `
-  "-DMX251_PROJECT_MODULE=$sdk/core/build/qualified/Project.cmake" `
+  "-DMX251_PROJECT_MODULE=$sdk/core/build/Release.cmake" `
   "-DMX251_BUILD_SCRIPT=$sdk/core/build/qualified/Build.ps1" `
   "-DMX251_PWSH=$sdk/host/powershell/pwsh.exe" `
   "-DMX251_TOOLCHAIN=$sdk/core/toolchain" `
   "-DMX251_PROFILE=$sdk/core/profiles/AI8051U-34K64-32" `
-  -DMX251_FUNCTION_GC=ON -DMX251_WIDE_VALUE_LIMIT=512 -DMX251_WIDE_NODE_LIMIT=2048
+  -DMX251_FUNCTION_GC=ON -DMX251_WIDE_VALUE_LIMIT=1024 -DMX251_WIDE_NODE_LIMIT=2048
 & "$sdk/host/cmake/bin/cmake.exe" --build $build --target firmware
 ```
 
@@ -58,15 +58,15 @@ $build = Join-Path $project '.build/cmake-direct'
 
 ## 运行库与限制
 
-源码开发分支新增的显式 `__edata` 用法、当前 768 字节分配窗口和指针 ABI 说明见 [EDATA.md](EDATA.md)，完整工程示例位于 `examples/edata`。需要对应开发版编译器及链接器，原 0.0170 发布包尚不含此功能。
+源码开发分支新增的显式 `__edata` 用法、当前 768 字节分配窗口和指针 ABI 说明见 [EDATA.md](EDATA.md)，完整工程示例位于 `examples/edata`。v0.180 已包含对应编译器及链接器。
 
 两个配置均提供 `standard`、`native-int` 和显式宽 ABI 的 `native-math-wide` 等组合；STC32G 还提供普通 ABI 的 `native-math`。完整白名单位于 `TargetContracts.json`，未列出的组合会拒绝。原生数学库当前要求 **small + stack-auto**；不要直接用于 medium/large 或混合不兼容 ABI 的对象。
 
 默认包入口开启函数可达性裁剪。外部汇编入口可用 `-FunctionGcKeep` 显式保留；其他可选优化开关见 `Build.ps1` 参数。未知中断、地址空间或 SDK 适配不能仅靠改变芯片名称解决。
 
-开发分支的共同机器指令层、局部地址展开和原生整数库组合见 [MACHINE-PIPELINE.md](MACHINE-PIPELINE.md)。`-MachineIr` 与 `-NativeIntegerRuntime` 均为显式开关，根构建入口和 CMake 可直接传递；不需要修改 SDK 的 C 文件。
+开发分支的共同机器指令层、局部地址展开和原生整数库组合见 [MACHINE-PIPELINE.md](MACHINE-PIPELINE.md)。v0.180 默认开启机器指令优化，并按模型/ABI 自动选择原生整数辅助库；不需要修改 SDK 的 C 文件。
 
-`-CalleePreservation`（CMake：`MX251_CALLEE_PRESERVATION=ON`）根据实际调用现场选择被调函数保留的寄存器组，减少调用者重复保存；默认关闭，与 `LeafCallFeedback` 不同时启用。参数和返回 ABI 保持原样，实际收益与限制见 [被调函数保存](CALLEE-PRESERVED-REGISTERS.md)。
+`-CalleePreservation`（CMake：`MX251_CALLEE_PRESERVATION=ON`）根据实际调用现场选择被调函数保留的寄存器组，减少调用者重复保存；v0.180 默认开启，与 `LeafCallFeedback` 不同时启用。参数和返回 ABI 保持原样，实际收益与限制见 [被调函数保存](CALLEE-PRESERVED-REGISTERS.md)。
 
 ## 从源码构建编译器
 

@@ -108,7 +108,7 @@ function Run-Tool([string]$Label,[string]$Exe,[string[]]$Arguments,[switch]$Allo
   if($env:MX251_EXPERIMENT_PAUSE_FILE -and (Test-Path -LiteralPath $env:MX251_EXPERIMENT_PAUSE_FILE)){throw 'PAUSE_REQUESTED: no tool child started'}
   if(-not $process.Start()){throw "Cannot start $Label"}
   $readOut=$process.StandardOutput.BaseStream.CopyToAsync($stdout);$readErr=$process.StandardError.BaseStream.CopyToAsync($stderr)
-  if(-not $process.WaitForExit(120000)){$process.Kill($true);$process.WaitForExit();throw "Tool timeout: $Label"}
+  if(-not $process.WaitForExit(600000)){$process.Kill($true);$process.WaitForExit();throw "Tool timeout: $Label"}
   [Threading.Tasks.Task]::WaitAll([Threading.Tasks.Task[]]@($readOut,$readErr))
   $code=$process.ExitCode
   $commands.Add([ordered]@{label=$Label;executable=$Exe;arguments=$Arguments;exitCode=$code})

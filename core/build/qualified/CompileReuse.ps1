@@ -19,7 +19,7 @@ function Get-Mx251CompileReuse([string]$Exe,[string[]]$Arguments,$Environment) {
   if($i -ne $outputAt -and [IO.File]::Exists($path)){$parts+=('file:'+([IO.Path]::GetFileName($value))+':'+(Hash-File $path))}
   else{$parts+=$value.Replace($outputRoot,'<build>')}
  }
- foreach($key in @($Environment.Keys|Where-Object{$_ -cmatch '^MX251_' -and $_ -cnotin @('MX251_COMPILE_REUSE','MX251_STDIO_PRINTF_UNITS','MX251_STDIO_TRIAL','MX251_DEFER_NEAR_TRANSFERS','MX251_EXPERIMENT_PAUSE_FILE')}|Sort-Object -CaseSensitive)) {
+ foreach($key in @($Environment.Keys|Where-Object{$_ -cmatch '^MX251_' -and $_ -cnotin @('MX251_COMPILE_REUSE','MX251_STDIO_PRINTF_UNITS','MX251_STDIO_TRIAL','MX251_DEFER_NEAR_TRANSFERS','MX251_EXPERIMENT_PAUSE_FILE','MX251_VERIFIED_TOOLSET','MX251_OUTPUT_LEASE')}|Sort-Object -CaseSensitive)) {
   $value=$Environment[$key]
   if([IO.File]::Exists($value)){$value='file:'+(Hash-File $value)}
   $parts+=($key+'='+$value)
