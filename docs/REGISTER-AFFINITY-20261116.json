@@ -1,0 +1,1399 @@
+{
+  "status": "TARGETED_PASS",
+  "implementationCommit": "bca1db33504ecba8581473e98b7c4f0c7ceb840d",
+  "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+  "candidate": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\candidate",
+  "candidatePin": {
+    "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\stage.json",
+    "sha256": "fa01c7826dd262182dfa7478e2cce7ed71071f828cc388bb5af65562985dd7cc"
+  },
+  "frozenCandidateUnchanged": true,
+  "parentReport": {
+    "path": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251\\docs\\MEMORY-VALUE-REUSE-20261116.json",
+    "sha256": "d8bdb8b27bbd38012f5b27cbd439745792f073a47f26c8602ae4f9535821d453"
+  },
+  "summary": {
+    "built": 21,
+    "smaller": 16,
+    "unchanged": 5,
+    "larger": 0,
+    "deltaBytes": -479
+  },
+  "sourceInputsIdentical": true,
+  "inputPin": {
+    "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\target-inputs.json",
+    "sha256": "909510c1224a4dd54d6b440d701cdaaf54e790b2e618ddc96389d2f71b12b3ac"
+  },
+  "sdkSourcesChanged": false,
+  "defaultChanged": false,
+  "fullMatrixRerun": false,
+  "compilerChecks": {
+    "physicalRegisterState": {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\spill-register-state.log",
+      "sha256": "ff987e8bde63ceb2242ab70b54b19fa763cbe8d5543c2124c735c61fbf78539f"
+    },
+    "mixedWidthAllocation": {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\spill-check\\results.json",
+      "sha256": "1683df40b1fa684224a20e10a719168411234ac645322c4fd7ab75f292d05f8b"
+    },
+    "copyFlow": {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\copy-check\\result.json",
+      "sha256": "6df2f4a43aa0c4f57a4f441ac06a5954ee1489cd3947f54ba5516c1ef6619775"
+    },
+    "volatileTransactions": {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\volatile-check\\results.json",
+      "sha256": "3eb01d09eaba24e4f50dcda446c9e7c5eb9509c538e3f648984474a9fb93d5d5"
+    },
+    "pressureReference": {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\pressure-oracle.log",
+      "sha256": "92cba7856a6eb2d2d35e1c2cb758a61283e7af020d80e2906d5e6adb70119d82"
+    }
+  },
+  "hardware": [
+    {
+      "variant": "before-small",
+      "compilerSha256": "ab6ea7db0c78bd71cef0d9297fa459650d8b8321d1fa0839a4e8a3a76087bc4b",
+      "bytes": 3405,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 11901.0,
+        "1": 17408.0
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\hardware-before-small\\result.json",
+        "sha256": "8a9268396a19958e79b0386880ba01b8f4818010290e57e54c2bbc374295bb97"
+      },
+      "rawSerial": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\hardware-before-small\\uart.bin",
+        "sha256": "721799be4e0f38542e722a725728c8d54651303a05defb966ac2db5ad9cbf34a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-before-small\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ec5b9465fd4a923393074f996f603888fee8da8a7f1d107959cde2bd92a32435"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-before-small\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5bf227952e50b8e649b1e6648ab5aee4b13358f744543ba99ad5f4365d4aa52e"
+      }
+    },
+    {
+      "variant": "after-small",
+      "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+      "bytes": 3368,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 11842,
+        "1": 17216
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\hardware-after-small\\result.json",
+        "sha256": "6d3284d8c8274091fb2c33c2756993befec408a65cd111b89d4e1474f029a6da"
+      },
+      "rawSerial": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\hardware-after-small\\uart.bin",
+        "sha256": "de027f5d4ba124073c6976259db02f7dba53411d398007a8056dfab6b6b97f9a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-after-small\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "97ce5ee592c5322242f9a8ab6379e2d9430a482a621c1c83d648d4a16a449b7a"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-after-small\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "5df8d74bd0fcc8f655a1fbed9032b5a86ff7cf48711f897eee08413cd7bb504f"
+      }
+    },
+    {
+      "variant": "after-large",
+      "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+      "bytes": 3637,
+      "cases": 128,
+      "aggregateTicks": {
+        "0": 18854.5,
+        "1": 17215.5
+      },
+      "device": {
+        "path": "\\\\?\\hid#vid_34bf&pid_1005&mi_00#9&2bd6ea46&0&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}",
+        "product": "STC-USB-Link1D",
+        "serial": "82941086",
+        "version": 256,
+        "inputBytes": 65,
+        "outputBytes": 65
+      },
+      "port": "COM13",
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\hardware-after-large\\result.json",
+        "sha256": "78275bcc93cfc70187107c0d10bb42a73a146faa1393824d63ca7432ba8aabab"
+      },
+      "rawSerial": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\hardware-after-large\\uart.bin",
+        "sha256": "094a2dfb2fd096e5e40367823444a51bfc4a06e868b7ce7fee081d393cc9767e"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-after-large\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "553f05e98e52c9aa3a978ebcb1ac5b20fe5e98cf5edbbaf75a810a0d20a1ff48"
+      },
+      "firmware": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-after-large\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "3751627069983c01105ea61eebe4cb53d3103943c0128e5a53c3ae5fcc1b3f97"
+      }
+    }
+  ],
+  "hardwareCases": 384,
+  "sameConfigurationRuntime": {
+    "0": {
+      "before": 11901.0,
+      "after": 11842,
+      "ratio": 0.9950424334089573
+    },
+    "1": {
+      "before": 17408.0,
+      "after": 17216,
+      "ratio": 0.9889705882352942
+    }
+  },
+  "fullMatrixHardwareExecuted": false,
+  "keilRuntimeQualification": "NOT_COMPLETE",
+  "liveRangeSplittingImplemented": false,
+  "functionCosts": {
+    "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\function-costs.json",
+    "sha256": "b6e951543822bcc420f4582d292517356b7d4dd3114afc4c7408e6932316f892"
+  },
+  "independentFunctionCosts": {
+    "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-function-costs.json",
+    "sha256": "a3bef9a524ce9282ba2b9a24df1282ffa4b92711744468a1339c01b40a4dcac2"
+  },
+  "additionalFunctionCosts": {
+    "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\additional-function-costs.json",
+    "sha256": "d7ad9189045e6a050aaf934cbc0ec6fc6285d3f982aeccb9f30e29e091df11d4"
+  },
+  "p140Attribution": {
+    "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\p140-gc-attribution.json",
+    "sha256": "7239f14c8c3e0e6b5cc644fc3fa3b27e7d806366f52ed4f35f0979757f60f512"
+  },
+  "rows": [
+    {
+      "id": "g071",
+      "status": "BUILT",
+      "before": 2118,
+      "after": 2096,
+      "delta": -22,
+      "keilBytes": 1655,
+      "keilPercent": 126.64652567975831,
+      "stcBytes": 2988,
+      "stcPercent": 70.14725568942437,
+      "stcReference": "stc-soft",
+      "gap110": 276,
+      "gap120": 110,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1655,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\keil\\result.json",
+            "sha256": "2351620547327a2e7376c22ffb8ebec847656a087480342480bb352289881e69"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\keil\\firmware.hex",
+            "sha256": "431f5811fffeb3a05aeda8b41b693c4c8fd1db07bc4ea4267f254b1315c0063e"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 2988,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\stc-soft\\result.json",
+            "sha256": "64fca9349a4ec36a58981231925e6878746d1541c4c3977912bde507712a3d57"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g071\\stc-soft\\firmware.hex",
+            "sha256": "508f39b46e305ebfcd725d733dbb37f9aebe825e4f51bfbddb9dbb7622688afd"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g071\\mx251\\result.json",
+        "sha256": "4c4c923b79fd1418d7d62f4b96f72791c9c06656711dd175e48832698061e4ae"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g071\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "0b761e79cbc50cc32f6c39b2b69b19ae1922d636dfaa4c99aec51c1788cdac04"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g071\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d423c168fd205c910f152a14acf778aa0baefee1ad91fcac57b7387a1246dd1f"
+      }
+    },
+    {
+      "id": "g104",
+      "status": "BUILT",
+      "before": 3421,
+      "after": 3356,
+      "delta": -65,
+      "keilBytes": 3194,
+      "keilPercent": 105.07201001878522,
+      "stcBytes": 9424,
+      "stcPercent": 35.61120543293718,
+      "stcReference": "stc-soft",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 3194,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\keil\\result.json",
+            "sha256": "8ecc9e238aa00c0aad92b1e00f6eb09425c5be27b917cc2d0d379abe45d2d3be"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\keil\\firmware.hex",
+            "sha256": "43e9682a73a252571e2b1d9cb24b846a9a2cb32b3fd158e1ea73f391c8c624e8"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 9424,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\stc-soft\\result.json",
+            "sha256": "893eceac303afbcd6588b5d969f7d26d2b17f908ce333a571f8d3365715c6ffa"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g104\\stc-soft\\firmware.hex",
+            "sha256": "f8df05ed07d3de46ff05b04ff707c367e8b6cfc17b8b811d1f246527d9755c42"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g104\\mx251\\result.json",
+        "sha256": "52185aa0fa1dc4e72ec46e7627721855353997c79b57f8abf4bbd80edd5b7840"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g104\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "406116363764cdbc21bcf36a8663d764cc8b4ac3b25d602d95c4593f62d63d04"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g104\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "8bec7d57d44b74ae86d2477f3d8bcab5a978e52101a52174545d8bbf7cca6395"
+      }
+    },
+    {
+      "id": "g139",
+      "status": "BUILT",
+      "before": 1128,
+      "after": 1128,
+      "delta": 0,
+      "keilBytes": 887,
+      "keilPercent": 127.17023675310034,
+      "stcBytes": 1477,
+      "stcPercent": 76.37102234258633,
+      "stcReference": "stc-soft",
+      "gap110": 153,
+      "gap120": 64,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 887,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\result.json",
+            "sha256": "486f0974de41901dd08592d940e8ce3e4a3936ecbf7c595aed42fd627efe39e4"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\keil\\firmware.hex",
+            "sha256": "5a44443ba3d1095e89ca3147a050ee297883d5609d6bcd0ea9a2fcf52806b1fe"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 1477,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\stc-soft\\result.json",
+            "sha256": "3ed77c26df015a0c957a98ead521a807b4b5b358ee3eed88d5f590fd7a709863"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g139\\stc-soft\\firmware.hex",
+            "sha256": "3c997f7b73413ec92bfeac72b55b2eb112ce74527985e41f2220a94f091ebc0e"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g139\\mx251\\result.json",
+        "sha256": "14c6fb5491bb3bd16bb394bda6c98687db9bd17ce3443179239f94e9749ac11b"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g139\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "9a40dd5f6c37a8275218cc5c057ff75740e648d1cffdb55f5a28fcef96982cb3"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g139\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "7efd4a5f84ab3ed8636301d3c8c4f70a84cf9b5a97070615e0f7579b5c81bdaa"
+      }
+    },
+    {
+      "id": "g141",
+      "status": "BUILT",
+      "before": 5589,
+      "after": 5551,
+      "delta": -38,
+      "keilBytes": 4656,
+      "keilPercent": 119.22250859106529,
+      "stcBytes": 6499,
+      "stcPercent": 85.41314048315125,
+      "stcReference": "stc-soft",
+      "gap110": 430,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 4656,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\keil\\result.json",
+            "sha256": "c96eefc33e2d64df2b557092fe1077acd793a13a7eb93a535fa35b590486068b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\keil\\firmware.hex",
+            "sha256": "7ba8715d464410f8719d49b812400a348f3bff01e0f19b380c1a2f48fc4df37a"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 6499,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\stc-soft\\result.json",
+            "sha256": "0740b312f994207a7c21303498d52ac694919875384c97ec9ba36f33d5e31407"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\stc32g-box-20261114\\projects\\g141\\stc-soft\\firmware.hex",
+            "sha256": "55b63057a5efebff773070989fe2baf699401a6a4e3ec5198ee4f602da6cbecc"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g141\\mx251\\result.json",
+        "sha256": "c92a57e4f2c9a8c1ef48d95f6aaf199e4fa3127b269612ae8dfb3da39e33ae1a"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g141\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "57ea64ba83e236fd36f67b258339d271bf0f45394b5e6f4218240290d9904083"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\g141\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "c482852d15211f40cc3bc128ed4b8627f21746975311082d014dea0cdff8d591"
+      }
+    },
+    {
+      "id": "p005",
+      "status": "BUILT",
+      "before": 475,
+      "after": 475,
+      "delta": 0,
+      "keilBytes": 564,
+      "keilPercent": 84.21985815602837,
+      "stcBytes": 1163,
+      "stcPercent": 40.84264832330181,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 564,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\keil\\result.json",
+            "sha256": "bfb2109066b687a657a84c2cfcd0b6ddad03be4534f888702824dc3e12d57506"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\keil\\firmware.hex",
+            "sha256": "825c7e1195833a40c55e98d668499fdafa9abcf70281851765f46c55982e72e0"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1163,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\stc\\result.json",
+            "sha256": "471738daaad7eddf698974401a3dfff5d4e751137ed6626c48cb556e81ed4d33"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p005\\stc\\firmware.hex",
+            "sha256": "0905401b7145ecbd2e9f85c2ecc76f9b69eae7de3a4406eea200335ea129705a"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p005\\mx251\\result.json",
+        "sha256": "144564a3a84f13f06479a77f4099f7999a8f5d716fd91be7356048812ae4b1f0"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p005\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "7bda3ebd387293097f64959059dacdb2a90e88df7763c60bf7bfca79eed728b1"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p005\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "efe6341d8af3e2e65e7e65e672aba13d102764ae4e739af3d309a43fffda0181"
+      }
+    },
+    {
+      "id": "p011",
+      "status": "BUILT",
+      "before": 551,
+      "after": 549,
+      "delta": -2,
+      "keilBytes": 542,
+      "keilPercent": 101.29151291512915,
+      "stcBytes": 1230,
+      "stcPercent": 44.63414634146341,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 542,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\keil\\result.json",
+            "sha256": "7b8e55d43b6f4aa78ed1021406bbb0323c83c3246818526714a1fa2c00c1220b"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\keil\\firmware.hex",
+            "sha256": "2239398ebf8ab6fc5c9c5b24c6ca83dba6588438839cfaf39c34cb1f5809a0ba"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1230,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\stc\\result.json",
+            "sha256": "423b7c9e2b1490afa84f716eae3468123f37a7952b97b2a65cf93f62091498f5"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p011\\stc\\firmware.hex",
+            "sha256": "93cc5acd041ca26d27cc517ffa9802d9d3b2057b7cc1ff493e06ee26dd6c8264"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p011\\mx251\\result.json",
+        "sha256": "be08ff52f22416ac3ff18ed97425bb9d947d1f87331c22fdab79aeb629f13e74"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p011\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "ff031a28cce1f97271d0f7c09722d9f099eb8b8ec01fe41fcdc47c4ed917d6fc"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p011\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "0daf6455d146a53e0477417b63b02d688a0c470a8d7282ea848fb354bc52b061"
+      }
+    },
+    {
+      "id": "p017",
+      "status": "BUILT",
+      "before": 345,
+      "after": 345,
+      "delta": 0,
+      "keilBytes": 359,
+      "keilPercent": 96.10027855153203,
+      "stcBytes": 380,
+      "stcPercent": 90.78947368421052,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 359,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\keil\\result.json",
+            "sha256": "7774e6d35d2a1e27f7efa576d63b90f8c7231e8ceb6758cc605960898dfff091"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\keil\\firmware.hex",
+            "sha256": "f7eaf3f2ba4cf400592ca08e35455dc60bf224526e260901f7291893e93dba19"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 380,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\stc\\result.json",
+            "sha256": "2fa1ea3f467953a5ae900a667a362dbdad125c7ca799df4b328b26eeb12b2a5c"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p017\\stc\\firmware.hex",
+            "sha256": "60d81c7f36b0c94f1870ce083f220e7825d97d58d83b58d5ce1066a8f327f0f8"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p017\\mx251\\result.json",
+        "sha256": "d79ee5e47affe2965cc8ebd5b0037fc85306fda31b147613fdc60890d5c8a069"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p017\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "fe848409db4f5f7d26bae856fc961976f9a76f884af5794e75d9fbd2a96ab325"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p017\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "d7bdf1d0c7f32f9a7c3c9fcb7952913056874a46064fc39bd28a31b536e9f1b3"
+      }
+    },
+    {
+      "id": "p035",
+      "status": "BUILT",
+      "before": 823,
+      "after": 823,
+      "delta": 0,
+      "keilBytes": 989,
+      "keilPercent": 83.21536905965621,
+      "stcBytes": 1602,
+      "stcPercent": 51.37328339575531,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 989,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\keil\\result.json",
+            "sha256": "e99d0a56eb0fde6d6f7550f9b5b1b3382a82617ae466ec4fbf6ae4d332633c32"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\keil\\firmware.hex",
+            "sha256": "2c7076fef8c9cdeaebfd43b84726c1ecb3081e2c7eb91848f36a139d62392da0"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1602,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\stc\\result.json",
+            "sha256": "0011b385daa3d4e0b7c828363471f0bf77f52c078507f279a36f3f88cd80bf41"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p035\\stc\\firmware.hex",
+            "sha256": "988d6a08770f0dfca4a8952c2d969aa38d235db107bdd1c3ac3c5b5828d6db2d"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p035\\mx251\\result.json",
+        "sha256": "3b427bd6afaacb1e6abf93194151bc226e47e619f16e645182ca99c033be0490"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p035\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "255f495a9d85ab1953ec8b4500c39d8185b65319a2c2838db50a0d1324c32fa3"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p035\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ac1b9573298c1b8fc3ff5a2879493b7d029edeb60f0313af2f99909936d10633"
+      }
+    },
+    {
+      "id": "p037",
+      "status": "BUILT",
+      "before": 865,
+      "after": 865,
+      "delta": 0,
+      "keilBytes": 1033,
+      "keilPercent": 83.73668925459826,
+      "stcBytes": 1740,
+      "stcPercent": 49.71264367816092,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1033,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\keil\\result.json",
+            "sha256": "425e5f7090141a93bb4488ac7ef4e3e6cf82898f4156163f31316899c0320da3"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\keil\\firmware.hex",
+            "sha256": "b4368d3f2b9fbd7e4bbe28344b1b9fe11fa1705c49fa1bd94ad4edb2d4464062"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1740,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\stc\\result.json",
+            "sha256": "031328be3b0572943a501149d635a4c1f3debe237063a701bb5cb9646a6cd032"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p037\\stc\\firmware.hex",
+            "sha256": "cf3768a4333f6d1d5030c17feedbabc2e1f9d2052632c5b22fd2fe63d9919607"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p037\\mx251\\result.json",
+        "sha256": "cf9047c3d4061b5ec173555f4bf482ffb92e5cf945612828776a6056c80dd888"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p037\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "19cd3d7c49d5fb66aa147edf6f6dd28d89d841f610da0394221a5596951179be"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p037\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "3442d1c5f8e5cb8f3e5e063abeaf971dac1d461bb0b3812d12e0fcbd92dbdf51"
+      }
+    },
+    {
+      "id": "p039",
+      "status": "BUILT",
+      "before": 1177,
+      "after": 1157,
+      "delta": -20,
+      "keilBytes": 1105,
+      "keilPercent": 104.70588235294117,
+      "stcBytes": 2594,
+      "stcPercent": 44.602929838087896,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1105,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\keil\\result.json",
+            "sha256": "b93af23ab910b7284761d90809e598cc8b1f4fe83b928d655686f6ce98942f6d"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\keil\\firmware.hex",
+            "sha256": "002745de87267f2fbbb0514bee2af5e2d553f056b29c8fa89e6ecd818907fc32"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 2594,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\stc\\result.json",
+            "sha256": "2947cd4c4ba50136a72eed22ee12bd37cbe4d3c5714fb9f811d3c9581212d5ac"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p039\\stc\\firmware.hex",
+            "sha256": "86a7933b77fbb0af1c84f3900b823b19553c87d6ee146c462a828dbb877b8b54"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p039\\mx251\\result.json",
+        "sha256": "744063f2abc4a0f7808bc5e8ab142f6b6e14967be449017348aa723e4316e193"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p039\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "73580569959bdd9783b4037f2ec0a24cc35c0ea9ede233841b7989243e7352ca"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p039\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "4b9f9b3c0d53bc3f6a1aa4c66730ed24e6c8db28515d2459164ff6af67acc07d"
+      }
+    },
+    {
+      "id": "p045",
+      "status": "BUILT",
+      "before": 909,
+      "after": 907,
+      "delta": -2,
+      "keilBytes": 832,
+      "keilPercent": 109.01442307692308,
+      "stcBytes": 1763,
+      "stcPercent": 51.446398184912084,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 832,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\keil\\result.json",
+            "sha256": "42d6d4be9d93153430e6cda7494397e2081f601810fe8020cbc7e535f83432b1"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\keil\\firmware.hex",
+            "sha256": "f2387a4de89013d2be3e028af517d47bdd98418e2216ae6d912fc03a4f4db003"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 1763,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\stc\\result.json",
+            "sha256": "6e8bc524c00bcbe17c209e135eb50c5f64fde050c9d2629858bf775c1ca1dea6"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p045\\stc\\firmware.hex",
+            "sha256": "9a14ef96c2694a2b890979b72ae64f8bc6dc8bcccf7864ab55c82ba930f2d11d"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p045\\mx251\\result.json",
+        "sha256": "20fc048bbcaf4e8920c066a2efec9decb5df3baa4cef8526ee0775f862415f04"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p045\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "70abf58d99be1fdf32165a6a4b0e5405e41b64206cd829b03ec2383a70a11f5e"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p045\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "66065fa88244f6f839109bd3a04ffdf292647e6d92d69d03b3722db4c6be72f7"
+      }
+    },
+    {
+      "id": "p049",
+      "status": "BUILT",
+      "before": 1100,
+      "after": 1098,
+      "delta": -2,
+      "keilBytes": 1002,
+      "keilPercent": 109.58083832335329,
+      "stcBytes": 2129,
+      "stcPercent": 51.573508689525596,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1002,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\keil\\result.json",
+            "sha256": "fc7aca7bf34676cd1e6a21be5e7307b9bad6b3f43a3c125beeae25497893f50e"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\keil\\firmware.hex",
+            "sha256": "07578a735175c3e8c02240f2bc50b44e52152ca599986024c53ce606f46517ff"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 2129,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\stc\\result.json",
+            "sha256": "7682732005ed2b87f69ca012a2eeba0667f7d80a63664e1a0fd00fabbc8d1d7f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p049\\stc\\firmware.hex",
+            "sha256": "d1c73b14064086c9fe3628109fcfa907833a581c0ecb0e0315824d8cc507060d"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p049\\mx251\\result.json",
+        "sha256": "abe383181957f1639b3e564d972e3d52f9a29d72ff118145ba029fdf5891f621"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p049\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "4d30d135c7683afe1aba5e6e865108aed229c2008de2ddba3af8e2309a081a9d"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p049\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "76396bb004753122532c57c8dbade22d2efaca92139659f6e39e960861850b0e"
+      }
+    },
+    {
+      "id": "p059",
+      "status": "BUILT",
+      "before": 2792,
+      "after": 2774,
+      "delta": -18,
+      "keilBytes": 3210,
+      "keilPercent": 86.41744548286604,
+      "stcBytes": 5145,
+      "stcPercent": 53.91642371234208,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 3210,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\keil\\result.json",
+            "sha256": "afcd03671587ba26e7bedf951c14ed3e7a51b82f2dd81a682508880d9f285888"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\keil\\firmware.hex",
+            "sha256": "256d180b0df114c21e009d1db5d7ce2f0b267950da94a712327461abf51cf34c"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 5145,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\stc\\result.json",
+            "sha256": "307b0b3e82158e8be2a474a07f440db0303f89ac596b64fbdb23fb8e5fabc6af"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p059\\stc\\firmware.hex",
+            "sha256": "421a6d9bf19cdc5417a1ca9cf766fa937e234d2687d6af3adbe70edba6782fec"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p059\\mx251\\result.json",
+        "sha256": "2f315279ec9e99345af17851d08328428882369301beb32ca0280eb771250e24"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p059\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2aedb18406a719cd821eb543ff99f25645d50c4539458b247207c51083132c92"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p059\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "cc806750834d72e1c1aefa3723da3c38d36c59dbb8642add94d238958aadce5e"
+      }
+    },
+    {
+      "id": "p083",
+      "status": "BUILT",
+      "before": 1749,
+      "after": 1705,
+      "delta": -44,
+      "keilBytes": 1459,
+      "keilPercent": 116.86086360520905,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 101,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1459,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\keil\\result.json",
+            "sha256": "64032ca8e8761338cd18a4071ed48adbf4948196e9b19d4c5694a5f515eb54d0"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\keil\\firmware.hex",
+            "sha256": "ed0657bff7f12bf3b88157feca17c9d4bdfb09426331307c2fe40c8e4873c964"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\stc-soft\\result.json",
+            "sha256": "b2fbc6a74a1a42168040085548b8804deb7480334ee253649bf6c51f7301e825"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p083\\stc-mdu32\\result.json",
+            "sha256": "ce5003ed16b7f281eb709f1a68c21cfb86b0560e3ff6b116becc00ce6b1429ad"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p083\\mx251\\result.json",
+        "sha256": "485bea66dc632730c3d391fd88945beeecbf65a8429d7664513288e4963b2c1d"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p083\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e35c3ccc0e1f207160dd6988070b994b3a0a45f8f97f4a7a0947459fd82de3d4"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p083\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "ba33a64d9d7788c1a922bbd840e9f255261e0ac719c611da6ef3afecf7ac99a3"
+      }
+    },
+    {
+      "id": "p092",
+      "status": "BUILT",
+      "before": 2107,
+      "after": 2083,
+      "delta": -24,
+      "keilBytes": 1667,
+      "keilPercent": 124.95500899820036,
+      "stcBytes": 3064,
+      "stcPercent": 67.98302872062663,
+      "stcReference": "stc-soft",
+      "gap110": 250,
+      "gap120": 83,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 1667,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\keil\\result.json",
+            "sha256": "2bd112afac93bf313d449c0964c26bb468739483847a099d93968d4434ea8b66"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\keil\\firmware.hex",
+            "sha256": "228d71c3720e37944804a2407e668eba73a965c0c53f722130e11941b7a1098f"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 3064,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-soft\\result.json",
+            "sha256": "2d4b1d72d1e0f9ccca7056cfb73d3ad30c1624cd923fb1230f44430d9f375877"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-soft\\firmware.hex",
+            "sha256": "ea19d2ae7c3cd5976e566f44be9f088e252656f6732ff8e9bcfe6501b0213608"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "bytes": 3064,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-mdu32\\result.json",
+            "sha256": "ab277f6b8486da949eae75180e1a1f556286b172f21b8311b4489ba99f3bee15"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p092\\stc-mdu32\\firmware.hex",
+            "sha256": "ea19d2ae7c3cd5976e566f44be9f088e252656f6732ff8e9bcfe6501b0213608"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p092\\mx251\\result.json",
+        "sha256": "cb22cf7c8e7f78d8d65b11a847c1abee875055fcafcb1a50ccd7fe7af6b82592"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p092\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "2c69497b6438a29876297a118bad17190e2f0f812231e4b9dac90e7299805048"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p092\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "f7449827bb3ad8df039b6d063bd9c2bcc6e2b629a86c5fbca23017cdaebc12a5"
+      }
+    },
+    {
+      "id": "p123",
+      "status": "BUILT",
+      "before": 5520,
+      "after": 5507,
+      "delta": -13,
+      "keilBytes": 4839,
+      "keilPercent": 113.80450506302955,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 185,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 4839,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\keil\\result.json",
+            "sha256": "ad156a24ad603166b5053c78f0d5f1c8f0ae346ba51343463a60f2d44d28a9f2"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\keil\\firmware.hex",
+            "sha256": "53878dcd7cbd7ae1b86d32964686899c41b5c62579668334ffec3994cee422d1"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\stc-soft\\result.json",
+            "sha256": "b9cfc0d539f3c75e2bfbb43afde3d65b9c2426d48f611f432577774035f1b7c4"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_ASSEMBLY_INPUT",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p123\\stc-mdu32\\result.json",
+            "sha256": "9270d7ce9c9459c075fe96638e80a615353dc86d6aabcf257589e2b86d71c27a"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p123\\mx251\\result.json",
+        "sha256": "d2fcfec497fe866d5bb6c0bd5c94382c23d530f865b9c42d6cee9db4e032fd65"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p123\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e5e5cc1bce5f458b4fad1afa388dc1bfc7677b2718c8b0847fe502455e0f81f4"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p123\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "a4f2148560f088fe5b6a97fff7a3d7d0e5cc8dd353894be37fdbf604d7c5cc4b"
+      }
+    },
+    {
+      "id": "p127",
+      "status": "BUILT",
+      "before": 8858,
+      "after": 8814,
+      "delta": -44,
+      "keilBytes": 6998,
+      "keilPercent": 125.95027150614462,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 1117,
+      "gap120": 417,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 6998,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\keil\\result.json",
+            "sha256": "b3b7a94182626f940f82bb2613397b29db817c21738063d8286aad93fdc7060f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\keil\\firmware.hex",
+            "sha256": "0d0f05dab73909e53b969c3b3742229f38240736669a87815774ddee9735e257"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\stc-soft\\result.json",
+            "sha256": "08fd8168de215dc366c3d5694fff3ab0dd93cce1208441b8756ec587529d30e0"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p127\\stc-mdu32\\result.json",
+            "sha256": "9b37284aacb64361c1993d1ee4a02c81bf834a118462e25942d813ee8dc86893"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p127\\mx251\\result.json",
+        "sha256": "d85915ab1fb6d6908022cec964f08cf50c0a30d79a1f70bcebc500de34c1b9ab"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p127\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "1674523e781837eede7476cce7cba4b4a0d05ad2b8aec861680b1b3a5b47e74a"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p127\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "6e9239306029446a1a428f9ad934c7e19dce3a848c94c5d4ac662d3802436bf7"
+      }
+    },
+    {
+      "id": "p130",
+      "status": "BUILT",
+      "before": 30259,
+      "after": 30246,
+      "delta": -13,
+      "keilBytes": 27478,
+      "keilPercent": 110.07351335613946,
+      "stcBytes": 36552,
+      "stcPercent": 82.74786605384111,
+      "stcReference": "stc-soft",
+      "gap110": 21,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 27478,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\keil\\result.json",
+            "sha256": "ef94220a19f72feb9dc59b0bf10b1a5f15a2d20e34bdc50ba76354b5eabb0f1e"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\keil\\firmware.hex",
+            "sha256": "e12764d68b66e05ede56fba87388ad36006f701b7e8078832b3e3a5a0387da26"
+          }
+        },
+        "stc-soft": {
+          "status": "BUILT",
+          "bytes": 36552,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-soft\\result.json",
+            "sha256": "03eaf569cd589701ac2290d8f079c4395765a335a213873bae2c37bcf836b168"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-soft\\firmware.hex",
+            "sha256": "23bb7018796f8bdde93ef388fa263a2861f4974d1e1fb9442c438750fba129f7"
+          }
+        },
+        "stc-mdu32": {
+          "status": "BUILT",
+          "bytes": 32551,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-mdu32\\result.json",
+            "sha256": "84b62f224958116981ef9bdaf5ecff543ea5707834f3cb3418b8c655f72af1a6"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p130\\stc-mdu32\\firmware.hex",
+            "sha256": "ce156641136a6b6cf736d4687e29ead21193ebd3f38008ed2d427bf85caf2537"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p130\\mx251\\result.json",
+        "sha256": "b6a8d0870ac99f20915c884740bf362824ba85a6c6f52ec579531432fe1f1898"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p130\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "a9c9505e65b10d58b32f6b315a378c68c32d543c2ad1540a9aa9d56c944800db"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p130\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "cb9eb20cc47acd1be82c0cd42263f4151a35bb43050a5c7f55c60eb1297a2dd9"
+      }
+    },
+    {
+      "id": "p131",
+      "status": "BUILT",
+      "before": 5265,
+      "after": 5231,
+      "delta": -34,
+      "keilBytes": 5304,
+      "keilPercent": 98.6236802413273,
+      "stcBytes": 6694,
+      "stcPercent": 78.14460711084553,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5304,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\keil\\result.json",
+            "sha256": "ef852ebbc8715e61cefd4e278a0c60a0d6749e5aed2294ba5dc256c29a60b887"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\keil\\firmware.hex",
+            "sha256": "b69be03e501511de0c78a05d716f0de4b5a40eb4a0f9c19f9973b49fbb7ac7db"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 6694,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\stc\\result.json",
+            "sha256": "463776308cd6467c15bd49bd459715c1973f6de60ef477f4e7d19973a30f3c50"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p131\\stc\\firmware.hex",
+            "sha256": "30177883a5d26984e88892b263ef32e9ae5826b3d7042006e67db8d6f831cb99"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p131\\mx251\\result.json",
+        "sha256": "309435cd9a3a06c834c924202a2f8b64e8a68801f609b29d34ba76036f5ada61"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p131\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "43ebace835b78c2416b1c3239244d9542a11e5a0d3a145172ef77c166619a6cd"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p131\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "98dcb0005cb214a813b4c744471c3ca0852ab6e6ae014cb120616a09b5f25da3"
+      }
+    },
+    {
+      "id": "p132",
+      "status": "BUILT",
+      "before": 5218,
+      "after": 5184,
+      "delta": -34,
+      "keilBytes": 5308,
+      "keilPercent": 97.66390354182366,
+      "stcBytes": 6732,
+      "stcPercent": 77.00534759358288,
+      "stcReference": "stc",
+      "gap110": 0,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5308,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\keil\\result.json",
+            "sha256": "60c4b9e5a91cf633de1858fa40a42a135178f3b3fd385120f02d2a626a268108"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\keil\\firmware.hex",
+            "sha256": "768a23a7e7f3e99eb091cdbc7faa756efba7ffded80dd2db53154b818d07f15d"
+          }
+        },
+        "stc": {
+          "status": "BUILT",
+          "bytes": 6732,
+          "model": "vendor-24-bit-pointer",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\stc\\result.json",
+            "sha256": "bdbdc64cb3fc3b597bd50d9f61ff7a843cf7b084ebc22e3a1d6a2e85bd4fadbc"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\reference\\official75\\projects\\p132\\stc\\firmware.hex",
+            "sha256": "7d2d1fba11d10cc20d0c8842b8a2f67758af4f97348b2ab8d02651750f74f63f"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p132\\mx251\\result.json",
+        "sha256": "4b35290d4998185f26eea1596d6414cb7d681b21a97d050eed12a179ca28d0fc"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p132\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "48a781f3eeeeae172f1edd998a64f5a531591fbf7e77c1237454a5fadddfb435"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p132\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "b60254b503f2d3757dffa723c606a3d4c7f31b51021490f5543f363464510e73"
+      }
+    },
+    {
+      "id": "p140",
+      "status": "BUILT",
+      "before": 6082,
+      "after": 5978,
+      "delta": -104,
+      "keilBytes": 5059,
+      "keilPercent": 118.16564538446333,
+      "stcBytes": null,
+      "stcPercent": null,
+      "stcReference": "stc-soft",
+      "gap110": 414,
+      "gap120": 0,
+      "references": {
+        "keil": {
+          "status": "BUILT",
+          "bytes": 5059,
+          "model": "XSMALL",
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\keil\\result.json",
+            "sha256": "fedba69099311ca52aabb12105dc3d2ecc485a535a86fdc9eeabbe67235cce6f"
+          },
+          "hex": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\keil\\firmware.hex",
+            "sha256": "1babb22c2a3e0f68a2ed2d54d615c4fd4d5fa1dc57679ae470811f50f8de189a"
+          }
+        },
+        "stc-soft": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\stc-soft\\result.json",
+            "sha256": "a5f99ff2b632f9a69f4edd9b570cc6ed04338a5348e96750dd28170b860cc358"
+          }
+        },
+        "stc-mdu32": {
+          "status": "UNSUPPORTED_KEIL_OMF",
+          "bytes": null,
+          "model": null,
+          "result": {
+            "path": "E:\\STVAPP\\MX251-baseline\\work\\full-matrix-20261115\\references\\expanded\\projects\\p140\\stc-mdu32\\result.json",
+            "sha256": "d9186df7fa082be4ebf961a6ef70d6b33696e0d58d8be203a51475a96b8ab6f0"
+          }
+        }
+      },
+      "result": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p140\\mx251\\result.json",
+        "sha256": "a969cd84cbcb9e6e9ff2bacca255b630d793df88e5bfef640f613c2ca17fa4e2"
+      },
+      "receipt": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p140\\mx251\\.build\\mx251\\latest\\receipt.json",
+        "sha256": "e9158bc629d5c816e664a5eabe540970c3d9b213e8434a130faca9ff14460b04"
+      },
+      "hex": {
+        "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\targeted\\projects\\p140\\mx251\\.build\\mx251\\latest\\firmware.hex",
+        "sha256": "e551ff16bc095faef495dc7ec7483a411d8e9a446e772ed8713054fd0baf6dd4"
+      }
+    }
+  ],
+  "reproduction": [
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\stage.py",
+      "sha256": "3096c4af9fa573af9ba3879e0c78998bea51a2b42edfd34355bfe24bdcafbed9"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\run-targets.py",
+      "sha256": "e05e567aa604c898a2276d703ddcaa725e2d0ee0927f9398fb15e35478fbf6dd"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\run-board-builds.py",
+      "sha256": "a52a19390473569b82f6db2f1b601fbd6dcfdb46f40bf2ad3bb7f74e45b0d478"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\function-costs.py",
+      "sha256": "7dcef41419456c17e2e00b9cabc38d6e991a0a1d2d8a666f992521c932049a50"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\board-function-costs.py",
+      "sha256": "1ec4d6dcd4586316e9859af6c7da05275274559b7df6b0b733ecd4bf80c62e68"
+    },
+    {
+      "path": "E:\\STVAPP\\MX251\\.build\\register-affinity-20261116\\report.py",
+      "sha256": "a6c238668a085b20a375462a802b37186d77034c0e99afdc9f123a7843100bb7"
+    }
+  ]
+}
