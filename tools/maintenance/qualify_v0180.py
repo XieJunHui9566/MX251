@@ -18,7 +18,7 @@ def verify(record):
     return path
 
 
-def main(work, distribution):
+def main(work, distribution, repo_output=True):
     matrix = read(work/'matrix-final/results.json')
     completion = read(work/'matrix-final/completion.json')
     assert completion['candidateUnchanged']
@@ -117,8 +117,9 @@ def main(work, distribution):
     save(work/'acceptance.json', qualification)
     save(distribution/'docs/qualification.json', qualification)
     save(distribution/'docs/comparison.json', comparison)
-    save(REPO/'docs/QUALIFICATION-v0.180.json', qualification)
-    save(REPO/'docs/COMPARISON-v0.180.json', comparison)
+    if repo_output:
+        save(REPO/'docs/QUALIFICATION-v0.180.json', qualification)
+        save(REPO/'docs/COMPARISON-v0.180.json', comparison)
     lines = ['# MX251 v0.180 验收结果', '',
         '203/203 个冻结 C 工程构建通过；包含 AI8051U 106 项和 STC32G 97 项。',
         '25 项内容一致的同编译器结果直接复用；其余工程使用发行包入口完成。', '',
@@ -143,7 +144,8 @@ def main(work, distribution):
               '编译器 SHA-256：`'+compiler+'`。', '']
     report = '\n'.join(lines)
     (distribution/'docs/QUALIFICATION-v0.180.md').write_text(report, encoding='utf-8', newline='\n')
-    (REPO/'docs/QUALIFICATION-v0.180.md').write_text(report, encoding='utf-8', newline='\n')
+    if repo_output:
+        (REPO/'docs/QUALIFICATION-v0.180.md').write_text(report, encoding='utf-8', newline='\n')
     print(comparisons)
 
 
@@ -151,5 +153,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--work', type=Path, required=True)
     p.add_argument('--distribution', type=Path, required=True)
+    p.add_argument('--report-only', action='store_true')
     args = p.parse_args()
-    main(args.work, args.distribution)
+    main(args.work, args.distribution, not args.report_only)

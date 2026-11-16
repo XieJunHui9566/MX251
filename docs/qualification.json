@@ -1,0 +1,79 @@
+{
+  "version": "0.180",
+  "status": "ENGINEERING_RELEASE_QUALIFIED",
+  "date": "2026-11-16T23:20:30+08:00",
+  "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+  "compilerSourceCommit": "bca1db33504ecba8581473e98b7c4f0c7ceb840d",
+  "portableExamples": [
+    {
+      "project": "edata",
+      "exitCode": 0,
+      "codeBytes": 227,
+      "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+      "firmwareSha256": "a36de355970523f4ceb2f71d0557bd2d1363461399c744b502925d82b3760329"
+    },
+    {
+      "project": "math-casts-ai",
+      "exitCode": 0,
+      "codeBytes": 970,
+      "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+      "firmwareSha256": "644864603a535be9560a49ec6b3f329beda92139aa613e7a69932060d4b8ae57"
+    },
+    {
+      "project": "math-casts-stc",
+      "exitCode": 0,
+      "codeBytes": 974,
+      "compilerSha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40",
+      "firmwareSha256": "c8cc13c1c055bea7ca5c3e45b35919fb542a5c5acf9064172582f5c140198807"
+    }
+  ],
+  "studioxTemplates": [
+    {
+      "device": "AI8051U-34K64",
+      "template": "registers",
+      "codeBytes": 121,
+      "firmwareSha256": "e877a3c3863e6bfa6271312836e57f0afc29c7b54a5b329c96a4cc44b337e294"
+    },
+    {
+      "device": "AI8051U-34K64",
+      "template": "library",
+      "codeBytes": 376,
+      "firmwareSha256": "08d4caebb9bb00eab0e442523240ff27d13b5de3230ab3aaa6cfd30d6ea1c449"
+    },
+    {
+      "device": "STC32G12K128",
+      "template": "registers",
+      "codeBytes": 125,
+      "firmwareSha256": "00c5ae30f83c90c30c686a68597ca0d7d171c2a8628a7f6d91519aa973b33d64"
+    }
+  ],
+  "independentUserStress": {
+    "status": "PASS",
+    "configurations": 9,
+    "translationUnits": 63,
+    "targets": [
+      "STC32G12K128",
+      "AI8051U-34K64-32",
+      "Independent251"
+    ],
+    "identicalPureCObjects": true
+  },
+  "hardware": {
+    "status": "PASS",
+    "target": "AI8051U experiment box",
+    "uniqueCases": 768,
+    "timingQualified": false
+  },
+  "fullMatrix": {
+    "status": "IN_PROGRESS",
+    "planned": 203,
+    "completed": 36,
+    "built": 35,
+    "reusedIdenticalBuilds": 25,
+    "finalReportDirectory": "../reports",
+    "note": "Snapshot only; do not interpret as full-matrix threshold qualification. g069 has a separate completion build."
+  },
+  "keilRuntime110Qualified": false,
+  "closedKeilOmfSupported": false,
+  "finalArchiveImport": "Recorded in delivery-validation.json beside the distribution archives"
+}

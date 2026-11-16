@@ -1,78 +1,34 @@
 {
   "schema": 2,
-  "id": "mx251-baseline-20261114",
-  "status": "ACTIVE_DEVELOPMENT_BASELINE",
-  "date": "2026-11-14",
-  "gitTag": "baseline-20261114",
-  "publicVersion": "0.0170-test",
-  "compilerSourceCommit": "e5326b6382a44a338380c2e1e6264b571e5f2618",
-  "qualificationCommit": "2df230b",
-  "packagingCommit": "efdf351a552d00f802d8feec5ea88a0bd3c6ab97",
+  "id": "mx251-v0.180",
+  "status": "ACTIVE_ENGINEERING_RELEASE",
+  "gitTag": "v0.180",
+  "publicVersion": "0.180",
+  "compilerSourceCommit": "bca1db33504ecba8581473e98b7c4f0c7ceb840d",
   "core": {
-    "path": "E:\\STVAPP\\MX251-baseline\\core\\core.json",
-    "sha256": "bf6fd287d81ddae4d9901bfa65217647f1962f9f33bd1946539f9b678ce46bd5"
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\core\\core.json",
+    "sha256": "99b2be3b4be1fbbb461bac014670c46ec7d3eaf1c03a5f6b9663926090778bbc"
   },
   "compiler": {
-    "path": "E:\\STVAPP\\MX251-baseline\\core\\toolchain\\bin\\sdcc.exe",
-    "sha256": "54a2c9c3795f8fd3ddc617b256b5e98f0696558e6f2fe718ece3027cf795b71e"
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\core\\toolchain\\bin\\sdcc.exe",
+    "sha256": "59ba965abb843fcf4d062edec38e2be77a4c3dec9d36421c8de5c627634bec40"
   },
   "entry": {
-    "path": "E:\\STVAPP\\MX251-baseline\\Build.ps1",
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\Build.ps1",
     "sha256": "23dda911020180de4ecef4fd377585ef0b13f3c6cccff0fb8ead7932e3bee89d"
   },
-  "configuration": {
-    "path": "E:\\STVAPP\\MX251-baseline\\sdk-baseline.json",
-    "sha256": "938b8e784ed888ef8fa4cd2c007075556dc4904afd7fb0f481a89693e060a797"
-  },
-  "expandedConfiguration": {
-    "path": "E:\\STVAPP\\MX251-baseline\\reference\\sdk-expanded\\config.json",
-    "sha256": "3b0e74bc5bf6f8ac00935ec78698845f76ee8c5b42cbddbb71205ebf873c4311"
-  },
-  "comparison": {
-    "path": "E:\\STVAPP\\MX251-baseline\\comparison.json",
-    "sha256": "b0c9a8c5102a3db60fd179c0b1af9312dc38bff34bbc34b69284c41c0e95c53b"
-  },
+  "localEntry": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\Build.ps1",
   "qualification": {
-    "path": "E:\\STVAPP\\MX251-baseline\\evidence\\abi4-backend-choice\\ABI4-BACKEND-CHOICE-RESULTS.json",
-    "sha256": "8b82169de7c83313d180a19265200ec0eb2962950c2c6fe70a11ebba5ecf511e"
+    "path": "E:\\STVAPP\\MX251\\dist\\v0.180\\MX251-v0.180-windows-x64\\docs\\qualification.json",
+    "sha256": "170e94d5824a7ee68241d747a069bc480381466d0c4fe28abe416abba711be2a"
   },
-  "summary": {
-    "projects": 7,
-    "improved": 2,
-    "unchanged": 5,
-    "increased": 0,
-    "savedBytes": 32,
-    "atMost120": 1,
-    "atMost110": 0
-  },
-  "summaryScope": "Seven projects rebuilt by this compiler; not a new full SDK qualification",
-  "hardwareCasesPassed": 512,
+  "hardwareCasesPassed": 768,
   "fullProjectRuntimeMeasured": false,
-  "localEntry": "E:\\STVAPP\\MX251-baseline\\Build.ps1",
+  "fullMatrixStatus": "IN_PROGRESS",
   "developmentWorktree": "C:\\Users\\jav\\.codex\\worktrees\\stclink1d-feasibility\\MX251",
-  "compilerBuildDirectory": "E:\\STVAPP\\MX251-baseline\\development\\compiler\\build",
   "previousBaseline": {
-    "path": "E:\\STVAPP\\MX251-baseline\\reference\\baseline-20261113\\baseline.json",
-    "sha256": "e799f67e4697bf50f6cac1456faa48a952f42b908269963d9ea9ed62d9d60720"
-  },
-  "package": {
-    "schema": 1,
-    "file": "MX251-core-20261114-windows-x64.zip",
-    "bytes": 191787974,
-    "sha256": "36a96bb395808bbb0e6338deda8409151aff8ba59510129a385cdfb9a16c73e2",
-    "buildId": "mx251-core-20261114"
-  },
-  "smoke": {
-    "path": "E:\\STVAPP\\MX251-baseline\\evidence\\core-packaging-20261114\\package-smoke.json",
-    "sha256": "878d4ef453960b022e59cfcfeba7ea6d7927e4e441d46ea6566f6c322e7cc26b"
-  },
-  "evidenceLocations": {
-    "path": "E:\\STVAPP\\MX251-baseline\\archive\\locations.json",
-    "sha256": "28a353f528b1d13bb9d5f2f416f0e595eac1470c65d9dce59dc76b3dc1b0da94"
-  },
-  "policy": "Compare later compiler changes with this core. Use new output directories; retained historical 75-project results describe the 2026-11-13 compiler.",
-  "cleanup": {
-    "path": "E:\\STVAPP\\MX251-baseline\\cleanup-20261114.json",
-    "sha256": "7becde5b44051b510bbec77ea97c2511fdcbf7d24ba29f12d3bab08971b0c7a3"
+    "id": "mx251-baseline-20261114",
+    "record": "E:\\STVAPP\\MX251\\.build\\release-v0.180\\previous-baseline.json",
+    "sha256": "0b8253dc198563e999b291ea1e775e745617c701e1eab5fefbcb71ecc1446c4b"
   }
 }
